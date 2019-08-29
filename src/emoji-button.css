@@ -14,5 +14,25 @@
 .emoji-picker__tab {
   list-style: none;
   display: inline-block;
-  padding: 0.5em 0.25em;
+  padding: 0 0.5em;
+  cursor: pointer;
+}
+
+.emoji-picker__tab.active {
+  border-bottom: 2px solid blue;
+}
+
+.emoji-picker__tab-body {
+  display: none;
+
+  margin-top: 0.5em;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #333333;
+}
+
+.emoji-picker__tab-body.active {
+  display: block;
 }

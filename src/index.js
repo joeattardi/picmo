@@ -5,6 +5,8 @@ import { faCat, faCoffee, faFutbol, faMusic } from '@fortawesome/free-solid-svg-
 
 import emojiData from './data/emoji.js';
 
+import { createElement } from './util';
+
 const emojiCategories = {};
 emojiData.forEach(emoji => {
   let categoryList = emojiCategories[emoji.category];
@@ -14,17 +16,6 @@ emojiData.forEach(emoji => {
 
   categoryList.push(emoji);
 });
-
-const categoryOrder = [
-  'Smileys & People',
-  'Animals & Nature',
-  'Food & Drink',
-  'Activities',
-  'Travel & Places',
-  'Objects',
-  'Symbols',
-  'Flags'
-];
 
 const categoryIcons = {
   'Smileys & People': { prefix: 'far', iconName: 'smile' },
@@ -40,6 +31,12 @@ const categoryIcons = {
 library.add(faBuilding, faCat, faCoffee, faFlag, faFutbol, faLightbulb, faMusic, faSmile);
 
 const smile = icon({ prefix: 'far', iconName: 'smile' }).html;
+
+const CLASS_ACTIVE_TAB = 'active';
+const CLASS_PICKER = 'emoji-picker';
+const CLASS_TABS_CONTAINER = 'emoji-picker__tabs';
+const CLASS_TAB = 'emoji-picker__tab';
+const CLASS_TAB_BODY = 'emoji-picker__tab-body';
 
 export default function emojiButton(button) {
   let pickerVisible = false;
@@ -68,31 +65,62 @@ export default function emojiButton(button) {
     document.removeEventListener('click', onDocumentClick);
   }
 
+  function buildPicker() {
+    function setActiveTab(index) {
+      tabBodyContainer.children[activeTab].classList.remove(CLASS_ACTIVE_TAB);
+      tabs.children[activeTab].classList.remove(CLASS_ACTIVE_TAB);
+
+      activeTab = index;
+
+      tabBodyContainer.children[activeTab].classList.add(CLASS_ACTIVE_TAB);
+      tabs.children[activeTab].classList.add(CLASS_ACTIVE_TAB);
+    }
+
+    picker = createElement('div', CLASS_PICKER);
+
+    const tabs = createElement('ul', CLASS_TABS_CONTAINER);
+    let activeTab = 0;
+
+    Object.keys(categoryIcons).forEach((category, index) => {
+      const tab = createElement('li', CLASS_TAB);
+
+      if (index === activeTab) {
+        tab.classList.add(CLASS_ACTIVE_TAB);
+      }
+
+      tab.addEventListener('click', () => setActiveTab(index));
+
+      tab.innerHTML = icon(categoryIcons[category]).html;
+      tabs.appendChild(tab);
+    });
+    picker.appendChild(tabs);
+
+    const tabBodyContainer = document.createElement('div');
+    Object.keys(categoryIcons).forEach((category, index) => {
+      const tabBody = createElement('div', CLASS_TAB_BODY);
+
+      if (index === activeTab) {
+        tabBody.classList.add(CLASS_ACTIVE_TAB);
+      }
+
+      tabBody.innerHTML = category;
+      tabBodyContainer.appendChild(tabBody);
+    });
+    picker.appendChild(tabBodyContainer);
+
+    document.body.appendChild(picker);
+    document.addEventListener('click', onDocumentClick);
+
+    popper = new Popper(button, picker, {
+      placement: 'right-start'
+    });
+  }
+
   button.addEventListener('click', event => {
     pickerVisible = !pickerVisible;
 
     if (pickerVisible) {
-      picker = document.createElement('div');
-      picker.className = 'emoji-picker';
-
-      const tabs = document.createElement('ul');
-      tabs.className = 'emoji-picker__tabs';
-
-      Object.keys(categoryIcons).forEach(category => {
-        const tab = document.createElement('li');
-        tab.className = 'emoji-picker__tab';
-        tab.innerHTML = icon(categoryIcons[category]).html;
-        tabs.appendChild(tab);
-      });
-
-      picker.appendChild(tabs);
-
-      document.body.appendChild(picker);
-      document.addEventListener('click', onDocumentClick);
-
-      popper = new Popper(button, picker, {
-        placement: 'right-start'
-      });
+      buildPicker();
     } else {
       hidePicker();
     }
