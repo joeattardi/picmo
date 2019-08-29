@@ -1,0 +1,18 @@
+.emoji-picker {
+  margin: 0 0.5em;
+  border: 1px solid #999999;
+  border-radius: 5px;
+  padding: 0.5em;
+  box-shadow: 0px 0px 3px 1px #CCCCCC;
+}
+
+.emoji-picker__tabs {
+  margin: 0;
+  padding: 0;
+}
+
+.emoji-picker__tab {
+  list-style: none;
+  display: inline-block;
+  padding: 0.5em 0.25em;
+}

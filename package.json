@@ -1,0 +1,26 @@
+{
+  "name": "emoji-button",
+  "version": "1.0.0",
+  "description": "Vanilla JavaScript emoji picker",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c",
+    "build:watch": "rollup -cw"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "rollup": "^1.20.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.22",
+    "@fortawesome/free-regular-svg-icons": "^5.10.2",
+    "@fortawesome/free-solid-svg-icons": "^5.10.2",
+    "emoji-datasource": "^4.1.0",
+    "popper.js": "^1.15.0"
+  }
+}
