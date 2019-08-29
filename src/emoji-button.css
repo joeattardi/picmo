@@ -19,7 +19,8 @@
 }
 
 .emoji-picker__tab.active {
-  border-bottom: 2px solid blue;
+  border-bottom: 3px solid #4F81E5;
+  color: #4F81E5;
 }
 
 .emoji-picker__tab-body {
