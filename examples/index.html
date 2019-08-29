@@ -10,7 +10,9 @@
     <input type="text">
     <button id="emoji-button">😀</button>
     <script>
-      EmojiButton(document.querySelector('#emoji-button'));
+      EmojiButton(document.querySelector('#emoji-button'), function (emoji) {
+        document.querySelector('input').value += emoji;
+      });
     </script>
   </body>
 </html>

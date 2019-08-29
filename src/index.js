@@ -40,7 +40,7 @@ const CLASS_TAB_BODY = 'emoji-picker__tab-body';
 const CLASS_EMOJI_CONTAINER = 'emoji-picker__emojis';
 const CLASS_EMOJI = 'emoji-picker__emoji';
 
-export default function emojiButton(button) {
+export default function emojiButton(button, callback) {
   let pickerVisible = false;
   let picker;
   let popper;
@@ -113,6 +113,12 @@ export default function emojiButton(button) {
       emojiCategories[category].forEach(emoji => {
         const emojiButton = createElement('button', CLASS_EMOJI);
         emojiButton.innerHTML = emoji.emoji;
+
+        emojiButton.addEventListener('click', () => {
+          callback(emoji.emoji);
+          hidePicker();
+        });
+
         emojiContainer.appendChild(emojiButton);
       });
       tabBody.appendChild(emojiContainer);
