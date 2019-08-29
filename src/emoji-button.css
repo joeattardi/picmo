@@ -12,6 +12,7 @@
 .emoji-picker__tabs {
   margin: 0;
   padding: 0;
+  display: flex;
 }
 
 .emoji-picker__tab {
@@ -19,6 +20,8 @@
   display: inline-block;
   padding: 0 0.5em;
   cursor: pointer;
+  flex-grow: 1;
+  text-align: center;
 }
 
 .emoji-picker__tab.active {
@@ -29,8 +32,6 @@
 .emoji-picker__tab-body {
   display: none;
   margin-top: 0.5em;
-  height: 21rem;
-  overflow-y: scroll;
 }
 
 .emoji-picker__tab-body h2 {
@@ -45,6 +46,14 @@
   display: block;
 }
 
+.emoji-picker__emojis {
+  height: 20rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
 .emoji-picker__emoji {
   background: transparent;
   border: none;
@@ -55,6 +64,7 @@
   height: 1.5em;
   padding: 0;
   margin: 0;
+  flex-grow: 1;
 }
 
 .emoji-picker__emoji:hover {

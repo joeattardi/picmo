@@ -37,6 +37,8 @@ const CLASS_PICKER = 'emoji-picker';
 const CLASS_TABS_CONTAINER = 'emoji-picker__tabs';
 const CLASS_TAB = 'emoji-picker__tab';
 const CLASS_TAB_BODY = 'emoji-picker__tab-body';
+const CLASS_EMOJI_CONTAINER = 'emoji-picker__emojis';
+const CLASS_EMOJI = 'emoji-picker__emoji';
 
 export default function emojiButton(button) {
   let pickerVisible = false;
@@ -107,11 +109,13 @@ export default function emojiButton(button) {
       title.innerHTML = category;
       tabBody.appendChild(title);
 
+      const emojiContainer = createElement('div', CLASS_EMOJI_CONTAINER);
       emojiCategories[category].forEach(emoji => {
-        const emojiButton = createElement('button', 'emoji-picker__emoji');
+        const emojiButton = createElement('button', CLASS_EMOJI);
         emojiButton.innerHTML = emoji.emoji;
-        tabBody.appendChild(emojiButton);
+        emojiContainer.appendChild(emojiButton);
       });
+      tabBody.appendChild(emojiContainer);
 
       tabBodyContainer.appendChild(tabBody);
     });
