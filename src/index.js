@@ -103,7 +103,16 @@ export default function emojiButton(button) {
         tabBody.classList.add(CLASS_ACTIVE_TAB);
       }
 
-      tabBody.innerHTML = category;
+      const title = createElement('h2');
+      title.innerHTML = category;
+      tabBody.appendChild(title);
+
+      emojiCategories[category].forEach(emoji => {
+        const emojiButton = createElement('button', 'emoji-picker__emoji');
+        emojiButton.innerHTML = emoji.emoji;
+        tabBody.appendChild(emojiButton);
+      });
+
       tabBodyContainer.appendChild(tabBody);
     });
     picker.appendChild(tabBodyContainer);

@@ -4,6 +4,9 @@
   border-radius: 5px;
   padding: 0.5em;
   box-shadow: 0px 0px 3px 1px #CCCCCC;
+  background: #FFFFFF;
+  width: 20rem;
+  height: 23rem;
 }
 
 .emoji-picker__tabs {
@@ -25,15 +28,35 @@
 
 .emoji-picker__tab-body {
   display: none;
-
   margin-top: 0.5em;
+  height: 21rem;
+  overflow-y: scroll;
+}
 
+.emoji-picker__tab-body h2 {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 0.75rem;
   text-transform: uppercase;
   color: #333333;
+  margin: 0;
 }
 
 .emoji-picker__tab-body.active {
   display: block;
+}
+
+.emoji-picker__emoji {
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  width: 1.5em;
+  height: 1.5em;
+  padding: 0;
+  margin: 0;
+}
+
+.emoji-picker__emoji:hover {
+  background: #E8F4F9;
 }
