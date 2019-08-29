@@ -64,7 +64,6 @@
   height: 1.5em;
   padding: 0;
   margin: 0;
-  flex-grow: 1;
 }
 
 .emoji-picker__emoji:hover {
