@@ -2,6 +2,7 @@ import Popper from 'popper.js';
 import { library, icon } from '@fortawesome/fontawesome-svg-core';
 import { faSmile } from '@fortawesome/free-regular-svg-icons';
 
+import { renderSearch } from './search';
 import { renderTabs } from './tabs';
 import { createElement } from './util';
 
@@ -42,9 +43,10 @@ export default function emojiButton(button, callback) {
   function buildPicker() {
     picker = createElement('div', CLASS_PICKER);
 
+    renderSearch(picker);
+
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
     picker.appendChild(pickerContent);
-
     renderTabs(pickerContent, hidePicker, callback);
 
     document.body.appendChild(picker);

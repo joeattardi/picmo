@@ -47,7 +47,7 @@
 }
 
 .emoji-picker__emojis {
-  height: 20rem;
+  height: 18rem;
   overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
@@ -68,4 +68,28 @@
 
 .emoji-picker__emoji:hover {
   background: #E8F4F9;
+}
+
+.emoji-picker__search-container {
+  margin-bottom: 0.5em;
+  position: relative;
+  height: 2em;
+  display: flex;
+}
+
+.emoji-picker__search-container input {
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #CCCCCC;
+  padding-right: 2em;
+}
+
+.emoji-picker__search-icon {
+  position: absolute;
+  color: #CCCCCC;
+  width: 1em;
+  height: 1em;
+  right: 0.75em;
+  top: calc(50% - 0.5em);
 }
