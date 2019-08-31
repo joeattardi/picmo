@@ -1,13 +1,8 @@
-import { library, icon } from '@fortawesome/fontawesome-svg-core';
-import { faBuilding, faFlag, faLightbulb, faSmile } from '@fortawesome/free-regular-svg-icons';
-import { faCat, faCoffee, faFutbol, faMusic } from '@fortawesome/free-solid-svg-icons';
-
 import emojiData from './data/emoji.js';
 
 import { renderEmojiContainer } from './emojiContainer';
+import * as icons from './icons';
 import { createElement, empty } from './util';
-
-library.add(faBuilding, faCat, faCoffee, faFlag, faFutbol, faLightbulb, faMusic, faSmile);
 
 const CLASS_ACTIVE_TAB = 'active';
 const CLASS_TABS_CONTAINER = 'emoji-picker__tabs';
@@ -25,14 +20,14 @@ emojiData.forEach(emoji => {
 });
 
 const categoryIcons = {
-  'Smileys & People': { prefix: 'far', iconName: 'smile' },
-  'Animals & Nature': { prefix: 'fas', iconName: 'cat' },
-  'Food & Drink': { prefix: 'fas', iconName: 'coffee' },
-  'Activities': { prefix: 'fas', iconName: 'futbol' },
-  'Travel & Places': { prefix: 'far', iconName: 'building' },
-  'Objects': { prefix: 'far', iconName: 'lightbulb' },
-  'Symbols': { prefix: 'fas', iconName: 'music' },
-  'Flags': { prefix: 'far', iconName: 'flag' }
+  'Smileys & People': icons.smile,
+  'Animals & Nature': icons.cat,
+  'Food & Drink': icons.coffee,
+  'Activities': icons.futbol,
+  'Travel & Places': icons.building,
+  'Objects': icons.lightbulb,
+  'Symbols': icons.music,
+  'Flags': icons.flag
 };
 
 export function renderTabs(pickerContent, hidePicker, emojiCallback) {
@@ -60,7 +55,7 @@ export function renderTabs(pickerContent, hidePicker, emojiCallback) {
 
     tab.addEventListener('click', () => setActiveTab(index));
 
-    tab.innerHTML = icon(categoryIcons[category]).html;
+    tab.innerHTML = categoryIcons[category];
     tabs.appendChild(tab);
   });
   pickerContent.appendChild(tabs);

@@ -1,14 +1,9 @@
 import Popper from 'popper.js';
-import { library, icon } from '@fortawesome/fontawesome-svg-core';
-import { faSmile } from '@fortawesome/free-regular-svg-icons';
 
+import * as icons from './icons';
 import { renderSearch } from './search';
 import { renderTabs } from './tabs';
 import { createElement } from './util';
-
-library.add(faSmile);
-
-const smile = icon({ prefix: 'far', iconName: 'smile' }).html;
 
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
@@ -18,7 +13,7 @@ export default function emojiButton(button, callback) {
   let picker;
   let popper;
 
-  button.innerHTML = smile;
+  button.innerHTML = icons.smile;
 
   function onDocumentClick(event) {
     let parent = event.target;

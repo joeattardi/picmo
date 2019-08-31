@@ -1,16 +1,9 @@
-import { library, icon } from '@fortawesome/fontawesome-svg-core';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faFrown } from '@fortawesome/free-regular-svg-icons';
+import * as icons from './icons';
 
 import emojiData from './data/emoji.js';
 
 import { renderEmojiContainer } from './emojiContainer';
 import { createElement, empty } from './util';
-
-library.add(faFrown, faSearch);
-
-const search = icon({ prefix: 'fas', iconName: 'search' }).html;
-const frown = icon({ prefix: 'far', iconName: 'frown' }).html;
 
 const CLASS_SEARCH_CONTAINER = 'emoji-picker__search-container';
 const CLASS_SEARCH_FIELD = 'emoji-picker__search';
@@ -49,11 +42,11 @@ export function renderSearch(pickerContent, emojiCallback, hidePicker, renderCal
       } else {
         const notFoundContainer = createElement('div', CLASS_NOT_FOUND);
         const iconContainer = createElement('div', CLASS_NOT_FOUND_ICON);
-        iconContainer.innerHTML = frown;
+        iconContainer.innerHTML = icons.frown;
         notFoundContainer.appendChild(iconContainer);
 
         const messageContainer = createElement('h2');
-        messageContainer.innerHTML = 'No emoji found';
+        messageContainer.innerHTML = 'No emojis found';
         notFoundContainer.appendChild(messageContainer);
 
         pickerContent.appendChild(notFoundContainer);
@@ -62,7 +55,7 @@ export function renderSearch(pickerContent, emojiCallback, hidePicker, renderCal
   });
   
   const searchIcon = createElement('span', CLASS_SEARCH_ICON);
-  searchIcon.innerHTML = search;
+  searchIcon.innerHTML = icons.search;
   searchContainer.appendChild(searchIcon);
 
   setTimeout(() => searchField.focus());
