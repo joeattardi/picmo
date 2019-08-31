@@ -7,3 +7,9 @@ export function createElement(tagName, className) {
 
   return element;
 }
+
+export function empty(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
