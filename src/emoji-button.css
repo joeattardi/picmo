@@ -7,6 +7,7 @@
   background: #FFFFFF;
   width: 20rem;
   height: 23rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .emoji-picker__tabs {
@@ -35,7 +36,6 @@
 }
 
 .emoji-picker__tab-body h2 {
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 0.75rem;
   text-transform: uppercase;
   color: #333333;
@@ -92,4 +92,18 @@
   height: 1em;
   right: 0.75em;
   top: calc(50% - 0.5em);
+}
+
+.emoji-picker__search-not-found {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.emoji-picker__search-not-found-icon {
+  font-size: 3em;
+}
+
+.emoji-picker__search-not-found h2 {
+  margin: 0.5em 0;
+  font-size: 1em;
 }
