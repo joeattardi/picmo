@@ -38,6 +38,13 @@ export default function emojiButton(button, callback) {
     document.body.removeChild(picker);
     popper.destroy();
     document.removeEventListener('click', onDocumentClick);
+    document.removeEventListener('keydown', onDocumentKeydown);
+  }
+
+  function onDocumentKeydown(event) {
+    if (event.key === 'Escape') {
+      hidePicker();
+    }
   }
 
   function buildPicker() {
@@ -45,13 +52,15 @@ export default function emojiButton(button, callback) {
 
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
 
-    renderSearch(picker, pickerContent, callback, hidePicker, () => renderTabs(pickerContent, hidePicker, callback));
+    const searchContainer = renderSearch(pickerContent, callback, hidePicker, () => renderTabs(pickerContent, hidePicker, callback));
+    picker.appendChild(searchContainer);
 
     picker.appendChild(pickerContent);
     renderTabs(pickerContent, hidePicker, callback);
 
     document.body.appendChild(picker);
     document.addEventListener('click', onDocumentClick);
+    document.addEventListener('keydown', onDocumentKeydown);
 
     popper = new Popper(button, picker, {
       placement: 'right-start'

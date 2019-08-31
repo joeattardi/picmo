@@ -3,46 +3,43 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import emojiData from './data/emoji.js';
 
+import { renderEmojiContainer } from './emojiContainer';
 import { createElement, empty } from './util';
 
 library.add(faSearch);
 
 const search = icon({ prefix: 'fas', iconName: 'search' }).html;
 
-const CLASS_EMOJI_CONTAINER = 'emoji-picker__emojis';
-const CLASS_EMOJI = 'emoji-picker__emoji';
-
 const CLASS_SEARCH_CONTAINER = 'emoji-picker__search-container';
+const CLASS_SEARCH_FIELD = 'emoji-picker__search';
 const CLASS_SEARCH_ICON = 'emoji-picker__search-icon';
 
-export function renderSearch(picker, pickerContent, emojiCallback, hidePicker, renderCallback) {
+export function renderSearch(pickerContent, emojiCallback, hidePicker, renderCallback) {
   const searchContainer = createElement('div', CLASS_SEARCH_CONTAINER);
 
-  const searchField = createElement('input');
+  const searchField = createElement('input', CLASS_SEARCH_FIELD);
   searchField.placeholder = 'Search';
   searchContainer.appendChild(searchField);
 
-  searchField.addEventListener('keyup', event => {
+  searchField.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      if (searchField.value !== '') {
+        event.stopPropagation();
+        searchField.value = '';
+        empty(pickerContent);
+        renderCallback();
+      }
+    }
+  });
+
+  searchField.addEventListener('keyup', () => {
     empty(pickerContent);
 
     if (!searchField.value) {
       renderCallback();
     } else {
       const searchResults = emojiData.filter(emoji => emoji.names.filter(name => name.indexOf(searchField.value) >= 0).length);
-      const emojiContainer = createElement('div', CLASS_EMOJI_CONTAINER);
-      searchResults.forEach(result => {
-        const emojiButton = createElement('button', CLASS_EMOJI);
-        emojiButton.innerHTML = result.emoji;
-
-        emojiButton.addEventListener('click', () => {
-          emojiCallback(result.emoji);
-          hidePicker();
-        });
-
-        emojiContainer.appendChild(emojiButton);
-      });
-
-      pickerContent.appendChild(emojiContainer);
+      pickerContent.appendChild(renderEmojiContainer(searchResults, emojiCallback, hidePicker));
     }
   });
   
@@ -50,7 +47,7 @@ export function renderSearch(picker, pickerContent, emojiCallback, hidePicker, r
   searchIcon.innerHTML = search;
   searchContainer.appendChild(searchIcon);
 
-  picker.appendChild(searchContainer);
-
   setTimeout(() => searchField.focus());
+
+  return searchContainer;
 }

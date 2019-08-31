@@ -4,6 +4,7 @@ import { faCat, faCoffee, faFutbol, faMusic } from '@fortawesome/free-solid-svg-
 
 import emojiData from './data/emoji.js';
 
+import { renderEmojiContainer } from './emojiContainer';
 import { createElement, empty } from './util';
 
 library.add(faBuilding, faCat, faCoffee, faFlag, faFutbol, faLightbulb, faMusic, faSmile);
@@ -12,8 +13,6 @@ const CLASS_ACTIVE_TAB = 'active';
 const CLASS_TABS_CONTAINER = 'emoji-picker__tabs';
 const CLASS_TAB = 'emoji-picker__tab';
 const CLASS_TAB_BODY = 'emoji-picker__tab-body';
-const CLASS_EMOJI_CONTAINER = 'emoji-picker__emojis';
-const CLASS_EMOJI = 'emoji-picker__emoji';
 
 const emojiCategories = {};
 emojiData.forEach(emoji => {
@@ -77,20 +76,7 @@ export function renderTabs(pickerContent, hidePicker, emojiCallback) {
     const title = createElement('h2');
     title.innerHTML = category;
     tabBody.appendChild(title);
-
-    const emojiContainer = createElement('div', CLASS_EMOJI_CONTAINER);
-    emojiCategories[category].forEach(emoji => {
-      const emojiButton = createElement('button', CLASS_EMOJI);
-      emojiButton.innerHTML = emoji.emoji;
-
-      emojiButton.addEventListener('click', () => {
-        emojiCallback(emoji.emoji);
-        hidePicker();
-      });
-
-      emojiContainer.appendChild(emojiButton);
-    });
-    tabBody.appendChild(emojiContainer);
+    tabBody.appendChild(renderEmojiContainer(emojiCategories[category], emojiCallback, hidePicker));
 
     tabBodyContainer.appendChild(tabBody);
   });
