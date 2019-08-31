@@ -43,9 +43,10 @@ export default function emojiButton(button, callback) {
   function buildPicker() {
     picker = createElement('div', CLASS_PICKER);
 
-    renderSearch(picker);
-
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
+
+    renderSearch(picker, pickerContent, callback, hidePicker, () => renderTabs(pickerContent, hidePicker, callback));
+
     picker.appendChild(pickerContent);
     renderTabs(pickerContent, hidePicker, callback);
 
