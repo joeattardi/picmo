@@ -1,4 +1,5 @@
 var babel = require('rollup-plugin-babel');
+var commonjs = require('rollup-plugin-commonjs');
 var resolve = require('rollup-plugin-node-resolve');
 
 module.exports = {
@@ -12,6 +13,7 @@ module.exports = {
     babel({
       compact: true
     }),
-    resolve()
+    resolve(),
+    commonjs()
   ]
 };

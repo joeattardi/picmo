@@ -30,7 +30,7 @@ const categoryIcons = {
   'Flags': icons.flag
 };
 
-export function renderTabs(pickerContent, hidePicker, emojiCallback) {
+export function renderTabs(pickerContent, events) {
   empty(pickerContent);
 
   function setActiveTab(index) {
@@ -71,7 +71,7 @@ export function renderTabs(pickerContent, hidePicker, emojiCallback) {
     const title = createElement('h2');
     title.innerHTML = category;
     tabBody.appendChild(title);
-    tabBody.appendChild(renderEmojiContainer(emojiCategories[category], emojiCallback, hidePicker));
+    tabBody.appendChild(renderEmojiContainer(emojiCategories[category], events));
 
     tabBodyContainer.appendChild(tabBody);
   });

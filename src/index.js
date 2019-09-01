@@ -1,5 +1,7 @@
+import EventEmitter from 'eventemitter3';
 import Popper from 'popper.js';
 
+import { HIDE_PICKER, EMOJI, RENDER_TABS } from './events';
 import * as icons from './icons';
 import { renderSearch } from './search';
 import { renderTabs } from './tabs';
@@ -12,6 +14,11 @@ export default function emojiButton(button, callback) {
   let pickerVisible = false;
   let picker;
   let popper;
+
+  const events = new EventEmitter();
+
+  events.on(HIDE_PICKER, hidePicker);
+  events.on(EMOJI, callback);
 
   button.innerHTML = icons.smile;
 
@@ -47,11 +54,13 @@ export default function emojiButton(button, callback) {
 
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
 
-    const searchContainer = renderSearch(pickerContent, callback, hidePicker, () => renderTabs(pickerContent, hidePicker, callback));
+    events.on(RENDER_TABS, () => renderTabs(pickerContent, events));
+
+    const searchContainer = renderSearch(pickerContent, events);
     picker.appendChild(searchContainer);
 
     picker.appendChild(pickerContent);
-    renderTabs(pickerContent, hidePicker, callback);
+    renderTabs(pickerContent, events);
 
     document.body.appendChild(picker);
     document.addEventListener('click', onDocumentClick);
