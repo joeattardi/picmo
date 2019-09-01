@@ -1,2 +1,2 @@
-# emoji-button
+# Emoji Button
 Vanilla JavaScript emoji picker
