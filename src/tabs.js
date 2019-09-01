@@ -1,8 +1,8 @@
-import emojiData from './data/emoji.js';
+import emojiData, { categories } from './data/emoji.js';
 
 import { renderEmojiContainer } from './emojiContainer';
 import * as icons from './icons';
-import { createElement, empty } from './util';
+import { createElement } from './util';
 
 const CLASS_ACTIVE_TAB = 'active';
 const CLASS_TABS_CONTAINER = 'emoji-picker__tabs-container';
@@ -12,9 +12,9 @@ const CLASS_TAB_BODY = 'emoji-picker__tab-body';
 
 const emojiCategories = {};
 emojiData.forEach(emoji => {
-  let categoryList = emojiCategories[emoji.category];
+  let categoryList = emojiCategories[categories[emoji.c]];
   if (!categoryList) {
-    categoryList = emojiCategories[emoji.category] = [];
+    categoryList = emojiCategories[categories[emoji.c]] = [];
   }
 
   categoryList.push(emoji);

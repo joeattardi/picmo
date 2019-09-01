@@ -8,23 +8,28 @@ function getEmoji(unified) {
   return String.fromCodePoint(...codePoints);
 }
 
+const categories = [];
+
 rawData.sort((e1, e2) => e1.sort_order - e2.sort_order);
 const newEmojiData = rawData.map(emojiItem => {
+  let categoryIndex = categories.indexOf(emojiItem.category);
+  if (categoryIndex < 0) {
+    categories.push(emojiItem.category);
+    categoryIndex = categories.length - 1;
+  }
+
   const newData = {
-    name: emojiItem.short_name,
-    key: emojiItem.short_name,
-    names: emojiItem.short_names,
-    emoji: getEmoji(emojiItem.unified),
-    category: emojiItem.category
+    n: emojiItem.short_names,
+    e: getEmoji(emojiItem.unified),
+    c: categoryIndex
   };
 
   if (emojiItem.skin_variations) {
     newData.variants = {};
     Object.keys(emojiItem.skin_variations).forEach(variation => {
       newData.variants[variation] = {
-        name: emojiItem.short_name,
-        key: `${emojiItem.short_name}-${variation}`,
-        emoji: getEmoji(emojiItem.skin_variations[variation].unified)
+        n: emojiItem.short_names[0],
+        e: getEmoji(emojiItem.skin_variations[variation].unified)
       };
     });
   }
@@ -32,4 +37,4 @@ const newEmojiData = rawData.map(emojiItem => {
   return newData;
 });
 
-writeFileSync('src/data/emoji.js', `export default ${JSON.stringify(newEmojiData)};`);
+writeFileSync('src/data/emoji.js', `export const categories = ${JSON.stringify(categories)}; export default ${JSON.stringify(newEmojiData)};`);
