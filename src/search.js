@@ -3,8 +3,8 @@ import * as icons from './icons';
 import emojiData from './data/emoji.js';
 
 import { renderEmojiContainer } from './emojiContainer';
-import { RENDER_TABS } from './events';
-import { createElement, empty } from './util';
+import { HIDE_TABS, SHOW_SEARCH_RESULTS, SHOW_TABS } from './events';
+import { createElement } from './util';
 
 const CLASS_SEARCH_CONTAINER = 'emoji-picker__search-container';
 const CLASS_SEARCH_FIELD = 'emoji-picker__search';
@@ -12,7 +12,7 @@ const CLASS_SEARCH_ICON = 'emoji-picker__search-icon';
 const CLASS_NOT_FOUND = 'emoji-picker__search-not-found';
 const CLASS_NOT_FOUND_ICON = 'emoji-picker__search-not-found-icon';
 
-export function renderSearch(pickerContent, events) {
+export function renderSearch(events) {
   const searchContainer = createElement('div', CLASS_SEARCH_CONTAINER);
 
   const searchField = createElement('input', CLASS_SEARCH_FIELD);
@@ -24,22 +24,20 @@ export function renderSearch(pickerContent, events) {
       if (searchField.value !== '') {
         event.stopPropagation();
         searchField.value = '';
-        empty(pickerContent);
-        events.emit(RENDER_TABS);
+        events.emit(SHOW_TABS);
       }
     }
   });
 
   searchField.addEventListener('keyup', () => {
-    empty(pickerContent);
-
     if (!searchField.value) {
-      events.emit(RENDER_TABS);
+      events.emit(SHOW_TABS);
     } else {
+      events.emit(HIDE_TABS);
       const searchResults = emojiData.filter(emoji => emoji.names.filter(name => name.indexOf(searchField.value) >= 0).length);
 
       if (searchResults.length) {
-        pickerContent.appendChild(renderEmojiContainer(searchResults, events));
+        events.emit(SHOW_SEARCH_RESULTS, renderEmojiContainer(searchResults, events))
       } else {
         const notFoundContainer = createElement('div', CLASS_NOT_FOUND);
         const iconContainer = createElement('div', CLASS_NOT_FOUND_ICON);
@@ -50,7 +48,7 @@ export function renderSearch(pickerContent, events) {
         messageContainer.innerHTML = 'No emojis found';
         notFoundContainer.appendChild(messageContainer);
 
-        pickerContent.appendChild(notFoundContainer);
+        events.emit(SHOW_SEARCH_RESULTS, notFoundContainer);
       }
     }
   });

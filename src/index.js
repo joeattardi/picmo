@@ -1,11 +1,11 @@
 import EventEmitter from 'eventemitter3';
 import Popper from 'popper.js';
 
-import { HIDE_PICKER, EMOJI, RENDER_TABS } from './events';
+import { HIDE_PICKER, EMOJI, SHOW_SEARCH_RESULTS, SHOW_TABS, HIDE_TABS } from './events';
 import * as icons from './icons';
 import { renderSearch } from './search';
 import { renderTabs } from './tabs';
-import { createElement } from './util';
+import { createElement, empty } from './util';
 
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
@@ -54,13 +54,31 @@ export default function emojiButton(button, callback) {
 
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
 
-    events.on(RENDER_TABS, () => renderTabs(pickerContent, events));
-
-    const searchContainer = renderSearch(pickerContent, events);
+    const searchContainer = renderSearch(events);
     picker.appendChild(searchContainer);
 
     picker.appendChild(pickerContent);
-    renderTabs(pickerContent, events);
+    
+    const tabs = renderTabs(events);
+    pickerContent.appendChild(tabs);
+
+    events.on(HIDE_TABS, () => {
+      if (pickerContent.contains(tabs)) {
+        pickerContent.removeChild(tabs);
+      }
+    });
+  
+    events.on(SHOW_TABS, () => {
+      if (!pickerContent.contains(tabs)) {
+        empty(pickerContent);
+        pickerContent.appendChild(tabs);
+      }
+    });
+
+    events.on(SHOW_SEARCH_RESULTS, searchResults => {
+      empty(pickerContent);
+      pickerContent.appendChild(searchResults);
+    });
 
     document.body.appendChild(picker);
     document.addEventListener('click', onDocumentClick);
@@ -71,7 +89,7 @@ export default function emojiButton(button, callback) {
     });
   }
 
-  button.addEventListener('click', event => {
+  button.addEventListener('click', () => {
     pickerVisible = !pickerVisible;
 
     if (pickerVisible) {

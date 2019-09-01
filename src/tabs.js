@@ -5,7 +5,8 @@ import * as icons from './icons';
 import { createElement, empty } from './util';
 
 const CLASS_ACTIVE_TAB = 'active';
-const CLASS_TABS_CONTAINER = 'emoji-picker__tabs';
+const CLASS_TABS_CONTAINER = 'emoji-picker__tabs-container';
+const CLASS_TABS = 'emoji-picker__tabs';
 const CLASS_TAB = 'emoji-picker__tab';
 const CLASS_TAB_BODY = 'emoji-picker__tab-body';
 
@@ -30,9 +31,7 @@ const categoryIcons = {
   'Flags': icons.flag
 };
 
-export function renderTabs(pickerContent, events) {
-  empty(pickerContent);
-
+export function renderTabs(events) {
   function setActiveTab(index) {
     tabBodyContainer.children[activeTab].classList.remove(CLASS_ACTIVE_TAB);
     tabs.children[activeTab].classList.remove(CLASS_ACTIVE_TAB);
@@ -43,7 +42,9 @@ export function renderTabs(pickerContent, events) {
     tabs.children[activeTab].classList.add(CLASS_ACTIVE_TAB);
   }
 
-  const tabs = createElement('ul', CLASS_TABS_CONTAINER);
+  const tabsContainer = createElement('div', CLASS_TABS_CONTAINER);
+
+  const tabs = createElement('ul', CLASS_TABS);
   let activeTab = 0;
 
   Object.keys(categoryIcons).forEach((category, index) => {
@@ -58,7 +59,7 @@ export function renderTabs(pickerContent, events) {
     tab.innerHTML = categoryIcons[category];
     tabs.appendChild(tab);
   });
-  pickerContent.appendChild(tabs);
+  tabsContainer.appendChild(tabs);
 
   const tabBodyContainer = document.createElement('div');
   Object.keys(categoryIcons).forEach((category, index) => {
@@ -75,5 +76,7 @@ export function renderTabs(pickerContent, events) {
 
     tabBodyContainer.appendChild(tabBody);
   });
-  pickerContent.appendChild(tabBodyContainer);
+  tabsContainer.appendChild(tabBodyContainer);
+
+  return tabsContainer;
 }
