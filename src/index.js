@@ -3,6 +3,7 @@ import Popper from 'popper.js';
 
 import { HIDE_PICKER, EMOJI, SHOW_SEARCH_RESULTS, SHOW_TABS, HIDE_TABS } from './events';
 import * as icons from './icons';
+import { renderPreview } from './preview';
 import { renderSearch } from './search';
 import { renderTabs } from './tabs';
 import { createElement, empty } from './util';
@@ -79,6 +80,8 @@ export default function emojiButton(button, callback) {
       empty(pickerContent);
       pickerContent.appendChild(searchResults);
     });
+
+    picker.appendChild(renderPreview(events));
 
     document.body.appendChild(picker);
     document.addEventListener('click', onDocumentClick);

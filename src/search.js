@@ -3,7 +3,7 @@ import * as icons from './icons';
 import emojiData from './data/emoji.js';
 
 import { renderEmojiContainer } from './emojiContainer';
-import { HIDE_TABS, SHOW_SEARCH_RESULTS, SHOW_TABS } from './events';
+import { HIDE_PREVIEW, HIDE_TABS, SHOW_SEARCH_RESULTS, SHOW_TABS } from './events';
 import { createElement } from './util';
 
 const CLASS_SEARCH_CONTAINER = 'emoji-picker__search-container';
@@ -37,6 +37,7 @@ export function renderSearch(events) {
       const searchResults = emojiData.filter(emoji => emoji.n.filter(name => name.indexOf(searchField.value) >= 0).length);
 
       if (searchResults.length) {
+        events.emit(HIDE_PREVIEW);
         events.emit(SHOW_SEARCH_RESULTS, renderEmojiContainer(searchResults, events))
       } else {
         const notFoundContainer = createElement('div', CLASS_NOT_FOUND);
