@@ -77,6 +77,8 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
+  width: calc(1.3rem * 1.5 * 9);
+  margin: auto;
 }
 
 .emoji-picker__emoji {
