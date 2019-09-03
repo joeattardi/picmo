@@ -27,7 +27,6 @@
     "popper.js": "^1.15.0"
   },
   "files": [
-    "dist",
-    "css"
+    "dist"
   ]
 }
