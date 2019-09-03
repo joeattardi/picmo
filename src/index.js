@@ -1,3 +1,5 @@
+import '../css/emoji-button.css';
+
 import EventEmitter from 'eventemitter3';
 import Popper from 'popper.js';
 

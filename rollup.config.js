@@ -1,6 +1,7 @@
-var babel = require('rollup-plugin-babel');
-var commonjs = require('rollup-plugin-commonjs');
-var resolve = require('rollup-plugin-node-resolve');
+const babel = require('rollup-plugin-babel');
+const commonjs = require('rollup-plugin-commonjs');
+const postcss = require('rollup-plugin-postcss');
+const resolve = require('rollup-plugin-node-resolve');
 
 module.exports = {
   input: 'src/index.js',
@@ -10,6 +11,9 @@ module.exports = {
     name: 'EmojiButton'
   },
   plugins: [
+    postcss({
+      extensions: ['.css']
+    }),
     babel({
       compact: true
     }),
