@@ -7,15 +7,20 @@
     "build": "rollup -c",
     "build:watch": "rollup -cw",
     "serve": "serve public",
-    "start": "concurrently \"npm:build:watch\" \"npm:serve\" \"livereload\""
+    "start": "concurrently \"npm:build:watch\" \"npm:serve\" \"livereload\"",
+    "publish": "gh-pages -d public"
   },
   "license": "UNLICENSED",
   "devDependencies": {
     "concurrently": "^4.1.2",
+    "gh-pages": "^2.1.1",
     "livereload": "^0.8.0",
     "rollup": "^1.20.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "serve": "^11.1.0"
+  },
+  "dependencies": {
+    "emoji-button": "^0.5.0"
   }
 }
