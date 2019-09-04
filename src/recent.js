@@ -1,12 +1,6 @@
-import { renderEmojiContainer } from './emojiContainer';
-
 const LOCAL_STORAGE_KEY = 'emojiPicker.recent';
 
-export function renderRecents(events) {
-  return renderEmojiContainer(load(), events);
-}
-
-function load() {
+export function load() {
   return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
 }
 

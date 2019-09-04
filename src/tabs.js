@@ -1,7 +1,7 @@
 import emojiData, { categories } from './data/emoji.js';
 
 import { renderEmojiContainer } from './emojiContainer';
-import { renderRecents } from './recent';
+import { load } from './recent';
 import * as icons from './icons';
 import { createElement } from './util';
 
@@ -75,7 +75,7 @@ export function renderTabs(events) {
   const title = createElement('h2');
   title.innerHTML = 'Recently Used';
   recentTabBody.appendChild(title);
-  recentTabBody.appendChild(renderRecents(events));
+  recentTabBody.appendChild(renderEmojiContainer(load(), events));
   tabBodyContainer.appendChild(recentTabBody);
 
   Object.keys(categoryIcons).forEach((category, index) => {
