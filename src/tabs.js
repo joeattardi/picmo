@@ -1,6 +1,7 @@
 import emojiData, { categories } from './data/emoji.js';
 
 import { renderEmojiContainer } from './emojiContainer';
+import { renderRecents } from './recent';
 import * as icons from './icons';
 import { createElement } from './util';
 
@@ -42,30 +43,45 @@ export function renderTabs(events) {
     tabs.children[activeTab].classList.add(CLASS_ACTIVE_TAB);
   }
 
+  function renderTab(index, content) {
+    const tab = createElement('li', CLASS_TAB);
+    tab.addEventListener('click', () => setActiveTab(index));
+    tab.innerHTML = content;
+  
+    return tab;
+  }
+
   const tabsContainer = createElement('div', CLASS_TABS_CONTAINER);
 
   const tabs = createElement('ul', CLASS_TABS);
-  let activeTab = 0;
+  let activeTab = 1;
+
+  const recentTab = renderTab(0, icons.history);
+  tabs.appendChild(recentTab);
 
   Object.keys(categoryIcons).forEach((category, index) => {
-    const tab = createElement('li', CLASS_TAB);
-
-    if (index === activeTab) {
+    const tab = renderTab(index + 1, categoryIcons[category]);
+    if (index + 1 === activeTab) {
       tab.classList.add(CLASS_ACTIVE_TAB);
     }
 
-    tab.addEventListener('click', () => setActiveTab(index));
-
-    tab.innerHTML = categoryIcons[category];
     tabs.appendChild(tab);
   });
   tabsContainer.appendChild(tabs);
 
-  const tabBodyContainer = document.createElement('div');
+  const tabBodyContainer = createElement('div');
+
+  const recentTabBody = createElement('div', CLASS_TAB_BODY);
+  const title = createElement('h2');
+  title.innerHTML = 'Recently Used';
+  recentTabBody.appendChild(title);
+  recentTabBody.appendChild(renderRecents(events));
+  tabBodyContainer.appendChild(recentTabBody);
+
   Object.keys(categoryIcons).forEach((category, index) => {
     const tabBody = createElement('div', CLASS_TAB_BODY);
 
-    if (index === activeTab) {
+    if (index + 1 === activeTab) {
       tabBody.classList.add(CLASS_ACTIVE_TAB);
     }
 
