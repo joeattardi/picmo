@@ -1,6 +1,6 @@
 import '../css/emoji-button.css';
 
-import EventEmitter from 'eventemitter3';
+import Emitter from 'tiny-emitter';
 import Popper from 'popper.js';
 
 import { EMOJI, SHOW_SEARCH_RESULTS, SHOW_TABS, HIDE_TABS, HIDE_VARIANT_POPUP } from './events';
@@ -19,7 +19,7 @@ export default function emojiButton(button, callback) {
   let picker;
   let popper;
 
-  const events = new EventEmitter();
+  const events = new Emitter();
 
   button.innerHTML = icons.smile;
 

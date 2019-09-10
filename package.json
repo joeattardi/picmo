@@ -23,8 +23,8 @@
     "@fortawesome/free-regular-svg-icons": "^5.10.2",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "emoji-datasource": "^4.1.0",
-    "eventemitter3": "^4.0.0",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.15.0",
+    "tiny-emitter": "^2.1.0"
   },
   "files": [
     "dist"
