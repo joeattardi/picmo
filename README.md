@@ -1,6 +1,8 @@
 # Emoji Button
 Vanilla JavaScript emoji picker 😎
 
+[![npm package](https://img.shields.io/npm/v/emoji-button)](https://npmjs.com/package/emoji-button)
+
 ![Screenshot](https://raw.githubusercontent.com/joeattardi/emoji-button/master/screenshot.png)
 
 Emoji Button turns an ordinary button into an emoji picker. When the target button is clicked, the emoji picker will be shown and a callback will be executed when an emoji is picked.
