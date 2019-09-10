@@ -135,3 +135,34 @@
   margin: 0.5em 0;
   font-size: 1em;
 }
+
+.emoji-picker__variant-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20.5rem;
+  height: 27.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.emoji-picker__variant-popup {
+  background: #FFFFFF;
+  margin: 0.5em;
+  padding: 0.5em;
+  text-align: center;
+}
+
+.emoji-picker__variant-popup-close-button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  position: absolute;
+  right: 1em;
+  padding: 0;
+  top: calc(50% - 0.5em);
+  height: 1em;
+  width: 1em;
+}

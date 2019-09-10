@@ -25,9 +25,10 @@ const newEmojiData = rawData.map(emojiItem => {
   };
 
   if (emojiItem.skin_variations) {
-    newData.variants = {};
+    newData.v = {};
     Object.keys(emojiItem.skin_variations).forEach(variation => {
-      newData.variants[variation] = {
+      newData.v[variation] = {
+        k: `${emojiItem.short_names[0]}-${variation}`,
         n: emojiItem.short_names[0],
         e: getEmoji(emojiItem.skin_variations[variation].unified)
       };

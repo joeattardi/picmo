@@ -75,7 +75,7 @@ export function renderTabs(events) {
   const title = createElement('h2');
   title.innerHTML = 'Recently Used';
   recentTabBody.appendChild(title);
-  recentTabBody.appendChild(renderEmojiContainer(load(), events));
+  recentTabBody.appendChild(renderEmojiContainer(load(), false, events));
   tabBodyContainer.appendChild(recentTabBody);
 
   Object.keys(categoryIcons).forEach((category, index) => {
@@ -88,7 +88,7 @@ export function renderTabs(events) {
     const title = createElement('h2');
     title.innerHTML = category;
     tabBody.appendChild(title);
-    tabBody.appendChild(renderEmojiContainer(emojiCategories[category], events));
+    tabBody.appendChild(renderEmojiContainer(emojiCategories[category], true, events));
 
     tabBodyContainer.appendChild(tabBody);
   });

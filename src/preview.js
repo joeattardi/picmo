@@ -16,7 +16,7 @@ export function renderPreview(events) {
 
   events.on(SHOW_PREVIEW, preview => {
     emoji.innerHTML = preview.e;
-    name.innerHTML = preview.n[0];
+    name.innerHTML = typeof preview.n === 'string' ? preview.n : preview.n[0];
   });
 
   events.on(HIDE_PREVIEW, () => {

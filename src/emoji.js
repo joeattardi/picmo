@@ -1,21 +1,31 @@
-import { EMOJI, HIDE_PICKER, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
+import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
 import { save } from './recent';
 import { createElement } from './util';
 
 const CLASS_EMOJI = 'emoji-picker__emoji';
 
-export function renderEmoji(emoji, events) {
+export function renderEmoji(emoji, showVariants, showPreview, events) {
   const emojiButton = createElement('button', CLASS_EMOJI);
   emojiButton.innerHTML = emoji.e;
 
   emojiButton.addEventListener('click', () => {
-    save(emoji);
-    events.emit(EMOJI, emoji.e);
-    events.emit(HIDE_PICKER);
+    if (!emoji.v || !showVariants) {
+      save(emoji);
+    }
+    events.emit(EMOJI, { emoji, showVariants });
   });
 
-  emojiButton.addEventListener('mouseover', () => events.emit(SHOW_PREVIEW, emoji));
-  emojiButton.addEventListener('mouseout', () => events.emit(HIDE_PREVIEW));
+  emojiButton.addEventListener('mouseover', () => {
+    if (showPreview) {
+      events.emit(SHOW_PREVIEW, emoji)
+    }
+  });
+
+  emojiButton.addEventListener('mouseout', () => {
+    if (showPreview) {
+      events.emit(HIDE_PREVIEW)
+    }
+  });
 
   return emojiButton;
 }

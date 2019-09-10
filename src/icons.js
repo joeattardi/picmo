@@ -1,5 +1,5 @@
 import { library, icon } from '@fortawesome/fontawesome-svg-core';
-import { faCat, faCoffee, faFutbol, faHistory, faMusic, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faCat, faCoffee, faFutbol, faHistory, faMusic, faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { faBuilding, faFlag, faFrown, faLightbulb, faSmile } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
@@ -13,7 +13,8 @@ library.add(
   faLightbulb,
   faMusic,
   faSearch,
-  faSmile
+  faSmile,
+  faTimes
 );
 
 export const building = icon({ prefix: 'far', iconName: 'building' }).html;
@@ -27,3 +28,4 @@ export const lightbulb = icon({ prefix: 'far', iconName: 'lightbulb' }).html;
 export const music = icon({ prefix: 'fas', iconName: 'music' }).html;
 export const search = icon({ prefix: 'fas', iconName: 'search' }).html;
 export const smile = icon({ prefix: 'far', iconName: 'smile' }).html;
+export const times = icon({ prefix: 'fas', iconName: 'times' }).html;

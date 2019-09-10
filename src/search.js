@@ -38,7 +38,7 @@ export function renderSearch(events) {
 
       if (searchResults.length) {
         events.emit(HIDE_PREVIEW);
-        events.emit(SHOW_SEARCH_RESULTS, renderEmojiContainer(searchResults, events))
+        events.emit(SHOW_SEARCH_RESULTS, renderEmojiContainer(searchResults, true, events))
       } else {
         const notFoundContainer = createElement('div', CLASS_NOT_FOUND);
         const iconContainer = createElement('div', CLASS_NOT_FOUND_ICON);

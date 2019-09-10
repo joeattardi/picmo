@@ -3,12 +3,13 @@ import '../css/emoji-button.css';
 import EventEmitter from 'eventemitter3';
 import Popper from 'popper.js';
 
-import { HIDE_PICKER, EMOJI, SHOW_SEARCH_RESULTS, SHOW_TABS, HIDE_TABS } from './events';
+import { EMOJI, SHOW_SEARCH_RESULTS, SHOW_TABS, HIDE_TABS, HIDE_VARIANT_POPUP } from './events';
 import * as icons from './icons';
 import { renderPreview } from './preview';
 import { renderSearch } from './search';
 import { renderTabs } from './tabs';
 import { createElement, empty } from './util';
+import { renderVariantPopup } from './variantPopup';
 
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
@@ -19,9 +20,6 @@ export default function emojiButton(button, callback) {
   let popper;
 
   const events = new EventEmitter();
-
-  events.on(HIDE_PICKER, hidePicker);
-  events.on(EMOJI, callback);
 
   button.innerHTML = icons.smile;
 
@@ -40,6 +38,8 @@ export default function emojiButton(button, callback) {
 
   function hidePicker() {
     pickerVisible = false;
+    events.off(EMOJI);
+    events.off(HIDE_VARIANT_POPUP);
     document.body.removeChild(picker);
     popper.destroy();
     document.removeEventListener('click', onDocumentClick);
@@ -84,6 +84,22 @@ export default function emojiButton(button, callback) {
     });
 
     picker.appendChild(renderPreview(events));
+
+    let variantPopup;
+    events.on(EMOJI, ({emoji, showVariants}) => {
+      if (emoji.v && showVariants) {
+        variantPopup = renderVariantPopup(events, emoji);
+        picker.appendChild(variantPopup);
+      } else {
+        callback(emoji.e);
+        hidePicker();
+      }
+    });
+
+    events.on(HIDE_VARIANT_POPUP, () => {
+      picker.removeChild(variantPopup);
+      variantPopup = null;
+    });
 
     document.body.appendChild(picker);
     document.addEventListener('click', onDocumentClick);

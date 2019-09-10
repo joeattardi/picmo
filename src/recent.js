@@ -7,10 +7,13 @@ export function load() {
 export function save(emoji) {
   const recents = load();
 
+  const name = typeof emoji.n === 'string' ? emoji.n : emoji.n[0];
+
   const recent = {
-    ...emoji,
-    key: emoji.n[0]
+    e: emoji.e,
+    n: name,
+    k: emoji.k || name
   };
 
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([recent, ...recents.filter(r => r.key !== recent.key)].slice(0, 50)));
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([recent, ...recents.filter(r => r.k !== recent.k)].slice(0, 50)));
 }
