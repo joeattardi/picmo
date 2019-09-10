@@ -1,7 +1,9 @@
 # Emoji Button
-Vanilla JavaScript emoji picker ⚡️
+Vanilla JavaScript emoji picker 😎
 
 ![Screenshot](https://raw.githubusercontent.com/joeattardi/emoji-button/master/screenshot.png)
+
+Emoji Button turns an ordinary button into an emoji picker. When the target button is clicked, the emoji picker will be shown and a callback will be executed when an emoji is picked.
 
 ## Demo
 
@@ -27,3 +29,12 @@ Vanilla JavaScript emoji picker ⚡️
     console.log('User picked emoji:', emoji);
   });
 ```
+
+## API
+
+### `EmojiButton(buttonEl, callback)`
+
+Turns a given button element into an Emoji Button
+
+* `buttonEl`: Reference to the DOM element of the button
+* `callback`: A callback function that will be called when an emoji is picked. The literal emoji character (e.g. 😃) will be passed to the callback function.

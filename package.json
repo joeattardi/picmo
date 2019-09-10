@@ -7,7 +7,13 @@
     "build": "rollup -c",
     "build:watch": "rollup -cw"
   },
-  "author": "",
+  "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.codes)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joeattardi/emoji-button.git"
+  },
+  "homepage": "https://github.com/joeattardi/emoji-button",
+  "bugs": "https://github.com/joeattardi/emoji-button/issues",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.5.5",
