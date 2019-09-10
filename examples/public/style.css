@@ -3,6 +3,7 @@ button {
   font-size: 1em;
   background: #EEEEEE;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 input {

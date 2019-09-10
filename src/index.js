@@ -4,7 +4,6 @@ import Emitter from 'tiny-emitter';
 import Popper from 'popper.js';
 
 import { EMOJI, SHOW_SEARCH_RESULTS, SHOW_TABS, HIDE_TABS, HIDE_VARIANT_POPUP } from './events';
-import * as icons from './icons';
 import { renderPreview } from './preview';
 import { renderSearch } from './search';
 import { renderTabs } from './tabs';
@@ -20,8 +19,6 @@ export default function emojiButton(button, callback) {
   let popper;
 
   const events = new Emitter();
-
-  button.innerHTML = icons.smile;
 
   function onDocumentClick(event) {
     let parent = event.target;
