@@ -34,7 +34,7 @@ export function renderSearch(events) {
       events.emit(SHOW_TABS);
     } else {
       events.emit(HIDE_TABS);
-      const searchResults = emojiData.filter(emoji => emoji.n.filter(name => name.indexOf(searchField.value) >= 0).length);
+      const searchResults = emojiData.filter(emoji => emoji.n.filter(name => name.toLowerCase().indexOf(searchField.value.toLowerCase()) >= 0).length);
 
       if (searchResults.length) {
         events.emit(HIDE_PREVIEW);
