@@ -2,7 +2,10 @@
   "name": "emoji-button",
   "version": "1.0.0",
   "description": "Vanilla JavaScript emoji picker",
-  "keywords": ["emoji", "javascript"],
+  "keywords": [
+    "emoji",
+    "javascript"
+  ],
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c",
@@ -36,5 +39,6 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "types": "src/types.d.ts"
 }
