@@ -13,107 +13,107 @@ import { renderVariantPopup } from './variantPopup';
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 
-export default function emojiButton(button, callback) {
-  let pickerVisible = false;
-  let picker;
-  let popper;
+export default class EmojiButton {
+  constructor(button, callback) {
+    this.button = button;
+    this.callback = callback;
+    this.pickerVisible = false;
 
-  const events = new Emitter();
+    this.onDocumentClick = this.onDocumentClick.bind(this);
+    this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
 
-  function onDocumentClick(event) {
-    let parent = event.target;
-    while (parent) {
-      if (parent === picker || parent === button) {
-        return;
-      }
-
-      parent = parent.parentElement;
-    }
-
-    hidePicker();
+    this.events = new Emitter();
   }
 
-  function hidePicker() {
-    pickerVisible = false;
-    events.off(EMOJI);
-    events.off(HIDE_VARIANT_POPUP);
-    document.body.removeChild(picker);
-    popper.destroy();
-    document.removeEventListener('click', onDocumentClick);
-    document.removeEventListener('keydown', onDocumentKeydown);
-  }
-
-  function onDocumentKeydown(event) {
-    if (event.key === 'Escape') {
-      hidePicker();
-    }
-  }
-
-  function buildPicker() {
-    picker = createElement('div', CLASS_PICKER);
+  buildPicker() {
+    this.pickerEl = createElement('div', CLASS_PICKER);
 
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
 
-    const searchContainer = renderSearch(events);
-    picker.appendChild(searchContainer);
+    const searchContainer = renderSearch(this.events);
+    this.pickerEl.appendChild(searchContainer);
 
-    picker.appendChild(pickerContent);
+    this.pickerEl.appendChild(pickerContent);
     
-    const tabs = renderTabs(events);
+    const tabs = renderTabs(this.events);
     pickerContent.appendChild(tabs);
 
-    events.on(HIDE_TABS, () => {
+    this.events.on(HIDE_TABS, () => {
       if (pickerContent.contains(tabs)) {
         pickerContent.removeChild(tabs);
       }
     });
   
-    events.on(SHOW_TABS, () => {
+    this.events.on(SHOW_TABS, () => {
       if (!pickerContent.contains(tabs)) {
         empty(pickerContent);
         pickerContent.appendChild(tabs);
       }
     });
 
-    events.on(SHOW_SEARCH_RESULTS, searchResults => {
+    this.events.on(SHOW_SEARCH_RESULTS, searchResults => {
       empty(pickerContent);
       pickerContent.appendChild(searchResults);
     });
 
-    picker.appendChild(renderPreview(events));
+    this.pickerEl.appendChild(renderPreview(this.events));
 
     let variantPopup;
-    events.on(EMOJI, ({emoji, showVariants}) => {
+    this.events.on(EMOJI, ({emoji, showVariants}) => {
       if (emoji.v && showVariants) {
-        variantPopup = renderVariantPopup(events, emoji);
-        picker.appendChild(variantPopup);
+        variantPopup = renderVariantPopup(this.events, emoji);
+        this.pickerEl.appendChild(variantPopup);
       } else {
-        callback(emoji.e);
-        hidePicker();
+        this.callback(emoji.e);
+        this.hidePicker();
       }
     });
 
-    events.on(HIDE_VARIANT_POPUP, () => {
-      picker.removeChild(variantPopup);
+    this.events.on(HIDE_VARIANT_POPUP, () => {
+      this.pickerEl.removeChild(variantPopup);
       variantPopup = null;
     });
 
-    document.body.appendChild(picker);
-    document.addEventListener('click', onDocumentClick);
-    document.addEventListener('keydown', onDocumentKeydown);
+    document.body.appendChild(this.pickerEl);
+    document.addEventListener('click', this.onDocumentClick);
+    document.addEventListener('keydown', this.onDocumentKeydown);
 
-    popper = new Popper(button, picker, {
+    this.popper = new Popper(this.button, this.pickerEl, {
       placement: 'right-start'
     });
   }
 
-  button.addEventListener('click', () => {
-    pickerVisible = !pickerVisible;
+  onDocumentClick(event) {
+    let parent = event.target;
+    while (parent) {
+      if (parent === this.pickerEl || parent === this.button) {
+        return;
+      }
 
-    if (pickerVisible) {
-      buildPicker();
-    } else {
-      hidePicker();
+      parent = parent.parentElement;
     }
-  });
+
+    this.hidePicker();
+  }
+
+  hidePicker() {
+    this.pickerVisible = false;
+    this.events.off(EMOJI);
+    this.events.off(HIDE_VARIANT_POPUP);
+    document.body.removeChild(this.pickerEl);
+    this.popper.destroy();
+    document.removeEventListener('click', this.onDocumentClick);
+    document.removeEventListener('keydown', this.onDocumentKeydown);
+  }
+
+  showPicker() {
+    this.pickerVisible = true;
+    this.buildPicker();
+  }
+
+  onDocumentKeydown(event) {
+    if (event.key === 'Escape') {
+      this.hidePicker();
+    }
+  }
 }
