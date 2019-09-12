@@ -14,8 +14,7 @@ const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 
 export default class EmojiButton {
-  constructor(referenceEl) {
-    this.referenceEl = referenceEl;
+  constructor() {
     this.pickerVisible = false;
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
@@ -88,10 +87,6 @@ export default class EmojiButton {
       document.addEventListener('click', this.onDocumentClick);
       document.addEventListener('keydown', this.onDocumentKeydown);
     });
-
-    this.popper = new Popper(this.referenceEl, this.pickerEl, {
-      placement: 'right-start'
-    });
   }
 
   onDocumentClick(event) {
@@ -110,9 +105,12 @@ export default class EmojiButton {
     document.removeEventListener('keydown', this.onDocumentKeydown);
   }
 
-  showPicker() {
+  showPicker(referenceEl) {
     this.pickerVisible = true;
     this.buildPicker();
+    this.popper = new Popper(referenceEl, this.pickerEl, {
+      placement: 'right-start'
+    });
   }
 
   onDocumentKeydown(event) {
