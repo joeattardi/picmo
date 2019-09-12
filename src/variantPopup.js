@@ -10,13 +10,16 @@ const CLASS_POPUP = 'emoji-picker__variant-popup';
 const CLASS_CLOSE_BUTTON = 'emoji-picker__variant-popup-close-button';
 
 export function renderVariantPopup(events, emoji) {
+  const popup = createElement('div', CLASS_POPUP);
+
   const overlay = createElement('div', CLASS_OVERLAY);
   overlay.addEventListener('click', event => {
     event.stopPropagation();
-    events.emit(HIDE_VARIANT_POPUP);
-  });
 
-  const popup = createElement('div', CLASS_POPUP);
+    if (!popup.contains(event.target)) {
+      events.emit(HIDE_VARIANT_POPUP);
+    }
+  });
 
   popup.appendChild(renderEmoji(emoji, false, false, events));
   Object.keys(emoji.v).forEach(variant => {
