@@ -14,15 +14,23 @@ const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 
 export default class EmojiButton {
-  constructor(button, callback) {
+  constructor(button) {
     this.button = button;
-    this.callback = callback;
     this.pickerVisible = false;
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
 
     this.events = new Emitter();
+    this.publicEvents = new Emitter();
+  }
+
+  on(event, callback) {
+    this.publicEvents.on(event, callback);
+  }
+
+  off(event, callback) {
+    this.publicEvents.off(event, callback);
   }
 
   buildPicker() {
@@ -64,7 +72,7 @@ export default class EmojiButton {
         variantPopup = renderVariantPopup(this.events, emoji);
         this.pickerEl.appendChild(variantPopup);
       } else {
-        this.callback(emoji.e);
+        this.publicEvents.emit('emoji', emoji.e);
         this.hidePicker();
       }
     });

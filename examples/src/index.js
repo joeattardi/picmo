@@ -5,7 +5,9 @@ document.write('<script src="http://' + (location.host || 'localhost').split(':'
 
 window.addEventListener('DOMContentLoaded', () => {
   const button = document.querySelector('#emoji-button');
-  const picker = new EmojiButton(button, function (emoji) {
+  const picker = new EmojiButton(button);
+
+  picker.on('emoji', emoji => {
     document.querySelector('input').value += emoji;
   });
 
