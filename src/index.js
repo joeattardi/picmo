@@ -14,8 +14,8 @@ const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 
 export default class EmojiButton {
-  constructor(button) {
-    this.button = button;
+  constructor(referenceEl) {
+    this.referenceEl = referenceEl;
     this.pickerVisible = false;
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
@@ -83,25 +83,21 @@ export default class EmojiButton {
     });
 
     document.body.appendChild(this.pickerEl);
-    document.addEventListener('click', this.onDocumentClick);
-    document.addEventListener('keydown', this.onDocumentKeydown);
 
-    this.popper = new Popper(this.button, this.pickerEl, {
+    setTimeout(() => {
+      document.addEventListener('click', this.onDocumentClick);
+      document.addEventListener('keydown', this.onDocumentKeydown);
+    });
+
+    this.popper = new Popper(this.referenceEl, this.pickerEl, {
       placement: 'right-start'
     });
   }
 
   onDocumentClick(event) {
-    let parent = event.target;
-    while (parent) {
-      if (parent === this.pickerEl || parent === this.button) {
-        return;
-      }
-
-      parent = parent.parentElement;
+    if (!this.pickerEl.contains(event.target)) {
+      this.hidePicker();
     }
-
-    this.hidePicker();
   }
 
   hidePicker() {
