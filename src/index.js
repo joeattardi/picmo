@@ -13,9 +13,15 @@ import { renderVariantPopup } from './variantPopup';
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 
+const DEFAULT_OPTIONS = {
+  position: 'right-start'
+};
+
 export default class EmojiButton {
-  constructor() {
+  constructor(options = {}) {
     this.pickerVisible = false;
+
+    this.options = { ...DEFAULT_OPTIONS, ...options };
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
@@ -105,11 +111,11 @@ export default class EmojiButton {
     document.removeEventListener('keydown', this.onDocumentKeydown);
   }
 
-  showPicker(referenceEl) {
+  showPicker(referenceEl, options = {}) {
     this.pickerVisible = true;
     this.buildPicker();
     this.popper = new Popper(referenceEl, this.pickerEl, {
-      placement: 'right-start'
+      placement: options.position || this.options.position
     });
   }
 
