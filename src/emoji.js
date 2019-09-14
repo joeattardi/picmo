@@ -24,6 +24,7 @@ export class Emoji {
   }
 
   onEmojiClick() {
+    // TODO move this side effect out of Emoji, make the recent module listen for event
     if (!this.emoji.v || !this.showVariants) {
       save(this.emoji);
     }
