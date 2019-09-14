@@ -81,3 +81,43 @@ Will be `true` if the picker is currently visible, and `false` if not.
 Adds an event listener. Currently there is only one event:
 
 * `emoji`: Fired when an emoji is picked. The callback is called with a single argument, the emoji character that was picked.
+
+## Development
+
+The easiest way to hack on Emoji Button is to use the examples page.
+
+### Clone the repository
+
+    git clone https://github.com/joeattardi/emoji-button.git
+
+### From the repository root
+
+#### Install dependencies
+
+    npm install
+
+#### Set up the link
+
+    npm link
+
+#### Start the build/watch loop
+
+    npm run build:watch
+
+### From the `examples` subdirectory
+
+#### Install dependencies
+
+    npm install
+
+#### Link the library
+
+    npm link emoji-button
+
+#### Start the dev server
+
+    npm start
+
+### Open the page
+
+http://localhost:5000
