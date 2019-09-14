@@ -13,7 +13,8 @@
     "prepublishOnly": "rollup -c",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "prettify": "prettier src/*.js --write"
   },
   "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.codes)",
   "repository": {
@@ -28,6 +29,7 @@
     "@babel/preset-env": "^7.5.5",
     "eslint": "^6.4.0",
     "jest": "^24.9.0",
+    "prettier": "^1.18.2",
     "rollup": "^1.20.3",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",

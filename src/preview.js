@@ -1,9 +1,9 @@
-import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
-import { createElement, getEmojiName } from './util';
+import { SHOW_PREVIEW, HIDE_PREVIEW } from "./events";
+import { createElement, getEmojiName } from "./util";
 
-const CLASS_PREVIEW = 'emoji-picker__preview';
-const CLASS_PREVIEW_EMOJI = 'emoji-picker__preview-emoji';
-const CLASS_PREVIEW_NAME = 'emoji-picker__preview-name';
+const CLASS_PREVIEW = "emoji-picker__preview";
+const CLASS_PREVIEW_EMOJI = "emoji-picker__preview-emoji";
+const CLASS_PREVIEW_NAME = "emoji-picker__preview-name";
 
 export class EmojiPreview {
   constructor(events) {
@@ -11,12 +11,12 @@ export class EmojiPreview {
   }
 
   render() {
-    const preview = createElement('div', CLASS_PREVIEW);
+    const preview = createElement("div", CLASS_PREVIEW);
 
-    this.emoji = createElement('div', CLASS_PREVIEW_EMOJI);
+    this.emoji = createElement("div", CLASS_PREVIEW_EMOJI);
     preview.appendChild(this.emoji);
 
-    this.name = createElement('div', CLASS_PREVIEW_NAME);
+    this.name = createElement("div", CLASS_PREVIEW_NAME);
     preview.appendChild(this.name);
 
     this.events.on(SHOW_PREVIEW, emoji => this.showPreview(emoji));
@@ -31,7 +31,7 @@ export class EmojiPreview {
   }
 
   hidePreview() {
-    this.emoji.innerHTML = '';
-    this.name.innerHTML = '';
+    this.emoji.innerHTML = "";
+    this.name.innerHTML = "";
   }
 }

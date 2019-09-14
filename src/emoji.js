@@ -1,8 +1,8 @@
-import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
-import { save } from './recent';
-import { createElement } from './util';
+import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from "./events";
+import { save } from "./recent";
+import { createElement } from "./util";
 
-const CLASS_EMOJI = 'emoji-picker__emoji';
+const CLASS_EMOJI = "emoji-picker__emoji";
 
 export class Emoji {
   constructor(emoji, showVariants, showPreview, events) {
@@ -13,12 +13,12 @@ export class Emoji {
   }
 
   render() {
-    const emojiButton = createElement('button', CLASS_EMOJI);
+    const emojiButton = createElement("button", CLASS_EMOJI);
     emojiButton.innerHTML = this.emoji.e;
 
-    emojiButton.addEventListener('click', () => this.onEmojiClick());
-    emojiButton.addEventListener('mouseover', () => this.onEmojiHover());
-    emojiButton.addEventListener('mouseout', () => this.onEmojiLeave());
+    emojiButton.addEventListener("click", () => this.onEmojiClick());
+    emojiButton.addEventListener("mouseover", () => this.onEmojiHover());
+    emojiButton.addEventListener("mouseout", () => this.onEmojiLeave());
 
     return emojiButton;
   }
@@ -29,7 +29,10 @@ export class Emoji {
       save(this.emoji);
     }
 
-    this.events.emit(EMOJI, { emoji: this.emoji, showVariants: this.showVariants });
+    this.events.emit(EMOJI, {
+      emoji: this.emoji,
+      showVariants: this.showVariants
+    });
   }
 
   onEmojiHover() {

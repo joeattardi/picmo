@@ -1,22 +1,28 @@
-import '../css/emoji-button.css';
+import "../css/emoji-button.css";
 
-import Emitter from 'tiny-emitter';
-import Popper from 'popper.js';
+import Emitter from "tiny-emitter";
+import Popper from "popper.js";
 
-import emojiData from './data/emoji';
+import emojiData from "./data/emoji";
 
-import { EMOJI, SHOW_SEARCH_RESULTS, SHOW_TABS, HIDE_TABS, HIDE_VARIANT_POPUP } from './events';
-import { EmojiPreview } from './preview';
-import { Search } from './search';
-import { Tabs } from './tabs';
-import { createElement, empty } from './util';
-import { VariantPopup } from './variantPopup';
+import {
+  EMOJI,
+  SHOW_SEARCH_RESULTS,
+  SHOW_TABS,
+  HIDE_TABS,
+  HIDE_VARIANT_POPUP
+} from "./events";
+import { EmojiPreview } from "./preview";
+import { Search } from "./search";
+import { Tabs } from "./tabs";
+import { createElement, empty } from "./util";
+import { VariantPopup } from "./variantPopup";
 
-const CLASS_PICKER = 'emoji-picker';
-const CLASS_PICKER_CONTENT = 'emoji-picker__content';
+const CLASS_PICKER = "emoji-picker";
+const CLASS_PICKER_CONTENT = "emoji-picker__content";
 
 const DEFAULT_OPTIONS = {
-  position: 'right-start'
+  position: "right-start"
 };
 
 export default class EmojiButton {
@@ -41,15 +47,15 @@ export default class EmojiButton {
   }
 
   buildPicker() {
-    this.pickerEl = createElement('div', CLASS_PICKER);
+    this.pickerEl = createElement("div", CLASS_PICKER);
 
-    const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
+    const pickerContent = createElement("div", CLASS_PICKER_CONTENT);
 
     const searchContainer = new Search(this.events, emojiData).render();
     this.pickerEl.appendChild(searchContainer);
 
     this.pickerEl.appendChild(pickerContent);
-    
+
     const tabs = new Tabs(this.events).render();
     pickerContent.appendChild(tabs);
 
@@ -58,7 +64,7 @@ export default class EmojiButton {
         pickerContent.removeChild(tabs);
       }
     });
-  
+
     this.events.on(SHOW_TABS, () => {
       if (!pickerContent.contains(tabs)) {
         empty(pickerContent);
@@ -74,12 +80,12 @@ export default class EmojiButton {
     this.pickerEl.appendChild(new EmojiPreview(this.events).render());
 
     let variantPopup;
-    this.events.on(EMOJI, ({emoji, showVariants}) => {
+    this.events.on(EMOJI, ({ emoji, showVariants }) => {
       if (emoji.v && showVariants) {
         variantPopup = new VariantPopup(this.events, emoji).render();
         this.pickerEl.appendChild(variantPopup);
       } else {
-        this.publicEvents.emit('emoji', emoji.e);
+        this.publicEvents.emit("emoji", emoji.e);
         this.hidePicker();
       }
     });
@@ -92,8 +98,8 @@ export default class EmojiButton {
     document.body.appendChild(this.pickerEl);
 
     setTimeout(() => {
-      document.addEventListener('click', this.onDocumentClick);
-      document.addEventListener('keydown', this.onDocumentKeydown);
+      document.addEventListener("click", this.onDocumentClick);
+      document.addEventListener("keydown", this.onDocumentKeydown);
     });
   }
 
@@ -109,8 +115,8 @@ export default class EmojiButton {
     this.events.off(HIDE_VARIANT_POPUP);
     document.body.removeChild(this.pickerEl);
     this.popper.destroy();
-    document.removeEventListener('click', this.onDocumentClick);
-    document.removeEventListener('keydown', this.onDocumentKeydown);
+    document.removeEventListener("click", this.onDocumentClick);
+    document.removeEventListener("keydown", this.onDocumentKeydown);
   }
 
   showPicker(referenceEl, options = {}) {
@@ -122,7 +128,7 @@ export default class EmojiButton {
   }
 
   onDocumentKeydown(event) {
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       this.hidePicker();
     }
   }
