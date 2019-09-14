@@ -1,11 +1,19 @@
-const CLASS_EMOJI_CONTAINER = 'emoji-picker__emojis';
-
-import { renderEmoji } from './emoji';
+import { Emoji } from './emoji';
 import { createElement } from './util';
 
-export function renderEmojiContainer(emojis, showVariants, events) {
-  const emojiContainer = createElement('div', CLASS_EMOJI_CONTAINER);
-  emojis.forEach(emoji => emojiContainer.appendChild(renderEmoji(emoji, showVariants, true, events)));
+const CLASS_EMOJI_CONTAINER = 'emoji-picker__emojis';
 
-  return emojiContainer;
+export class EmojiContainer {
+  constructor(emojis, showVariants, events) {
+    this.emojis = emojis;
+    this.showVariants = showVariants;
+    this.events = events;
+  }
+
+  render() {
+    const emojiContainer = createElement('div', CLASS_EMOJI_CONTAINER);
+    this.emojis.forEach(emoji => emojiContainer.appendChild(new Emoji(emoji, this.showVariants, true, this.events).render()));
+
+    return emojiContainer;
+  }
 }

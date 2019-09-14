@@ -5,24 +5,33 @@ const CLASS_PREVIEW = 'emoji-picker__preview';
 const CLASS_PREVIEW_EMOJI = 'emoji-picker__preview-emoji';
 const CLASS_PREVIEW_NAME = 'emoji-picker__preview-name';
 
-export function renderPreview(events) {
-  const preview = createElement('div', CLASS_PREVIEW);
-  
-  const emoji = createElement('div', CLASS_PREVIEW_EMOJI);
-  preview.appendChild(emoji);
+export class EmojiPreview {
+  constructor(events) {
+    this.events = events;
+  }
 
-  const name = createElement('div', CLASS_PREVIEW_NAME);
-  preview.appendChild(name);
+  render() {
+    const preview = createElement('div', CLASS_PREVIEW);
 
-  events.on(SHOW_PREVIEW, preview => {
-    emoji.innerHTML = preview.e;
-    name.innerHTML = typeof preview.n === 'string' ? preview.n : preview.n[0];
-  });
+    this.emoji = createElement('div', CLASS_PREVIEW_EMOJI);
+    preview.appendChild(this.emoji);
 
-  events.on(HIDE_PREVIEW, () => {
-    emoji.innerHTML = '';
-    name.innerHTML = '';
-  });
+    this.name = createElement('div', CLASS_PREVIEW_NAME);
+    preview.appendChild(this.name);
 
-  return preview;
+    this.events.on(SHOW_PREVIEW, emoji => this.showPreview(emoji));
+    this.events.on(HIDE_PREVIEW, () => this.hidePreview());
+
+    return preview;
+  }
+
+  showPreview(emoji) {
+    this.emoji.innerHTML = emoji.e;
+    this.name.innerHTML = typeof emoji.n === 'string' ? emoji.n : emoji.n[0];
+  }
+
+  hidePreview() {
+    this.emoji.innerHTML = '';
+    this.name.innerHTML = '';
+  }
 }

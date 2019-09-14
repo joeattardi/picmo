@@ -4,28 +4,42 @@ import { createElement } from './util';
 
 const CLASS_EMOJI = 'emoji-picker__emoji';
 
-export function renderEmoji(emoji, showVariants, showPreview, events) {
-  const emojiButton = createElement('button', CLASS_EMOJI);
-  emojiButton.innerHTML = emoji.e;
+export class Emoji {
+  constructor(emoji, showVariants, showPreview, events) {
+    this.emoji = emoji;
+    this.showVariants = showVariants;
+    this.showPreview = showPreview;
+    this.events = events;
+  }
 
-  emojiButton.addEventListener('click', () => {
-    if (!emoji.v || !showVariants) {
-      save(emoji);
+  render() {
+    const emojiButton = createElement('button', CLASS_EMOJI);
+    emojiButton.innerHTML = this.emoji.e;
+
+    emojiButton.addEventListener('click', () => this.onEmojiClick());
+    emojiButton.addEventListener('mouseover', () => this.onEmojiHover());
+    emojiButton.addEventListener('mouseout', () => this.onEmojiLeave());
+
+    return emojiButton;
+  }
+
+  onEmojiClick() {
+    if (!this.emoji.v || !this.showVariants) {
+      save(this.emoji);
     }
-    events.emit(EMOJI, { emoji, showVariants });
-  });
 
-  emojiButton.addEventListener('mouseover', () => {
-    if (showPreview) {
-      events.emit(SHOW_PREVIEW, emoji)
+    this.events.emit(EMOJI, { emoji: this.emoji, showVariants: this.showVariants });
+  }
+
+  onEmojiHover() {
+    if (this.showPreview) {
+      this.events.emit(SHOW_PREVIEW, this.emoji);
     }
-  });
+  }
 
-  emojiButton.addEventListener('mouseout', () => {
-    if (showPreview) {
-      events.emit(HIDE_PREVIEW)
+  onEmojiLeave() {
+    if (this.showPreview) {
+      this.events.emit(HIDE_PREVIEW);
     }
-  });
-
-  return emojiButton;
+  }
 }

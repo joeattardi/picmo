@@ -4,11 +4,11 @@ import Emitter from 'tiny-emitter';
 import Popper from 'popper.js';
 
 import { EMOJI, SHOW_SEARCH_RESULTS, SHOW_TABS, HIDE_TABS, HIDE_VARIANT_POPUP } from './events';
-import { renderPreview } from './preview';
-import { renderSearch } from './search';
-import { renderTabs } from './tabs';
+import { EmojiPreview } from './preview';
+import { Search } from './search';
+import { Tabs } from './tabs';
 import { createElement, empty } from './util';
-import { renderVariantPopup } from './variantPopup';
+import { VariantPopup } from './variantPopup';
 
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
@@ -43,12 +43,13 @@ export default class EmojiButton {
 
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
 
-    const searchContainer = renderSearch(this.events);
+    const searchContainer = new Search(this.events).render();
     this.pickerEl.appendChild(searchContainer);
 
     this.pickerEl.appendChild(pickerContent);
     
-    const tabs = renderTabs(this.events);
+    // const tabs = renderTabs(this.events);
+    const tabs = new Tabs(this.events).render();
     pickerContent.appendChild(tabs);
 
     this.events.on(HIDE_TABS, () => {
@@ -69,12 +70,12 @@ export default class EmojiButton {
       pickerContent.appendChild(searchResults);
     });
 
-    this.pickerEl.appendChild(renderPreview(this.events));
+    this.pickerEl.appendChild(new EmojiPreview(this.events).render());
 
     let variantPopup;
     this.events.on(EMOJI, ({emoji, showVariants}) => {
       if (emoji.v && showVariants) {
-        variantPopup = renderVariantPopup(this.events, emoji);
+        variantPopup = new VariantPopup(this.events, emoji).render();
         this.pickerEl.appendChild(variantPopup);
       } else {
         this.publicEvents.emit('emoji', emoji.e);

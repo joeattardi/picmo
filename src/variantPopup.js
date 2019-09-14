@@ -1,4 +1,4 @@
-import { renderEmoji } from './emoji';
+import { Emoji } from './emoji';
 import { createElement } from './util';
 
 import { HIDE_VARIANT_POPUP } from './events';
@@ -9,32 +9,39 @@ const CLASS_OVERLAY = 'emoji-picker__variant-overlay';
 const CLASS_POPUP = 'emoji-picker__variant-popup';
 const CLASS_CLOSE_BUTTON = 'emoji-picker__variant-popup-close-button';
 
-export function renderVariantPopup(events, emoji) {
-  const popup = createElement('div', CLASS_POPUP);
+export class VariantPopup {
+  constructor(events, emoji) {
+    this.events = events;
+    this.emoji = emoji;
+  }
 
-  const overlay = createElement('div', CLASS_OVERLAY);
-  overlay.addEventListener('click', event => {
-    event.stopPropagation();
+  render() {
+    const popup = createElement('div', CLASS_POPUP);
 
-    if (!popup.contains(event.target)) {
-      events.emit(HIDE_VARIANT_POPUP);
-    }
-  });
+    const overlay = createElement('div', CLASS_OVERLAY);
+    overlay.addEventListener('click', event => {
+      event.stopPropagation();
 
-  popup.appendChild(renderEmoji(emoji, false, false, events));
-  Object.keys(emoji.v).forEach(variant => {
-    popup.appendChild(renderEmoji(emoji.v[variant], false, false, events));
-  });
+      if (!popup.contains(event.target)) {
+        this.events.emit(HIDE_VARIANT_POPUP);
+      }
+    });
 
-  const closeButton = createElement('button', CLASS_CLOSE_BUTTON);
-  closeButton.innerHTML = times;
-  closeButton.addEventListener('click', event => {
-    event.stopPropagation();
-    events.emit(HIDE_VARIANT_POPUP)
-  });
-  popup.appendChild(closeButton);
+    popup.appendChild(new Emoji(this.emoji, false, false, this.events).render());
+    Object.keys(this.emoji.v).forEach(variant => {
+      popup.appendChild(new Emoji(this.emoji.v[variant], false, false, this.events).render());
+    });
 
-  overlay.appendChild(popup);
-
-  return overlay;
+    const closeButton = createElement('button', CLASS_CLOSE_BUTTON);
+    closeButton.innerHTML = times;
+    closeButton.addEventListener('click', event => {
+      event.stopPropagation();
+      this.events.emit(HIDE_VARIANT_POPUP)
+    });
+    popup.appendChild(closeButton);
+  
+    overlay.appendChild(popup);
+  
+    return overlay;
+  }
 }
