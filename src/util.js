@@ -13,3 +13,7 @@ export function empty(element) {
     element.removeChild(element.firstChild);
   }
 }
+
+export function getEmojiName(emoji) {
+  return typeof emoji.n === 'string' ? emoji.n : emoji.n[0];
+}

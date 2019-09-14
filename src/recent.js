@@ -1,3 +1,5 @@
+import { getEmojiName } from './util';
+
 const LOCAL_STORAGE_KEY = 'emojiPicker.recent';
 
 export function load() {
@@ -7,12 +9,10 @@ export function load() {
 export function save(emoji) {
   const recents = load();
 
-  const name = typeof emoji.n === 'string' ? emoji.n : emoji.n[0];
-
   const recent = {
     e: emoji.e,
     n: name,
-    k: emoji.k || name
+    k: emoji.k || getEmojiName(emoji)
   };
 
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify([recent, ...recents.filter(r => r.k !== recent.k)].slice(0, 50)));

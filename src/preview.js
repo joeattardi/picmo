@@ -1,5 +1,5 @@
 import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
-import { createElement } from './util';
+import { createElement, getEmojiName } from './util';
 
 const CLASS_PREVIEW = 'emoji-picker__preview';
 const CLASS_PREVIEW_EMOJI = 'emoji-picker__preview-emoji';
@@ -27,7 +27,7 @@ export class EmojiPreview {
 
   showPreview(emoji) {
     this.emoji.innerHTML = emoji.e;
-    this.name.innerHTML = typeof emoji.n === 'string' ? emoji.n : emoji.n[0];
+    this.name.innerHTML = getEmojiName(emoji);
   }
 
   hidePreview() {
