@@ -27,16 +27,57 @@ Emoji Button turns an ordinary button into an emoji picker. When the target butt
 ```javascript
   import EmojiButton from 'emoji-button';
 
-  EmojiButton(document.querySelector('#my-button'), emoji => {
-    console.log('User picked emoji:', emoji);
+  const button = document.querySelector('#emoji-button');
+  const picker = new EmojiButton();
+
+  picker.on('emoji', emoji => {
+    document.querySelector('input').value += emoji;
+  });
+
+  button.addEventListener('click', () => {
+    picker.pickerVisible ? picker.hidePicker() : picker.showPicker(button);
   });
 ```
 
 ## API
 
-### `EmojiButton(buttonEl, callback)`
+### `new EmojiButton(options)`
 
-Turns a given button element into an Emoji Button
+Creates an Emoji Button emoji picker.
 
-* `buttonEl`: Reference to the DOM element of the button
-* `callback`: A callback function that will be called when an emoji is picked. The literal emoji character (e.g. 😃) will be passed to the callback function.
+#### Options
+
+* `position`: The position to display the picker relative to the reference element. Valid values are:
+  * `auto`
+  * `auto-start`
+  * `auto-end`
+  * `top`
+  * `top-start`
+  * `top-end`
+  * `right`
+  * `right-start`
+  * `right-end`
+  * `bottom`
+  * `bottom-start`
+  * `bottom-end`
+  * `left`
+  * `left-start`
+  * `left-end`
+
+### `showPicker(referenceElement)`
+
+Shows the picker, positioning it relative to the given reference element. The reference element is usually the button or other element that was clicked to open the picker.
+
+### `hidePicker()`
+
+Hides the picker.
+
+### `pickerVisible` (property)
+
+Will be `true` if the picker is currently visible, and `false` if not.
+
+### `on(event, callback)`
+
+Adds an event listener. Currently there is only one event:
+
+* `emoji`: Fired when an emoji is picked. The callback is called with a single argument, the emoji character that was picked.
