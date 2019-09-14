@@ -11,7 +11,8 @@
     "build": "rollup -c",
     "build:watch": "rollup -cw",
     "prepublishOnly": "rollup -c",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.codes)",
   "repository": {
