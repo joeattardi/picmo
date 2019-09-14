@@ -15,5 +15,5 @@ export function empty(element) {
 }
 
 export function getEmojiName(emoji) {
-  return typeof emoji.n === "string" ? emoji.n : emoji.n[0];
+  return typeof emoji.n === 'string' ? emoji.n : emoji.n[0];
 }

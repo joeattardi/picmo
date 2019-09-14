@@ -1,19 +1,19 @@
-import * as icons from "./icons";
+import * as icons from './icons';
 
-import { EmojiContainer } from "./emojiContainer";
+import { EmojiContainer } from './emojiContainer';
 import {
   HIDE_PREVIEW,
   HIDE_TABS,
   SHOW_SEARCH_RESULTS,
   SHOW_TABS
-} from "./events";
-import { createElement } from "./util";
+} from './events';
+import { createElement } from './util';
 
-const CLASS_SEARCH_CONTAINER = "emoji-picker__search-container";
-const CLASS_SEARCH_FIELD = "emoji-picker__search";
-const CLASS_SEARCH_ICON = "emoji-picker__search-icon";
-const CLASS_NOT_FOUND = "emoji-picker__search-not-found";
-const CLASS_NOT_FOUND_ICON = "emoji-picker__search-not-found-icon";
+const CLASS_SEARCH_CONTAINER = 'emoji-picker__search-container';
+const CLASS_SEARCH_FIELD = 'emoji-picker__search';
+const CLASS_SEARCH_ICON = 'emoji-picker__search-icon';
+const CLASS_NOT_FOUND = 'emoji-picker__search-not-found';
+const CLASS_NOT_FOUND_ICON = 'emoji-picker__search-not-found-icon';
 
 export class Search {
   constructor(events, emojiData) {
@@ -22,30 +22,30 @@ export class Search {
   }
 
   render() {
-    this.searchContainer = createElement("div", CLASS_SEARCH_CONTAINER);
+    this.searchContainer = createElement('div', CLASS_SEARCH_CONTAINER);
 
-    this.searchField = createElement("input", CLASS_SEARCH_FIELD);
-    this.searchField.placeholder = "Search";
+    this.searchField = createElement('input', CLASS_SEARCH_FIELD);
+    this.searchField.placeholder = 'Search';
     this.searchContainer.appendChild(this.searchField);
 
-    const searchIcon = createElement("span", CLASS_SEARCH_ICON);
+    const searchIcon = createElement('span', CLASS_SEARCH_ICON);
     searchIcon.innerHTML = icons.search;
     this.searchContainer.appendChild(searchIcon);
 
     setTimeout(() => this.searchField.focus());
 
-    this.searchField.addEventListener("keydown", event =>
+    this.searchField.addEventListener('keydown', event =>
       this.onKeyDown(event)
     );
-    this.searchField.addEventListener("keyup", () => this.onKeyUp());
+    this.searchField.addEventListener('keyup', () => this.onKeyUp());
 
     return this.searchContainer;
   }
 
   onKeyDown(event) {
-    if (event.key === "Escape" && this.searchField.value !== "") {
+    if (event.key === 'Escape' && this.searchField.value !== '') {
       event.stopPropagation();
-      this.searchField.value = "";
+      this.searchField.value = '';
       this.events.emit(SHOW_TABS);
     }
   }
@@ -80,14 +80,14 @@ export class Search {
 
 class NotFoundMessage {
   render() {
-    const container = createElement("div", CLASS_NOT_FOUND);
+    const container = createElement('div', CLASS_NOT_FOUND);
 
-    const iconContainer = createElement("div", CLASS_NOT_FOUND_ICON);
+    const iconContainer = createElement('div', CLASS_NOT_FOUND_ICON);
     iconContainer.innerHTML = icons.frown;
     container.appendChild(iconContainer);
 
-    const messageContainer = createElement("h2");
-    messageContainer.innerHTML = "No emojis found";
+    const messageContainer = createElement('h2');
+    messageContainer.innerHTML = 'No emojis found';
     container.appendChild(messageContainer);
 
     return container;

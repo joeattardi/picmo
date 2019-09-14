@@ -1,6 +1,6 @@
-import { getEmojiName } from "./util";
+import { getEmojiName } from './util';
 
-const LOCAL_STORAGE_KEY = "emojiPicker.recent";
+const LOCAL_STORAGE_KEY = 'emojiPicker.recent';
 
 export function load() {
   return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];

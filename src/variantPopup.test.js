@@ -1,17 +1,17 @@
-const Emitter = require("tiny-emitter");
+const Emitter = require('tiny-emitter');
 
-const { HIDE_VARIANT_POPUP } = require("./events");
-const { VariantPopup } = require("./variantPopup");
+const { HIDE_VARIANT_POPUP } = require('./events');
+const { VariantPopup } = require('./variantPopup');
 
-describe("VariantPopup", () => {
+describe('VariantPopup', () => {
   const emoji = {
-    e: "👍",
+    e: '👍',
     v: {
       one: {
-        e: "👍🏻"
+        e: '👍🏻'
       },
       two: {
-        e: "👍🏿"
+        e: '👍🏿'
       }
     }
   };
@@ -24,20 +24,20 @@ describe("VariantPopup", () => {
     container = new VariantPopup(events, emoji).render();
   });
 
-  test("should render the emoji variants", () => {
-    const emojiButtons = container.querySelectorAll(".emoji-picker__emoji");
+  test('should render the emoji variants', () => {
+    const emojiButtons = container.querySelectorAll('.emoji-picker__emoji');
 
     expect(emojiButtons[0].innerHTML).toEqual(emoji.e);
     expect(emojiButtons[1].innerHTML).toEqual(emoji.v.one.e);
     expect(emojiButtons[2].innerHTML).toEqual(emoji.v.two.e);
   });
 
-  test("should emit the HIDE_VARIANT_POPUP event when the close button is clicked", done => {
+  test('should emit the HIDE_VARIANT_POPUP event when the close button is clicked', done => {
     const closeButton = container.querySelector(
-      ".emoji-picker__variant-popup-close-button"
+      '.emoji-picker__variant-popup-close-button'
     );
 
     events.on(HIDE_VARIANT_POPUP, done);
-    closeButton.dispatchEvent(new MouseEvent("click"));
+    closeButton.dispatchEvent(new MouseEvent('click'));
   });
 });
