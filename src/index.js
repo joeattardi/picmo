@@ -48,7 +48,6 @@ export default class EmojiButton {
 
     this.pickerEl.appendChild(pickerContent);
     
-    // const tabs = renderTabs(this.events);
     const tabs = new Tabs(this.events).render();
     pickerContent.appendChild(tabs);
 
