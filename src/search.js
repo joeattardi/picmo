@@ -1,7 +1,5 @@
 import * as icons from './icons';
 
-import emojiData from './data/emoji.js';
-
 import { EmojiContainer } from './emojiContainer';
 import { HIDE_PREVIEW, HIDE_TABS, SHOW_SEARCH_RESULTS, SHOW_TABS } from './events';
 import { createElement } from './util';
@@ -13,8 +11,9 @@ const CLASS_NOT_FOUND = 'emoji-picker__search-not-found';
 const CLASS_NOT_FOUND_ICON = 'emoji-picker__search-not-found-icon';
 
 export class Search {
-  constructor(events) {
+  constructor(events, emojiData) {
     this.events = events;
+    this.emojiData = emojiData;
   }
 
   render() {
@@ -49,7 +48,7 @@ export class Search {
       this.events.emit(SHOW_TABS);
     } else {
       this.events.emit(HIDE_TABS);
-      const searchResults = emojiData.filter(emoji => emoji.n.filter(name => name.toLowerCase().indexOf(this.searchField.value.toLowerCase()) >= 0).length);
+      const searchResults = this.emojiData.filter(emoji => emoji.n.filter(name => name.toLowerCase().indexOf(this.searchField.value.toLowerCase()) >= 0).length);
 
       if (searchResults.length) {
         this.events.emit(HIDE_PREVIEW);

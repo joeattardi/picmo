@@ -3,6 +3,8 @@ import '../css/emoji-button.css';
 import Emitter from 'tiny-emitter';
 import Popper from 'popper.js';
 
+import emojiData from './data/emoji';
+
 import { EMOJI, SHOW_SEARCH_RESULTS, SHOW_TABS, HIDE_TABS, HIDE_VARIANT_POPUP } from './events';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
@@ -43,7 +45,7 @@ export default class EmojiButton {
 
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
 
-    const searchContainer = new Search(this.events).render();
+    const searchContainer = new Search(this.events, emojiData).render();
     this.pickerEl.appendChild(searchContainer);
 
     this.pickerEl.appendChild(pickerContent);
