@@ -65,8 +65,9 @@ export class Search {
           ).length
       );
 
+      this.events.emit(HIDE_PREVIEW);
+
       if (searchResults.length) {
-        this.events.emit(HIDE_PREVIEW);
         this.events.emit(
           SHOW_SEARCH_RESULTS,
           new EmojiContainer(searchResults, true, this.events).render()
