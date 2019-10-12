@@ -3,6 +3,8 @@ const Emitter = require('tiny-emitter');
 const { SHOW_SEARCH_RESULTS, SHOW_TABS } = require('./events');
 const { Search } = require('./search');
 
+const { i18n } = require('./i18n');
+
 describe('Search', () => {
   const emojis = [{ e: '⚡️', n: ['zap'] }, { e: '😀', n: ['grinning'] }];
 
@@ -12,7 +14,7 @@ describe('Search', () => {
 
   beforeEach(() => {
     events = new Emitter();
-    search = new Search(events, emojis).render();
+    search = new Search(events, i18n, emojis).render();
     searchField = search.querySelector('.emoji-picker__search');
   });
 

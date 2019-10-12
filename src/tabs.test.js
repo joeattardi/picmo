@@ -2,6 +2,8 @@ const Emitter = require('tiny-emitter');
 
 const { Tabs } = require('./tabs');
 
+const { i18n } = require('./i18n');
+
 describe('Tabs', () => {
   function isActive(tab) {
     return tab.classList.contains('active');
@@ -9,7 +11,7 @@ describe('Tabs', () => {
 
   test('should set the active tab', () => {
     const events = new Emitter();
-    const tabsContainer = new Tabs(events).render();
+    const tabsContainer = new Tabs(events, i18n).render();
 
     const tab2 = tabsContainer.querySelectorAll('.emoji-picker__tab')[2];
     const body2 = tabsContainer.querySelectorAll('.emoji-picker__tab-body')[2];
