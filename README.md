@@ -66,6 +66,8 @@ Creates an Emoji Button emoji picker.
 
 * `rootElement`: The root DOM node to attach the picker to. Defaults to the body if not passed in.
 
+* `autoHide`: (boolean, default: `true`) Whether or not the picker should automatically be hidden when an emoji is clicked.
+
 ### `showPicker(referenceElement)`
 
 Shows the picker, positioning it relative to the given reference element. The reference element is usually the button or other element that was clicked to open the picker.

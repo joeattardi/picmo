@@ -11,7 +11,7 @@ export function save(emoji) {
 
   const recent = {
     e: emoji.e,
-    n: name,
+    n: getEmojiName(emoji),
     k: emoji.k || getEmojiName(emoji)
   };
 

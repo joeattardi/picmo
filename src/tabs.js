@@ -1,6 +1,7 @@
 import emojiData, { categories } from './data/emoji.js';
 
 import { EmojiContainer } from './emojiContainer';
+import { EMOJI } from './events';
 import { load } from './recent';
 import * as icons from './icons';
 import { createElement } from './util';
@@ -99,6 +100,26 @@ export class Tabs {
       0
     );
     this.tabBodies.splice(0, 0, recentTabBody);
+
+    this.events.on(EMOJI, () => {
+      const newRecents = new TabBody(
+        'Recently Used',
+        new EmojiContainer(load(), false, this.events).render(),
+        0
+      );
+
+      setTimeout(() => {
+        this.tabBodyContainer.replaceChild(
+          newRecents.render(),
+          this.tabBodyContainer.firstChild
+        );
+
+        this.tabBodies[0] = newRecents;
+        if (this.activeTab === 0) {
+          this.setActiveTab(0);
+        }
+      });
+    });
 
     this.tabBodies.forEach(tabBody =>
       this.tabBodyContainer.appendChild(tabBody.render())

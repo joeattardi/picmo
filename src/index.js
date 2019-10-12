@@ -23,7 +23,7 @@ const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 
 const DEFAULT_OPTIONS = {
   position: 'right-start',
-  rootElement: document.body
+  autoHide: true
 };
 
 export default class EmojiButton {
@@ -89,8 +89,13 @@ export default class EmojiButton {
         variantPopup = new VariantPopup(this.events, emoji).render();
         this.pickerEl.appendChild(variantPopup);
       } else {
+        if (variantPopup && variantPopup.parentNode === this.pickerEl) {
+          this.pickerEl.removeChild(variantPopup);
+        }
         this.publicEvents.emit('emoji', emoji.e);
-        this.hidePicker();
+        if (this.options.autoHide) {
+          this.hidePicker();
+        }
       }
     });
 
