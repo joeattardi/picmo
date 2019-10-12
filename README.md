@@ -64,6 +64,8 @@ Creates an Emoji Button emoji picker.
   * `left-start`
   * `left-end`
 
+* `rootElement`: The root DOM node to attach the picker to. Defaults to the body if not passed in.
+
 ### `showPicker(referenceElement)`
 
 Shows the picker, positioning it relative to the given reference element. The reference element is usually the button or other element that was clicked to open the picker.

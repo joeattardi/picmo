@@ -22,7 +22,8 @@ const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 
 const DEFAULT_OPTIONS = {
-  position: 'right-start'
+  position: 'right-start',
+  rootElement: document.body
 };
 
 export default class EmojiButton {
@@ -95,7 +96,7 @@ export default class EmojiButton {
       variantPopup = null;
     });
 
-    document.body.appendChild(this.pickerEl);
+    this.options.rootElement.appendChild(this.pickerEl);
 
     setTimeout(() => {
       document.addEventListener('click', this.onDocumentClick);
@@ -113,7 +114,7 @@ export default class EmojiButton {
     this.pickerVisible = false;
     this.events.off(EMOJI);
     this.events.off(HIDE_VARIANT_POPUP);
-    document.body.removeChild(this.pickerEl);
+    this.options.rootElement.removeChild(this.pickerEl);
     this.popper.destroy();
     document.removeEventListener('click', this.onDocumentClick);
     document.removeEventListener('keydown', this.onDocumentKeydown);
