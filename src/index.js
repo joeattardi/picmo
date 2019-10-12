@@ -31,6 +31,9 @@ export default class EmojiButton {
     this.pickerVisible = false;
 
     this.options = { ...DEFAULT_OPTIONS, ...options };
+    if (!this.options.rootElement) {
+      this.options.rootElement = document.body;
+    }
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
