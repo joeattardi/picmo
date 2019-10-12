@@ -16,8 +16,9 @@ const CLASS_NOT_FOUND = 'emoji-picker__search-not-found';
 const CLASS_NOT_FOUND_ICON = 'emoji-picker__search-not-found-icon';
 
 export class Search {
-  constructor(events, emojiData) {
+  constructor(events, i18n, emojiData) {
     this.events = events;
+    this.i18n = i18n;
     this.emojiData = emojiData;
   }
 
@@ -25,7 +26,7 @@ export class Search {
     this.searchContainer = createElement('div', CLASS_SEARCH_CONTAINER);
 
     this.searchField = createElement('input', CLASS_SEARCH_FIELD);
-    this.searchField.placeholder = 'Search';
+    this.searchField.placeholder = this.i18n.search;
     this.searchContainer.appendChild(this.searchField);
 
     const searchIcon = createElement('span', CLASS_SEARCH_ICON);
@@ -73,13 +74,20 @@ export class Search {
           new EmojiContainer(searchResults, true, this.events).render()
         );
       } else {
-        this.events.emit(SHOW_SEARCH_RESULTS, new NotFoundMessage().render());
+        this.events.emit(
+          SHOW_SEARCH_RESULTS,
+          new NotFoundMessage(this.i18n.notFound).render()
+        );
       }
     }
   }
 }
 
 class NotFoundMessage {
+  constructor(message) {
+    this.message = message;
+  }
+
   render() {
     const container = createElement('div', CLASS_NOT_FOUND);
 
@@ -88,7 +96,7 @@ class NotFoundMessage {
     container.appendChild(iconContainer);
 
     const messageContainer = createElement('h2');
-    messageContainer.innerHTML = 'No emojis found';
+    messageContainer.innerHTML = this.message;
     container.appendChild(messageContainer);
 
     return container;

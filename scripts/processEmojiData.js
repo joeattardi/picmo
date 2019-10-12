@@ -8,6 +8,18 @@ function getEmoji(unified) {
   return String.fromCodePoint(...codePoints);
 }
 
+const categoryKeys = {
+  'Smileys & People': 'smileys',
+  'Animals & Nature': 'animals',
+  'Food & Drink': 'food',
+  Activities: 'activities',
+  'Travel & Places': 'travel',
+  Objects: 'objects',
+  Symbols: 'symbols',
+  Flags: 'flags',
+  'Skin Tones': 'skinTones'
+};
+
 const categories = [];
 
 rawData.sort((e1, e2) => e1.sort_order - e2.sort_order);
@@ -38,4 +50,9 @@ const newEmojiData = rawData.map(emojiItem => {
   return newData;
 });
 
-writeFileSync('src/data/emoji.js', `export const categories = ${JSON.stringify(categories)}; export default ${JSON.stringify(newEmojiData)};`);
+writeFileSync(
+  'src/data/emoji.js',
+  `export const categories = ${JSON.stringify(
+    categories.map(category => categoryKeys[category])
+  )}; export default ${JSON.stringify(newEmojiData)};`
+);

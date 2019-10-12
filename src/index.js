@@ -18,6 +18,8 @@ import { Tabs } from './tabs';
 import { createElement, empty } from './util';
 import { VariantPopup } from './variantPopup';
 
+import { i18n } from './i18n';
+
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 
@@ -34,6 +36,11 @@ export default class EmojiButton {
     if (!this.options.rootElement) {
       this.options.rootElement = document.body;
     }
+
+    this.i18n = {
+      ...i18n,
+      ...options.i18n
+    };
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
@@ -55,12 +62,16 @@ export default class EmojiButton {
 
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
 
-    const searchContainer = new Search(this.events, emojiData).render();
+    const searchContainer = new Search(
+      this.events,
+      this.i18n,
+      emojiData
+    ).render();
     this.pickerEl.appendChild(searchContainer);
 
     this.pickerEl.appendChild(pickerContent);
 
-    const tabs = new Tabs(this.events).render();
+    const tabs = new Tabs(this.events, this.i18n).render();
     pickerContent.appendChild(tabs);
 
     this.events.on(HIDE_TABS, () => {

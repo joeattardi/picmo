@@ -68,6 +68,26 @@ Creates an Emoji Button emoji picker.
 
 * `autoHide`: (boolean, default: `true`) Whether or not the picker should automatically be hidden when an emoji is clicked.
 
+* `i18n`: An object containing localized messages to display in the UI. The values and their defaults are as follows:
+
+```
+{
+  search: 'Search',
+  categories: {
+    recents: 'Recently Used',
+    smileys: 'Smileys & People',
+    animals: 'Animals & Nature',
+    food: 'Food & Drink',
+    activities: 'Activities',
+    travel: 'Travel & Places',
+    objects: 'Objects',
+    symbols: 'Symbols',
+    flags: 'Flags'
+  },
+  notFound: 'No emojis found'
+}
+```
+
 ### `showPicker(referenceElement)`
 
 Shows the picker, positioning it relative to the given reference element. The reference element is usually the button or other element that was clicked to open the picker.

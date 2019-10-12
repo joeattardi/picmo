@@ -3,6 +3,7 @@ import emojiData, { categories } from './data/emoji.js';
 import { EmojiContainer } from './emojiContainer';
 import { EMOJI } from './events';
 import { load } from './recent';
+import { i18n as defaultI18n } from './i18n';
 import * as icons from './icons';
 import { createElement } from './util';
 
@@ -23,19 +24,20 @@ emojiData.forEach(emoji => {
 });
 
 const categoryIcons = {
-  'Smileys & People': icons.smile,
-  'Animals & Nature': icons.cat,
-  'Food & Drink': icons.coffee,
-  Activities: icons.futbol,
-  'Travel & Places': icons.building,
-  Objects: icons.lightbulb,
-  Symbols: icons.music,
-  Flags: icons.flag
+  smileys: icons.smile,
+  animals: icons.cat,
+  food: icons.coffee,
+  activities: icons.futbol,
+  travel: icons.building,
+  objects: icons.lightbulb,
+  symbols: icons.music,
+  flags: icons.flag
 };
 
 export class Tabs {
-  constructor(events) {
+  constructor(events, i18n) {
     this.events = events;
+    this.i18n = i18n;
     this.activeTab = 1;
 
     this.setActiveTab = this.setActiveTab.bind(this);
@@ -84,7 +86,7 @@ export class Tabs {
     this.tabBodies = Object.keys(categoryIcons).map(
       (category, index) =>
         new TabBody(
-          category,
+          this.i18n.categories[category] || defaultI18n.categories[category],
           new EmojiContainer(
             emojiCategories[category],
             true,
@@ -95,7 +97,7 @@ export class Tabs {
     );
 
     const recentTabBody = new TabBody(
-      'Recently Used',
+      this.i18n.categories.recents || defaultI18n.categories.recents,
       new EmojiContainer(load(), false, this.events).render(),
       0
     );
@@ -103,7 +105,7 @@ export class Tabs {
 
     this.events.on(EMOJI, () => {
       const newRecents = new TabBody(
-        'Recently Used',
+        this.i18n.categories.recents || defaultI18n.categories.recents,
         new EmojiContainer(load(), false, this.events).render(),
         0
       );
