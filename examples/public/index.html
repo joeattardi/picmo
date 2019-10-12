@@ -10,5 +10,22 @@
     <h1>Emoji Button</h1>
     <input type="text">
     <button id="emoji-button">😀</button>
+
+    <code>
+      <pre>
+window.addEventListener('DOMContentLoaded', () => {
+  const button = document.querySelector('#emoji-button');
+  const picker = new EmojiButton();
+
+  picker.on('emoji', emoji => {
+    document.querySelector('input').value += emoji;
+  });
+
+  button.addEventListener('click', () => {
+    picker.pickerVisible ? picker.hidePicker() : picker.showPicker(button);
+  });
+});
+      </pre>
+    </code>
   </body>
 </html>
