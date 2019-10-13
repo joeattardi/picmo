@@ -89,6 +89,7 @@ export default class EmojiButton {
 
     this.events.on(SHOW_SEARCH_RESULTS, searchResults => {
       empty(pickerContent);
+      searchResults.classList.add('search-results');
       pickerContent.appendChild(searchResults);
     });
 

@@ -81,6 +81,10 @@
   margin: auto;
 }
 
+.emoji-picker__emojis.search-results {
+  height: 21rem;
+}
+
 .emoji-picker__emoji {
   background: transparent;
   border: none;
