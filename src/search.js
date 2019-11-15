@@ -16,10 +16,11 @@ const CLASS_NOT_FOUND = 'emoji-picker__search-not-found';
 const CLASS_NOT_FOUND_ICON = 'emoji-picker__search-not-found-icon';
 
 export class Search {
-  constructor(events, i18n, emojiData) {
+  constructor(events, i18n, emojiData, autoFocusSearch) {
     this.events = events;
     this.i18n = i18n;
     this.emojiData = emojiData;
+    this.autoFocusSearch = autoFocusSearch;
   }
 
   render() {
@@ -33,7 +34,9 @@ export class Search {
     searchIcon.innerHTML = icons.search;
     this.searchContainer.appendChild(searchIcon);
 
-    setTimeout(() => this.searchField.focus());
+    if (this.autoFocusSearch) {
+      setTimeout(() => this.searchField.focus());
+    }
 
     this.searchField.addEventListener('keydown', event =>
       this.onKeyDown(event)

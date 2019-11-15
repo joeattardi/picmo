@@ -66,6 +66,8 @@ Creates an Emoji Button emoji picker.
 
 * `autoHide`: (boolean, default: `true`) Whether or not the picker should automatically be hidden when an emoji is clicked.
 
+* `autoFocusSearch`: (boolean: default: `true`) Whether or not to auto-focus the search field when the picker is shown.
+
 * `i18n`: An object containing localized messages to display in the UI. The values and their defaults are as follows:
 
 ```

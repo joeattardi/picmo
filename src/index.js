@@ -25,7 +25,8 @@ const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 
 const DEFAULT_OPTIONS = {
   position: 'right-start',
-  autoHide: true
+  autoHide: true,
+  autoFocusSearch: true
 };
 
 export default class EmojiButton {
@@ -65,7 +66,8 @@ export default class EmojiButton {
     const searchContainer = new Search(
       this.events,
       this.i18n,
-      emojiData
+      emojiData,
+      this.options.autoFocusSearch
     ).render();
     this.pickerEl.appendChild(searchContainer);
 
