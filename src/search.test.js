@@ -35,7 +35,7 @@ describe('Search', () => {
     setTimeout(() => {
       expect(document.activeElement).not.toBe(searchField);
       done();
-    })
+    });
   });
 
   test('should render search results', done => {
