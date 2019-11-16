@@ -1,7 +1,7 @@
 # Emoji Button
 Vanilla JavaScript emoji picker 😎
 
-[![npm package](https://img.shields.io/npm/v/emoji-button)](https://npmjs.com/package/emoji-button)
+[![npm package](https://img.shields.io/npm/v/@joeattardi/emoji-button)](https://npmjs.com/package/@joeattardi/emoji-button)
 
 ![Screenshot](https://raw.githubusercontent.com/joeattardi/emoji-button/master/screenshot.png)
 
@@ -18,7 +18,7 @@ Vanilla JavaScript emoji picker 😎
 
 ## Installation
 
-    npm install --save emoji-button
+    npm install --save @joeattardi/emoji-button
 
 ## Basic usage
 
