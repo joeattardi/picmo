@@ -40,6 +40,7 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@joeattardi'
       - run: npm ci
+      - run: echo registry=https://npm.pkg.github.com/joeattardi >> .npmrc
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_GITHUB_TOKEN}}
