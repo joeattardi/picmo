@@ -21,6 +21,6 @@
     "serve": "^11.1.0"
   },
   "dependencies": {
-    "emoji-button": "^0.5.0"
+    "@joeattardi/emoji-button": "^2.2.6"
   }
 }
