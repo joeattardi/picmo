@@ -1,6 +1,6 @@
 {
-  "name": "emoji-button",
-  "version": "2.2.2",
+  "name": "@joeattardi/emoji-button",
+  "version": "2.2.3",
   "description": "Vanilla JavaScript emoji picker",
   "keywords": [
     "emoji",
