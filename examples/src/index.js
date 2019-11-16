@@ -1,4 +1,4 @@
-const EmojiButton = require('emoji-button');
+const EmojiButton = require('@joeattardi/emoji-button');
 
 if (location.hostname === 'localhost') {
   document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +

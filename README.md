@@ -23,7 +23,7 @@ Vanilla JavaScript emoji picker 😎
 ## Basic usage
 
 ```javascript
-  import EmojiButton from 'emoji-button';
+  import EmojiButton from '@joeattardi/emoji-button';
 
   const button = document.querySelector('#emoji-button');
   const picker = new EmojiButton();
