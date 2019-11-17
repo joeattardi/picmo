@@ -43,17 +43,28 @@
 
 .emoji-picker__tab {
   list-style: none;
-  display: inline-block;
-  padding: 0 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   flex-grow: 1;
   text-align: center;
   color: #666666;
+  border-radius: 3px;
+  transition: background 0.25s;
+}
+
+.emoji-picker__tab:hover {
+  background: rgba(79, 129, 229, 0.1);
+}
+
+.emoji-picker__tab svg {
+  padding: 0.5rem;
 }
 
 .emoji-picker__tab.active {
-  border-bottom: 3px solid #4F81E5;
-  color: #4F81E5;
+  background: #4F81E5;
+  color: #FFFFFF;
 }
 
 .emoji-picker__tab-body {
