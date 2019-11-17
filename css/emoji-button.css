@@ -48,6 +48,7 @@
   cursor: pointer;
   flex-grow: 1;
   text-align: center;
+  color: #666666;
 }
 
 .emoji-picker__tab.active {
@@ -120,7 +121,7 @@
 }
 
 .emoji-picker__search:focus {
-  border: 1px solid #6789D7;
+  border: 1px solid #4F81E5;
 }
 
 .emoji-picker__search-icon {
