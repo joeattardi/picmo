@@ -1,8 +1,7 @@
 .emoji-picker {
   margin: 0 0.5em;
-  border: 1px solid #999999;
+  border: 1px solid #CCCCCC;
   border-radius: 5px;
-  box-shadow: 0px 0px 3px 1px #CCCCCC;
   background: #FFFFFF;
   width: 20.5rem;
   height: 27.5rem;
@@ -17,7 +16,7 @@
 .emoji-picker__preview {
   height: 2em;
   padding: 0.5em;
-  border-top: 1px solid #999999;
+  border-top: 1px solid #CCCCCC;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -62,8 +61,7 @@
 }
 
 .emoji-picker__tab-body h2 {
-  font-size: 0.75rem;
-  text-transform: uppercase;
+  font-size: 0.85rem;
   color: #333333;
   margin: 0;
 }
@@ -96,10 +94,11 @@
   height: 1.5em;
   padding: 0;
   margin: 0;
+  outline: none;
   font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji", "Twemoji Mozilla", "Noto Color Emoji", "EmojiOne Color", "Android Emoji";
 }
 
-.emoji-picker__emoji:hover {
+.emoji-picker__emoji:focus, .emoji-picker__emoji:hover {
   background: #E8F4F9;
 }
 
@@ -110,12 +109,18 @@
   display: flex;
 }
 
-.emoji-picker__search-container input {
+.emoji-picker__search {
   box-sizing: border-box;
   width: 100%;
-  border-radius: 5px;
+  border-radius: 3px;
   border: 1px solid #CCCCCC;
   padding-right: 2em;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.emoji-picker__search:focus {
+  border: 1px solid #6789D7;
 }
 
 .emoji-picker__search-icon {
