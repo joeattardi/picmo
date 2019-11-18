@@ -74,6 +74,8 @@ Creates an Emoji Button emoji picker.
 
 * `showRecents`: (boolean, default: `true`) Whether or not to show (and save) recently used emojis.
 
+* `showVariants`: (boolean, default: `true`) Whether or not to show skin tone variants.
+
 * `i18n`: An object containing localized messages to display in the UI. The values and their defaults are as follows:
 
 ```

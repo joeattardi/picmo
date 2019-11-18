@@ -26,7 +26,7 @@ export class Emoji {
 
   onEmojiClick() {
     // TODO move this side effect out of Emoji, make the recent module listen for event
-    if ((!this.emoji.v || !this.showVariants) && this.options.showRecents) {
+    if ((!this.emoji.v || !this.showVariants || !this.options.showVariants) && this.options.showRecents) {
       save(this.emoji);
     }
 

@@ -29,7 +29,8 @@ const DEFAULT_OPTIONS = {
   autoFocusSearch: true,
   showPreview: true,
   showSearch: true,
-  showRecents: true
+  showRecents: true,
+  showVariants: true
 };
 
 export default class EmojiButton {
@@ -107,8 +108,12 @@ export default class EmojiButton {
 
     let variantPopup;
     this.events.on(EMOJI, ({ emoji, showVariants }) => {
-      if (emoji.v && showVariants) {
-        variantPopup = new VariantPopup(this.events, emoji).render();
+      if (emoji.v && showVariants && this.options.showVariants) {
+        variantPopup = new VariantPopup(
+          this.events,
+          emoji,
+          this.options
+        ).render();
         this.pickerEl.appendChild(variantPopup);
       } else {
         if (variantPopup && variantPopup.parentNode === this.pickerEl) {
@@ -146,6 +151,7 @@ export default class EmojiButton {
     this.events.off(HIDE_VARIANT_POPUP);
     this.options.rootElement.removeChild(this.pickerEl);
     this.popper.destroy();
+
     document.removeEventListener('click', this.onDocumentClick);
     document.removeEventListener('keydown', this.onDocumentKeydown);
   }
