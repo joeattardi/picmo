@@ -31,9 +31,13 @@ export class Search {
     this.searchField.placeholder = this.i18n.search;
     this.searchContainer.appendChild(this.searchField);
 
-    const searchIcon = createElement('span', CLASS_SEARCH_ICON);
-    searchIcon.innerHTML = icons.search;
-    this.searchContainer.appendChild(searchIcon);
+    this.searchIcon = createElement('span', CLASS_SEARCH_ICON);
+    this.searchIcon.innerHTML = icons.search;
+    this.searchIcon.addEventListener('click', event =>
+      this.onClearSearch(event)
+    );
+
+    this.searchContainer.appendChild(this.searchIcon);
 
     if (this.autoFocusSearch) {
       setTimeout(() => this.searchField.focus());
@@ -47,6 +51,17 @@ export class Search {
     return this.searchContainer;
   }
 
+  onClearSearch(event) {
+    event.stopPropagation();
+
+    if (this.searchField.value) {
+      this.searchField.value = '';
+      this.events.emit(SHOW_TABS);
+      this.searchIcon.innerHTML = icons.search;
+      this.searchIcon.style.cursor = 'default';
+    }
+  }
+
   onKeyDown(event) {
     if (event.key === 'Escape' && this.searchField.value !== '') {
       event.stopPropagation();
@@ -57,8 +72,14 @@ export class Search {
 
   onKeyUp() {
     if (!this.searchField.value) {
+      this.searchIcon.innerHTML = icons.search;
+      this.searchIcon.style.cursor = 'default';
+
       this.events.emit(SHOW_TABS);
     } else {
+      this.searchIcon.innerHTML = icons.times;
+      this.searchIcon.style.cursor = 'pointer';
+
       this.events.emit(HIDE_TABS);
       const searchResults = this.emojiData.filter(
         emoji =>

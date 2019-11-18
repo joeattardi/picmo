@@ -83,5 +83,15 @@ describe('Search', () => {
         key: 'Escape'
       })
     );
+    expect(searchField.value).toBe('');
+  });
+
+  test('should clear the search and fire the SHOW_TABS event when the clear search icon is clicked', done => {
+    events.on(SHOW_TABS, done);
+
+    searchField.value = 'foo';
+    const searchIcon = search.querySelector('.emoji-picker__search-icon');
+    searchIcon.dispatchEvent(new MouseEvent('click'));
+    expect(searchField.value).toBe('');
   });
 });
