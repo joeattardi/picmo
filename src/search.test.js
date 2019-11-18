@@ -8,18 +8,19 @@ const { i18n } = require('./i18n');
 describe('Search', () => {
   const emojis = [{ e: '⚡️', n: ['zap'] }, { e: '😀', n: ['grinning'] }];
 
+  const options = {};
   let events;
   let search;
   let searchField;
 
   beforeEach(() => {
     events = new Emitter();
-    search = new Search(events, i18n, emojis, true).render();
+    search = new Search(events, i18n, options, emojis, true).render();
     searchField = search.querySelector('.emoji-picker__search');
   });
 
   test('should autofocus the search field if autoFocusSearch is true', done => {
-    search = new Search(events, i18n, emojis, true).render();
+    search = new Search(events, i18n, options, emojis, true).render();
     searchField = search.querySelector('.emoji-picker__search');
 
     setTimeout(() => {
@@ -29,7 +30,7 @@ describe('Search', () => {
   });
 
   test('should not autofocus the search field if autoFocusSearch is false', done => {
-    search = new Search(events, i18n, emojis, false).render();
+    search = new Search(events, i18n, options, emojis, false).render();
     searchField = search.querySelector('.emoji-picker__search');
 
     setTimeout(() => {

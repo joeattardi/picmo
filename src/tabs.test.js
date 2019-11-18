@@ -11,7 +11,8 @@ describe('Tabs', () => {
 
   test('should set the active tab', () => {
     const events = new Emitter();
-    const tabsContainer = new Tabs(events, i18n).render();
+    const options = { showRecents: true };
+    const tabsContainer = new Tabs(events, i18n, options).render();
 
     const tab2 = tabsContainer.querySelectorAll('.emoji-picker__tab')[2];
     const body2 = tabsContainer.querySelectorAll('.emoji-picker__tab-body')[2];
