@@ -45,6 +45,10 @@ Creates an Emoji Button emoji picker.
 
 #### Options
 
+* `autoHide`: (boolean, default: `true`) Whether or not the picker should automatically be hidden when an emoji is clicked.
+
+* `autoFocusSearch`: (boolean, default: `true`) Whether or not to auto-focus the search field when the picker is shown.
+
 * `position`: The position to display the picker relative to the reference element. Valid values are:
   * `auto`
   * `auto-start`
@@ -62,11 +66,9 @@ Creates an Emoji Button emoji picker.
   * `left-start`
   * `left-end`
 
+* `recentsCount`: (number, default: `50`): The maximum number of recent emojis to save.
+
 * `rootElement`: The root DOM node to attach the picker to. Defaults to the body if not passed in.
-
-* `autoHide`: (boolean, default: `true`) Whether or not the picker should automatically be hidden when an emoji is clicked.
-
-* `autoFocusSearch`: (boolean, default: `true`) Whether or not to auto-focus the search field when the picker is shown.
 
 * `showPreview`: (boolean, default: `true`) Whether or not to show the emoji preview area.
 

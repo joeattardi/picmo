@@ -30,7 +30,8 @@ const DEFAULT_OPTIONS = {
   showPreview: true,
   showSearch: true,
   showRecents: true,
-  showVariants: true
+  showVariants: true,
+  recentsCount: 50
 };
 
 export default class EmojiButton {

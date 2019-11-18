@@ -30,7 +30,7 @@ export class Emoji {
       (!this.emoji.v || !this.showVariants || !this.options.showVariants) &&
       this.options.showRecents
     ) {
-      save(this.emoji);
+      save(this.emoji, this.options);
     }
 
     this.events.emit(EMOJI, {

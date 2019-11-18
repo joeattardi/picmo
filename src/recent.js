@@ -6,7 +6,7 @@ export function load() {
   return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || [];
 }
 
-export function save(emoji) {
+export function save(emoji, options) {
   const recents = load();
 
   const recent = {
@@ -18,7 +18,10 @@ export function save(emoji) {
   localStorage.setItem(
     LOCAL_STORAGE_KEY,
     JSON.stringify(
-      [recent, ...recents.filter(r => r.k !== recent.k)].slice(0, 50)
+      [recent, ...recents.filter(r => r.k !== recent.k)].slice(
+        0,
+        options.recentsCount
+      )
     )
   );
 }
