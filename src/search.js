@@ -16,9 +16,10 @@ const CLASS_NOT_FOUND = 'emoji-picker__search-not-found';
 const CLASS_NOT_FOUND_ICON = 'emoji-picker__search-not-found-icon';
 
 export class Search {
-  constructor(events, i18n, emojiData, autoFocusSearch) {
+  constructor(events, i18n, options, emojiData, autoFocusSearch) {
     this.events = events;
     this.i18n = i18n;
+    this.options = options;
     this.emojiData = emojiData;
     this.autoFocusSearch = autoFocusSearch;
   }
@@ -74,7 +75,12 @@ export class Search {
       if (searchResults.length) {
         this.events.emit(
           SHOW_SEARCH_RESULTS,
-          new EmojiContainer(searchResults, true, this.events).render()
+          new EmojiContainer(
+            searchResults,
+            true,
+            this.events,
+            this.options
+          ).render()
         );
       } else {
         this.events.emit(

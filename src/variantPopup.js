@@ -10,9 +10,10 @@ const CLASS_POPUP = 'emoji-picker__variant-popup';
 const CLASS_CLOSE_BUTTON = 'emoji-picker__variant-popup-close-button';
 
 export class VariantPopup {
-  constructor(events, emoji) {
+  constructor(events, emoji, options) {
     this.events = events;
     this.emoji = emoji;
+    this.options = options;
   }
 
   render() {
@@ -28,11 +29,17 @@ export class VariantPopup {
     });
 
     popup.appendChild(
-      new Emoji(this.emoji, false, false, this.events).render()
+      new Emoji(this.emoji, false, false, this.events, this.options).render()
     );
     Object.keys(this.emoji.v).forEach(variant => {
       popup.appendChild(
-        new Emoji(this.emoji.v[variant], false, false, this.events).render()
+        new Emoji(
+          this.emoji.v[variant],
+          false,
+          false,
+          this.events,
+          this.options
+        ).render()
       );
     });
 

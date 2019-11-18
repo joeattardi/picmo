@@ -66,15 +66,21 @@ Creates an Emoji Button emoji picker.
 
 * `autoHide`: (boolean, default: `true`) Whether or not the picker should automatically be hidden when an emoji is clicked.
 
-* `autoFocusSearch`: (boolean: default: `true`) Whether or not to auto-focus the search field when the picker is shown.
+* `autoFocusSearch`: (boolean, default: `true`) Whether or not to auto-focus the search field when the picker is shown.
+
+* `showPreview`: (boolean, default: `true`) Whether or not to show the emoji preview area.
+
+* `showSearch`: (boolean, default: `true`) Whether or not to show the search bar.
+
+* `showRecents`: (boolean, default: `true`) Whether or not to show (and save) recently used emojis.
 
 * `i18n`: An object containing localized messages to display in the UI. The values and their defaults are as follows:
 
 ```
 {
-  search: 'Search',
+  search: 'Search emojis...',
   categories: {
-    recents: 'Recently Used',
+    recents: 'Recent Emojis',
     smileys: 'Smileys & People',
     animals: 'Animals & Nature',
     food: 'Food & Drink',

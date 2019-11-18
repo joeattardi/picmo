@@ -35,10 +35,11 @@ const categoryIcons = {
 };
 
 export class Tabs {
-  constructor(events, i18n) {
+  constructor(events, i18n, options) {
     this.events = events;
     this.i18n = i18n;
-    this.activeTab = 1;
+    this.options = options;
+    this.activeTab = options.showRecents ? 1 : 0;
 
     this.setActiveTab = this.setActiveTab.bind(this);
   }
@@ -60,7 +61,7 @@ export class Tabs {
     tabsContainer.appendChild(this.createTabs());
     tabsContainer.appendChild(this.createTabBodies());
 
-    this.setActiveTab(1);
+    this.setActiveTab(this.options.showRecents ? 1 : 0);
 
     return tabsContainer;
   }
@@ -69,11 +70,17 @@ export class Tabs {
     this.tabsList = createElement('ul', CLASS_TABS);
     this.tabs = Object.keys(categoryIcons).map(
       (category, index) =>
-        new Tab(categoryIcons[category], index + 1, this.setActiveTab)
+        new Tab(
+          categoryIcons[category],
+          this.options.showRecents ? index + 1 : index,
+          this.setActiveTab
+        )
     );
 
-    const recentTab = new Tab(icons.history, 0, this.setActiveTab);
-    this.tabs.splice(0, 0, recentTab);
+    if (this.options.showRecents) {
+      const recentTab = new Tab(icons.history, 0, this.setActiveTab);
+      this.tabs.splice(0, 0, recentTab);
+    }
 
     this.tabs.forEach(tab => this.tabsList.appendChild(tab.render()));
 
@@ -90,38 +97,41 @@ export class Tabs {
           new EmojiContainer(
             emojiCategories[category],
             true,
-            this.events
+            this.events,
+            this.options
           ).render(),
-          index + 1
+          this.options.showRecents ? index + 1 : index
         )
     );
 
-    const recentTabBody = new TabBody(
-      this.i18n.categories.recents || defaultI18n.categories.recents,
-      new EmojiContainer(load(), false, this.events).render(),
-      0
-    );
-    this.tabBodies.splice(0, 0, recentTabBody);
-
-    this.events.on(EMOJI, () => {
-      const newRecents = new TabBody(
+    if (this.options.showRecents) {
+      const recentTabBody = new TabBody(
         this.i18n.categories.recents || defaultI18n.categories.recents,
-        new EmojiContainer(load(), false, this.events).render(),
+        new EmojiContainer(load(), false, this.events, this.options).render(),
         0
       );
+      this.tabBodies.splice(0, 0, recentTabBody);
 
-      setTimeout(() => {
-        this.tabBodyContainer.replaceChild(
-          newRecents.render(),
-          this.tabBodyContainer.firstChild
+      this.events.on(EMOJI, () => {
+        const newRecents = new TabBody(
+          this.i18n.categories.recents || defaultI18n.categories.recents,
+          new EmojiContainer(load(), false, this.events, this.options).render(),
+          0
         );
 
-        this.tabBodies[0] = newRecents;
-        if (this.activeTab === 0) {
-          this.setActiveTab(0);
-        }
+        setTimeout(() => {
+          this.tabBodyContainer.replaceChild(
+            newRecents.render(),
+            this.tabBodyContainer.firstChild
+          );
+
+          this.tabBodies[0] = newRecents;
+          if (this.activeTab === 0) {
+            this.setActiveTab(0);
+          }
+        });
       });
-    });
+    }
 
     this.tabBodies.forEach(tabBody =>
       this.tabBodyContainer.appendChild(tabBody.render())

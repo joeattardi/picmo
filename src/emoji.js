@@ -5,11 +5,12 @@ import { createElement } from './util';
 const CLASS_EMOJI = 'emoji-picker__emoji';
 
 export class Emoji {
-  constructor(emoji, showVariants, showPreview, events) {
+  constructor(emoji, showVariants, showPreview, events, options) {
     this.emoji = emoji;
     this.showVariants = showVariants;
     this.showPreview = showPreview;
     this.events = events;
+    this.options = options;
   }
 
   render() {
@@ -25,7 +26,7 @@ export class Emoji {
 
   onEmojiClick() {
     // TODO move this side effect out of Emoji, make the recent module listen for event
-    if (!this.emoji.v || !this.showVariants) {
+    if ((!this.emoji.v || !this.showVariants) && this.options.showRecents) {
       save(this.emoji);
     }
 

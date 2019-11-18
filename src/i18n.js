@@ -1,7 +1,7 @@
 export const i18n = {
-  search: 'Search',
+  search: 'Search emojis...',
   categories: {
-    recents: 'Recently Used',
+    recents: 'Recent Emojis',
     smileys: 'Smileys & People',
     animals: 'Animals & Nature',
     food: 'Food & Drink',

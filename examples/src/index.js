@@ -7,7 +7,8 @@ if (location.hostname === 'localhost') {
 
 window.addEventListener('DOMContentLoaded', () => {
   const button = document.querySelector('#emoji-button');
-  const picker = new EmojiButton();
+  const picker = new EmojiButton({
+  });
 
   picker.on('emoji', emoji => {
     document.querySelector('input').value += emoji;

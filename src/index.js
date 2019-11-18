@@ -26,7 +26,10 @@ const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 const DEFAULT_OPTIONS = {
   position: 'right-start',
   autoHide: true,
-  autoFocusSearch: true
+  autoFocusSearch: true,
+  showPreview: true,
+  showSearch: true,
+  showRecents: true
 };
 
 export default class EmojiButton {
@@ -63,17 +66,20 @@ export default class EmojiButton {
 
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
 
-    const searchContainer = new Search(
-      this.events,
-      this.i18n,
-      emojiData,
-      this.options.autoFocusSearch
-    ).render();
-    this.pickerEl.appendChild(searchContainer);
+    if (this.options.showSearch) {
+      const searchContainer = new Search(
+        this.events,
+        this.i18n,
+        this.options,
+        emojiData,
+        this.options.autoFocusSearch
+      ).render();
+      this.pickerEl.appendChild(searchContainer);
+    }
 
     this.pickerEl.appendChild(pickerContent);
 
-    const tabs = new Tabs(this.events, this.i18n).render();
+    const tabs = new Tabs(this.events, this.i18n, this.options).render();
     pickerContent.appendChild(tabs);
 
     this.events.on(HIDE_TABS, () => {
@@ -95,7 +101,9 @@ export default class EmojiButton {
       pickerContent.appendChild(searchResults);
     });
 
-    this.pickerEl.appendChild(new EmojiPreview(this.events).render());
+    if (this.options.showPreview) {
+      this.pickerEl.appendChild(new EmojiPreview(this.events).render());
+    }
 
     let variantPopup;
     this.events.on(EMOJI, ({ emoji, showVariants }) => {
