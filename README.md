@@ -1,9 +1,7 @@
 # Emoji Button
 Vanilla JavaScript emoji picker 😎
 
-[![npm package](https://img.shields.io/npm/v/@joeattardi/emoji-button)](https://npmjs.com/package/@joeattardi/emoji-button)
-
-![Screenshot](https://raw.githubusercontent.com/joeattardi/emoji-button/master/screenshot.png)
+![Screenshot](https://user-images.githubusercontent.com/219285/69020624-22f3f300-0983-11ea-914a-f730d538c908.png)
 
 ## Demo
 
