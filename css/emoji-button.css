@@ -10,6 +10,7 @@
 .emoji-picker__content {
   padding: 0.5em;
   height: 20.5rem;
+  overflow: hidden;
 }
 
 .emoji-picker__preview {
