@@ -146,7 +146,7 @@ The easiest way to hack on Emoji Button is to use the examples page.
 
 #### Link the library
 
-    npm link emoji-button
+    npm link @joeattardi/emoji-button
 
 #### Start the dev server
 
