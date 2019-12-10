@@ -66,6 +66,10 @@ export default class EmojiButton {
   buildPicker() {
     this.pickerEl = createElement('div', CLASS_PICKER);
 
+    if (this.options.zIndex) {
+      this.pickerEl.style.zIndex = this.options.zIndex;
+    }
+
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
 
     if (this.options.showSearch) {

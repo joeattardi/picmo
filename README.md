@@ -76,6 +76,8 @@ Creates an Emoji Button emoji picker.
 
 * `showVariants`: (boolean, default: `true`) Whether or not to show skin tone variants.
 
+* `zIndex`: (number): If specified, sets a z-index for the emoji picker container.
+
 * `i18n`: An object containing localized messages to display in the UI. The values and their defaults are as follows:
 
 ```
