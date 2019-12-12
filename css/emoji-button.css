@@ -1,10 +1,16 @@
 .emoji-picker {
-  margin: 0 0.5em;
   border: 1px solid #CCCCCC;
   border-radius: 5px;
   background: #FFFFFF;
   width: 20.5rem;
   font-family: Arial, Helvetica, sans-serif;
+  opacity: 0;
+  transition: opacity 0.3s;
+  margin: 0 0.5em;
+}
+
+.emoji-picker.visible {
+  opacity: 1;
 }
 
 .emoji-picker__content {
@@ -101,7 +107,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   width: 1.5em;
   height: 1.5em;
   padding: 0;

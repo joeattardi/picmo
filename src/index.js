@@ -151,22 +151,37 @@ export default class EmojiButton {
   }
 
   hidePicker() {
+    // this.pickerEl.style.opacity = 0;
+    this.pickerEl.classList.remove('visible');
     this.pickerVisible = false;
     this.events.off(EMOJI);
     this.events.off(HIDE_VARIANT_POPUP);
-    this.options.rootElement.removeChild(this.pickerEl);
-    this.popper.destroy();
+
+    this.hideInProgress = true;
+
+    setTimeout(() => {
+      this.options.rootElement.removeChild(this.pickerEl);
+      this.popper.destroy();
+      this.pickerEl.style.transition = '';
+      this.hideInProgress = false;
+    }, 500);
 
     document.removeEventListener('click', this.onDocumentClick);
     document.removeEventListener('keydown', this.onDocumentKeydown);
   }
 
   showPicker(referenceEl, options = {}) {
+    if (this.hideInProgress) {
+      return;
+    }
+
     this.pickerVisible = true;
     this.buildPicker();
     this.popper = new Popper(referenceEl, this.pickerEl, {
       placement: options.position || this.options.position
     });
+
+    this.pickerEl.classList.add('visible');
   }
 
   onDocumentKeydown(event) {
