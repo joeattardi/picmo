@@ -55,6 +55,8 @@ export class Tabs {
       const currentActiveTabBody = this.tabBodies[currentActiveTab].container;
       const newActiveTabBody = this.tabBodies[index].container;
 
+      newActiveTabBody.querySelector('.emoji-picker__emojis').scrollTop = 0;
+
       if (animate) {
         if (index > currentActiveTab) {
           this.transitionTabs(newActiveTabBody, currentActiveTabBody, 25, -25);
