@@ -7,6 +7,7 @@
   opacity: 0;
   transition: opacity 0.3s;
   margin: 0 0.5em;
+  overflow: hidden;
 }
 
 .emoji-picker.visible {
@@ -15,8 +16,9 @@
 
 .emoji-picker__content {
   padding: 0.5em;
-  height: 20.5rem;
+  height: 20rem;
   overflow: hidden;
+  position: relative;
 }
 
 .emoji-picker__preview {
@@ -75,8 +77,10 @@
 }
 
 .emoji-picker__tab-body {
-  display: none;
   margin-top: 0.5em;
+  transform: translateX(25rem);
+  transition: transform 0.25s;
+  position: absolute;
 }
 
 .emoji-picker__tab-body h2 {
@@ -87,6 +91,7 @@
 
 .emoji-picker__tab-body.active {
   display: block;
+  transform: translateX(0);
 }
 
 .emoji-picker__emojis {
@@ -171,7 +176,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 20.5rem;
+  width: 23rem;
   height: 27.5rem;
   display: flex;
   flex-direction: column;

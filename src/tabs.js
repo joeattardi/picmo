@@ -39,21 +39,48 @@ export class Tabs {
     this.events = events;
     this.i18n = i18n;
     this.options = options;
-    this.activeTab = options.showRecents ? 1 : 0;
 
     this.setActiveTab = this.setActiveTab.bind(this);
   }
 
-  setActiveTab(index) {
-    if (this.activeTab >= 0) {
-      this.tabBodies[this.activeTab].setActive(false);
-      this.tabs[this.activeTab].setActive(false);
+  setActiveTab(index, animate = true) {
+    if (index === this.activeTab) {
+      return;
+    }
+
+    const currentActiveTab = this.activeTab;
+    if (currentActiveTab >= 0) {
+      this.tabs[currentActiveTab].setActive(false);
+
+      const currentActiveTabBody = this.tabBodies[currentActiveTab].container;
+      const newActiveTabBody = this.tabBodies[index].container;
+
+      if (animate) {
+        if (index > currentActiveTab) {
+          this.transitionTabs(newActiveTabBody, currentActiveTabBody, 25, -25);
+        } else {
+          this.transitionTabs(newActiveTabBody, currentActiveTabBody, -25, 25);
+        }
+      }
     }
 
     this.activeTab = index;
-
     this.tabBodies[this.activeTab].setActive(true);
     this.tabs[this.activeTab].setActive(true);
+  }
+
+  transitionTabs(newActiveTabBody, currentActiveTabBody, newTranslate, currentTranslate) {
+    requestAnimationFrame(() => {
+      newActiveTabBody.style.transition = 'none';
+      newActiveTabBody.style.transform = `translateX(${newTranslate}rem)`;
+      requestAnimationFrame(() => {
+        currentActiveTabBody.style.transform = `translateX(${currentTranslate}rem)`;
+        newActiveTabBody.style.transition = 'transform 0.25s';
+        requestAnimationFrame(() => {
+          newActiveTabBody.style.transform = 'translateX(0)';
+        });
+      });
+    });
   }
 
   render() {
@@ -61,7 +88,7 @@ export class Tabs {
     tabsContainer.appendChild(this.createTabs());
     tabsContainer.appendChild(this.createTabBodies());
 
-    this.setActiveTab(this.options.showRecents ? 1 : 0);
+    this.setActiveTab(this.options.showRecents ? 1 : 0, false);
 
     return tabsContainer;
   }

@@ -30,6 +30,8 @@ describe('Tabs', () => {
     expect(isActive(tab0)).toBe(true);
     expect(isActive(body0)).toBe(true);
     expect(isActive(tab2)).toBe(false);
-    expect(isActive(body2)).toBe(false);
+    setTimeout(() => {
+      expect(isActive(body2)).toBe(false);
+    });
   });
 });
