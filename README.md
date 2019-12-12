@@ -1,7 +1,8 @@
 # Emoji Button
 Vanilla JavaScript emoji picker 😎
 
-![Screenshot](https://user-images.githubusercontent.com/219285/69020624-22f3f300-0983-11ea-914a-f730d538c908.png)
+![Screenshot](https://user-images.githubusercontent.com/219285/70683330-03917280-1c70-11ea-83f1-c2795e308fbe.png)
+
 
 ## Demo
 
