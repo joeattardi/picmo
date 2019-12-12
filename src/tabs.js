@@ -69,7 +69,12 @@ export class Tabs {
     this.tabs[this.activeTab].setActive(true);
   }
 
-  transitionTabs(newActiveTabBody, currentActiveTabBody, newTranslate, currentTranslate) {
+  transitionTabs(
+    newActiveTabBody,
+    currentActiveTabBody,
+    newTranslate,
+    currentTranslate
+  ) {
     requestAnimationFrame(() => {
       newActiveTabBody.style.transition = 'none';
       newActiveTabBody.style.transform = `translateX(${newTranslate}rem)`;
