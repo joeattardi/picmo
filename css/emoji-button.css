@@ -87,6 +87,7 @@
   font-size: 0.85rem;
   color: #333333;
   margin: 0;
+  text-align: left;
 }
 
 .emoji-picker__tab-body.active {
