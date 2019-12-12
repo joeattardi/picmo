@@ -139,6 +139,7 @@
   border-radius: 3px;
   border: 1px solid #CCCCCC;
   padding-right: 2em;
+  padding: 0.25em 2.25em 0.25em 0.25em;
   font-size: 0.85rem;
   outline: none;
 }

@@ -1,12 +1,32 @@
-button {
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+#emoji-button {
   padding: 0.25em 0.5em;
   font-size: 1em;
   background: #EEEEEE;
   border-radius: 5px;
   cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+  position: relative;
+  left: -2.25rem;
+  top: 2px;
+  display: inline-flex;
+  align-items: center;
 }
 
-input {
-  padding: 0.25em 0.5em;
-  font-size: 1em;
+#emoji-button img {
+  height: 1rem;
+}
+
+#emoji-input {
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
+  height: 1rem;
+  padding-right: 2rem;
 }
