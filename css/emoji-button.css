@@ -2,7 +2,7 @@
   border: 1px solid #CCCCCC;
   border-radius: 5px;
   background: #FFFFFF;
-  width: 20.5rem;
+  width: 23rem;
   font-family: Arial, Helvetica, sans-serif;
   opacity: 0;
   transition: opacity 0.3s;
@@ -48,6 +48,7 @@
 }
 
 .emoji-picker__tab {
+  font-size: 1.5rem;
   list-style: none;
   display: flex;
   align-items: center;
@@ -94,7 +95,7 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  width: calc(1.3rem * 1.5 * 10);
+  width: calc((1.8rem * 1.5 * 8) + 1rem);
   margin: auto;
 }
 
