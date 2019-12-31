@@ -1099,16 +1099,15 @@ var app = (function () {
 	  ':35729/livereload.js?snipver=1"></' + 'script>');
 	}
 
-	window.addEventListener('DOMContentLoaded', () => {
-	  const button = document.querySelector('#emoji-button');
-	  const picker = new dist({
-	  });
+	window.addEventListener('DOMContentLoaded', function () {
+	  var button = document.querySelector('#emoji-button');
+	  var picker = new dist();
 
-	  picker.on('emoji', emoji => {
+	  picker.on('emoji', function (emoji) {
 	    document.querySelector('input').value += emoji;
 	  });
 
-	  button.addEventListener('click', () => {
+	  button.addEventListener('click', function () {
 	    picker.pickerVisible ? picker.hidePicker() : picker.showPicker(button);
 	  });
 	});
