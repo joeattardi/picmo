@@ -26,10 +26,12 @@ body {
 }
 
 #emoji-input {
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem 0.75rem;
   font-size: 1rem;
   height: 1rem;
   padding-right: 2rem;
   width: 20rem;
   margin: 1rem;
+  border: 1px solid #DDDDDD;
+  border-radius: 5px;
 }
