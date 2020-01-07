@@ -178,10 +178,15 @@ export default class EmojiButton {
     this.pickerVisible = true;
     this.buildPicker();
     this.popper = new Popper(referenceEl, this.pickerEl, {
-      placement: options.position || this.options.position
+      placement: options.position || this.options.position,
+      modifiers: {
+        computeStyle: {
+          gpuAcceleration: false
+        }
+      }
     });
 
-    this.pickerEl.classList.add('visible');
+    requestAnimationFrame(() => this.pickerEl.classList.add('visible'));
   }
 
   onDocumentKeydown(event) {
