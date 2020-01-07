@@ -101,7 +101,6 @@
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  justify-content: center;
   width: calc((1.8rem * 1.5 * 8) + 0.5rem);
   margin: auto;
 }
