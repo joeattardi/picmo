@@ -150,21 +150,21 @@ export default class EmojiButton {
     }
   }
 
+  destroyPicker() {
+    this.options.rootElement.removeChild(this.pickerEl);
+    this.popper.destroy();
+    this.pickerEl.style.transition = '';
+    this.hideInProgress = false;
+  }
+
   hidePicker() {
-    // this.pickerEl.style.opacity = 0;
     this.pickerEl.classList.remove('visible');
     this.pickerVisible = false;
     this.events.off(EMOJI);
     this.events.off(HIDE_VARIANT_POPUP);
 
     this.hideInProgress = true;
-
-    setTimeout(() => {
-      this.options.rootElement.removeChild(this.pickerEl);
-      this.popper.destroy();
-      this.pickerEl.style.transition = '';
-      this.hideInProgress = false;
-    }, 500);
+    this.destroyTimeout = setTimeout(this.destroyPicker.bind(this), 500);
 
     document.removeEventListener('click', this.onDocumentClick);
     document.removeEventListener('keydown', this.onDocumentKeydown);
@@ -172,7 +172,8 @@ export default class EmojiButton {
 
   showPicker(referenceEl, options = {}) {
     if (this.hideInProgress) {
-      return;
+      clearTimeout(this.destroyTimeout);
+      this.destroyPicker();
     }
 
     this.pickerVisible = true;
