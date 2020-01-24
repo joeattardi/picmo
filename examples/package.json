@@ -8,7 +8,7 @@
     "build:watch": "rollup -cw",
     "serve": "serve public",
     "start": "concurrently \"npm:build:watch\" \"npm:serve\" \"livereload\"",
-    "publish": "gh-pages -d public"
+    "publish": "rollup -c && gh-pages -d public"
   },
   "license": "UNLICENSED",
   "devDependencies": {
