@@ -9,7 +9,8 @@ function getEmoji(unified) {
 }
 
 const categoryKeys = {
-  'Smileys & People': 'smileys',
+  'Smileys & Emotion': 'smileys',
+  'People & Body': 'smileys',
   'Animals & Nature': 'animals',
   'Food & Drink': 'food',
   Activities: 'activities',
@@ -20,9 +21,13 @@ const categoryKeys = {
   'Skin Tones': 'skinTones'
 };
 
+const smileysCount = rawData.filter(e => e.category === 'Smileys & Emotion').length;
+rawData.filter(e => e.category === 'People & Body').forEach(e => e.sort_order += smileysCount);
+
 const categories = [];
 
 rawData.sort((e1, e2) => e1.sort_order - e2.sort_order);
+
 const newEmojiData = rawData.map(emojiItem => {
   let categoryIndex = categories.indexOf(emojiItem.category);
   if (categoryIndex < 0) {

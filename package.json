@@ -42,7 +42,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.22",
     "@fortawesome/free-regular-svg-icons": "^5.10.2",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
-    "emoji-datasource": "^4.1.0",
+    "emoji-datasource": "^5.0.1",
     "popper.js": "^1.15.0",
     "tiny-emitter": "^2.1.0"
   },
