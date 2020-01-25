@@ -8,7 +8,9 @@ describe('EmojiContainer', () => {
 
     const events = new Emitter();
 
-    const container = new EmojiContainer(emojis, false, events, { emojiVersion: '12.1' }).render();
+    const container = new EmojiContainer(emojis, false, events, {
+      emojiVersion: '12.1'
+    }).render();
     expect(container.querySelectorAll('.emoji-picker__emoji').length).toBe(2);
   });
 });
