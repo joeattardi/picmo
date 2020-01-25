@@ -1,7 +1,7 @@
 import '../css/emoji-button.css';
 
 import Emitter from 'tiny-emitter';
-import Popper from 'popper.js';
+import { createPopper } from '@popperjs/core';
 
 import emojiData from './data/emoji';
 
@@ -179,13 +179,8 @@ export default class EmojiButton {
 
     this.pickerVisible = true;
     this.buildPicker();
-    this.popper = new Popper(referenceEl, this.pickerEl, {
-      placement: options.position || this.options.position,
-      modifiers: {
-        computeStyle: {
-          gpuAcceleration: false
-        }
-      }
+    this.popper = createPopper(referenceEl, this.pickerEl, {
+      placement: options.position || this.options.position
     });
 
     requestAnimationFrame(() => this.pickerEl.classList.add('visible'));
