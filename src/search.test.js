@@ -6,9 +6,9 @@ const { Search } = require('./search');
 const { i18n } = require('./i18n');
 
 describe('Search', () => {
-  const emojis = [{ e: '⚡️', n: ['zap'] }, { e: '😀', n: ['grinning'] }];
+  const emojis = [{ e: '⚡️', n: ['zap'], ver: '12.1' }, { e: '😀', n: ['grinning'], ver: '12.1' }];
 
-  const options = {};
+  const options = { emojiVersion: '12.1' };
   let events;
   let search;
   let searchField;
