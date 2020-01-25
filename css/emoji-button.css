@@ -6,7 +6,6 @@
   font-family: Arial, Helvetica, sans-serif;
   opacity: 0;
   transition: opacity 0.3s;
-  margin: 0 0.5em;
   overflow: hidden;
 }
 
