@@ -20,7 +20,7 @@ export class Search {
     this.events = events;
     this.i18n = i18n;
     this.options = options;
-    this.emojiData = emojiData;
+    this.emojiData = emojiData.filter(e => e.ver <= parseFloat(options.emojiVersion));
     this.autoFocusSearch = autoFocusSearch;
   }
 

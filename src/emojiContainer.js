@@ -5,7 +5,7 @@ const CLASS_EMOJI_CONTAINER = 'emoji-picker__emojis';
 
 export class EmojiContainer {
   constructor(emojis, showVariants, events, options) {
-    this.emojis = emojis;
+    this.emojis = emojis.filter(e => e.ver <= parseFloat(options.emojiVersion));
     this.showVariants = showVariants;
     this.events = events;
     this.options = options;

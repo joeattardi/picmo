@@ -38,7 +38,8 @@ const newEmojiData = rawData.map(emojiItem => {
   const newData = {
     n: emojiItem.short_names,
     e: getEmoji(emojiItem.unified),
-    c: categoryIndex
+    c: categoryIndex,
+    ver: emojiItem.added_in
   };
 
   if (emojiItem.skin_variations) {
