@@ -16,6 +16,7 @@ export class Emoji {
   render() {
     const emojiButton = createElement('button', CLASS_EMOJI);
     emojiButton.innerHTML = this.emoji.e;
+    emojiButton.tabIndex = -1;
 
     emojiButton.addEventListener('click', () => this.onEmojiClick());
     emojiButton.addEventListener('mouseover', () => this.onEmojiHover());
