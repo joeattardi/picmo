@@ -51,13 +51,17 @@ export class Tabs {
     const currentActiveTab = this.activeTab;
     const newActiveTabBody = this.tabBodies[index].container;
 
-    newActiveTabBody.querySelectorAll('.emoji-picker__emoji').forEach(emoji => emoji.tabIndex = 0);
+    newActiveTabBody
+      .querySelectorAll('.emoji-picker__emoji')
+      .forEach(emoji => (emoji.tabIndex = 0));
 
     if (currentActiveTab >= 0) {
       this.tabs[currentActiveTab].setActive(false);
 
       const currentActiveTabBody = this.tabBodies[currentActiveTab].container;
-      currentActiveTabBody.querySelectorAll('.emoji-picker__emoji').forEach(emoji => emoji.tabIndex = -1);
+      currentActiveTabBody
+        .querySelectorAll('.emoji-picker__emoji')
+        .forEach(emoji => (emoji.tabIndex = -1));
 
       newActiveTabBody.querySelector('.emoji-picker__emojis').scrollTop = 0;
 
