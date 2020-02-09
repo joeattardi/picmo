@@ -19552,6 +19552,7 @@ var app = (function () {
 
 	        var emojiButton = createElement('button', CLASS_EMOJI);
 	        emojiButton.innerHTML = this.emoji.e;
+	        emojiButton.tabIndex = -1;
 	        emojiButton.addEventListener('click', function () {
 	          return _this.onEmojiClick();
 	        });
@@ -19818,11 +19819,18 @@ var app = (function () {
 	        }
 
 	        var currentActiveTab = this.activeTab;
+	        var newActiveTabBody = this.tabBodies[index].container;
+	        newActiveTabBody.querySelectorAll('.emoji-picker__emoji').forEach(function (emoji) {
+	          return emoji.tabIndex = 0;
+	        });
 
 	        if (currentActiveTab >= 0) {
 	          this.tabs[currentActiveTab].setActive(false);
+	          this.tabBodies[currentActiveTab].setActive(false);
 	          var currentActiveTabBody = this.tabBodies[currentActiveTab].container;
-	          var newActiveTabBody = this.tabBodies[index].container;
+	          currentActiveTabBody.querySelectorAll('.emoji-picker__emoji').forEach(function (emoji) {
+	            return emoji.tabIndex = -1;
+	          });
 	          newActiveTabBody.querySelector('.emoji-picker__emojis').scrollTop = 0;
 
 	          if (animate) {
@@ -19897,8 +19905,10 @@ var app = (function () {
 	          this.tabBodies.splice(0, 0, recentTabBody);
 	          this.events.on(EMOJI, function () {
 	            var newRecents = new TabBody(_this2.i18n.categories.recents || i18n.categories.recents, new EmojiContainer(load(), false, _this2.events, _this2.options).render(), 0);
+	            var newRecentsEl = newRecents.render();
+	            newRecentsEl.style.transform = 'translateX(0)';
 	            setTimeout(function () {
-	              _this2.tabBodyContainer.replaceChild(newRecents.render(), _this2.tabBodyContainer.firstChild);
+	              _this2.tabBodyContainer.replaceChild(newRecentsEl, _this2.tabBodyContainer.firstChild);
 
 	              _this2.tabBodies[0] = newRecents;
 
@@ -19981,8 +19991,10 @@ var app = (function () {
 	      key: "setActive",
 	      value: function setActive(active) {
 	        if (active) {
+	          console.log('adding class');
 	          this.container.classList.add(CLASS_ACTIVE_TAB);
 	        } else {
+	          console.log('removing class');
 	          this.container.classList.remove(CLASS_ACTIVE_TAB);
 	        }
 	      }
