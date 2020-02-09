@@ -57,6 +57,7 @@ export class Tabs {
 
     if (currentActiveTab >= 0) {
       this.tabs[currentActiveTab].setActive(false);
+      this.tabBodies[currentActiveTab].setActive(false);
 
       const currentActiveTabBody = this.tabBodies[currentActiveTab].container;
       currentActiveTabBody
@@ -161,9 +162,12 @@ export class Tabs {
           0
         );
 
+        const newRecentsEl = newRecents.render();
+        newRecentsEl.style.transform = 'translateX(0)';
+
         setTimeout(() => {
           this.tabBodyContainer.replaceChild(
-            newRecents.render(),
+            newRecentsEl,
             this.tabBodyContainer.firstChild
           );
 
