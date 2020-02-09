@@ -1,5 +1,6 @@
 import '../css/emoji-button.css';
 
+import createFocusTrap from 'focus-trap';
 import Emitter from 'tiny-emitter';
 import { createPopper } from '@popperjs/core';
 
@@ -66,6 +67,9 @@ export default class EmojiButton {
 
   buildPicker() {
     this.pickerEl = createElement('div', CLASS_PICKER);
+    this.focusTrap = createFocusTrap(this.pickerEl, {
+      clickOutsideDeactivates: true
+    });
 
     if (this.options.zIndex) {
       this.pickerEl.style.zIndex = this.options.zIndex;
@@ -159,6 +163,7 @@ export default class EmojiButton {
   }
 
   hidePicker() {
+    this.focusTrap.deactivate();
     this.pickerEl.classList.remove('visible');
     this.pickerVisible = false;
     this.events.off(EMOJI);
@@ -183,6 +188,7 @@ export default class EmojiButton {
       placement: options.position || this.options.position
     });
 
+    this.focusTrap.activate();
     requestAnimationFrame(() => this.pickerEl.classList.add('visible'));
   }
 

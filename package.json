@@ -45,6 +45,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "@popperjs/core": "^2.0.0",
     "emoji-datasource": "^5.0.1",
+    "focus-trap": "^5.1.0",
     "tiny-emitter": "^2.1.0"
   },
   "files": [
