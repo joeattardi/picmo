@@ -15,6 +15,10 @@ Vanilla JavaScript emoji picker 😎
 * 👍🏼 Skin tone variations
 * ⏱ Recently used emojis
 
+## Download
+
+[emoji-button-2.7.3.min.js](https://github.com/joeattardi/emoji-button/releases/download/v2.7.3/emoji-button-2.7.3.min.js)
+
 ## Installation
 
     npm install --save @joeattardi/emoji-button
