@@ -129,7 +129,9 @@ export class Tabs {
 
     this.tabsList.addEventListener('keydown', event => {
       if (event.key === 'ArrowLeft') {
-        this.setActiveTab(this.activeTab === 0 ? this.tabs.length - 1 : this.activeTab - 1);
+        this.setActiveTab(
+          this.activeTab === 0 ? this.tabs.length - 1 : this.activeTab - 1
+        );
       } else if (event.key === 'ArrowRight') {
         this.setActiveTab((this.activeTab + 1) % this.tabs.length);
       }

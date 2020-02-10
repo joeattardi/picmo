@@ -10,7 +10,10 @@ describe('Tabs', () => {
   let tabBodies;
 
   function isActive(tab) {
-    return tabs[tab].classList.contains('active') && tabBodies[tab].classList.contains('active');
+    return (
+      tabs[tab].classList.contains('active') &&
+      tabBodies[tab].classList.contains('active')
+    );
   }
 
   beforeEach(() => {
