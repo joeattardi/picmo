@@ -127,6 +127,14 @@ export class Tabs {
 
     this.tabs.forEach(tab => this.tabsList.appendChild(tab.render()));
 
+    this.tabsList.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft') {
+        this.setActiveTab(this.activeTab === 0 ? this.tabs.length - 1 : this.activeTab - 1);
+      } else if (event.key === 'ArrowRight') {
+        this.setActiveTab((this.activeTab + 1) % this.tabs.length);
+      }
+    });
+
     return this.tabsList;
   }
 
@@ -206,8 +214,11 @@ class Tab {
   setActive(active) {
     if (active) {
       this.tab.classList.add(CLASS_ACTIVE_TAB);
+      this.tab.tabIndex = 0;
+      this.tab.focus();
     } else {
       this.tab.classList.remove(CLASS_ACTIVE_TAB);
+      this.tab.tabIndex = -1;
     }
   }
 }
