@@ -207,9 +207,13 @@ export class Tabs {
     });
 
     this.events.on(EMOJI, ({ button }) => {
-      this.setFocusedEmoji(
-        Array.prototype.indexOf.call(button.parentElement.children, button)
-      );
+      if (button.parentElement.classList.contains('emoji-picker__emojis')) {
+        this.setFocusedEmoji(
+          Array.prototype.indexOf.call(button.parentElement.children, button)
+        );
+      } else {
+        this.setFocusedEmoji(this.focusedEmojiIndex);
+      }
     });
 
     if (this.options.showRecents) {
