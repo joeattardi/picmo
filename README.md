@@ -14,6 +14,7 @@ Vanilla JavaScript emoji picker 😎
 * 🔎 Emoji search
 * 👍🏼 Skin tone variations
 * ⏱ Recently used emojis
+* ⌨️ Fully keyboard accessible
 
 ## Download
 
