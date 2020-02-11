@@ -20026,6 +20026,12 @@ var app = (function () {
 	        this.emojiButton = createElement('button', CLASS_EMOJI);
 	        this.emojiButton.innerHTML = this.emoji.e;
 	        this.emojiButton.tabIndex = -1;
+	        this.emojiButton.addEventListener('focus', function () {
+	          return _this.onEmojiHover();
+	        });
+	        this.emojiButton.addEventListener('blur', function () {
+	          return _this.onEmojiLeave();
+	        });
 	        this.emojiButton.addEventListener('click', function () {
 	          return _this.onEmojiClick();
 	        });
