@@ -18,6 +18,8 @@ export class Emoji {
     this.emojiButton.innerHTML = this.emoji.e;
     this.emojiButton.tabIndex = -1;
 
+    this.emojiButton.addEventListener('focus', () => this.onEmojiHover());
+    this.emojiButton.addEventListener('blur', () => this.onEmojiLeave());
     this.emojiButton.addEventListener('click', () => this.onEmojiClick());
     this.emojiButton.addEventListener('mouseover', () => this.onEmojiHover());
     this.emojiButton.addEventListener('mouseout', () => this.onEmojiLeave());
