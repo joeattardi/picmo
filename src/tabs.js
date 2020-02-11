@@ -207,7 +207,9 @@ export class Tabs {
     });
 
     this.events.on(EMOJI, ({ button }) => {
-      this.setFocusedEmoji(Array.prototype.indexOf.call(button.parentElement.children, button));
+      this.setFocusedEmoji(
+        Array.prototype.indexOf.call(button.parentElement.children, button)
+      );
     });
 
     if (this.options.showRecents) {
