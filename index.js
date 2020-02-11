@@ -131,8 +131,481 @@ var app = (function () {
 	    }
 	  }
 
-	  var css = ".emoji-picker {\n  border: 1px solid #CCCCCC;\n  border-radius: 5px;\n  background: #FFFFFF;\n  width: 23rem;\n  font-family: Arial, Helvetica, sans-serif;\n  opacity: 0;\n  transition: opacity 0.3s;\n  overflow: hidden;\n}\n\n.emoji-picker.visible {\n  opacity: 1;\n}\n\n.emoji-picker__content {\n  padding: 0.5em;\n  height: 20rem;\n  overflow: hidden;\n  position: relative;\n}\n\n.emoji-picker__preview {\n  height: 2em;\n  padding: 0.5em;\n  border-top: 1px solid #CCCCCC;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n\n.emoji-picker__preview-emoji {\n  font-size: 2em;\n  margin-right: 0.25em;\n  font-family: \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Segoe UI\", \"Apple Color Emoji\", \"Twemoji Mozilla\", \"Noto Color Emoji\", \"EmojiOne Color\", \"Android Emoji\";\n}\n\n.emoji-picker__preview-name {\n  color: #666666;\n  font-size: 0.85em;\n  overflow-wrap: break-word;\n  word-break: break-all;\n}\n\n.emoji-picker__tabs {\n  margin: 0;\n  padding: 0;\n  display: flex;\n}\n\n.emoji-picker__tab {\n  font-size: 1.5rem;\n  list-style: none;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  flex-grow: 1;\n  text-align: center;\n  color: #666666;\n  border-radius: 3px;\n  transition: background 0.25s;\n}\n\n.emoji-picker__tab:hover {\n  background: #E8F4F9;\n}\n\n.emoji-picker__tab svg {\n  padding: 0.5rem;\n}\n\n.emoji-picker__tab.active {\n  background: #4F81E5;\n  color: #FFFFFF;\n}\n\n.emoji-picker__tab-body {\n  margin-top: 0.5em;\n  transform: translateX(25rem);\n  transition: transform 0.25s;\n  position: absolute;\n}\n\n.emoji-picker__tab-body h2 {\n  font-size: 0.85rem;\n  color: #333333;\n  margin: 0;\n  text-align: left;\n}\n\n.emoji-picker__tab-body.active {\n  display: block;\n  transform: translateX(0);\n}\n\n.emoji-picker__emojis {\n  height: 16.5rem;\n  overflow-y: scroll;\n  display: flex;\n  flex-wrap: wrap;\n  align-content: flex-start;\n  width: calc((1.8rem * 1.5 * 8) + 0.5rem);\n  margin: auto;\n}\n\n.emoji-picker__emojis.search-results {\n  height: 21rem;\n}\n\n.emoji-picker__emoji {\n  background: transparent;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n  font-size: 1.8rem;\n  width: 1.5em;\n  height: 1.5em;\n  padding: 0;\n  margin: 0;\n  outline: none;\n  font-family: \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Segoe UI\", \"Apple Color Emoji\", \"Twemoji Mozilla\", \"Noto Color Emoji\", \"EmojiOne Color\", \"Android Emoji\";\n}\n\n.emoji-picker__emoji:focus, .emoji-picker__emoji:hover {\n  background: #E8F4F9;\n}\n\n.emoji-picker__search-container {\n  margin: 0.5em;\n  position: relative;\n  height: 2em;\n  display: flex;\n}\n\n.emoji-picker__search {\n  box-sizing: border-box;\n  width: 100%;\n  border-radius: 3px;\n  border: 1px solid #CCCCCC;\n  padding-right: 2em;\n  padding: 0.5em 2.25em 0.5em 0.5em;\n  font-size: 0.85rem;\n  outline: none;\n}\n\n.emoji-picker__search:focus {\n  border: 1px solid #4F81E5;\n}\n\n.emoji-picker__search-icon {\n  position: absolute;\n  color: #CCCCCC;\n  width: 1em;\n  height: 1em;\n  right: 0.75em;\n  top: calc(50% - 0.5em);\n}\n\n.emoji-picker__search-not-found {\n  color: #666666;\n  text-align: center;\n  margin-top: 2em;\n}\n\n.emoji-picker__search-not-found-icon {\n  font-size: 3em;\n}\n\n.emoji-picker__search-not-found h2 {\n  margin: 0.5em 0;\n  font-size: 1em;\n}\n\n.emoji-picker__variant-overlay {\n  background: rgba(0, 0, 0, 0.7);\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 23rem;\n  height: 27.5rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n\n.emoji-picker__variant-popup {\n  background: #FFFFFF;\n  margin: 0.5em;\n  padding: 0.5em;\n  text-align: center;\n}\n\n.emoji-picker__variant-popup-close-button {\n  cursor: pointer;\n  background: transparent;\n  border: none;\n  position: absolute;\n  right: 1em;\n  padding: 0;\n  top: calc(50% - 0.5em);\n  height: 1em;\n  width: 1em;\n}";
+	  var css = ".emoji-picker {\n  border: 1px solid #CCCCCC;\n  border-radius: 5px;\n  background: #FFFFFF;\n  width: 23rem;\n  font-family: Arial, Helvetica, sans-serif;\n  opacity: 0;\n  transition: opacity 0.3s;\n  overflow: hidden;\n}\n\n.emoji-picker.visible {\n  opacity: 1;\n}\n\n.emoji-picker__content {\n  padding: 0.5em;\n  height: 20rem;\n  overflow: hidden;\n  position: relative;\n}\n\n.emoji-picker__preview {\n  height: 2em;\n  padding: 0.5em;\n  border-top: 1px solid #CCCCCC;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n}\n\n.emoji-picker__preview-emoji {\n  font-size: 2em;\n  margin-right: 0.25em;\n  font-family: \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Segoe UI\", \"Apple Color Emoji\", \"Twemoji Mozilla\", \"Noto Color Emoji\", \"EmojiOne Color\", \"Android Emoji\";\n}\n\n.emoji-picker__preview-name {\n  color: #666666;\n  font-size: 0.85em;\n  overflow-wrap: break-word;\n  word-break: break-all;\n}\n\n.emoji-picker__tabs {\n  margin: 0;\n  padding: 0;\n  display: flex;\n}\n\n.emoji-picker__tab {\n  font-size: 1.5rem;\n  list-style: none;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  flex-grow: 1;\n  text-align: center;\n  color: #666666;\n  border-radius: 3px;\n  transition: background 0.25s;\n}\n\n.emoji-picker__tab:hover {\n  background: #E8F4F9;\n}\n\n.emoji-picker__tab svg {\n  padding: 0.5rem;\n}\n\n.emoji-picker__tab.active {\n  background: #4F81E5;\n  color: #FFFFFF;\n}\n\n.emoji-picker__tab-body {\n  margin-top: 0.5em;\n  transform: translateX(25rem);\n  transition: transform 0.25s;\n  position: absolute;\n}\n\n.emoji-picker__tab-body h2 {\n  font-size: 0.85rem;\n  color: #333333;\n  margin: 0;\n  text-align: left;\n}\n\n.emoji-picker__tab-body.active {\n  display: block;\n  transform: translateX(0);\n}\n\n.emoji-picker__emojis {\n  height: 16.5rem;\n  overflow-y: scroll;\n  display: flex;\n  flex-wrap: wrap;\n  align-content: flex-start;\n  width: calc((1.8rem * 1.5 * 8) + 0.5rem);\n  margin: auto;\n}\n\n.emoji-picker__emojis.search-results {\n  height: 21rem;\n}\n\n.emoji-picker__emoji {\n  background: transparent;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n  font-size: 1.8rem;\n  width: 1.5em;\n  height: 1.5em;\n  padding: 0;\n  margin: 0;\n  outline: none;\n  font-family: \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Segoe UI\", \"Apple Color Emoji\", \"Twemoji Mozilla\", \"Noto Color Emoji\", \"EmojiOne Color\", \"Android Emoji\";\n}\n\n.emoji-picker__emoji:focus, .emoji-picker__emoji:hover {\n  background: #E8F4F9;\n}\n\n.emoji-picker__search-container {\n  margin: 0.5em;\n  position: relative;\n  height: 2em;\n  display: flex;\n}\n\n.emoji-picker__search {\n  box-sizing: border-box;\n  width: 100%;\n  border-radius: 3px;\n  border: 1px solid #CCCCCC;\n  padding-right: 2em;\n  padding: 0.5em 2.25em 0.5em 0.5em;\n  font-size: 0.85rem;\n  outline: none;\n}\n\n.emoji-picker__search:focus {\n  border: 1px solid #4F81E5;\n}\n\n.emoji-picker__search-icon {\n  position: absolute;\n  color: #CCCCCC;\n  width: 1em;\n  height: 1em;\n  right: 0.75em;\n  top: calc(50% - 0.5em);\n}\n\n.emoji-picker__search-not-found {\n  color: #666666;\n  text-align: center;\n  margin-top: 2em;\n}\n\n.emoji-picker__search-not-found-icon {\n  font-size: 3em;\n}\n\n.emoji-picker__search-not-found h2 {\n  margin: 0.5em 0;\n  font-size: 1em;\n}\n\n.emoji-picker__variant-overlay {\n  background: rgba(0, 0, 0, 0.7);\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 23rem;\n  height: 27.5rem;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n\n.emoji-picker__variant-popup {\n  background: #FFFFFF;\n  margin: 0.5em;\n  padding: 0.5em;\n  text-align: center;\n}\n\n.emoji-picker__variant-popup-close-button {\n  cursor: pointer;\n  background: transparent;\n  border: none;\n  position: absolute;\n  right: 0.5em;\n  padding: 0;\n  top: calc(50% - 0.75em);\n  height: 1.5em;\n  width: 1.5em;\n  font-size: 1.5em;\n}\n";
 	  styleInject(css);
+
+	  var candidateSelectors = ['input', 'select', 'textarea', 'a[href]', 'button', '[tabindex]', 'audio[controls]', 'video[controls]', '[contenteditable]:not([contenteditable="false"])'];
+	  var candidateSelector = candidateSelectors.join(',');
+	  var matches = typeof Element === 'undefined' ? function () {} : Element.prototype.matches || Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+
+	  function tabbable(el, options) {
+	    options = options || {};
+	    var regularTabbables = [];
+	    var orderedTabbables = [];
+	    var candidates = el.querySelectorAll(candidateSelector);
+
+	    if (options.includeContainer) {
+	      if (matches.call(el, candidateSelector)) {
+	        candidates = Array.prototype.slice.apply(candidates);
+	        candidates.unshift(el);
+	      }
+	    }
+
+	    var i, candidate, candidateTabindex;
+
+	    for (i = 0; i < candidates.length; i++) {
+	      candidate = candidates[i];
+	      if (!isNodeMatchingSelectorTabbable(candidate)) continue;
+	      candidateTabindex = getTabindex(candidate);
+
+	      if (candidateTabindex === 0) {
+	        regularTabbables.push(candidate);
+	      } else {
+	        orderedTabbables.push({
+	          documentOrder: i,
+	          tabIndex: candidateTabindex,
+	          node: candidate
+	        });
+	      }
+	    }
+
+	    var tabbableNodes = orderedTabbables.sort(sortOrderedTabbables).map(function (a) {
+	      return a.node;
+	    }).concat(regularTabbables);
+	    return tabbableNodes;
+	  }
+
+	  tabbable.isTabbable = isTabbable;
+	  tabbable.isFocusable = isFocusable;
+
+	  function isNodeMatchingSelectorTabbable(node) {
+	    if (!isNodeMatchingSelectorFocusable(node) || isNonTabbableRadio(node) || getTabindex(node) < 0) {
+	      return false;
+	    }
+
+	    return true;
+	  }
+
+	  function isTabbable(node) {
+	    if (!node) throw new Error('No node provided');
+	    if (matches.call(node, candidateSelector) === false) return false;
+	    return isNodeMatchingSelectorTabbable(node);
+	  }
+
+	  function isNodeMatchingSelectorFocusable(node) {
+	    if (node.disabled || isHiddenInput(node) || isHidden(node)) {
+	      return false;
+	    }
+
+	    return true;
+	  }
+
+	  var focusableCandidateSelector = candidateSelectors.concat('iframe').join(',');
+
+	  function isFocusable(node) {
+	    if (!node) throw new Error('No node provided');
+	    if (matches.call(node, focusableCandidateSelector) === false) return false;
+	    return isNodeMatchingSelectorFocusable(node);
+	  }
+
+	  function getTabindex(node) {
+	    var tabindexAttr = parseInt(node.getAttribute('tabindex'), 10);
+	    if (!isNaN(tabindexAttr)) return tabindexAttr; // Browsers do not return `tabIndex` correctly for contentEditable nodes;
+	    // so if they don't have a tabindex attribute specifically set, assume it's 0.
+
+	    if (isContentEditable(node)) return 0;
+	    return node.tabIndex;
+	  }
+
+	  function sortOrderedTabbables(a, b) {
+	    return a.tabIndex === b.tabIndex ? a.documentOrder - b.documentOrder : a.tabIndex - b.tabIndex;
+	  }
+
+	  function isContentEditable(node) {
+	    return node.contentEditable === 'true';
+	  }
+
+	  function isInput(node) {
+	    return node.tagName === 'INPUT';
+	  }
+
+	  function isHiddenInput(node) {
+	    return isInput(node) && node.type === 'hidden';
+	  }
+
+	  function isRadio(node) {
+	    return isInput(node) && node.type === 'radio';
+	  }
+
+	  function isNonTabbableRadio(node) {
+	    return isRadio(node) && !isTabbableRadio(node);
+	  }
+
+	  function getCheckedRadio(nodes) {
+	    for (var i = 0; i < nodes.length; i++) {
+	      if (nodes[i].checked) {
+	        return nodes[i];
+	      }
+	    }
+	  }
+
+	  function isTabbableRadio(node) {
+	    if (!node.name) return true; // This won't account for the edge case where you have radio groups with the same
+	    // in separate forms on the same page.
+
+	    var radioSet = node.ownerDocument.querySelectorAll('input[type="radio"][name="' + node.name + '"]');
+	    var checked = getCheckedRadio(radioSet);
+	    return !checked || checked === node;
+	  }
+
+	  function isHidden(node) {
+	    // offsetParent being null will allow detecting cases where an element is invisible or inside an invisible element,
+	    // as long as the element does not use position: fixed. For them, their visibility has to be checked directly as well.
+	    return node.offsetParent === null || getComputedStyle(node).visibility === 'hidden';
+	  }
+
+	  var tabbable_1 = tabbable;
+
+	  var immutable = extend;
+	  var hasOwnProperty = Object.prototype.hasOwnProperty;
+
+	  function extend() {
+	    var target = {};
+
+	    for (var i = 0; i < arguments.length; i++) {
+	      var source = arguments[i];
+
+	      for (var key in source) {
+	        if (hasOwnProperty.call(source, key)) {
+	          target[key] = source[key];
+	        }
+	      }
+	    }
+
+	    return target;
+	  }
+
+	  var activeFocusDelay;
+
+	  var activeFocusTraps = function () {
+	    var trapQueue = [];
+	    return {
+	      activateTrap: function (trap) {
+	        if (trapQueue.length > 0) {
+	          var activeTrap = trapQueue[trapQueue.length - 1];
+
+	          if (activeTrap !== trap) {
+	            activeTrap.pause();
+	          }
+	        }
+
+	        var trapIndex = trapQueue.indexOf(trap);
+
+	        if (trapIndex === -1) {
+	          trapQueue.push(trap);
+	        } else {
+	          // move this existing trap to the front of the queue
+	          trapQueue.splice(trapIndex, 1);
+	          trapQueue.push(trap);
+	        }
+	      },
+	      deactivateTrap: function (trap) {
+	        var trapIndex = trapQueue.indexOf(trap);
+
+	        if (trapIndex !== -1) {
+	          trapQueue.splice(trapIndex, 1);
+	        }
+
+	        if (trapQueue.length > 0) {
+	          trapQueue[trapQueue.length - 1].unpause();
+	        }
+	      }
+	    };
+	  }();
+
+	  function focusTrap(element, userOptions) {
+	    var doc = document;
+	    var container = typeof element === 'string' ? doc.querySelector(element) : element;
+	    var config = immutable({
+	      returnFocusOnDeactivate: true,
+	      escapeDeactivates: true
+	    }, userOptions);
+	    var state = {
+	      firstTabbableNode: null,
+	      lastTabbableNode: null,
+	      nodeFocusedBeforeActivation: null,
+	      mostRecentlyFocusedNode: null,
+	      active: false,
+	      paused: false
+	    };
+	    var trap = {
+	      activate: activate,
+	      deactivate: deactivate,
+	      pause: pause,
+	      unpause: unpause
+	    };
+	    return trap;
+
+	    function activate(activateOptions) {
+	      if (state.active) return;
+	      updateTabbableNodes();
+	      state.active = true;
+	      state.paused = false;
+	      state.nodeFocusedBeforeActivation = doc.activeElement;
+	      var onActivate = activateOptions && activateOptions.onActivate ? activateOptions.onActivate : config.onActivate;
+
+	      if (onActivate) {
+	        onActivate();
+	      }
+
+	      addListeners();
+	      return trap;
+	    }
+
+	    function deactivate(deactivateOptions) {
+	      if (!state.active) return;
+	      clearTimeout(activeFocusDelay);
+	      removeListeners();
+	      state.active = false;
+	      state.paused = false;
+	      activeFocusTraps.deactivateTrap(trap);
+	      var onDeactivate = deactivateOptions && deactivateOptions.onDeactivate !== undefined ? deactivateOptions.onDeactivate : config.onDeactivate;
+
+	      if (onDeactivate) {
+	        onDeactivate();
+	      }
+
+	      var returnFocus = deactivateOptions && deactivateOptions.returnFocus !== undefined ? deactivateOptions.returnFocus : config.returnFocusOnDeactivate;
+
+	      if (returnFocus) {
+	        delay(function () {
+	          tryFocus(getReturnFocusNode(state.nodeFocusedBeforeActivation));
+	        });
+	      }
+
+	      return trap;
+	    }
+
+	    function pause() {
+	      if (state.paused || !state.active) return;
+	      state.paused = true;
+	      removeListeners();
+	    }
+
+	    function unpause() {
+	      if (!state.paused || !state.active) return;
+	      state.paused = false;
+	      updateTabbableNodes();
+	      addListeners();
+	    }
+
+	    function addListeners() {
+	      if (!state.active) return; // There can be only one listening focus trap at a time
+
+	      activeFocusTraps.activateTrap(trap); // Delay ensures that the focused element doesn't capture the event
+	      // that caused the focus trap activation.
+
+	      activeFocusDelay = delay(function () {
+	        tryFocus(getInitialFocusNode());
+	      });
+	      doc.addEventListener('focusin', checkFocusIn, true);
+	      doc.addEventListener('mousedown', checkPointerDown, {
+	        capture: true,
+	        passive: false
+	      });
+	      doc.addEventListener('touchstart', checkPointerDown, {
+	        capture: true,
+	        passive: false
+	      });
+	      doc.addEventListener('click', checkClick, {
+	        capture: true,
+	        passive: false
+	      });
+	      doc.addEventListener('keydown', checkKey, {
+	        capture: true,
+	        passive: false
+	      });
+	      return trap;
+	    }
+
+	    function removeListeners() {
+	      if (!state.active) return;
+	      doc.removeEventListener('focusin', checkFocusIn, true);
+	      doc.removeEventListener('mousedown', checkPointerDown, true);
+	      doc.removeEventListener('touchstart', checkPointerDown, true);
+	      doc.removeEventListener('click', checkClick, true);
+	      doc.removeEventListener('keydown', checkKey, true);
+	      return trap;
+	    }
+
+	    function getNodeForOption(optionName) {
+	      var optionValue = config[optionName];
+	      var node = optionValue;
+
+	      if (!optionValue) {
+	        return null;
+	      }
+
+	      if (typeof optionValue === 'string') {
+	        node = doc.querySelector(optionValue);
+
+	        if (!node) {
+	          throw new Error('`' + optionName + '` refers to no known node');
+	        }
+	      }
+
+	      if (typeof optionValue === 'function') {
+	        node = optionValue();
+
+	        if (!node) {
+	          throw new Error('`' + optionName + '` did not return a node');
+	        }
+	      }
+
+	      return node;
+	    }
+
+	    function getInitialFocusNode() {
+	      var node;
+
+	      if (getNodeForOption('initialFocus') !== null) {
+	        node = getNodeForOption('initialFocus');
+	      } else if (container.contains(doc.activeElement)) {
+	        node = doc.activeElement;
+	      } else {
+	        node = state.firstTabbableNode || getNodeForOption('fallbackFocus');
+	      }
+
+	      if (!node) {
+	        throw new Error('Your focus-trap needs to have at least one focusable element');
+	      }
+
+	      return node;
+	    }
+
+	    function getReturnFocusNode(previousActiveElement) {
+	      var node = getNodeForOption('setReturnFocus');
+	      return node ? node : previousActiveElement;
+	    } // This needs to be done on mousedown and touchstart instead of click
+	    // so that it precedes the focus event.
+
+
+	    function checkPointerDown(e) {
+	      if (container.contains(e.target)) return;
+
+	      if (config.clickOutsideDeactivates) {
+	        deactivate({
+	          returnFocus: !tabbable_1.isFocusable(e.target)
+	        });
+	        return;
+	      } // This is needed for mobile devices.
+	      // (If we'll only let `click` events through,
+	      // then on mobile they will be blocked anyways if `touchstart` is blocked.)
+
+
+	      if (config.allowOutsideClick && config.allowOutsideClick(e)) {
+	        return;
+	      }
+
+	      e.preventDefault();
+	    } // In case focus escapes the trap for some strange reason, pull it back in.
+
+
+	    function checkFocusIn(e) {
+	      // In Firefox when you Tab out of an iframe the Document is briefly focused.
+	      if (container.contains(e.target) || e.target instanceof Document) {
+	        return;
+	      }
+
+	      e.stopImmediatePropagation();
+	      tryFocus(state.mostRecentlyFocusedNode || getInitialFocusNode());
+	    }
+
+	    function checkKey(e) {
+	      if (config.escapeDeactivates !== false && isEscapeEvent(e)) {
+	        e.preventDefault();
+	        deactivate();
+	        return;
+	      }
+
+	      if (isTabEvent(e)) {
+	        checkTab(e);
+	        return;
+	      }
+	    } // Hijack Tab events on the first and last focusable nodes of the trap,
+	    // in order to prevent focus from escaping. If it escapes for even a
+	    // moment it can end up scrolling the page and causing confusion so we
+	    // kind of need to capture the action at the keydown phase.
+
+
+	    function checkTab(e) {
+	      updateTabbableNodes();
+
+	      if (e.shiftKey && e.target === state.firstTabbableNode) {
+	        e.preventDefault();
+	        tryFocus(state.lastTabbableNode);
+	        return;
+	      }
+
+	      if (!e.shiftKey && e.target === state.lastTabbableNode) {
+	        e.preventDefault();
+	        tryFocus(state.firstTabbableNode);
+	        return;
+	      }
+	    }
+
+	    function checkClick(e) {
+	      if (config.clickOutsideDeactivates) return;
+	      if (container.contains(e.target)) return;
+
+	      if (config.allowOutsideClick && config.allowOutsideClick(e)) {
+	        return;
+	      }
+
+	      e.preventDefault();
+	      e.stopImmediatePropagation();
+	    }
+
+	    function updateTabbableNodes() {
+	      var tabbableNodes = tabbable_1(container);
+	      state.firstTabbableNode = tabbableNodes[0] || getInitialFocusNode();
+	      state.lastTabbableNode = tabbableNodes[tabbableNodes.length - 1] || getInitialFocusNode();
+	    }
+
+	    function tryFocus(node) {
+	      if (node === doc.activeElement) return;
+
+	      if (!node || !node.focus) {
+	        tryFocus(getInitialFocusNode());
+	        return;
+	      }
+
+	      node.focus();
+	      state.mostRecentlyFocusedNode = node;
+
+	      if (isSelectableInput(node)) {
+	        node.select();
+	      }
+	    }
+	  }
+
+	  function isSelectableInput(node) {
+	    return node.tagName && node.tagName.toLowerCase() === 'input' && typeof node.select === 'function';
+	  }
+
+	  function isEscapeEvent(e) {
+	    return e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27;
+	  }
+
+	  function isTabEvent(e) {
+	    return e.key === 'Tab' || e.keyCode === 9;
+	  }
+
+	  function delay(fn) {
+	    return setTimeout(fn, 0);
+	  }
+
+	  var focusTrap_1 = focusTrap;
 
 	  function E() {// Keep this empty so it's easier to inherit from
 	    // (via https://github.com/lipsmack from https://github.com/scottcorgan/tiny-emitter/issues/3)
@@ -259,7 +732,7 @@ var app = (function () {
 	    return element ? (element.nodeName || '').toLowerCase() : null;
 	  }
 
-	  function getComputedStyle(element) {
+	  function getComputedStyle$1(element) {
 	    return getWindow(element).getComputedStyle(element);
 	  }
 
@@ -268,7 +741,7 @@ var app = (function () {
 	  }
 
 	  function getBorders(element) {
-	    var computedStyle = isHTMLElement(element) ? getComputedStyle(element) : {};
+	    var computedStyle = isHTMLElement(element) ? getComputedStyle$1(element) : {};
 	    return {
 	      top: toNumber(computedStyle.borderTopWidth),
 	      right: toNumber(computedStyle.borderRightWidth),
@@ -352,7 +825,7 @@ var app = (function () {
 
 	    if (isHTMLElement(node)) {
 	      // Firefox wants us to check `-x` and `-y` variations as well
-	      var _getComputedStyle = getComputedStyle(node),
+	      var _getComputedStyle = getComputedStyle$1(node),
 	          overflow = _getComputedStyle.overflow,
 	          overflowX = _getComputedStyle.overflowX,
 	          overflowY = _getComputedStyle.overflowY;
@@ -389,7 +862,7 @@ var app = (function () {
 	    var offsetParent;
 
 	    if (!isHTMLElement(element) || !(offsetParent = element.offsetParent) || // https://github.com/popperjs/popper.js/issues/837
-	    isFirefox() && getComputedStyle(offsetParent).position === 'fixed') {
+	    isFirefox() && getComputedStyle$1(offsetParent).position === 'fixed') {
 	      return null;
 	    }
 
@@ -404,7 +877,7 @@ var app = (function () {
 	      offsetParent = getTrueOffsetParent(offsetParent);
 	    }
 
-	    if (offsetParent && getNodeName(offsetParent) === 'body' && getComputedStyle(offsetParent).position === 'static') {
+	    if (offsetParent && getNodeName(offsetParent) === 'body' && getComputedStyle$1(offsetParent).position === 'static') {
 	      return window;
 	    }
 
@@ -1330,7 +1803,7 @@ var app = (function () {
 
 	  function getClippingParents(element) {
 	    var clippingParents = listScrollParents(element);
-	    var canEscapeClipping = ['absolute', 'fixed'].includes(getComputedStyle(element).position);
+	    var canEscapeClipping = ['absolute', 'fixed'].includes(getComputedStyle$1(element).position);
 	    var clipperElement = canEscapeClipping && isHTMLElement(element) ? getOffsetParent(element) : element;
 
 	    if (!isElement(clipperElement)) {
@@ -19550,19 +20023,19 @@ var app = (function () {
 	      value: function render() {
 	        var _this = this;
 
-	        var emojiButton = createElement('button', CLASS_EMOJI);
-	        emojiButton.innerHTML = this.emoji.e;
-	        emojiButton.tabIndex = -1;
-	        emojiButton.addEventListener('click', function () {
+	        this.emojiButton = createElement('button', CLASS_EMOJI);
+	        this.emojiButton.innerHTML = this.emoji.e;
+	        this.emojiButton.tabIndex = -1;
+	        this.emojiButton.addEventListener('click', function () {
 	          return _this.onEmojiClick();
 	        });
-	        emojiButton.addEventListener('mouseover', function () {
+	        this.emojiButton.addEventListener('mouseover', function () {
 	          return _this.onEmojiHover();
 	        });
-	        emojiButton.addEventListener('mouseout', function () {
+	        this.emojiButton.addEventListener('mouseout', function () {
 	          return _this.onEmojiLeave();
 	        });
-	        return emojiButton;
+	        return this.emojiButton;
 	      }
 	    }, {
 	      key: "onEmojiClick",
@@ -19574,7 +20047,8 @@ var app = (function () {
 
 	        this.events.emit(EMOJI, {
 	          emoji: this.emoji,
-	          showVariants: this.showVariants
+	          showVariants: this.showVariants,
+	          button: this.emojiButton
 	        });
 	      }
 	    }, {
@@ -19777,6 +20251,7 @@ var app = (function () {
 	  var CLASS_TABS = 'emoji-picker__tabs';
 	  var CLASS_TAB = 'emoji-picker__tab';
 	  var CLASS_TAB_BODY = 'emoji-picker__tab-body';
+	  var EMOJIS_PER_ROW = 8;
 	  var emojiCategories = {};
 	  emojiData.forEach(function (emoji) {
 	    var categoryList = emojiCategories[categories[emoji.c]];
@@ -19820,9 +20295,6 @@ var app = (function () {
 
 	        var currentActiveTab = this.activeTab;
 	        var newActiveTabBody = this.tabBodies[index].container;
-	        newActiveTabBody.querySelectorAll('.emoji-picker__emoji').forEach(function (emoji) {
-	          return emoji.tabIndex = 0;
-	        });
 
 	        if (currentActiveTab >= 0) {
 	          this.tabs[currentActiveTab].setActive(false);
@@ -19831,7 +20303,15 @@ var app = (function () {
 	          currentActiveTabBody.querySelectorAll('.emoji-picker__emoji').forEach(function (emoji) {
 	            return emoji.tabIndex = -1;
 	          });
-	          newActiveTabBody.querySelector('.emoji-picker__emojis').scrollTop = 0;
+	          var activeEmojiContainer = newActiveTabBody.querySelector('.emoji-picker__emojis');
+	          activeEmojiContainer.scrollTop = 0;
+	          var firstEmoji = activeEmojiContainer.querySelector('.emoji-picker__emoji');
+
+	          if (firstEmoji) {
+	            firstEmoji.tabIndex = 0;
+	          }
+
+	          this.focusedEmojiIndex = 0;
 
 	          if (animate) {
 	            if (index > currentActiveTab) {
@@ -19867,8 +20347,27 @@ var app = (function () {
 	        var tabsContainer = createElement('div', CLASS_TABS_CONTAINER);
 	        tabsContainer.appendChild(this.createTabs());
 	        tabsContainer.appendChild(this.createTabBodies());
-	        this.setActiveTab(this.options.showRecents ? 1 : 0, false);
+	        var initialActiveTab = this.options.showRecents ? 1 : 0;
+	        this.setActiveTab(initialActiveTab, false);
+	        var firstEmoji = this.tabBodies[initialActiveTab].content.querySelector('.emoji-picker__emoji');
+
+	        if (firstEmoji) {
+	          firstEmoji.tabIndex = 0;
+	        }
+
+	        this.focusedEmojiIndex = 0;
 	        return tabsContainer;
+	      }
+	    }, {
+	      key: "setFocusedEmoji",
+	      value: function setFocusedEmoji(index) {
+	        var emojis = this.tabBodies[this.activeTab].content.querySelectorAll('.emoji-picker__emoji');
+	        var currentFocusedEmoji = emojis[this.focusedEmojiIndex];
+	        currentFocusedEmoji.tabIndex = -1;
+	        this.focusedEmojiIndex = index;
+	        var newFocusedEmoji = emojis[this.focusedEmojiIndex];
+	        newFocusedEmoji.tabIndex = 0;
+	        newFocusedEmoji.focus();
 	      }
 	    }, {
 	      key: "createTabs",
@@ -19888,6 +20387,13 @@ var app = (function () {
 	        this.tabs.forEach(function (tab) {
 	          return _this.tabsList.appendChild(tab.render());
 	        });
+	        this.tabsList.addEventListener('keydown', function (event) {
+	          if (event.key === 'ArrowLeft') {
+	            _this.setActiveTab(_this.activeTab === 0 ? _this.tabs.length - 1 : _this.activeTab - 1);
+	          } else if (event.key === 'ArrowRight') {
+	            _this.setActiveTab((_this.activeTab + 1) % _this.tabs.length);
+	          }
+	        });
 	        return this.tabsList;
 	      }
 	    }, {
@@ -19899,6 +20405,41 @@ var app = (function () {
 	        this.tabBodies = Object.keys(categoryIcons).map(function (category, index) {
 	          return new TabBody(_this2.i18n.categories[category] || i18n.categories[category], new EmojiContainer(emojiCategories[category], true, _this2.events, _this2.options).render(), _this2.options.showRecents ? index + 1 : index);
 	        });
+	        this.tabBodyContainer.addEventListener('keydown', function (event) {
+	          var emojis = _this2.tabBodies[_this2.activeTab].content.querySelectorAll('.emoji-picker__emoji');
+
+	          if (event.key === 'ArrowRight') {
+	            _this2.setFocusedEmoji(Math.min(_this2.focusedEmojiIndex + 1, emojis.length - 1));
+	          } else if (event.key === 'ArrowLeft') {
+	            _this2.setFocusedEmoji(Math.max(0, _this2.focusedEmojiIndex - 1));
+	          } else if (event.key === 'ArrowDown') {
+	            event.preventDefault();
+
+	            if (_this2.focusedEmojiIndex < emojis.length - EMOJIS_PER_ROW) {
+	              _this2.setFocusedEmoji(_this2.focusedEmojiIndex + EMOJIS_PER_ROW);
+	            }
+	          } else if (event.key === 'ArrowUp') {
+	            event.preventDefault();
+
+	            if (_this2.focusedEmojiIndex >= EMOJIS_PER_ROW) {
+	              _this2.setFocusedEmoji(_this2.focusedEmojiIndex - EMOJIS_PER_ROW);
+	            }
+	          }
+	        });
+	        this.events.on(HIDE_VARIANT_POPUP, function () {
+	          setTimeout(function () {
+	            return _this2.setFocusedEmoji(_this2.focusedEmojiIndex);
+	          });
+	        });
+	        this.events.on(EMOJI, function (_ref) {
+	          var button = _ref.button;
+
+	          if (button.parentElement.classList.contains('emoji-picker__emojis')) {
+	            _this2.setFocusedEmoji(Array.prototype.indexOf.call(button.parentElement.children, button));
+	          } else {
+	            _this2.setFocusedEmoji(_this2.focusedEmojiIndex);
+	          }
+	        });
 
 	        if (this.options.showRecents) {
 	          var recentTabBody = new TabBody(this.i18n.categories.recents || i18n.categories.recents, new EmojiContainer(load(), false, this.events, this.options).render(), 0);
@@ -19906,7 +20447,11 @@ var app = (function () {
 	          this.events.on(EMOJI, function () {
 	            var newRecents = new TabBody(_this2.i18n.categories.recents || i18n.categories.recents, new EmojiContainer(load(), false, _this2.events, _this2.options).render(), 0);
 	            var newRecentsEl = newRecents.render();
-	            newRecentsEl.style.transform = 'translateX(0)';
+
+	            if (_this2.activeTab === 0) {
+	              newRecentsEl.style.transform = 'translateX(0)';
+	            }
+
 	            setTimeout(function () {
 	              _this2.tabBodyContainer.replaceChild(newRecentsEl, _this2.tabBodyContainer.firstChild);
 
@@ -19957,8 +20502,11 @@ var app = (function () {
 	      value: function setActive(active) {
 	        if (active) {
 	          this.tab.classList.add(CLASS_ACTIVE_TAB);
+	          this.tab.tabIndex = 0;
+	          this.tab.focus();
 	        } else {
 	          this.tab.classList.remove(CLASS_ACTIVE_TAB);
+	          this.tab.tabIndex = -1;
 	        }
 	      }
 	    }]);
@@ -19991,10 +20539,8 @@ var app = (function () {
 	      key: "setActive",
 	      value: function setActive(active) {
 	        if (active) {
-	          console.log('adding class');
 	          this.container.classList.add(CLASS_ACTIVE_TAB);
 	        } else {
-	          console.log('removing class');
 	          this.container.classList.remove(CLASS_ACTIVE_TAB);
 	        }
 	      }
@@ -20018,22 +20564,54 @@ var app = (function () {
 	    }
 
 	    _createClass(VariantPopup, [{
+	      key: "getEmoji",
+	      value: function getEmoji(index) {
+	        return this.popup.querySelectorAll('.emoji-picker__emoji')[index];
+	      }
+	    }, {
+	      key: "setFocusedEmoji",
+	      value: function setFocusedEmoji(newIndex) {
+	        var currentFocusedEmoji = this.getEmoji(this.focusedEmojiIndex);
+	        currentFocusedEmoji.tabIndex = -1;
+	        this.focusedEmojiIndex = newIndex;
+	        var newFocusedEmoji = this.getEmoji(this.focusedEmojiIndex);
+	        newFocusedEmoji.tabIndex = 0;
+	        newFocusedEmoji.focus();
+	      }
+	    }, {
 	      key: "render",
 	      value: function render() {
 	        var _this = this;
 
-	        var popup = createElement('div', CLASS_POPUP);
+	        this.popup = createElement('div', CLASS_POPUP);
 	        var overlay = createElement('div', CLASS_OVERLAY);
 	        overlay.addEventListener('click', function (event) {
 	          event.stopPropagation();
 
-	          if (!popup.contains(event.target)) {
+	          if (!_this.popup.contains(event.target)) {
 	            _this.events.emit(HIDE_VARIANT_POPUP);
 	          }
 	        });
-	        popup.appendChild(new Emoji(this.emoji, false, false, this.events, this.options).render());
+	        this.popup.appendChild(new Emoji(this.emoji, false, false, this.events, this.options).render());
 	        Object.keys(this.emoji.v).forEach(function (variant) {
-	          popup.appendChild(new Emoji(_this.emoji.v[variant], false, false, _this.events, _this.options).render());
+	          _this.popup.appendChild(new Emoji(_this.emoji.v[variant], false, false, _this.events, _this.options).render());
+	        });
+	        var firstEmoji = this.popup.querySelector('.emoji-picker__emoji');
+	        this.focusedEmojiIndex = 0;
+	        firstEmoji.tabIndex = 0;
+	        setTimeout(function () {
+	          return firstEmoji.focus();
+	        });
+	        this.popup.addEventListener('keydown', function (event) {
+	          if (event.key === 'ArrowRight') {
+	            _this.setFocusedEmoji(Math.min(_this.focusedEmojiIndex + 1, _this.popup.querySelectorAll('.emoji-picker__emoji').length - 1));
+	          } else if (event.key === 'ArrowLeft') {
+	            _this.setFocusedEmoji(Math.max(_this.focusedEmojiIndex - 1, 0));
+	          } else if (event.key === 'Escape') {
+	            event.stopPropagation();
+
+	            _this.events.emit(HIDE_VARIANT_POPUP);
+	          }
 	        });
 	        var closeButton = createElement('button', CLASS_CLOSE_BUTTON);
 	        closeButton.innerHTML = times;
@@ -20042,8 +20620,8 @@ var app = (function () {
 
 	          _this.events.emit(HIDE_VARIANT_POPUP);
 	        });
-	        popup.appendChild(closeButton);
-	        overlay.appendChild(popup);
+	        this.popup.appendChild(closeButton);
+	        overlay.appendChild(this.popup);
 	        return overlay;
 	      }
 	    }]);
@@ -20103,6 +20681,9 @@ var app = (function () {
 	        var _this = this;
 
 	        this.pickerEl = createElement('div', CLASS_PICKER);
+	        this.focusTrap = focusTrap_1(this.pickerEl, {
+	          clickOutsideDeactivates: true
+	        });
 
 	        if (this.options.zIndex) {
 	          this.pickerEl.style.zIndex = this.options.zIndex;
@@ -20189,6 +20770,7 @@ var app = (function () {
 	    }, {
 	      key: "hidePicker",
 	      value: function hidePicker() {
+	        this.focusTrap.deactivate();
 	        this.pickerEl.classList.remove('visible');
 	        this.pickerVisible = false;
 	        this.events.off(EMOJI);
@@ -20215,6 +20797,7 @@ var app = (function () {
 	        this.popper = createPopper(referenceEl, this.pickerEl, {
 	          placement: options.position || this.options.position
 	        });
+	        this.focusTrap.activate();
 	        requestAnimationFrame(function () {
 	          return _this2.pickerEl.classList.add('visible');
 	        });
