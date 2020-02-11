@@ -23,7 +23,11 @@ describe('Emoji', () => {
     const element = emoji.render();
 
     events.on(EMOJI, e => {
-      expect(e).toEqual({ emoji: testEmoji, showVariants: false, button: element });
+      expect(e).toEqual({
+        emoji: testEmoji,
+        showVariants: false,
+        button: element
+      });
       done();
     });
 

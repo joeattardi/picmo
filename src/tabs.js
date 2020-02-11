@@ -66,7 +66,9 @@ export class Tabs {
         '.emoji-picker__emojis'
       );
       activeEmojiContainer.scrollTop = 0;
-      const firstEmoji = activeEmojiContainer.querySelector('.emoji-picker__emoji');
+      const firstEmoji = activeEmojiContainer.querySelector(
+        '.emoji-picker__emoji'
+      );
       if (firstEmoji) {
         firstEmoji.tabIndex = 0;
       }
@@ -112,7 +114,9 @@ export class Tabs {
 
     const initialActiveTab = this.options.showRecents ? 1 : 0;
     this.setActiveTab(initialActiveTab, false);
-    const firstEmoji = this.tabBodies[initialActiveTab].content.querySelector('.emoji-picker__emoji');
+    const firstEmoji = this.tabBodies[initialActiveTab].content.querySelector(
+      '.emoji-picker__emoji'
+    );
     if (firstEmoji) {
       firstEmoji.tabIndex = 0;
     }
