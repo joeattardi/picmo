@@ -13,6 +13,8 @@ const CLASS_TABS = 'emoji-picker__tabs';
 const CLASS_TAB = 'emoji-picker__tab';
 const CLASS_TAB_BODY = 'emoji-picker__tab-body';
 
+const EMOJIS_PER_ROW = 8;
+
 const emojiCategories = {};
 emojiData.forEach(emoji => {
   let categoryList = emojiCategories[categories[emoji.c]];
@@ -51,9 +53,9 @@ export class Tabs {
     const currentActiveTab = this.activeTab;
     const newActiveTabBody = this.tabBodies[index].container;
 
-    newActiveTabBody
-      .querySelectorAll('.emoji-picker__emoji')
-      .forEach(emoji => (emoji.tabIndex = 0));
+    // newActiveTabBody
+    //   .querySelectorAll('.emoji-picker__emoji')
+    //   .forEach(emoji => (emoji.tabIndex = 0));
 
     if (currentActiveTab >= 0) {
       this.tabs[currentActiveTab].setActive(false);
@@ -64,7 +66,12 @@ export class Tabs {
         .querySelectorAll('.emoji-picker__emoji')
         .forEach(emoji => (emoji.tabIndex = -1));
 
-      newActiveTabBody.querySelector('.emoji-picker__emojis').scrollTop = 0;
+      const activeEmojiContainer = newActiveTabBody.querySelector(
+        '.emoji-picker__emojis'
+      );
+      activeEmojiContainer.scrollTop = 0;
+      activeEmojiContainer.querySelector('.emoji-picker__emoji').tabIndex = 0;
+      this.focusedEmojiIndex = 0;
 
       if (animate) {
         if (index > currentActiveTab) {
@@ -104,9 +111,27 @@ export class Tabs {
     tabsContainer.appendChild(this.createTabs());
     tabsContainer.appendChild(this.createTabBodies());
 
-    this.setActiveTab(this.options.showRecents ? 1 : 0, false);
+    const initialActiveTab = this.options.showRecents ? 1 : 0;
+    this.setActiveTab(initialActiveTab, false);
+    this.tabBodies[initialActiveTab].content.querySelector(
+      '.emoji-picker__emoji'
+    ).tabIndex = 0;
+    this.focusedEmojiIndex = 0;
 
     return tabsContainer;
+  }
+
+  setFocusedEmoji(index) {
+    const emojis = this.tabBodies[this.activeTab].content.querySelectorAll(
+      '.emoji-picker__emoji'
+    );
+    const currentFocusedEmoji = emojis[this.focusedEmojiIndex];
+    currentFocusedEmoji.tabIndex = -1;
+
+    this.focusedEmojiIndex = index;
+    const newFocusedEmoji = emojis[this.focusedEmojiIndex];
+    newFocusedEmoji.tabIndex = 0;
+    newFocusedEmoji.focus();
   }
 
   createTabs() {
@@ -156,6 +181,30 @@ export class Tabs {
           this.options.showRecents ? index + 1 : index
         )
     );
+
+    this.tabBodyContainer.addEventListener('keydown', event => {
+      const emojis = this.tabBodies[this.activeTab].content.querySelectorAll(
+        '.emoji-picker__emoji'
+      );
+
+      if (event.key === 'ArrowRight') {
+        this.setFocusedEmoji(
+          Math.min(this.focusedEmojiIndex + 1, emojis.length - 1)
+        );
+      } else if (event.key === 'ArrowLeft') {
+        this.setFocusedEmoji(Math.max(0, this.focusedEmojiIndex - 1));
+      } else if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        if (this.focusedEmojiIndex < emojis.length - EMOJIS_PER_ROW) {
+          this.setFocusedEmoji(this.focusedEmojiIndex + EMOJIS_PER_ROW);
+        }
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        if (this.focusedEmojiIndex >= EMOJIS_PER_ROW) {
+          this.setFocusedEmoji(this.focusedEmojiIndex - EMOJIS_PER_ROW);
+        }
+      }
+    });
 
     if (this.options.showRecents) {
       const recentTabBody = new TabBody(
