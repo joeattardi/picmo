@@ -16,23 +16,37 @@ export class VariantPopup {
     this.options = options;
   }
 
+  getEmoji(index) {
+    return this.popup.querySelectorAll('.emoji-picker__emoji')[index];
+  }
+
+  setFocusedEmoji(newIndex) {
+    const currentFocusedEmoji = this.getEmoji(this.focusedEmojiIndex);
+    currentFocusedEmoji.tabIndex = -1;
+
+    this.focusedEmojiIndex = newIndex;
+    const newFocusedEmoji = this.getEmoji(this.focusedEmojiIndex);
+    newFocusedEmoji.tabIndex = 0;
+    newFocusedEmoji.focus();
+  }
+
   render() {
-    const popup = createElement('div', CLASS_POPUP);
+    this.popup = createElement('div', CLASS_POPUP);
 
     const overlay = createElement('div', CLASS_OVERLAY);
     overlay.addEventListener('click', event => {
       event.stopPropagation();
 
-      if (!popup.contains(event.target)) {
+      if (!this.popup.contains(event.target)) {
         this.events.emit(HIDE_VARIANT_POPUP);
       }
     });
 
-    popup.appendChild(
+    this.popup.appendChild(
       new Emoji(this.emoji, false, false, this.events, this.options).render()
     );
     Object.keys(this.emoji.v).forEach(variant => {
-      popup.appendChild(
+      this.popup.appendChild(
         new Emoji(
           this.emoji.v[variant],
           false,
@@ -43,15 +57,37 @@ export class VariantPopup {
       );
     });
 
+    const firstEmoji = this.popup.querySelector('.emoji-picker__emoji');
+    this.focusedEmojiIndex = 0;
+    firstEmoji.tabIndex = 0;
+
+    setTimeout(() => firstEmoji.focus());
+
+    this.popup.addEventListener('keydown', event => {
+      if (event.key === 'ArrowRight') {
+        this.setFocusedEmoji(
+          Math.min(
+            this.focusedEmojiIndex + 1,
+            this.popup.querySelectorAll('.emoji-picker__emoji').length - 1
+          )
+        );
+      } else if (event.key === 'ArrowLeft') {
+        this.setFocusedEmoji(Math.max(this.focusedEmojiIndex - 1, 0));
+      } else if (event.key === 'Escape') {
+        event.stopPropagation();
+        this.events.emit(HIDE_VARIANT_POPUP);
+      }
+    });
+
     const closeButton = createElement('button', CLASS_CLOSE_BUTTON);
     closeButton.innerHTML = times;
     closeButton.addEventListener('click', event => {
       event.stopPropagation();
       this.events.emit(HIDE_VARIANT_POPUP);
     });
-    popup.appendChild(closeButton);
+    this.popup.appendChild(closeButton);
 
-    overlay.appendChild(popup);
+    overlay.appendChild(this.popup);
 
     return overlay;
   }

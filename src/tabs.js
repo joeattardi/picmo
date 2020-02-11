@@ -1,7 +1,7 @@
 import emojiData, { categories } from './data/emoji.js';
 
 import { EmojiContainer } from './emojiContainer';
-import { EMOJI } from './events';
+import { EMOJI, HIDE_VARIANT_POPUP } from './events';
 import { load } from './recent';
 import { i18n as defaultI18n } from './i18n';
 import * as icons from './icons';
@@ -206,6 +206,14 @@ export class Tabs {
       }
     });
 
+    this.events.on(HIDE_VARIANT_POPUP, () => {
+      setTimeout(() => this.setFocusedEmoji(this.focusedEmojiIndex));
+    });
+
+    this.events.on(EMOJI, ({ button }) => {
+      this.setFocusedEmoji(Array.prototype.indexOf.call(button.parentElement.children, button));
+    });
+
     if (this.options.showRecents) {
       const recentTabBody = new TabBody(
         this.i18n.categories.recents || defaultI18n.categories.recents,
@@ -222,7 +230,9 @@ export class Tabs {
         );
 
         const newRecentsEl = newRecents.render();
-        newRecentsEl.style.transform = 'translateX(0)';
+        if (this.activeTab === 0) {
+          newRecentsEl.style.transform = 'translateX(0)';
+        }
 
         setTimeout(() => {
           this.tabBodyContainer.replaceChild(

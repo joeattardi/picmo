@@ -14,15 +14,15 @@ export class Emoji {
   }
 
   render() {
-    const emojiButton = createElement('button', CLASS_EMOJI);
-    emojiButton.innerHTML = this.emoji.e;
-    emojiButton.tabIndex = -1;
+    this.emojiButton = createElement('button', CLASS_EMOJI);
+    this.emojiButton.innerHTML = this.emoji.e;
+    this.emojiButton.tabIndex = -1;
 
-    emojiButton.addEventListener('click', () => this.onEmojiClick());
-    emojiButton.addEventListener('mouseover', () => this.onEmojiHover());
-    emojiButton.addEventListener('mouseout', () => this.onEmojiLeave());
+    this.emojiButton.addEventListener('click', () => this.onEmojiClick());
+    this.emojiButton.addEventListener('mouseover', () => this.onEmojiHover());
+    this.emojiButton.addEventListener('mouseout', () => this.onEmojiLeave());
 
-    return emojiButton;
+    return this.emojiButton;
   }
 
   onEmojiClick() {
@@ -36,7 +36,8 @@ export class Emoji {
 
     this.events.emit(EMOJI, {
       emoji: this.emoji,
-      showVariants: this.showVariants
+      showVariants: this.showVariants,
+      button: this.emojiButton
     });
   }
 

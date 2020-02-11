@@ -196,9 +196,10 @@
   background: transparent;
   border: none;
   position: absolute;
-  right: 1em;
+  right: 0.5em;
   padding: 0;
-  top: calc(50% - 0.5em);
-  height: 1em;
-  width: 1em;
+  top: calc(50% - 0.75em);
+  height: 1.5em;
+  width: 1.5em;
+  font-size: 1.5em;
 }
