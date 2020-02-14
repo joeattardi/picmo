@@ -60,7 +60,10 @@ export class Search {
 
     if (this.searchField.value) {
       this.searchField.value = '';
-      this.resultsContainer.removeEventListener('keydown', this.handleResultsKeydown);
+      this.resultsContainer.removeEventListener(
+        'keydown',
+        this.handleResultsKeydown
+      );
       this.events.emit(SHOW_TABS);
       this.searchIcon.innerHTML = icons.search;
       this.searchIcon.style.cursor = 'default';
@@ -105,8 +108,12 @@ export class Search {
           this.options
         ).render();
 
-        this.resultsContainer.querySelector('.emoji-picker__emoji').tabIndex = 0;
-        const emojis = this.resultsContainer.querySelectorAll('.emoji-picker__emoji');
+        this.resultsContainer.querySelector(
+          '.emoji-picker__emoji'
+        ).tabIndex = 0;
+        const emojis = this.resultsContainer.querySelectorAll(
+          '.emoji-picker__emoji'
+        );
         let focusedEmojiIndex = 0;
 
         function setFocusedEmoji(index) {
@@ -139,7 +146,10 @@ export class Search {
           }
         };
 
-        this.resultsContainer.addEventListener('keydown', this.handleResultsKeydown);
+        this.resultsContainer.addEventListener(
+          'keydown',
+          this.handleResultsKeydown
+        );
 
         this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer);
       } else {
