@@ -60,10 +60,13 @@ export class Search {
 
     if (this.searchField.value) {
       this.searchField.value = '';
-      this.resultsContainer.removeEventListener(
-        'keydown',
-        this.handleResultsKeydown
-      );
+      if (this.resultsContainer) {
+        this.resultsContainer.removeEventListener(
+          'keydown',
+          this.handleResultsKeydown
+        );
+      }
+
       this.events.emit(SHOW_TABS);
       this.searchIcon.innerHTML = icons.search;
       this.searchIcon.style.cursor = 'default';
