@@ -4,23 +4,21 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "build": "rollup -c",
-    "build:watch": "rollup -cw",
+    "build": "NODE_ENV=production rollup -c",
     "serve": "serve public",
-    "start": "concurrently \"npm:build:watch\" \"npm:serve\" \"livereload\"",
-    "publish": "rollup -c && gh-pages -d public"
+    "start": "rollup -cw",
+    "publish": "NODE_ENV=production rollup -c && gh-pages -d public"
   },
   "license": "UNLICENSED",
   "devDependencies": {
-    "concurrently": "^4.1.2",
     "gh-pages": "^2.1.1",
-    "livereload": "^0.8.0",
     "rollup": "^1.20.3",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-livereload": "^1.0.4",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "serve": "^11.1.0"
+    "rollup-plugin-serve": "^1.0.1"
   },
   "dependencies": {
-    "@joeattardi/emoji-button": "2.8.0"
+    "@joeattardi/emoji-button": "2.8.2"
   }
 }
