@@ -20879,11 +20879,6 @@ var app = (function () {
 	}));
 	});
 
-	if (location.hostname === 'localhost') {
-	  document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
-	  ':35729/livereload.js?snipver=1"></' + 'script>');
-	}
-
 	window.addEventListener('DOMContentLoaded', function () {
 	  var button = document.querySelector('#emoji-button');
 	  var picker = new dist();
