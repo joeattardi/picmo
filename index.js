@@ -20117,6 +20117,8 @@ var app = (function () {
 	  /*#__PURE__*/
 	  function () {
 	    function Search(events, i18n, options, emojiData, autoFocusSearch) {
+	      var _this = this;
+
 	      _classCallCheck(this, Search);
 
 	      this.events = events;
@@ -20126,12 +20128,17 @@ var app = (function () {
 	        return e.ver <= parseFloat(options.emojiVersion);
 	      });
 	      this.autoFocusSearch = autoFocusSearch;
+	      this.events.on(HIDE_VARIANT_POPUP, function () {
+	        setTimeout(function () {
+	          return _this.setFocusedEmoji(_this.focusedEmojiIndex);
+	        });
+	      });
 	    }
 
 	    _createClass(Search, [{
 	      key: "render",
 	      value: function render() {
-	        var _this = this;
+	        var _this2 = this;
 
 	        this.searchContainer = createElement('div', CLASS_SEARCH_CONTAINER);
 	        this.searchField = createElement('input', CLASS_SEARCH_FIELD);
@@ -20140,28 +20147,28 @@ var app = (function () {
 	        this.searchIcon = createElement('span', CLASS_SEARCH_ICON);
 	        this.searchIcon.innerHTML = search;
 	        this.searchIcon.addEventListener('click', function (event) {
-	          return _this.onClearSearch(event);
+	          return _this2.onClearSearch(event);
 	        });
 	        this.searchContainer.appendChild(this.searchIcon);
 
 	        if (this.autoFocusSearch) {
 	          setTimeout(function () {
-	            return _this.searchField.focus();
+	            return _this2.searchField.focus();
 	          });
 	        }
 
 	        this.searchField.addEventListener('keydown', function (event) {
-	          return _this.onKeyDown(event);
+	          return _this2.onKeyDown(event);
 	        });
 	        this.searchField.addEventListener('keyup', function () {
-	          return _this.onKeyUp();
+	          return _this2.onKeyUp();
 	        });
 	        return this.searchContainer;
 	      }
 	    }, {
 	      key: "onClearSearch",
 	      value: function onClearSearch(event) {
-	        var _this2 = this;
+	        var _this3 = this;
 
 	        event.stopPropagation();
 
@@ -20172,7 +20179,7 @@ var app = (function () {
 	          this.searchIcon.innerHTML = search;
 	          this.searchIcon.style.cursor = 'default';
 	          setTimeout(function () {
-	            return _this2.searchField.focus();
+	            return _this3.searchField.focus();
 	          });
 	        }
 	      }
@@ -20222,7 +20229,7 @@ var app = (function () {
 	    }, {
 	      key: "onKeyUp",
 	      value: function onKeyUp() {
-	        var _this3 = this;
+	        var _this4 = this;
 
 	        if (!this.searchField.value) {
 	          this.searchIcon.innerHTML = search;
@@ -20234,7 +20241,7 @@ var app = (function () {
 	          this.events.emit(HIDE_TABS);
 	          var searchResults = this.emojiData.filter(function (emoji) {
 	            return emoji.n.filter(function (name) {
-	              return name.toLowerCase().indexOf(_this3.searchField.value.toLowerCase()) >= 0;
+	              return name.toLowerCase().indexOf(_this4.searchField.value.toLowerCase()) >= 0;
 	            }).length;
 	          });
 	          this.events.emit(HIDE_PREVIEW);
@@ -20244,7 +20251,7 @@ var app = (function () {
 	            this.resultsContainer.querySelector('.emoji-picker__emoji').tabIndex = 0;
 	            this.focusedEmojiIndex = 0;
 	            this.resultsContainer.addEventListener('keydown', function (event) {
-	              return _this3.handleResultsKeydown(event);
+	              return _this4.handleResultsKeydown(event);
 	            });
 	            this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer);
 	          } else {
