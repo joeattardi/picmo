@@ -20112,6 +20112,7 @@ var app = (function () {
 	  var CLASS_SEARCH_ICON = 'emoji-picker__search-icon';
 	  var CLASS_NOT_FOUND = 'emoji-picker__search-not-found';
 	  var CLASS_NOT_FOUND_ICON = 'emoji-picker__search-not-found-icon';
+	  var EMOJIS_PER_ROW = 8;
 	  var Search =
 	  /*#__PURE__*/
 	  function () {
@@ -20160,28 +20161,68 @@ var app = (function () {
 	    }, {
 	      key: "onClearSearch",
 	      value: function onClearSearch(event) {
+	        var _this2 = this;
+
 	        event.stopPropagation();
 
 	        if (this.searchField.value) {
 	          this.searchField.value = '';
+	          this.resultsContainer = null;
 	          this.events.emit(SHOW_TABS);
 	          this.searchIcon.innerHTML = search;
 	          this.searchIcon.style.cursor = 'default';
+	          setTimeout(function () {
+	            return _this2.searchField.focus();
+	          });
+	        }
+	      }
+	    }, {
+	      key: "setFocusedEmoji",
+	      value: function setFocusedEmoji(index) {
+	        var emojis = this.resultsContainer.querySelectorAll('.emoji-picker__emoji');
+	        var currentFocusedEmoji = emojis[this.focusedEmojiIndex];
+	        currentFocusedEmoji.tabIndex = -1;
+	        this.focusedEmojiIndex = index;
+	        var newFocusedEmoji = emojis[this.focusedEmojiIndex];
+	        newFocusedEmoji.tabIndex = 0;
+	        newFocusedEmoji.focus();
+	      }
+	    }, {
+	      key: "handleResultsKeydown",
+	      value: function handleResultsKeydown(event) {
+	        var emojis = this.resultsContainer.querySelectorAll('.emoji-picker__emoji');
+
+	        if (event.key === 'ArrowRight') {
+	          this.setFocusedEmoji(Math.min(this.focusedEmojiIndex + 1, emojis.length - 1));
+	        } else if (event.key === 'ArrowLeft') {
+	          this.setFocusedEmoji(Math.max(0, this.focusedEmojiIndex - 1));
+	        } else if (event.key === 'ArrowDown') {
+	          event.preventDefault();
+
+	          if (this.focusedEmojiIndex < emojis.length - EMOJIS_PER_ROW) {
+	            this.setFocusedEmoji(this.focusedEmojiIndex + EMOJIS_PER_ROW);
+	          }
+	        } else if (event.key === 'ArrowUp') {
+	          event.preventDefault();
+
+	          if (this.focusedEmojiIndex >= EMOJIS_PER_ROW) {
+	            this.setFocusedEmoji(this.focusedEmojiIndex - EMOJIS_PER_ROW);
+	          }
+	        } else if (event.key === 'Escape') {
+	          this.onClearSearch(event);
 	        }
 	      }
 	    }, {
 	      key: "onKeyDown",
 	      value: function onKeyDown(event) {
-	        if (event.key === 'Escape' && this.searchField.value !== '') {
-	          event.stopPropagation();
-	          this.searchField.value = '';
-	          this.events.emit(SHOW_TABS);
+	        if (event.key === 'Escape' && this.searchField.value) {
+	          this.onClearSearch(event);
 	        }
 	      }
 	    }, {
 	      key: "onKeyUp",
 	      value: function onKeyUp() {
-	        var _this2 = this;
+	        var _this3 = this;
 
 	        if (!this.searchField.value) {
 	          this.searchIcon.innerHTML = search;
@@ -20193,13 +20234,19 @@ var app = (function () {
 	          this.events.emit(HIDE_TABS);
 	          var searchResults = this.emojiData.filter(function (emoji) {
 	            return emoji.n.filter(function (name) {
-	              return name.toLowerCase().indexOf(_this2.searchField.value.toLowerCase()) >= 0;
+	              return name.toLowerCase().indexOf(_this3.searchField.value.toLowerCase()) >= 0;
 	            }).length;
 	          });
 	          this.events.emit(HIDE_PREVIEW);
 
 	          if (searchResults.length) {
-	            this.events.emit(SHOW_SEARCH_RESULTS, new EmojiContainer(searchResults, true, this.events, this.options).render());
+	            this.resultsContainer = new EmojiContainer(searchResults, true, this.events, this.options).render();
+	            this.resultsContainer.querySelector('.emoji-picker__emoji').tabIndex = 0;
+	            this.focusedEmojiIndex = 0;
+	            this.resultsContainer.addEventListener('keydown', function (event) {
+	              return _this3.handleResultsKeydown(event);
+	            });
+	            this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer);
 	          } else {
 	            this.events.emit(SHOW_SEARCH_RESULTS, new NotFoundMessage(this.i18n.notFound).render());
 	          }
@@ -20257,7 +20304,7 @@ var app = (function () {
 	  var CLASS_TABS = 'emoji-picker__tabs';
 	  var CLASS_TAB = 'emoji-picker__tab';
 	  var CLASS_TAB_BODY = 'emoji-picker__tab-body';
-	  var EMOJIS_PER_ROW = 8;
+	  var EMOJIS_PER_ROW$1 = 8;
 	  var emojiCategories = {};
 	  emojiData.forEach(function (emoji) {
 	    var categoryList = emojiCategories[categories[emoji.c]];
@@ -20421,14 +20468,14 @@ var app = (function () {
 	          } else if (event.key === 'ArrowDown') {
 	            event.preventDefault();
 
-	            if (_this2.focusedEmojiIndex < emojis.length - EMOJIS_PER_ROW) {
-	              _this2.setFocusedEmoji(_this2.focusedEmojiIndex + EMOJIS_PER_ROW);
+	            if (_this2.focusedEmojiIndex < emojis.length - EMOJIS_PER_ROW$1) {
+	              _this2.setFocusedEmoji(_this2.focusedEmojiIndex + EMOJIS_PER_ROW$1);
 	            }
 	          } else if (event.key === 'ArrowUp') {
 	            event.preventDefault();
 
-	            if (_this2.focusedEmojiIndex >= EMOJIS_PER_ROW) {
-	              _this2.setFocusedEmoji(_this2.focusedEmojiIndex - EMOJIS_PER_ROW);
+	            if (_this2.focusedEmojiIndex >= EMOJIS_PER_ROW$1) {
+	              _this2.setFocusedEmoji(_this2.focusedEmojiIndex - EMOJIS_PER_ROW$1);
 	            }
 	          }
 	        });
