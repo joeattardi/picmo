@@ -60,17 +60,50 @@ export class Search {
 
     if (this.searchField.value) {
       this.searchField.value = '';
-      if (this.resultsContainer) {
-        this.resultsContainer.removeEventListener(
-          'keydown',
-          this.handleResultsKeydown
-        );
-      }
+      this.resultsContainer = null;
 
       this.events.emit(SHOW_TABS);
       this.searchIcon.innerHTML = icons.search;
       this.searchIcon.style.cursor = 'default';
       setTimeout(() => this.searchField.focus());
+    }
+  }
+
+  setFocusedEmoji(index) {
+    const emojis = this.resultsContainer.querySelectorAll(
+      '.emoji-picker__emoji'
+    );
+    const currentFocusedEmoji = emojis[this.focusedEmojiIndex];
+    currentFocusedEmoji.tabIndex = -1;
+
+    this.focusedEmojiIndex = index;
+    const newFocusedEmoji = emojis[this.focusedEmojiIndex];
+    newFocusedEmoji.tabIndex = 0;
+    newFocusedEmoji.focus();
+  }
+
+  handleResultsKeydown(event) {
+    const emojis = this.resultsContainer.querySelectorAll(
+      '.emoji-picker__emoji'
+    );
+    if (event.key === 'ArrowRight') {
+      this.setFocusedEmoji(
+        Math.min(this.focusedEmojiIndex + 1, emojis.length - 1)
+      );
+    } else if (event.key === 'ArrowLeft') {
+      this.setFocusedEmoji(Math.max(0, this.focusedEmojiIndex - 1));
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (this.focusedEmojiIndex < emojis.length - EMOJIS_PER_ROW) {
+        this.setFocusedEmoji(this.focusedEmojiIndex + EMOJIS_PER_ROW);
+      }
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (this.focusedEmojiIndex >= EMOJIS_PER_ROW) {
+        this.setFocusedEmoji(this.focusedEmojiIndex - EMOJIS_PER_ROW);
+      }
+    } else if (event.key === 'Escape') {
+      this.onClearSearch(event);
     }
   }
 
@@ -114,44 +147,10 @@ export class Search {
         this.resultsContainer.querySelector(
           '.emoji-picker__emoji'
         ).tabIndex = 0;
-        const emojis = this.resultsContainer.querySelectorAll(
-          '.emoji-picker__emoji'
-        );
-        let focusedEmojiIndex = 0;
+        this.focusedEmojiIndex = 0;
 
-        function setFocusedEmoji(index) {
-          const currentFocusedEmoji = emojis[focusedEmojiIndex];
-          currentFocusedEmoji.tabIndex = -1;
-
-          focusedEmojiIndex = index;
-          const newFocusedEmoji = emojis[focusedEmojiIndex];
-          newFocusedEmoji.tabIndex = 0;
-          newFocusedEmoji.focus();
-        }
-
-        this.handleResultsKeydown = event => {
-          if (event.key === 'ArrowRight') {
-            setFocusedEmoji(Math.min(focusedEmojiIndex + 1, emojis.length - 1));
-          } else if (event.key === 'ArrowLeft') {
-            setFocusedEmoji(Math.max(0, focusedEmojiIndex - 1));
-          } else if (event.key === 'ArrowDown') {
-            event.preventDefault();
-            if (focusedEmojiIndex < emojis.length - EMOJIS_PER_ROW) {
-              setFocusedEmoji(focusedEmojiIndex + EMOJIS_PER_ROW);
-            }
-          } else if (event.key === 'ArrowUp') {
-            event.preventDefault();
-            if (focusedEmojiIndex >= EMOJIS_PER_ROW) {
-              setFocusedEmoji(focusedEmojiIndex - EMOJIS_PER_ROW);
-            }
-          } else if (event.key === 'Escape') {
-            this.onClearSearch(event);
-          }
-        };
-
-        this.resultsContainer.addEventListener(
-          'keydown',
-          this.handleResultsKeydown
+        this.resultsContainer.addEventListener('keydown', event =>
+          this.handleResultsKeydown(event)
         );
 
         this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer);
