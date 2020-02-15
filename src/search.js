@@ -4,6 +4,7 @@ import { EmojiContainer } from './emojiContainer';
 import {
   HIDE_PREVIEW,
   HIDE_TABS,
+  HIDE_VARIANT_POPUP,
   SHOW_SEARCH_RESULTS,
   SHOW_TABS
 } from './events';
@@ -26,6 +27,10 @@ export class Search {
       e => e.ver <= parseFloat(options.emojiVersion)
     );
     this.autoFocusSearch = autoFocusSearch;
+
+    this.events.on(HIDE_VARIANT_POPUP, () => {
+      setTimeout(() => this.setFocusedEmoji(this.focusedEmojiIndex));
+    });
   }
 
   render() {
