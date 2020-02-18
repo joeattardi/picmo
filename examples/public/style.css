@@ -6,23 +6,20 @@ body {
 }
 
 #emoji-button {
-  padding: 0.25em 0.5em;
-  font-size: 1em;
+  padding: 0.25rem 0.5rem;
+  font-size: 1rem;
   background: #EEEEEE;
-  border-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   cursor: pointer;
-  outline: none;
   border: none;
-  background: transparent;
+  background: #DDDDDD;
   position: relative;
-  left: -3rem;
-  top: 2px;
+  left: -3.5rem;
+  top: 1px;
   display: inline-flex;
   align-items: center;
-}
-
-#emoji-button img {
-  height: 1rem;
+  font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji", "Twemoji Mozilla", "Noto Color Emoji", "EmojiOne Color", "Android Emoji";
 }
 
 #emoji-input {
@@ -30,8 +27,17 @@ body {
   font-size: 1rem;
   height: 1rem;
   padding-right: 2rem;
+  outline: none;
   width: 20rem;
   margin: 1rem;
   border: 1px solid #DDDDDD;
   border-radius: 5px;
+}
+
+#emoji-header {
+  font-size: 10rem;
+}
+
+h1 {
+  margin: 0;
 }
