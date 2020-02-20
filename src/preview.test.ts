@@ -1,7 +1,7 @@
-const Emitter = require('tiny-emitter');
+import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-const { SHOW_PREVIEW, HIDE_PREVIEW } = require('./events');
-const { EmojiPreview } = require('./preview');
+import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
+import { EmojiPreview } from './preview';
 
 describe('EmojiPreview', () => {
   test('should show an emoji preview on the SHOW_PREVIEW event and remove it on the HIDE_PREVIEW event', () => {
@@ -10,10 +10,14 @@ describe('EmojiPreview', () => {
 
     events.emit(SHOW_PREVIEW, { e: '⚡️', n: 'zap' });
 
-    const previewEmoji = preview.querySelector('.emoji-picker__preview-emoji');
+    const previewEmoji = preview.querySelector(
+      '.emoji-picker__preview-emoji'
+    ) as HTMLElement;
     expect(previewEmoji.innerHTML).toBe('⚡️');
 
-    const previewName = preview.querySelector('.emoji-picker__preview-name');
+    const previewName = preview.querySelector(
+      '.emoji-picker__preview-name'
+    ) as HTMLElement;
     expect(previewName.innerHTML).toBe('zap');
 
     events.emit(HIDE_PREVIEW);

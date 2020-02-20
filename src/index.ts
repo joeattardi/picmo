@@ -21,7 +21,12 @@ import { VariantPopup } from './variantPopup';
 
 import { i18n } from './i18n';
 
-import { EmojiButtonOptions, I18NStrings } from './types';
+import {
+  EmojiButtonOptions,
+  I18NStrings,
+  EmojiRecord,
+  EmojiVariation
+} from './types';
 
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
@@ -81,7 +86,7 @@ export default class EmojiButton {
 
   buildPicker(): void {
     this.pickerEl = createElement('div', CLASS_PICKER);
-    this.focusTrap = createFocusTrap(<HTMLElement> this.pickerEl, {
+    this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
       clickOutsideDeactivates: true
     });
 
@@ -131,27 +136,40 @@ export default class EmojiButton {
     }
 
     let variantPopup: HTMLElement | null;
-    this.events.on(EMOJI, ({ emoji, showVariants }: { emoji: any, showVariants: boolean }) => {
-      if (emoji.v && showVariants && this.options.showVariants) {
-        variantPopup = new VariantPopup(
-          this.events,
-          emoji,
-          this.options
-        ).render();
+    this.events.on(
+      EMOJI,
+      ({
+        emoji,
+        showVariants
+      }: {
+        emoji: EmojiRecord | EmojiVariation;
+        showVariants: boolean;
+      }) => {
+        if (
+          (emoji as EmojiRecord).v &&
+          showVariants &&
+          this.options.showVariants
+        ) {
+          variantPopup = new VariantPopup(
+            this.events,
+            emoji as EmojiRecord,
+            this.options
+          ).render();
 
-        if (variantPopup) {
-          this.pickerEl.appendChild(variantPopup);
-        }
-      } else {
-        if (variantPopup && variantPopup.parentNode === this.pickerEl) {
-          this.pickerEl.removeChild(variantPopup);
-        }
-        this.publicEvents.emit('emoji', emoji.e);
-        if (this.options.autoHide) {
-          this.hidePicker();
+          if (variantPopup) {
+            this.pickerEl.appendChild(variantPopup);
+          }
+        } else {
+          if (variantPopup && variantPopup.parentNode === this.pickerEl) {
+            this.pickerEl.removeChild(variantPopup);
+          }
+          this.publicEvents.emit('emoji', emoji.e);
+          if (this.options.autoHide) {
+            this.hidePicker();
+          }
         }
       }
-    });
+    );
 
     this.events.on(HIDE_VARIANT_POPUP, () => {
       if (variantPopup) {
@@ -171,7 +189,7 @@ export default class EmojiButton {
   }
 
   onDocumentClick(event: MouseEvent): void {
-    if (!this.pickerEl.contains(<Node> event.target)) {
+    if (!this.pickerEl.contains(event.target as Node)) {
       this.hidePicker();
     }
   }

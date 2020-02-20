@@ -1,15 +1,14 @@
-const Emitter = require('tiny-emitter');
+import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-const { Tabs } = require('./tabs');
-
-const { i18n } = require('./i18n');
+import { Tabs } from './tabs';
+import { i18n } from './i18n';
 
 describe('Tabs', () => {
   let tabsContainer;
   let tabs;
   let tabBodies;
 
-  function isActive(tab) {
+  function isActive(tab): boolean {
     return (
       tabs[tab].classList.contains('active') &&
       tabBodies[tab].classList.contains('active')

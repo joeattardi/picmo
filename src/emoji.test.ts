@@ -1,7 +1,7 @@
-const Emitter = require('tiny-emitter');
+import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-const { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } = require('./events');
-const { Emoji } = require('./emoji');
+import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
+import { Emoji } from './emoji';
 
 describe('Emoji', () => {
   let events;

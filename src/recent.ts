@@ -1,20 +1,23 @@
 import { getEmojiName } from './util';
-import { EmojiData, EmojiButtonOptions, RecentEmoji } from './types';
+import { EmojiRecord, EmojiButtonOptions, RecentEmoji } from './types';
 
 const LOCAL_STORAGE_KEY = 'emojiPicker.recent';
 
-export function load() {
+export function load(): Array<RecentEmoji> {
   const recentJson = localStorage.getItem(LOCAL_STORAGE_KEY);
   return recentJson ? JSON.parse(recentJson) : [];
 }
 
-export function save(emoji: any, options: EmojiButtonOptions): void {
+export function save(
+  emoji: EmojiRecord | RecentEmoji,
+  options: EmojiButtonOptions
+): void {
   const recents = load();
 
   const recent = {
     e: emoji.e,
     n: getEmojiName(emoji),
-    k: emoji.k || getEmojiName(emoji)
+    k: (emoji as RecentEmoji).k || getEmojiName(emoji)
   };
 
   localStorage.setItem(

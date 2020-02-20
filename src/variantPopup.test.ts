@@ -1,7 +1,7 @@
-const Emitter = require('tiny-emitter');
+import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-const { HIDE_VARIANT_POPUP } = require('./events');
-const { VariantPopup } = require('./variantPopup');
+import { HIDE_VARIANT_POPUP } from './events';
+import { VariantPopup } from './variantPopup';
 
 describe('VariantPopup', () => {
   const emoji = {

@@ -1,6 +1,9 @@
-import { EmojiRecord } from './types';
+import { EmojiRecord, RecentEmoji } from './types';
 
-export function createElement(tagName: string, className?: string): HTMLElement {
+export function createElement(
+  tagName: string,
+  className?: string
+): HTMLElement {
   const element = document.createElement(tagName);
 
   if (className) {
@@ -16,6 +19,6 @@ export function empty(element: HTMLElement): void {
   }
 }
 
-export function getEmojiName(emoji: EmojiRecord): string {
+export function getEmojiName(emoji: EmojiRecord | RecentEmoji): string {
   return typeof emoji.n === 'string' ? emoji.n : emoji.n[0];
 }

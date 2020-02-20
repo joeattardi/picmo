@@ -8,7 +8,12 @@ import { load } from './recent';
 import { i18n as defaultI18n } from './i18n';
 import * as icons from './icons';
 import { createElement } from './util';
-import { EmojiRecord, I18NStrings, EmojiButtonOptions, I18NCategory } from './types.js';
+import {
+  EmojiRecord,
+  I18NStrings,
+  EmojiButtonOptions,
+  I18NCategory
+} from './types.js';
 
 const CLASS_ACTIVE_TAB = 'active';
 const CLASS_TABS_CONTAINER = 'emoji-picker__tabs-container';
@@ -20,7 +25,7 @@ const EMOJIS_PER_ROW = 8;
 
 const categories = emojiData.categories;
 
-const emojiCategories: { [key: string] : EmojiRecord[]} = {};
+const emojiCategories: { [key: string]: EmojiRecord[] } = {};
 emojiData.emojiData.forEach(emoji => {
   let categoryList = emojiCategories[categories[emoji.c]];
   if (!categoryList) {
@@ -42,6 +47,66 @@ const categoryIcons: { [key in I18NCategory]: string } = {
   recents: icons.history
 };
 
+class Tab {
+  tab: HTMLElement;
+
+  constructor(
+    private icon: string,
+    private index: number,
+    private setActiveTab: Function
+  ) {}
+
+  render(): HTMLElement {
+    this.tab = createElement('li', CLASS_TAB);
+    this.tab.innerHTML = this.icon;
+
+    this.tab.addEventListener('click', () => this.setActiveTab(this.index));
+
+    return this.tab;
+  }
+
+  setActive(active: boolean): void {
+    if (active) {
+      this.tab.classList.add(CLASS_ACTIVE_TAB);
+      this.tab.tabIndex = 0;
+      this.tab.focus();
+    } else {
+      this.tab.classList.remove(CLASS_ACTIVE_TAB);
+      this.tab.tabIndex = -1;
+    }
+  }
+}
+
+class TabBody {
+  constructor(
+    private category: string,
+    public content: HTMLElement,
+    private index: number
+  ) {}
+
+  container: HTMLElement;
+
+  render(): HTMLElement {
+    this.container = createElement('div', CLASS_TAB_BODY);
+
+    const title = createElement('h2');
+    title.innerHTML = this.category;
+
+    this.container.appendChild(title);
+    this.container.appendChild(this.content);
+
+    return this.container;
+  }
+
+  setActive(active: boolean): void {
+    if (active) {
+      this.container.classList.add(CLASS_ACTIVE_TAB);
+    } else {
+      this.container.classList.remove(CLASS_ACTIVE_TAB);
+    }
+  }
+}
+
 export class Tabs {
   private activeTab: number;
 
@@ -52,11 +117,15 @@ export class Tabs {
 
   private focusedEmojiIndex = 0;
 
-  constructor(private events: Emitter, private i18n: I18NStrings, private options: EmojiButtonOptions) {
+  constructor(
+    private events: Emitter,
+    private i18n: I18NStrings,
+    private options: EmojiButtonOptions
+  ) {
     this.setActiveTab = this.setActiveTab.bind(this);
   }
 
-  setActiveTab(index: number, animate = true) {
+  setActiveTab(index: number, animate = true): void {
     if (index === this.activeTab) {
       return;
     }
@@ -71,7 +140,7 @@ export class Tabs {
       const currentActiveTabBody = this.tabBodies[currentActiveTab].container;
       currentActiveTabBody
         .querySelectorAll('.emoji-picker__emoji')
-        .forEach((emoji: Element) => ((<HTMLElement>emoji).tabIndex = -1));
+        .forEach((emoji: Element) => ((emoji as HTMLElement).tabIndex = -1));
 
       const activeEmojiContainer = newActiveTabBody.querySelector(
         '.emoji-picker__emojis'
@@ -81,9 +150,9 @@ export class Tabs {
         activeEmojiContainer.scrollTop = 0;
         const firstEmoji = activeEmojiContainer.querySelector(
           '.emoji-picker__emoji'
-        );
+        ) as HTMLElement;
         if (firstEmoji) {
-          (<HTMLElement>firstEmoji).tabIndex = 0;
+          firstEmoji.tabIndex = 0;
         }
       }
 
@@ -108,7 +177,7 @@ export class Tabs {
     currentActiveTabBody: HTMLElement,
     newTranslate: number,
     currentTranslate: number
-  ) {
+  ): void {
     requestAnimationFrame(() => {
       newActiveTabBody.style.transition = 'none';
       newActiveTabBody.style.transform = `translateX(${newTranslate}rem)`;
@@ -122,7 +191,7 @@ export class Tabs {
     });
   }
 
-  render() {
+  render(): HTMLElement {
     const tabsContainer = createElement('div', CLASS_TABS_CONTAINER);
     tabsContainer.appendChild(this.createTabs());
     tabsContainer.appendChild(this.createTabBodies());
@@ -131,29 +200,29 @@ export class Tabs {
     this.setActiveTab(initialActiveTab, false);
     const firstEmoji = this.tabBodies[initialActiveTab].content.querySelector(
       '.emoji-picker__emoji'
-    );
+    ) as HTMLElement;
     if (firstEmoji) {
-      (<HTMLElement>firstEmoji).tabIndex = 0;
+      firstEmoji.tabIndex = 0;
     }
     this.focusedEmojiIndex = 0;
 
     return tabsContainer;
   }
 
-  setFocusedEmoji(index: number) {
+  setFocusedEmoji(index: number): void {
     const emojis = this.tabBodies[this.activeTab].content.querySelectorAll(
       '.emoji-picker__emoji'
     );
-    const currentFocusedEmoji = <HTMLElement> emojis[this.focusedEmojiIndex];
+    const currentFocusedEmoji = emojis[this.focusedEmojiIndex] as HTMLElement;
     currentFocusedEmoji.tabIndex = -1;
 
     this.focusedEmojiIndex = index;
-    const newFocusedEmoji = <HTMLElement> emojis[this.focusedEmojiIndex];
+    const newFocusedEmoji = emojis[this.focusedEmojiIndex] as HTMLElement;
     newFocusedEmoji.tabIndex = 0;
     newFocusedEmoji.focus();
   }
 
-  createTabs() {
+  createTabs(): HTMLElement {
     this.tabsList = createElement('ul', CLASS_TABS);
     this.tabs = Object.keys(categoryIcons).map(
       (category, index) =>
@@ -184,7 +253,7 @@ export class Tabs {
     return this.tabsList;
   }
 
-  createTabBodies() {
+  createTabBodies(): HTMLElement {
     this.tabBodyContainer = createElement('div');
 
     this.tabBodies = Object.keys(categoryIcons).map(
@@ -230,7 +299,10 @@ export class Tabs {
     });
 
     this.events.on(EMOJI, ({ button }: { button: HTMLButtonElement }) => {
-      if (button.parentElement && button.parentElement.classList.contains('emoji-picker__emojis')) {
+      if (
+        button.parentElement &&
+        button.parentElement.classList.contains('emoji-picker__emojis')
+      ) {
         this.setFocusedEmoji(
           Array.prototype.indexOf.call(button.parentElement.children, button)
         );
@@ -260,10 +332,8 @@ export class Tabs {
         }
 
         setTimeout(() => {
-          this.tabBodyContainer.replaceChild(
-            newRecentsEl,
-            <Node> this.tabBodyContainer.firstChild
-          );
+          this.tabBodyContainer.replaceChild(newRecentsEl, this.tabBodyContainer
+            .firstChild as Node);
 
           this.tabBodies[0] = newRecents;
           if (this.activeTab === 0) {
@@ -278,57 +348,5 @@ export class Tabs {
     );
 
     return this.tabBodyContainer;
-  }
-}
-
-class Tab {
-  tab: HTMLElement;
-
-  constructor(private icon: string, private index: number, private setActiveTab: Function) {}
-
-  render() {
-    this.tab = createElement('li', CLASS_TAB);
-    this.tab.innerHTML = this.icon;
-
-    this.tab.addEventListener('click', () => this.setActiveTab(this.index));
-
-    return this.tab;
-  }
-
-  setActive(active: boolean) {
-    if (active) {
-      this.tab.classList.add(CLASS_ACTIVE_TAB);
-      this.tab.tabIndex = 0;
-      this.tab.focus();
-    } else {
-      this.tab.classList.remove(CLASS_ACTIVE_TAB);
-      this.tab.tabIndex = -1;
-    }
-  }
-}
-
-class TabBody {
-  constructor(private category: string, public content: HTMLElement, private index: number) {}
-
-  container: HTMLElement;
-
-  render() {
-    this.container = createElement('div', CLASS_TAB_BODY);
-
-    const title = createElement('h2');
-    title.innerHTML = this.category;
-
-    this.container.appendChild(title);
-    this.container.appendChild(this.content);
-
-    return this.container;
-  }
-
-  setActive(active: boolean) {
-    if (active) {
-      this.container.classList.add(CLASS_ACTIVE_TAB);
-    } else {
-      this.container.classList.remove(CLASS_ACTIVE_TAB);
-    }
   }
 }

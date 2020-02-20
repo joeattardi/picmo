@@ -6,7 +6,7 @@ import { createElement } from './util';
 import { HIDE_VARIANT_POPUP } from './events';
 
 import { times } from './icons';
-import { EmojiRecord, EmojiButtonOptions } from './types';
+import { EmojiRecord, EmojiButtonOptions, EmojiVariation } from './types';
 
 const CLASS_OVERLAY = 'emoji-picker__variant-overlay';
 const CLASS_POPUP = 'emoji-picker__variant-popup';
@@ -16,30 +16,38 @@ export class VariantPopup {
   private popup: HTMLElement;
   private focusedEmojiIndex = 0;
 
-  constructor(private events: Emitter, private emoji: EmojiRecord, private options: EmojiButtonOptions) {}
+  constructor(
+    private events: Emitter,
+    private emoji: EmojiRecord,
+    private options: EmojiButtonOptions
+  ) {}
 
-  getEmoji(index) {
+  getEmoji(index): Element {
     return this.popup.querySelectorAll('.emoji-picker__emoji')[index];
   }
 
-  setFocusedEmoji(newIndex) {
-    const currentFocusedEmoji = <HTMLElement> this.getEmoji(this.focusedEmojiIndex);
+  setFocusedEmoji(newIndex): void {
+    const currentFocusedEmoji = this.getEmoji(
+      this.focusedEmojiIndex
+    ) as HTMLElement;
     currentFocusedEmoji.tabIndex = -1;
 
     this.focusedEmojiIndex = newIndex;
-    const newFocusedEmoji = <HTMLElement> this.getEmoji(this.focusedEmojiIndex);
+    const newFocusedEmoji = this.getEmoji(
+      this.focusedEmojiIndex
+    ) as HTMLElement;
     newFocusedEmoji.tabIndex = 0;
     newFocusedEmoji.focus();
   }
 
-  render() {
+  render(): HTMLElement {
     this.popup = createElement('div', CLASS_POPUP);
 
     const overlay = createElement('div', CLASS_OVERLAY);
     overlay.addEventListener('click', (event: MouseEvent) => {
       event.stopPropagation();
 
-      if (!this.popup.contains(<Node> event.target)) {
+      if (!this.popup.contains(event.target as Node)) {
         this.events.emit(HIDE_VARIANT_POPUP);
       }
     });
@@ -47,19 +55,23 @@ export class VariantPopup {
     this.popup.appendChild(
       new Emoji(this.emoji, false, false, this.events, this.options).render()
     );
-    Object.keys(this.emoji.v).forEach(variant => {
-      this.popup.appendChild(
-        new Emoji(
-          this.emoji.v[variant],
-          false,
-          false,
-          this.events,
-          this.options
-        ).render()
-      );
-    });
+    Object.keys(this.emoji.v as { [key: string]: EmojiVariation }).forEach(
+      variant => {
+        this.popup.appendChild(
+          new Emoji(
+            (this.emoji.v as { [key: string]: EmojiVariation })[variant],
+            false,
+            false,
+            this.events,
+            this.options
+          ).render()
+        );
+      }
+    );
 
-    const firstEmoji = <HTMLElement> this.popup.querySelector('.emoji-picker__emoji');
+    const firstEmoji = this.popup.querySelector(
+      '.emoji-picker__emoji'
+    ) as HTMLElement;
     this.focusedEmojiIndex = 0;
     firstEmoji.tabIndex = 0;
 

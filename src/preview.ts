@@ -23,7 +23,9 @@ export class EmojiPreview {
     this.name = createElement('div', CLASS_PREVIEW_NAME);
     preview.appendChild(this.name);
 
-    this.events.on(SHOW_PREVIEW, (emoji: EmojiRecord) => this.showPreview(emoji));
+    this.events.on(SHOW_PREVIEW, (emoji: EmojiRecord) =>
+      this.showPreview(emoji)
+    );
     this.events.on(HIDE_PREVIEW, () => this.hidePreview());
 
     return preview;

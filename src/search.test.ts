@@ -1,17 +1,18 @@
-const Emitter = require('tiny-emitter');
+import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-const { SHOW_SEARCH_RESULTS, SHOW_TABS } = require('./events');
-const { Search } = require('./search');
+import { SHOW_SEARCH_RESULTS, SHOW_TABS } from './events';
+import { Search } from './search';
 
-const { i18n } = require('./i18n');
+import { i18n } from './i18n';
+import { EmojiButtonOptions, EmojiRecord } from './types';
 
 describe('Search', () => {
-  const emojis = [
-    { e: '⚡️', n: ['zap'], ver: '12.1' },
-    { e: '😀', n: ['grinning'], ver: '12.1' }
+  const emojis: EmojiRecord[] = [
+    { c: 0, e: '⚡️', n: ['zap'], ver: '12.1' },
+    { c: 0, e: '😀', n: ['grinning'], ver: '12.1' }
   ];
 
-  const options = { emojiVersion: '12.1' };
+  const options: EmojiButtonOptions = { emojiVersion: '12.1' };
   let events;
   let search;
   let searchField;

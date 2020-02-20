@@ -1,6 +1,6 @@
-const Emitter = require('tiny-emitter');
+import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-const { EmojiContainer } = require('./emojiContainer');
+import { EmojiContainer } from './emojiContainer';
 
 describe('EmojiContainer', () => {
   test('should render all the given emojis', () => {
