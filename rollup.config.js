@@ -1,13 +1,13 @@
-const babel = require('rollup-plugin-babel');
 const commonjs = require('rollup-plugin-commonjs');
 const postcss = require('rollup-plugin-postcss');
 const resolve = require('rollup-plugin-node-resolve');
 const replace = require('@rollup/plugin-replace');
+const typescript = require('@rollup/plugin-typescript');
 
 const production = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  input: 'src/index.js',
+  input: 'src/index.ts',
   output: {
     file: 'dist/index.js',
     format: 'umd',
@@ -20,9 +20,7 @@ module.exports = {
     postcss({
       extensions: ['.css']
     }),
-    babel({
-      compact: production
-    }),
+    typescript(),
     resolve(),
     commonjs()
   ]

@@ -1,31 +1,33 @@
+import { TinyEmitter as Emitter } from 'tiny-emitter';
+
 import { Emoji } from './emoji';
 import { createElement } from './util';
 
 import { HIDE_VARIANT_POPUP } from './events';
 
 import { times } from './icons';
+import { EmojiRecord, EmojiButtonOptions } from './types';
 
 const CLASS_OVERLAY = 'emoji-picker__variant-overlay';
 const CLASS_POPUP = 'emoji-picker__variant-popup';
 const CLASS_CLOSE_BUTTON = 'emoji-picker__variant-popup-close-button';
 
 export class VariantPopup {
-  constructor(events, emoji, options) {
-    this.events = events;
-    this.emoji = emoji;
-    this.options = options;
-  }
+  private popup: HTMLElement;
+  private focusedEmojiIndex = 0;
+
+  constructor(private events: Emitter, private emoji: EmojiRecord, private options: EmojiButtonOptions) {}
 
   getEmoji(index) {
     return this.popup.querySelectorAll('.emoji-picker__emoji')[index];
   }
 
   setFocusedEmoji(newIndex) {
-    const currentFocusedEmoji = this.getEmoji(this.focusedEmojiIndex);
+    const currentFocusedEmoji = <HTMLElement> this.getEmoji(this.focusedEmojiIndex);
     currentFocusedEmoji.tabIndex = -1;
 
     this.focusedEmojiIndex = newIndex;
-    const newFocusedEmoji = this.getEmoji(this.focusedEmojiIndex);
+    const newFocusedEmoji = <HTMLElement> this.getEmoji(this.focusedEmojiIndex);
     newFocusedEmoji.tabIndex = 0;
     newFocusedEmoji.focus();
   }
@@ -34,10 +36,10 @@ export class VariantPopup {
     this.popup = createElement('div', CLASS_POPUP);
 
     const overlay = createElement('div', CLASS_OVERLAY);
-    overlay.addEventListener('click', event => {
+    overlay.addEventListener('click', (event: MouseEvent) => {
       event.stopPropagation();
 
-      if (!this.popup.contains(event.target)) {
+      if (!this.popup.contains(<Node> event.target)) {
         this.events.emit(HIDE_VARIANT_POPUP);
       }
     });
@@ -57,7 +59,7 @@ export class VariantPopup {
       );
     });
 
-    const firstEmoji = this.popup.querySelector('.emoji-picker__emoji');
+    const firstEmoji = <HTMLElement> this.popup.querySelector('.emoji-picker__emoji');
     this.focusedEmojiIndex = 0;
     firstEmoji.tabIndex = 0;
 

@@ -1,4 +1,6 @@
-export const i18n = {
+import { I18NStrings } from './types';
+
+export const i18n: I18NStrings = {
   search: 'Search emojis...',
   categories: {
     recents: 'Recent Emojis',

@@ -1,19 +1,20 @@
+import { TinyEmitter as Emitter } from 'tiny-emitter';
+
 import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
 import { save } from './recent';
 import { createElement } from './util';
 
+import { EmojiButtonOptions, EmojiRecord, EmojiVariation } from './types';
+
 const CLASS_EMOJI = 'emoji-picker__emoji';
 
 export class Emoji {
-  constructor(emoji, showVariants, showPreview, events, options) {
-    this.emoji = emoji;
-    this.showVariants = showVariants;
-    this.showPreview = showPreview;
-    this.events = events;
-    this.options = options;
+  private emojiButton: HTMLElement;
+
+  constructor(private emoji: EmojiRecord | EmojiVariation, private showVariants: boolean, private showPreview: boolean, private events: Emitter, private options: EmojiButtonOptions) {
   }
 
-  render() {
+  render(): HTMLElement {
     this.emojiButton = createElement('button', CLASS_EMOJI);
     this.emojiButton.innerHTML = this.emoji.e;
     this.emojiButton.tabIndex = -1;
@@ -27,10 +28,10 @@ export class Emoji {
     return this.emojiButton;
   }
 
-  onEmojiClick() {
+  onEmojiClick(): void {
     // TODO move this side effect out of Emoji, make the recent module listen for event
     if (
-      (!this.emoji.v || !this.showVariants || !this.options.showVariants) &&
+      (!(this.emoji as EmojiRecord).v || !this.showVariants || !this.options.showVariants) &&
       this.options.showRecents
     ) {
       save(this.emoji, this.options);
@@ -43,13 +44,13 @@ export class Emoji {
     });
   }
 
-  onEmojiHover() {
+  onEmojiHover(): void {
     if (this.showPreview) {
       this.events.emit(SHOW_PREVIEW, this.emoji);
     }
   }
 
-  onEmojiLeave() {
+  onEmojiLeave(): void {
     if (this.showPreview) {
       this.events.emit(HIDE_PREVIEW);
     }

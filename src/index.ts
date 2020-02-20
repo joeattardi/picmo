@@ -1,8 +1,8 @@
 import '../css/emoji-button.css';
 
-import createFocusTrap from 'focus-trap';
-import Emitter from 'tiny-emitter';
-import { createPopper } from '@popperjs/core';
+import createFocusTrap, { FocusTrap } from 'focus-trap';
+import { TinyEmitter as Emitter } from 'tiny-emitter';
+import { createPopper, Instance as Popper } from '@popperjs/core';
 
 import emojiData from './data/emoji';
 
@@ -21,10 +21,12 @@ import { VariantPopup } from './variantPopup';
 
 import { i18n } from './i18n';
 
+import { EmojiButtonOptions, I18NStrings } from './types';
+
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 
-const DEFAULT_OPTIONS = {
+const DEFAULT_OPTIONS: EmojiButtonOptions = {
   position: 'right-start',
   autoHide: true,
   autoFocusSearch: true,
@@ -37,7 +39,22 @@ const DEFAULT_OPTIONS = {
 };
 
 export default class EmojiButton {
-  constructor(options = {}) {
+  pickerVisible: boolean;
+
+  private events = new Emitter();
+  private publicEvents = new Emitter();
+  private options: EmojiButtonOptions;
+  private i18n: I18NStrings;
+
+  private pickerEl: HTMLElement;
+  private focusTrap: FocusTrap;
+
+  private hideInProgress: boolean;
+  private destroyTimeout: NodeJS.Timeout;
+
+  private popper: Popper;
+
+  constructor(options: EmojiButtonOptions = {}) {
     this.pickerVisible = false;
 
     this.options = { ...DEFAULT_OPTIONS, ...options };
@@ -52,27 +69,24 @@ export default class EmojiButton {
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
-
-    this.events = new Emitter();
-    this.publicEvents = new Emitter();
   }
 
-  on(event, callback) {
+  on(event: string, callback: Function): void {
     this.publicEvents.on(event, callback);
   }
 
-  off(event, callback) {
+  off(event: string, callback: Function): void {
     this.publicEvents.off(event, callback);
   }
 
-  buildPicker() {
+  buildPicker(): void {
     this.pickerEl = createElement('div', CLASS_PICKER);
-    this.focusTrap = createFocusTrap(this.pickerEl, {
+    this.focusTrap = createFocusTrap(<HTMLElement> this.pickerEl, {
       clickOutsideDeactivates: true
     });
 
     if (this.options.zIndex) {
-      this.pickerEl.style.zIndex = this.options.zIndex;
+      this.pickerEl.style.zIndex = this.options.zIndex + '';
     }
 
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
@@ -82,8 +96,8 @@ export default class EmojiButton {
         this.events,
         this.i18n,
         this.options,
-        emojiData,
-        this.options.autoFocusSearch
+        emojiData.emojiData,
+        this.options.autoFocusSearch || true
       ).render();
       this.pickerEl.appendChild(searchContainer);
     }
@@ -106,7 +120,7 @@ export default class EmojiButton {
       }
     });
 
-    this.events.on(SHOW_SEARCH_RESULTS, searchResults => {
+    this.events.on(SHOW_SEARCH_RESULTS, (searchResults: HTMLElement) => {
       empty(pickerContent);
       searchResults.classList.add('search-results');
       pickerContent.appendChild(searchResults);
@@ -116,15 +130,18 @@ export default class EmojiButton {
       this.pickerEl.appendChild(new EmojiPreview(this.events).render());
     }
 
-    let variantPopup;
-    this.events.on(EMOJI, ({ emoji, showVariants }) => {
+    let variantPopup: HTMLElement | null;
+    this.events.on(EMOJI, ({ emoji, showVariants }: { emoji: any, showVariants: boolean }) => {
       if (emoji.v && showVariants && this.options.showVariants) {
         variantPopup = new VariantPopup(
           this.events,
           emoji,
           this.options
         ).render();
-        this.pickerEl.appendChild(variantPopup);
+
+        if (variantPopup) {
+          this.pickerEl.appendChild(variantPopup);
+        }
       } else {
         if (variantPopup && variantPopup.parentNode === this.pickerEl) {
           this.pickerEl.removeChild(variantPopup);
@@ -137,11 +154,15 @@ export default class EmojiButton {
     });
 
     this.events.on(HIDE_VARIANT_POPUP, () => {
-      this.pickerEl.removeChild(variantPopup);
+      if (variantPopup) {
+        this.pickerEl.removeChild(variantPopup);
+      }
       variantPopup = null;
     });
 
-    this.options.rootElement.appendChild(this.pickerEl);
+    if (this.options.rootElement) {
+      this.options.rootElement.appendChild(this.pickerEl);
+    }
 
     setTimeout(() => {
       document.addEventListener('click', this.onDocumentClick);
@@ -149,20 +170,22 @@ export default class EmojiButton {
     });
   }
 
-  onDocumentClick(event) {
-    if (!this.pickerEl.contains(event.target)) {
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.pickerEl.contains(<Node> event.target)) {
       this.hidePicker();
     }
   }
 
-  destroyPicker() {
-    this.options.rootElement.removeChild(this.pickerEl);
-    this.popper.destroy();
-    this.pickerEl.style.transition = '';
-    this.hideInProgress = false;
+  destroyPicker(): void {
+    if (this.options.rootElement) {
+      this.options.rootElement.removeChild(this.pickerEl);
+      this.popper.destroy();
+      this.pickerEl.style.transition = '';
+      this.hideInProgress = false;
+    }
   }
 
-  hidePicker() {
+  hidePicker(): void {
     this.focusTrap.deactivate();
     this.pickerEl.classList.remove('visible');
     this.pickerVisible = false;
@@ -176,7 +199,7 @@ export default class EmojiButton {
     document.removeEventListener('keydown', this.onDocumentKeydown);
   }
 
-  showPicker(referenceEl, options = {}) {
+  showPicker(referenceEl: HTMLElement, options: EmojiButtonOptions = {}): void {
     if (this.hideInProgress) {
       clearTimeout(this.destroyTimeout);
       this.destroyPicker();
@@ -192,7 +215,7 @@ export default class EmojiButton {
     requestAnimationFrame(() => this.pickerEl.classList.add('visible'));
   }
 
-  onDocumentKeydown(event) {
+  onDocumentKeydown(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
       this.hidePicker();
     }

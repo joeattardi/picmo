@@ -1,4 +1,6 @@
-import emojiData, { categories } from './data/emoji.js';
+import { TinyEmitter as Emitter } from 'tiny-emitter';
+
+import emojiData from './data/emoji';
 
 import { EmojiContainer } from './emojiContainer';
 import { EMOJI, HIDE_VARIANT_POPUP } from './events';
@@ -6,6 +8,7 @@ import { load } from './recent';
 import { i18n as defaultI18n } from './i18n';
 import * as icons from './icons';
 import { createElement } from './util';
+import { EmojiRecord, I18NStrings, EmojiButtonOptions, I18NCategory } from './types.js';
 
 const CLASS_ACTIVE_TAB = 'active';
 const CLASS_TABS_CONTAINER = 'emoji-picker__tabs-container';
@@ -15,8 +18,10 @@ const CLASS_TAB_BODY = 'emoji-picker__tab-body';
 
 const EMOJIS_PER_ROW = 8;
 
-const emojiCategories = {};
-emojiData.forEach(emoji => {
+const categories = emojiData.categories;
+
+const emojiCategories: { [key: string] : EmojiRecord[]} = {};
+emojiData.emojiData.forEach(emoji => {
   let categoryList = emojiCategories[categories[emoji.c]];
   if (!categoryList) {
     categoryList = emojiCategories[categories[emoji.c]] = [];
@@ -25,7 +30,7 @@ emojiData.forEach(emoji => {
   categoryList.push(emoji);
 });
 
-const categoryIcons = {
+const categoryIcons: { [key in I18NCategory]: string } = {
   smileys: icons.smile,
   animals: icons.cat,
   food: icons.coffee,
@@ -33,19 +38,25 @@ const categoryIcons = {
   travel: icons.building,
   objects: icons.lightbulb,
   symbols: icons.music,
-  flags: icons.flag
+  flags: icons.flag,
+  recents: icons.history
 };
 
 export class Tabs {
-  constructor(events, i18n, options) {
-    this.events = events;
-    this.i18n = i18n;
-    this.options = options;
+  private activeTab: number;
 
+  private tabBodies: TabBody[];
+  private tabs: Tab[];
+  private tabsList: HTMLElement;
+  private tabBodyContainer: HTMLElement;
+
+  private focusedEmojiIndex = 0;
+
+  constructor(private events: Emitter, private i18n: I18NStrings, private options: EmojiButtonOptions) {
     this.setActiveTab = this.setActiveTab.bind(this);
   }
 
-  setActiveTab(index, animate = true) {
+  setActiveTab(index: number, animate = true) {
     if (index === this.activeTab) {
       return;
     }
@@ -60,18 +71,22 @@ export class Tabs {
       const currentActiveTabBody = this.tabBodies[currentActiveTab].container;
       currentActiveTabBody
         .querySelectorAll('.emoji-picker__emoji')
-        .forEach(emoji => (emoji.tabIndex = -1));
+        .forEach((emoji: Element) => ((<HTMLElement>emoji).tabIndex = -1));
 
       const activeEmojiContainer = newActiveTabBody.querySelector(
         '.emoji-picker__emojis'
       );
-      activeEmojiContainer.scrollTop = 0;
-      const firstEmoji = activeEmojiContainer.querySelector(
-        '.emoji-picker__emoji'
-      );
-      if (firstEmoji) {
-        firstEmoji.tabIndex = 0;
+
+      if (activeEmojiContainer) {
+        activeEmojiContainer.scrollTop = 0;
+        const firstEmoji = activeEmojiContainer.querySelector(
+          '.emoji-picker__emoji'
+        );
+        if (firstEmoji) {
+          (<HTMLElement>firstEmoji).tabIndex = 0;
+        }
       }
+
       this.focusedEmojiIndex = 0;
 
       if (animate) {
@@ -89,10 +104,10 @@ export class Tabs {
   }
 
   transitionTabs(
-    newActiveTabBody,
-    currentActiveTabBody,
-    newTranslate,
-    currentTranslate
+    newActiveTabBody: HTMLElement,
+    currentActiveTabBody: HTMLElement,
+    newTranslate: number,
+    currentTranslate: number
   ) {
     requestAnimationFrame(() => {
       newActiveTabBody.style.transition = 'none';
@@ -118,22 +133,22 @@ export class Tabs {
       '.emoji-picker__emoji'
     );
     if (firstEmoji) {
-      firstEmoji.tabIndex = 0;
+      (<HTMLElement>firstEmoji).tabIndex = 0;
     }
     this.focusedEmojiIndex = 0;
 
     return tabsContainer;
   }
 
-  setFocusedEmoji(index) {
+  setFocusedEmoji(index: number) {
     const emojis = this.tabBodies[this.activeTab].content.querySelectorAll(
       '.emoji-picker__emoji'
     );
-    const currentFocusedEmoji = emojis[this.focusedEmojiIndex];
+    const currentFocusedEmoji = <HTMLElement> emojis[this.focusedEmojiIndex];
     currentFocusedEmoji.tabIndex = -1;
 
     this.focusedEmojiIndex = index;
-    const newFocusedEmoji = emojis[this.focusedEmojiIndex];
+    const newFocusedEmoji = <HTMLElement> emojis[this.focusedEmojiIndex];
     newFocusedEmoji.tabIndex = 0;
     newFocusedEmoji.focus();
   }
@@ -173,11 +188,11 @@ export class Tabs {
     this.tabBodyContainer = createElement('div');
 
     this.tabBodies = Object.keys(categoryIcons).map(
-      (category, index) =>
+      (category: string, index: number) =>
         new TabBody(
           this.i18n.categories[category] || defaultI18n.categories[category],
           new EmojiContainer(
-            emojiCategories[category],
+            emojiCategories[category] || [],
             true,
             this.events,
             this.options
@@ -214,8 +229,8 @@ export class Tabs {
       setTimeout(() => this.setFocusedEmoji(this.focusedEmojiIndex));
     });
 
-    this.events.on(EMOJI, ({ button }) => {
-      if (button.parentElement.classList.contains('emoji-picker__emojis')) {
+    this.events.on(EMOJI, ({ button }: { button: HTMLButtonElement }) => {
+      if (button.parentElement && button.parentElement.classList.contains('emoji-picker__emojis')) {
         this.setFocusedEmoji(
           Array.prototype.indexOf.call(button.parentElement.children, button)
         );
@@ -247,7 +262,7 @@ export class Tabs {
         setTimeout(() => {
           this.tabBodyContainer.replaceChild(
             newRecentsEl,
-            this.tabBodyContainer.firstChild
+            <Node> this.tabBodyContainer.firstChild
           );
 
           this.tabBodies[0] = newRecents;
@@ -267,11 +282,9 @@ export class Tabs {
 }
 
 class Tab {
-  constructor(icon, index, setActiveTab) {
-    this.icon = icon;
-    this.index = index;
-    this.setActiveTab = setActiveTab;
-  }
+  tab: HTMLElement;
+
+  constructor(private icon: string, private index: number, private setActiveTab: Function) {}
 
   render() {
     this.tab = createElement('li', CLASS_TAB);
@@ -282,7 +295,7 @@ class Tab {
     return this.tab;
   }
 
-  setActive(active) {
+  setActive(active: boolean) {
     if (active) {
       this.tab.classList.add(CLASS_ACTIVE_TAB);
       this.tab.tabIndex = 0;
@@ -295,11 +308,9 @@ class Tab {
 }
 
 class TabBody {
-  constructor(category, content, index) {
-    this.category = category;
-    this.content = content;
-    this.index = index;
-  }
+  constructor(private category: string, public content: HTMLElement, private index: number) {}
+
+  container: HTMLElement;
 
   render() {
     this.container = createElement('div', CLASS_TAB_BODY);
@@ -313,7 +324,7 @@ class TabBody {
     return this.container;
   }
 
-  setActive(active) {
+  setActive(active: boolean) {
     if (active) {
       this.container.classList.add(CLASS_ACTIVE_TAB);
     } else {

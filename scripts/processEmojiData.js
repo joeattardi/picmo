@@ -58,7 +58,5 @@ const newEmojiData = rawData.map(emojiItem => {
 
 writeFileSync(
   'src/data/emoji.js',
-  `export const categories = ${JSON.stringify(
-    categories.map(category => categoryKeys[category])
-  )}; export default ${JSON.stringify(newEmojiData)};`
+  `export default { categories: ${JSON.stringify(categories.map(category => categoryKeys[category]))}, emojiData: ${JSON.stringify(newEmojiData)}}`
 );
