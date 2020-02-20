@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/solarized-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
     <script src="index.js"></script>
     <title>Emoji Button</title>
@@ -35,17 +35,17 @@
     <section id="usage">
       <h1>Usage</h1>
       <pre><code class="javascript">
-var EmojiButton = require('@joeattardi/emoji-button');
+import EmojiButton from '@joeattardi/emoji-button';
 
 window.addEventListener('DOMContentLoaded', function () {
-  var button = document.querySelector('#emoji-button');
-  var picker = new EmojiButton();
+  const button = document.querySelector('#emoji-button');
+  const picker = new EmojiButton();
 
-  picker.on('emoji', function (emoji) {
+  picker.on('emoji', emoji => {
     document.querySelector('input').value += emoji;
   });
 
-  button.addEventListener('click', function () {
+  button.addEventListener('click', () => {
     picker.pickerVisible ? picker.hidePicker() : picker.showPicker(button);
   });
 });        
