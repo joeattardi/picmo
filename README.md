@@ -3,10 +3,9 @@ Vanilla JavaScript emoji picker 😎
 
 ![Screenshot](https://user-images.githubusercontent.com/219285/70683330-03917280-1c70-11ea-83f1-c2795e308fbe.png)
 
-
 ## Demo
 
-[https://joeattardi.github.io/emoji-button](https://joeattardi.github.io/emoji-button)
+[https://emoji-button.js.org](https://emoji-button.js.org)
 
 ## Features
 
@@ -18,11 +17,11 @@ Vanilla JavaScript emoji picker 😎
 
 ## Download
 
-[emoji-button-2.8.0.min.js](https://github.com/joeattardi/emoji-button/releases/download/v2.8.0/emoji-button-2.8.0.min.js)
+[emoji-button-2.8.2.min.js](https://github.com/joeattardi/emoji-button/releases/download/v2.8.2/emoji-button-2.8.2.min.js)
 
 ## Installation
 
-    npm install --save @joeattardi/emoji-button
+    npm install @joeattardi/emoji-button
 
 ## Basic usage
 
@@ -53,7 +52,7 @@ Creates an Emoji Button emoji picker.
 
 * `autoFocusSearch`: (boolean, default: `true`) Whether or not to auto-focus the search field when the picker is shown.
 
-* `emojiVersion`: (string, default: `'12.1`) The Emoji version to use. This determines which emojis are available. Supported versions are:
+* `emojiVersion`: (string, default: `'12.1'`) The Emoji version to use. This determines which emojis are available. Supported versions are:
   * `0.0`
   * `2.0`
   * `4.0`
