@@ -1,3 +1,5 @@
+hljs.initHighlightingOnLoad();
+
 var EmojiButton = require('@joeattardi/emoji-button');
 
 window.addEventListener('DOMContentLoaded', function () {

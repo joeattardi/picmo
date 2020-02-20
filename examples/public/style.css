@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
 
 body {
   font-family: 'Roboto', sans-serif;
-  text-align: center;
+  margin: 0;
+  background: #33789C;
 }
 
 #emoji-button {
@@ -40,4 +42,56 @@ body {
 
 h1 {
   margin: 0;
+  font-family: 'Acme', sans-serif;
+  text-align: center;
+}
+
+header {
+  background: url('circle-blues.png');
+  color: #FFFFFF;
+  padding: 1rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3rem;
+}
+
+header a {
+  color: #FFFFFF;
+}
+
+section {
+  padding: 1rem;
+  text-align: center;
+}
+
+pre {
+  text-align: left;
+  font-size: 1.2rem;
+}
+
+pre code.hljs {
+  border-radius: 3px;
+}
+
+hr {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+#installation {
+  background: #33789C;
+  padding-top: 2rem;
+}
+
+#installation .code {
+  display: inline-block;
+}
+
+#demo {
+  background: #33789C;
+}
+
+#usage {
+  background: #33789C;
 }
