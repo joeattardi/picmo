@@ -84,7 +84,7 @@ export default class EmojiButton {
     this.publicEvents.off(event, callback);
   }
 
-  buildPicker(): void {
+  private buildPicker(): void {
     this.pickerEl = createElement('div', CLASS_PICKER);
     this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
       clickOutsideDeactivates: true
@@ -188,13 +188,13 @@ export default class EmojiButton {
     });
   }
 
-  onDocumentClick(event: MouseEvent): void {
+  private onDocumentClick(event: MouseEvent): void {
     if (!this.pickerEl.contains(event.target as Node)) {
       this.hidePicker();
     }
   }
 
-  destroyPicker(): void {
+  private destroyPicker(): void {
     if (this.options.rootElement) {
       this.options.rootElement.removeChild(this.pickerEl);
       this.popper.destroy();
