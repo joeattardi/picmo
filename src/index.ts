@@ -233,8 +233,13 @@ export default class EmojiButton {
     requestAnimationFrame(() => this.pickerEl.classList.add('visible'));
   }
 
-  togglePicker(referenceEl: HTMLElement, options: EmojiButtonOptions = {}): void {
-    this.pickerVisible ? this.hidePicker() : this.showPicker(referenceEl, options);   
+  togglePicker(
+    referenceEl: HTMLElement,
+    options: EmojiButtonOptions = {}
+  ): void {
+    this.pickerVisible
+      ? this.hidePicker()
+      : this.showPicker(referenceEl, options);
   }
 
   onDocumentKeydown(event: KeyboardEvent): void {

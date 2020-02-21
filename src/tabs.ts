@@ -44,7 +44,7 @@ const categoryIcons: { [key in I18NCategory]: string } = {
   travel: icons.building,
   objects: icons.lightbulb,
   symbols: icons.music,
-  flags: icons.flag,
+  flags: icons.flag
 };
 
 class Tab {
@@ -224,14 +224,16 @@ export class Tabs {
 
   createTabs(): HTMLElement {
     this.tabsList = createElement('ul', CLASS_TABS);
-    this.tabs = Object.keys(categoryIcons).slice(1).map(
-      (category, index) =>
-        new Tab(
-          categoryIcons[category],
-          this.options.showRecents ? index + 1 : index,
-          this.setActiveTab
-        )
-    );
+    this.tabs = Object.keys(categoryIcons)
+      .slice(1)
+      .map(
+        (category, index) =>
+          new Tab(
+            categoryIcons[category],
+            this.options.showRecents ? index + 1 : index,
+            this.setActiveTab
+          )
+      );
 
     if (this.options.showRecents) {
       const recentTab = new Tab(icons.history, 0, this.setActiveTab);
@@ -256,19 +258,21 @@ export class Tabs {
   createTabBodies(): HTMLElement {
     this.tabBodyContainer = createElement('div');
 
-    this.tabBodies = Object.keys(categoryIcons).slice(1).map(
-      (category: string, index: number) =>
-        new TabBody(
-          this.i18n.categories[category] || defaultI18n.categories[category],
-          new EmojiContainer(
-            emojiCategories[category] || [],
-            true,
-            this.events,
-            this.options
-          ).render(),
-          this.options.showRecents ? index + 1 : index
-        )
-    );
+    this.tabBodies = Object.keys(categoryIcons)
+      .slice(1)
+      .map(
+        (category: string, index: number) =>
+          new TabBody(
+            this.i18n.categories[category] || defaultI18n.categories[category],
+            new EmojiContainer(
+              emojiCategories[category] || [],
+              true,
+              this.events,
+              this.options
+            ).render(),
+            this.options.showRecents ? index + 1 : index
+          )
+      );
 
     this.tabBodyContainer.addEventListener('keydown', event => {
       const emojis = this.tabBodies[this.activeTab].content.querySelectorAll(
