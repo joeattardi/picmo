@@ -36,6 +36,7 @@ emojiData.emojiData.forEach(emoji => {
 });
 
 const categoryIcons: { [key in I18NCategory]: string } = {
+  recents: icons.history,
   smileys: icons.smile,
   animals: icons.cat,
   food: icons.coffee,
@@ -44,7 +45,6 @@ const categoryIcons: { [key in I18NCategory]: string } = {
   objects: icons.lightbulb,
   symbols: icons.music,
   flags: icons.flag,
-  recents: icons.history
 };
 
 class Tab {
@@ -224,7 +224,7 @@ export class Tabs {
 
   createTabs(): HTMLElement {
     this.tabsList = createElement('ul', CLASS_TABS);
-    this.tabs = Object.keys(categoryIcons).map(
+    this.tabs = Object.keys(categoryIcons).slice(1).map(
       (category, index) =>
         new Tab(
           categoryIcons[category],
@@ -256,7 +256,7 @@ export class Tabs {
   createTabBodies(): HTMLElement {
     this.tabBodyContainer = createElement('div');
 
-    this.tabBodies = Object.keys(categoryIcons).map(
+    this.tabBodies = Object.keys(categoryIcons).slice(1).map(
       (category: string, index: number) =>
         new TabBody(
           this.i18n.categories[category] || defaultI18n.categories[category],
