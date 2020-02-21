@@ -19,6 +19,6 @@
     "rollup-plugin-serve": "^1.0.1"
   },
   "dependencies": {
-    "@joeattardi/emoji-button": "2.8.2"
+    "@joeattardi/emoji-button": "2.8.3"
   }
 }
