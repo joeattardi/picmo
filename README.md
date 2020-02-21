@@ -21,9 +21,15 @@ Vanilla JavaScript emoji picker 😎
 
 ## Installation
 
+If you are using a package manager like `yarn` or `npm`, you can install Emoji Button directly from the npm registry:
+
     npm install @joeattardi/emoji-button
 
+You can also download the minified JavaScript file and add it to your page via a `<script>` tag. This will create a global variable `EmojiButton`, which you can use to instantiate a picker.
+
 ## Basic usage
+
+The picker is shown by calling `showPicker` or `togglePicker` on the `EmojiButton` instance. When the user selects an emoji, the picker will emit the `emoji` event, which you can listen for and then handle the emoji according to your application's needs.
 
 ```javascript
   import EmojiButton from '@joeattardi/emoji-button';
@@ -36,7 +42,7 @@ Vanilla JavaScript emoji picker 😎
   });
 
   button.addEventListener('click', () => {
-    picker.pickerVisible ? picker.hidePicker() : picker.showPicker(button);
+    picker.togglePicker(button);
   });
 ```
 
@@ -167,4 +173,4 @@ The easiest way to hack on Emoji Button is to use the examples page.
 
 ### Open the page
 
-http://localhost:5000
+http://localhost:10001

@@ -11,6 +11,6 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
   button.addEventListener('click', function () {
-    picker.pickerVisible ? picker.hidePicker() : picker.showPicker(button);
+    picker.togglePicker(button);
   });
 });
