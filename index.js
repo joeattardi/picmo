@@ -3402,7 +3402,8 @@ var app = (function () {
 	            this.options = options;
 	            this.emojis = emojis.filter(function (e) {
 	                return !e.ver ||
-	                    parseFloat(e.ver) <= parseFloat(options.emojiVersion);
+	                    parseFloat(e.ver) <=
+	                        parseFloat(options.emojiVersion);
 	            });
 	        }
 	        EmojiContainer.prototype.render = function () {
@@ -3598,6 +3599,7 @@ var app = (function () {
 	        categoryList.push(emoji);
 	    });
 	    var categoryIcons = {
+	        recents: history,
 	        smileys: smile,
 	        animals: cat,
 	        food: coffee,
@@ -3605,8 +3607,7 @@ var app = (function () {
 	        travel: building,
 	        objects: lightbulb,
 	        symbols: music,
-	        flags: flag,
-	        recents: history
+	        flags: flag
 	    };
 	    var Tab = /** @class */ (function () {
 	        function Tab(icon, index, setActiveTab) {
@@ -3740,7 +3741,9 @@ var app = (function () {
 	        Tabs.prototype.createTabs = function () {
 	            var _this = this;
 	            this.tabsList = createElement('ul', CLASS_TABS);
-	            this.tabs = Object.keys(categoryIcons).map(function (category, index) {
+	            this.tabs = Object.keys(categoryIcons)
+	                .slice(1)
+	                .map(function (category, index) {
 	                return new Tab(categoryIcons[category], _this.options.showRecents ? index + 1 : index, _this.setActiveTab);
 	            });
 	            if (this.options.showRecents) {
@@ -3761,7 +3764,9 @@ var app = (function () {
 	        Tabs.prototype.createTabBodies = function () {
 	            var _this = this;
 	            this.tabBodyContainer = createElement('div');
-	            this.tabBodies = Object.keys(categoryIcons).map(function (category, index) {
+	            this.tabBodies = Object.keys(categoryIcons)
+	                .slice(1)
+	                .map(function (category, index) {
 	                return new TabBody(_this.i18n.categories[category] || i18n.categories[category], new EmojiContainer(emojiCategories[category] || [], true, _this.events, _this.options).render(), _this.options.showRecents ? index + 1 : index);
 	            });
 	            this.tabBodyContainer.addEventListener('keydown', function (event) {
@@ -4032,6 +4037,12 @@ var app = (function () {
 	            this.focusTrap.activate();
 	            requestAnimationFrame(function () { return _this.pickerEl.classList.add('visible'); });
 	        };
+	        EmojiButton.prototype.togglePicker = function (referenceEl, options) {
+	            if (options === void 0) { options = {}; }
+	            this.pickerVisible
+	                ? this.hidePicker()
+	                : this.showPicker(referenceEl, options);
+	        };
 	        EmojiButton.prototype.onDocumentKeydown = function (event) {
 	            if (event.key === 'Escape') {
 	                this.hidePicker();
@@ -4058,7 +4069,7 @@ var app = (function () {
 	  });
 
 	  button.addEventListener('click', function () {
-	    picker.pickerVisible ? picker.hidePicker() : picker.showPicker(button);
+	    picker.togglePicker(button);
 	  });
 	});
 
