@@ -87,9 +87,7 @@ export default class EmojiButton {
 
   private buildPicker(): void {
     this.pickerEl = createElement('div', CLASS_PICKER);
-    if (this.options.theme === 'dark') {
-      this.pickerEl.classList.add('dark');
-    }
+    this.pickerEl.classList.add(this.options.theme as string);
 
     this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
       clickOutsideDeactivates: true

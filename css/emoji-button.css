@@ -259,3 +259,61 @@
 .emoji-picker.dark .emoji-picker__variant-popup-close-button {
   color: #666666;
 }
+
+@media (prefers-color-scheme: dark) {
+  .emoji-picker.auto {
+    background: #333333;
+    color: #FFFFFF;
+    border-color: #666666;
+  }
+
+  .emoji-picker.auto .emoji-picker__preview {
+    border-top-color: #666666;
+  }
+
+  .emoji-picker.auto .emoji-picker__preview-name {
+    color: #FFFFFF;
+  }
+
+  .emoji-picker.auto .emoji-picker__tab {
+    color: #CCCCCC;
+  }
+
+  .emoji-picker.auto .emoji-picker__tab:hover {
+    color: #000000;
+  }
+
+  .emoji-picker.auto .emoji-picker__tab-body h2 {
+    color: #FFFFFF;
+  }
+
+  .emoji-picker.auto .emoji-picker__emoji:focus, .emoji-picker.auto .emoji-picker__emoji:hover {
+    background: #666666;
+  }
+
+  .emoji-picker.auto .emoji-picker__search {
+    background: #666666;
+    color: #FFFFFF;
+    border-color: #999999;
+  }
+  
+  .emoji-picker.auto .emoji-picker__search::placeholder {
+    color: #FFFFFF;
+  }
+
+  .emoji-picker.auto .emoji-picker__search:focus {
+    border-color: #DBE5f9;
+  }
+
+  .emoji-picker.auto .emoji-picker__search-not-found {
+    color: #999999;
+  }
+
+  .emoji-picker.auto .emoji-picker__variant-popup {
+    background: #333333;
+  }
+
+  .emoji-picker.auto .emoji-picker__variant-popup-close-button {
+    color: #666666;
+  }
+}
