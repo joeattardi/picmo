@@ -40,7 +40,8 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   showRecents: true,
   showVariants: true,
   recentsCount: 50,
-  emojiVersion: '12.1'
+  emojiVersion: '12.1',
+  theme: 'light'
 };
 
 export default class EmojiButton {
@@ -86,6 +87,10 @@ export default class EmojiButton {
 
   private buildPicker(): void {
     this.pickerEl = createElement('div', CLASS_PICKER);
+    if (this.options.theme === 'dark') {
+      this.pickerEl.classList.add('dark');
+    }
+
     this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
       clickOutsideDeactivates: true
     });

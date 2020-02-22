@@ -9,6 +9,12 @@
   overflow: hidden;
 }
 
+.emoji-picker.dark {
+  background: #333333;
+  color: #FFFFFF;
+  border-color: #666666;
+}
+
 .emoji-picker.visible {
   opacity: 1;
 }
@@ -29,6 +35,10 @@
   align-items: center;
 }
 
+.emoji-picker.dark .emoji-picker__preview {
+  border-top-color: #666666;
+}
+
 .emoji-picker__preview-emoji {
   font-size: 2em;
   margin-right: 0.25em;
@@ -40,6 +50,10 @@
   font-size: 0.85em;
   overflow-wrap: break-word;
   word-break: break-all;
+}
+
+.emoji-picker.dark .emoji-picker__preview-name {
+  color: #FFFFFF;
 }
 
 .emoji-picker__tabs {
@@ -62,8 +76,16 @@
   transition: background 0.25s;
 }
 
+.emoji-picker.dark .emoji-picker__tab {
+  color: #CCCCCC;
+}
+
 .emoji-picker__tab:hover {
   background: #E8F4F9;
+}
+
+.emoji-picker.dark .emoji-picker__tab:hover {
+  color: #000000;
 }
 
 .emoji-picker__tab svg {
@@ -87,6 +109,10 @@
   color: #333333;
   margin: 0;
   text-align: left;
+}
+
+.emoji-picker.dark .emoji-picker__tab-body h2 {
+  color: #FFFFFF;
 }
 
 .emoji-picker__tab-body.active {
@@ -126,6 +152,10 @@
   background: #E8F4F9;
 }
 
+.emoji-picker.dark .emoji-picker__emoji:focus, .emoji-picker.dark .emoji-picker__emoji:hover {
+  background: #666666;
+}
+
 .emoji-picker__search-container {
   margin: 0.5em;
   position: relative;
@@ -144,8 +174,22 @@
   outline: none;
 }
 
+.emoji-picker.dark .emoji-picker__search {
+  background: #666666;
+  color: #FFFFFF;
+  border-color: #999999;
+}
+
+.emoji-picker.dark .emoji-picker__search::placeholder {
+  color: #FFFFFF;
+}
+
 .emoji-picker__search:focus {
   border: 1px solid #4F81E5;
+}
+
+.emoji-picker.dark .emoji-picker__search:focus {
+  border-color: #DBE5f9;
 }
 
 .emoji-picker__search-icon {
@@ -161,6 +205,10 @@
   color: #666666;
   text-align: center;
   margin-top: 2em;
+}
+
+.emoji-picker.dark .emoji-picker__search-not-found {
+  color: #999999;
 }
 
 .emoji-picker__search-not-found-icon {
@@ -191,6 +239,10 @@
   text-align: center;
 }
 
+.emoji-picker.dark .emoji-picker__variant-popup {
+  background: #333333;
+}
+
 .emoji-picker__variant-popup-close-button {
   cursor: pointer;
   background: transparent;
@@ -202,4 +254,8 @@
   height: 1.5em;
   width: 1.5em;
   font-size: 1.5em;
+}
+
+.emoji-picker.dark .emoji-picker__variant-popup-close-button {
+  color: #666666;
 }

@@ -24,7 +24,10 @@ declare namespace EmojiButton {
     emojiVersion?: EmojiVersion;
     i18n?: I18NStrings;
     zIndex?: number;
+    theme?: EmojiTheme;
   }
+
+  export type EmojiTheme = 'dark' | 'light' | 'auto';
 
   export type Placement =
   | 'auto'

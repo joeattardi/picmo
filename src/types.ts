@@ -44,7 +44,10 @@ export interface EmojiButtonOptions {
   emojiVersion?: EmojiVersion;
   i18n?: I18NStrings;
   zIndex?: number;
+  theme?: EmojiTheme;
 }
+
+export type EmojiTheme = 'dark' | 'light' | 'auto';
 
 export type EmojiVersion = '0.0' | '2.0' | '4.0' | '5.0' | '11.0' | '12.1';
 
