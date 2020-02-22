@@ -5,6 +5,7 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   background: #33789C;
+  color: #FFFFFF;
 }
 
 #emoji-button {
@@ -44,6 +45,7 @@ h1 {
   margin: 0;
   font-family: 'Acme', sans-serif;
   text-align: center;
+  color: #FFFFFF;
 }
 
 header {
@@ -94,4 +96,23 @@ hr {
 
 #usage {
   background: #33789C;
+}
+
+.button-link {
+  margin: 1rem;
+  background: #FFFFFF;
+  color: #33789C;
+  font-weight: bold;
+  font-size: 1.2rem;
+  box-shadow: 0px 4px 13px 3px #333333;
+  padding: 0.5rem 1rem;
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+.button-link:hover {
+  background: #33789C;
+  color: #FFFFFF;
 }

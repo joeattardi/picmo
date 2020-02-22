@@ -14,16 +14,26 @@
     <header>
       <div id="emoji-header">😎</div>
       <h1>Emoji Button</h1>
-      <p>Vanilla JavaScript emoji picker</p>
+      <p>Vanilla JavaScript emoji picker component</p>
       <div>
         <a href="https://github.com/joeattardi/emoji-button"><img src="https://img.shields.io/github/stars/joeattardi/emoji-button?style=social" /></a>&nbsp;
         <a href="https://www.npmjs.com/package/@joeattardi/emoji-button"><img src="https://img.shields.io/npm/v/@joeattardi/emoji-button" /></a>
       </div>
+      <a class="button-link" href="https://github.com/joeattardi/emoji-button">GitHub Project/Documentation</a>
     </header>
     <section id="installation">
       <h1>Installation</h1>
+      <div>Via npm:</div>
       <div class="code">
         <pre><code class="bash">npm install @joeattardi/emoji-button</code></pre>
+      </div>
+      <div>Via yarn:</div>
+      <div class="code">
+        <pre><code class="bash">yarn add @joeattardi/emoji-button</code></pre>
+      </div>
+      <div>Via jsDelivr CDN:</div>
+      <div class="code">
+        <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@2.9.0/dist/index.min.js"&gt;&lt;/script&gt;</code></pre>
       </div>
       <hr />
     </section>
@@ -34,7 +44,7 @@
       <hr />
     </section>
     <section id="usage">
-      <h1>Usage</h1>
+      <h1>Basic Usage</h1>
       <pre><code class="javascript">
 import EmojiButton from '@joeattardi/emoji-button';
 
@@ -47,7 +57,7 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 
   button.addEventListener('click', () => {
-    picker.pickerVisible ? picker.hidePicker() : picker.showPicker(button);
+    picker.togglePicker(button);
   });
 });        
       </code></pre>
