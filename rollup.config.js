@@ -3,6 +3,7 @@ const postcss = require('rollup-plugin-postcss');
 const resolve = require('rollup-plugin-node-resolve');
 const replace = require('@rollup/plugin-replace');
 const typescript = require('@rollup/plugin-typescript');
+const { terser } = require('rollup-plugin-terser');
 
 const production = process.env.NODE_ENV === 'production';
 
@@ -22,6 +23,7 @@ module.exports = {
     }),
     typescript(),
     resolve(),
-    commonjs()
+    commonjs(),
+    production && terser()
   ]
 };
