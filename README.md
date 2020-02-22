@@ -1,7 +1,8 @@
 # Emoji Button
 Vanilla JavaScript emoji picker 😎
 
-![Screenshot](https://user-images.githubusercontent.com/219285/70683330-03917280-1c70-11ea-83f1-c2795e308fbe.png)
+![Screenshot](https://user-images.githubusercontent.com/219285/75085011-b0029700-54f2-11ea-9369-de8f190b63a5.png)
+![Screenshot](https://user-images.githubusercontent.com/219285/75085015-c577c100-54f2-11ea-8448-e7ffa7920b6a.png)
 
 ## Demo
 
@@ -14,6 +15,7 @@ Vanilla JavaScript emoji picker 😎
 * 👍🏼 Skin tone variations
 * ⏱ Recently used emojis
 * ⌨️ Fully keyboard accessible
+* 🎨 Dark, light, and auto themes
 
 ## Download
 
@@ -94,6 +96,11 @@ Creates an Emoji Button emoji picker.
 * `showRecents`: (boolean, default: `true`) Whether or not to show (and save) recently used emojis.
 
 * `showVariants`: (boolean, default: `true`) Whether or not to show skin tone variants.
+
+* `theme`: (string, default: `light`) Which theme to use. Valid themes are:
+  * `light`
+  * `dark`
+  * `auto` (uses OS settings)
 
 * `zIndex`: (number): If specified, sets a z-index for the emoji picker container.
 
