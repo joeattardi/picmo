@@ -33,7 +33,7 @@
       </div>
       <div>Via jsDelivr CDN:</div>
       <div class="code">
-        <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@2.9.0/dist/index.min.js"&gt;&lt;/script&gt;</code></pre>
+        <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@2.9.2/dist/index.min.js"&gt;&lt;/script&gt;</code></pre>
       </div>
       <hr />
     </section>
@@ -48,7 +48,7 @@
       <pre><code class="javascript">
 import EmojiButton from '@joeattardi/emoji-button';
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('DOMContentLoaded', () => {
   const button = document.querySelector('#emoji-button');
   const picker = new EmojiButton();
 
@@ -61,6 +61,16 @@ window.addEventListener('DOMContentLoaded', function () {
   });
 });        
       </code></pre>
+
+      <h1>TypeScript note</h1>
+      <p>
+        Because the <code>EmojiButton</code> class is a default export, it requires a small tweak to import the library in a TypeScript project. There are two options:
+
+        <ol>
+          <li>Enable the <code>esModuleInterop</code> compiler option and import it normally as shown in the above example</li>
+          <li>Import the module using the following syntax: <code>import EmojiButton = require('@joeattardi/emoji-button');</code>.</li>
+        </ol>
+      </p>
     </section>
   </body>
 </html>
