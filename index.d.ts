@@ -7,8 +7,9 @@ declare class EmojiButton {
   on(event: string, callback: () => void): void;
   off(event: string, callback: () => void): void;
   hidePicker(): void;
-  showPicker(referenceEl: HTMLElement, options: EmojiButton.Options);
-  togglePicker(referenceEl: HTMLElement, options: EmojiButton.Options);
+  showPicker(referenceEl: HTMLElement, options: EmojiButton.Options): void;
+  togglePicker(referenceEl: HTMLElement, options: EmojiButton.Options): void;
+  pickerVisible: boolean;
 }
 
 declare namespace EmojiButton {

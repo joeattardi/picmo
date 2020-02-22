@@ -55,6 +55,10 @@ header {
   text-align: center;
 }
 
+header p {
+  text-align: center;
+}
+
 header h1 {
   font-size: 3rem;
 }
@@ -115,4 +119,12 @@ hr {
 .button-link:hover {
   background: #33789C;
   color: #FFFFFF;
+}
+
+p {
+  text-align: left;
+}
+
+ol li {
+  text-align: left;
 }

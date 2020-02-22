@@ -48,6 +48,15 @@ The picker is shown by calling `showPicker` or `togglePicker` on the `EmojiButto
   });
 ```
 
+### TypeScript note
+
+Because the `EmojiButton` class is a default export, it requires a small tweak to import the library in a TypeScript project. There are two options:
+
+1. Enable the `esModuleInterop` compiler option and import it normally as shown in the above example
+2. Import the module using the following syntax: `import EmojiButton = require('@joeattardi/emoji-button');`.
+
+For more details on this, please see [https://www.typescriptlang.org/docs/handbook/modules.html#export--and-import--require](https://www.typescriptlang.org/docs/handbook/modules.html#export--and-import--require).
+
 ## API
 
 ### `new EmojiButton(options)`
