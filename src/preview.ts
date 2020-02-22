@@ -1,7 +1,7 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
-import { createElement, getEmojiName } from './util';
+import { createElement, getEmojiName, formatEmojiName } from './util';
 import { EmojiRecord } from './types';
 
 const CLASS_PREVIEW = 'emoji-picker__preview';
@@ -33,7 +33,7 @@ export class EmojiPreview {
 
   showPreview(emoji: EmojiRecord): void {
     this.emoji.innerHTML = emoji.e;
-    this.name.innerHTML = getEmojiName(emoji);
+    this.name.innerHTML = formatEmojiName(getEmojiName(emoji));
   }
 
   hidePreview(): void {

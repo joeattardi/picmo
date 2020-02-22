@@ -22,3 +22,10 @@ export function empty(element: HTMLElement): void {
 export function getEmojiName(emoji: EmojiRecord | RecentEmoji): string {
   return typeof emoji.n === 'string' ? emoji.n : emoji.n[0];
 }
+
+export function formatEmojiName(name: string): string {
+  const words = name.split(/[-_]/);
+  words[0] = words[0][0].toUpperCase() + words[0].slice(1);
+
+  return words.join(' ');
+}
