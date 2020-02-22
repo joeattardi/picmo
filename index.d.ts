@@ -21,7 +21,7 @@ declare namespace EmojiButton {
     showSearch?: boolean;
     showRecents?: boolean;
     showVariants?: boolean;
-    recentsCount: number;
+    recentsCount?: number;
     emojiVersion?: EmojiVersion;
     i18n?: I18NStrings;
     zIndex?: number;
