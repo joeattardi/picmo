@@ -4,11 +4,11 @@ export = EmojiButton;
 
 declare class EmojiButton {
   constructor(options?: EmojiButton.Options);
-  on(event: string, callback: () => void): void;
-  off(event: string, callback: () => void): void;
+  on(event: string, callback: (emoji: string) => void): void;
+  off(event: string, callback: (emoji: string) => void): void;
   hidePicker(): void;
-  showPicker(referenceEl: HTMLElement, options: EmojiButton.Options): void;
-  togglePicker(referenceEl: HTMLElement, options: EmojiButton.Options): void;
+  showPicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
+  togglePicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
   pickerVisible: boolean;
 }
 
