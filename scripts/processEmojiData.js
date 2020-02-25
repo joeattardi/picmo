@@ -1,7 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
 
-const DATA_LINE_REGEX = /((?:[0-9A-F]+ ?)+)\s+;.+#.+E([0-9.]+) ([\w\s:,-]+)/;
+const DATA_LINE_REGEX = /((?:[0-9A-F]+ ?)+)\s+;.+#.+E([0-9.]+) ([\w\s:,.-]+)/;
 const EMOJI_WITH_MODIFIER_REGEX = /([a-z]+): ([a-z -]+)/;
 const EMOJI_WITH_SKIN_TONE_AND_MODIFIER_REGEX = /([a-z]+): ([a-z -]+), ([a-z ]+)/;
 
@@ -63,7 +63,6 @@ interface.on('line', line => {
       let name = matcher[3];
 
       let version = matcher[2];
-      console.log(version);
       if (version === '0.6' || version === '0.7') {
         version = '1.0';
       }
