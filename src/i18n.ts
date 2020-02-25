@@ -4,7 +4,8 @@ export const i18n: I18NStrings = {
   search: 'Search emojis...',
   categories: {
     recents: 'Recent Emojis',
-    smileys: 'Smileys & People',
+    smileys: 'Smileys & Emotion',
+    people: 'People & Body',
     animals: 'Animals & Nature',
     food: 'Food & Drink',
     activities: 'Activities',

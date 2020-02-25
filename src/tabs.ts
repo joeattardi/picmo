@@ -26,10 +26,10 @@ const EMOJIS_PER_ROW = 8;
 const categories = emojiData.categories;
 
 const emojiCategories: { [key: string]: EmojiRecord[] } = {};
-emojiData.emojiData.forEach(emoji => {
-  let categoryList = emojiCategories[categories[emoji.c]];
+emojiData.emoji.forEach(emoji => {
+  let categoryList = emojiCategories[categories[emoji.category]];
   if (!categoryList) {
-    categoryList = emojiCategories[categories[emoji.c]] = [];
+    categoryList = emojiCategories[categories[emoji.category]] = [];
   }
 
   categoryList.push(emoji);
@@ -38,6 +38,7 @@ emojiData.emojiData.forEach(emoji => {
 const categoryIcons: { [key in I18NCategory]: string } = {
   recents: icons.history,
   smileys: icons.smile,
+  people: icons.smile,
   animals: icons.cat,
   food: icons.coffee,
   activities: icons.futbol,

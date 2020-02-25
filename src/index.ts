@@ -104,7 +104,7 @@ export default class EmojiButton {
         this.events,
         this.i18n,
         this.options,
-        emojiData.emojiData,
+        emojiData.emoji,
         this.options.autoFocusSearch || true
       ).render();
       this.pickerEl.appendChild(searchContainer);
@@ -149,7 +149,7 @@ export default class EmojiButton {
         showVariants: boolean;
       }) => {
         if (
-          (emoji as EmojiRecord).v &&
+          (emoji as EmojiRecord).variations &&
           showVariants &&
           this.options.showVariants
         ) {
@@ -166,7 +166,7 @@ export default class EmojiButton {
           if (variantPopup && variantPopup.parentNode === this.pickerEl) {
             this.pickerEl.removeChild(variantPopup);
           }
-          this.publicEvents.emit('emoji', emoji.e);
+          this.publicEvents.emit('emoji', emoji.emoji);
           if (this.options.autoHide) {
             this.hidePicker();
           }

@@ -20,7 +20,7 @@ export function empty(element: HTMLElement): void {
 }
 
 export function getEmojiName(emoji: EmojiRecord | RecentEmoji): string {
-  return typeof emoji.n === 'string' ? emoji.n : emoji.n[0];
+  return emoji.name;
 }
 
 export function formatEmojiName(name: string): string {

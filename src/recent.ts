@@ -15,15 +15,15 @@ export function save(
   const recents = load();
 
   const recent = {
-    e: emoji.e,
-    n: getEmojiName(emoji),
-    k: (emoji as RecentEmoji).k || getEmojiName(emoji)
+    emoji: emoji.emoji,
+    name: getEmojiName(emoji),
+    key: (emoji as RecentEmoji).key || getEmojiName(emoji)
   };
 
   localStorage.setItem(
     LOCAL_STORAGE_KEY,
     JSON.stringify(
-      [recent, ...recents.filter((r: RecentEmoji) => r.k !== recent.k)].slice(
+      [recent, ...recents.filter((r: RecentEmoji) => r.key !== recent.key)].slice(
         0,
         options.recentsCount
       )

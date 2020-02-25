@@ -55,19 +55,12 @@ export class VariantPopup {
     this.popup.appendChild(
       new Emoji(this.emoji, false, false, this.events, this.options).render()
     );
-    Object.keys(this.emoji.v as { [key: string]: EmojiVariation }).forEach(
-      variant => {
-        this.popup.appendChild(
-          new Emoji(
-            (this.emoji.v as { [key: string]: EmojiVariation })[variant],
-            false,
-            false,
-            this.events,
-            this.options
-          ).render()
-        );
-      }
-    );
+
+    this.emoji.variations?.forEach((variation, index) => this.popup.appendChild(new Emoji({
+      name: this.emoji.name,
+      emoji: variation,
+      key: this.emoji.name + index
+    }, false, false, this.events, this.options).render()));
 
     const firstEmoji = this.popup.querySelector(
       '.emoji-picker__emoji'

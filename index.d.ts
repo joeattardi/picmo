@@ -52,6 +52,7 @@ declare namespace EmojiButton {
   export type I18NCategory =
   | 'recents'
   | 'smileys'
+  | 'people'
   | 'animals'
   | 'food'
   | 'activities'

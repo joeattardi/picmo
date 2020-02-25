@@ -32,7 +32,7 @@ export class EmojiPreview {
   }
 
   showPreview(emoji: EmojiRecord): void {
-    this.emoji.innerHTML = emoji.e;
+    this.emoji.innerHTML = emoji.emoji;
     this.name.innerHTML = formatEmojiName(getEmojiName(emoji));
   }
 

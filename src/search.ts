@@ -57,7 +57,7 @@ export class Search {
   ) {
     this.options = options;
     this.emojiData = emojiData.filter(
-      e => parseFloat(e.ver) <= parseFloat(options.emojiVersion as string)
+      e => parseFloat(e.version) <= parseFloat(options.emojiVersion as string)
     );
     this.autoFocusSearch = autoFocusSearch;
 
@@ -170,13 +170,7 @@ export class Search {
 
       this.events.emit(HIDE_TABS);
       const searchResults = this.emojiData.filter(
-        emoji =>
-          emoji.n.filter(
-            name =>
-              name
-                .toLowerCase()
-                .indexOf(this.searchField.value.toLowerCase()) >= 0
-          ).length
+        emoji => emoji.name.toLowerCase().indexOf(this.searchField.value.toLowerCase()) >= 0
       );
 
       this.events.emit(HIDE_PREVIEW);

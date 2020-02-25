@@ -21,7 +21,7 @@ export class Emoji {
 
   render(): HTMLElement {
     this.emojiButton = createElement('button', CLASS_EMOJI);
-    this.emojiButton.innerHTML = this.emoji.e;
+    this.emojiButton.innerHTML = this.emoji.emoji;
     this.emojiButton.tabIndex = -1;
 
     this.emojiButton.addEventListener('focus', () => this.onEmojiHover());
@@ -36,7 +36,7 @@ export class Emoji {
   onEmojiClick(): void {
     // TODO move this side effect out of Emoji, make the recent module listen for event
     if (
-      (!(this.emoji as EmojiRecord).v ||
+      (!(this.emoji as EmojiRecord).variations ||
         !this.showVariants ||
         !this.options.showVariants) &&
       this.options.showRecents

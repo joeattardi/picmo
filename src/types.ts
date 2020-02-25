@@ -1,11 +1,11 @@
 import { Placement } from '@popperjs/core';
 
 export interface EmojiRecord {
-  n: string[];
-  e: string;
-  c: number;
-  ver: string;
-  v?: { [key: string]: EmojiVariation };
+  name: string;
+  emoji: string;
+  category: number;
+  version: string;
+  variations?: string[];
 }
 
 export interface EmojiData {
@@ -14,15 +14,15 @@ export interface EmojiData {
 }
 
 export interface EmojiVariation {
-  k: string;
-  n: string;
-  e: string;
+  key: string;
+  name: string;
+  emoji: string;
 }
 
 export interface RecentEmoji {
-  e: string;
-  n: string;
-  k: string;
+  key: string;
+  name: string;
+  emoji: string;
 }
 
 export interface EmojiEventData {
@@ -54,6 +54,7 @@ export type EmojiVersion = '0.0' | '2.0' | '4.0' | '5.0' | '11.0' | '12.1';
 export type I18NCategory =
   | 'recents'
   | 'smileys'
+  | 'people'
   | 'animals'
   | 'food'
   | 'activities'
