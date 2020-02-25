@@ -57,7 +57,9 @@ export class Search {
   ) {
     this.options = options;
     this.emojiData = emojiData.filter(
-      e => e.version && parseFloat(e.version) <= parseFloat(options.emojiVersion as string)
+      e =>
+        e.version &&
+        parseFloat(e.version) <= parseFloat(options.emojiVersion as string)
     );
     this.autoFocusSearch = autoFocusSearch;
 

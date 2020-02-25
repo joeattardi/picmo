@@ -21,11 +21,7 @@ import { VariantPopup } from './variantPopup';
 
 import { i18n } from './i18n';
 
-import {
-  EmojiButtonOptions,
-  I18NStrings,
-  EmojiRecord,
-} from './types';
+import { EmojiButtonOptions, I18NStrings, EmojiRecord } from './types';
 
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
