@@ -38,7 +38,7 @@ emojiData.emoji.forEach(emoji => {
 const categoryIcons: { [key in I18NCategory]: string } = {
   recents: icons.history,
   smileys: icons.smile,
-  people: icons.smile,
+  people: icons.user,
   animals: icons.cat,
   food: icons.coffee,
   activities: icons.futbol,

@@ -6,7 +6,8 @@ import {
   faHistory,
   faMusic,
   faSearch,
-  faTimes
+  faTimes,
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faBuilding,
@@ -28,7 +29,8 @@ library.add(
   faMusic,
   faSearch,
   faSmile,
-  faTimes
+  faTimes,
+  faUser
 );
 
 export const building = icon({ prefix: 'far', iconName: 'building' }).html[0];
@@ -43,3 +45,4 @@ export const music = icon({ prefix: 'fas', iconName: 'music' }).html[0];
 export const search = icon({ prefix: 'fas', iconName: 'search' }).html[0];
 export const smile = icon({ prefix: 'far', iconName: 'smile' }).html[0];
 export const times = icon({ prefix: 'fas', iconName: 'times' }).html[0];
+export const user = icon({ prefix: 'fas', iconName: 'user' }).html[0];
