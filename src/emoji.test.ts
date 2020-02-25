@@ -6,7 +6,12 @@ import { Emoji } from './emoji';
 describe('Emoji', () => {
   let events;
 
-  const testEmoji = { emoji: '😄', name: 'smile', category: 0, version: '11.0' };
+  const testEmoji = {
+    emoji: '😄',
+    name: 'smile',
+    category: 0,
+    version: '11.0'
+  };
   const options = { showRecents: true };
 
   beforeEach(() => (events = new Emitter()));

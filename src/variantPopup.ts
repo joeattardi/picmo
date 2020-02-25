@@ -6,7 +6,7 @@ import { createElement } from './util';
 import { HIDE_VARIANT_POPUP } from './events';
 
 import { times } from './icons';
-import { EmojiRecord, EmojiButtonOptions, EmojiVariation } from './types';
+import { EmojiRecord, EmojiButtonOptions } from './types';
 
 const CLASS_OVERLAY = 'emoji-picker__variant-overlay';
 const CLASS_POPUP = 'emoji-picker__variant-popup';
@@ -56,11 +56,21 @@ export class VariantPopup {
       new Emoji(this.emoji, false, false, this.events, this.options).render()
     );
 
-    (this.emoji.variations || []).forEach((variation, index) => this.popup.appendChild(new Emoji({
-      name: this.emoji.name,
-      emoji: variation,
-      key: this.emoji.name + index
-    }, false, false, this.events, this.options).render()));
+    (this.emoji.variations || []).forEach((variation, index) =>
+      this.popup.appendChild(
+        new Emoji(
+          {
+            name: this.emoji.name,
+            emoji: variation,
+            key: this.emoji.name + index
+          },
+          false,
+          false,
+          this.events,
+          this.options
+        ).render()
+      )
+    );
 
     const firstEmoji = this.popup.querySelector(
       '.emoji-picker__emoji'

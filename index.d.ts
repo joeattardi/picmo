@@ -47,7 +47,15 @@ declare namespace EmojiButton {
   | 'left-start'
   | 'left-end';
 
-  export type EmojiVersion = '0.0' | '2.0' | '4.0' | '5.0' | '11.0' | '12.1';
+  export type EmojiVersion =
+  | '1.0'
+  | '2.0'
+  | '3.0'
+  | '4.0'
+  | '5.0'
+  | '11.0'
+  | '12.0'
+  | '12.1';
 
   export type I18NCategory =
   | 'recents'

@@ -170,7 +170,10 @@ export class Search {
 
       this.events.emit(HIDE_TABS);
       const searchResults = this.emojiData.filter(
-        emoji => emoji.name.toLowerCase().indexOf(this.searchField.value.toLowerCase()) >= 0
+        emoji =>
+          emoji.name
+            .toLowerCase()
+            .indexOf(this.searchField.value.toLowerCase()) >= 0
       );
 
       this.events.emit(HIDE_PREVIEW);

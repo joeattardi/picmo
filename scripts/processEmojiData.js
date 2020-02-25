@@ -1,62 +1,142 @@
-const { writeFileSync } = require('fs');
+const fs = require('fs');
+const readline = require('readline');
 
-const rawData = require('emoji-datasource');
+const DATA_LINE_REGEX = /((?:[0-9A-F]+ ?)+)\s+;.+#.+E([0-9.]+) ([\w\s:,-]+)/;
+const EMOJI_WITH_MODIFIER_REGEX = /([a-z]+): ([a-z -]+)/;
+const EMOJI_WITH_SKIN_TONE_AND_MODIFIER_REGEX = /([a-z]+): ([a-z -]+), ([a-z ]+)/;
 
-function getEmoji(unified) {
-  const chars = unified.split('-');
+const categoryKeys = {
+  'Smileys & Emotion': 'smileys',
+  'People & Body': 'people',
+  'Animals & Nature': 'animals',
+  'Food & Drink': 'food',
+  'Travel & Places': 'travel',
+  'Activities': 'activities',
+  'Objects': 'objects',
+  'Symbols': 'symbols',
+  'Flags': 'flags'
+};
+
+const BLACKLIST = [
+  'light skin tone',
+  'medium-light skin tone',
+  'medium skin tone',
+  'medium-dark skin tone',
+  'dark skin tone',
+  'red hair',
+  'white hair',
+  'curly hair',
+  'bald'
+];
+
+const MODIFIER_SUBSTITUTIONS = {
+  'bald': 'no hair'
+};
+
+const stream = fs.createReadStream('emoji-test.txt');
+
+const interface = readline.createInterface(stream);
+
+let currentGroup;
+let currentSubgroup;
+let categoryIndex;
+
+const data = {
+  categories: [],
+  emoji: []
+};
+
+interface.on('line', line => {
+  if (line.startsWith('# group:')) {
+    currentGroup = line.slice('# group: '.length);
+    if (currentGroup !== 'Component') {
+      data.categories.push(categoryKeys[currentGroup]);
+      categoryIndex = data.categories.length - 1;
+    }
+  } else if (line.startsWith('# subgroup:')) {
+    currentSubgroup = line.slice('# subgroup: '.length);
+  } else if (!line.startsWith('#') && currentGroup !== 'Component') {
+    const matcher = DATA_LINE_REGEX.exec(line);
+    if (matcher) {
+      const sequence = matcher[1].trim();
+      const emoji = getEmoji(sequence);
+      let name = matcher[3];
+
+      let version = matcher[2];
+      console.log(version);
+      if (version === '0.6' || version === '0.7') {
+        version = '1.0';
+      }
+
+      if (currentSubgroup === 'person') {
+        const modifierMatcher = EMOJI_WITH_MODIFIER_REGEX.exec(name);
+        const skinToneMatcher = EMOJI_WITH_SKIN_TONE_AND_MODIFIER_REGEX.exec(name);
+        if (skinToneMatcher) {
+          name = skinToneMatcher[1] + ' with ' + substituteModifier(skinToneMatcher[3]) + ': ' + skinToneMatcher[2];
+        } else if (modifierMatcher) {
+          if (!modifierMatcher[2].includes('skin tone')) {
+            name = modifierMatcher[1] + ' with ' + substituteModifier(modifierMatcher[2]);
+          }
+        }
+      }
+
+      data.emoji.push({ sequence, emoji, category: categoryIndex, name, variations: [], version });
+    }
+  }
+});
+
+interface.on('close', () => {
+  stream.close();
+
+  let toDelete = [];
+
+  const emojisWithVariationSelector = data.emoji.filter(emoji => emoji.sequence.includes('FE0F'));
+  emojisWithVariationSelector.forEach(emoji => {
+    const baseEmoji = data.emoji.find(e => e.sequence === emoji.sequence.replace(' FE0F', ''));
+    toDelete.push(baseEmoji);
+  });
+
+  data.emoji = data.emoji.filter(e => !toDelete.includes(e));
+  toDelete = [];
+
+  BLACKLIST.forEach(name => toDelete.push(data.emoji.find(e => e.name === name)));
+
+  const emojisWithVariations = data.emoji.filter(emoji => emoji.name.includes(':') && !emoji.name.startsWith('family'));
+  emojisWithVariations.forEach(emoji => {
+    const baseName = emoji.name.split(':')[0];
+    const baseEmoji = data.emoji.find(e => e.name === baseName);
+    if (baseEmoji) {
+      baseEmoji.variations.push(emoji.emoji);
+      toDelete.push(emoji);
+    }
+  });
+
+  // Cleanup
+  data.emoji = data.emoji.filter(e => !toDelete.includes(e));
+  data.emoji.forEach(emoji => {
+    delete emoji.sequence;
+    if (!emoji.variations.length) {
+      delete emoji.variations;
+    }
+  });
+
+  fs.writeFileSync('emoji.js', `export default ${JSON.stringify(data)}`);
+});
+
+function getEmoji(sequence) {
+  const chars = sequence.split(' ');
   const codePoints = chars.map(char => parseInt(char, 16));
   return String.fromCodePoint(...codePoints);
 }
 
-const categoryKeys = {
-  'Smileys & Emotion': 'smileys',
-  'People & Body': 'smileys',
-  'Animals & Nature': 'animals',
-  'Food & Drink': 'food',
-  Activities: 'activities',
-  'Travel & Places': 'travel',
-  Objects: 'objects',
-  Symbols: 'symbols',
-  Flags: 'flags',
-  'Skin Tones': 'skinTones'
-};
-
-const smileysCount = rawData.filter(e => e.category === 'Smileys & Emotion').length;
-rawData.filter(e => e.category === 'People & Body').forEach(e => e.sort_order += smileysCount);
-
-const categories = [];
-
-rawData.sort((e1, e2) => e1.sort_order - e2.sort_order);
-
-const newEmojiData = rawData.map(emojiItem => {
-  let categoryIndex = categories.indexOf(emojiItem.category);
-  if (categoryIndex < 0) {
-    categories.push(emojiItem.category);
-    categoryIndex = categories.length - 1;
+function substituteModifier(name) {
+  const substitutions = Object.keys(MODIFIER_SUBSTITUTIONS);
+  for (let i = 0; i < substitutions.length; i++) {
+    const substitution = substitutions[i];
+    if (name.includes(substitution)) {
+      return name.replace(substitution, MODIFIER_SUBSTITUTIONS[substitution]);
+    }
   }
 
-  const newData = {
-    n: emojiItem.short_names,
-    e: getEmoji(emojiItem.unified),
-    c: categoryIndex,
-    ver: emojiItem.added_in
-  };
-
-  if (emojiItem.skin_variations) {
-    newData.v = {};
-    Object.keys(emojiItem.skin_variations).forEach(variation => {
-      newData.v[variation] = {
-        k: `${emojiItem.short_names[0]}-${variation}`,
-        n: emojiItem.short_names[0],
-        e: getEmoji(emojiItem.skin_variations[variation].unified)
-      };
-    });
-  }
-
-  return newData;
-});
-
-writeFileSync(
-  'src/data/emoji.js',
-  `export default { categories: ${JSON.stringify(categories.map(category => categoryKeys[category]))}, emojiData: ${JSON.stringify(newEmojiData)}}`
-);
+  return name;
+}

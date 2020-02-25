@@ -4,7 +4,7 @@ import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
 import { save } from './recent';
 import { createElement } from './util';
 
-import { EmojiButtonOptions, EmojiRecord, EmojiVariation } from './types';
+import { EmojiButtonOptions, EmojiRecord } from './types';
 
 const CLASS_EMOJI = 'emoji-picker__emoji';
 
@@ -12,7 +12,7 @@ export class Emoji {
   private emojiButton: HTMLElement;
 
   constructor(
-    private emoji: EmojiRecord | EmojiVariation,
+    private emoji: EmojiRecord,
     private showVariants: boolean,
     private showPreview: boolean,
     private events: Emitter,

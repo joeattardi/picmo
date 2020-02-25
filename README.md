@@ -70,11 +70,13 @@ Creates an Emoji Button emoji picker.
 * `autoFocusSearch`: (boolean, default: `true`) Whether or not to auto-focus the search field when the picker is shown.
 
 * `emojiVersion`: (string, default: `'12.1'`) The Emoji version to use. This determines which emojis are available. Supported versions are:
-  * `0.0`
+  * `1.0`
   * `2.0`
+  * `3.0`
   * `4.0`
   * `5.0`
   * `11.0`
+  * `12.0`
   * `12.1`
 
 * `position`: The position to display the picker relative to the reference element. Valid values are:

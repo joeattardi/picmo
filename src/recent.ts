@@ -22,10 +22,10 @@ export function save(
   localStorage.setItem(
     LOCAL_STORAGE_KEY,
     JSON.stringify(
-      [recent, ...recents.filter((r: RecentEmoji) => r.key !== recent.key)].slice(
-        0,
-        options.recentsCount
-      )
+      [
+        recent,
+        ...recents.filter((r: RecentEmoji) => r.key !== recent.key)
+      ].slice(0, options.recentsCount)
     )
   );
 }

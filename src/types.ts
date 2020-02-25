@@ -13,12 +13,6 @@ export interface EmojiData {
   emojiData: EmojiRecord[];
 }
 
-export interface EmojiVariation {
-  key: string;
-  name: string;
-  emoji: string;
-}
-
 export interface RecentEmoji {
   key: string;
   name: string;
@@ -26,7 +20,7 @@ export interface RecentEmoji {
 }
 
 export interface EmojiEventData {
-  emoji: EmojiRecord | EmojiVariation;
+  emoji: EmojiRecord;
   showVariants: boolean;
   button: HTMLElement;
 }
@@ -49,7 +43,15 @@ export interface EmojiButtonOptions {
 
 export type EmojiTheme = 'dark' | 'light' | 'auto';
 
-export type EmojiVersion = '0.0' | '2.0' | '4.0' | '5.0' | '11.0' | '12.1';
+export type EmojiVersion =
+  | '1.0'
+  | '2.0'
+  | '3.0'
+  | '4.0'
+  | '5.0'
+  | '11.0'
+  | '12.0'
+  | '12.1';
 
 export type I18NCategory =
   | 'recents'
