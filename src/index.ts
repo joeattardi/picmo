@@ -25,7 +25,6 @@ import {
   EmojiButtonOptions,
   I18NStrings,
   EmojiRecord,
-  EmojiVariation
 } from './types';
 
 const CLASS_PICKER = 'emoji-picker';
@@ -145,7 +144,7 @@ export default class EmojiButton {
         emoji,
         showVariants
       }: {
-        emoji: EmojiRecord | EmojiVariation;
+        emoji: EmojiRecord;
         showVariants: boolean;
       }) => {
         if (

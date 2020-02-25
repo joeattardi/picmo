@@ -19,7 +19,7 @@ export class EmojiContainer {
     this.emojis = emojis.filter(
       e =>
         !(e as EmojiRecord).version ||
-        parseFloat((e as EmojiRecord).version) <=
+        parseFloat((e as EmojiRecord).version as string) <=
           parseFloat(options.emojiVersion as string)
     );
   }

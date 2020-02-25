@@ -3,9 +3,10 @@ import { Placement } from '@popperjs/core';
 export interface EmojiRecord {
   name: string;
   emoji: string;
-  category: number;
-  version: string;
+  category?: number;
+  version?: string;
   variations?: string[];
+  key?: string;
 }
 
 export interface EmojiData {
