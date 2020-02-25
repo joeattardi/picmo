@@ -1,4 +1,3 @@
-import { getEmojiName } from './util';
 import { EmojiRecord, EmojiButtonOptions, RecentEmoji } from './types';
 
 const LOCAL_STORAGE_KEY = 'emojiPicker.recent';
@@ -16,8 +15,8 @@ export function save(
 
   const recent = {
     emoji: emoji.emoji,
-    name: getEmojiName(emoji),
-    key: (emoji as RecentEmoji).key || getEmojiName(emoji)
+    name: emoji.name,
+    key: (emoji as RecentEmoji).key || emoji.name
   };
 
   localStorage.setItem(

@@ -8,7 +8,7 @@ describe('EmojiPreview', () => {
     const events = new Emitter();
     const preview = new EmojiPreview(events).render();
 
-    events.emit(SHOW_PREVIEW, { e: '⚡️', n: 'zap' });
+    events.emit(SHOW_PREVIEW, { emoji: '⚡️', name: 'zap' });
 
     const previewEmoji = preview.querySelector(
       '.emoji-picker__preview-emoji'

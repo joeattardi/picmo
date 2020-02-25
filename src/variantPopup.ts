@@ -56,7 +56,7 @@ export class VariantPopup {
       new Emoji(this.emoji, false, false, this.events, this.options).render()
     );
 
-    this.emoji.variations?.forEach((variation, index) => this.popup.appendChild(new Emoji({
+    (this.emoji.variations || []).forEach((variation, index) => this.popup.appendChild(new Emoji({
       name: this.emoji.name,
       emoji: variation,
       key: this.emoji.name + index

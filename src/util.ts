@@ -1,5 +1,3 @@
-import { EmojiRecord, RecentEmoji } from './types';
-
 export function createElement(
   tagName: string,
   className?: string
@@ -17,10 +15,6 @@ export function empty(element: HTMLElement): void {
   while (element.firstChild) {
     element.removeChild(element.firstChild);
   }
-}
-
-export function getEmojiName(emoji: EmojiRecord | RecentEmoji): string {
-  return emoji.name;
 }
 
 export function formatEmojiName(name: string): string {

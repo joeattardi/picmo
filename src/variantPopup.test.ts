@@ -5,15 +5,11 @@ import { VariantPopup } from './variantPopup';
 
 describe('VariantPopup', () => {
   const emoji = {
-    e: '👍',
-    v: {
-      one: {
-        e: '👍🏻'
-      },
-      two: {
-        e: '👍🏿'
-      }
-    }
+    name: 'thumbs up',
+    category: 0,
+    emoji: '👍',
+    variations: ['👍🏻', '👍🏿'],
+    version: '11.0'
   };
 
   let events;
@@ -21,15 +17,15 @@ describe('VariantPopup', () => {
 
   beforeEach(() => {
     events = new Emitter();
-    container = new VariantPopup(events, emoji).render();
+    container = new VariantPopup(events, emoji, {}).render();
   });
 
   test('should render the emoji variants', () => {
     const emojiButtons = container.querySelectorAll('.emoji-picker__emoji');
 
-    expect(emojiButtons[0].innerHTML).toEqual(emoji.e);
-    expect(emojiButtons[1].innerHTML).toEqual(emoji.v.one.e);
-    expect(emojiButtons[2].innerHTML).toEqual(emoji.v.two.e);
+    expect(emojiButtons[0].innerHTML).toEqual(emoji.emoji);
+    expect(emojiButtons[1].innerHTML).toEqual(emoji.variations[0]);
+    expect(emojiButtons[2].innerHTML).toEqual(emoji.variations[1]);
   });
 
   test('should emit the HIDE_VARIANT_POPUP event when the close button is clicked', done => {

@@ -8,8 +8,8 @@ import { EmojiButtonOptions, EmojiRecord } from './types';
 
 describe('Search', () => {
   const emojis: EmojiRecord[] = [
-    { c: 0, e: '⚡️', n: ['zap'], ver: '12.1' },
-    { c: 0, e: '😀', n: ['grinning'], ver: '12.1' }
+    { category: 0, emoji: '⚡️', name: 'zap', version: '12.1' },
+    { category: 0, emoji: '😀', name: 'grinning', version: '12.1' }
   ];
 
   const options: EmojiButtonOptions = { emojiVersion: '12.1' };
@@ -49,7 +49,7 @@ describe('Search', () => {
         '.emoji-picker__emoji'
       );
       expect(searchResults.length).toBe(1);
-      expect(searchResults[0].innerHTML).toEqual(emojis[0].e);
+      expect(searchResults[0].innerHTML).toEqual(emojis[0].emoji);
       done();
     });
 

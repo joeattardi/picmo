@@ -6,7 +6,7 @@ import { Emoji } from './emoji';
 describe('Emoji', () => {
   let events;
 
-  const testEmoji = { e: '😄', n: 'smile' };
+  const testEmoji = { emoji: '😄', name: 'smile', category: 0, version: '11.0' };
   const options = { showRecents: true };
 
   beforeEach(() => (events = new Emitter()));
@@ -15,7 +15,7 @@ describe('Emoji', () => {
     const emoji = new Emoji(testEmoji, false, false, events, options);
     const element = emoji.render();
 
-    expect(element.innerHTML).toEqual(testEmoji.e);
+    expect(element.innerHTML).toEqual(testEmoji.emoji);
   });
 
   test('should emit the EMOJI event when clicked', done => {
