@@ -69,6 +69,17 @@ Creates an Emoji Button emoji picker.
 
 * `autoFocusSearch`: (boolean, default: `true`) Whether or not to auto-focus the search field when the picker is shown.
 
+* `categories`: (string[], default: all categories) An array of the categories to show. Valid values are:
+    * `smileys`
+    * `people`
+    * `animals`
+    * `food`
+    * `activities`
+    * `travel`
+    * `objects`
+    * `symbols`
+    * `flags`
+
 * `emojiVersion`: (string, default: `'12.1'`) The Emoji version to use. This determines which emojis are available. Supported versions are:
   * `1.0`
   * `2.0`
