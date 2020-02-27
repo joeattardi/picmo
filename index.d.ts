@@ -26,6 +26,7 @@ declare namespace EmojiButton {
     i18n?: I18NStrings;
     zIndex?: number;
     theme?: EmojiTheme;
+    categories?: Category[];
   }
 
   export type EmojiTheme = 'dark' | 'light' | 'auto';
@@ -57,8 +58,7 @@ declare namespace EmojiButton {
   | '12.0'
   | '12.1';
 
-  export type I18NCategory =
-  | 'recents'
+  export type Category =
   | 'smileys'
   | 'people'
   | 'animals'
@@ -72,7 +72,7 @@ declare namespace EmojiButton {
   export interface I18NStrings {
     search: string;
     categories: {
-      [key in I18NCategory]: string;
+      [key in Category]: string;
     };
     notFound: string;
   }

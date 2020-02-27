@@ -40,6 +40,7 @@ export interface EmojiButtonOptions {
   i18n?: I18NStrings;
   zIndex?: number;
   theme?: EmojiTheme;
+  categories?: Category[];
 }
 
 export type EmojiTheme = 'dark' | 'light' | 'auto';
@@ -54,7 +55,7 @@ export type EmojiVersion =
   | '12.0'
   | '12.1';
 
-export type I18NCategory =
+export type Category =
   | 'recents'
   | 'smileys'
   | 'people'
@@ -69,7 +70,7 @@ export type I18NCategory =
 export interface I18NStrings {
   search: string;
   categories: {
-    [key in I18NCategory]: string;
+    [key in Category]: string;
   };
   notFound: string;
 }

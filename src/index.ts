@@ -36,7 +36,18 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   showVariants: true,
   recentsCount: 50,
   emojiVersion: '12.1',
-  theme: 'light'
+  theme: 'light',
+  categories: [
+    'smileys',
+    'people',
+    'animals',
+    'food',
+    'activities',
+    'travel',
+    'objects',
+    'symbols',
+    'flags'
+  ]
 };
 
 export default class EmojiButton {
