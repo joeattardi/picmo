@@ -17,7 +17,20 @@ describe('Tabs', () => {
 
   beforeEach(() => {
     const events = new Emitter();
-    const options = { showRecents: true };
+    const options = {
+      showRecents: true,
+      categories: [
+        'smileys',
+        'people',
+        'animals',
+        'food',
+        'activities',
+        'travel',
+        'objects',
+        'symbols',
+        'flags'
+      ]
+     };
     tabsContainer = new Tabs(events, i18n, options).render();
     tabs = tabsContainer.querySelectorAll('.emoji-picker__tab');
     tabBodies = tabsContainer.querySelectorAll('.emoji-picker__tab-body');
