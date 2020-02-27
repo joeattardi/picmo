@@ -30,7 +30,7 @@ describe('Tabs', () => {
         'symbols',
         'flags'
       ]
-     };
+    };
     tabsContainer = new Tabs(events, i18n, options).render();
     tabs = tabsContainer.querySelectorAll('.emoji-picker__tab');
     tabBodies = tabsContainer.querySelectorAll('.emoji-picker__tab-body');

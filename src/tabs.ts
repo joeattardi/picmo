@@ -225,15 +225,14 @@ export class Tabs {
 
   createTabs(): HTMLElement {
     this.tabsList = createElement('ul', CLASS_TABS);
-    this.tabs = (this.options.categories || [])
-      .map(
-        (category, index) =>
-          new Tab(
-            categoryIcons[category],
-            this.options.showRecents ? index + 1 : index,
-            this.setActiveTab
-          )
-      );
+    this.tabs = (this.options.categories || []).map(
+      (category, index) =>
+        new Tab(
+          categoryIcons[category],
+          this.options.showRecents ? index + 1 : index,
+          this.setActiveTab
+        )
+    );
 
     if (this.options.showRecents) {
       const recentTab = new Tab(icons.history, 0, this.setActiveTab);
