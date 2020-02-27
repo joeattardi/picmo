@@ -63,7 +63,7 @@
 }
 
 .emoji-picker__tab {
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   list-style: none;
   display: flex;
   align-items: center;
@@ -90,6 +90,7 @@
 
 .emoji-picker__tab svg {
   padding: 0.5rem;
+  box-sizing: content-box;
 }
 
 .emoji-picker__tab.active {
