@@ -70,7 +70,7 @@
 }
 
 .emoji-picker__tab {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   list-style: none;
   display: flex;
   align-items: center;
@@ -81,6 +81,12 @@
   color: #666666;
   border-radius: 3px;
   transition: background 0.25s;
+  outline: none;
+  border: 1px solid transparent;
+}
+
+.emoji-picker__tab:focus {
+  border: 1px dashed #FFFFFF;
 }
 
 .emoji-picker.dark .emoji-picker__tab {
