@@ -12,7 +12,7 @@ describe('Emoji', () => {
     category: 0,
     version: '11.0'
   };
-  const options = { showRecents: true };
+  const options = { showRecents: true, style: 'native' };
 
   beforeEach(() => (events = new Emitter()));
 

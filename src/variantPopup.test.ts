@@ -17,7 +17,7 @@ describe('VariantPopup', () => {
 
   beforeEach(() => {
     events = new Emitter();
-    container = new VariantPopup(events, emoji, {}).render();
+    container = new VariantPopup(events, emoji, { style: 'native' }).render();
   });
 
   test('should render the emoji variants', () => {

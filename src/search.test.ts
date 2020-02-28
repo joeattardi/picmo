@@ -12,7 +12,7 @@ describe('Search', () => {
     { category: 0, emoji: '😀', name: 'grinning', version: '12.1' }
   ];
 
-  const options: EmojiButtonOptions = { emojiVersion: '12.1' };
+  const options: EmojiButtonOptions = { emojiVersion: '12.1', style: 'native' };
   let events;
   let search;
   let searchField;
