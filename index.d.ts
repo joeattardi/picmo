@@ -69,10 +69,22 @@ declare namespace EmojiButton {
   | 'symbols'
   | 'flags';
 
+  export type I18NCategory =
+  | 'recents'
+  | 'smileys'
+  | 'people'
+  | 'animals'
+  | 'food'
+  | 'activities'
+  | 'travel'
+  | 'objects'
+  | 'symbols'
+  | 'flags';
+
   export interface I18NStrings {
     search: string;
     categories: {
-      [key in Category]: string;
+      [key in I18NCategory]: string;
     };
     notFound: string;
   }

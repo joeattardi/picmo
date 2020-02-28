@@ -56,6 +56,17 @@ export type EmojiVersion =
   | '12.1';
 
 export type Category =
+  | 'smileys'
+  | 'people'
+  | 'animals'
+  | 'food'
+  | 'activities'
+  | 'travel'
+  | 'objects'
+  | 'symbols'
+  | 'flags';
+
+  export type I18NCategory =
   | 'recents'
   | 'smileys'
   | 'people'
@@ -70,7 +81,7 @@ export type Category =
 export interface I18NStrings {
   search: string;
   categories: {
-    [key in Category]: string;
+    [key in I18NCategory]: string;
   };
   notFound: string;
 }

@@ -5,7 +5,8 @@ var EmojiButton = require('@joeattardi/emoji-button');
 window.addEventListener('DOMContentLoaded', function () {
   var button = document.querySelector('#emoji-button');
   var picker = new EmojiButton({
-    theme: 'auto'
+    theme: 'auto',
+    categories: ['food', 'flags']
   });
 
   picker.on('emoji', function (emoji) {

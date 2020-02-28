@@ -12,7 +12,7 @@ import {
   EmojiRecord,
   I18NStrings,
   EmojiButtonOptions,
-  Category
+  I18NCategory
 } from './types.js';
 
 const CLASS_ACTIVE_TAB = 'active';
@@ -35,7 +35,7 @@ emojiData.emoji.forEach(emoji => {
   categoryList.push(emoji);
 });
 
-const categoryIcons: { [key in Category]: string } = {
+const categoryIcons: { [key in I18NCategory]: string } = {
   recents: icons.history,
   smileys: icons.smile,
   people: icons.user,
@@ -257,9 +257,7 @@ export class Tabs {
   createTabBodies(): HTMLElement {
     this.tabBodyContainer = createElement('div');
 
-    this.tabBodies = Object.keys(categoryIcons)
-      .slice(1)
-      .map(
+    this.tabBodies = (this.options.categories || []).map(
         (category: string, index: number) =>
           new TabBody(
             this.i18n.categories[category] || defaultI18n.categories[category],
