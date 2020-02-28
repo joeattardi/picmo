@@ -66,7 +66,7 @@ export type Category =
   | 'symbols'
   | 'flags';
 
-  export type I18NCategory =
+export type I18NCategory =
   | 'recents'
   | 'smileys'
   | 'people'

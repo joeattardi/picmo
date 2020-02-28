@@ -258,18 +258,18 @@ export class Tabs {
     this.tabBodyContainer = createElement('div');
 
     this.tabBodies = (this.options.categories || []).map(
-        (category: string, index: number) =>
-          new TabBody(
-            this.i18n.categories[category] || defaultI18n.categories[category],
-            new EmojiContainer(
-              emojiCategories[category] || [],
-              true,
-              this.events,
-              this.options
-            ).render(),
-            this.options.showRecents ? index + 1 : index
-          )
-      );
+      (category: string, index: number) =>
+        new TabBody(
+          this.i18n.categories[category] || defaultI18n.categories[category],
+          new EmojiContainer(
+            emojiCategories[category] || [],
+            true,
+            this.events,
+            this.options
+          ).render(),
+          this.options.showRecents ? index + 1 : index
+        )
+    );
 
     this.tabBodyContainer.addEventListener('keydown', event => {
       const emojis = this.tabBodies[this.activeTab].content.querySelectorAll(
