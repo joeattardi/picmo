@@ -41,7 +41,10 @@ export interface EmojiButtonOptions {
   zIndex?: number;
   theme?: EmojiTheme;
   categories?: Category[];
+  style?: EmojiStyle;
 }
+
+export type EmojiStyle = 'native' | 'twemoji';
 
 export type EmojiTheme = 'dark' | 'light' | 'auto';
 
