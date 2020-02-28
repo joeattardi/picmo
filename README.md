@@ -119,6 +119,10 @@ Creates an Emoji Button emoji picker.
 
 * `showVariants`: (boolean, default: `true`) Whether or not to show skin tone variants.
 
+* `style`: (string, default: `native`) Which emoji style to use. Valid styles are:
+  * `native`
+  * `twemoji`
+
 * `theme`: (string, default: `light`) Which theme to use. Valid themes are:
   * `light`
   * `dark`
