@@ -1,7 +1,7 @@
 const fs = require('fs');
 const readline = require('readline');
 
-const DATA_LINE_REGEX = /((?:[0-9A-F]+ ?)+)\s+;.+#.+E([0-9.]+) ([\w\s:,.-]+)/;
+const DATA_LINE_REGEX = /((?:[0-9A-F]+ ?)+)\s+;(.+)\s+#.+E([0-9.]+) ([\w\s:,.'’-]+)/;
 const EMOJI_WITH_MODIFIER_REGEX = /([a-z]+): ([a-z -]+)/;
 const EMOJI_WITH_SKIN_TONE_AND_MODIFIER_REGEX = /([a-z]+): ([a-z -]+), ([a-z ]+)/;
 
@@ -60,9 +60,9 @@ interface.on('line', line => {
     if (matcher) {
       const sequence = matcher[1].trim();
       const emoji = getEmoji(sequence);
-      let name = matcher[3];
+      let name = matcher[4];
 
-      let version = matcher[2];
+      let version = matcher[3];
       if (version === '0.6' || version === '0.7') {
         version = '1.0';
       }
@@ -79,7 +79,11 @@ interface.on('line', line => {
         }
       }
 
-      data.emoji.push({ sequence, emoji, category: categoryIndex, name, variations: [], version });
+      console.log(matcher[2]);
+      if (matcher[2].trim() !== 'unqualified') {
+        console.log('adding');
+        data.emoji.push({ sequence, emoji, category: categoryIndex, name, variations: [], version });
+      }
     }
   }
 });
@@ -119,7 +123,7 @@ interface.on('close', () => {
     }
   });
 
-  fs.writeFileSync('emoji.js', `export default ${JSON.stringify(data)}`);
+  fs.writeFileSync('src/data/emoji.js', `export default ${JSON.stringify(data)}`);
 });
 
 function getEmoji(sequence) {
