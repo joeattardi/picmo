@@ -1,8 +1,10 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
+import twemoji from 'twemoji';
+
 import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
 import { createElement, formatEmojiName } from './util';
-import { EmojiRecord } from './types';
+import { EmojiRecord, EmojiButtonOptions } from './types';
 
 const CLASS_PREVIEW = 'emoji-picker__preview';
 const CLASS_PREVIEW_EMOJI = 'emoji-picker__preview-emoji';
@@ -12,7 +14,7 @@ export class EmojiPreview {
   private emoji: HTMLElement;
   private name: HTMLElement;
 
-  constructor(private events: Emitter) {}
+  constructor(private events: Emitter, private options: EmojiButtonOptions) {}
 
   render(): HTMLElement {
     const preview = createElement('div', CLASS_PREVIEW);
@@ -32,7 +34,7 @@ export class EmojiPreview {
   }
 
   showPreview(emoji: EmojiRecord): void {
-    this.emoji.innerHTML = emoji.emoji;
+    this.emoji.innerHTML = this.options.style === 'native' ? emoji.emoji : twemoji.parse(emoji.emoji);
     this.name.innerHTML = formatEmojiName(emoji.name);
   }
 

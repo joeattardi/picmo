@@ -1,4 +1,5 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
+import twemoji from 'twemoji';
 
 import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
 import { save } from './recent';
@@ -21,7 +22,7 @@ export class Emoji {
 
   render(): HTMLElement {
     this.emojiButton = createElement('button', CLASS_EMOJI);
-    this.emojiButton.innerHTML = this.emoji.emoji;
+    this.emojiButton.innerHTML = this.options.style === 'native' ? this.emoji.emoji : twemoji.parse(this.emoji.emoji);
     this.emojiButton.tabIndex = -1;
 
     this.emojiButton.addEventListener('focus', () => this.onEmojiHover());

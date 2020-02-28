@@ -47,7 +47,8 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
     'objects',
     'symbols',
     'flags'
-  ]
+  ],
+  style: 'native'
 };
 
 export default class EmojiButton {
@@ -141,7 +142,7 @@ export default class EmojiButton {
     });
 
     if (this.options.showPreview) {
-      this.pickerEl.appendChild(new EmojiPreview(this.events).render());
+      this.pickerEl.appendChild(new EmojiPreview(this.events, this.options).render());
     }
 
     let variantPopup: HTMLElement | null;
