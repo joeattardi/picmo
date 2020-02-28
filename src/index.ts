@@ -142,7 +142,9 @@ export default class EmojiButton {
     });
 
     if (this.options.showPreview) {
-      this.pickerEl.appendChild(new EmojiPreview(this.events, this.options).render());
+      this.pickerEl.appendChild(
+        new EmojiPreview(this.events, this.options).render()
+      );
     }
 
     let variantPopup: HTMLElement | null;

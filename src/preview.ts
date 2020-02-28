@@ -34,7 +34,10 @@ export class EmojiPreview {
   }
 
   showPreview(emoji: EmojiRecord): void {
-    this.emoji.innerHTML = this.options.style === 'native' ? emoji.emoji : twemoji.parse(emoji.emoji);
+    this.emoji.innerHTML =
+      this.options.style === 'native'
+        ? emoji.emoji
+        : twemoji.parse(emoji.emoji);
     this.name.innerHTML = formatEmojiName(emoji.name);
   }
 

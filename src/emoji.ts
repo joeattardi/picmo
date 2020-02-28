@@ -22,7 +22,10 @@ export class Emoji {
 
   render(): HTMLElement {
     this.emojiButton = createElement('button', CLASS_EMOJI);
-    this.emojiButton.innerHTML = this.options.style === 'native' ? this.emoji.emoji : twemoji.parse(this.emoji.emoji);
+    this.emojiButton.innerHTML =
+      this.options.style === 'native'
+        ? this.emoji.emoji
+        : twemoji.parse(this.emoji.emoji);
     this.emojiButton.tabIndex = -1;
 
     this.emojiButton.addEventListener('focus', () => this.onEmojiHover());
