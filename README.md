@@ -1,8 +1,8 @@
 # Emoji Button
 Vanilla JavaScript emoji picker 😎
 
-![Screenshot](https://user-images.githubusercontent.com/219285/75085011-b0029700-54f2-11ea-9369-de8f190b63a5.png)
-![Screenshot](https://user-images.githubusercontent.com/219285/75085015-c577c100-54f2-11ea-8448-e7ffa7920b6a.png)
+![Screenshot](https://user-images.githubusercontent.com/219285/75619543-5da52400-5b4b-11ea-9673-33c0d664a60d.png)
+![Screenshot](https://user-images.githubusercontent.com/219285/75619546-6a297c80-5b4b-11ea-8440-64aa24b92f96.png)
 
 ## Demo
 
@@ -167,7 +167,9 @@ Will be `true` if the picker is currently visible, and `false` if not.
 
 Adds an event listener. Currently there is only one event:
 
-* `emoji`: Fired when an emoji is picked. The callback is called with a single argument, the emoji character that was picked.
+* `emoji`: Fired when an emoji is picked. The callback is called with a single argument, depending on the style.
+  * If the picker is using the `native` style, the argument will be the native emoji character.
+  * If the picker is using the `twemoji` style, the argument will be an HTML snippet of a Twemoji image.
 
 ## Development
 
