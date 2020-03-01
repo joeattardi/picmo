@@ -41,7 +41,7 @@ body {
   font-size: 10rem;
 }
 
-h1 {
+h1, h2 {
   margin: 0;
   font-family: 'Acme', sans-serif;
   text-align: center;
@@ -127,4 +127,48 @@ p {
 
 ol li {
   text-align: left;
+}
+
+#twemoji-picker, #native-picker {
+  display: flex;
+  width: 20rem;
+  margin: auto;
+}
+
+#native-picker {
+  margin-bottom: 2rem;
+}
+
+#twemoji-button, #native-button {
+  font-size: 1rem;
+  background: #DDDDDD;
+  border: none;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid transparent;
+}
+
+#twemoji-button:focus {
+  border: 1px dashed #999999;
+}
+
+#emoji-contenteditable, #native-contenteditable {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background: #FFFFFF;
+  width: 10rem;
+  margin: auto;
+  color: #000000;
+  padding: 0.5rem 0.75rem;
+  flex-grow: 1;
+  line-height: 1rem;
+}
+
+img.emoji {
+  height: 1em;
+  width: 1em;
+  margin: 0 .05em 0 .1em;
+  vertical-align: -0.1em;
 }

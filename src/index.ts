@@ -3,6 +3,7 @@ import '../css/emoji-button.css';
 import createFocusTrap, { FocusTrap } from 'focus-trap';
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 import { createPopper, Instance as Popper } from '@popperjs/core';
+import twemoji from 'twemoji';
 
 import emojiData from './data/emoji';
 
@@ -175,7 +176,12 @@ export default class EmojiButton {
           if (variantPopup && variantPopup.parentNode === this.pickerEl) {
             this.pickerEl.removeChild(variantPopup);
           }
-          this.publicEvents.emit('emoji', emoji.emoji);
+
+          if (this.options.style === 'twemoji') {
+            this.publicEvents.emit('emoji', twemoji.parse(emoji.emoji));
+          } else {
+            this.publicEvents.emit('emoji', emoji.emoji);
+          }
           if (this.options.autoHide) {
             this.hidePicker();
           }
