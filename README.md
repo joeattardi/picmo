@@ -11,6 +11,7 @@ Vanilla JavaScript emoji picker 😎
 ## Features
 
 * 💻 Vanilla JS, use with any framework
+* 😀 Use native or Twemoji emojis
 * 🔎 Emoji search
 * 👍🏼 Skin tone variations
 * ⏱ Recently used emojis
