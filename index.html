@@ -33,14 +33,24 @@
       </div>
       <div>Via jsDelivr CDN:</div>
       <div class="code">
-        <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@2.11.1/dist/index.min.js"&gt;&lt;/script&gt;</code></pre>
+        <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@2.12.0/dist/index.min.js"&gt;&lt;/script&gt;</code></pre>
       </div>
       <hr />
     </section>
     <section id="demo">
-      <h1>Demo</h1>
-      <input type="text" id="emoji-input" placeholder="Enter some text and emojis...">
-      <button id="emoji-button">😎</button>
+      <h1>Demo: Native Style</h1>
+      <div id="native-picker">
+        <div id="native-contenteditable" contenteditable></div>
+        <button id="native-button">😎</button>
+      </div>
+
+      <h1>Demo: Twemoji Style</h1>
+      <div id="twemoji-picker">
+        <div id="emoji-contenteditable" contenteditable></div>
+        <button id="twemoji-button">
+          <img class="emoji" draggable="false" alt="😎" src="https://twemoji.maxcdn.com/v/12.1.5/72x72/1f60e.png">
+        </button>
+      </div>
       <hr />
     </section>
     <section id="usage">
