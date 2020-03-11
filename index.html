@@ -12,15 +12,30 @@
   </head>
   <body>
     <header>
-      <div id="emoji-header">😎</div>
-      <h1>Emoji Button</h1>
-      <p>Vanilla JavaScript emoji picker component</p>
-      <div>
+      <img id="logo" src="logo.png" />
+      <div id="tagline">Vanilla JavaScript emoji picker</div>
+      <div id="links">
         <a href="https://github.com/joeattardi/emoji-button"><img src="https://img.shields.io/github/stars/joeattardi/emoji-button?style=social" /></a>&nbsp;
         <a href="https://www.npmjs.com/package/@joeattardi/emoji-button"><img src="https://img.shields.io/npm/v/@joeattardi/emoji-button" /></a>
       </div>
-      <a class="button-link" href="https://github.com/joeattardi/emoji-button">GitHub Project/Documentation</a>
     </header>
+    <section id="demo">
+      <a class="button-link" href="https://github.com/joeattardi/emoji-button">GitHub Project/Documentation</a>
+
+      <h1>Demo: Native Style</h1>
+      <div id="native-picker">
+        <div id="native-contenteditable" contenteditable></div>
+        <button id="native-button">😎</button>
+      </div>
+
+      <h1>Demo: Twemoji Style</h1>
+      <div id="twemoji-picker">
+        <div id="emoji-contenteditable" contenteditable></div>
+        <button id="twemoji-button">
+          <img class="emoji" draggable="false" alt="😎" src="https://twemoji.maxcdn.com/v/12.1.5/72x72/1f60e.png">
+        </button>
+      </div>
+    </section>
     <section id="installation">
       <h1>Installation</h1>
       <div>Via npm:</div>
@@ -35,23 +50,6 @@
       <div class="code">
         <pre><code>&lt;script src="https://cdn.jsdelivr.net/npm/@joeattardi/emoji-button@2.12.0/dist/index.min.js"&gt;&lt;/script&gt;</code></pre>
       </div>
-      <hr />
-    </section>
-    <section id="demo">
-      <h1>Demo: Native Style</h1>
-      <div id="native-picker">
-        <div id="native-contenteditable" contenteditable></div>
-        <button id="native-button">😎</button>
-      </div>
-
-      <h1>Demo: Twemoji Style</h1>
-      <div id="twemoji-picker">
-        <div id="emoji-contenteditable" contenteditable></div>
-        <button id="twemoji-button">
-          <img class="emoji" draggable="false" alt="😎" src="https://twemoji.maxcdn.com/v/12.1.5/72x72/1f60e.png">
-        </button>
-      </div>
-      <hr />
     </section>
     <section id="usage">
       <h1>Basic Usage</h1>

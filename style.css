@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -41,18 +42,30 @@ body {
   font-size: 10rem;
 }
 
+#links {
+  margin-top: 2rem;
+}
+
 h1, h2 {
-  margin: 0;
-  font-family: 'Acme', sans-serif;
   text-align: center;
   color: #FFFFFF;
 }
 
 header {
-  background: url('circle-blues.png');
-  color: #FFFFFF;
+  background: #F6F0D9;
+  color: #000000;
   padding: 1rem;
   text-align: center;
+}
+
+#logo {
+  width: 600px;
+}
+
+#tagline {
+  font-family: 'Lobster';
+  font-size: 3rem;
+  font-weight: bold;
 }
 
 header p {
@@ -86,8 +99,7 @@ hr {
 }
 
 #installation {
-  background: #33789C;
-  padding-top: 2rem;
+  background: #75B8C8;
 }
 
 #installation .code {
@@ -95,17 +107,17 @@ hr {
 }
 
 #demo {
-  background: #33789C;
+  background: #75B8C8;
 }
 
 #usage {
-  background: #33789C;
+  background: #75B8C8;
 }
 
 .button-link {
   margin: 1rem;
-  background: #FFFFFF;
-  color: #33789C;
+  background: #33789C;
+  color: #FFFFFF;
   font-weight: bold;
   font-size: 1.2rem;
   box-shadow: 0px 4px 13px 3px #333333;
@@ -117,8 +129,8 @@ hr {
 }
 
 .button-link:hover {
-  background: #33789C;
-  color: #FFFFFF;
+  background: #FFFFFF;
+  color: #33789C;
 }
 
 p {
@@ -142,19 +154,21 @@ ol li {
 #twemoji-button, #native-button {
   font-size: 1rem;
   background: #DDDDDD;
-  border: none;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   cursor: pointer;
   outline: none;
-  border: 1px solid transparent;
+  border: 1px solid #DDDDDD;
+  margin: 0;
 }
 
-#twemoji-button:focus {
+#twemoji-button:focus, #native-button:focus {
   border: 1px dashed #999999;
 }
 
 #emoji-contenteditable, #native-contenteditable {
+  text-align: left;
+  outline: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   background: #FFFFFF;
@@ -163,7 +177,21 @@ ol li {
   color: #000000;
   padding: 0.5rem 0.75rem;
   flex-grow: 1;
+  border: 1px solid transparent;
   line-height: 1rem;
+}
+
+#emoji-contenteditable:focus, #native-contenteditable:focus {
+  border: 1px solid #220C10;
+}
+
+*[contenteditable]:empty:before
+{
+    content: "\feff";
+}
+
+[contenteditable] br {
+  display: none;
 }
 
 img.emoji {
