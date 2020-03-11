@@ -1,8 +1,6 @@
-# Emoji Button
-Vanilla JavaScript emoji picker 😎
+![Emoji Button](https://user-images.githubusercontent.com/219285/76373859-f9871a80-6317-11ea-9bd2-9b85551e4d40.png)
 
-![Screenshot](https://user-images.githubusercontent.com/219285/75619543-5da52400-5b4b-11ea-9673-33c0d664a60d.png)
-![Screenshot](https://user-images.githubusercontent.com/219285/75619546-6a297c80-5b4b-11ea-8440-64aa24b92f96.png)
+Vanilla JavaScript emoji picker 😎
 
 ## Demo
 
