@@ -18,7 +18,7 @@ Vanilla JavaScript emoji picker 😎
 
 ## Download
 
-[emoji-button-2.12.0.min.js](https://github.com/joeattardi/emoji-button/releases/download/v2.12.0/emoji-button-2.12.0.min.js)
+[emoji-button-2.12.1.min.js](https://github.com/joeattardi/emoji-button/releases/download/v2.12.1/emoji-button-2.12.1.min.js)
 
 ## Installation
 
