@@ -53,13 +53,16 @@ export class Search {
     private i18n: I18NStrings,
     private options: EmojiButtonOptions,
     emojiData: EmojiRecord[],
+    categories: number[],
     private autoFocusSearch: boolean
   ) {
     this.options = options;
     this.emojiData = emojiData.filter(
       e =>
         e.version &&
-        parseFloat(e.version) <= parseFloat(options.emojiVersion as string)
+        parseFloat(e.version) <= parseFloat(options.emojiVersion as string) &&
+        e.category !== undefined &&
+        categories.indexOf(e.category) >= 0
     );
     this.autoFocusSearch = autoFocusSearch;
 

@@ -113,6 +113,9 @@ export default class EmojiButton {
         this.i18n,
         this.options,
         emojiData.emoji,
+        (this.options.categories || []).map(category =>
+          emojiData.categories.indexOf(category)
+        ),
         this.options.autoFocusSearch || true
       ).render();
       this.pickerEl.appendChild(searchContainer);

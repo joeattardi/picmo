@@ -9,7 +9,7 @@ import { EmojiButtonOptions, EmojiRecord } from './types';
 describe('Search', () => {
   const emojis: EmojiRecord[] = [
     { category: 0, emoji: '⚡️', name: 'zap', version: '12.1' },
-    { category: 0, emoji: '😀', name: 'grinning', version: '12.1' }
+    { category: 1, emoji: '😀', name: 'grinning', version: '12.1' }
   ];
 
   const options: EmojiButtonOptions = { emojiVersion: '12.1', style: 'native' };
@@ -19,12 +19,12 @@ describe('Search', () => {
 
   beforeEach(() => {
     events = new Emitter();
-    search = new Search(events, i18n, options, emojis, true).render();
+    search = new Search(events, i18n, options, emojis, [0], true).render();
     searchField = search.querySelector('.emoji-picker__search');
   });
 
   test('should autofocus the search field if autoFocusSearch is true', done => {
-    search = new Search(events, i18n, options, emojis, true).render();
+    search = new Search(events, i18n, options, emojis, [0], true).render();
     searchField = search.querySelector('.emoji-picker__search');
 
     setTimeout(() => {
@@ -34,7 +34,7 @@ describe('Search', () => {
   });
 
   test('should not autofocus the search field if autoFocusSearch is false', done => {
-    search = new Search(events, i18n, options, emojis, false).render();
+    search = new Search(events, i18n, options, emojis, [0], false).render();
     searchField = search.querySelector('.emoji-picker__search');
 
     setTimeout(() => {
@@ -54,6 +54,20 @@ describe('Search', () => {
     });
 
     searchField.value = 'zap';
+    searchField.dispatchEvent(new KeyboardEvent('keyup'));
+  });
+
+  test('should not show search results for the unselected categories', done => {
+    search = new Search(events, i18n, options, emojis, [0], false).render();
+    events.on(SHOW_SEARCH_RESULTS, searchResultsContainer => {
+      const searchResults = searchResultsContainer.querySelectorAll(
+        '.emoji-picker__emoji'
+      );
+      expect(searchResults.length).toBe(0);
+      done();
+    });
+
+    searchField.value = 'grinning';
     searchField.dispatchEvent(new KeyboardEvent('keyup'));
   });
 
