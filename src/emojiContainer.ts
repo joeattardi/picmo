@@ -5,7 +5,7 @@ import { createElement } from './util';
 
 import { EmojiButtonOptions, EmojiRecord, RecentEmoji } from './types';
 
-const CLASS_EMOJI_CONTAINER = 'emoji-picker__emojis';
+const CLASS_EMOJI_CONTAINER = 'emoji-picker__container';
 
 export class EmojiContainer {
   private emojis: Array<EmojiRecord | RecentEmoji>;

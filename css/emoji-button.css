@@ -134,9 +134,7 @@
   transform: translateX(0);
 }
 
-.emoji-picker__emojis {
-  height: 16.5rem;
-  overflow-y: scroll;
+.emoji-picker__container {
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -275,6 +273,44 @@
   height: 1.5em;
   width: 1.5em;
   font-size: 1.5em;
+}
+
+.emoji-picker__emojis {
+  overflow-y: scroll;
+  height: 18rem;
+  position: relative;
+}
+
+.emoji-picker__emojis h2.emoji-picker__category-name {
+  font-size: 0.85rem;
+  color: #666666;
+  text-transform: uppercase;
+  margin: 0.25rem 0;
+  text-align: left;
+}
+
+.emoji-picker__category-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+button.emoji-picker__category-button {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  vertical-align: middle;
+  color: #666666;
+  border-bottom: 4px solid transparent;
+}
+
+button.emoji-picker__category-button.active {
+  color: #4F81E5;
+  border-bottom: 4px solid #4F81E5;
 }
 
 .emoji-picker.dark .emoji-picker__variant-popup-close-button {

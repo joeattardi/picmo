@@ -23,6 +23,7 @@ import { VariantPopup } from './variantPopup';
 import { i18n } from './i18n';
 
 import { EmojiButtonOptions, I18NStrings, EmojiRecord } from './types';
+import { EmojiArea } from './emojiArea';
 
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
@@ -123,21 +124,24 @@ export default class EmojiButton {
 
     this.pickerEl.appendChild(pickerContent);
 
-    const tabs = new Tabs(this.events, this.i18n, this.options).render();
-    pickerContent.appendChild(tabs);
+    // const tabs = new Tabs(this.events, this.i18n, this.options).render();
+    // pickerContent.appendChild(tabs);
 
-    this.events.on(HIDE_TABS, () => {
-      if (pickerContent.contains(tabs)) {
-        pickerContent.removeChild(tabs);
-      }
-    });
+    const emojiArea = new EmojiArea(this.events, this.i18n, this.options).render();
+    pickerContent.appendChild(emojiArea);
 
-    this.events.on(SHOW_TABS, () => {
-      if (!pickerContent.contains(tabs)) {
-        empty(pickerContent);
-        pickerContent.appendChild(tabs);
-      }
-    });
+    // this.events.on(HIDE_TABS, () => {
+    //   if (pickerContent.contains(tabs)) {
+    //     pickerContent.removeChild(tabs);
+    //   }
+    // });
+
+    // this.events.on(SHOW_TABS, () => {
+    //   if (!pickerContent.contains(tabs)) {
+    //     empty(pickerContent);
+    //     pickerContent.appendChild(tabs);
+    //   }
+    // });
 
     this.events.on(SHOW_SEARCH_RESULTS, (searchResults: HTMLElement) => {
       empty(pickerContent);
