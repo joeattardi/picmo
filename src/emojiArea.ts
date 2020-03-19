@@ -84,10 +84,8 @@ export class EmojiArea {
 
   selectCategory = (category: string) => {
     const headerIndex = categories.indexOf(category);
-    const currentPosition = this.emojis.scrollTop;
     const targetPosition = this.headerOffsets[headerIndex];
-    const delta = targetPosition - currentPosition;
-
+    const delta = targetPosition - this.emojis.scrollTop;
     const step = delta / SCROLL_ANIMATION_STEPS;
 
     const stepAnimate = () => {
