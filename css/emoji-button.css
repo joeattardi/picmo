@@ -306,6 +306,7 @@ button.emoji-picker__category-button {
   vertical-align: middle;
   color: #666666;
   border-bottom: 4px solid transparent;
+  outline: none;
 }
 
 button.emoji-picker__category-button.active {

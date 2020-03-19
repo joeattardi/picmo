@@ -1,8 +1,11 @@
+import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 const CLASS_CATEGORY_BUTTONS = 'emoji-picker__category-buttons';
 const CLASS_CATEGORY_BUTTON = 'emoji-picker__category-button';
 
 import emojiData from './data/emoji';
+
+import { CATEGORY_CLICKED } from './events';
 
 import * as icons from './icons';
 import { createElement } from './util';
@@ -23,7 +26,7 @@ const categoryIcons: { [key in I18NCategory]: string } = {
 };
 
 export class CategoryButtons {
-  constructor(private options: EmojiButtonOptions) {}
+  constructor(private options: EmojiButtonOptions, private events: Emitter) {}
 
   activeButton = 0;
 
@@ -43,6 +46,10 @@ export class CategoryButtons {
       button.innerHTML = categoryIcons[category];
       container.appendChild(button);
       this.buttons.push(button);
+
+      button.addEventListener('click', () => {
+        this.events.emit(CATEGORY_CLICKED, category);
+      });
     });
 
     this.buttons[0].classList.add('active');
