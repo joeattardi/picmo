@@ -117,28 +117,12 @@ export default class EmojiButton {
 
     this.pickerEl.appendChild(pickerContent);
 
-    // const tabs = new Tabs(this.events, this.i18n, this.options).render();
-    // pickerContent.appendChild(tabs);
-
     const emojiArea = new EmojiArea(
       this.events,
       this.i18n,
       this.options
     ).render();
     pickerContent.appendChild(emojiArea);
-
-    // this.events.on(HIDE_TABS, () => {
-    //   if (pickerContent.contains(tabs)) {
-    //     pickerContent.removeChild(tabs);
-    //   }
-    // });
-
-    // this.events.on(SHOW_TABS, () => {
-    //   if (!pickerContent.contains(tabs)) {
-    //     empty(pickerContent);
-    //     pickerContent.appendChild(tabs);
-    //   }
-    // });
 
     this.events.on(SHOW_SEARCH_RESULTS, (searchResults: HTMLElement) => {
       empty(pickerContent);

@@ -1,6 +1,6 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-import { SHOW_SEARCH_RESULTS, SHOW_TABS } from './events';
+import { SHOW_SEARCH_RESULTS } from './events';
 import { Search } from './search';
 
 import { i18n } from './i18n';
@@ -85,31 +85,31 @@ describe('Search', () => {
     searchField.dispatchEvent(new KeyboardEvent('keyup'));
   });
 
-  test('should fire the SHOW_TABS event when the search text is empty', done => {
-    events.on(SHOW_TABS, done);
+  // test('should fire the SHOW_TABS event when the search text is empty', done => {
+  //   events.on(SHOW_TABS, done);
 
-    searchField.value = '';
-    searchField.dispatchEvent(new KeyboardEvent('keyup'));
-  });
+  //   searchField.value = '';
+  //   searchField.dispatchEvent(new KeyboardEvent('keyup'));
+  // });
 
-  test('should clear the search and fire the SHOW_TABS event when the Escape key is pressed and the search text is not empty', done => {
-    events.on(SHOW_TABS, done);
+  // test('should clear the search and fire the SHOW_TABS event when the Escape key is pressed and the search text is not empty', done => {
+  //   events.on(SHOW_TABS, done);
 
-    searchField.value = 'foo';
-    searchField.dispatchEvent(
-      new KeyboardEvent('keydown', {
-        key: 'Escape'
-      })
-    );
-    expect(searchField.value).toBe('');
-  });
+  //   searchField.value = 'foo';
+  //   searchField.dispatchEvent(
+  //     new KeyboardEvent('keydown', {
+  //       key: 'Escape'
+  //     })
+  //   );
+  //   expect(searchField.value).toBe('');
+  // });
 
-  test('should clear the search and fire the SHOW_TABS event when the clear search icon is clicked', done => {
-    events.on(SHOW_TABS, done);
+  // test('should clear the search and fire the SHOW_TABS event when the clear search icon is clicked', done => {
+  //   events.on(SHOW_TABS, done);
 
-    searchField.value = 'foo';
-    const searchIcon = search.querySelector('.emoji-picker__search-icon');
-    searchIcon.dispatchEvent(new MouseEvent('click'));
-    expect(searchField.value).toBe('');
-  });
+  //   searchField.value = 'foo';
+  //   const searchIcon = search.querySelector('.emoji-picker__search-icon');
+  //   searchIcon.dispatchEvent(new MouseEvent('click'));
+  //   expect(searchField.value).toBe('');
+  // });
 });

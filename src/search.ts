@@ -5,10 +5,8 @@ import * as icons from './icons';
 import { EmojiContainer } from './emojiContainer';
 import {
   HIDE_PREVIEW,
-  HIDE_TABS,
   HIDE_VARIANT_POPUP,
-  SHOW_SEARCH_RESULTS,
-  SHOW_TABS
+  SHOW_SEARCH_RESULTS
 } from './events';
 import { createElement } from './util';
 import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
@@ -108,7 +106,6 @@ export class Search {
       this.searchField.value = '';
       this.resultsContainer = null;
 
-      this.events.emit(SHOW_TABS);
       this.searchIcon.innerHTML = icons.search;
       this.searchIcon.style.cursor = 'default';
       setTimeout(() => this.searchField.focus());
@@ -167,13 +164,9 @@ export class Search {
     if (!this.searchField.value) {
       this.searchIcon.innerHTML = icons.search;
       this.searchIcon.style.cursor = 'default';
-
-      this.events.emit(SHOW_TABS);
     } else {
       this.searchIcon.innerHTML = icons.times;
       this.searchIcon.style.cursor = 'pointer';
-
-      this.events.emit(HIDE_TABS);
       const searchResults = this.emojiData.filter(
         emoji =>
           emoji.name
