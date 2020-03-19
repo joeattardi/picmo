@@ -127,7 +127,11 @@ export default class EmojiButton {
     // const tabs = new Tabs(this.events, this.i18n, this.options).render();
     // pickerContent.appendChild(tabs);
 
-    const emojiArea = new EmojiArea(this.events, this.i18n, this.options).render();
+    const emojiArea = new EmojiArea(
+      this.events,
+      this.i18n,
+      this.options
+    ).render();
     pickerContent.appendChild(emojiArea);
 
     // this.events.on(HIDE_TABS, () => {

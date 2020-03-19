@@ -10,7 +10,12 @@ import { CATEGORY_CLICKED } from './events';
 import * as icons from './icons';
 import { createElement } from './util';
 
-import { I18NStrings, EmojiButtonOptions, EmojiRecord, I18NCategory } from './types';
+import {
+  I18NStrings,
+  EmojiButtonOptions,
+  EmojiRecord,
+  I18NCategory
+} from './types';
 
 const categoryIcons: { [key in I18NCategory]: string } = {
   recents: icons.history,

@@ -7,11 +7,7 @@ import { CategoryButtons } from './categoryButtons';
 import { EmojiContainer } from './emojiContainer';
 
 import { CATEGORY_CLICKED } from './events';
-import {
-  I18NStrings,
-  EmojiButtonOptions,
-  EmojiRecord
-} from './types';
+import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
 import { createElement } from './util';
 
 const categories: string[] = emojiData.categories;
@@ -28,7 +24,8 @@ emojiData.emoji.forEach(emoji => {
 
 const SCROLL_ANIMATION_TIME = 150;
 const SCROLL_ANIMATION_INTERVAL = 10;
-const SCROLL_ANIMATION_STEPS = SCROLL_ANIMATION_TIME / SCROLL_ANIMATION_INTERVAL;
+const SCROLL_ANIMATION_STEPS =
+  SCROLL_ANIMATION_TIME / SCROLL_ANIMATION_INTERVAL;
 
 export class EmojiArea {
   private headerOffsets: number[];
@@ -56,7 +53,10 @@ export class EmojiArea {
     Object.keys(emojiCategories).forEach(this.addCategory);
 
     requestAnimationFrame(() => {
-      this.headerOffsets = Array.prototype.map.call(this.headers, header => header.offsetTop) as number[];
+      this.headerOffsets = Array.prototype.map.call(
+        this.headers,
+        header => header.offsetTop
+      ) as number[];
     });
 
     this.emojis.addEventListener('scroll', this.highlightCategory);
@@ -68,7 +68,8 @@ export class EmojiArea {
 
   private addCategory = (category: string) => {
     const name = createElement('h2', 'emoji-picker__category-name');
-    name.innerHTML = this.i18n.categories[category] || defaultI18n.categories[category];
+    name.innerHTML =
+      this.i18n.categories[category] || defaultI18n.categories[category];
     this.emojis.appendChild(name);
     this.headers.push(name);
 
@@ -80,7 +81,7 @@ export class EmojiArea {
         this.options
       ).render()
     );
-  }
+  };
 
   selectCategory = (category: string) => {
     const headerIndex = categories.indexOf(category);
@@ -95,21 +96,26 @@ export class EmojiArea {
           this.isAnimating = false;
         } else {
           this.emojis.scrollTop += step;
-          setTimeout(() => requestAnimationFrame(stepAnimate), SCROLL_ANIMATION_INTERVAL);
+          setTimeout(
+            () => requestAnimationFrame(stepAnimate),
+            SCROLL_ANIMATION_INTERVAL
+          );
         }
       } else {
         this.isAnimating = false;
       }
-    }
+    };
 
     this.categoryButtons.setActiveButton(headerIndex);
     this.isAnimating = true;
     requestAnimationFrame(stepAnimate);
-  }
-  
+  };
+
   highlightCategory = () => {
     if (!this.isAnimating) {
-      let closestHeaderIndex = this.headerOffsets.findIndex(offset => offset > this.emojis.scrollTop);
+      let closestHeaderIndex = this.headerOffsets.findIndex(
+        offset => offset > this.emojis.scrollTop
+      );
 
       if (closestHeaderIndex === 0) {
         closestHeaderIndex = 1;
@@ -120,5 +126,5 @@ export class EmojiArea {
       this.currentCategory = closestHeaderIndex - 1;
       this.categoryButtons.setActiveButton(this.currentCategory);
     }
-  }
+  };
 }
