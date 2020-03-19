@@ -10,12 +10,7 @@ import { CATEGORY_CLICKED } from './events';
 import * as icons from './icons';
 import { createElement } from './util';
 
-import {
-  I18NStrings,
-  EmojiButtonOptions,
-  EmojiRecord,
-  I18NCategory
-} from './types';
+import { EmojiButtonOptions, I18NCategory } from './types';
 
 const categoryIcons: { [key in I18NCategory]: string } = {
   recents: icons.history,
@@ -62,7 +57,7 @@ export class CategoryButtons {
     return container;
   }
 
-  setActiveButton(activeButton: number) {
+  setActiveButton(activeButton: number): void {
     this.buttons[this.activeButton].classList.remove('active');
     this.activeButton = activeButton;
     this.buttons[this.activeButton].classList.add('active');

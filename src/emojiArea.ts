@@ -66,7 +66,7 @@ export class EmojiArea {
     return this.container;
   }
 
-  private addCategory = (category: string) => {
+  private addCategory = (category: string): void => {
     const name = createElement('h2', 'emoji-picker__category-name');
     name.innerHTML =
       this.i18n.categories[category] || defaultI18n.categories[category];
@@ -83,13 +83,13 @@ export class EmojiArea {
     );
   };
 
-  selectCategory = (category: string) => {
+  selectCategory = (category: string): void => {
     const headerIndex = categories.indexOf(category);
     const targetPosition = this.headerOffsets[headerIndex];
     const delta = targetPosition - this.emojis.scrollTop;
     const step = delta / SCROLL_ANIMATION_STEPS;
 
-    const stepAnimate = () => {
+    const stepAnimate = (): void => {
       if (this.emojis.scrollTop !== targetPosition) {
         if (Math.abs(this.emojis.scrollTop - targetPosition) < Math.abs(step)) {
           this.emojis.scrollTop = targetPosition;
@@ -111,7 +111,7 @@ export class EmojiArea {
     requestAnimationFrame(stepAnimate);
   };
 
-  highlightCategory = () => {
+  highlightCategory = (): void => {
     if (!this.isAnimating) {
       let closestHeaderIndex = this.headerOffsets.findIndex(
         offset => offset > this.emojis.scrollTop

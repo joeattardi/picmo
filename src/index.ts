@@ -7,16 +7,9 @@ import twemoji from 'twemoji';
 
 import emojiData from './data/emoji';
 
-import {
-  EMOJI,
-  SHOW_SEARCH_RESULTS,
-  SHOW_TABS,
-  HIDE_TABS,
-  HIDE_VARIANT_POPUP
-} from './events';
+import { EMOJI, SHOW_SEARCH_RESULTS, HIDE_VARIANT_POPUP } from './events';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
-import { Tabs } from './tabs';
 import { createElement, empty } from './util';
 import { VariantPopup } from './variantPopup';
 
