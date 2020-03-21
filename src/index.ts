@@ -55,6 +55,7 @@ export default class EmojiButton {
   private i18n: I18NStrings;
 
   private pickerEl: HTMLElement;
+  private wrapper: HTMLElement;
   private focusTrap: FocusTrap;
 
   private hideInProgress: boolean;
@@ -184,8 +185,11 @@ export default class EmojiButton {
       variantPopup = null;
     });
 
+    this.wrapper = createElement('div', 'wrapper');
+    this.wrapper.appendChild(this.pickerEl);
+
     if (this.options.rootElement) {
-      this.options.rootElement.appendChild(this.pickerEl);
+      this.options.rootElement.appendChild(this.wrapper);
     }
 
     setTimeout(() => {
@@ -202,22 +206,21 @@ export default class EmojiButton {
 
   private destroyPicker(): void {
     if (this.options.rootElement) {
-      this.options.rootElement.removeChild(this.pickerEl);
+      this.options.rootElement.removeChild(this.wrapper);
       this.popper.destroy();
-      this.pickerEl.style.transition = '';
       this.hideInProgress = false;
     }
   }
 
   hidePicker(): void {
     this.focusTrap.deactivate();
-    this.pickerEl.classList.remove('visible');
     this.pickerVisible = false;
     this.events.off(EMOJI);
     this.events.off(HIDE_VARIANT_POPUP);
 
     this.hideInProgress = true;
-    this.destroyTimeout = setTimeout(this.destroyPicker.bind(this), 500);
+    this.pickerEl.classList.add('hiding');
+    this.destroyTimeout = setTimeout(this.destroyPicker.bind(this), 170);
 
     document.removeEventListener('click', this.onDocumentClick);
     document.removeEventListener('keydown', this.onDocumentKeydown);
@@ -231,12 +234,11 @@ export default class EmojiButton {
 
     this.pickerVisible = true;
     this.buildPicker();
-    this.popper = createPopper(referenceEl, this.pickerEl, {
+    this.popper = createPopper(referenceEl, this.wrapper, {
       placement: options.position || this.options.position
     });
 
     this.focusTrap.activate();
-    requestAnimationFrame(() => this.pickerEl.classList.add('visible'));
   }
 
   togglePicker(

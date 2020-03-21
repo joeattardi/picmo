@@ -1,22 +1,48 @@
+@keyframes show {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.8, 0.8, 0.8);
+  }
+
+  50% {
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale3d(0.8, 0.8, 0.8);
+  }
+}
+
 .emoji-picker {
   border: 1px solid #CCCCCC;
   border-radius: 5px;
   background: #FFFFFF;
   width: 23rem;
   font-family: Arial, Helvetica, sans-serif;
-  opacity: 0;
-  transition: opacity 0.3s;
   overflow: hidden;
+  animation: show 0.2s ease-in-out;
+}
+
+.emoji-picker.hiding {
+  animation: hide 0.2s ease-in-out;
 }
 
 .emoji-picker.dark {
   background: #333333;
   color: #FFFFFF;
   border-color: #666666;
-}
-
-.emoji-picker.visible {
-  opacity: 1;
 }
 
 .emoji-picker__content {
