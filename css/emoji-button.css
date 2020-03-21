@@ -82,7 +82,7 @@
 .emoji-picker__content {
   padding: 0.5em;
   height: 20rem;
-  overflow: hidden;
+  overflow-y: scroll;
   position: relative;
 }
 
@@ -129,10 +129,6 @@
   align-content: flex-start;
   width: calc((1.8rem * 1.5 * 8) + 0.5rem);
   margin: auto;
-}
-
-.emoji-picker__emojis.search-results {
-  height: 21rem;
 }
 
 .emoji-picker__emoji {
@@ -212,7 +208,22 @@
 .emoji-picker__search-not-found {
   color: #666666;
   text-align: center;
-  margin-top: 2em;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.emoji-picker__search-not-found h2 {
+  color: #666666;
+}
+
+.emoji-picker.dark .emoji-picker__search-not-found {
+  color: #999999;
+}
+
+.emoji-picker.dark .emoji-picker__search-not-found h2 {
+  color: #999999;
 }
 
 .emoji-picker.dark .emoji-picker__search-not-found {
@@ -268,6 +279,10 @@
   overflow-y: scroll;
   height: 18rem;
   position: relative;
+}
+
+.emoji-picker__emojis.hiding {
+  animation: fade-out 0.05s ease-in-out;
 }
 
 .emoji-picker__emojis h2.emoji-picker__category-name {
@@ -357,10 +372,14 @@ button.emoji-picker__category-button.active {
   }
 
   .emoji-picker.auto .emoji-picker__search:focus {
-    border-color: #DBE5f9;
+    border-color: #DBE5F9;
   }
 
   .emoji-picker.auto .emoji-picker__search-not-found {
+    color: #999999;
+  }
+
+  .emoji-picker.auto .emoji-picker__search-not-found h2 {
     color: #999999;
   }
 

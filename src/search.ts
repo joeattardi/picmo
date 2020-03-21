@@ -6,7 +6,8 @@ import { EmojiContainer } from './emojiContainer';
 import {
   HIDE_PREVIEW,
   HIDE_VARIANT_POPUP,
-  SHOW_SEARCH_RESULTS
+  SHOW_SEARCH_RESULTS,
+  HIDE_SEARCH_RESULTS
 } from './events';
 import { createElement } from './util';
 import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
@@ -108,6 +109,9 @@ export class Search {
 
       this.searchIcon.innerHTML = icons.search;
       this.searchIcon.style.cursor = 'default';
+
+      this.events.emit(HIDE_SEARCH_RESULTS);
+
       setTimeout(() => this.searchField.focus());
     }
   }
@@ -164,6 +168,7 @@ export class Search {
     if (!this.searchField.value) {
       this.searchIcon.innerHTML = icons.search;
       this.searchIcon.style.cursor = 'default';
+      this.events.emit(HIDE_SEARCH_RESULTS);
     } else {
       this.searchIcon.innerHTML = icons.times;
       this.searchIcon.style.cursor = 'pointer';
