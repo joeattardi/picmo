@@ -5,12 +5,10 @@ import { createElement } from './util';
 
 import { HIDE_VARIANT_POPUP } from './events';
 
-import { times } from './icons';
 import { EmojiRecord, EmojiButtonOptions } from './types';
 
 const CLASS_OVERLAY = 'emoji-picker__variant-overlay';
 const CLASS_POPUP = 'emoji-picker__variant-popup';
-const CLASS_CLOSE_BUTTON = 'emoji-picker__variant-popup-close-button';
 
 export class VariantPopup {
   private popup: HTMLElement;
@@ -95,14 +93,6 @@ export class VariantPopup {
         this.events.emit(HIDE_VARIANT_POPUP);
       }
     });
-
-    const closeButton = createElement('button', CLASS_CLOSE_BUTTON);
-    closeButton.innerHTML = times;
-    closeButton.addEventListener('click', event => {
-      event.stopPropagation();
-      this.events.emit(HIDE_VARIANT_POPUP);
-    });
-    this.popup.appendChild(closeButton);
 
     overlay.appendChild(this.popup);
 

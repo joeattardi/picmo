@@ -25,6 +25,40 @@
   }
 }
 
+@keyframes grow {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.8, 0.8, 0.8); 
+  }
+
+  100% { 
+    opacity: 1;
+    transform: scale3d(1, 1, 1); 
+  }
+}
+
+@keyframes shrink {
+  0% { 
+    opacity: 1;
+    transform: scale3d(1, 1, 1);
+  }
+
+  100% { 
+    opacity: 0;
+    transform: scale3d(0.8, 0.8, 0.8); 
+  }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 .emoji-picker {
   border: 1px solid #CCCCCC;
   border-radius: 5px;
@@ -195,15 +229,21 @@
 }
 
 .emoji-picker__variant-overlay {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   position: absolute;
   top: 0;
   left: 0;
-  width: 23rem;
-  height: 27.5rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  animation: fade-in 0.2s ease-in-out;
+}
+
+.emoji-picker__variant-overlay.hiding {
+  animation: fade-out 0.2s ease-in-out;
 }
 
 .emoji-picker__variant-popup {
@@ -211,23 +251,17 @@
   margin: 0.5em;
   padding: 0.5em;
   text-align: center;
+  border-radius: 5px;
+  animation: grow 0.2s ease-in-out;
+  user-select: none;
+}
+
+.emoji-picker__variant-overlay.hiding .emoji-picker__variant-popup {
+  animation: shrink 0.2s ease-in-out;
 }
 
 .emoji-picker.dark .emoji-picker__variant-popup {
-  background: #333333;
-}
-
-.emoji-picker__variant-popup-close-button {
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  position: absolute;
-  right: 0.5em;
-  padding: 0;
-  top: calc(50% - 0.75em);
-  height: 1.5em;
-  width: 1.5em;
-  font-size: 1.5em;
+  background: #666666;
 }
 
 .emoji-picker__emojis {
@@ -281,10 +315,6 @@ button.emoji-picker__category-button.active {
   border-bottom: 4px solid #4F81E5;
 }
 
-.emoji-picker.dark .emoji-picker__variant-popup-close-button {
-  color: #666666;
-}
-
 @media (prefers-color-scheme: dark) {
   .emoji-picker.auto {
     background: #333333;
@@ -336,9 +366,5 @@ button.emoji-picker__category-button.active {
 
   .emoji-picker.auto .emoji-picker__variant-popup {
     background: #333333;
-  }
-
-  .emoji-picker.auto .emoji-picker__variant-popup-close-button {
-    color: #666666;
   }
 }

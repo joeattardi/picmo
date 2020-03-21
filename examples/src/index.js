@@ -5,7 +5,7 @@ var EmojiButton = require('@joeattardi/emoji-button');
 window.addEventListener('DOMContentLoaded', function () {
   var button = document.querySelector('#native-button');
   var picker = new EmojiButton({
-    theme: 'auto'
+    theme: 'light'
   });
 
   picker.on('emoji', function (emoji) {

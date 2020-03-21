@@ -180,9 +180,12 @@ export default class EmojiButton {
 
     this.events.on(HIDE_VARIANT_POPUP, () => {
       if (variantPopup) {
-        this.pickerEl.removeChild(variantPopup);
+        variantPopup.classList.add('hiding');
+        setTimeout(() => {
+          variantPopup && this.pickerEl.removeChild(variantPopup);
+          variantPopup = null;
+        }, 200);
       }
-      variantPopup = null;
     });
 
     this.wrapper = createElement('div', 'wrapper');
