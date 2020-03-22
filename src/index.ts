@@ -267,7 +267,9 @@ export default class EmojiButton {
     if (event.key === 'Escape') {
       this.hidePicker();
     } else {
-      const searchField = this.pickerEl.querySelector('.emoji-picker__search') as HTMLInputElement;
+      const searchField = this.pickerEl.querySelector(
+        '.emoji-picker__search'
+      ) as HTMLInputElement;
       searchField && searchField.focus();
     }
   }
