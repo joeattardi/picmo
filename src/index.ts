@@ -194,7 +194,7 @@ export default class EmojiButton {
         setTimeout(() => {
           variantPopup && this.pickerEl.removeChild(variantPopup);
           variantPopup = null;
-        }, 200);
+        }, 175);
       }
     });
 
