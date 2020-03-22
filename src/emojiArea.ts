@@ -84,11 +84,11 @@ export class EmojiArea {
     );
   };
 
-  selectCategory = (category: string): void =>  {
+  selectCategory = (category: string): void => {
     const headerIndex = categories.indexOf(category);
     const targetPosition = this.headerOffsets[headerIndex];
     this.emojis.scrollTop = targetPosition;
-  }
+  };
 
   // Animation code that I couldn't quite get working yet. Maybe someday
   // will do animation.
@@ -125,7 +125,7 @@ export class EmojiArea {
   //   };
 
   //   this.categoryButtons.setActiveButton(headerIndex);
-    
+
   //   if (!this.isAnimating && !this.animationQueue.length) {
   //     console.log('doing immediate animation');
   //     requestAnimationFrame(() => stepAnimate((targetPosition - this.emojis.scrollTop) / SCROLL_ANIMATION_STEPS));
