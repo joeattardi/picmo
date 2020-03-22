@@ -44,6 +44,7 @@ export class CategoryButtons {
     emojiData.categories.forEach((category: string) => {
       const button = createElement('button', CLASS_CATEGORY_BUTTON);
       button.innerHTML = categoryIcons[category];
+      button.tabIndex = -1;
       container.appendChild(button);
       this.buttons.push(button);
 
@@ -53,13 +54,29 @@ export class CategoryButtons {
     });
 
     this.buttons[0].classList.add('active');
+    this.buttons[0].tabIndex = 0;
+
+    container.addEventListener('keydown', event => {
+      if (event.key === 'ArrowRight') {
+        this.events.emit(CATEGORY_CLICKED, emojiData.categories[(this.activeButton + 1) % this.buttons.length]);
+      } else if (event.key === 'ArrowLeft') {
+        this.events.emit(CATEGORY_CLICKED, emojiData.categories[this.activeButton === 0 ? this.buttons.length - 1 : this.activeButton - 1]);
+      }
+    });
 
     return container;
   }
 
   setActiveButton(activeButton: number): void {
-    this.buttons[this.activeButton].classList.remove('active');
+    let activeButtonEl = this.buttons[this.activeButton];
+    activeButtonEl.classList.remove('active');
+    activeButtonEl.tabIndex = -1;
+
     this.activeButton = activeButton;
-    this.buttons[this.activeButton].classList.add('active');
+
+    activeButtonEl = this.buttons[this.activeButton];
+    activeButtonEl.classList.add('active');
+    activeButtonEl.tabIndex = 0;
+    activeButtonEl.focus();
   }
 }

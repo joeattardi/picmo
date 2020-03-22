@@ -82,9 +82,7 @@ export class Search {
 
     this.searchIcon = createElement('span', CLASS_SEARCH_ICON);
     this.searchIcon.innerHTML = icons.search;
-    this.searchIcon.addEventListener('click', event =>
-      this.onClearSearch(event)
-    );
+    this.searchIcon.addEventListener('click', (event: MouseEvent) => this.onClearSearch(event));
 
     this.searchContainer.appendChild(this.searchIcon);
 
@@ -92,9 +90,7 @@ export class Search {
       setTimeout(() => this.searchField.focus());
     }
 
-    this.searchField.addEventListener('keydown', event =>
-      this.onKeyDown(event)
-    );
+    this.searchField.addEventListener('keydown', (event: KeyboardEvent) => this.onKeyDown(event));
     this.searchField.addEventListener('keyup', () => this.onKeyUp());
 
     return this.searchContainer;

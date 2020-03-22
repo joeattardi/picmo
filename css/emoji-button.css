@@ -363,6 +363,10 @@ button.emoji-picker__category-button {
   outline: none;
 }
 
+.emoji-picker.keyboard button.emoji-picker__category-button:focus {
+  outline: 1px dotted #999999;
+}
+
 .emoji-picker.dark button.emoji-picker__category-button.active {
   color: var(--category-button-active-color);
 }

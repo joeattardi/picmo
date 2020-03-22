@@ -22,12 +22,13 @@ emojiData.emoji.forEach(emoji => {
   categoryList.push(emoji);
 });
 
-const SCROLL_ANIMATION_TIME = 150;
-const SCROLL_ANIMATION_INTERVAL = 10;
+const SCROLL_ANIMATION_TIME = 100;
+const SCROLL_ANIMATION_INTERVAL = 25;
 const SCROLL_ANIMATION_STEPS =
   SCROLL_ANIMATION_TIME / SCROLL_ANIMATION_INTERVAL;
 
 export class EmojiArea {
+  private animationQueue: FrameRequestCallback[] = [];
   private headerOffsets: number[];
   private currentCategory = 0;
   private headers: HTMLElement[] = [];
@@ -83,33 +84,73 @@ export class EmojiArea {
     );
   };
 
-  selectCategory = (category: string): void => {
+  selectCategory = (category: string): void =>  {
     const headerIndex = categories.indexOf(category);
     const targetPosition = this.headerOffsets[headerIndex];
-    const delta = targetPosition - this.emojis.scrollTop;
-    const step = delta / SCROLL_ANIMATION_STEPS;
+    this.emojis.scrollTop = targetPosition;
+  }
 
-    const stepAnimate = (): void => {
-      if (this.emojis.scrollTop !== targetPosition) {
-        if (Math.abs(this.emojis.scrollTop - targetPosition) < Math.abs(step)) {
-          this.emojis.scrollTop = targetPosition;
-          this.isAnimating = false;
-        } else {
-          this.emojis.scrollTop += step;
-          setTimeout(
-            () => requestAnimationFrame(stepAnimate),
-            SCROLL_ANIMATION_INTERVAL
-          );
-        }
-      } else {
-        this.isAnimating = false;
-      }
-    };
+  // Animation code that I couldn't quite get working yet. Maybe someday
+  // will do animation.
+  // selectCategory = (category: string): void => {
+  //   const headerIndex = categories.indexOf(category);
+  //   const targetPosition = this.headerOffsets[headerIndex];
 
-    this.categoryButtons.setActiveButton(headerIndex);
-    this.isAnimating = true;
-    requestAnimationFrame(stepAnimate);
-  };
+  //   const stepAnimate = (step: number): void => {
+  //     console.log('stepAnimate');
+  //     console.log('targetPosition:', targetPosition);
+  //     console.log('currentPosition:', this.emojis.scrollTop);
+  //     console.log('step:', step);
+
+  //     this.isAnimating = true;
+
+  //     if (this.emojis.scrollTop !== targetPosition) {
+  //       if (Math.abs(this.emojis.scrollTop - targetPosition) <= Math.abs(step)) {
+  //         this.emojis.scrollTop = targetPosition;
+  //         console.log('done animating');
+  //         requestAnimationFrame(() => this.isAnimating = false);
+  //       } else {
+  //         console.log('adding step of:', step);
+  //         this.emojis.scrollTop += step;
+  //         console.log('new position:', this.emojis.scrollTop);
+  //         setTimeout(
+  //           () => requestAnimationFrame(() => stepAnimate(step)),
+  //           SCROLL_ANIMATION_INTERVAL
+  //         );
+  //       }
+  //     } else {
+  //       console.log('done animating');
+  //       this.isAnimating = false;
+  //     }
+  //   };
+
+  //   this.categoryButtons.setActiveButton(headerIndex);
+    
+  //   if (!this.isAnimating && !this.animationQueue.length) {
+  //     console.log('doing immediate animation');
+  //     requestAnimationFrame(() => stepAnimate((targetPosition - this.emojis.scrollTop) / SCROLL_ANIMATION_STEPS));
+  //   } else {
+  //     console.log('queueing animation');
+  //     this.animationQueue.push(() => stepAnimate((targetPosition - this.emojis.scrollTop) / SCROLL_ANIMATION_STEPS));
+
+  //     const checkQueue = (): void => {
+  //       console.log('checking queue');
+  //       if (this.animationQueue.length && !this.isAnimating) {
+  //         const next = this.animationQueue.shift();
+  //         console.log('found a task, scheduling via requestAnimationFrame');
+  //         next && requestAnimationFrame(next);
+  //       }
+
+  //       if (this.animationQueue.length) {
+  //         console.log('more entries remain, checking again in 50ms');
+  //         setTimeout(checkQueue, 50);
+  //       }
+  //     }
+
+  //     console.log('scheduling first queue check');
+  //     setTimeout(checkQueue, 50);
+  //   }
+  // };
 
   highlightCategory = (): void => {
     if (!this.isAnimating) {

@@ -137,8 +137,10 @@ export default class EmojiButton {
     });
 
     this.events.on(HIDE_SEARCH_RESULTS, () => {
-      empty(pickerContent);
-      pickerContent.appendChild(emojiArea);
+      if (pickerContent.firstChild !== emojiArea) {
+        empty(pickerContent);
+        pickerContent.appendChild(emojiArea);
+      }
     });
 
     if (this.options.showPreview) {
@@ -266,7 +268,9 @@ export default class EmojiButton {
   onDocumentKeydown(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
       this.hidePicker();
-    } else {
+    } else if (event.key === 'Tab') {
+      this.pickerEl.classList.add('keyboard');
+    } else if (event.key.match(/^[\w]$/)) {
       const searchField = this.pickerEl.querySelector(
         '.emoji-picker__search'
       ) as HTMLInputElement;
