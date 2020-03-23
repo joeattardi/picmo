@@ -57,20 +57,27 @@ export class CategoryButtons {
     this.buttons[0].tabIndex = 0;
 
     container.addEventListener('keydown', event => {
-      if (event.key === 'ArrowRight') {
-        this.events.emit(
-          CATEGORY_CLICKED,
-          emojiData.categories[(this.activeButton + 1) % this.buttons.length]
-        );
-      } else if (event.key === 'ArrowLeft') {
-        this.events.emit(
-          CATEGORY_CLICKED,
-          emojiData.categories[
-            this.activeButton === 0
-              ? this.buttons.length - 1
-              : this.activeButton - 1
-          ]
-        );
+      switch (event.key) {
+        case 'ArrowRight':
+          this.events.emit(
+            CATEGORY_CLICKED,
+            emojiData.categories[(this.activeButton + 1) % this.buttons.length]
+          );
+          break;
+        case 'ArrowLeft':
+          this.events.emit(
+            CATEGORY_CLICKED,
+            emojiData.categories[
+              this.activeButton === 0
+                ? this.buttons.length - 1
+                : this.activeButton - 1
+            ]
+          );
+          break;
+        case 'ArrowUp':
+        case 'ArrowDown':
+          event.stopPropagation();
+          event.preventDefault();
       }
     });
 

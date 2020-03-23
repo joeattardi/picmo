@@ -10,6 +10,8 @@ import { CATEGORY_CLICKED } from './events';
 import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
 import { createElement } from './util';
 
+const EMOJIS_PER_ROW = 8;
+
 const categories: string[] = emojiData.categories;
 
 const emojiCategories: { [key: string]: EmojiRecord[] } = {};
@@ -22,13 +24,13 @@ emojiData.emoji.forEach(emoji => {
   categoryList.push(emoji);
 });
 
-const SCROLL_ANIMATION_TIME = 100;
-const SCROLL_ANIMATION_INTERVAL = 25;
-const SCROLL_ANIMATION_STEPS =
-  SCROLL_ANIMATION_TIME / SCROLL_ANIMATION_INTERVAL;
+// const SCROLL_ANIMATION_TIME = 100;
+// const SCROLL_ANIMATION_INTERVAL = 25;
+// const SCROLL_ANIMATION_STEPS =
+//   SCROLL_ANIMATION_TIME / SCROLL_ANIMATION_INTERVAL;
 
 export class EmojiArea {
-  private animationQueue: FrameRequestCallback[] = [];
+  // private animationQueue: FrameRequestCallback[] = [];
   private headerOffsets: number[];
   private currentCategory = 0;
   private headers: HTMLElement[] = [];
@@ -36,7 +38,7 @@ export class EmojiArea {
   private emojis: HTMLElement;
   private categoryButtons: CategoryButtons;
 
-  private isAnimating = false;
+  private focusedIndex = 0;
 
   constructor(
     private events: Emitter,
@@ -61,10 +63,83 @@ export class EmojiArea {
     });
 
     this.emojis.addEventListener('scroll', this.highlightCategory);
+    this.emojis.addEventListener('keydown', this.handleKeyDown);
+
     this.events.on(CATEGORY_CLICKED, this.selectCategory);
 
     this.container.appendChild(this.emojis);
+
+    const firstEmoji = this.container.querySelectorAll('.emoji-picker__emoji')[0] as HTMLElement;
+    firstEmoji.tabIndex = 0;
+
     return this.container;
+  }
+
+  private get currentCategoryEl(): HTMLElement {
+    return this.emojis.querySelectorAll('.emoji-picker__container')[this.currentCategory] as HTMLElement;
+  }
+
+  private get focusedEmoji(): HTMLElement {
+    return this.currentCategoryEl.querySelectorAll('.emoji-picker__emoji')[this.focusedIndex] as HTMLElement;
+  }
+
+  private get currentEmojiCount(): number {
+    return this.currentCategoryEl.querySelectorAll('.emoji-picker__emoji').length;
+  }
+
+  private handleKeyDown = (event: KeyboardEvent) => {
+    this.emojis.removeEventListener('scroll', this.highlightCategory);
+    switch (event.key) {
+      case 'ArrowRight':
+        this.focusedEmoji.tabIndex = -1;
+
+        if (this.focusedIndex === this.currentEmojiCount - 1 && this.currentCategory < categories.length) {
+          this.categoryButtons.setActiveButton(++this.currentCategory);
+          this.setFocusedEmoji(0);
+        } else {
+          this.setFocusedEmoji(this.focusedIndex + 1);
+        }
+        break;  
+      case 'ArrowLeft':
+        this.focusedEmoji.tabIndex = -1;
+
+        if (this.focusedIndex === 0 && this.currentCategory > 0) {
+          this.categoryButtons.setActiveButton(--this.currentCategory);
+          this.setFocusedEmoji(this.currentEmojiCount - 1);
+        } else {
+          this.setFocusedEmoji(Math.max(0, this.focusedIndex - 1));
+        }
+        break;
+      case 'ArrowDown':
+        event.preventDefault();
+        this.focusedEmoji.tabIndex = -1;
+
+        if (this.focusedIndex + EMOJIS_PER_ROW >= this.currentEmojiCount && this.currentCategory < categories.length) {
+          this.categoryButtons.setActiveButton(++this.currentCategory);
+          this.setFocusedEmoji(0);
+        } else {
+          this.setFocusedEmoji(this.focusedIndex + EMOJIS_PER_ROW);
+        }
+        break;
+      case 'ArrowUp':
+        event.preventDefault();
+        this.focusedEmoji.tabIndex = -1;
+
+        if (this.focusedIndex === 0 && this.currentCategory > 0) {
+          this.categoryButtons.setActiveButton(--this.currentCategory);
+          this.setFocusedEmoji(this.currentEmojiCount - 1);
+        } else {
+          this.setFocusedEmoji(this.focusedIndex >= EMOJIS_PER_ROW ? this.focusedIndex - EMOJIS_PER_ROW : this.focusedIndex);
+        }        
+        break;
+    }
+    requestAnimationFrame(() => this.emojis.addEventListener('scroll', this.highlightCategory));
+  }
+
+  private setFocusedEmoji(index: number): void {
+    this.focusedIndex = index;
+    this.focusedEmoji.tabIndex = 0;
+    this.focusedEmoji.focus();
   }
 
   private addCategory = (category: string): void => {
@@ -153,19 +228,18 @@ export class EmojiArea {
   // };
 
   highlightCategory = (): void => {
-    if (!this.isAnimating) {
-      let closestHeaderIndex = this.headerOffsets.findIndex(
-        offset => offset > this.emojis.scrollTop
-      );
+    console.log('highlighting');
+    let closestHeaderIndex = this.headerOffsets.findIndex(
+      offset => offset > this.emojis.scrollTop
+    );
 
-      if (closestHeaderIndex === 0) {
-        closestHeaderIndex = 1;
-      } else if (closestHeaderIndex < 0) {
-        closestHeaderIndex = this.headerOffsets.length;
-      }
-
-      this.currentCategory = closestHeaderIndex - 1;
-      this.categoryButtons.setActiveButton(this.currentCategory);
+    if (closestHeaderIndex === 0) {
+      closestHeaderIndex = 1;
+    } else if (closestHeaderIndex < 0) {
+      closestHeaderIndex = this.headerOffsets.length;
     }
+
+    this.currentCategory = closestHeaderIndex - 1;
+    this.categoryButtons.setActiveButton(this.currentCategory);
   };
 }
