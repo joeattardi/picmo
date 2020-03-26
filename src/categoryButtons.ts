@@ -84,7 +84,7 @@ export class CategoryButtons {
     return container;
   }
 
-  setActiveButton(activeButton: number): void {
+  setActiveButton(activeButton: number, focus = true): void {
     let activeButtonEl = this.buttons[this.activeButton];
     activeButtonEl.classList.remove('active');
     activeButtonEl.tabIndex = -1;
@@ -94,6 +94,9 @@ export class CategoryButtons {
     activeButtonEl = this.buttons[this.activeButton];
     activeButtonEl.classList.add('active');
     activeButtonEl.tabIndex = 0;
-    activeButtonEl.focus();
+
+    if (focus) {
+      activeButtonEl.focus();
+    }
   }
 }

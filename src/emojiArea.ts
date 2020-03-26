@@ -24,13 +24,7 @@ emojiData.emoji.forEach(emoji => {
   categoryList.push(emoji);
 });
 
-// const SCROLL_ANIMATION_TIME = 100;
-// const SCROLL_ANIMATION_INTERVAL = 25;
-// const SCROLL_ANIMATION_STEPS =
-//   SCROLL_ANIMATION_TIME / SCROLL_ANIMATION_INTERVAL;
-
 export class EmojiArea {
-  // private animationQueue: FrameRequestCallback[] = [];
   private headerOffsets: number[];
   private currentCategory = 0;
   private headers: HTMLElement[] = [];
@@ -136,10 +130,13 @@ export class EmojiArea {
     requestAnimationFrame(() => this.emojis.addEventListener('scroll', this.highlightCategory));
   }
 
-  private setFocusedEmoji(index: number): void {
+  private setFocusedEmoji(index: number, focus = true): void {
     this.focusedIndex = index;
     this.focusedEmoji.tabIndex = 0;
-    this.focusedEmoji.focus();
+
+    if (focus) {
+      this.focusedEmoji.focus();
+    }
   }
 
   private addCategory = (category: string): void => {
@@ -160,75 +157,19 @@ export class EmojiArea {
   };
 
   selectCategory = (category: string): void => {
-    const headerIndex = categories.indexOf(category);
-    const targetPosition = this.headerOffsets[headerIndex];
+    const categoryIndex = categories.indexOf(category);
+    const targetPosition = this.headerOffsets[categoryIndex];
     this.emojis.scrollTop = targetPosition;
+
+    this.focusedEmoji.tabIndex = -1;
+
+    setTimeout(() => {
+      this.setFocusedEmoji(0, false);
+      this.categoryButtons.setActiveButton(this.currentCategory)
+    });
   };
 
-  // Animation code that I couldn't quite get working yet. Maybe someday
-  // will do animation.
-  // selectCategory = (category: string): void => {
-  //   const headerIndex = categories.indexOf(category);
-  //   const targetPosition = this.headerOffsets[headerIndex];
-
-  //   const stepAnimate = (step: number): void => {
-  //     console.log('stepAnimate');
-  //     console.log('targetPosition:', targetPosition);
-  //     console.log('currentPosition:', this.emojis.scrollTop);
-  //     console.log('step:', step);
-
-  //     this.isAnimating = true;
-
-  //     if (this.emojis.scrollTop !== targetPosition) {
-  //       if (Math.abs(this.emojis.scrollTop - targetPosition) <= Math.abs(step)) {
-  //         this.emojis.scrollTop = targetPosition;
-  //         console.log('done animating');
-  //         requestAnimationFrame(() => this.isAnimating = false);
-  //       } else {
-  //         console.log('adding step of:', step);
-  //         this.emojis.scrollTop += step;
-  //         console.log('new position:', this.emojis.scrollTop);
-  //         setTimeout(
-  //           () => requestAnimationFrame(() => stepAnimate(step)),
-  //           SCROLL_ANIMATION_INTERVAL
-  //         );
-  //       }
-  //     } else {
-  //       console.log('done animating');
-  //       this.isAnimating = false;
-  //     }
-  //   };
-
-  //   this.categoryButtons.setActiveButton(headerIndex);
-
-  //   if (!this.isAnimating && !this.animationQueue.length) {
-  //     console.log('doing immediate animation');
-  //     requestAnimationFrame(() => stepAnimate((targetPosition - this.emojis.scrollTop) / SCROLL_ANIMATION_STEPS));
-  //   } else {
-  //     console.log('queueing animation');
-  //     this.animationQueue.push(() => stepAnimate((targetPosition - this.emojis.scrollTop) / SCROLL_ANIMATION_STEPS));
-
-  //     const checkQueue = (): void => {
-  //       console.log('checking queue');
-  //       if (this.animationQueue.length && !this.isAnimating) {
-  //         const next = this.animationQueue.shift();
-  //         console.log('found a task, scheduling via requestAnimationFrame');
-  //         next && requestAnimationFrame(next);
-  //       }
-
-  //       if (this.animationQueue.length) {
-  //         console.log('more entries remain, checking again in 50ms');
-  //         setTimeout(checkQueue, 50);
-  //       }
-  //     }
-
-  //     console.log('scheduling first queue check');
-  //     setTimeout(checkQueue, 50);
-  //   }
-  // };
-
   highlightCategory = (): void => {
-    console.log('highlighting');
     let closestHeaderIndex = this.headerOffsets.findIndex(
       offset => offset > this.emojis.scrollTop
     );
@@ -240,6 +181,6 @@ export class EmojiArea {
     }
 
     this.currentCategory = closestHeaderIndex - 1;
-    this.categoryButtons.setActiveButton(this.currentCategory);
+    this.categoryButtons.setActiveButton(this.currentCategory, false);
   };
 }
