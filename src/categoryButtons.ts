@@ -35,13 +35,8 @@ export class CategoryButtons {
   render(): HTMLElement {
     const container = createElement('div', CLASS_CATEGORY_BUTTONS);
 
-    // if (this.options.showRecents) {
-    //   const button = createElement('button', CLASS_CATEGORY_BUTTON);
-    //   button.innerHTML = categoryIcons.recents;
-    //   container.appendChild(button);
-    // }
-
-    emojiData.categories.forEach((category: string) => {
+    const categories = this.options.showRecents ? ['recents', ...emojiData.categories] : emojiData.categories;
+    categories.forEach((category: string) => {
       const button = createElement('button', CLASS_CATEGORY_BUTTON);
       button.innerHTML = categoryIcons[category];
       button.tabIndex = -1;
@@ -53,21 +48,18 @@ export class CategoryButtons {
       });
     });
 
-    this.buttons[0].classList.add('active');
-    this.buttons[0].tabIndex = 0;
-
     container.addEventListener('keydown', event => {
       switch (event.key) {
         case 'ArrowRight':
           this.events.emit(
             CATEGORY_CLICKED,
-            emojiData.categories[(this.activeButton + 1) % this.buttons.length]
+            categories[(this.activeButton + 1) % this.buttons.length]
           );
           break;
         case 'ArrowLeft':
           this.events.emit(
             CATEGORY_CLICKED,
-            emojiData.categories[
+            categories[
               this.activeButton === 0
                 ? this.buttons.length - 1
                 : this.activeButton - 1

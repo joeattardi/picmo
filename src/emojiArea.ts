@@ -7,12 +7,13 @@ import { CategoryButtons } from './categoryButtons';
 import { EmojiContainer } from './emojiContainer';
 
 import { CATEGORY_CLICKED } from './events';
-import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
+import { I18NStrings, EmojiButtonOptions, EmojiRecord, RecentEmoji } from './types';
 import { createElement } from './util';
+import { load } from './recent';
 
 const EMOJIS_PER_ROW = 8;
 
-const categories: string[] = emojiData.categories;
+let categories: string[] = emojiData.categories;
 
 const emojiCategories: { [key: string]: EmojiRecord[] } = {};
 emojiData.emoji.forEach(emoji => {
@@ -47,16 +48,29 @@ export class EmojiArea {
     this.container.appendChild(this.categoryButtons.render());
 
     this.emojis = createElement('div', 'emoji-picker__emojis');
-    Object.keys(emojiCategories).forEach(this.addCategory);
+
+    if (this.options.showRecents) {
+      categories = ['recents', ...emojiData.categories];
+      emojiCategories.recents = load();
+    }
+
+    categories.forEach(category => this.addCategory(category, emojiCategories[category]));
 
     requestAnimationFrame(() => {
       this.headerOffsets = Array.prototype.map.call(
         this.headers,
         header => header.offsetTop
       ) as number[];
+
+      this.selectCategory('smileys', false);
+      this.currentCategory = this.options.showRecents ? 1 : 0;
+      this.categoryButtons.setActiveButton(this.currentCategory, false);
+      
+      setTimeout(() => {
+        setTimeout(() => this.emojis.addEventListener('scroll', this.highlightCategory));
+      });
     });
 
-    this.emojis.addEventListener('scroll', this.highlightCategory);
     this.emojis.addEventListener('keydown', this.handleKeyDown);
 
     this.events.on(CATEGORY_CLICKED, this.selectCategory);
@@ -139,7 +153,7 @@ export class EmojiArea {
     }
   }
 
-  private addCategory = (category: string): void => {
+  private addCategory = (category: string, emojis: Array<EmojiRecord | RecentEmoji>): void => {
     const name = createElement('h2', 'emoji-picker__category-name');
     name.innerHTML =
       this.i18n.categories[category] || defaultI18n.categories[category];
@@ -148,7 +162,7 @@ export class EmojiArea {
 
     this.emojis.appendChild(
       new EmojiContainer(
-        emojiCategories[category],
+        emojis,
         true,
         this.events,
         this.options
@@ -156,7 +170,7 @@ export class EmojiArea {
     );
   };
 
-  selectCategory = (category: string): void => {
+  selectCategory = (category: string, focus = true): void => {
     const categoryIndex = categories.indexOf(category);
     const targetPosition = this.headerOffsets[categoryIndex];
     this.emojis.scrollTop = targetPosition;
@@ -165,7 +179,7 @@ export class EmojiArea {
 
     setTimeout(() => {
       this.setFocusedEmoji(0, false);
-      this.categoryButtons.setActiveButton(this.currentCategory)
+      this.categoryButtons.setActiveButton(this.currentCategory, focus)
     });
   };
 
