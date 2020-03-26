@@ -77,6 +77,8 @@
   --category-button-size: 1.1rem;
   --category-border-bottom-size: 4px;
 
+  --focus-indicator-color: #999999;
+
   --search-height: 2rem;
 
   --blue-color: #4F81E5;
@@ -184,7 +186,6 @@
 .emoji-picker__emoji {
   background: transparent;
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   font-size: var(--emoji-size);
   width: 1.5em;
@@ -204,6 +205,10 @@
 
 .emoji-picker__emoji:focus, .emoji-picker__emoji:hover {
   background: var(--hover-color);
+}
+
+.emoji-picker__emoji:focus {
+  outline: 1px dotted var(--focus-indicator-color);
 }
 
 .emoji-picker.dark .emoji-picker__emoji:focus, .emoji-picker.dark .emoji-picker__emoji:hover {
@@ -364,7 +369,7 @@ button.emoji-picker__category-button {
 }
 
 .emoji-picker.keyboard button.emoji-picker__category-button:focus {
-  outline: 1px dotted #999999;
+  outline: 1px dotted var(--focus-indicator-color);
 }
 
 .emoji-picker.dark button.emoji-picker__category-button.active {
