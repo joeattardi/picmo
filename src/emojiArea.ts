@@ -170,6 +170,10 @@ export class EmojiArea {
   };
 
   highlightCategory = (): void => {
+    if (document.activeElement?.classList.contains('emoji-picker__emoji')) {
+      return; 
+    }
+
     let closestHeaderIndex = this.headerOffsets.findIndex(
       offset => offset > this.emojis.scrollTop
     );
@@ -181,6 +185,6 @@ export class EmojiArea {
     }
 
     this.currentCategory = closestHeaderIndex - 1;
-    this.categoryButtons.setActiveButton(this.currentCategory, false);
+    this.categoryButtons.setActiveButton(this.currentCategory);
   };
 }
