@@ -119,7 +119,7 @@ export class EmojiArea {
         event.preventDefault();
         this.focusedEmoji.tabIndex = -1;
 
-        if (this.focusedIndex === 0 && this.currentCategory > 0) {
+        if (this.focusedIndex < EMOJIS_PER_ROW && this.currentCategory > 0) {
           this.categoryButtons.setActiveButton(--this.currentCategory);
           this.setFocusedEmoji(this.currentEmojiCount - 1);
         } else {
