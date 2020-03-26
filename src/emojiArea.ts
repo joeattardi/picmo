@@ -197,16 +197,15 @@ export class EmojiArea {
   };
 
   selectCategory = (category: string, focus = true): void => {
-    const categoryIndex = categories.indexOf(category);
-    const targetPosition = this.headerOffsets[categoryIndex];
-    this.emojis.scrollTop = targetPosition;
-
     this.focusedEmoji.tabIndex = -1;
 
-    setTimeout(() => {
-      this.setFocusedEmoji(0, false);
-      this.categoryButtons.setActiveButton(this.currentCategory, focus);
-    });
+    const categoryIndex = categories.indexOf(category);
+    this.currentCategory = categoryIndex;
+    this.setFocusedEmoji(0, false);
+    this.categoryButtons.setActiveButton(this.currentCategory, focus);
+
+    const targetPosition = this.headerOffsets[categoryIndex];
+    this.emojis.scrollTop = targetPosition;
   };
 
   highlightCategory = (): void => {
