@@ -35,7 +35,9 @@ export class CategoryButtons {
   render(): HTMLElement {
     const container = createElement('div', CLASS_CATEGORY_BUTTONS);
 
-    const categories = this.options.showRecents ? ['recents', ...emojiData.categories] : emojiData.categories;
+    const categories = this.options.showRecents
+      ? ['recents', ...emojiData.categories]
+      : emojiData.categories;
     categories.forEach((category: string) => {
       const button = createElement('button', CLASS_CATEGORY_BUTTON);
       button.innerHTML = categoryIcons[category];
