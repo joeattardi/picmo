@@ -34,6 +34,7 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   showSearch: true,
   showRecents: true,
   showVariants: true,
+  showCategoryButtons: true,
   recentsCount: 50,
   emojiVersion: '12.1',
   theme: 'light',
@@ -48,7 +49,10 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
     'symbols',
     'flags'
   ],
-  style: 'native'
+  style: 'native',
+  emojisPerRow: 8,
+  rows: 6,
+  emojiSize: '1.8em'
 };
 
 export default class EmojiButton {
@@ -96,6 +100,23 @@ export default class EmojiButton {
   private buildPicker(): void {
     this.pickerEl = createElement('div', CLASS_PICKER);
     this.pickerEl.classList.add(this.options.theme as string);
+
+    this.options.emojisPerRow &&
+      this.pickerEl.style.setProperty(
+        '--emoji-per-row',
+        this.options.emojisPerRow.toString()
+      );
+    this.options.rows &&
+      this.pickerEl.style.setProperty(
+        '--row-count',
+        this.options.rows.toString()
+      );
+    this.options.emojiSize &&
+      this.pickerEl.style.setProperty('--emoji-size', this.options.emojiSize);
+
+    if (!this.options.showCategoryButtons) {
+      this.pickerEl.style.setProperty('--category-button-height', '0');
+    }
 
     this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
       clickOutsideDeactivates: true

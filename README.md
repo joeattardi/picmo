@@ -79,6 +79,10 @@ Creates an Emoji Button emoji picker.
     * `symbols`
     * `flags`
 
+* `emojiSize`: (string, default: `1.8em`): The size to use for the emoji icons.
+
+* `emojisPerRow`: (number, default: `8`): The number of emojis to display per row. If this is set to a number smaller than 6, some category buttons may be cut off, so it is advisable to set `showCategoryButtons` to `false`.
+
 * `emojiVersion`: (string, default: `'12.1'`) The Emoji version to use. This determines which emojis are available. Supported versions are:
   * `1.0`
   * `2.0`
@@ -109,6 +113,10 @@ Creates an Emoji Button emoji picker.
 * `recentsCount`: (number, default: `50`): The maximum number of recent emojis to save.
 
 * `rootElement`: The root DOM node to attach the picker to. Defaults to the body if not passed in.
+
+* `rows` (number, default: `6`): The number of visible rows in the picker.
+
+* `showCategoryButtons`: (boolean, default: `true`) Whether or not to show the category switcher buttons.
 
 * `showPreview`: (boolean, default: `true`) Whether or not to show the emoji preview area.
 

@@ -49,8 +49,10 @@ export class EmojiArea {
   render(): HTMLElement {
     this.container = createElement('div', 'emoji-picker__emoji-area');
 
-    this.categoryButtons = new CategoryButtons(this.options, this.events);
-    this.container.appendChild(this.categoryButtons.render());
+    if (this.options.showCategoryButtons) {
+      this.categoryButtons = new CategoryButtons(this.options, this.events);
+      this.container.appendChild(this.categoryButtons.render());
+    }
 
     this.emojis = createElement('div', 'emoji-picker__emojis');
 
@@ -71,7 +73,10 @@ export class EmojiArea {
 
       this.selectCategory('smileys', false);
       this.currentCategory = this.options.showRecents ? 1 : 0;
-      this.categoryButtons.setActiveButton(this.currentCategory, false);
+
+      if (this.options.showCategoryButtons) {
+        this.categoryButtons.setActiveButton(this.currentCategory, false);
+      }
 
       setTimeout(() => {
         setTimeout(() =>
@@ -121,7 +126,9 @@ export class EmojiArea {
           this.focusedIndex === this.currentEmojiCount - 1 &&
           this.currentCategory < categories.length
         ) {
-          this.categoryButtons.setActiveButton(++this.currentCategory);
+          if (this.options.showCategoryButtons) {
+            this.categoryButtons.setActiveButton(++this.currentCategory);
+          }
           this.setFocusedEmoji(0);
         } else {
           this.setFocusedEmoji(this.focusedIndex + 1);
@@ -131,7 +138,9 @@ export class EmojiArea {
         this.focusedEmoji.tabIndex = -1;
 
         if (this.focusedIndex === 0 && this.currentCategory > 0) {
-          this.categoryButtons.setActiveButton(--this.currentCategory);
+          if (this.options.showCategoryButtons) {
+            this.categoryButtons.setActiveButton(--this.currentCategory);
+          }
           this.setFocusedEmoji(this.currentEmojiCount - 1);
         } else {
           this.setFocusedEmoji(Math.max(0, this.focusedIndex - 1));
@@ -145,7 +154,9 @@ export class EmojiArea {
           this.focusedIndex + EMOJIS_PER_ROW >= this.currentEmojiCount &&
           this.currentCategory < categories.length
         ) {
-          this.categoryButtons.setActiveButton(++this.currentCategory);
+          if (this.options.showCategoryButtons) {
+            this.categoryButtons.setActiveButton(++this.currentCategory);
+          }
           this.setFocusedEmoji(0);
         } else {
           this.setFocusedEmoji(this.focusedIndex + EMOJIS_PER_ROW);
@@ -156,7 +167,9 @@ export class EmojiArea {
         this.focusedEmoji.tabIndex = -1;
 
         if (this.focusedIndex < EMOJIS_PER_ROW && this.currentCategory > 0) {
-          this.categoryButtons.setActiveButton(--this.currentCategory);
+          if (this.options.showCategoryButtons) {
+            this.categoryButtons.setActiveButton(--this.currentCategory);
+          }
           this.setFocusedEmoji(this.currentEmojiCount - 1);
         } else {
           this.setFocusedEmoji(
@@ -202,7 +215,9 @@ export class EmojiArea {
     const categoryIndex = categories.indexOf(category);
     this.currentCategory = categoryIndex;
     this.setFocusedEmoji(0, false);
-    this.categoryButtons.setActiveButton(this.currentCategory, focus);
+    if (this.options.showCategoryButtons) {
+      this.categoryButtons.setActiveButton(this.currentCategory, focus);
+    }
 
     const targetPosition = this.headerOffsets[categoryIndex];
     this.emojis.scrollTop = targetPosition;
@@ -227,6 +242,8 @@ export class EmojiArea {
     }
 
     this.currentCategory = closestHeaderIndex - 1;
-    this.categoryButtons.setActiveButton(this.currentCategory);
+    if (this.options.showCategoryButtons) {
+      this.categoryButtons.setActiveButton(this.currentCategory);
+    }
   };
 }

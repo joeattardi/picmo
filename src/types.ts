@@ -34,6 +34,7 @@ export interface EmojiButtonOptions {
   showSearch?: boolean;
   showRecents?: boolean;
   showVariants?: boolean;
+  showCategoryButtons?: boolean;
   recentsCount?: number;
   rootElement?: HTMLElement;
   emojiVersion?: EmojiVersion;
@@ -42,6 +43,9 @@ export interface EmojiButtonOptions {
   theme?: EmojiTheme;
   categories?: Category[];
   style?: EmojiStyle;
+  emojisPerRow?: number;
+  rows?: number;
+  emojiSize?: string;
 }
 
 export type EmojiStyle = 'native' | 'twemoji';
