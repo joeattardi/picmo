@@ -28,6 +28,8 @@ export class Emoji {
         : twemoji.parse(this.emoji.emoji);
     this.emojiButton.tabIndex = -1;
 
+    this.emojiButton.title = this.emoji.name;
+
     this.emojiButton.addEventListener('focus', () => this.onEmojiHover());
     this.emojiButton.addEventListener('blur', () => this.onEmojiLeave());
     this.emojiButton.addEventListener('click', () => this.onEmojiClick());
