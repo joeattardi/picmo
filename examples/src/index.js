@@ -7,7 +7,6 @@ window.addEventListener('DOMContentLoaded', function () {
   var picker = new EmojiButton({
     theme: 'auto',
     position: 'bottom-end',
-    emojisPerRow: 12
   });
 
   picker.on('emoji', function (emoji) {
