@@ -16,8 +16,6 @@ import {
 import { createElement } from './util';
 import { load } from './recent';
 
-const EMOJIS_PER_ROW = 8;
-
 let categories: string[] = emojiData.categories;
 
 const emojiCategories: { [key: string]: EmojiRecord[] } = {};
@@ -37,6 +35,7 @@ export class EmojiArea {
   private container: HTMLElement;
   private emojis: HTMLElement;
   private categoryButtons: CategoryButtons;
+  private emojisPerRow: number;
 
   private focusedIndex = 0;
 
@@ -44,7 +43,9 @@ export class EmojiArea {
     private events: Emitter,
     private i18n: I18NStrings,
     private options: EmojiButtonOptions
-  ) {}
+  ) {
+    this.emojisPerRow = options.emojisPerRow || 8;
+  }
 
   render(): HTMLElement {
     this.container = createElement('div', 'emoji-picker__emoji-area');
@@ -158,29 +159,29 @@ export class EmojiArea {
         this.focusedEmoji.tabIndex = -1;
 
         if (
-          this.focusedIndex + EMOJIS_PER_ROW >= this.currentEmojiCount &&
+          this.focusedIndex + this.emojisPerRow >= this.currentEmojiCount &&
           this.currentCategory < categories.length
         ) {
           this.currentCategory++;
           if (this.options.showCategoryButtons) {
             this.categoryButtons.setActiveButton(this.currentCategory);
           }
-          this.setFocusedEmoji(this.focusedIndex % EMOJIS_PER_ROW);
+          this.setFocusedEmoji(this.focusedIndex % this.emojisPerRow);
         } else {
-          this.setFocusedEmoji(this.focusedIndex + EMOJIS_PER_ROW);
+          this.setFocusedEmoji(this.focusedIndex + this.emojisPerRow);
         }
         break;
       case 'ArrowUp':
         event.preventDefault();
         this.focusedEmoji.tabIndex = -1;
 
-        if (this.focusedIndex < EMOJIS_PER_ROW && this.currentCategory > 0) {
+        if (this.focusedIndex < this.emojisPerRow && this.currentCategory > 0) {
           const previousCategoryCount = this.getEmojiCount(
             this.currentCategory - 1
           );
-          let previousLastRowCount = previousCategoryCount % EMOJIS_PER_ROW;
+          let previousLastRowCount = previousCategoryCount % this.emojisPerRow;
           if (previousLastRowCount === 0) {
-            previousLastRowCount = EMOJIS_PER_ROW;
+            previousLastRowCount = this.emojisPerRow;
           }
           const currentColumn = this.focusedIndex;
           const newIndex =
@@ -196,8 +197,8 @@ export class EmojiArea {
           this.setFocusedEmoji(newIndex);
         } else {
           this.setFocusedEmoji(
-            this.focusedIndex >= EMOJIS_PER_ROW
-              ? this.focusedIndex - EMOJIS_PER_ROW
+            this.focusedIndex >= this.emojisPerRow
+              ? this.focusedIndex - this.emojisPerRow
               : this.focusedIndex
           );
         }

@@ -18,8 +18,6 @@ const CLASS_SEARCH_ICON = 'emoji-picker__search-icon';
 const CLASS_NOT_FOUND = 'emoji-picker__search-not-found';
 const CLASS_NOT_FOUND_ICON = 'emoji-picker__search-not-found-icon';
 
-const EMOJIS_PER_ROW = 8;
-
 class NotFoundMessage {
   constructor(private message: string) {}
 
@@ -40,6 +38,7 @@ class NotFoundMessage {
 
 export class Search {
   private emojiData: EmojiRecord[];
+  private emojisPerRow: number;
   private focusedEmojiIndex = 0;
 
   private searchContainer: HTMLElement;
@@ -55,7 +54,7 @@ export class Search {
     categories: number[],
     private autoFocusSearch: boolean
   ) {
-    this.options = options;
+    this.emojisPerRow = this.options.emojisPerRow || 8;
     this.emojiData = emojiData.filter(
       e =>
         e.version &&
@@ -144,13 +143,13 @@ export class Search {
         this.setFocusedEmoji(Math.max(0, this.focusedEmojiIndex - 1));
       } else if (event.key === 'ArrowDown') {
         event.preventDefault();
-        if (this.focusedEmojiIndex < emojis.length - EMOJIS_PER_ROW) {
-          this.setFocusedEmoji(this.focusedEmojiIndex + EMOJIS_PER_ROW);
+        if (this.focusedEmojiIndex < emojis.length - this.emojisPerRow) {
+          this.setFocusedEmoji(this.focusedEmojiIndex + this.emojisPerRow);
         }
       } else if (event.key === 'ArrowUp') {
         event.preventDefault();
-        if (this.focusedEmojiIndex >= EMOJIS_PER_ROW) {
-          this.setFocusedEmoji(this.focusedEmojiIndex - EMOJIS_PER_ROW);
+        if (this.focusedEmojiIndex >= this.emojisPerRow) {
+          this.setFocusedEmoji(this.focusedEmojiIndex - this.emojisPerRow);
         }
       } else if (event.key === 'Escape') {
         this.onClearSearch(event);
