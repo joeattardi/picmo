@@ -5,7 +5,8 @@ var EmojiButton = require('@joeattardi/emoji-button');
 window.addEventListener('DOMContentLoaded', function () {
   var button = document.querySelector('#native-button');
   var picker = new EmojiButton({
-    theme: 'auto'
+    theme: 'auto',
+    position: 'bottom-end'
   });
 
   picker.on('emoji', function (emoji) {
@@ -20,7 +21,8 @@ window.addEventListener('DOMContentLoaded', function () {
   var twemojiButton = document.querySelector('#twemoji-button');
   var twemojiPicker = new EmojiButton({
     theme: 'auto',
-    style: 'twemoji'
+    style: 'twemoji',
+    position: 'bottom-end'
   });
 
   twemojiPicker.on('emoji', function (emoji) {

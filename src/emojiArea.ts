@@ -116,6 +116,13 @@ export class EmojiArea {
       .length;
   }
 
+  private getEmojiCount(category: number): number {
+    const container = this.emojis.querySelectorAll('.emoji-picker__container')[
+      category
+    ] as HTMLElement;
+    return container.querySelectorAll('.emoji-picker__emoji').length;
+  }
+
   private handleKeyDown = (event: KeyboardEvent): void => {
     this.emojis.removeEventListener('scroll', this.highlightCategory);
     switch (event.key) {
@@ -154,10 +161,11 @@ export class EmojiArea {
           this.focusedIndex + EMOJIS_PER_ROW >= this.currentEmojiCount &&
           this.currentCategory < categories.length
         ) {
+          this.currentCategory++;
           if (this.options.showCategoryButtons) {
-            this.categoryButtons.setActiveButton(++this.currentCategory);
+            this.categoryButtons.setActiveButton(this.currentCategory);
           }
-          this.setFocusedEmoji(0);
+          this.setFocusedEmoji(this.focusedIndex % EMOJIS_PER_ROW);
         } else {
           this.setFocusedEmoji(this.focusedIndex + EMOJIS_PER_ROW);
         }
@@ -167,10 +175,25 @@ export class EmojiArea {
         this.focusedEmoji.tabIndex = -1;
 
         if (this.focusedIndex < EMOJIS_PER_ROW && this.currentCategory > 0) {
-          if (this.options.showCategoryButtons) {
-            this.categoryButtons.setActiveButton(--this.currentCategory);
+          const previousCategoryCount = this.getEmojiCount(
+            this.currentCategory - 1
+          );
+          let previousLastRowCount = previousCategoryCount % EMOJIS_PER_ROW;
+          if (previousLastRowCount === 0) {
+            previousLastRowCount = EMOJIS_PER_ROW;
           }
-          this.setFocusedEmoji(this.currentEmojiCount - 1);
+          const currentColumn = this.focusedIndex;
+          const newIndex =
+            currentColumn > previousLastRowCount - 1
+              ? previousCategoryCount - 1
+              : previousCategoryCount - previousLastRowCount + currentColumn;
+
+          this.currentCategory--;
+          if (this.options.showCategoryButtons) {
+            this.categoryButtons.setActiveButton(this.currentCategory);
+          }
+
+          this.setFocusedEmoji(newIndex);
         } else {
           this.setFocusedEmoji(
             this.focusedIndex >= EMOJIS_PER_ROW
