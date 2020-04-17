@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', function () {
   var button = document.querySelector('#native-button');
   var picker = new EmojiButton({
     theme: 'auto',
-    position: 'bottom-end',
+    position: 'bottom-end'
   });
 
   picker.on('emoji', function (emoji) {

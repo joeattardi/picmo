@@ -16,13 +16,11 @@ import {
 import { createElement } from './util';
 import { load } from './recent';
 
-let categories: string[] = emojiData.categories;
-
 const emojiCategories: { [key: string]: EmojiRecord[] } = {};
 emojiData.emoji.forEach(emoji => {
-  let categoryList = emojiCategories[categories[emoji.category]];
+  let categoryList = emojiCategories[emojiData.categories[emoji.category]];
   if (!categoryList) {
-    categoryList = emojiCategories[categories[emoji.category]] = [];
+    categoryList = emojiCategories[emojiData.categories[emoji.category]] = [];
   }
 
   categoryList.push(emoji);
@@ -36,6 +34,7 @@ export class EmojiArea {
   private emojis: HTMLElement;
   private categoryButtons: CategoryButtons;
   private emojisPerRow: number;
+  private categories: string[];
 
   private focusedIndex = 0;
 
@@ -45,6 +44,11 @@ export class EmojiArea {
     private options: EmojiButtonOptions
   ) {
     this.emojisPerRow = options.emojisPerRow || 8;
+    this.categories = options.categories || emojiData.categories;
+
+    if (options.showRecents) {
+      this.categories = ['recents', ...this.categories];
+    }
   }
 
   render(): HTMLElement {
@@ -58,11 +62,10 @@ export class EmojiArea {
     this.emojis = createElement('div', 'emoji-picker__emojis');
 
     if (this.options.showRecents) {
-      categories = ['recents', ...emojiData.categories];
       emojiCategories.recents = load();
     }
 
-    categories.forEach(category =>
+    this.categories.forEach(category =>
       this.addCategory(category, emojiCategories[category])
     );
 
@@ -132,7 +135,7 @@ export class EmojiArea {
 
         if (
           this.focusedIndex === this.currentEmojiCount - 1 &&
-          this.currentCategory < categories.length
+          this.currentCategory < this.categories.length
         ) {
           if (this.options.showCategoryButtons) {
             this.categoryButtons.setActiveButton(++this.currentCategory);
@@ -160,7 +163,7 @@ export class EmojiArea {
 
         if (
           this.focusedIndex + this.emojisPerRow >= this.currentEmojiCount &&
-          this.currentCategory < categories.length
+          this.currentCategory < this.categories.length
         ) {
           this.currentCategory++;
           if (this.options.showCategoryButtons) {
@@ -236,7 +239,7 @@ export class EmojiArea {
   selectCategory = (category: string, focus = true): void => {
     this.focusedEmoji.tabIndex = -1;
 
-    const categoryIndex = categories.indexOf(category);
+    const categoryIndex = this.categories.indexOf(category);
     this.currentCategory = categoryIndex;
     this.setFocusedEmoji(0, false);
     if (this.options.showCategoryButtons) {
