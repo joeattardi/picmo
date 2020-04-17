@@ -3,7 +3,7 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 import twemoji from 'twemoji';
 
 import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
-import { createElement, formatEmojiName } from './util';
+import { createElement } from './util';
 import { EmojiRecord, EmojiButtonOptions } from './types';
 
 const CLASS_PREVIEW = 'emoji-picker__preview';
