@@ -16,6 +16,10 @@ Vanilla JavaScript emoji picker 😎
 * ⌨️ Fully keyboard accessible
 * 🎨 Dark, light, and auto themes
 
+## Browser support
+
+Emoji Button is supported on all modern browsers. As of version 3.0.0, Internet Explorer is no longer supported.
+
 ## Download
 
 [emoji-button-2.12.1.min.js](https://github.com/joeattardi/emoji-button/releases/download/v2.12.1/emoji-button-2.12.1.min.js)
