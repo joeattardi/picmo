@@ -55,7 +55,11 @@ export class EmojiArea {
     this.container = createElement('div', 'emoji-picker__emoji-area');
 
     if (this.options.showCategoryButtons) {
-      this.categoryButtons = new CategoryButtons(this.options, this.events);
+      this.categoryButtons = new CategoryButtons(
+        this.options,
+        this.events,
+        this.i18n
+      );
       this.container.appendChild(this.categoryButtons.render());
     }
 

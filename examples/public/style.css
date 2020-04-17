@@ -167,6 +167,7 @@ ol li {
 }
 
 #emoji-contenteditable, #native-contenteditable {
+  font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji", "Twemoji Mozilla", "Noto Color Emoji", "EmojiOne Color", "Android Emoji";
   text-align: left;
   outline: none;
   border-top-left-radius: 5px;

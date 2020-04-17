@@ -84,32 +84,4 @@ describe('Search', () => {
     searchField.value = 'blah';
     searchField.dispatchEvent(new KeyboardEvent('keyup'));
   });
-
-  // test('should fire the SHOW_TABS event when the search text is empty', done => {
-  //   events.on(SHOW_TABS, done);
-
-  //   searchField.value = '';
-  //   searchField.dispatchEvent(new KeyboardEvent('keyup'));
-  // });
-
-  // test('should clear the search and fire the SHOW_TABS event when the Escape key is pressed and the search text is not empty', done => {
-  //   events.on(SHOW_TABS, done);
-
-  //   searchField.value = 'foo';
-  //   searchField.dispatchEvent(
-  //     new KeyboardEvent('keydown', {
-  //       key: 'Escape'
-  //     })
-  //   );
-  //   expect(searchField.value).toBe('');
-  // });
-
-  // test('should clear the search and fire the SHOW_TABS event when the clear search icon is clicked', done => {
-  //   events.on(SHOW_TABS, done);
-
-  //   searchField.value = 'foo';
-  //   const searchIcon = search.querySelector('.emoji-picker__search-icon');
-  //   searchIcon.dispatchEvent(new MouseEvent('click'));
-  //   expect(searchField.value).toBe('');
-  // });
 });

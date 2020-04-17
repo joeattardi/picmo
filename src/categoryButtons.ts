@@ -10,7 +10,7 @@ import { CATEGORY_CLICKED } from './events';
 import * as icons from './icons';
 import { createElement } from './util';
 
-import { EmojiButtonOptions, I18NCategory } from './types';
+import { EmojiButtonOptions, I18NCategory, I18NStrings } from './types';
 
 const categoryIcons: { [key in I18NCategory]: string } = {
   recents: icons.history,
@@ -26,7 +26,11 @@ const categoryIcons: { [key in I18NCategory]: string } = {
 };
 
 export class CategoryButtons {
-  constructor(private options: EmojiButtonOptions, private events: Emitter) {}
+  constructor(
+    private options: EmojiButtonOptions,
+    private events: Emitter,
+    private i18n: I18NStrings
+  ) {}
 
   activeButton = 0;
 
@@ -43,6 +47,7 @@ export class CategoryButtons {
       const button = createElement('button', CLASS_CATEGORY_BUTTON);
       button.innerHTML = categoryIcons[category];
       button.tabIndex = -1;
+      button.title = this.i18n.categories[category];
       container.appendChild(button);
       this.buttons.push(button);
 
