@@ -18,7 +18,7 @@ describe('EmojiPreview', () => {
     const previewName = preview.querySelector(
       '.emoji-picker__preview-name'
     ) as HTMLElement;
-    expect(previewName.innerHTML).toBe('Zap');
+    expect(previewName.innerHTML).toBe('zap');
 
     events.emit(HIDE_PREVIEW);
 
