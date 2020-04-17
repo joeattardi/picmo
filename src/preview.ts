@@ -38,7 +38,7 @@ export class EmojiPreview {
       this.options.style === 'native'
         ? emoji.emoji
         : twemoji.parse(emoji.emoji);
-    this.name.innerHTML = formatEmojiName(emoji.name);
+    this.name.innerHTML = emoji.name;
   }
 
   hidePreview(): void {
