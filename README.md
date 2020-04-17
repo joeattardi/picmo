@@ -1,4 +1,4 @@
-![Emoji Button](https://user-images.githubusercontent.com/219285/76373859-f9871a80-6317-11ea-9bd2-9b85551e4d40.png)
+![Emoji Button](https://user-images.githubusercontent.com/219285/79525037-f1657d80-802f-11ea-8156-7ef60d390d97.png)
 
 Vanilla JavaScript emoji picker 😎
 
@@ -22,7 +22,7 @@ Emoji Button is supported on all modern browsers. As of version 3.0.0, Internet 
 
 ## Download
 
-[emoji-button-2.12.1.min.js](https://github.com/joeattardi/emoji-button/releases/download/v2.12.1/emoji-button-2.12.1.min.js)
+[emoji-button-3.0.0.min.js](https://github.com/joeattardi/emoji-button/releases/download/v3.0.0/emoji-button-3.0.0.min.js)
 
 ## Installation
 
