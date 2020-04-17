@@ -174,10 +174,9 @@
 }
 
 .emoji-picker__container {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(var(--emoji-per-row), 1fr);
+  grid-auto-rows: calc(var(--emoji-size) * var(--emoji-size-multiplier));
 }
 
 .emoji-picker__container.search-results {
