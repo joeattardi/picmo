@@ -22,7 +22,7 @@ Emoji Button is supported on all modern browsers. As of version 3.0.0, Internet 
 
 ## Download
 
-[emoji-button-3.0.0.min.js](https://github.com/joeattardi/emoji-button/releases/download/v3.0.0/emoji-button-3.0.0.min.js)
+[emoji-button-3.0.1.min.js](https://github.com/joeattardi/emoji-button/releases/download/v3.0.1/emoji-button-3.0.1.min.js)
 
 ## Installation
 
