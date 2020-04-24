@@ -218,10 +218,13 @@ export class EmojiArea {
 
   private setFocusedEmoji(index: number, focus = true): void {
     this.focusedIndex = index;
-    this.focusedEmoji.tabIndex = 0;
 
-    if (focus) {
-      this.focusedEmoji.focus();
+    if (this.focusedEmoji) {
+      this.focusedEmoji.tabIndex = 0;
+
+      if (focus) {
+        this.focusedEmoji.focus();
+      }
     }
   }
 
@@ -241,7 +244,9 @@ export class EmojiArea {
   };
 
   selectCategory = (category: string, focus = true): void => {
-    this.focusedEmoji.tabIndex = -1;
+    if (this.focusedEmoji) {
+      this.focusedEmoji.tabIndex = -1;
+    }
 
     const categoryIndex = this.categories.indexOf(category);
     this.currentCategory = categoryIndex;
