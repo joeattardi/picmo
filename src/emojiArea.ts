@@ -244,6 +244,7 @@ export class EmojiArea {
   };
 
   selectCategory = (category: string, focus = true): void => {
+    this.emojis.removeEventListener('scroll', this.highlightCategory);
     if (this.focusedEmoji) {
       this.focusedEmoji.tabIndex = -1;
     }
@@ -257,6 +258,9 @@ export class EmojiArea {
 
     const targetPosition = this.headerOffsets[categoryIndex];
     this.emojis.scrollTop = targetPosition;
+    requestAnimationFrame(() =>
+      this.emojis.addEventListener('scroll', this.highlightCategory)
+    );
   };
 
   highlightCategory = (): void => {
@@ -266,9 +270,8 @@ export class EmojiArea {
     ) {
       return;
     }
-
     let closestHeaderIndex = this.headerOffsets.findIndex(
-      offset => offset > this.emojis.scrollTop
+      offset => offset > Math.round(this.emojis.scrollTop)
     );
 
     if (closestHeaderIndex === 0) {
