@@ -19,28 +19,8 @@ describe('Search', () => {
 
   beforeEach(() => {
     events = new Emitter();
-    search = new Search(events, i18n, options, emojis, [0], true).render();
+    search = new Search(events, i18n, options, emojis, [0]).render();
     searchField = search.querySelector('.emoji-picker__search');
-  });
-
-  test('should autofocus the search field if autoFocusSearch is true', done => {
-    search = new Search(events, i18n, options, emojis, [0], true).render();
-    searchField = search.querySelector('.emoji-picker__search');
-
-    setTimeout(() => {
-      expect(document.activeElement).toBe(searchField);
-      done();
-    });
-  });
-
-  test('should not autofocus the search field if autoFocusSearch is false', done => {
-    search = new Search(events, i18n, options, emojis, [0], false).render();
-    searchField = search.querySelector('.emoji-picker__search');
-
-    setTimeout(() => {
-      expect(document.activeElement).not.toBe(searchField);
-      done();
-    });
   });
 
   test('should render search results', done => {
@@ -58,7 +38,7 @@ describe('Search', () => {
   });
 
   test('should not show search results for the unselected categories', done => {
-    search = new Search(events, i18n, options, emojis, [0], false).render();
+    search = new Search(events, i18n, options, emojis, [0]).render();
     events.on(SHOW_SEARCH_RESULTS, searchResultsContainer => {
       const searchResults = searchResultsContainer.querySelectorAll(
         '.emoji-picker__emoji'

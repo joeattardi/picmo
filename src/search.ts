@@ -51,8 +51,7 @@ export class Search {
     private i18n: I18NStrings,
     private options: EmojiButtonOptions,
     emojiData: EmojiRecord[],
-    categories: number[],
-    private autoFocusSearch: boolean
+    categories: number[]
   ) {
     this.emojisPerRow = this.options.emojisPerRow || 8;
     this.emojiData = emojiData.filter(
@@ -62,7 +61,6 @@ export class Search {
         e.category !== undefined &&
         categories.indexOf(e.category) >= 0
     );
-    this.autoFocusSearch = autoFocusSearch;
 
     this.events.on(HIDE_VARIANT_POPUP, () => {
       setTimeout(() => this.setFocusedEmoji(this.focusedEmojiIndex));
@@ -86,10 +84,6 @@ export class Search {
     );
 
     this.searchContainer.appendChild(this.searchIcon);
-
-    if (this.autoFocusSearch) {
-      setTimeout(() => this.searchField.focus());
-    }
 
     this.searchField.addEventListener('keydown', (event: KeyboardEvent) =>
       this.onKeyDown(event)

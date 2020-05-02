@@ -119,7 +119,10 @@ export default class EmojiButton {
     }
 
     this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
-      clickOutsideDeactivates: true
+      clickOutsideDeactivates: true,
+      initialFocus: this.options.autoFocusSearch
+        ? '.emoji-picker__search'
+        : '.emoji-picker__emoji[tabindex="0"]'
     });
 
     if (this.options.zIndex) {
@@ -136,8 +139,7 @@ export default class EmojiButton {
         emojiData.emoji,
         (this.options.categories || []).map(category =>
           emojiData.categories.indexOf(category)
-        ),
-        this.options.autoFocusSearch || true
+        )
       ).render();
       this.pickerEl.appendChild(searchContainer);
     }
