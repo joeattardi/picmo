@@ -125,10 +125,6 @@ export default class EmojiButton {
         : '.emoji-picker__emoji[tabindex="0"]'
     });
 
-    if (this.options.zIndex) {
-      this.pickerEl.style.zIndex = this.options.zIndex + '';
-    }
-
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
 
     if (this.options.showSearch) {
@@ -225,6 +221,10 @@ export default class EmojiButton {
 
     this.wrapper = createElement('div', 'wrapper');
     this.wrapper.appendChild(this.pickerEl);
+
+    if (this.options.zIndex) {
+      this.wrapper.style.zIndex = this.options.zIndex + '';
+    }
 
     if (this.options.rootElement) {
       this.options.rootElement.appendChild(this.wrapper);
