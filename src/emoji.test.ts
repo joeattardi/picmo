@@ -2,6 +2,7 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
 import { Emoji } from './emoji';
+import { EmojiButtonOptions } from './types';
 
 describe('Emoji', () => {
   let events;
@@ -12,7 +13,7 @@ describe('Emoji', () => {
     category: 0,
     version: '11.0'
   };
-  const options = { showRecents: true, style: 'native' };
+  const options: EmojiButtonOptions = { showRecents: true, style: 'native' };
 
   beforeEach(() => (events = new Emitter()));
 

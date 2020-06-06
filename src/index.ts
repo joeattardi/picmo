@@ -171,6 +171,13 @@ export default class EmojiButton {
     }
 
     let variantPopup: HTMLElement | null;
+
+    // Options for twemoji.parse(emoji, twemojiOptions)
+    const twemojiOptions = {
+      ext: '.svg',
+      folder: 'svg'
+    }
+
     this.events.on(
       EMOJI,
       ({
@@ -200,7 +207,7 @@ export default class EmojiButton {
           }
 
           if (this.options.style === 'twemoji') {
-            this.publicEvents.emit('emoji', twemoji.parse(emoji.emoji));
+            this.publicEvents.emit('emoji', twemoji.parse(emoji.emoji, twemojiOptions));
           } else {
             this.publicEvents.emit('emoji', emoji.emoji);
           }
