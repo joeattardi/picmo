@@ -10,6 +10,12 @@ const CLASS_PREVIEW = 'emoji-picker__preview';
 const CLASS_PREVIEW_EMOJI = 'emoji-picker__preview-emoji';
 const CLASS_PREVIEW_NAME = 'emoji-picker__preview-name';
 
+// Options for twemoji.parse(emoji, twemojiOptions)
+const twemojiOptions = {
+  ext: '.svg',
+  folder: 'svg'
+}
+
 export class EmojiPreview {
   private emoji: HTMLElement;
   private name: HTMLElement;
@@ -37,7 +43,7 @@ export class EmojiPreview {
     this.emoji.innerHTML =
       this.options.style === 'native'
         ? emoji.emoji
-        : twemoji.parse(emoji.emoji);
+        : twemoji.parse(emoji.emoji, twemojiOptions);
     this.name.innerHTML = emoji.name;
   }
 

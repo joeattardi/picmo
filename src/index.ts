@@ -26,6 +26,12 @@ import { EmojiArea } from './emojiArea';
 const CLASS_PICKER = 'emoji-picker';
 const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 
+// Options for twemoji.parse(emoji, twemojiOptions)
+const twemojiOptions = {
+  ext: '.svg',
+  folder: 'svg'
+}
+
 const DEFAULT_OPTIONS: EmojiButtonOptions = {
   position: 'right-start',
   autoHide: true,
@@ -172,12 +178,6 @@ export default class EmojiButton {
     }
 
     let variantPopup: HTMLElement | null;
-
-    // Options for twemoji.parse(emoji, twemojiOptions)
-    const twemojiOptions = {
-      ext: '.svg',
-      folder: 'svg'
-    }
 
     this.events.on(
       EMOJI,
