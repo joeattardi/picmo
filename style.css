@@ -105,6 +105,7 @@ hr {
 
 #installation .code {
   display: inline-block;
+  width: 100%;
 }
 
 #demo {
