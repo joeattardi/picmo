@@ -70,6 +70,8 @@ export default class EmojiButton {
   private hideInProgress: boolean;
   private destroyTimeout: NodeJS.Timeout;
 
+  private overlay: HTMLElement;
+
   private popper: Popper;
 
   constructor(options: EmojiButtonOptions = {}) {
@@ -245,7 +247,12 @@ export default class EmojiButton {
   private destroyPicker(): void {
     if (this.options.rootElement) {
       this.options.rootElement.removeChild(this.wrapper);
-      this.popper.destroy();
+
+      if (this.overlay) {
+        document.body.removeChild(this.overlay);
+      }
+
+      this.popper && this.popper.destroy();
       this.hideInProgress = false;
     }
   }
@@ -272,9 +279,38 @@ export default class EmojiButton {
 
     this.pickerVisible = true;
     this.buildPicker();
-    this.popper = createPopper(referenceEl, this.wrapper, {
-      placement: options.position || this.options.position
-    });
+
+    if (window.matchMedia('screen and (max-width: 450px)').matches) {
+      const style = window.getComputedStyle(this.pickerEl);
+      const htmlEl = document.querySelector('html');
+      const viewportHeight = htmlEl && htmlEl.clientHeight;
+      const viewportWidth = htmlEl && htmlEl.clientWidth;
+
+      const height = parseInt(style.height);
+      const newTop = viewportHeight ? viewportHeight / 2 - height / 2 : 0;
+
+      const width = parseInt(style.width);
+      const newLeft = viewportWidth ? viewportWidth / 2 - width / 2 : 0;
+
+      this.wrapper.style.position = 'fixed';
+      this.wrapper.style.top = `${newTop}px`;
+      this.wrapper.style.left = `${newLeft}px`;
+      this.wrapper.style.zIndex = '5000';
+
+      this.overlay = document.createElement('div');
+      this.overlay.style.background = 'rgba(0, 0, 0, 0.75)';
+      this.overlay.style.zIndex = '1000';
+      this.overlay.style.position = 'fixed';
+      this.overlay.style.top = '0';
+      this.overlay.style.left = '0';
+      this.overlay.style.width = '100%';
+      this.overlay.style.height = '100%';
+      document.body.appendChild(this.overlay);
+    } else {
+      this.popper = createPopper(referenceEl, this.wrapper, {
+        placement: options.position || this.options.position
+      });
+    }
 
     this.focusTrap.activate();
   }

@@ -59,7 +59,8 @@ header {
 }
 
 #logo {
-  width: 800px;
+  width: 100%;
+  max-width: 800px;
 }
 
 #tagline {
@@ -104,6 +105,7 @@ hr {
 
 #installation .code {
   display: inline-block;
+  width: 100%;
 }
 
 #demo {

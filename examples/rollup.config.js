@@ -15,10 +15,11 @@ module.exports = {
   plugins: [
     resolve(),
     commonjs(),
-    !production && serve({
-      open: true,
-      contentBase: 'public',
-    }),
+    !production &&
+      serve({
+        open: true,
+        contentBase: 'public'
+      }),
     !production && livereload()
   ]
 };

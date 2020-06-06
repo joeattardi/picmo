@@ -362,6 +362,7 @@
 button.emoji-picker__category-button {
   flex-grow: 1;
   background: transparent;
+  padding: 0;
   border: none;
   cursor: pointer;
   font-size: var(--category-button-size);
