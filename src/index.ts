@@ -122,7 +122,7 @@ export default class EmojiButton {
 
     this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
       clickOutsideDeactivates: true,
-      initialFocus: this.options.autoFocusSearch
+      initialFocus: this.options.showSearch && this.options.autoFocusSearch
         ? '.emoji-picker__search'
         : '.emoji-picker__emoji[tabindex="0"]'
     });
