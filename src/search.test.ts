@@ -9,7 +9,7 @@ import { EmojiButtonOptions, EmojiRecord } from './types';
 describe('Search', () => {
   const emojis: EmojiRecord[] = [
     { category: 0, emoji: '⚡️', name: 'zap', version: '12.1' },
-    { category: 1, emoji: '😀', name: 'grinning', version: '12.1' }
+    { category: 1, emoji: '😀', name: 'grinning', version: '12.1' },
   ];
 
   const options: EmojiButtonOptions = { emojiVersion: '12.1', style: 'native' };
@@ -23,8 +23,8 @@ describe('Search', () => {
     searchField = search.querySelector('.emoji-picker__search');
   });
 
-  test('should render search results', done => {
-    events.on(SHOW_SEARCH_RESULTS, searchResultsContainer => {
+  test('should render search results', (done) => {
+    events.on(SHOW_SEARCH_RESULTS, (searchResultsContainer) => {
       const searchResults = searchResultsContainer.querySelectorAll(
         '.emoji-picker__emoji'
       );
@@ -37,9 +37,9 @@ describe('Search', () => {
     searchField.dispatchEvent(new KeyboardEvent('keyup'));
   });
 
-  test('should not show search results for the unselected categories', done => {
+  test('should not show search results for the unselected categories', (done) => {
     search = new Search(events, i18n, options, emojis, [0]).render();
-    events.on(SHOW_SEARCH_RESULTS, searchResultsContainer => {
+    events.on(SHOW_SEARCH_RESULTS, (searchResultsContainer) => {
       const searchResults = searchResultsContainer.querySelectorAll(
         '.emoji-picker__emoji'
       );
@@ -51,8 +51,8 @@ describe('Search', () => {
     searchField.dispatchEvent(new KeyboardEvent('keyup'));
   });
 
-  test('should render a not found message when there are no results', done => {
-    events.on(SHOW_SEARCH_RESULTS, searchResultsContainer => {
+  test('should render a not found message when there are no results', (done) => {
+    events.on(SHOW_SEARCH_RESULTS, (searchResultsContainer) => {
       expect(
         searchResultsContainer.classList.contains(
           'emoji-picker__search-not-found'

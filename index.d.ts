@@ -39,54 +39,54 @@ declare namespace EmojiButton {
   export type EmojiTheme = 'dark' | 'light' | 'auto';
 
   export type Placement =
-  | 'auto'
-  | 'auto-start'
-  | 'auto-end'
-  | 'top'
-  | 'top-start'
-  | 'top-end'
-  | 'bottom'
-  | 'bottom-start'
-  | 'bottom-end'
-  | 'right'
-  | 'right-start'
-  | 'right-end'
-  | 'left'
-  | 'left-start'
-  | 'left-end';
+    | 'auto'
+    | 'auto-start'
+    | 'auto-end'
+    | 'top'
+    | 'top-start'
+    | 'top-end'
+    | 'bottom'
+    | 'bottom-start'
+    | 'bottom-end'
+    | 'right'
+    | 'right-start'
+    | 'right-end'
+    | 'left'
+    | 'left-start'
+    | 'left-end';
 
   export type EmojiVersion =
-  | '1.0'
-  | '2.0'
-  | '3.0'
-  | '4.0'
-  | '5.0'
-  | '11.0'
-  | '12.0'
-  | '12.1';
+    | '1.0'
+    | '2.0'
+    | '3.0'
+    | '4.0'
+    | '5.0'
+    | '11.0'
+    | '12.0'
+    | '12.1';
 
   export type Category =
-  | 'smileys'
-  | 'people'
-  | 'animals'
-  | 'food'
-  | 'activities'
-  | 'travel'
-  | 'objects'
-  | 'symbols'
-  | 'flags';
+    | 'smileys'
+    | 'people'
+    | 'animals'
+    | 'food'
+    | 'activities'
+    | 'travel'
+    | 'objects'
+    | 'symbols'
+    | 'flags';
 
   export type I18NCategory =
-  | 'recents'
-  | 'smileys'
-  | 'people'
-  | 'animals'
-  | 'food'
-  | 'activities'
-  | 'travel'
-  | 'objects'
-  | 'symbols'
-  | 'flags';
+    | 'recents'
+    | 'smileys'
+    | 'people'
+    | 'animals'
+    | 'food'
+    | 'activities'
+    | 'travel'
+    | 'objects'
+    | 'symbols'
+    | 'flags';
 
   export interface I18NStrings {
     search: string;

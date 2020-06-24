@@ -12,7 +12,7 @@ export const i18n: I18NStrings = {
     travel: 'Travel & Places',
     objects: 'Objects',
     symbols: 'Symbols',
-    flags: 'Flags'
+    flags: 'Flags',
   },
-  notFound: 'No emojis found'
+  notFound: 'No emojis found',
 };

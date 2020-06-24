@@ -20,11 +20,11 @@ export class VariantPopup {
     private options: EmojiButtonOptions
   ) {}
 
-  getEmoji(index): Element {
+  getEmoji(index: number): Element {
     return this.popup.querySelectorAll('.emoji-picker__emoji')[index];
   }
 
-  setFocusedEmoji(newIndex): void {
+  setFocusedEmoji(newIndex: number): void {
     const currentFocusedEmoji = this.getEmoji(
       this.focusedEmojiIndex
     ) as HTMLElement;
@@ -60,7 +60,7 @@ export class VariantPopup {
           {
             name: this.emoji.name,
             emoji: variation,
-            key: this.emoji.name + index
+            key: this.emoji.name + index,
           },
           false,
           false,
@@ -78,7 +78,7 @@ export class VariantPopup {
 
     setTimeout(() => firstEmoji.focus());
 
-    this.popup.addEventListener('keydown', event => {
+    this.popup.addEventListener('keydown', (event) => {
       if (event.key === 'ArrowRight') {
         this.setFocusedEmoji(
           Math.min(

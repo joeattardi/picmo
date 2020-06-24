@@ -7,7 +7,7 @@ import {
   HIDE_PREVIEW,
   HIDE_VARIANT_POPUP,
   SHOW_SEARCH_RESULTS,
-  HIDE_SEARCH_RESULTS
+  HIDE_SEARCH_RESULTS,
 } from './events';
 import { createElement } from './util';
 import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
@@ -55,7 +55,7 @@ export class Search {
   ) {
     this.emojisPerRow = this.options.emojisPerRow || 8;
     this.emojiData = emojiData.filter(
-      e =>
+      (e) =>
         e.version &&
         parseFloat(e.version) <= parseFloat(options.emojiVersion as string) &&
         e.category !== undefined &&
@@ -166,7 +166,7 @@ export class Search {
       this.searchIcon.innerHTML = icons.times;
       this.searchIcon.style.cursor = 'pointer';
       const searchResults = this.emojiData.filter(
-        emoji =>
+        (emoji) =>
           emoji.name
             .toLowerCase()
             .indexOf(this.searchField.value.toLowerCase()) >= 0
@@ -188,7 +188,7 @@ export class Search {
           ) as HTMLElement).tabIndex = 0;
           this.focusedEmojiIndex = 0;
 
-          this.resultsContainer.addEventListener('keydown', event =>
+          this.resultsContainer.addEventListener('keydown', (event) =>
             this.handleResultsKeydown(event)
           );
 

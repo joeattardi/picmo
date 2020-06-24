@@ -17,7 +17,7 @@ export class EmojiContainer {
     private options: EmojiButtonOptions
   ) {
     this.emojis = emojis.filter(
-      e =>
+      (e) =>
         !(e as EmojiRecord).version ||
         parseFloat((e as EmojiRecord).version as string) <=
           parseFloat(options.emojiVersion as string)
@@ -26,7 +26,7 @@ export class EmojiContainer {
 
   render(): HTMLElement {
     const emojiContainer = createElement('div', CLASS_EMOJI_CONTAINER);
-    this.emojis.forEach(emoji =>
+    this.emojis.forEach((emoji) =>
       emojiContainer.appendChild(
         new Emoji(
           emoji,

@@ -8,7 +8,7 @@ describe('VariantPopup', () => {
     category: 0,
     emoji: '👍',
     variations: ['👍🏻', '👍🏿'],
-    version: '11.0'
+    version: '11.0',
   };
 
   let events;

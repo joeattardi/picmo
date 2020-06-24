@@ -11,13 +11,13 @@ import {
   I18NStrings,
   EmojiButtonOptions,
   EmojiRecord,
-  RecentEmoji
+  RecentEmoji,
 } from './types';
 import { createElement } from './util';
 import { load } from './recent';
 
 const emojiCategories: { [key: string]: EmojiRecord[] } = {};
-emojiData.emoji.forEach(emoji => {
+emojiData.emoji.forEach((emoji) => {
   let categoryList = emojiCategories[emojiData.categories[emoji.category]];
   if (!categoryList) {
     categoryList = emojiCategories[emojiData.categories[emoji.category]] = [];
@@ -69,14 +69,14 @@ export class EmojiArea {
       emojiCategories.recents = load();
     }
 
-    this.categories.forEach(category =>
+    this.categories.forEach((category) =>
       this.addCategory(category, emojiCategories[category])
     );
 
     requestAnimationFrame(() => {
       this.headerOffsets = Array.prototype.map.call(
         this.headers,
-        header => header.offsetTop
+        (header) => header.offsetTop
       ) as number[];
 
       this.selectCategory('smileys', false);
@@ -271,7 +271,7 @@ export class EmojiArea {
       return;
     }
     let closestHeaderIndex = this.headerOffsets.findIndex(
-      offset => offset > Math.round(this.emojis.scrollTop)
+      (offset) => offset > Math.round(this.emojis.scrollTop)
     );
 
     if (closestHeaderIndex === 0) {
