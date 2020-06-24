@@ -10,7 +10,7 @@ const emitter = new Emitter();
 describe('EmojiArea', () => {
   test('renders an emoji list for each category', () => {
     const emojiArea = new EmojiArea(emitter, i18n, {
-      emojiVersion: '11.0',
+      emojiVersion: '11.0'
     }).render();
 
     const containers = emojiArea.querySelectorAll('.emoji-picker__container');
@@ -28,7 +28,7 @@ describe('EmojiArea', () => {
   test('only renders emoji lists for specified categories', () => {
     const emojiArea = new EmojiArea(emitter, i18n, {
       emojiVersion: '11.0',
-      categories: ['smileys', 'animals'],
+      categories: ['smileys', 'animals']
     }).render();
 
     const containers = emojiArea.querySelectorAll('.emoji-picker__container');
@@ -48,7 +48,7 @@ describe('EmojiArea', () => {
     const emojiArea = new EmojiArea(emitter, i18n, {
       emojiVersion: '11.0',
       categories: ['smileys', 'animals'],
-      showRecents: true,
+      showRecents: true
     }).render();
 
     const containers = emojiArea.querySelectorAll('.emoji-picker__container');

@@ -12,7 +12,7 @@ const CLASS_EMOJI = 'emoji-picker__emoji';
 // Options for twemoji.parse(emoji, twemojiOptions)
 const twemojiOptions = {
   ext: '.svg',
-  folder: 'svg',
+  folder: 'svg'
 };
 
 export class Emoji {
@@ -59,7 +59,7 @@ export class Emoji {
     this.events.emit(EMOJI, {
       emoji: this.emoji,
       showVariants: this.showVariants,
-      button: this.emojiButton,
+      button: this.emojiButton
     });
   }
 

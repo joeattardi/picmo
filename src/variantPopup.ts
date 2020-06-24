@@ -60,7 +60,7 @@ export class VariantPopup {
           {
             name: this.emoji.name,
             emoji: variation,
-            key: this.emoji.name + index,
+            key: this.emoji.name + index
           },
           false,
           false,
@@ -78,7 +78,7 @@ export class VariantPopup {
 
     setTimeout(() => firstEmoji.focus());
 
-    this.popup.addEventListener('keydown', (event) => {
+    this.popup.addEventListener('keydown', event => {
       if (event.key === 'ArrowRight') {
         this.setFocusedEmoji(
           Math.min(

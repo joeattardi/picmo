@@ -40,7 +40,7 @@ describe('CategoryButtons', () => {
   test('should only render specified categories if they are specified', () => {
     const container = new CategoryButtons(
       {
-        categories: ['smileys', 'animals'],
+        categories: ['smileys', 'animals']
       },
       emitter,
       i18n
@@ -56,7 +56,7 @@ describe('CategoryButtons', () => {
     const container = new CategoryButtons(
       {
         categories: ['smileys', 'animals'],
-        showRecents: true,
+        showRecents: true
       },
       emitter,
       i18n

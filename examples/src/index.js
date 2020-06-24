@@ -1,6 +1,6 @@
 hljs.initHighlightingOnLoad();
 
-var EmojiButton = require('@joeattardi/emoji-button');
+import { EmojiButton } from '@joeattardi/emoji-button';
 
 window.addEventListener('DOMContentLoaded', function () {
   var button = document.querySelector('#native-button');

@@ -22,7 +22,7 @@ const categoryIcons: { [key in I18NCategory]: string } = {
   travel: icons.building,
   objects: icons.lightbulb,
   symbols: icons.music,
-  flags: icons.flag,
+  flags: icons.flag
 };
 
 export class CategoryButtons {
@@ -56,7 +56,7 @@ export class CategoryButtons {
       });
     });
 
-    container.addEventListener('keydown', (event) => {
+    container.addEventListener('keydown', event => {
       switch (event.key) {
         case 'ArrowRight':
           this.events.emit(

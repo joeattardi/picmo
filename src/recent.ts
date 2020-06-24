@@ -5,7 +5,7 @@ const LOCAL_STORAGE_KEY = 'emojiPicker.recent';
 export function load(): Array<RecentEmoji> {
   const recentJson = localStorage.getItem(LOCAL_STORAGE_KEY);
   const recents = recentJson ? JSON.parse(recentJson) : [];
-  return recents.filter((recent) => !!recent.emoji);
+  return recents.filter(recent => !!recent.emoji);
 }
 
 export function save(
@@ -17,7 +17,7 @@ export function save(
   const recent = {
     emoji: emoji.emoji,
     name: emoji.name,
-    key: (emoji as RecentEmoji).key || emoji.name,
+    key: (emoji as RecentEmoji).key || emoji.name
   };
 
   localStorage.setItem(
@@ -25,9 +25,7 @@ export function save(
     JSON.stringify(
       [
         recent,
-        ...recents.filter(
-          (r: RecentEmoji) => !!r.emoji && r.key !== recent.key
-        ),
+        ...recents.filter((r: RecentEmoji) => !!r.emoji && r.key !== recent.key)
       ].slice(0, options.recentsCount)
     )
   );

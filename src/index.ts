@@ -11,7 +11,7 @@ import {
   EMOJI,
   SHOW_SEARCH_RESULTS,
   HIDE_SEARCH_RESULTS,
-  HIDE_VARIANT_POPUP,
+  HIDE_VARIANT_POPUP
 } from './events';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
@@ -29,7 +29,7 @@ const CLASS_PICKER_CONTENT = 'emoji-picker__content';
 // Options for twemoji.parse(emoji, twemojiOptions)
 const twemojiOptions = {
   ext: '.svg',
-  folder: 'svg',
+  folder: 'svg'
 };
 
 const DEFAULT_OPTIONS: EmojiButtonOptions = {
@@ -53,15 +53,15 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
     'travel',
     'objects',
     'symbols',
-    'flags',
+    'flags'
   ],
   style: 'native',
   emojisPerRow: 8,
   rows: 6,
-  emojiSize: '1.8em',
+  emojiSize: '1.8em'
 };
 
-export default class EmojiButton {
+export class EmojiButton {
   pickerVisible: boolean;
 
   private events = new Emitter();
@@ -90,7 +90,7 @@ export default class EmojiButton {
 
     this.i18n = {
       ...i18n,
-      ...options.i18n,
+      ...options.i18n
     };
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
@@ -131,7 +131,7 @@ export default class EmojiButton {
       initialFocus:
         this.options.showSearch && this.options.autoFocusSearch
           ? '.emoji-picker__search'
-          : '.emoji-picker__emoji[tabindex="0"]',
+          : '.emoji-picker__emoji[tabindex="0"]'
     });
 
     const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
@@ -142,7 +142,7 @@ export default class EmojiButton {
         this.i18n,
         this.options,
         emojiData.emoji,
-        (this.options.categories || []).map((category) =>
+        (this.options.categories || []).map(category =>
           emojiData.categories.indexOf(category)
         )
       ).render();
@@ -183,7 +183,7 @@ export default class EmojiButton {
       EMOJI,
       ({
         emoji,
-        showVariants,
+        showVariants
       }: {
         emoji: EmojiRecord;
         showVariants: boolean;
@@ -319,7 +319,7 @@ export default class EmojiButton {
       document.body.appendChild(this.overlay);
     } else {
       this.popper = createPopper(referenceEl, this.wrapper, {
-        placement: options.position || this.options.position,
+        placement: options.position || this.options.position
       });
     }
 

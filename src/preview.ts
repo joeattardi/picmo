@@ -13,7 +13,7 @@ const CLASS_PREVIEW_NAME = 'emoji-picker__preview-name';
 // Options for twemoji.parse(emoji, twemojiOptions)
 const twemojiOptions = {
   ext: '.svg',
-  folder: 'svg',
+  folder: 'svg'
 };
 
 export class EmojiPreview {

@@ -7,14 +7,14 @@ import {
   faMusic,
   faSearch,
   faTimes,
-  faUser,
+  faUser
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faBuilding,
   faFlag,
   faFrown,
   faLightbulb,
-  faSmile,
+  faSmile
 } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
