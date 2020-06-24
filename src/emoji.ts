@@ -9,6 +9,12 @@ import { EmojiButtonOptions, EmojiRecord } from './types';
 
 const CLASS_EMOJI = 'emoji-picker__emoji';
 
+// Options for twemoji.parse(emoji, twemojiOptions)
+const twemojiOptions = {
+  ext: '.svg',
+  folder: 'svg'
+}
+
 export class Emoji {
   private emojiButton: HTMLElement;
 
@@ -25,7 +31,7 @@ export class Emoji {
     this.emojiButton.innerHTML =
       this.options.style === 'native'
         ? this.emoji.emoji
-        : twemoji.parse(this.emoji.emoji);
+        : twemoji.parse(this.emoji.emoji, twemojiOptions);
     this.emojiButton.tabIndex = -1;
 
     this.emojiButton.title = this.emoji.name;
