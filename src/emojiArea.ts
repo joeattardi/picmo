@@ -30,13 +30,14 @@ export class EmojiArea {
   private headerOffsets: number[];
   private currentCategory = 0;
   private headers: HTMLElement[] = [];
-  private container: HTMLElement;
   private emojis: HTMLElement;
   private categoryButtons: CategoryButtons;
   private emojisPerRow: number;
   private categories: string[];
 
   private focusedIndex = 0;
+
+  container: HTMLElement;
 
   constructor(
     private events: Emitter,
@@ -74,18 +75,6 @@ export class EmojiArea {
     );
 
     requestAnimationFrame(() => {
-      this.headerOffsets = Array.prototype.map.call(
-        this.headers,
-        header => header.offsetTop
-      ) as number[];
-
-      this.selectCategory('smileys', false);
-      this.currentCategory = this.options.showRecents ? 1 : 0;
-
-      if (this.options.showCategoryButtons) {
-        this.categoryButtons.setActiveButton(this.currentCategory, false);
-      }
-
       setTimeout(() => {
         setTimeout(() =>
           this.emojis.addEventListener('scroll', this.highlightCategory)
@@ -105,6 +94,20 @@ export class EmojiArea {
     firstEmoji.tabIndex = 0;
 
     return this.container;
+  }
+
+  reset(): void {
+    this.headerOffsets = Array.prototype.map.call(
+      this.headers,
+      header => header.offsetTop
+    ) as number[];
+
+    this.selectCategory('smileys', false);
+    this.currentCategory = this.options.showRecents ? 1 : 0;
+
+    if (this.options.showCategoryButtons) {
+      this.categoryButtons.setActiveButton(this.currentCategory, false);
+    }
   }
 
   private get currentCategoryEl(): HTMLElement {

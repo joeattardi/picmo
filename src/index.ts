@@ -70,11 +70,11 @@ export class EmojiButton {
   private i18n: I18NStrings;
 
   private pickerEl: HTMLElement;
+  private pickerContent: HTMLElement;
   private wrapper: HTMLElement;
   private focusTrap: FocusTrap;
 
-  private hideInProgress: boolean;
-  private destroyTimeout: NodeJS.Timeout;
+  private emojiArea: EmojiArea;
 
   private overlay: HTMLElement;
 
@@ -95,6 +95,8 @@ export class EmojiButton {
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
+
+    this.buildPicker();
   }
 
   on(event: string, callback: (arg: string) => void): void {
@@ -134,7 +136,7 @@ export class EmojiButton {
           : '.emoji-picker__emoji[tabindex="0"]'
     });
 
-    const pickerContent = createElement('div', CLASS_PICKER_CONTENT);
+    this.pickerContent = createElement('div', CLASS_PICKER_CONTENT);
 
     if (this.options.showSearch) {
       const searchContainer = new Search(
@@ -149,25 +151,21 @@ export class EmojiButton {
       this.pickerEl.appendChild(searchContainer);
     }
 
-    this.pickerEl.appendChild(pickerContent);
+    this.pickerEl.appendChild(this.pickerContent);
 
-    const emojiArea = new EmojiArea(
-      this.events,
-      this.i18n,
-      this.options
-    ).render();
-    pickerContent.appendChild(emojiArea);
+    this.emojiArea = new EmojiArea(this.events, this.i18n, this.options);
+    this.pickerContent.appendChild(this.emojiArea.render());
 
     this.events.on(SHOW_SEARCH_RESULTS, (searchResults: HTMLElement) => {
-      empty(pickerContent);
+      empty(this.pickerContent);
       searchResults.classList.add('search-results');
-      pickerContent.appendChild(searchResults);
+      this.pickerContent.appendChild(searchResults);
     });
 
     this.events.on(HIDE_SEARCH_RESULTS, () => {
-      if (pickerContent.firstChild !== emojiArea) {
-        empty(pickerContent);
-        pickerContent.appendChild(emojiArea);
+      if (this.pickerContent.firstChild !== this.emojiArea.container) {
+        empty(this.pickerContent);
+        this.pickerContent.appendChild(this.emojiArea.container);
       }
     });
 
@@ -234,6 +232,7 @@ export class EmojiButton {
 
     this.wrapper = createElement('div', 'wrapper');
     this.wrapper.appendChild(this.pickerEl);
+    this.wrapper.style.display = 'none';
 
     if (this.options.zIndex) {
       this.wrapper.style.zIndex = this.options.zIndex + '';
@@ -242,11 +241,6 @@ export class EmojiButton {
     if (this.options.rootElement) {
       this.options.rootElement.appendChild(this.wrapper);
     }
-
-    setTimeout(() => {
-      document.addEventListener('click', this.onDocumentClick);
-      document.addEventListener('keydown', this.onDocumentKeydown);
-    });
   }
 
   private onDocumentClick(event: MouseEvent): void {
@@ -256,6 +250,9 @@ export class EmojiButton {
   }
 
   private destroyPicker(): void {
+    this.events.off(EMOJI);
+    this.events.off(HIDE_VARIANT_POPUP);
+
     if (this.options.rootElement) {
       this.options.rootElement.removeChild(this.wrapper);
 
@@ -264,32 +261,46 @@ export class EmojiButton {
       }
 
       this.popper && this.popper.destroy();
-      this.hideInProgress = false;
     }
   }
 
   hidePicker(): void {
     this.focusTrap.deactivate();
     this.pickerVisible = false;
-    this.events.off(EMOJI);
-    this.events.off(HIDE_VARIANT_POPUP);
 
-    this.hideInProgress = true;
     this.pickerEl.classList.add('hiding');
-    this.destroyTimeout = setTimeout(this.destroyPicker.bind(this), 170);
+    setTimeout(() => {
+      this.wrapper.style.display = 'none';
+      this.pickerEl.classList.remove('hiding');
+
+      if (this.pickerContent.firstChild !== this.emojiArea.container) {
+        empty(this.pickerContent);
+        this.pickerContent.appendChild(this.emojiArea.container);
+      }
+
+      const searchField = this.pickerEl.querySelector(
+        '.emoji-picker__search'
+      ) as HTMLInputElement;
+      if (searchField) {
+        searchField.value = '';
+      }
+
+      // emoji-picker__variant-overlay
+      const variantOverlay = this.pickerEl.querySelector(
+        '.emoji-picker__variant-overlay'
+      );
+      if (variantOverlay) {
+        this.pickerEl.removeChild(variantOverlay);
+      }
+    }, 170);
 
     document.removeEventListener('click', this.onDocumentClick);
     document.removeEventListener('keydown', this.onDocumentKeydown);
   }
 
   showPicker(referenceEl: HTMLElement, options: EmojiButtonOptions = {}): void {
-    if (this.hideInProgress) {
-      clearTimeout(this.destroyTimeout);
-      this.destroyPicker();
-    }
-
     this.pickerVisible = true;
-    this.buildPicker();
+    this.wrapper.style.display = 'block';
 
     if (window.matchMedia('screen and (max-width: 450px)').matches) {
       const style = window.getComputedStyle(this.pickerEl);
@@ -324,6 +335,13 @@ export class EmojiButton {
     }
 
     this.focusTrap.activate();
+
+    setTimeout(() => {
+      document.addEventListener('click', this.onDocumentClick);
+      document.addEventListener('keydown', this.onDocumentKeydown);
+    });
+
+    this.emojiArea.reset();
   }
 
   togglePicker(
