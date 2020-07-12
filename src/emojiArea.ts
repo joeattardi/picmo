@@ -52,6 +52,26 @@ export class EmojiArea {
     }
   }
 
+  updateRecents(): void {
+    if (this.options.showRecents) {
+      emojiCategories.recents = load();
+      const recentsContainer = this.emojis.querySelector(
+        '.emoji-picker__container'
+      ) as HTMLElement;
+      if (recentsContainer && recentsContainer.parentNode) {
+        recentsContainer.parentNode.replaceChild(
+          new EmojiContainer(
+            emojiCategories.recents,
+            true,
+            this.events,
+            this.options
+          ).render(),
+          recentsContainer
+        );
+      }
+    }
+  }
+
   render(): HTMLElement {
     this.container = createElement('div', 'emoji-picker__emoji-area');
 

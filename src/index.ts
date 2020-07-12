@@ -292,6 +292,8 @@ export class EmojiButton {
       if (variantOverlay) {
         this.pickerEl.removeChild(variantOverlay);
       }
+
+      this.emojiArea.updateRecents();
     }, 170);
 
     document.removeEventListener('click', this.onDocumentClick);
