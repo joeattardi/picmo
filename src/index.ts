@@ -167,6 +167,8 @@ export class EmojiButton {
         empty(this.pickerContent);
         this.pickerContent.appendChild(this.emojiArea.container);
       }
+
+      this.emojiArea.reset();
     });
 
     if (this.options.showPreview) {
