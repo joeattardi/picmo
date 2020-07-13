@@ -37,7 +37,7 @@ You can also download the minified JavaScript file and add it to your page via a
 The picker is shown by calling `showPicker` or `togglePicker` on the `EmojiButton` instance. When the user selects an emoji, the picker will emit the `emoji` event, which you can listen for and then handle the emoji according to your application's needs.
 
 ```javascript
-  import EmojiButton from '@joeattardi/emoji-button';
+  import { EmojiButton } from '@joeattardi/emoji-button';
 
   const button = document.querySelector('#emoji-button');
   const picker = new EmojiButton();
