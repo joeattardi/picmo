@@ -51,7 +51,14 @@ export class VariantPopup {
     });
 
     this.popup.appendChild(
-      new Emoji(this.emoji, false, false, this.events, this.options).render()
+      new Emoji(
+        this.emoji,
+        false,
+        false,
+        this.events,
+        this.options,
+        false
+      ).render()
     );
 
     (this.emoji.variations || []).forEach((variation, index) =>
@@ -65,7 +72,8 @@ export class VariantPopup {
           false,
           false,
           this.events,
-          this.options
+          this.options,
+          false
         ).render()
       )
     );

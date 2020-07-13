@@ -64,7 +64,8 @@ export class EmojiArea {
             emojiCategories.recents,
             true,
             this.events,
-            this.options
+            this.options,
+            false
           ).render(),
           recentsContainer
         );
@@ -262,7 +263,13 @@ export class EmojiArea {
     this.headers.push(name);
 
     this.emojis.appendChild(
-      new EmojiContainer(emojis, true, this.events, this.options).render()
+      new EmojiContainer(
+        emojis,
+        true,
+        this.events,
+        this.options,
+        category !== 'recents'
+      ).render()
     );
   };
 

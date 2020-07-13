@@ -32,6 +32,7 @@ export class Emoji {
         : twemoji.parse(this.emoji.emoji);
     this.emojiButton.tabIndex = -1;
 
+    this.emojiButton.dataset.emoji = this.emoji.emoji;
     this.emojiButton.title = this.emoji.name;
 
     this.emojiButton.addEventListener('focus', () => this.onEmojiHover());
@@ -41,7 +42,6 @@ export class Emoji {
     this.emojiButton.addEventListener('mouseout', () => this.onEmojiLeave());
 
     if (this.options.style === 'twemoji' && this.lazy) {
-      this.emojiButton.dataset.emoji = this.emoji.emoji;
       this.emojiButton.style.opacity = '0.25';
     }
 

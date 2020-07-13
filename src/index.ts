@@ -195,15 +195,7 @@ export class EmojiButton {
           showVariants &&
           this.options.showVariants
         ) {
-          variantPopup = new VariantPopup(
-            this.events,
-            emoji as EmojiRecord,
-            this.options
-          ).render();
-
-          if (variantPopup) {
-            this.pickerEl.appendChild(variantPopup);
-          }
+          this.showVariantPopup(emoji as EmojiRecord);
         } else {
           if (variantPopup && variantPopup.parentNode === this.pickerEl) {
             this.pickerEl.removeChild(variantPopup);
@@ -224,16 +216,6 @@ export class EmojiButton {
       }
     );
 
-    this.events.on(HIDE_VARIANT_POPUP, () => {
-      if (variantPopup) {
-        variantPopup.classList.add('hiding');
-        setTimeout(() => {
-          variantPopup && this.pickerEl.removeChild(variantPopup);
-          variantPopup = null;
-        }, 175);
-      }
-    });
-
     this.wrapper = createElement('div', 'wrapper');
     this.wrapper.appendChild(this.pickerEl);
     this.wrapper.style.display = 'none';
@@ -247,6 +229,29 @@ export class EmojiButton {
     }
 
     this.observeTwemojiForLazyLoad();
+  }
+
+  private showVariantPopup(emoji: EmojiRecord) {
+    const variantPopup = new VariantPopup(
+      this.events,
+      emoji,
+      this.options
+    ).render();
+
+    if (variantPopup) {
+      this.pickerEl.appendChild(variantPopup);
+    }
+
+    this.events.on(HIDE_VARIANT_POPUP, () => {
+      if (variantPopup) {
+        variantPopup.classList.add('hiding');
+        setTimeout(() => {
+          variantPopup && this.pickerEl.removeChild(variantPopup);
+        }, 175);
+      }
+
+      this.events.off(HIDE_VARIANT_POPUP);
+    });
   }
 
   private observeTwemojiForLazyLoad() {
