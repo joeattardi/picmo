@@ -80,6 +80,8 @@ export class EmojiButton {
 
   private popper: Popper;
 
+  private observer: IntersectionObserver;
+
   constructor(options: EmojiButtonOptions = {}) {
     this.pickerVisible = false;
 
@@ -243,6 +245,43 @@ export class EmojiButton {
     if (this.options.rootElement) {
       this.options.rootElement.appendChild(this.wrapper);
     }
+
+    this.observeTwemojiForLazyLoad();
+  }
+
+  private observeTwemojiForLazyLoad() {
+    if (this.options.style === 'twemoji') {
+      const onChange = changes => {
+        const visibleElements = Array.prototype.filter
+          .call(changes, change => {
+            return change.intersectionRatio > 0;
+          })
+          .map(entry => entry.target);
+
+        visibleElements.forEach(element => {
+          if (this.options.style === 'twemoji' && !element.dataset.loaded) {
+            element.innerHTML = twemoji.parse(
+              element.dataset.emoji,
+              twemojiOptions
+            );
+            element.dataset.loaded = true;
+            element.style.opacity = '1';
+          }
+        });
+      };
+
+      this.observer = new IntersectionObserver(onChange, {
+        root: this.emojiArea.emojis
+      });
+
+      const emojiElements = this.emojiArea.emojis.querySelectorAll(
+        '.emoji-picker__emoji'
+      );
+
+      emojiElements.forEach(element => {
+        this.observer.observe(element);
+      });
+    }
   }
 
   private onDocumentClick(event: MouseEvent): void {
@@ -251,7 +290,7 @@ export class EmojiButton {
     }
   }
 
-  private destroyPicker(): void {
+  destroyPicker(): void {
     this.events.off(EMOJI);
     this.events.off(HIDE_VARIANT_POPUP);
 
@@ -264,6 +303,8 @@ export class EmojiButton {
 
       this.popper && this.popper.destroy();
     }
+
+    this.observer && this.observer.disconnect();
   }
 
   hidePicker(): void {
@@ -287,7 +328,6 @@ export class EmojiButton {
         searchField.value = '';
       }
 
-      // emoji-picker__variant-overlay
       const variantOverlay = this.pickerEl.querySelector(
         '.emoji-picker__variant-overlay'
       );
@@ -298,8 +338,10 @@ export class EmojiButton {
       this.emojiArea.updateRecents();
     }, 170);
 
-    document.removeEventListener('click', this.onDocumentClick);
-    document.removeEventListener('keydown', this.onDocumentKeydown);
+    setTimeout(() => {
+      document.removeEventListener('click', this.onDocumentClick);
+      document.removeEventListener('keydown', this.onDocumentKeydown);
+    });
   }
 
   showPicker(referenceEl: HTMLElement, options: EmojiButtonOptions = {}): void {

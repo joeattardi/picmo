@@ -14,7 +14,8 @@ export class EmojiContainer {
     emojis: Array<EmojiRecord | RecentEmoji>,
     private showVariants: boolean,
     private events: Emitter,
-    private options: EmojiButtonOptions
+    private options: EmojiButtonOptions,
+    private lazy = true
   ) {
     this.emojis = emojis.filter(
       e =>
@@ -33,7 +34,8 @@ export class EmojiContainer {
           this.showVariants,
           true,
           this.events,
-          this.options
+          this.options,
+          this.lazy
         ).render()
       )
     );

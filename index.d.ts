@@ -7,6 +7,7 @@ declare class EmojiButton {
   on(event: string, callback: (emoji: string) => void): void;
   off(event: string, callback: (emoji: string) => void): void;
   hidePicker(): void;
+  destroyPicker(): void;
   showPicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
   togglePicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
   pickerVisible: boolean;

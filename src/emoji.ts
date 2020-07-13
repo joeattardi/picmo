@@ -2,18 +2,13 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 import twemoji from 'twemoji';
 
 import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
+import { smile } from './icons';
 import { save } from './recent';
 import { createElement } from './util';
 
 import { EmojiButtonOptions, EmojiRecord } from './types';
 
 const CLASS_EMOJI = 'emoji-picker__emoji';
-
-// Options for twemoji.parse(emoji, twemojiOptions)
-const twemojiOptions = {
-  ext: '.svg',
-  folder: 'svg'
-};
 
 export class Emoji {
   private emojiButton: HTMLElement;
@@ -23,7 +18,8 @@ export class Emoji {
     private showVariants: boolean,
     private showPreview: boolean,
     private events: Emitter,
-    private options: EmojiButtonOptions
+    private options: EmojiButtonOptions,
+    private lazy = true
   ) {}
 
   render(): HTMLElement {
@@ -31,7 +27,9 @@ export class Emoji {
     this.emojiButton.innerHTML =
       this.options.style === 'native'
         ? this.emoji.emoji
-        : twemoji.parse(this.emoji.emoji, twemojiOptions);
+        : this.lazy
+        ? smile
+        : twemoji.parse(this.emoji.emoji);
     this.emojiButton.tabIndex = -1;
 
     this.emojiButton.title = this.emoji.name;
@@ -41,6 +39,11 @@ export class Emoji {
     this.emojiButton.addEventListener('click', () => this.onEmojiClick());
     this.emojiButton.addEventListener('mouseover', () => this.onEmojiHover());
     this.emojiButton.addEventListener('mouseout', () => this.onEmojiLeave());
+
+    if (this.options.style === 'twemoji' && this.lazy) {
+      this.emojiButton.dataset.emoji = this.emoji.emoji;
+      this.emojiButton.style.opacity = '0.25';
+    }
 
     return this.emojiButton;
   }

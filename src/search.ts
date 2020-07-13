@@ -179,7 +179,8 @@ export class Search {
           searchResults,
           true,
           this.events,
-          this.options
+          this.options,
+          false
         ).render();
 
         if (this.resultsContainer) {

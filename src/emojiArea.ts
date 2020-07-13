@@ -30,7 +30,6 @@ export class EmojiArea {
   private headerOffsets: number[];
   private currentCategory = 0;
   private headers: HTMLElement[] = [];
-  private emojis: HTMLElement;
   private categoryButtons: CategoryButtons;
   private emojisPerRow: number;
   private categories: string[];
@@ -38,6 +37,7 @@ export class EmojiArea {
   private focusedIndex = 0;
 
   container: HTMLElement;
+  emojis: HTMLElement;
 
   constructor(
     private events: Emitter,
