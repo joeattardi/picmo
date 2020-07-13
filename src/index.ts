@@ -198,7 +198,7 @@ export class EmojiButton {
           this.showVariantPopup(emoji as EmojiRecord);
         } else {
           if (variantPopup && variantPopup.parentNode === this.pickerEl) {
-            this.pickerEl.removeChild(variantPopup);
+            this.events.emit(HIDE_VARIANT_POPUP);
           }
 
           if (this.options.style === 'twemoji') {
@@ -337,7 +337,7 @@ export class EmojiButton {
         '.emoji-picker__variant-overlay'
       );
       if (variantOverlay) {
-        this.pickerEl.removeChild(variantOverlay);
+        this.events.emit(HIDE_VARIANT_POPUP);
       }
 
       this.emojiArea.updateRecents();
