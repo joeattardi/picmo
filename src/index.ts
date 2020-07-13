@@ -70,6 +70,8 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
 export class EmojiButton {
   pickerVisible: boolean;
 
+  private hideInProgress: boolean;
+
   private events = new Emitter();
   private publicEvents = new Emitter();
   private options: EmojiButtonOptions;
@@ -315,6 +317,7 @@ export class EmojiButton {
   }
 
   hidePicker(): void {
+    this.hideInProgress = true;
     this.focusTrap.deactivate();
     this.pickerVisible = false;
 
@@ -347,6 +350,8 @@ export class EmojiButton {
       }
 
       this.emojiArea.updateRecents();
+
+      this.hideInProgress = false;
     }, 170);
 
     setTimeout(() => {
@@ -356,6 +361,11 @@ export class EmojiButton {
   }
 
   showPicker(referenceEl: HTMLElement, options: EmojiButtonOptions = {}): void {
+    if (this.hideInProgress) {
+      setTimeout(() => this.showPicker(referenceEl, options), 100);
+      return;
+    }
+
     this.pickerVisible = true;
     this.wrapper.style.display = 'block';
 
