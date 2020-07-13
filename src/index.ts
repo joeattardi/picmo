@@ -302,10 +302,6 @@ export class EmojiButton {
     if (this.options.rootElement) {
       this.options.rootElement.removeChild(this.wrapper);
 
-      if (this.overlay) {
-        document.body.removeChild(this.overlay);
-      }
-
       this.popper && this.popper.destroy();
     }
 
@@ -315,6 +311,10 @@ export class EmojiButton {
   hidePicker(): void {
     this.focusTrap.deactivate();
     this.pickerVisible = false;
+
+    if (this.overlay) {
+      document.body.removeChild(this.overlay);
+    }
 
     this.pickerEl.classList.add('hiding');
     setTimeout(() => {
@@ -370,14 +370,7 @@ export class EmojiButton {
       this.wrapper.style.left = `${newLeft}px`;
       this.wrapper.style.zIndex = '5000';
 
-      this.overlay = document.createElement('div');
-      this.overlay.style.background = 'rgba(0, 0, 0, 0.75)';
-      this.overlay.style.zIndex = '1000';
-      this.overlay.style.position = 'fixed';
-      this.overlay.style.top = '0';
-      this.overlay.style.left = '0';
-      this.overlay.style.width = '100%';
-      this.overlay.style.height = '100%';
+      this.overlay = createElement('div', 'emoji-picker__overlay');
       document.body.appendChild(this.overlay);
     } else {
       this.popper = createPopper(referenceEl, this.wrapper, {
@@ -386,6 +379,13 @@ export class EmojiButton {
     }
 
     this.focusTrap.activate();
+
+    const initialFocusElement = this.pickerEl.querySelector(
+      this.options.showSearch && this.options.autoFocusSearch
+        ? '.emoji-picker__search'
+        : '.emoji-picker__emoji[tabindex="0"]'
+    ) as HTMLElement;
+    initialFocusElement.focus();
 
     setTimeout(() => {
       document.addEventListener('click', this.onDocumentClick);

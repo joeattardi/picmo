@@ -120,6 +120,16 @@
   animation: show var(--animation-duration) var(--animation-easing);
 }
 
+.emoji-picker__overlay {
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .emoji-picker.hiding {
   animation: hide var(--animation-duration) var(--animation-easing);
 }
