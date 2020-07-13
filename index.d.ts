@@ -2,18 +2,18 @@ export as namespace EmojiButton;
 
 export = EmojiButton;
 
-declare class EmojiButton {
-  constructor(options?: EmojiButton.Options);
-  on(event: string, callback: (emoji: string) => void): void;
-  off(event: string, callback: (emoji: string) => void): void;
-  hidePicker(): void;
-  destroyPicker(): void;
-  showPicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
-  togglePicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
-  pickerVisible: boolean;
-}
-
 declare namespace EmojiButton {
+  export class EmojiButton {
+    constructor(options?: EmojiButton.Options);
+    on(event: string, callback: (emoji: string) => void): void;
+    off(event: string, callback: (emoji: string) => void): void;
+    hidePicker(): void;
+    destroyPicker(): void;
+    showPicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
+    togglePicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
+    pickerVisible: boolean;
+  }
+
   export interface Options {
     position?: Placement;
     autoHide?: boolean;
