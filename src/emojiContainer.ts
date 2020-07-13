@@ -3,9 +3,9 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 import { Emoji } from './emoji';
 import { createElement } from './util';
 
-import { EmojiButtonOptions, EmojiRecord, RecentEmoji } from './types';
+import { CLASS_EMOJI_CONTAINER } from './classes';
 
-const CLASS_EMOJI_CONTAINER = 'emoji-picker__container';
+import { EmojiButtonOptions, EmojiRecord, RecentEmoji } from './types';
 
 export class EmojiContainer {
   private emojis: Array<EmojiRecord | RecentEmoji>;

@@ -6,11 +6,12 @@ import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
 import { createElement } from './util';
 import { EmojiRecord, EmojiButtonOptions } from './types';
 
-const CLASS_PREVIEW = 'emoji-picker__preview';
-const CLASS_PREVIEW_EMOJI = 'emoji-picker__preview-emoji';
-const CLASS_PREVIEW_NAME = 'emoji-picker__preview-name';
+import {
+  CLASS_PREVIEW,
+  CLASS_PREVIEW_EMOJI,
+  CLASS_PREVIEW_NAME
+} from './classes';
 
-// Options for twemoji.parse(emoji, twemojiOptions)
 const twemojiOptions = {
   ext: '.svg',
   folder: 'svg'

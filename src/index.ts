@@ -20,13 +20,19 @@ import { VariantPopup } from './variantPopup';
 
 import { i18n } from './i18n';
 
+import {
+  CLASS_PICKER,
+  CLASS_PICKER_CONTENT,
+  CLASS_EMOJI,
+  CLASS_SEARCH_FIELD,
+  CLASS_VARIANT_OVERLAY,
+  CLASS_WRAPPER,
+  CLASS_OVERLAY
+} from './classes';
+
 import { EmojiButtonOptions, I18NStrings, EmojiRecord } from './types';
 import { EmojiArea } from './emojiArea';
 
-const CLASS_PICKER = 'emoji-picker';
-const CLASS_PICKER_CONTENT = 'emoji-picker__content';
-
-// Options for twemoji.parse(emoji, twemojiOptions)
 const twemojiOptions = {
   ext: '.svg',
   folder: 'svg'
@@ -216,7 +222,7 @@ export class EmojiButton {
       }
     );
 
-    this.wrapper = createElement('div', 'wrapper');
+    this.wrapper = createElement('div', CLASS_WRAPPER);
     this.wrapper.appendChild(this.pickerEl);
     this.wrapper.style.display = 'none';
 
@@ -280,7 +286,7 @@ export class EmojiButton {
       });
 
       const emojiElements = this.emojiArea.emojis.querySelectorAll(
-        '.emoji-picker__emoji'
+        `.${CLASS_EMOJI}`
       );
 
       emojiElements.forEach(element => {
@@ -327,14 +333,14 @@ export class EmojiButton {
       }
 
       const searchField = this.pickerEl.querySelector(
-        '.emoji-picker__search'
+        `.${CLASS_SEARCH_FIELD}`
       ) as HTMLInputElement;
       if (searchField) {
         searchField.value = '';
       }
 
       const variantOverlay = this.pickerEl.querySelector(
-        '.emoji-picker__variant-overlay'
+        `.${CLASS_VARIANT_OVERLAY}`
       );
       if (variantOverlay) {
         this.events.emit(HIDE_VARIANT_POPUP);
@@ -370,7 +376,7 @@ export class EmojiButton {
       this.wrapper.style.left = `${newLeft}px`;
       this.wrapper.style.zIndex = '5000';
 
-      this.overlay = createElement('div', 'emoji-picker__overlay');
+      this.overlay = createElement('div', CLASS_OVERLAY);
       document.body.appendChild(this.overlay);
     } else {
       this.popper = createPopper(referenceEl, this.wrapper, {
@@ -382,8 +388,8 @@ export class EmojiButton {
 
     const initialFocusElement = this.pickerEl.querySelector(
       this.options.showSearch && this.options.autoFocusSearch
-        ? '.emoji-picker__search'
-        : '.emoji-picker__emoji[tabindex="0"]'
+        ? `.${CLASS_SEARCH_FIELD}`
+        : `.${CLASS_EMOJI}[tabindex="0"]`
     ) as HTMLElement;
     initialFocusElement.focus();
 
@@ -411,7 +417,7 @@ export class EmojiButton {
       this.pickerEl.classList.add('keyboard');
     } else if (event.key.match(/^[\w]$/)) {
       const searchField = this.pickerEl.querySelector(
-        '.emoji-picker__search'
+        `.${CLASS_SEARCH_FIELD}`
       ) as HTMLInputElement;
       searchField && searchField.focus();
     }

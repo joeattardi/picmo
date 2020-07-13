@@ -7,8 +7,11 @@ import { HIDE_VARIANT_POPUP } from './events';
 
 import { EmojiRecord, EmojiButtonOptions } from './types';
 
-const CLASS_OVERLAY = 'emoji-picker__variant-overlay';
-const CLASS_POPUP = 'emoji-picker__variant-popup';
+import {
+  CLASS_VARIANT_OVERLAY,
+  CLASS_VARIANT_POPUP,
+  CLASS_EMOJI
+} from './classes';
 
 export class VariantPopup {
   private popup: HTMLElement;
@@ -21,7 +24,7 @@ export class VariantPopup {
   ) {}
 
   getEmoji(index: number): Element {
-    return this.popup.querySelectorAll('.emoji-picker__emoji')[index];
+    return this.popup.querySelectorAll(`.${CLASS_EMOJI}`)[index];
   }
 
   setFocusedEmoji(newIndex: number): void {
@@ -39,9 +42,9 @@ export class VariantPopup {
   }
 
   render(): HTMLElement {
-    this.popup = createElement('div', CLASS_POPUP);
+    this.popup = createElement('div', CLASS_VARIANT_POPUP);
 
-    const overlay = createElement('div', CLASS_OVERLAY);
+    const overlay = createElement('div', CLASS_VARIANT_OVERLAY);
     overlay.addEventListener('click', (event: MouseEvent) => {
       event.stopPropagation();
 
@@ -79,7 +82,7 @@ export class VariantPopup {
     );
 
     const firstEmoji = this.popup.querySelector(
-      '.emoji-picker__emoji'
+      `.${CLASS_EMOJI}`
     ) as HTMLElement;
     this.focusedEmojiIndex = 0;
     firstEmoji.tabIndex = 0;
@@ -91,7 +94,7 @@ export class VariantPopup {
         this.setFocusedEmoji(
           Math.min(
             this.focusedEmojiIndex + 1,
-            this.popup.querySelectorAll('.emoji-picker__emoji').length - 1
+            this.popup.querySelectorAll(`.${CLASS_EMOJI}`).length - 1
           )
         );
       } else if (event.key === 'ArrowLeft') {

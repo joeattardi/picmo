@@ -6,9 +6,9 @@ import { smile } from './icons';
 import { save } from './recent';
 import { createElement } from './util';
 
-import { EmojiButtonOptions, EmojiRecord } from './types';
+import { CLASS_EMOJI } from './classes';
 
-const CLASS_EMOJI = 'emoji-picker__emoji';
+import { EmojiButtonOptions, EmojiRecord } from './types';
 
 export class Emoji {
   private emojiButton: HTMLElement;

@@ -17,7 +17,6 @@ window.addEventListener('DOMContentLoaded', function () {
     picker.togglePicker(button);
   });
 
-
   var twemojiButton = document.querySelector('#twemoji-button');
   var twemojiPicker = new EmojiButton({
     theme: 'auto',

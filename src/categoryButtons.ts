@@ -1,7 +1,6 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-const CLASS_CATEGORY_BUTTONS = 'emoji-picker__category-buttons';
-const CLASS_CATEGORY_BUTTON = 'emoji-picker__category-button';
+import { CLASS_CATEGORY_BUTTONS, CLASS_CATEGORY_BUTTON } from './classes';
 
 import emojiData from './data/emoji';
 

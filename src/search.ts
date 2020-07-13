@@ -12,11 +12,14 @@ import {
 import { createElement } from './util';
 import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
 
-const CLASS_SEARCH_CONTAINER = 'emoji-picker__search-container';
-const CLASS_SEARCH_FIELD = 'emoji-picker__search';
-const CLASS_SEARCH_ICON = 'emoji-picker__search-icon';
-const CLASS_NOT_FOUND = 'emoji-picker__search-not-found';
-const CLASS_NOT_FOUND_ICON = 'emoji-picker__search-not-found-icon';
+import {
+  CLASS_SEARCH_CONTAINER,
+  CLASS_SEARCH_FIELD,
+  CLASS_SEARCH_ICON,
+  CLASS_NOT_FOUND,
+  CLASS_NOT_FOUND_ICON,
+  CLASS_EMOJI
+} from './classes';
 
 class NotFoundMessage {
   constructor(private message: string) {}
@@ -111,9 +114,7 @@ export class Search {
 
   setFocusedEmoji(index: number): void {
     if (this.resultsContainer) {
-      const emojis = this.resultsContainer.querySelectorAll(
-        '.emoji-picker__emoji'
-      );
+      const emojis = this.resultsContainer.querySelectorAll(`.${CLASS_EMOJI}`);
       const currentFocusedEmoji = emojis[this.focusedEmojiIndex] as HTMLElement;
       currentFocusedEmoji.tabIndex = -1;
 
@@ -126,9 +127,7 @@ export class Search {
 
   handleResultsKeydown(event: KeyboardEvent): void {
     if (this.resultsContainer) {
-      const emojis = this.resultsContainer.querySelectorAll(
-        '.emoji-picker__emoji'
-      );
+      const emojis = this.resultsContainer.querySelectorAll(`.${CLASS_EMOJI}`);
       if (event.key === 'ArrowRight') {
         this.setFocusedEmoji(
           Math.min(this.focusedEmojiIndex + 1, emojis.length - 1)
@@ -185,7 +184,7 @@ export class Search {
 
         if (this.resultsContainer) {
           (this.resultsContainer.querySelector(
-            '.emoji-picker__emoji'
+            `.${CLASS_EMOJI}`
           ) as HTMLElement).tabIndex = 0;
           this.focusedEmojiIndex = 0;
 
