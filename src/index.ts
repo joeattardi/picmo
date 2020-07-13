@@ -209,6 +209,8 @@ export class EmojiButton {
             this.events.emit(HIDE_VARIANT_POPUP);
           }
 
+          setTimeout(() => this.emojiArea.updateRecents());
+
           if (this.options.style === 'twemoji') {
             this.publicEvents.emit(
               'emoji',
@@ -348,8 +350,6 @@ export class EmojiButton {
       if (variantOverlay) {
         this.events.emit(HIDE_VARIANT_POPUP);
       }
-
-      this.emojiArea.updateRecents();
 
       this.hideInProgress = false;
     }, 170);
