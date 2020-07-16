@@ -185,19 +185,21 @@
 
 .emoji-picker__container {
   display: grid;
+  justify-content: center;
   grid-template-columns: repeat(var(--emoji-per-row), calc(var(--emoji-size) * var(--emoji-size-multiplier)));
   grid-auto-rows: calc(var(--emoji-size) * var(--emoji-size-multiplier));
 }
 
 .emoji-picker__container.search-results {
   height: var(--content-height);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .emoji-picker__emoji {
   background: transparent;
   border: none;
   cursor: pointer;
+  overflow: hidden;
   font-size: var(--emoji-size);
   width: 1.5em;
   height: 1.5em;
@@ -338,11 +340,9 @@
 }
 
 .emoji-picker__emojis {
-  overflow-y: scroll;
+  overflow-y: auto;
   position: relative;
   height: calc((var(--emoji-size) * var(--emoji-size-multiplier)) * var(--row-count) + var(--category-name-size));
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
 }
 
 .emoji-picker__emojis.hiding {
