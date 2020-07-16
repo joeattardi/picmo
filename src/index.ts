@@ -64,7 +64,8 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   style: 'native',
   emojisPerRow: 8,
   rows: 6,
-  emojiSize: '1.8em'
+  emojiSize: '1.8em',
+  initialCategory: 'smileys'
 };
 
 export class EmojiButton {

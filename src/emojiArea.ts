@@ -131,8 +131,10 @@ export class EmojiArea {
       header => header.offsetTop
     ) as number[];
 
-    this.selectCategory('smileys', false);
-    this.currentCategory = this.options.showRecents ? 1 : 0;
+    this.selectCategory(this.options.initialCategory || 'smileys', false);
+    this.currentCategory = this.categories.indexOf(
+      (this.options.initialCategory as string) || 'smileys'
+    );
 
     if (this.options.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory, false);

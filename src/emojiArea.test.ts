@@ -64,4 +64,21 @@ describe('EmojiArea', () => {
       i18n.categories.animals
     );
   });
+
+  test('selects the initial category', () => {
+    const emojiArea = new EmojiArea(emitter, i18n, {
+      emojiVersion: '11.0',
+      categories: ['smileys', 'animals'],
+      showRecents: true,
+      initialCategory: 'animals',
+      showCategoryButtons: true
+    });
+    const container = emojiArea.render();
+    emojiArea.reset();
+
+    const buttons = container.querySelectorAll(
+      '.emoji-picker__category-button'
+    );
+    expect(buttons[2].classList).toContain('active');
+  });
 });

@@ -46,6 +46,7 @@ export interface EmojiButtonOptions {
   emojisPerRow?: number;
   rows?: number;
   emojiSize?: string;
+  initialCategory?: Category | 'recents';
 }
 
 export type EmojiStyle = 'native' | 'twemoji';
