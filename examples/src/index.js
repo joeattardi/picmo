@@ -6,7 +6,13 @@ window.addEventListener('DOMContentLoaded', function () {
   var button = document.querySelector('#native-button');
   var picker = new EmojiButton({
     theme: 'auto',
-    position: 'bottom-end'
+    position: 'bottom-end',
+    custom: [
+      {
+        name: 'Conga parrot',
+        emoji: 'conga_parrot.gif'
+      }
+    ]
   });
 
   picker.on('emoji', function (emoji) {
@@ -21,7 +27,17 @@ window.addEventListener('DOMContentLoaded', function () {
   var twemojiPicker = new EmojiButton({
     theme: 'auto',
     style: 'twemoji',
-    position: 'bottom-end'
+    position: 'bottom-end',
+    custom: [
+      {
+        name: 'Conga parrot',
+        emoji: 'conga_parrot.gif'
+      },
+      {
+        name: 'O RLY?',
+        emoji: 'orly.jpg'
+      }
+    ]
   });
 
   twemojiPicker.on('emoji', function (emoji) {
