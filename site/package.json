@@ -25,6 +25,7 @@
     "type": "git",
     "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
   },
+  "homepage": "https://emoji-button.js.org/",
   "bugs": {
     "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
