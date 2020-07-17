@@ -8,7 +8,10 @@ export default function Layout({ children }) {
   return (
     <div>
       <Header />
-      <div className={styles.install}></div>
+      <div className={styles.install}>
+        <h3>Installation</h3>
+        <code>npm install @joeattardi/emoji-button</code>
+      </div>
       {children}
     </div>
   );
