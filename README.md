@@ -15,6 +15,7 @@ Vanilla JavaScript emoji picker 😎
 * ⏱ Recently used emojis
 * ⌨️ Fully keyboard accessible
 * 🎨 Dark, light, and auto themes
+* ⚙️ Add your own custom emoji images
 
 ## Browser support
 
