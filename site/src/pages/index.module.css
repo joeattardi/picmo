@@ -1,0 +1,16 @@
+.emoji-button {
+  font-size: 2rem;
+  background: #eeeeee;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+section {
+  margin: 1rem 0;
+}

@@ -13,13 +13,18 @@
   align-items: center;
 }
 
+.header > * {
+  margin: 0.5rem;
+}
+
 .logo img {
   width: 300px;
 }
 
 .header h2 {
   font-family: 'Lobster', cursive;
-  font-size: 2rem;  
+  font-size: 2rem;
+  color: #ffffff;
 }
 
 .badges {

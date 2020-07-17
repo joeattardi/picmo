@@ -8,3 +8,9 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
 }
+
+h1, h2, h3 {
+  font-family: Lobster, cursive;
+  color: var(--brand-color);
+  margin: 0;
+}

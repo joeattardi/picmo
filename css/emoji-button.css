@@ -120,6 +120,10 @@
   animation: show var(--animation-duration) var(--animation-easing);
 }
 
+.emoji-picker h2 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .emoji-picker__overlay {
   background: rgba(0, 0, 0, 0.75);
   z-index: 1000;
@@ -212,7 +216,7 @@
   margin: 0;
   outline: none;
   font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji", "Twemoji Mozilla", "Noto Color Emoji", "EmojiOne Color", "Android Emoji";
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
 }

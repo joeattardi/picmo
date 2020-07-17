@@ -11,6 +11,7 @@
 .install h3 {
   font-family: Lobster, cursive;
   font-size: 1.5rem;
+  color: #ffffff;
 }
 
 .install > * {
@@ -23,4 +24,18 @@
   padding: 0.5rem;
   border-radius: 5px;
   font-family: Menlo, 'Courier New' ,Courier, monospace;
+}
+
+.main {
+  padding: 1rem;
+}
+
+@media screen and (max-width: 550px) {
+  .install {
+    flex-direction: column;
+  }
+
+  .install code {
+    font-size: 0.75rem;
+  }
 }

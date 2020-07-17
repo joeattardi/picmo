@@ -12,7 +12,7 @@ export default function Layout({ children }) {
         <h3>Installation</h3>
         <code>npm install @joeattardi/emoji-button</code>
       </div>
-      {children}
+      <main className={styles.main}>{children}</main>
     </div>
   );
 }
