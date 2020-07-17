@@ -1,0 +1,8 @@
+.install {
+  background: var(--brand-color);
+  color: #ffffff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}

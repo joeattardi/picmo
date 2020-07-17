@@ -1,0 +1,33 @@
+.header {
+  background: repeating-linear-gradient(
+  45deg,
+  var(--brand-color),
+  var(--brand-color) 10px,
+  rgba(255, 255, 255, 0.05) 10px,
+  rgba(255, 255, 255, 0.05) 20px
+) var(--brand-color);
+  color: #ffffff;
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo img {
+  width: 300px;
+}
+
+.header h2 {
+  font-family: 'Lobster', cursive;
+  font-size: 2rem;  
+}
+
+.badges {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.badges a {
+  margin: 0.5rem;
+}
