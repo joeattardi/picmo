@@ -1,6 +1,7 @@
 export const CLASS_CATEGORY_BUTTON = 'emoji-picker__category-button';
 export const CLASS_CATEGORY_BUTTONS = 'emoji-picker__category-buttons';
 export const CLASS_CATEGORY_NAME = 'emoji-picker__category-name';
+export const CLASS_CUSTOM_EMOJI = 'emoji-picker__custom-emoji';
 export const CLASS_EMOJI = 'emoji-picker__emoji';
 export const CLASS_EMOJI_AREA = 'emoji-picker__emoji-area';
 export const CLASS_EMOJI_CONTAINER = 'emoji-picker__container';

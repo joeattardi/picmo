@@ -34,6 +34,7 @@ declare namespace EmojiButton {
     rows?: number;
     emojiSize?: string;
     initialCategory?: Category | 'recents';
+    custom?: EmojiRecord[];
   }
 
   export type EmojiStyle = 'native' | 'twemoji';
@@ -88,7 +89,8 @@ declare namespace EmojiButton {
     | 'travel'
     | 'objects'
     | 'symbols'
-    | 'flags';
+    | 'flags'
+    | 'custom';
 
   export interface I18NStrings {
     search: string;

@@ -51,6 +51,15 @@ The picker is shown by calling `showPicker` or `togglePicker` on the `EmojiButto
   });
 ```
 
+## Custom emojis
+
+Emoji Button supports a custom emojis category. A custom emoji is an image file that is added to the picker. For best results, a custom emoji should be a square image.
+
+A custom emoji is defined as an object with the following properties:
+
+* `name`: The display name of the custom emoji.
+* `emoji`: The URL of the image to use for the custom emoji.
+
 ### TypeScript note
 
 Because the `EmojiButton` class is a default export, it requires a small tweak to import the library in a TypeScript project. There are two options:
@@ -82,6 +91,8 @@ Creates an Emoji Button emoji picker.
     * `objects`
     * `symbols`
     * `flags`
+
+* `custom`: (object[]): An array of custom emojis to include in the "Custom" category.
 
 * `emojiSize`: (string, default: `1.8em`) The size to use for the emoji icons.
 
@@ -158,7 +169,8 @@ Creates an Emoji Button emoji picker.
     travel: 'Travel & Places',
     objects: 'Objects',
     symbols: 'Symbols',
-    flags: 'Flags'
+    flags: 'Flags',
+    custom: 'Custom'
   },
   notFound: 'No emojis found'
 }

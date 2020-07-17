@@ -17,7 +17,8 @@ export function save(
   const recent = {
     emoji: emoji.emoji,
     name: emoji.name,
-    key: (emoji as RecentEmoji).key || emoji.name
+    key: (emoji as RecentEmoji).key || emoji.name,
+    custom: emoji.custom
   };
 
   localStorage.setItem(

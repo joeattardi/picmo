@@ -6,7 +6,7 @@ import { smile } from './icons';
 import { save } from './recent';
 import { createElement } from './util';
 
-import { CLASS_EMOJI } from './classes';
+import { CLASS_EMOJI, CLASS_CUSTOM_EMOJI } from './classes';
 
 import { EmojiButtonOptions, EmojiRecord } from './types';
 
@@ -24,15 +24,41 @@ export class Emoji {
 
   render(): HTMLElement {
     this.emojiButton = createElement('button', CLASS_EMOJI);
-    this.emojiButton.innerHTML =
-      this.options.style === 'native'
-        ? this.emoji.emoji
-        : this.lazy
+
+    let content = this.emoji.emoji;
+
+    /*
+                const img = createElement(
+              'img',
+              CLASS_CUSTOM_EMOJI
+            ) as HTMLImageElement;
+            img.src = element.dataset.emoji;
+            element.innerText = '';
+            element.appendChild(img);
+            element.dataset.loaded = true;
+            element.style.opacity = 1;
+*/
+
+    if (this.emoji.custom) {
+      content = this.lazy
         ? smile
-        : twemoji.parse(this.emoji.emoji);
+        : `<img class="${CLASS_CUSTOM_EMOJI}" src="${this.emoji.emoji}">`;
+    } else if (this.options.style === 'twemoji') {
+      content = this.lazy ? smile : twemoji.parse(this.emoji.emoji);
+    }
+
+    this.emojiButton.innerHTML = content;
+    // this.options.style === 'native'
+    //   ? this.emoji.emoji
+    //   : this.lazy
+    //   ? smile
+    //   : twemoji.parse(this.emoji.emoji);
     this.emojiButton.tabIndex = -1;
 
     this.emojiButton.dataset.emoji = this.emoji.emoji;
+    if (this.emoji.custom) {
+      this.emojiButton.dataset.custom = 'true';
+    }
     this.emojiButton.title = this.emoji.name;
 
     this.emojiButton.addEventListener('focus', () => this.onEmojiHover());

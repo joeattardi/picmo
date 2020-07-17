@@ -195,6 +195,11 @@
   overflow-y: auto;
 }
 
+.emoji-picker__custom-emoji {
+  width: 1em;
+  height: 1em;
+}
+
 .emoji-picker__emoji {
   background: transparent;
   border: none;
@@ -207,6 +212,9 @@
   margin: 0;
   outline: none;
   font-family: "Segoe UI Emoji", "Segoe UI Symbol", "Segoe UI", "Apple Color Emoji", "Twemoji Mozilla", "Noto Color Emoji", "EmojiOne Color", "Android Emoji";
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .emoji-picker__emoji img.emoji {

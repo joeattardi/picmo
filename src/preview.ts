@@ -9,7 +9,8 @@ import { EmojiRecord, EmojiButtonOptions } from './types';
 import {
   CLASS_PREVIEW,
   CLASS_PREVIEW_EMOJI,
-  CLASS_PREVIEW_NAME
+  CLASS_PREVIEW_NAME,
+  CLASS_CUSTOM_EMOJI
 } from './classes';
 
 const twemojiOptions = {
@@ -41,10 +42,15 @@ export class EmojiPreview {
   }
 
   showPreview(emoji: EmojiRecord): void {
-    this.emoji.innerHTML =
-      this.options.style === 'native'
-        ? emoji.emoji
-        : twemoji.parse(emoji.emoji, twemojiOptions);
+    let content = emoji.emoji;
+
+    if (emoji.custom) {
+      content = `<img class="${CLASS_CUSTOM_EMOJI}" src="${emoji.emoji}">`;
+    } else if (this.options.style === 'twemoji') {
+      content = twemoji.parse(emoji.emoji, twemojiOptions);
+    }
+
+    this.emoji.innerHTML = content;
     this.name.innerHTML = emoji.name;
   }
 

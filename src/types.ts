@@ -3,6 +3,7 @@ import { Placement } from '@popperjs/core';
 export interface EmojiRecord {
   name: string;
   emoji: string;
+  custom?: boolean;
   category?: number;
   version?: string;
   variations?: string[];
@@ -18,6 +19,7 @@ export interface RecentEmoji {
   key: string;
   name: string;
   emoji: string;
+  custom?: boolean;
 }
 
 export interface EmojiEventData {
@@ -47,6 +49,7 @@ export interface EmojiButtonOptions {
   rows?: number;
   emojiSize?: string;
   initialCategory?: Category | 'recents';
+  custom?: EmojiRecord[];
 }
 
 export type EmojiStyle = 'native' | 'twemoji';
@@ -84,7 +87,8 @@ export type I18NCategory =
   | 'travel'
   | 'objects'
   | 'symbols'
-  | 'flags';
+  | 'flags'
+  | 'custom';
 
 export interface I18NStrings {
   search: string;

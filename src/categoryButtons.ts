@@ -21,7 +21,8 @@ const categoryIcons: { [key in I18NCategory]: string } = {
   travel: icons.building,
   objects: icons.lightbulb,
   symbols: icons.music,
-  flags: icons.flag
+  flags: icons.flag,
+  custom: icons.icons
 };
 
 export class CategoryButtons {
@@ -38,9 +39,13 @@ export class CategoryButtons {
   render(): HTMLElement {
     const container = createElement('div', CLASS_CATEGORY_BUTTONS);
 
-    const categories = this.options.showRecents
+    let categories = this.options.showRecents
       ? ['recents', ...(this.options.categories || emojiData.categories)]
       : this.options.categories || emojiData.categories;
+
+    if (this.options.custom) {
+      categories = [...categories, 'custom'];
+    }
 
     categories.forEach((category: string) => {
       const button = createElement('button', CLASS_CATEGORY_BUTTON);

@@ -58,6 +58,10 @@ export class EmojiArea {
     if (options.showRecents) {
       this.categories = ['recents', ...this.categories];
     }
+
+    if (options.custom) {
+      this.categories = [...this.categories, 'custom'];
+    }
   }
 
   updateRecents(): void {
@@ -97,6 +101,13 @@ export class EmojiArea {
 
     if (this.options.showRecents) {
       emojiCategories.recents = load();
+    }
+
+    if (this.options.custom) {
+      emojiCategories.custom = this.options.custom.map(custom => ({
+        ...custom,
+        custom: true
+      }));
     }
 
     this.categories.forEach(category =>
@@ -172,13 +183,13 @@ export class EmojiArea {
 
         if (
           this.focusedIndex === this.currentEmojiCount - 1 &&
-          this.currentCategory < this.categories.length
+          this.currentCategory < this.categories.length - 1
         ) {
           if (this.options.showCategoryButtons) {
             this.categoryButtons.setActiveButton(++this.currentCategory);
           }
           this.setFocusedEmoji(0);
-        } else {
+        } else if (this.focusedIndex < this.currentEmojiCount - 1) {
           this.setFocusedEmoji(this.focusedIndex + 1);
         }
         break;
@@ -200,14 +211,22 @@ export class EmojiArea {
 
         if (
           this.focusedIndex + this.emojisPerRow >= this.currentEmojiCount &&
-          this.currentCategory < this.categories.length
+          this.currentCategory < this.categories.length - 1
         ) {
           this.currentCategory++;
           if (this.options.showCategoryButtons) {
             this.categoryButtons.setActiveButton(this.currentCategory);
           }
-          this.setFocusedEmoji(this.focusedIndex % this.emojisPerRow);
-        } else {
+          this.setFocusedEmoji(
+            Math.min(
+              this.focusedIndex % this.emojisPerRow,
+              this.currentEmojiCount - 1
+            )
+          );
+        } else if (
+          this.currentEmojiCount - this.focusedIndex >
+          this.emojisPerRow
+        ) {
           this.setFocusedEmoji(this.focusedIndex + this.emojisPerRow);
         }
         break;
@@ -310,8 +329,15 @@ export class EmojiArea {
       return;
     }
     let closestHeaderIndex = this.headerOffsets.findIndex(
-      offset => offset > Math.round(this.emojis.scrollTop)
+      offset => offset >= Math.round(this.emojis.scrollTop)
     );
+
+    if (
+      this.emojis.scrollTop + this.emojis.offsetHeight ===
+      this.emojis.scrollHeight
+    ) {
+      closestHeaderIndex = -1;
+    }
 
     if (closestHeaderIndex === 0) {
       closestHeaderIndex = 1;

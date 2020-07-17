@@ -4,6 +4,7 @@ import {
   faCoffee,
   faFutbol,
   faHistory,
+  faIcons,
   faMusic,
   faSearch,
   faTimes,
@@ -25,6 +26,7 @@ library.add(
   faFrown,
   faFutbol,
   faHistory,
+  faIcons,
   faLightbulb,
   faMusic,
   faSearch,
@@ -40,6 +42,7 @@ export const flag = icon({ prefix: 'far', iconName: 'flag' }).html[0];
 export const futbol = icon({ prefix: 'fas', iconName: 'futbol' }).html[0];
 export const frown = icon({ prefix: 'far', iconName: 'frown' }).html[0];
 export const history = icon({ prefix: 'fas', iconName: 'history' }).html[0];
+export const icons = icon({ prefix: 'fas', iconName: 'icons' }).html[0];
 export const lightbulb = icon({ prefix: 'far', iconName: 'lightbulb' }).html[0];
 export const music = icon({ prefix: 'fas', iconName: 'music' }).html[0];
 export const search = icon({ prefix: 'fas', iconName: 'search' }).html[0];

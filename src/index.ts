@@ -27,7 +27,8 @@ import {
   CLASS_SEARCH_FIELD,
   CLASS_VARIANT_OVERLAY,
   CLASS_WRAPPER,
-  CLASS_OVERLAY
+  CLASS_OVERLAY,
+  CLASS_CUSTOM_EMOJI
 } from './classes';
 
 import { EmojiButtonOptions, I18NStrings, EmojiRecord } from './types';
@@ -212,13 +213,18 @@ export class EmojiButton {
 
           setTimeout(() => this.emojiArea.updateRecents());
 
-          if (this.options.style === 'twemoji') {
+          if (emoji.custom) {
             this.publicEvents.emit(
-              'emoji',
+              EMOJI,
+              `<img class="emoji" src="${emoji.emoji}">`
+            );
+          } else if (this.options.style === 'twemoji') {
+            this.publicEvents.emit(
+              EMOJI,
               twemoji.parse(emoji.emoji, twemojiOptions)
             );
           } else {
-            this.publicEvents.emit('emoji', emoji.emoji);
+            this.publicEvents.emit(EMOJI, emoji.emoji);
           }
           if (this.options.autoHide) {
             this.hidePicker();
@@ -239,7 +245,7 @@ export class EmojiButton {
       this.options.rootElement.appendChild(this.wrapper);
     }
 
-    this.observeTwemojiForLazyLoad();
+    this.observeForLazyLoad();
   }
 
   private showVariantPopup(emoji: EmojiRecord) {
@@ -265,17 +271,27 @@ export class EmojiButton {
     });
   }
 
-  private observeTwemojiForLazyLoad() {
-    if (this.options.style === 'twemoji') {
-      const onChange = changes => {
-        const visibleElements = Array.prototype.filter
-          .call(changes, change => {
-            return change.intersectionRatio > 0;
-          })
-          .map(entry => entry.target);
+  private observeForLazyLoad() {
+    const onChange = changes => {
+      const visibleElements = Array.prototype.filter
+        .call(changes, change => {
+          return change.intersectionRatio > 0;
+        })
+        .map(entry => entry.target);
 
-        visibleElements.forEach(element => {
-          if (this.options.style === 'twemoji' && !element.dataset.loaded) {
+      visibleElements.forEach(element => {
+        if (!element.dataset.loaded) {
+          if (element.dataset.custom) {
+            const img = createElement(
+              'img',
+              CLASS_CUSTOM_EMOJI
+            ) as HTMLImageElement;
+            img.src = element.dataset.emoji;
+            element.innerText = '';
+            element.appendChild(img);
+            element.dataset.loaded = true;
+            element.style.opacity = 1;
+          } else if (this.options.style === 'twemoji') {
             element.innerHTML = twemoji.parse(
               element.dataset.emoji,
               twemojiOptions
@@ -283,21 +299,26 @@ export class EmojiButton {
             element.dataset.loaded = true;
             element.style.opacity = '1';
           }
-        });
-      };
-
-      this.observer = new IntersectionObserver(onChange, {
-        root: this.emojiArea.emojis
+        }
       });
+    };
 
-      const emojiElements = this.emojiArea.emojis.querySelectorAll(
-        `.${CLASS_EMOJI}`
-      );
+    this.observer = new IntersectionObserver(onChange, {
+      root: this.emojiArea.emojis
+    });
 
-      emojiElements.forEach(element => {
+    const emojiElements = this.emojiArea.emojis.querySelectorAll(
+      `.${CLASS_EMOJI}`
+    );
+
+    emojiElements.forEach(element => {
+      if (
+        this.options.style === 'twemoji' ||
+        (element as HTMLElement).dataset.custom === 'true'
+      ) {
         this.observer.observe(element);
-      });
-    }
+      }
+    });
   }
 
   private onDocumentClick(event: MouseEvent): void {
