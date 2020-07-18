@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 
 import { faJs } from '@fortawesome/free-brands-svg-icons';
 import {
+  faCat,
   faKeyboard,
   faHistory,
   faPalette,
@@ -49,20 +50,30 @@ export default function Home() {
   return (
     <Layout>
       <h2>Demo</h2>
-      <section>
-        <p>Click the button to select a new emoji.</p>
-        <button
-          className={styles.emojiButton}
-          ref={buttonRef}
-          onClick={togglePicker}
-        >
-          {emoji}
-        </button>
+      <section className={styles.demo}>
+        <div>
+          <button
+            className={styles.emojiButton}
+            ref={buttonRef}
+            onClick={togglePicker}
+          >
+            {emoji}
+          </button>
+        </div>
+        <div className={styles.code}>
+          <SourceFile src={indexExample} />
+        </div>
       </section>
 
-      <SourceFile src={indexExample} />
+      <h2>About</h2>
+      <section>
+        <p>
+          Emoji Button lets you add an emoji picker to your website or app with
+          a few simple lines of code. It supports all Unicode emojis up to and
+          including Emoji 12.1, and is fully customizable.
+        </p>
+      </section>
 
-      <h2>Features</h2>
       <section>
         <Feature icon={faJs} title="Vanilla JavaScript">
           Emoji Button doesn't rely on a particular framework, allowing you to
@@ -70,7 +81,7 @@ export default function Home() {
         </Feature>
 
         <Feature icon={faSmile} title="Native or Twemoji styles">
-          Use the operating system's built-in emoji characters, or use the
+          Uses the operating system's built-in emoji characters or the
           cross-platform <a href="https://twemoji.twitter.com">Twemoji</a> emoji
           library.
         </Feature>
@@ -95,6 +106,10 @@ export default function Home() {
         <Feature icon={faPalette} title="Themes">
           Includes a dark and light theme. Also supports automatically setting
           the theme based on the user's operating system settings.
+        </Feature>
+
+        <Feature icon={faCat} title="Custom emojis">
+          Add your own custom images and GIFs to the emoji picker.
         </Feature>
       </section>
 

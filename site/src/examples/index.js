@@ -7,4 +7,4 @@ picker.on('emoji', emoji => {
   trigger.innerHTML = emoji;
 });
 
-trigger.addEventListener('click', () => picker.togglePicker());
+trigger.addEventListener('click', () => picker.togglePicker(trigger));

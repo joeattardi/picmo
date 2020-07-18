@@ -1,7 +1,6 @@
 .install {
   background: var(--brand-color);
   color: #ffffff;
-  padding: 0.5rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
