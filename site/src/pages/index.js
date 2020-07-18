@@ -9,11 +9,14 @@ import {
   faSmile,
   faThumbsUp
 } from '@fortawesome/free-solid-svg-icons';
-
 import { EmojiButton } from '@joeattardi/emoji-button';
+import Prism from 'prismjs';
 
 import Feature from '../components/Feature';
 import Layout from '../components/Layout';
+import SourceFile from '../components/SourceFile';
+
+import indexExample from '!!raw-loader!../examples/index';
 
 import styles from './index.module.css';
 
@@ -21,6 +24,10 @@ export default function Home() {
   const buttonRef = useRef();
   const [picker, setPicker] = useState(null);
   const [emoji, setEmoji] = useState('😎');
+
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
 
   useEffect(() => {
     const pickerObj = new EmojiButton({
@@ -52,6 +59,8 @@ export default function Home() {
           {emoji}
         </button>
       </section>
+
+      <SourceFile src={indexExample} />
 
       <h2>Features</h2>
       <section>
