@@ -1,7 +1,18 @@
 import React, { useRef, useState, useEffect } from 'react';
 
+import { faJs } from '@fortawesome/free-brands-svg-icons';
+import {
+  faKeyboard,
+  faHistory,
+  faPalette,
+  faSearch,
+  faSmile,
+  faThumbsUp
+} from '@fortawesome/free-solid-svg-icons';
+
 import { EmojiButton } from '@joeattardi/emoji-button';
 
+import Feature from '../components/Feature';
 import Layout from '../components/Layout';
 
 import styles from './index.module.css';
@@ -44,41 +55,38 @@ export default function Home() {
 
       <h2>Features</h2>
       <section>
-        <h3>Vanilla JavaScript</h3>
-        <p>
+        <Feature icon={faJs} title="Vanilla JavaScript">
           Emoji Button doesn't rely on a particular framework, allowing you to
           use it in any JavaScript app.
-        </p>
+        </Feature>
 
-        <h3>Native or Twemoji styles</h3>
-        <p>
+        <Feature icon={faSmile} title="Native or Twemoji styles">
           Use the operating system's built-in emoji characters, or use the
           cross-platform <a href="https://twemoji.twitter.com">Twemoji</a> emoji
           library.
-        </p>
+        </Feature>
 
-        <h3>Emoji search</h3>
-        <p>Search for emojis by name.</p>
+        <Feature icon={faSearch} title="Emoji search">
+          Search for emojis by name.
+        </Feature>
 
-        <h3>Emoji variations</h3>
-        <p>
+        <Feature icon={faThumbsUp} title="Emoji variations">
           Some emojis support skin tone, or other types of, variations. Emoji
           Button fully supports these variations.
-        </p>
+        </Feature>
 
-        <h3>Recent emojis</h3>
-        <p>Remembers the previously/frequently selected emojis.</p>
+        <Feature icon={faHistory} title="Recent emojis">
+          Remembers the previously/frequently selected emojis.
+        </Feature>
 
-        <h3>Keyboard accessibility</h3>
-        <p>
+        <Feature icon={faKeyboard} title="Keyboard accessible">
           No mouse required! Navigate the picker with the Tab and arrow keys.
-        </p>
+        </Feature>
 
-        <h3>Themes</h3>
-        <p>
+        <Feature icon={faPalette} title="Themes">
           Includes a dark and light theme. Also supports automatically setting
           the theme based on the user's operating system settings.
-        </p>
+        </Feature>
       </section>
 
       <h2>Compatibility</h2>
