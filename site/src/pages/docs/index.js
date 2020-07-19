@@ -59,6 +59,12 @@ yarn add @joeattardi/emoji-button
         You can listen for this event by calling <code>on</code> on the
         instance, and then handle the selected emoji however you want.
       </p>
+
+      <p>
+        The argument to the <code>emoji</code> will be an object with an{' '}
+        <code>emoji</code> property, which contains the selected emoji
+        character. You can then handle this emoji as you see fit.
+      </p>
     </DocLayout>
   );
 }

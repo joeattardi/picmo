@@ -14,8 +14,9 @@ export default function StylesExample() {
 
   const twemojiButtonRef = useRef();
   const [twemojiPicker, setTwemojiPicker] = useState(null);
+  const [twemojiEmoji, setTwemojiEmoji] = useState('😎');
   const [twemoji, setTwemoji] = useState(
-    '<img class="emoji" draggable="false" alt="😎" src="https://twemoji.maxcdn.com/v/13.0.0/svg/1f60e.svg">'
+    'https://twemoji.maxcdn.com/v/13.0.0/svg/1f60e.svg'
   );
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function StylesExample() {
     });
 
     pickerObj.on('emoji', selectedEmoji => {
-      setNativeEmoji(selectedEmoji);
+      setNativeEmoji(selectedEmoji.emoji);
     });
 
     setNativePicker(pickerObj);
@@ -36,7 +37,8 @@ export default function StylesExample() {
     });
 
     pickerObj.on('emoji', selectedEmoji => {
-      setTwemoji(selectedEmoji);
+      setTwemoji(selectedEmoji.url);
+      setTwemojiEmoji(selectedEmoji.emoji);
     });
 
     setTwemojiPicker(pickerObj);
@@ -82,13 +84,21 @@ export default function StylesExample() {
         consistent emoji style on all platforms.
       </p>
 
+      <p>
+        When using the Twemoji style, the argument to the <code>emoji</code>{' '}
+        event has a <code>url</code> property, which is the URL of the Twemoji
+        image corresponding to the emoji that was selected. The{' '}
+        <code>emoji</code> property is also present.
+      </p>
+
       <div>
         <button
           className={styles.emojiButton}
           ref={twemojiButtonRef}
           onClick={toggleTwemojiPicker}
-          dangerouslySetInnerHTML={{ __html: twemoji }}
-        ></button>
+        >
+          <img alt={twemojiEmoji} src={twemoji} />
+        </button>
       </div>
     </DocLayout>
   );

@@ -219,12 +219,20 @@ export class EmojiButton {
               `<img class="emoji" src="${emoji.emoji}">`
             );
           } else if (this.options.style === 'twemoji') {
-            this.publicEvents.emit(
-              EMOJI,
-              twemoji.parse(emoji.emoji, twemojiOptions)
-            );
+            // console.log(twemoji.parse(emoji.emoji, twemojiOptions));
+            twemoji.parse(emoji.emoji, {
+              ...twemojiOptions,
+              callback: (icon, options) => {
+                this.publicEvents.emit(EMOJI, {
+                  url: `${options.base}${options.size}/${icon}${options.ext}`,
+                  emoji: emoji.emoji
+                });
+              }
+            });
           } else {
-            this.publicEvents.emit(EMOJI, emoji.emoji);
+            this.publicEvents.emit(EMOJI, {
+              emoji: emoji.emoji
+            });
           }
           if (this.options.autoHide) {
             this.hidePicker();

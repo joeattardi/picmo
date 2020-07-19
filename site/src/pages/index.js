@@ -36,8 +36,8 @@ export default function Home() {
       position: 'bottom-end'
     });
 
-    pickerObj.on('emoji', selectedEmoji => {
-      setEmoji(selectedEmoji);
+    pickerObj.on('emoji', selection => {
+      setEmoji(selection.emoji);
     });
 
     setPicker(pickerObj);
