@@ -214,10 +214,10 @@ export class EmojiButton {
           setTimeout(() => this.emojiArea.updateRecents());
 
           if (emoji.custom) {
-            this.publicEvents.emit(
-              EMOJI,
-              `<img class="emoji" src="${emoji.emoji}">`
-            );
+            this.publicEvents.emit(EMOJI, {
+              url: emoji.emoji,
+              custom: true
+            });
           } else if (this.options.style === 'twemoji') {
             // console.log(twemoji.parse(emoji.emoji, twemojiOptions));
             twemoji.parse(emoji.emoji, {
