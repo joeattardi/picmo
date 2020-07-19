@@ -14,3 +14,7 @@ h1, h2, h3 {
   color: var(--brand-color);
   margin: 0;
 }
+
+code {
+  font-family: Menlo, 'Courier New' ,Courier, monospace;
+}

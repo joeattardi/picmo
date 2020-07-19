@@ -47,6 +47,7 @@
   font-size: 1.2rem;
   border-radius: 5px;
   transition: all 250ms;
+  box-shadow: 0 0 5px #333333
 }
 
 .buttons a:hover {

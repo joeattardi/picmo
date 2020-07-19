@@ -7,11 +7,11 @@
   cursor: pointer;
 }
 
-h2 {
+.index h2 {
   font-size: 2rem;
 }
 
-section {
+.index section {
   margin: 1rem 0;
 }
 

@@ -1,0 +1,26 @@
+.sidebar {
+  background: var(--brand-color);
+  width: 15rem;
+  min-width: 15rem;
+}
+
+.sidebar .logo {
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.sidebar .logo img {
+  width: 10rem;
+}
+
+.sidebar ul li {
+  list-style-type: none;
+  margin: 0.5rem 0;
+}
+
+.sidebar ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
