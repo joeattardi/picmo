@@ -1,11 +1,12 @@
 .header {
   background: repeating-linear-gradient(
-  45deg,
-  var(--brand-color),
-  var(--brand-color) 10px,
-  rgba(255, 255, 255, 0.05) 10px,
-  rgba(255, 255, 255, 0.05) 20px
-) var(--brand-color);
+      45deg,
+      var(--brand-color),
+      var(--brand-color) 10px,
+      rgba(255, 255, 255, 0.05) 10px,
+      rgba(255, 255, 255, 0.05) 20px
+    )
+    var(--brand-color);
   color: #ffffff;
   display: flex;
   padding: 1rem;
@@ -35,4 +36,19 @@
 
 .badges a {
   margin: 0.5rem;
+}
+
+.buttons a {
+  background: #F17300;
+  color: #ffffff;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  transition: all 250ms;
+}
+
+.buttons a:hover {
+  filter: brightness(1.2);
 }
