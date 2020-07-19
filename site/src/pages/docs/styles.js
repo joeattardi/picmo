@@ -34,6 +34,12 @@ export default function StylesExample() {
       </p>
 
       <p>
+        To use the Twemoji style, set the <code>style</code> property to{' '}
+        <code>twemoji</code> in the options object passed to the{' '}
+        <code>EmojiButton</code> constructor.
+      </p>
+
+      <p>
         When using the Twemoji style, the argument to the <code>emoji</code>{' '}
         event has a <code>url</code> property, which is the URL of the Twemoji
         image corresponding to the emoji that was selected. The{' '}

@@ -19,10 +19,7 @@ export default function Example({
 
     pickerObj.on('emoji', selection => {
       setEmoji(selection.emoji);
-
-      if (selection.url) {
-        setImageUrl(selection.url);
-      }
+      setImageUrl(selection.url);
     });
 
     setPicker(pickerObj);
