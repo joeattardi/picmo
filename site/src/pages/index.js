@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { faJs } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -10,9 +10,9 @@ import {
   faSmile,
   faThumbsUp
 } from '@fortawesome/free-solid-svg-icons';
-import { EmojiButton } from '@joeattardi/emoji-button';
 import Prism from 'prismjs';
 
+import Example from '../components/Example';
 import Feature from '../components/Feature';
 import Layout from '../components/Layout';
 import SourceFile from '../components/SourceFile';
@@ -22,30 +22,9 @@ import indexExample from '!!raw-loader!../examples/index';
 import styles from './index.module.css';
 
 export default function Home() {
-  const buttonRef = useRef();
-  const [picker, setPicker] = useState(null);
-  const [emoji, setEmoji] = useState('😎');
-
   useEffect(() => {
     Prism.highlightAll();
   }, []);
-
-  useEffect(() => {
-    const pickerObj = new EmojiButton({
-      theme: 'auto',
-      position: 'bottom-end'
-    });
-
-    pickerObj.on('emoji', selection => {
-      setEmoji(selection.emoji);
-    });
-
-    setPicker(pickerObj);
-  }, []);
-
-  function togglePicker() {
-    picker.togglePicker(buttonRef.current);
-  }
 
   return (
     <Layout>
@@ -53,13 +32,7 @@ export default function Home() {
         <h2>Demo</h2>
         <section className={styles.demo}>
           <div>
-            <button
-              className={styles.emojiButton}
-              ref={buttonRef}
-              onClick={togglePicker}
-            >
-              {emoji}
-            </button>
+            <Example />
           </div>
           <div className={styles.code}>
             <SourceFile src={indexExample} />

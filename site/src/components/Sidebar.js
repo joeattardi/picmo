@@ -21,6 +21,9 @@ export default function Sidebar() {
         <li>
           <Link to="/docs/styles">Styles</Link>
         </li>
+        <li>
+          <Link to="/docs/custom">Custom Emojis</Link>
+        </li>
       </ul>
     </nav>
   );

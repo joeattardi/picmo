@@ -1,59 +1,12 @@
-import React, { useRef, useState, useEffect } from 'react';
-
-import { EmojiButton } from '@joeattardi/emoji-button';
+import React from 'react';
 
 import DocLayout from '../../components/DocLayout';
+import Example from '../../components/Example';
 import SourceFile from '../../components/SourceFile';
 
 import twemojiExample from '!!raw-loader!../../examples/styles/twemoji.js';
 
-import styles from './styles.module.css';
-
 export default function StylesExample() {
-  const nativeButtonRef = useRef();
-  const [nativePicker, setNativePicker] = useState(null);
-  const [nativeEmoji, setNativeEmoji] = useState('😎');
-
-  const twemojiButtonRef = useRef();
-  const [twemojiPicker, setTwemojiPicker] = useState(null);
-  const [twemojiEmoji, setTwemojiEmoji] = useState('😎');
-  const [twemoji, setTwemoji] = useState(
-    'https://twemoji.maxcdn.com/v/13.0.0/svg/1f60e.svg'
-  );
-
-  useEffect(() => {
-    const pickerObj = new EmojiButton({
-      style: 'native'
-    });
-
-    pickerObj.on('emoji', selectedEmoji => {
-      setNativeEmoji(selectedEmoji.emoji);
-    });
-
-    setNativePicker(pickerObj);
-  }, []);
-
-  useEffect(() => {
-    const pickerObj = new EmojiButton({
-      style: 'twemoji'
-    });
-
-    pickerObj.on('emoji', selectedEmoji => {
-      setTwemoji(selectedEmoji.url);
-      setTwemojiEmoji(selectedEmoji.emoji);
-    });
-
-    setTwemojiPicker(pickerObj);
-  }, []);
-
-  function toggleNativePicker() {
-    nativePicker.togglePicker(nativeButtonRef.current);
-  }
-
-  function toggleTwemojiPicker() {
-    twemojiPicker.togglePicker(twemojiButtonRef.current);
-  }
-
   return (
     <DocLayout>
       <h1>Styles</h1>
@@ -69,13 +22,7 @@ export default function StylesExample() {
       </p>
 
       <div>
-        <button
-          className={styles.emojiButton}
-          ref={nativeButtonRef}
-          onClick={toggleNativePicker}
-        >
-          {nativeEmoji}
-        </button>
+        <Example />
       </div>
 
       <h2>Twemoji</h2>
@@ -94,13 +41,10 @@ export default function StylesExample() {
       </p>
 
       <div>
-        <button
-          className={styles.emojiButton}
-          ref={twemojiButtonRef}
-          onClick={toggleTwemojiPicker}
-        >
-          <img alt={twemojiEmoji} src={twemoji} />
-        </button>
+        <Example
+          options={{ style: 'twemoji' }}
+          initialImageUrl="https://twemoji.maxcdn.com/v/13.0.0/svg/1f60e.svg"
+        />
       </div>
 
       <SourceFile src={twemojiExample} />
