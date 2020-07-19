@@ -65,6 +65,15 @@ export class Search {
         categories.indexOf(e.category) >= 0
     );
 
+    if (this.options.custom) {
+      const customEmojis = this.options.custom.map(custom => ({
+        ...custom,
+        custom: true
+      }));
+
+      this.emojiData = [...this.emojiData, ...customEmojis];
+    }
+
     this.events.on(HIDE_VARIANT_POPUP, () => {
       setTimeout(() => this.setFocusedEmoji(this.focusedEmojiIndex));
     });
