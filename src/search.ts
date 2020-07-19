@@ -100,7 +100,7 @@ export class Search {
     this.searchField.addEventListener('keydown', (event: KeyboardEvent) =>
       this.onKeyDown(event)
     );
-    this.searchField.addEventListener('keyup', () => this.onKeyUp());
+    this.searchField.addEventListener('keyup', event => this.onKeyUp(event));
 
     return this.searchContainer;
   }
@@ -165,8 +165,10 @@ export class Search {
     }
   }
 
-  onKeyUp(): void {
-    if (!this.searchField.value) {
+  onKeyUp(event: KeyboardEvent): void {
+    if (event.key === 'Tab' || event.key === 'Shift') {
+      return;
+    } else if (!this.searchField.value) {
       this.searchIcon.innerHTML = icons.search;
       this.searchIcon.style.cursor = 'default';
       this.events.emit(HIDE_SEARCH_RESULTS);
