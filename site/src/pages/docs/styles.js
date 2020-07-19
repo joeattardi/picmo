@@ -5,6 +5,8 @@ import { EmojiButton } from '@joeattardi/emoji-button';
 import DocLayout from '../../components/DocLayout';
 import SourceFile from '../../components/SourceFile';
 
+import twemojiExample from '!!raw-loader!../../examples/styles/twemoji.js';
+
 import styles from './styles.module.css';
 
 export default function StylesExample() {
@@ -100,6 +102,8 @@ export default function StylesExample() {
           <img alt={twemojiEmoji} src={twemoji} />
         </button>
       </div>
+
+      <SourceFile src={twemojiExample} />
     </DocLayout>
   );
 }

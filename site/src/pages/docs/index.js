@@ -52,12 +52,20 @@ yarn add @joeattardi/emoji-button
       <SourceFile src={basicJs} />
 
       <p>
-        To show the picker, call <code>showPicker</code> on the{' '}
-        <code>EmojiButton</code> instance. The picker will appear and the user
-        can select an emoji. When an emoji is selected, the{' '}
-        <code>EmojiButton</code> instance will emit an <code>emoji</code> event.
-        You can listen for this event by calling <code>on</code> on the
-        instance, and then handle the selected emoji however you want.
+        To show the picker, call <code>showPicker</code> or{' '}
+        <code>togglePicker</code> on the <code>EmojiButton</code> instance. The
+        picker will appear and the user can select an emoji. When an emoji is
+        selected, the <code>EmojiButton</code> instance will emit an{' '}
+        <code>emoji</code> event. You can listen for this event by calling{' '}
+        <code>on</code> on the instance, and then handle the selected emoji
+        however you want.
+      </p>
+
+      <p>
+        The <code>showPicker</code> and <code>togglePicker</code> methods expect
+        a reference element as their first argument. The reference element is
+        used to calculate the picker's position on screen. The picker will be
+        positioned relative to the reference element.
       </p>
 
       <p>
