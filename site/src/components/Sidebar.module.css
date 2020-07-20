@@ -13,6 +13,11 @@
   width: 10rem;
 }
 
+.sidebar ul {
+  padding: 0;
+  margin-left: 1rem;
+}
+
 .sidebar ul li {
   list-style-type: none;
   margin: 0.5rem 0;
@@ -29,4 +34,10 @@
 .sidebar ul li a.active {
   border-left: 5px solid #ffffff;
   font-weight: bold;
+}
+
+.sidebar h2 {
+  color: #ffffff;
+  margin-left: 1rem;
+  font-size: 1.2rem;
 }

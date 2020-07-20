@@ -14,6 +14,7 @@ export default function Sidebar() {
           <img src={logo} />
         </Link>
       </div>
+      <h2>Documentation</h2>
       <ul>
         <li>
           <Link activeClassName={styles.active} to="/docs">
@@ -48,6 +49,15 @@ export default function Sidebar() {
         <li>
           <Link activeClassName={styles.active} to="/docs/customize">
             Customization
+          </Link>
+        </li>
+      </ul>
+      
+      <h2>Reference</h2>
+      <ul>
+        <li>
+          <Link activeClassName={styles.active} to="/docs/api">
+            API
           </Link>
         </li>
       </ul>
