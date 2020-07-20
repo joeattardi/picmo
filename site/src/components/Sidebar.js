@@ -36,6 +36,11 @@ export default function Sidebar() {
           </Link>
         </li>
         <li>
+          <Link activeClassName={styles.active} to="/docs/recents">
+            Recent Emojis
+          </Link>
+        </li>
+        <li>
           <Link activeClassName={styles.active} to="/docs/customize">
             Customization
           </Link>
