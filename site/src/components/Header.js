@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'gatsby';
+
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBook } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -27,9 +29,9 @@ export default function Header() {
         <a href="https://github.com/joeattardi/emoji-button">
           <FontAwesomeIcon icon={faGithub} /> GitHub Repository
         </a>
-        <a href="/docs">
+        <Link to="/docs">
           <FontAwesomeIcon icon={faBook} /> Documentation
-        </a>
+        </Link>
       </div>
     </header>
   );
