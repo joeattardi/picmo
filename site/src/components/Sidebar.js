@@ -51,8 +51,13 @@ export default function Sidebar() {
             Customization
           </Link>
         </li>
+        <li>
+          <Link activeClassName={styles.active} to="/docs/i18n">
+            I18N Strings
+          </Link>
+        </li>
       </ul>
-      
+
       <h2>Reference</h2>
       <ul>
         <li>
