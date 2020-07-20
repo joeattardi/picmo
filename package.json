@@ -12,7 +12,7 @@
     "build": "cross-env NODE_ENV=production rollup -c",
     "build:watch": "rollup -cw",
     "prepublishOnly": "cross-env NODE_ENV=production rollup -c",
-    "test": "jest",
+    "test": "jest src/**.test.ts",
     "test:watch": "jest --watchAll",
     "lint": "eslint src/*.ts",
     "prettify": "prettier src/*.ts --write"
