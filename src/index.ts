@@ -40,7 +40,7 @@ const twemojiOptions = {
 };
 
 const DEFAULT_OPTIONS: EmojiButtonOptions = {
-  position: 'right-start',
+  position: 'auto',
   autoHide: true,
   autoFocusSearch: true,
   showPreview: true,
@@ -389,9 +389,9 @@ export class EmojiButton {
     });
   }
 
-  showPicker(referenceEl: HTMLElement, options: EmojiButtonOptions = {}): void {
+  showPicker(referenceEl: HTMLElement): void {
     if (this.hideInProgress) {
-      setTimeout(() => this.showPicker(referenceEl, options), 100);
+      setTimeout(() => this.showPicker(referenceEl), 100);
       return;
     }
 
@@ -419,7 +419,7 @@ export class EmojiButton {
       document.body.appendChild(this.overlay);
     } else {
       this.popper = createPopper(referenceEl, this.wrapper, {
-        placement: options.position || this.options.position
+        placement: this.options.position
       });
     }
 
@@ -440,13 +440,8 @@ export class EmojiButton {
     this.emojiArea.reset();
   }
 
-  togglePicker(
-    referenceEl: HTMLElement,
-    options: EmojiButtonOptions = {}
-  ): void {
-    this.pickerVisible
-      ? this.hidePicker()
-      : this.showPicker(referenceEl, options);
+  togglePicker(referenceEl: HTMLElement): void {
+    this.pickerVisible ? this.hidePicker() : this.showPicker(referenceEl);
   }
 
   isPickerVisible(): boolean {

@@ -9,8 +9,8 @@ declare namespace EmojiButton {
     off(event: Event, callback: (selection: EmojiSelection) => void): void;
     hidePicker(): void;
     destroyPicker(): void;
-    showPicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
-    togglePicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
+    showPicker(referenceEl: HTMLElement): void;
+    togglePicker(referenceEl: HTMLElement): void;
     isPickerVisible(): boolean;
   }
 
