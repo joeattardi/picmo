@@ -41,6 +41,11 @@ export default function Sidebar() {
           </Link>
         </li>
         <li>
+          <Link activeClassName={styles.active} to="/docs/position">
+            Positioning
+          </Link>
+        </li>
+        <li>
           <Link activeClassName={styles.active} to="/docs/customize">
             Customization
           </Link>

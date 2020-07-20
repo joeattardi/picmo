@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   height: 100vh;
+  max-width: 1200px;
 }
 
 .main {
