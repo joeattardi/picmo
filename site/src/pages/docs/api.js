@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'gatsby';
+
 import DocLayout from '../../components/DocLayout';
 
 import styles from './api.module.css';
@@ -226,6 +228,28 @@ export default function ApiDocs() {
                 The ID of the category to show initially when the picker is
                 shown. See <a href="#categories">Category IDs</a> for a list of
                 valid category IDs.
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">
+                <code>plugins</code>
+              </th>
+              <td>plugin definition array</td>
+              <td>none</td>
+              <td>
+                An array of plugins to use with the picker. See{' '}
+                <Link to="/docs/plugins">Plugins</Link> for more details. A
+                plugin is an object containing the following functions:
+                <ul>
+                  <li>
+                    <code>render(picker)</code>: Renders the UI for the plugin.
+                  </li>
+                  <li>
+                    <code>destroy</code> (optional): Performs any necessary
+                    cleanup for the plugin when the picker is destroyed.
+                  </li>
+                </ul>
               </td>
             </tr>
 
