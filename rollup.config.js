@@ -14,6 +14,9 @@ export default {
     format: 'es',
     name: 'EmojiButton'
   },
+  watch: {
+    buildDelay: 500
+  },
   plugins: [
     replace({
       'process.env.NODE_ENV': JSON.stringify(
