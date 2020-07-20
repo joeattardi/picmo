@@ -8,7 +8,7 @@ import lightExample from '!!raw-loader!../../examples/themes/light.js';
 import darkExample from '!!raw-loader!../../examples/themes/dark.js';
 import autoExample from '!!raw-loader!../../examples/themes/auto.js';
 
-export default function ThemesEcxample() {
+export default function ThemesExample() {
   return (
     <DocLayout>
       <h1>Themes</h1>

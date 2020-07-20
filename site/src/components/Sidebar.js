@@ -16,16 +16,29 @@ export default function Sidebar() {
       </div>
       <ul>
         <li>
-          <Link to="/docs">Home</Link>
+          <Link activeClassName={styles.active} to="/docs">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/docs/styles">Styles</Link>
+          <Link activeClassName={styles.active} to="/docs/styles">
+            Styles
+          </Link>
         </li>
         <li>
-          <Link to="/docs/custom">Custom Emojis</Link>
+          <Link activeClassName={styles.active} to="/docs/custom">
+            Custom Emojis
+          </Link>
         </li>
         <li>
-          <Link to="/docs/themes">Themes</Link>
+          <Link activeClassName={styles.active} to="/docs/themes">
+            Themes
+          </Link>
+        </li>
+        <li>
+          <Link activeClassName={styles.active} to="/docs/customize">
+            Customization
+          </Link>
         </li>
       </ul>
     </nav>

@@ -62,6 +62,23 @@ yarn add @joeattardi/emoji-button
       </p>
 
       <p>
+        When the picker is visible, there are several ways it can be closed:
+      </p>
+
+      <ul>
+        <li>
+          Select an emoji (unless the <code>autoHide</code> option is set to{' '}
+          <code>false</code>)
+        </li>
+        <li>Click anywhere outside of the picker</li>
+        <li>Press the Escape key</li>
+        <li>
+          Call the <code>hidePicker</code> or <code>togglePicker</code> methods
+          on the picker instance.
+        </li>
+      </ul>
+
+      <p>
         The <code>showPicker</code> and <code>togglePicker</code> methods expect
         a reference element as their first argument. The reference element is
         used to calculate the picker's position on screen. The picker will be
