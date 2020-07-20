@@ -5,13 +5,13 @@ export = EmojiButton;
 declare namespace EmojiButton {
   export class EmojiButton {
     constructor(options?: EmojiButton.Options);
-    on(event: string, callback: (emoji: string) => void): void;
-    off(event: string, callback: (emoji: string) => void): void;
+    on(event: Event, callback: (selection: EmojiSelection) => void): void;
+    off(event: Event, callback: (selection: EmojiSelection) => void): void;
     hidePicker(): void;
     destroyPicker(): void;
     showPicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
     togglePicker(referenceEl: HTMLElement, options?: EmojiButton.Options): void;
-    pickerVisible: boolean;
+    isPickerVisible(): boolean;
   }
 
   export interface Options {
@@ -37,9 +37,17 @@ declare namespace EmojiButton {
     custom?: EmojiRecord[];
   }
 
+  export interface EmojiSelection {
+    custom?: boolean;
+    emoji?: string;
+    url?: string;
+  }
+
   export type EmojiStyle = 'native' | 'twemoji';
 
   export type EmojiTheme = 'dark' | 'light' | 'auto';
+
+  export type Event = 'emoji';
 
   export type Placement =
     | 'auto'
