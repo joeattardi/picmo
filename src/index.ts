@@ -70,7 +70,7 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
 };
 
 export class EmojiButton {
-  pickerVisible: boolean;
+  private pickerVisible: boolean;
 
   private hideInProgress: boolean;
 
@@ -219,7 +219,6 @@ export class EmojiButton {
               custom: true
             });
           } else if (this.options.style === 'twemoji') {
-            // console.log(twemoji.parse(emoji.emoji, twemojiOptions));
             twemoji.parse(emoji.emoji, {
               ...twemojiOptions,
               callback: (icon, options) => {
@@ -450,7 +449,11 @@ export class EmojiButton {
       : this.showPicker(referenceEl, options);
   }
 
-  onDocumentKeydown(event: KeyboardEvent): void {
+  isPickerVisible(): boolean {
+    return this.pickerVisible;
+  }
+
+  private onDocumentKeydown(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
       this.hidePicker();
     } else if (event.key === 'Tab') {
