@@ -1,4 +1,5 @@
 import { Placement } from '@popperjs/core';
+import { EmojiButton } from './index';
 
 export interface EmojiRecord {
   name: string;
@@ -28,6 +29,11 @@ export interface EmojiEventData {
   button: HTMLElement;
 }
 
+export interface Plugin {
+  render(picker: EmojiButton): HTMLElement;
+  destroy?(): void;
+}
+
 export interface EmojiButtonOptions {
   position?: Placement;
   autoHide?: boolean;
@@ -50,6 +56,7 @@ export interface EmojiButtonOptions {
   emojiSize?: string;
   initialCategory?: Category | 'recents';
   custom?: EmojiRecord[];
+  plugins?: Plugin[];
 }
 
 export type EmojiStyle = 'native' | 'twemoji';

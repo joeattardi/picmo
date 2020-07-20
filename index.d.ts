@@ -35,6 +35,12 @@ declare namespace EmojiButton {
     emojiSize?: string;
     initialCategory?: Category | 'recents';
     custom?: EmojiRecord[];
+    plugins?: Plugin[];
+  }
+
+  export interface Plugin {
+    render(picker: EmojiButton): HTMLElement;
+    destroy?(): void;
   }
 
   export interface EmojiSelection {

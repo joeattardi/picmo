@@ -11,6 +11,7 @@ export const CLASS_NOT_FOUND_ICON = 'emoji-picker__search-not-found-icon';
 export const CLASS_OVERLAY = 'emoji-picker__overlay';
 export const CLASS_PICKER = 'emoji-picker';
 export const CLASS_PICKER_CONTENT = 'emoji-picker__content';
+export const CLASS_PLUGIN_CONTAINER = 'emoji-picker__plugin-container';
 export const CLASS_PREVIEW = 'emoji-picker__preview';
 export const CLASS_PREVIEW_EMOJI = 'emoji-picker__preview-emoji';
 export const CLASS_PREVIEW_NAME = 'emoji-picker__preview-name';

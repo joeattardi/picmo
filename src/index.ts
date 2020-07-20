@@ -28,7 +28,8 @@ import {
   CLASS_VARIANT_OVERLAY,
   CLASS_WRAPPER,
   CLASS_OVERLAY,
-  CLASS_CUSTOM_EMOJI
+  CLASS_CUSTOM_EMOJI,
+  CLASS_PLUGIN_CONTAINER
 } from './classes';
 
 import { EmojiButtonOptions, I18NStrings, EmojiRecord } from './types';
@@ -149,6 +150,21 @@ export class EmojiButton {
     });
 
     this.pickerContent = createElement('div', CLASS_PICKER_CONTENT);
+
+    if (this.options.plugins) {
+      const pluginContainer = createElement('div', CLASS_PLUGIN_CONTAINER);
+
+      this.options.plugins.forEach(plugin => {
+        if (!plugin.render) {
+          throw new Error(
+            'Emoji Button plugins must have a "render" function.'
+          );
+        }
+        pluginContainer.appendChild(plugin.render(this));
+      });
+
+      this.pickerEl.appendChild(pluginContainer);
+    }
 
     if (this.options.showSearch) {
       const searchContainer = new Search(
@@ -345,6 +361,12 @@ export class EmojiButton {
     }
 
     this.observer && this.observer.disconnect();
+
+    if (this.options.plugins) {
+      this.options.plugins.forEach(plugin => {
+        plugin.destroy && plugin.destroy();
+      });
+    }
   }
 
   hidePicker(): void {

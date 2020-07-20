@@ -32,6 +32,11 @@ export default function Sidebar() {
           </Link>
         </li>
         <li>
+          <Link activeClassName={styles.active} to="/docs/plugins">
+            Plugins
+          </Link>
+        </li>
+        <li>
           <Link activeClassName={styles.active} to="/docs/themes">
             Themes
           </Link>
