@@ -19,10 +19,10 @@ export default function Header() {
       <h2>Vanilla JavaScript Emoji Picker</h2>
       <div className={styles.badges}>
         <a href="https://github.com/joeattardi/emoji-button">
-          <img src="https://img.shields.io/github/stars/joeattardi/emoji-button?style=social" />
+          <img src="https://img.shields.io/github/stars/joeattardi/emoji-button?style=for-the-badge" />
         </a>
         <a href="https://www.npmjs.com/package/@joeattardi/emoji-button">
-          <img src="https://img.shields.io/npm/v/@joeattardi/emoji-button" />
+          <img src="https://img.shields.io/npm/v/@joeattardi/emoji-button?style=for-the-badge" />
         </a>
       </div>
       <div className={styles.buttons}>
