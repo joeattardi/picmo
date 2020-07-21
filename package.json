@@ -57,6 +57,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@popperjs/core": "^2.4.0",
     "focus-trap": "^5.1.0",
+    "fuzzysort": "^1.1.4",
     "tiny-emitter": "^2.1.0",
     "tslib": "^2.0.0",
     "twemoji": "^13.0.0"
