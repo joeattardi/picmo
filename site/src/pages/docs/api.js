@@ -306,6 +306,17 @@ export default function ApiDocs() {
 
             <tr>
               <th scope="row">
+                <code>showAnimation</code>
+              </th>
+              <td>boolean</td>
+              <td>
+                <code>true</code>
+              </td>
+              <td>Whether or not to show animations in the picker.</td>
+            </tr>
+
+            <tr>
+              <th scope="row">
                 <code>showCategoryButtons</code>
               </th>
               <td>boolean</td>

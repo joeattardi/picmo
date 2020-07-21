@@ -18,6 +18,7 @@ declare namespace EmojiButton {
     position?: Placement;
     autoHide?: boolean;
     autoFocusSearch?: boolean;
+    showAnimation?: boolean;
     showPreview?: boolean;
     showSearch?: boolean;
     showRecents?: boolean;
@@ -34,7 +35,7 @@ declare namespace EmojiButton {
     rows?: number;
     emojiSize?: string;
     initialCategory?: Category | 'recents';
-    custom?: EmojiRecord[];
+    custom?: CustomEmoji[];
     plugins?: Plugin[];
   }
 
@@ -47,6 +48,11 @@ declare namespace EmojiButton {
     custom?: boolean;
     emoji?: string;
     url?: string;
+  }
+
+  export interface CustomEmoji {
+    name: string;
+    emoji: string;
   }
 
   export type EmojiStyle = 'native' | 'twemoji';

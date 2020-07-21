@@ -44,6 +44,7 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   position: 'auto',
   autoHide: true,
   autoFocusSearch: true,
+  showAnimation: true,
   showPreview: true,
   showSearch: true,
   showRecents: true,
@@ -123,6 +124,10 @@ export class EmojiButton {
   private buildPicker(): void {
     this.pickerEl = createElement('div', CLASS_PICKER);
     this.pickerEl.classList.add(this.options.theme as string);
+
+    if (!this.options.showAnimation) {
+      this.pickerEl.style.setProperty('--animation-duration', '0s');
+    }
 
     this.options.emojisPerRow &&
       this.pickerEl.style.setProperty(
