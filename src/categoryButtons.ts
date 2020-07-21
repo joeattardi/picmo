@@ -50,7 +50,11 @@ export class CategoryButtons {
     categories.forEach((category: string) => {
       const button = createElement('button', CLASS_CATEGORY_BUTTON);
 
-      if (this.options.icons?.categories?.[category]) {
+      if (
+        this.options.icons &&
+        this.options.icons.categories &&
+        this.options.icons.categories[category]
+      ) {
         button.appendChild(
           icons.createIcon(this.options.icons.categories[category])
         );

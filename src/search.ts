@@ -97,7 +97,7 @@ export class Search {
 
     this.searchIcon = createElement('span', CLASS_SEARCH_ICON);
 
-    if (this.options.icons?.search) {
+    if (this.options.icons && this.options.icons.search) {
       this.searchIcon.appendChild(icons.createIcon(this.options.icons.search));
     } else {
       this.searchIcon.innerHTML = icons.search;
@@ -124,7 +124,7 @@ export class Search {
       this.searchField.value = '';
       this.resultsContainer = null;
 
-      if (this.options.icons?.search) {
+      if (this.options.icons && this.options.icons.search) {
         empty(this.searchIcon);
         this.searchIcon.appendChild(
           icons.createIcon(this.options.icons.search)
@@ -189,7 +189,7 @@ export class Search {
     if (event.key === 'Tab' || event.key === 'Shift') {
       return;
     } else if (!this.searchField.value) {
-      if (this.options.icons?.search) {
+      if (this.options.icons && this.options.icons.search) {
         empty(this.searchIcon);
         this.searchIcon.appendChild(
           icons.createIcon(this.options.icons.search)
@@ -201,7 +201,7 @@ export class Search {
       this.searchIcon.style.cursor = 'default';
       this.events.emit(HIDE_SEARCH_RESULTS);
     } else {
-      if (this.options.icons?.clearSearch) {
+      if (this.options.icons && this.options.icons.clearSearch) {
         empty(this.searchIcon);
         this.searchIcon.appendChild(
           icons.createIcon(this.options.icons.clearSearch)
@@ -245,7 +245,7 @@ export class Search {
           SHOW_SEARCH_RESULTS,
           new NotFoundMessage(
             this.i18n.notFound,
-            this.options.icons?.notFound
+            this.options.icons && this.options.icons.notFound
           ).render()
         );
       }
