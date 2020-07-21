@@ -367,6 +367,17 @@ export default function ApiDocs() {
 
             <tr>
               <th scope="row">
+                <code>showVariants</code>
+              </th>
+              <td>boolean</td>
+              <td>
+                <code>true</code>
+              </td>
+              <td>Whether or not to support emoji skin tone variants.</td>
+            </tr>
+
+            <tr>
+              <th scope="row">
                 <code>style</code>
               </th>
               <td>string</td>
