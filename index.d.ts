@@ -37,6 +37,7 @@ declare namespace EmojiButton {
     initialCategory?: Category | 'recents';
     custom?: CustomEmoji[];
     plugins?: Plugin[];
+    icons?: Icons;
   }
 
   export interface FixedPosition {
@@ -125,5 +126,14 @@ declare namespace EmojiButton {
       [key in I18NCategory]: string;
     };
     notFound: string;
+  }
+
+  export interface Icons {
+    search?: string;
+    clearSearch?: string;
+    categories?: {
+      [key in I18NCategory]?: string;
+    };
+    notFound?: string;
   }
 }

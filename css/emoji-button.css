@@ -291,6 +291,11 @@
   top: calc(50% - 0.5em);
 }
 
+.emoji-picker__search-icon img {
+  width: 1em;
+  height: 1em;
+}
+
 .emoji-picker__search-not-found {
   color: var(--secondary-text-color);
   text-align: center;
@@ -314,6 +319,11 @@
 
 .emoji-picker__search-not-found-icon {
   font-size: 3em;
+}
+
+.emoji-picker__search-not-found-icon img {
+  width: 1em;
+  height: 1em;
 }
 
 .emoji-picker__search-not-found h2 {
@@ -398,6 +408,11 @@ button.emoji-picker__category-button {
   color: var(--category-button-color);
   border-bottom: var(--category-border-bottom-size) solid transparent;
   outline: none;
+}
+
+button.emoji-picker__category-button img {
+  width: var(--category-button-size);
+  height: var(--category-button-size);
 }
 
 .emoji-picker.keyboard button.emoji-picker__category-button:focus {

@@ -32,7 +32,18 @@ export default function Home() {
         <h2>Demo</h2>
         <section className={styles.demo}>
           <div>
-            <Example />
+            <Example
+              options={{
+                icons: {
+                  search: '/search.svg',
+                  clearSearch: '/close.svg',
+                  notFound: '/close.svg',
+                  categories: {
+                    animals: '/search.svg'
+                  }
+                }
+              }}
+            />
           </div>
           <div className={styles.code}>
             <SourceFile src={indexExample} />

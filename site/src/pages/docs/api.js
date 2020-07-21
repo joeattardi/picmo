@@ -218,6 +218,20 @@ export default function ApiDocs() {
 
             <tr>
               <th scope="row">
+                <code>icons</code>
+              </th>
+              <td>icon definition object</td>
+              <td>none</td>
+              <td>
+                The custom icons, if any, to use. The object provided must be an{' '}
+                <a href="#iconDefinitions">icon definition object</a>. Not all
+                properties have to be provided - only the icons you want to
+                override.
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">
                 <code>initialCategory</code>
               </th>
               <td>string</td>
@@ -549,6 +563,67 @@ export default function ApiDocs() {
           </li>
           <li>
             <code>'flags'</code>
+          </li>
+        </ul>
+
+        <a name="iconDefinitions" />
+        <h2>Icon Definition Objects</h2>
+        <p>
+          An icon definition object must contain at least one of the following
+          properties:
+        </p>
+
+        <ul>
+          <li>
+            <code>search</code>: The search icon, displayed when there is no
+            search text entered.
+          </li>
+          <li>
+            <code>clearSearch</code>: The button to clear the search, displayed
+            when there is search text entered.
+          </li>
+          <li>
+            <code>notFound</code>: The icon to display when a search yields no
+            results.
+          </li>
+          <li>
+            <code>categories</code>: A nested object containing one or more of
+            the following:
+            <ul>
+              <li>
+                <code>recents</code>: The Recent Emojis category.
+              </li>
+              <li>
+                <code>smileys</code>: The Smileys &amp; Emotion category.
+              </li>
+              <li>
+                <code>peopls</code>: The People &amp; Body category.
+              </li>
+              <li>
+                <code>animals</code>: The Animals &amp; Nature category.
+              </li>
+              <li>
+                <code>food</code>: The Food &amp; Drink category.
+              </li>
+              <li>
+                <code>activities</code>: The Activities category.
+              </li>
+              <li>
+                <code>travel</code>: The Travel &amp; Places category.
+              </li>
+              <li>
+                <code>objects</code>: The Objects category.
+              </li>
+              <li>
+                <code>symbols</code>: The Symbols category.
+              </li>
+              <li>
+                <code>flags</code>: The Flags category.
+              </li>
+              <li>
+                <code>custom</code>: The Custom category.
+              </li>
+            </ul>
           </li>
         </ul>
 

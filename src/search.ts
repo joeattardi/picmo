@@ -9,7 +9,7 @@ import {
   SHOW_SEARCH_RESULTS,
   HIDE_SEARCH_RESULTS
 } from './events';
-import { createElement } from './util';
+import { createElement, empty } from './util';
 import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
 
 import {
@@ -22,13 +22,19 @@ import {
 } from './classes';
 
 class NotFoundMessage {
-  constructor(private message: string) {}
+  constructor(private message: string, private iconUrl?: string) {}
 
   render(): HTMLElement {
     const container = createElement('div', CLASS_NOT_FOUND);
 
     const iconContainer = createElement('div', CLASS_NOT_FOUND_ICON);
-    iconContainer.innerHTML = icons.frown;
+
+    if (this.iconUrl) {
+      iconContainer.appendChild(icons.createIcon(this.iconUrl));
+    } else {
+      iconContainer.innerHTML = icons.frown;
+    }
+
     container.appendChild(iconContainer);
 
     const messageContainer = createElement('h2');
@@ -90,7 +96,13 @@ export class Search {
     this.searchContainer.appendChild(this.searchField);
 
     this.searchIcon = createElement('span', CLASS_SEARCH_ICON);
-    this.searchIcon.innerHTML = icons.search;
+
+    if (this.options.icons?.search) {
+      this.searchIcon.appendChild(icons.createIcon(this.options.icons.search));
+    } else {
+      this.searchIcon.innerHTML = icons.search;
+    }
+
     this.searchIcon.addEventListener('click', (event: MouseEvent) =>
       this.onClearSearch(event)
     );
@@ -112,7 +124,15 @@ export class Search {
       this.searchField.value = '';
       this.resultsContainer = null;
 
-      this.searchIcon.innerHTML = icons.search;
+      if (this.options.icons?.search) {
+        empty(this.searchIcon);
+        this.searchIcon.appendChild(
+          icons.createIcon(this.options.icons.search)
+        );
+      } else {
+        this.searchIcon.innerHTML = icons.search;
+      }
+
       this.searchIcon.style.cursor = 'default';
 
       this.events.emit(HIDE_SEARCH_RESULTS);
@@ -169,11 +189,26 @@ export class Search {
     if (event.key === 'Tab' || event.key === 'Shift') {
       return;
     } else if (!this.searchField.value) {
-      this.searchIcon.innerHTML = icons.search;
+      if (this.options.icons?.search) {
+        empty(this.searchIcon);
+        this.searchIcon.appendChild(
+          icons.createIcon(this.options.icons.search)
+        );
+      } else {
+        this.searchIcon.innerHTML = icons.search;
+      }
+
       this.searchIcon.style.cursor = 'default';
       this.events.emit(HIDE_SEARCH_RESULTS);
     } else {
-      this.searchIcon.innerHTML = icons.times;
+      if (this.options.icons?.clearSearch) {
+        empty(this.searchIcon);
+        this.searchIcon.appendChild(
+          icons.createIcon(this.options.icons.clearSearch)
+        );
+      } else {
+        this.searchIcon.innerHTML = icons.times;
+      }
       this.searchIcon.style.cursor = 'pointer';
       const searchResults = this.emojiData.filter(
         emoji =>
@@ -208,7 +243,10 @@ export class Search {
       } else {
         this.events.emit(
           SHOW_SEARCH_RESULTS,
-          new NotFoundMessage(this.i18n.notFound).render()
+          new NotFoundMessage(
+            this.i18n.notFound,
+            this.options.icons?.notFound
+          ).render()
         );
       }
     }

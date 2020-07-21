@@ -58,6 +58,7 @@ export interface EmojiButtonOptions {
   initialCategory?: Category | 'recents';
   custom?: EmojiRecord[];
   plugins?: Plugin[];
+  icons?: Icons;
 }
 
 export interface FixedPosition {
@@ -111,4 +112,13 @@ export interface I18NStrings {
     [key in I18NCategory]: string;
   };
   notFound: string;
+}
+
+export interface Icons {
+  search?: string;
+  clearSearch?: string;
+  categories?: {
+    [key in I18NCategory]?: string;
+  };
+  notFound?: string;
 }

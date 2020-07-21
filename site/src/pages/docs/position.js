@@ -5,6 +5,7 @@ import Example from '../../components/Example';
 import SourceFile from '../../components/SourceFile';
 
 import positionExample from '!!raw-loader!../../examples/position.js';
+import fixedPositionExample from '!!raw-loader!../../examples/fixedPosition.js';
 
 export default function PositionExample() {
   return (
@@ -36,6 +37,7 @@ export default function PositionExample() {
       </p>
 
       <Example options={{ position: { top: '0', right: '0' } }} />
+      <SourceFile src={fixedPositionExample} />
     </DocLayout>
   );
 }

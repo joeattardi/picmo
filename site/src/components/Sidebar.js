@@ -32,6 +32,11 @@ export default function Sidebar() {
           </Link>
         </li>
         <li>
+          <Link activeClassName={styles.active} to="/docs/icons">
+            Custom Icons
+          </Link>
+        </li>
+        <li>
           <Link activeClassName={styles.active} to="/docs/plugins">
             Plugins
           </Link>

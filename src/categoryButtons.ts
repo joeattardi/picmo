@@ -49,7 +49,15 @@ export class CategoryButtons {
 
     categories.forEach((category: string) => {
       const button = createElement('button', CLASS_CATEGORY_BUTTON);
-      button.innerHTML = categoryIcons[category];
+
+      if (this.options.icons?.categories?.[category]) {
+        button.appendChild(
+          icons.createIcon(this.options.icons.categories[category])
+        );
+      } else {
+        button.innerHTML = categoryIcons[category];
+      }
+
       button.tabIndex = -1;
       button.title = this.i18n.categories[category];
       container.appendChild(button);
