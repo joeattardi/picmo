@@ -15,7 +15,7 @@ declare namespace EmojiButton {
   }
 
   export interface Options {
-    position?: Placement;
+    position?: Placement | FixedPosition;
     autoHide?: boolean;
     autoFocusSearch?: boolean;
     showAnimation?: boolean;
@@ -37,6 +37,13 @@ declare namespace EmojiButton {
     initialCategory?: Category | 'recents';
     custom?: CustomEmoji[];
     plugins?: Plugin[];
+  }
+
+  export interface FixedPosition {
+    top?: string;
+    bottom?: string;
+    left?: string;
+    right?: string;
   }
 
   export interface Plugin {

@@ -35,7 +35,7 @@ export interface Plugin {
 }
 
 export interface EmojiButtonOptions {
-  position?: Placement;
+  position?: Placement | FixedPosition;
   autoHide?: boolean;
   autoFocusSearch?: boolean;
   showAnimation?: boolean;
@@ -58,6 +58,13 @@ export interface EmojiButtonOptions {
   initialCategory?: Category | 'recents';
   custom?: EmojiRecord[];
   plugins?: Plugin[];
+}
+
+export interface FixedPosition {
+  top?: string;
+  bottom?: string;
+  left?: string;
+  right?: string;
 }
 
 export type EmojiStyle = 'native' | 'twemoji';

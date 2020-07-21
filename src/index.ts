@@ -2,7 +2,7 @@ import '../css/emoji-button.css';
 
 import createFocusTrap, { FocusTrap } from 'focus-trap';
 import { TinyEmitter as Emitter } from 'tiny-emitter';
-import { createPopper, Instance as Popper } from '@popperjs/core';
+import { createPopper, Instance as Popper, Placement } from '@popperjs/core';
 import twemoji from 'twemoji';
 
 import emojiData from './data/emoji';
@@ -444,10 +444,31 @@ export class EmojiButton {
 
       this.overlay = createElement('div', CLASS_OVERLAY);
       document.body.appendChild(this.overlay);
-    } else {
+    } else if (typeof this.options.position === 'string') {
       this.popper = createPopper(referenceEl, this.wrapper, {
-        placement: this.options.position
+        placement: this.options.position as Placement
       });
+    } else if (
+      this.options.position &&
+      (this.options.position.top || this.options.position.left)
+    ) {
+      this.wrapper.style.position = 'fixed';
+
+      if (this.options.position.top) {
+        this.wrapper.style.top = this.options.position.top;
+      }
+
+      if (this.options.position.bottom) {
+        this.wrapper.style.bottom = this.options.position.bottom;
+      }
+
+      if (this.options.position.left) {
+        this.wrapper.style.left = this.options.position.left;
+      }
+
+      if (this.options.position.right) {
+        this.wrapper.style.right = this.options.position.right;
+      }
     }
 
     this.focusTrap.activate();

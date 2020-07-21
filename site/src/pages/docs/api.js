@@ -257,17 +257,20 @@ export default function ApiDocs() {
               <th scope="row">
                 <code>position</code>
               </th>
-              <td>string</td>
+              <td>string or object</td>
               <td>
                 <code>'auto'</code>
               </td>
               <td>
                 The position of the picker relative to the reference element.
-                See{' '}
+                This can either be a string correpsonding to one of the Popper
+                options, or an object with <code>top</code>, <code>bottom</code>
+                , <code>left</code>, and/or <code>right</code> for fixed
+                positioning. See{' '}
                 <a href="https://popper.js.org/docs/v2/constructors/#options">
                   the Popper documentation
                 </a>{' '}
-                for a list of valid values.
+                for a list of valid relative position values.
               </td>
             </tr>
 
