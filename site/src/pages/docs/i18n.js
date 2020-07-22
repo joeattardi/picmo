@@ -42,6 +42,8 @@ export default function I18NExample() {
         default values.
       </p>
 
+      <p>The names of individual emojis are currently not localizable.</p>
+
       <pre>
         <code className="language-javascript">{i18nStrings}</code>
       </pre>
