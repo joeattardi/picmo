@@ -21,6 +21,8 @@ import {
   CLASS_EMOJI
 } from './classes';
 
+import fuzzysort from 'fuzzysort';
+
 class NotFoundMessage {
   constructor(private message: string, private iconUrl?: string) {}
 
@@ -210,12 +212,14 @@ export class Search {
         this.searchIcon.innerHTML = icons.times;
       }
       this.searchIcon.style.cursor = 'pointer';
-      const searchResults = this.emojiData.filter(
-        emoji =>
-          emoji.name
-            .toLowerCase()
-            .indexOf(this.searchField.value.toLowerCase()) >= 0
-      );
+
+      const searchResults = fuzzysort
+        .go(this.searchField.value, this.emojiData, {
+          allowTypo: true,
+          limit: 100,
+          key: 'name'
+        })
+        .map(result => result.obj); 
 
       this.events.emit(HIDE_PREVIEW);
 
