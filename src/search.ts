@@ -219,7 +219,7 @@ export class Search {
           limit: 100,
           key: 'name'
         })
-        .map(result => result.obj); 
+        .map(result => result.obj);
 
       this.events.emit(HIDE_PREVIEW);
 
