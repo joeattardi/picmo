@@ -51,7 +51,7 @@ When an emoji is selected, the picker will emit an `emoji` event, passing an obj
 For more in depth documentation and examples, please visit [https://emoji-button.js.org](https://emoji-button.js.org).
 
 ```javascript
-import { EmojiButton } from '@joeattardi/emoji-button`;
+import { EmojiButton } from '@joeattardi/emoji-button';
 
 const picker = new EmojiButton();
 const trigger = document.querySelector('#emoji-trigger');
