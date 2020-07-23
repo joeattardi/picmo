@@ -6,6 +6,7 @@ import {
   faKeyboard,
   faHistory,
   faPalette,
+  faPuzzlePiece,
   faSearch,
   faSmile,
   faThumbsUp
@@ -84,6 +85,10 @@ export default function Home() {
 
           <Feature icon={faCat} title="Custom emojis">
             Add your own custom images and GIFs to the emoji picker.
+          </Feature>
+
+          <Feature icon={faPuzzlePiece} title="Plugins">
+            Extend the picker UI with plugins.
           </Feature>
         </section>
 
