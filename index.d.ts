@@ -38,7 +38,7 @@ declare namespace EmojiButton {
     custom?: CustomEmoji[];
     plugins?: Plugin[];
     icons?: Icons;
-    rootElement: HTMLElement;
+    rootElement?: HTMLElement;
   }
 
   export interface FixedPosition {
