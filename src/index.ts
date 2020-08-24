@@ -473,16 +473,16 @@ export class EmojiButton {
 
     this.focusTrap.activate();
 
-    const initialFocusElement = this.pickerEl.querySelector(
-      this.options.showSearch && this.options.autoFocusSearch
-        ? `.${CLASS_SEARCH_FIELD}`
-        : `.${CLASS_EMOJI}[tabindex="0"]`
-    ) as HTMLElement;
-    initialFocusElement.focus();
-
     setTimeout(() => {
       document.addEventListener('click', this.onDocumentClick);
       document.addEventListener('keydown', this.onDocumentKeydown);
+
+      const initialFocusElement = this.pickerEl.querySelector(
+        this.options.showSearch && this.options.autoFocusSearch
+          ? `.${CLASS_SEARCH_FIELD}`
+          : `.${CLASS_EMOJI}[tabindex="0"]`
+      ) as HTMLElement;
+      initialFocusElement.focus();
     });
 
     this.emojiArea.reset();
