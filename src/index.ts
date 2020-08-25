@@ -32,7 +32,7 @@ import {
   CLASS_PLUGIN_CONTAINER
 } from './classes';
 
-import { EmojiButtonOptions, I18NStrings, EmojiRecord } from './types';
+import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiTheme } from './types';
 import { EmojiArea } from './emojiArea';
 
 const twemojiOptions = {
@@ -94,6 +94,8 @@ export class EmojiButton {
 
   private observer: IntersectionObserver;
 
+  private theme: EmojiTheme;
+
   constructor(options: EmojiButtonOptions = {}) {
     this.pickerVisible = false;
 
@@ -110,6 +112,8 @@ export class EmojiButton {
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
 
+    this.theme = this.options.theme!;
+
     this.buildPicker();
   }
 
@@ -123,7 +127,7 @@ export class EmojiButton {
 
   private buildPicker(): void {
     this.pickerEl = createElement('div', CLASS_PICKER);
-    this.pickerEl.classList.add(this.options.theme as string);
+    this.updateTheme(this.theme);
 
     if (!this.options.showAnimation) {
       this.pickerEl.style.setProperty('--animation-duration', '0s');
@@ -507,5 +511,18 @@ export class EmojiButton {
       ) as HTMLInputElement;
       searchField && searchField.focus();
     }
+  }
+
+  setTheme(theme:EmojiTheme): void {
+    if (theme === this.theme)
+      return;
+
+    this.pickerEl.classList.remove(this.theme);
+    this.theme = theme;
+    this.updateTheme(this.theme);
+  }
+
+  private updateTheme(theme:EmojiTheme): void {
+    this.pickerEl.classList.add(theme);
   }
 }
