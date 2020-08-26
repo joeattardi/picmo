@@ -507,6 +507,14 @@ export default function ApiDocs() {
           visible.
         </p>
 
+        <h3>
+          Method: <code>setTheme(theme)</code>
+        </h3>
+        <p>
+          Sets the theme of the picker.  See{' '}
+          <Link to="/docs/themes">Themes</Link> for more details.
+        </p>
+
         <a name="events" />
         <h2>Events</h2>
 
