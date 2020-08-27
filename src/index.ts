@@ -11,7 +11,8 @@ import {
   EMOJI,
   SHOW_SEARCH_RESULTS,
   HIDE_SEARCH_RESULTS,
-  HIDE_VARIANT_POPUP
+  HIDE_VARIANT_POPUP,
+  PICKER_HIDDEN
 } from './events';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
@@ -409,6 +410,8 @@ export class EmojiButton {
       }
 
       this.hideInProgress = false;
+
+      this.publicEvents.emit(PICKER_HIDDEN);
     }, 170);
 
     setTimeout(() => {
