@@ -22,11 +22,6 @@ export default function Sidebar() {
           </Link>
         </li>
         <li>
-          <Link activeClassName={styles.active} to="/docs/events">
-            Events
-          </Link>
-        </li>
-        <li>
           <Link activeClassName={styles.active} to="/docs/styles">
             Styles
           </Link>
@@ -83,6 +78,11 @@ export default function Sidebar() {
         <li>
           <Link activeClassName={styles.active} to="/docs/api">
             API
+          </Link>
+        </li>
+        <li>
+          <Link activeClassName={styles.active} to="/docs/events">
+            Events
           </Link>
         </li>
       </ul>
