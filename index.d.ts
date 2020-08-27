@@ -12,7 +12,7 @@ declare namespace EmojiButton {
     showPicker(referenceEl: HTMLElement): void;
     togglePicker(referenceEl: HTMLElement): void;
     isPickerVisible(): boolean;
-    setTheme(theme:EmojiTheme);
+    setTheme(theme:EmojiTheme): void;
   }
 
   export interface Options {
