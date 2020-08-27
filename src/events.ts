@@ -5,3 +5,4 @@ export const SHOW_PREVIEW = 'showPreview';
 export const HIDE_PREVIEW = 'hidePreview';
 export const HIDE_VARIANT_POPUP = 'hideVariantPopup';
 export const CATEGORY_CLICKED = 'categoryClicked';
+export const PICKER_HIDDEN = 'hidden';

@@ -69,7 +69,7 @@ declare namespace EmojiButton {
 
   export type EmojiTheme = 'dark' | 'light' | 'auto';
 
-  export type Event = 'emoji';
+  export type Event = 'emoji' | 'hidden';
 
   export type Placement =
     | 'auto'

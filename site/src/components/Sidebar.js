@@ -80,6 +80,11 @@ export default function Sidebar() {
             API
           </Link>
         </li>
+        <li>
+          <Link activeClassName={styles.active} to="/docs/events">
+            Events
+          </Link>
+        </li>
       </ul>
     </nav>
   );

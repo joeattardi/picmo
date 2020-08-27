@@ -328,6 +328,7 @@ export class EmojiArea {
     ) {
       return;
     }
+
     let closestHeaderIndex = this.headerOffsets.findIndex(
       offset => offset >= Math.round(this.emojis.scrollTop)
     );
@@ -343,6 +344,10 @@ export class EmojiArea {
       closestHeaderIndex = 1;
     } else if (closestHeaderIndex < 0) {
       closestHeaderIndex = this.headerOffsets.length;
+    }
+
+    if (this.headerOffsets[closestHeaderIndex] === this.emojis.scrollTop) {
+      closestHeaderIndex++;
     }
 
     this.currentCategory = closestHeaderIndex - 1;

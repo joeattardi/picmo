@@ -11,7 +11,8 @@ import {
   EMOJI,
   SHOW_SEARCH_RESULTS,
   HIDE_SEARCH_RESULTS,
-  HIDE_VARIANT_POPUP
+  HIDE_VARIANT_POPUP,
+  PICKER_HIDDEN
 } from './events';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
@@ -88,7 +89,7 @@ export class EmojiButton {
 
   private emojiArea: EmojiArea;
 
-  private overlay: HTMLElement;
+  private overlay?: HTMLElement;
 
   private popper: Popper;
 
@@ -385,34 +386,47 @@ export class EmojiButton {
 
     if (this.overlay) {
       document.body.removeChild(this.overlay);
+      this.overlay = undefined;
     }
 
+    // In some browsers, the delayed hide was triggering the scroll event handler
+    // and stealing the focus. Remove the scroll listener before doing the delayed hide.
+    this.emojiArea.emojis.removeEventListener(
+      'scroll',
+      this.emojiArea.highlightCategory
+    );
+
     this.pickerEl.classList.add('hiding');
-    setTimeout(() => {
-      this.wrapper.style.display = 'none';
-      this.pickerEl.classList.remove('hiding');
+    setTimeout(
+      () => {
+        this.wrapper.style.display = 'none';
+        this.pickerEl.classList.remove('hiding');
 
-      if (this.pickerContent.firstChild !== this.emojiArea.container) {
-        empty(this.pickerContent);
-        this.pickerContent.appendChild(this.emojiArea.container);
-      }
+        if (this.pickerContent.firstChild !== this.emojiArea.container) {
+          empty(this.pickerContent);
+          this.pickerContent.appendChild(this.emojiArea.container);
+        }
 
-      const searchField = this.pickerEl.querySelector(
-        `.${CLASS_SEARCH_FIELD}`
-      ) as HTMLInputElement;
-      if (searchField) {
-        searchField.value = '';
-      }
+        const searchField = this.pickerEl.querySelector(
+          `.${CLASS_SEARCH_FIELD}`
+        ) as HTMLInputElement;
+        if (searchField) {
+          searchField.value = '';
+        }
 
-      const variantOverlay = this.pickerEl.querySelector(
-        `.${CLASS_VARIANT_OVERLAY}`
-      );
-      if (variantOverlay) {
-        this.events.emit(HIDE_VARIANT_POPUP);
-      }
+        const variantOverlay = this.pickerEl.querySelector(
+          `.${CLASS_VARIANT_OVERLAY}`
+        );
+        if (variantOverlay) {
+          this.events.emit(HIDE_VARIANT_POPUP);
+        }
 
-      this.hideInProgress = false;
-    }, 170);
+        this.hideInProgress = false;
+
+        this.publicEvents.emit(PICKER_HIDDEN);
+      },
+      this.options.showAnimation ? 170 : 0
+    );
 
     setTimeout(() => {
       document.removeEventListener('click', this.onDocumentClick);

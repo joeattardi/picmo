@@ -479,15 +479,15 @@ export default function ApiDocs() {
         </h3>
         <p>
           Removes the given listener for the given event. See{' '}
-          <a href="#events">Events</a> for a list of valid events.
+          <Link to="/docs/events">Events</Link> for a list of valid events.
         </p>
 
         <h3>
           Method: <code>on(event, callback)</code>
         </h3>
         <p>
-          Adds a listener for the given event. See <a href="#events">Events</a>{' '}
-          for a list of valid events.
+          Adds a listener for the given event. See{' '}
+          <Link to="/docs/events">Events</Link> for a list of valid events.
         </p>
 
         <h3>
@@ -514,32 +514,6 @@ export default function ApiDocs() {
           Sets the theme of the picker.  See{' '}
           <Link to="/docs/themes">Themes</Link> for more details.
         </p>
-
-        <a name="events" />
-        <h2>Events</h2>
-
-        <h3>
-          <code>emoji</code>
-        </h3>
-        <p>
-          Fired when an emoji is selected. The callback will receive a single
-          object with one or more of the following properties:
-        </p>
-        <ul>
-          <li>
-            <code>custom</code>: This will be <code>true</code> for a custom
-            emoji.
-          </li>
-          <li>
-            <code>emoji</code>: The Unicode emoji character that was selected.
-            This will be included for native and Twemoji emojis, but not for
-            custom emojis.
-          </li>
-          <li>
-            <code>url</code>: The URL of the emoji image. This will be included
-            for Twemoji and custom emojis.
-          </li>
-        </ul>
 
         <a name="categories" />
         <h2>Category IDs</h2>
