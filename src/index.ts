@@ -88,7 +88,7 @@ export class EmojiButton {
 
   private emojiArea: EmojiArea;
 
-  private overlay: HTMLElement;
+  private overlay?: HTMLElement;
 
   private popper: Popper;
 
@@ -381,6 +381,7 @@ export class EmojiButton {
 
     if (this.overlay) {
       document.body.removeChild(this.overlay);
+      this.overlay = undefined;
     }
 
     this.pickerEl.classList.add('hiding');
