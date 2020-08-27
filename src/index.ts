@@ -385,6 +385,13 @@ export class EmojiButton {
       this.overlay = undefined;
     }
 
+    // In some browsers, the delayed hide was triggering the scroll event handler
+    // and stealing the focus. Remove the scroll listener before doing the delayed hide.
+    this.emojiArea.emojis.removeEventListener(
+      'scroll',
+      this.emojiArea.highlightCategory
+    );
+
     this.pickerEl.classList.add('hiding');
     setTimeout(
       () => {
