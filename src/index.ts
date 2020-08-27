@@ -386,33 +386,36 @@ export class EmojiButton {
     }
 
     this.pickerEl.classList.add('hiding');
-    setTimeout(() => {
-      this.wrapper.style.display = 'none';
-      this.pickerEl.classList.remove('hiding');
+    setTimeout(
+      () => {
+        this.wrapper.style.display = 'none';
+        this.pickerEl.classList.remove('hiding');
 
-      if (this.pickerContent.firstChild !== this.emojiArea.container) {
-        empty(this.pickerContent);
-        this.pickerContent.appendChild(this.emojiArea.container);
-      }
+        if (this.pickerContent.firstChild !== this.emojiArea.container) {
+          empty(this.pickerContent);
+          this.pickerContent.appendChild(this.emojiArea.container);
+        }
 
-      const searchField = this.pickerEl.querySelector(
-        `.${CLASS_SEARCH_FIELD}`
-      ) as HTMLInputElement;
-      if (searchField) {
-        searchField.value = '';
-      }
+        const searchField = this.pickerEl.querySelector(
+          `.${CLASS_SEARCH_FIELD}`
+        ) as HTMLInputElement;
+        if (searchField) {
+          searchField.value = '';
+        }
 
-      const variantOverlay = this.pickerEl.querySelector(
-        `.${CLASS_VARIANT_OVERLAY}`
-      );
-      if (variantOverlay) {
-        this.events.emit(HIDE_VARIANT_POPUP);
-      }
+        const variantOverlay = this.pickerEl.querySelector(
+          `.${CLASS_VARIANT_OVERLAY}`
+        );
+        if (variantOverlay) {
+          this.events.emit(HIDE_VARIANT_POPUP);
+        }
 
-      this.hideInProgress = false;
+        this.hideInProgress = false;
 
-      this.publicEvents.emit(PICKER_HIDDEN);
-    }, 170);
+        this.publicEvents.emit(PICKER_HIDDEN);
+      },
+      this.options.showAnimation ? 170 : 0
+    );
 
     setTimeout(() => {
       document.removeEventListener('click', this.onDocumentClick);
