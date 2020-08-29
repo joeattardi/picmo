@@ -33,7 +33,12 @@ import {
   CLASS_PLUGIN_CONTAINER
 } from './classes';
 
-import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiTheme } from './types';
+import {
+  EmojiButtonOptions,
+  I18NStrings,
+  EmojiRecord,
+  EmojiTheme
+} from './types';
 import { EmojiArea } from './emojiArea';
 
 const twemojiOptions = {
@@ -113,7 +118,7 @@ export class EmojiButton {
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
 
-    this.theme = this.options.theme!;
+    this.theme = this.options.theme || 'light';
 
     this.buildPicker();
   }
@@ -527,16 +532,15 @@ export class EmojiButton {
     }
   }
 
-  setTheme(theme:EmojiTheme): void {
-    if (theme === this.theme)
-      return;
+  setTheme(theme: EmojiTheme): void {
+    if (theme === this.theme) return;
 
     this.pickerEl.classList.remove(this.theme);
     this.theme = theme;
     this.updateTheme(this.theme);
   }
 
-  private updateTheme(theme:EmojiTheme): void {
+  private updateTheme(theme: EmojiTheme): void {
     this.pickerEl.classList.add(theme);
   }
 }
