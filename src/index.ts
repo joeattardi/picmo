@@ -40,7 +40,7 @@ import {
   EmojiTheme,
   EmojiThemeInternal,
   EmojiCustomThemeInternal,
-  EmojiBaseTheme, EmojiCustomTheme
+  EmojiBaseTheme
 } from './types';
 import { EmojiArea } from './emojiArea';
 import { compareThemes } from './themes';
