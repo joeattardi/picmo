@@ -80,7 +80,10 @@
   --focus-indicator-color: #999999;
 
   --search-height: 2em;
+}
 
+.emoji-picker__wrapper
+{
   --blue-color: #4F81E5;
 
   --border-color: #CCCCCC;
@@ -116,7 +119,7 @@
   --dark-category-button-active-color: var(--blue-color);
 }
 
-.emoji-picker.dark
+.emoji-picker__wrapper.dark
 {
   --border-color: var(--dark-border-color);
   --background-color: var(--dark-background-color);
@@ -138,7 +141,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .emoji-picker.auto {
+  .emoji-picker__wrapper.auto {
     --border-color: var(--dark-border-color);
     --background-color: var(--dark-background-color);
     --text-color: var(--dark-text-color);

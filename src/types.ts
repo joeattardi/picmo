@@ -70,7 +70,17 @@ export interface FixedPosition {
 
 export type EmojiStyle = 'native' | 'twemoji';
 
-export type EmojiTheme = 'dark' | 'light' | 'auto';
+export type EmojiBaseTheme = 'dark' | 'light' | 'auto';
+
+export interface EmojiCustomTheme {
+  extends?:EmojiBaseTheme;
+  className:string;
+}
+export type EmojiTheme = EmojiBaseTheme | EmojiCustomTheme;
+
+export type EmojiCustomThemeInternal = Required<EmojiCustomTheme>;
+
+export type EmojiThemeInternal = EmojiBaseTheme | EmojiCustomThemeInternal;
 
 export type EmojiVersion =
   | '1.0'

@@ -67,7 +67,14 @@ declare namespace EmojiButton {
 
   export type EmojiStyle = 'native' | 'twemoji';
 
-  export type EmojiTheme = 'dark' | 'light' | 'auto';
+  export type EmojiBaseTheme = 'dark' | 'light' | 'auto';
+
+  export interface EmojiCustomTheme {
+    extends?:EmojiBaseTheme;
+    className:string;
+  }
+
+  export type EmojiTheme = EmojiBaseTheme | EmojiCustomTheme;
 
   export type Event = 'emoji' | 'hidden';
 

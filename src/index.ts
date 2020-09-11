@@ -37,14 +37,20 @@ import {
   EmojiButtonOptions,
   I18NStrings,
   EmojiRecord,
-  EmojiTheme
+  EmojiTheme,
+  EmojiThemeInternal,
+  EmojiCustomThemeInternal,
+  EmojiBaseTheme, EmojiCustomTheme
 } from './types';
 import { EmojiArea } from './emojiArea';
+import { compareThemes } from './themes';
 
 const twemojiOptions = {
   ext: '.svg',
   folder: 'svg'
 };
+
+const DEFAULT_THEME: EmojiBaseTheme = 'light';
 
 const DEFAULT_OPTIONS: EmojiButtonOptions = {
   position: 'auto',
@@ -58,7 +64,7 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   showCategoryButtons: true,
   recentsCount: 50,
   emojiVersion: '12.1',
-  theme: 'light',
+  theme: DEFAULT_THEME,
   categories: [
     'smileys',
     'people',
@@ -76,6 +82,17 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   emojiSize: '1.8em',
   initialCategory: 'smileys'
 };
+
+const isCustomTheme = (theme: EmojiThemeInternal): theme is EmojiCustomThemeInternal =>
+  typeof theme !== 'string';
+
+const resolveTheme = (theme: EmojiTheme): EmojiThemeInternal => {
+  if (typeof theme === 'string') {
+    return theme
+  } else {
+    return {extends:theme.extends || DEFAULT_THEME,className:theme.className};
+  }
+}
 
 export class EmojiButton {
   private pickerVisible: boolean;
@@ -100,7 +117,7 @@ export class EmojiButton {
 
   private observer: IntersectionObserver;
 
-  private theme: EmojiTheme;
+  private theme: EmojiThemeInternal;
 
   constructor(options: EmojiButtonOptions = {}) {
     this.pickerVisible = false;
@@ -118,7 +135,7 @@ export class EmojiButton {
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
 
-    this.theme = this.options.theme || 'light';
+    this.theme = resolveTheme(this.options.theme || 'light');
 
     this.buildPicker();
   }
@@ -133,7 +150,6 @@ export class EmojiButton {
 
   private buildPicker(): void {
     this.pickerEl = createElement('div', CLASS_PICKER);
-    this.updateTheme(this.theme);
 
     if (!this.options.showAnimation) {
       this.pickerEl.style.setProperty('--animation-duration', '0s');
@@ -282,6 +298,8 @@ export class EmojiButton {
     if (this.options.rootElement) {
       this.options.rootElement.appendChild(this.wrapper);
     }
+
+    this.updateTheme(this.theme);
 
     this.observeForLazyLoad();
   }
@@ -534,14 +552,28 @@ export class EmojiButton {
   }
 
   setTheme(theme: EmojiTheme): void {
-    if (theme === this.theme) return;
+    if (compareThemes(theme,this.theme)) return;
 
-    this.pickerEl.classList.remove(this.theme);
-    this.theme = theme;
+    this.clearTheme();
+    this.theme = resolveTheme(theme);
     this.updateTheme(this.theme);
   }
 
-  private updateTheme(theme: EmojiTheme): void {
-    this.pickerEl.classList.add(theme);
+  private updateTheme(theme: EmojiThemeInternal): void {
+    if (isCustomTheme(theme)) {
+      this.wrapper.classList.add(theme.extends);
+      this.pickerEl.classList.add(theme.className);
+    } else {
+      this.wrapper.classList.add(theme);
+    }
+  }
+
+  private clearTheme(): void {
+    if (isCustomTheme(this.theme)) {
+      this.wrapper.classList.remove(this.theme.extends)
+      this.pickerEl.classList.remove(this.theme.className);
+    } else {
+      this.wrapper.classList.remove(this.theme);
+    }
   }
 }
