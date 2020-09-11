@@ -436,6 +436,9 @@ export default function ApiDocs() {
                   <li>
                     <code>'auto'</code>: Use the operating system setting.
                   </li>
+                  <li>
+                    A <Link to="/docs/themes#custom">Custom Theme</Link> object
+                  </li>
                 </ul>
               </td>
             </tr>

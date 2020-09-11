@@ -13,6 +13,14 @@ import switchExample from '!!raw-loader!../../examples/themes/switch-theme.js';
 
 import styles from './plugins.module.css';
 
+import highContrastTheme from '!!raw-loader!../../examples/themes/custom.highcontrast.css';
+import '../../examples/themes/custom.highcontrast.css';
+import highContrastThemeExample from '!!raw-loader!../../examples/themes/highcontrast.js';
+
+import minimalTheme from '!!raw-loader!../../examples/themes/custom.minimal.css';
+import '../../examples/themes/custom.minimal.css';
+import minimalThemeExample from '!!raw-loader!../../examples/themes/minimal.js';
+
 export default function ThemesExample() {
   
   const buttonRef = useRef();
@@ -39,6 +47,10 @@ export default function ThemesExample() {
 
   function setAuto() {
     picker.setTheme("auto");
+  }
+
+  function setCustom() {
+    picker.setTheme({className:'emoji-picker-high-contrast'});
   }
 
   return (
@@ -111,9 +123,53 @@ export default function ThemesExample() {
         >
           auto
         </button>
+
+        <button
+          id="set-theme-custom"
+          onClick={setCustom}
+        >
+          custom
+        </button>
       </div>
 
       <SourceFile src={switchExample} />
+
+      <a name="custom" />
+      <h1>Custom Themes</h1>
+      <p>
+        You can use custom themes by passing an object with a <code>className</code>{' '}
+        property specifying the CSS class which contains the custom theme properties, 
+        and an optional <code>extends</code> property, specifying the base theme 
+        (<code>light</code>, <code>dark</code>, or <code>auto</code>) to extend from.
+      </p>
+
+      <h2>Example - High Contrast</h2>
+      <p>
+        This theme changes every available variable, customizing the entire component.
+      </p>
+      <Example options={{ theme: {className:'emoji-picker-high-contrast'} }} />
+      <SourceFile src={highContrastThemeExample} />
+      <pre>
+        <code
+          className="language-css"
+          dangerouslySetInnerHTML={{ __html:highContrastTheme}}
+        />
+      </pre>
+
+      <h2>Example - Minimal</h2>
+      <p>
+        If the dark theme generally works for your application, but you'd like to customize a few colors to 
+        better match your brand, that's easily done:
+      </p>
+      <Example options={{ theme: {extends:'dark', className:'emoji-picker-minimal'} }} />
+      <SourceFile src={minimalThemeExample} />
+      <pre>
+        <code
+          className="language-css"
+          dangerouslySetInnerHTML={{ __html:minimalTheme}}
+        />
+      </pre>
+
     </DocLayout>
   );
 }

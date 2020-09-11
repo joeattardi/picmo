@@ -1,0 +1,19 @@
+.emoji-picker-high-contrast {
+  --border-color: #FFFFFF;
+  --background-color: #000000;
+  --text-color: #FFFFFF;
+  --secondary-text-color: #FFFFFF;
+  --hover-color: #00FFFF;
+
+  --search-background-color: #000000;
+  --search-border-color: #FFFFFF;
+  --search-text-color: #FFFFFF;
+  --search-placeholder-color: #FFFF00;
+  --search-focus-border-color: #00FFFF;
+  --search-icon-color: #FFFFFF;
+
+  --overlay-background-color: rgba(0,0,0,0.9);
+  --popup-background-color: #000000;
+  --category-button-color: #FFFFFF;
+  --category-button-active-color: #00FFFF;
+}
