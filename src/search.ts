@@ -22,6 +22,7 @@ import {
 } from './classes';
 
 import fuzzysort from 'fuzzysort';
+import { createExcluder } from './excluder';
 
 class NotFoundMessage {
   constructor(private message: string, private iconUrl?: string) {}
@@ -65,12 +66,14 @@ export class Search {
     categories: number[]
   ) {
     this.emojisPerRow = this.options.emojisPerRow || 8;
+    const isExcluded = createExcluder(this.options.excludeEmojis);
     this.emojiData = emojiData.filter(
       e =>
         e.version &&
         parseFloat(e.version) <= parseFloat(options.emojiVersion as string) &&
         e.category !== undefined &&
-        categories.indexOf(e.category) >= 0
+        categories.indexOf(e.category) >= 0 &&
+        !isExcluded(e)
     );
 
     if (this.options.custom) {

@@ -34,6 +34,8 @@ export interface Plugin {
   destroy?(): void;
 }
 
+export type ExcludeEmojis = string[] | ((emoji: string) => boolean);
+
 export interface EmojiButtonOptions {
   position?: Placement | FixedPosition;
   autoHide?: boolean;
@@ -59,7 +61,7 @@ export interface EmojiButtonOptions {
   custom?: EmojiRecord[];
   plugins?: Plugin[];
   icons?: Icons;
-  excludeEmojis?: string[] | ((emoji: string) => boolean);
+  excludeEmojis?: ExcludeEmojis;
 }
 
 export interface FixedPosition {

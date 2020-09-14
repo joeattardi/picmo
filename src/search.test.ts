@@ -6,13 +6,14 @@ import { Search } from './search';
 import { i18n } from './i18n';
 import { EmojiButtonOptions, EmojiRecord } from './types';
 
-describe('Search', () => {
-  const emojis: EmojiRecord[] = [
-    { category: 0, emoji: '⚡️', name: 'zap', version: '12.1' },
-    { category: 1, emoji: '😀', name: 'grinning', version: '12.1' }
-  ];
+const emojis: EmojiRecord[] = [
+  { category: 0, emoji: '⚡️', name: 'zap', version: '12.1' },
+  { category: 1, emoji: '😀', name: 'grinning', version: '12.1' }
+];
 
-  const options: EmojiButtonOptions = { emojiVersion: '12.1', style: 'native' };
+const options: EmojiButtonOptions = { emojiVersion: '12.1', style: 'native' };
+
+describe('Search', () => {
   let events;
   let search;
   let searchField;
@@ -62,6 +63,32 @@ describe('Search', () => {
     });
 
     searchField.value = 'blah';
+    searchField.dispatchEvent(new KeyboardEvent('keyup'));
+  });
+});
+
+describe('Search with Exclusions', () => {
+  test('should not show results for excluded emojis', done => {
+    const events = new Emitter();
+    const search = new Search(
+      events,
+      i18n,
+      { ...options, excludeEmojis: ['⚡️'] },
+      emojis,
+      [0]
+    ).render();
+    events.on(SHOW_SEARCH_RESULTS, searchResultsContainer => {
+      const searchResults = searchResultsContainer.querySelectorAll(
+        '.emoji-picker__emoji'
+      );
+      expect(searchResults.length).toBe(0);
+      done();
+    });
+
+    const searchField = <HTMLInputElement>(
+      search.querySelector('.emoji-picker__search')
+    );
+    searchField.value = 'zap';
     searchField.dispatchEvent(new KeyboardEvent('keyup'));
   });
 });

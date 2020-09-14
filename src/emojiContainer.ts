@@ -7,6 +7,8 @@ import { CLASS_EMOJI_CONTAINER } from './classes';
 
 import { EmojiButtonOptions, EmojiRecord, RecentEmoji } from './types';
 
+import { createExcluder } from './excluder';
+
 export class EmojiContainer {
   private emojis: Array<EmojiRecord | RecentEmoji>;
 
@@ -17,20 +19,14 @@ export class EmojiContainer {
     private options: EmojiButtonOptions,
     private lazy = true
   ) {
-    const exclude = options.excludeEmojis;
+    const isExcluded = createExcluder(options.excludeEmojis);
     this.emojis = emojis.filter(e => {
       const verCheck =
         !(e as EmojiRecord).version ||
         parseFloat((e as EmojiRecord).version as string) <=
           parseFloat(options.emojiVersion as string);
 
-      const isExcluded =
-        exclude !== undefined &&
-        (typeof exclude === 'function'
-          ? exclude(e.emoji)
-          : exclude.includes(e.emoji));
-
-      return verCheck && !isExcluded;
+      return verCheck && !isExcluded(e);
     });
   }
 
