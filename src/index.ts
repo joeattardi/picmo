@@ -135,7 +135,7 @@ export class EmojiButton {
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
 
-    this.theme = resolveTheme(this.options.theme || 'light');
+    this.theme = resolveTheme(this.options.theme || DEFAULT_THEME);
 
     this.buildPicker();
   }
