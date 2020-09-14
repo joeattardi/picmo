@@ -40,6 +40,7 @@ declare namespace EmojiButton {
     plugins?: Plugin[];
     icons?: Icons;
     rootElement?: HTMLElement;
+    excludeEmojis?: string[] | ((emoji:string) => boolean);
   }
 
   export interface FixedPosition {

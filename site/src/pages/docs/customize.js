@@ -10,6 +10,7 @@ import sizeExample from '!!raw-loader!../../examples/customize/size.js';
 import emojiVersionExample from '!!raw-loader!../../examples/customize/emojiVersion.js';
 import initialCategoryExample from '!!raw-loader!../../examples/customize/initialCategory.js';
 import hideElementsExample from '!!raw-loader!../../examples/customize/hideElements.js';
+import excludeEmojisExample from '!!raw-loader!../../examples/customize/excludeEmojis.js';
 
 export default function CustomizationExample() {
   return (
@@ -86,6 +87,13 @@ export default function CustomizationExample() {
         }}
       />
       <SourceFile src={hideElementsExample} />
+
+      <h2>Excluding Emojis</h2>
+      <p>
+        Undesired emojis can be excluded from the picker.
+      </p>
+      <Example options={{excludeEmojis:['🍏','🍎']}} />
+      <SourceFile src={excludeEmojisExample} />
     </DocLayout>
   );
 }

@@ -450,6 +450,27 @@ export default function ApiDocs() {
                 If specified, sets the Z-index for the emoji picker element.
               </td>
             </tr>
+
+            <tr>
+              <th scope="row">
+                <code>excludeEmojis</code>
+              </th>
+              <td>string array or function</td>
+              <td>none</td>
+              <td>
+                Excludes emoji from the picker.  This can be either:
+                <ul>
+                  <li>
+                    an array of emojis to exclude
+                  </li>
+                  <li>
+                    a function which takes an emoji and returns{' '}
+                    <code>true</code> to exclude the emoji, or{' '}
+                    <code>false</code> to include it.
+                  </li>
+                </ul>
+              </td>
+            </tr>
           </tbody>
         </table>
 

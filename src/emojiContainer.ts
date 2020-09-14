@@ -17,12 +17,21 @@ export class EmojiContainer {
     private options: EmojiButtonOptions,
     private lazy = true
   ) {
-    this.emojis = emojis.filter(
-      e =>
+    const exclude = options.excludeEmojis;
+    this.emojis = emojis.filter(e => {
+      const verCheck =
         !(e as EmojiRecord).version ||
         parseFloat((e as EmojiRecord).version as string) <=
-          parseFloat(options.emojiVersion as string)
-    );
+          parseFloat(options.emojiVersion as string);
+
+      const isExcluded =
+        exclude !== undefined &&
+        (typeof exclude === 'function'
+          ? exclude(e.emoji)
+          : exclude.includes(e.emoji));
+
+      return verCheck && !isExcluded;
+    });
   }
 
   render(): HTMLElement {

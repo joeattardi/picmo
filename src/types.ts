@@ -59,6 +59,7 @@ export interface EmojiButtonOptions {
   custom?: EmojiRecord[];
   plugins?: Plugin[];
   icons?: Icons;
+  excludeEmojis?: string[] | ((emoji: string) => boolean);
 }
 
 export interface FixedPosition {
