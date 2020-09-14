@@ -388,7 +388,6 @@ export class EmojiButton {
     this.hideInProgress = true;
     this.focusTrap.deactivate();
     this.pickerVisible = false;
-    this.popper && this.popper.destroy();
 
     if (this.overlay) {
       document.body.removeChild(this.overlay);
@@ -428,6 +427,7 @@ export class EmojiButton {
         }
 
         this.hideInProgress = false;
+        this.popper && this.popper.destroy();
 
         this.publicEvents.emit(PICKER_HIDDEN);
       },
