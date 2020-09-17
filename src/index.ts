@@ -247,6 +247,7 @@ export class EmojiButton {
           if (emoji.custom) {
             this.publicEvents.emit(EMOJI, {
               url: emoji.emoji,
+              name: emoji.name,
               custom: true
             });
           } else if (this.options.style === 'twemoji') {
@@ -255,13 +256,15 @@ export class EmojiButton {
               callback: (icon, options) => {
                 this.publicEvents.emit(EMOJI, {
                   url: `${options.base}${options.size}/${icon}${options.ext}`,
-                  emoji: emoji.emoji
+                  emoji: emoji.emoji,
+                  name: emoji.name
                 });
               }
             });
           } else {
             this.publicEvents.emit(EMOJI, {
-              emoji: emoji.emoji
+              emoji: emoji.emoji,
+              name: emoji.name
             });
           }
           if (this.options.autoHide) {

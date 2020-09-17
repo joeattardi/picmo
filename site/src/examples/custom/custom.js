@@ -21,11 +21,11 @@ picker.on('emoji', selection => {
   if (selection.url) {
     const img = document.createElement('img');
     img.src = selection.url;
-    img.alt = selection.emoji;
+    img.alt = selection.emoji + ' ' + selection.name;
     trigger.appendChild(img);
   } else {
     const span = document.createElement('span');
-    span.innerHTML = selection.emoji;
+    span.innerHTML = selection.emoji + ' ' + selection.name;
     trigger.appendChild(span);
   }
 });

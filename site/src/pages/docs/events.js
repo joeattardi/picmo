@@ -87,6 +87,9 @@ export default function Events() {
           custom emojis.
         </li>
         <li>
+          <code>name</code>: The name of the emoji that was selected.
+        </li>
+        <li>
           <code>url</code>: The URL of the emoji image. This will be included
           for Twemoji and custom emojis.
         </li>

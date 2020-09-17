@@ -13,7 +13,7 @@ picker.on('emoji', selection => {
   // Add the new image for the new Twemoji
   const img = document.createElement('img');
   img.src = selection.url;
-  img.alt = selection.emoji;
+  img.alt = selection.emoji + ' ' + selection.name;
   trigger.appendChild(img);
 });
 
