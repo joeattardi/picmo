@@ -41,11 +41,6 @@ import {
 } from './types';
 import { EmojiArea } from './emojiArea';
 
-const twemojiOptions = {
-  ext: '.svg',
-  folder: 'svg'
-};
-
 const DEFAULT_OPTIONS: EmojiButtonOptions = {
   position: 'auto',
   autoHide: true,
@@ -71,6 +66,10 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
     'flags'
   ],
   style: 'native',
+  twemojiOptions: {
+    ext: '.svg',
+    folder: 'svg'
+  },
   emojisPerRow: 8,
   rows: 6,
   emojiSize: '1.8em',
@@ -252,7 +251,7 @@ export class EmojiButton {
             });
           } else if (this.options.style === 'twemoji') {
             twemoji.parse(emoji.emoji, {
-              ...twemojiOptions,
+              ...this.options.twemojiOptions,
               callback: (icon, options) => {
                 this.publicEvents.emit(EMOJI, {
                   url: `${options.base}${options.size}/${icon}${options.ext}`,
@@ -335,7 +334,7 @@ export class EmojiButton {
           } else if (this.options.style === 'twemoji') {
             element.innerHTML = twemoji.parse(
               element.dataset.emoji,
-              twemojiOptions
+              this.options.twemojiOptions
             );
             element.dataset.loaded = true;
             element.style.opacity = '1';
