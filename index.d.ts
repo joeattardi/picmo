@@ -40,6 +40,9 @@ declare namespace EmojiButton {
     plugins?: Plugin[];
     icons?: Icons;
     rootElement?: HTMLElement;
+    styleProperties?: {
+      [key: string]: string;
+    };
   }
 
   export interface FixedPosition {

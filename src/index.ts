@@ -156,6 +156,17 @@ export class EmojiButton {
       this.pickerEl.style.setProperty('--category-button-height', '0');
     }
 
+    if (this.options.styleProperties) {
+      Object.keys(this.options.styleProperties).forEach(key => {
+        if (this.options.styleProperties) {
+          this.pickerEl.style.setProperty(
+            key,
+            this.options.styleProperties[key]
+          );
+        }
+      });
+    }
+
     this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
       clickOutsideDeactivates: true,
       initialFocus:

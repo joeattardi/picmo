@@ -67,6 +67,11 @@ export default function Sidebar() {
           </Link>
         </li>
         <li>
+          <Link activeClassName={styles.active} to="/docs/styleCustomization">
+            Style Customization
+          </Link>
+        </li>
+        <li>
           <Link activeClassName={styles.active} to="/docs/i18n">
             I18N Strings
           </Link>
@@ -78,6 +83,11 @@ export default function Sidebar() {
         <li>
           <Link activeClassName={styles.active} to="/docs/api">
             API
+          </Link>
+        </li>
+        <li>
+          <Link activeClassName={styles.active} to="/docs/cssVariables">
+            CSS Variables
           </Link>
         </li>
         <li>
