@@ -57,6 +57,7 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   showVariants: true,
   showCategoryButtons: true,
   recentsCount: 50,
+  emojiData,
   emojiVersion: '12.1',
   theme: 'light',
   categories: [
@@ -197,9 +198,9 @@ export class EmojiButton {
         this.events,
         this.i18n,
         this.options,
-        emojiData.emoji,
+        this.options.emojiData.emoji,
         (this.options.categories || []).map(category =>
-          emojiData.categories.indexOf(category)
+          this.options.emojiData.categories.indexOf(category)
         )
       ).render();
       this.pickerEl.appendChild(searchContainer);
