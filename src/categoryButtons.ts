@@ -2,6 +2,8 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import { CLASS_CATEGORY_BUTTONS, CLASS_CATEGORY_BUTTON } from './classes';
 
+import emojiData from './data/emoji';
+
 import { CATEGORY_CLICKED } from './events';
 
 import * as icons from './icons';
@@ -38,8 +40,8 @@ export class CategoryButtons {
     const container = createElement('div', CLASS_CATEGORY_BUTTONS);
 
     let categories = this.options.showRecents
-      ? ['recents', ...(this.options.categories || this.options.emojiData.categories)]
-      : this.options.categories || his.options.emojiData.categories;
+      ? ['recents', ...(this.options.categories || this.options.emojiData?.categories || emojiData.categories)]
+      : this.options.categories || this.options.emojiData?.categories || emojiData.categories;
 
     if (this.options.custom) {
       categories = [...categories, 'custom'];
