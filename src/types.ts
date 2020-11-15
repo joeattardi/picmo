@@ -52,6 +52,7 @@ export interface EmojiButtonOptions {
   theme?: EmojiTheme;
   categories?: Category[];
   style?: EmojiStyle;
+  twemojiOptions?: Object;
   emojisPerRow?: number;
   rows?: number;
   emojiSize?: string;

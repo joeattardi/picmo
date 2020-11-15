@@ -44,7 +44,7 @@ export class Emoji {
         ? smile
         : `<img class="${CLASS_CUSTOM_EMOJI}" src="${this.emoji.emoji}">`;
     } else if (this.options.style === 'twemoji') {
-      content = this.lazy ? smile : twemoji.parse(this.emoji.emoji);
+      content = this.lazy ? smile : twemoji.parse(this.emoji.emoji, this.options.twemojiOptions);
     }
 
     this.emojiButton.innerHTML = content;
