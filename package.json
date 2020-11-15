@@ -12,6 +12,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production rollup -c",
     "build:watch": "rollup -cw",
+    "start": "npm run build:watch",
     "prepublishOnly": "cross-env NODE_ENV=production rollup -c",
     "test": "jest src/**.test.ts",
     "test:watch": "jest --watchAll",
