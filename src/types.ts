@@ -1,4 +1,5 @@
 import { Placement } from '@popperjs/core';
+import { ParseObject } from 'twemoji';
 import { EmojiButton } from './index';
 
 export interface EmojiRecord {
@@ -52,7 +53,7 @@ export interface EmojiButtonOptions {
   theme?: EmojiTheme;
   categories?: Category[];
   style?: EmojiStyle;
-  twemojiOptions?: Object;
+  twemojiOptions?: Partial<ParseObject>;
   emojisPerRow?: number;
   rows?: number;
   emojiSize?: string;

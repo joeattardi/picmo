@@ -1,3 +1,5 @@
+import { ParseObject } from 'twemoji';
+
 export as namespace EmojiButton;
 
 export = EmojiButton;
@@ -32,6 +34,7 @@ declare namespace EmojiButton {
     theme?: EmojiTheme;
     categories?: Category[];
     style?: EmojiStyle;
+    twemojiStyle: Partial<ParseObject>;
     emojisPerRow?: number;
     rows?: number;
     emojiSize?: string;

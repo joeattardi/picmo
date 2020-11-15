@@ -442,6 +442,24 @@ export default function ApiDocs() {
 
             <tr>
               <th scope="row">
+                <code>twemojiOptions</code>
+              </th>
+              <td>object</td>
+              <td>
+                <code>{"{ ext: 'svg', folder: 'svg' }"}</code>
+              </td>
+              <td>
+                The options to pass to Twemoji when using the Twemoji style. For
+                a list of valid options, see the{' '}
+                <a href="https://github.com/twitter/twemoji">
+                  Twemoji documentation
+                </a>
+                .
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">
                 <code>zIndex</code>
               </th>
               <td>number</td>
@@ -511,7 +529,7 @@ export default function ApiDocs() {
           Method: <code>setTheme(theme)</code>
         </h3>
         <p>
-          Sets the theme of the picker.  See{' '}
+          Sets the theme of the picker. See{' '}
           <Link to="/docs/themes">Themes</Link> for more details.
         </p>
 

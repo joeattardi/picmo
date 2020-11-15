@@ -263,12 +263,15 @@ export class EmojiButton {
           } else if (this.options.style === 'twemoji') {
             twemoji.parse(emoji.emoji, {
               ...this.options.twemojiOptions,
-              callback: (icon, options) => {
+              callback: (icon, { base, size, ext }: any) => {
+                const imageUrl = `${base}${size}/${icon}${ext}`;
                 this.publicEvents.emit(EMOJI, {
-                  url: `${options.base}${options.size}/${icon}${options.ext}`,
+                  url: imageUrl,
                   emoji: emoji.emoji,
                   name: emoji.name
                 });
+
+                return imageUrl;
               }
             });
           } else {
