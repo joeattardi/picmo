@@ -119,6 +119,14 @@ export class Search {
     return this.searchContainer;
   }
 
+  clear(): void {
+    this.searchField.value = '';
+  }
+
+  focus(): void {
+    this.searchField.focus();
+  }
+
   onClearSearch(event: Event): void {
     event.stopPropagation();
 

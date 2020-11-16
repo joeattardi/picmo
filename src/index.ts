@@ -14,6 +14,7 @@ import {
   HIDE_VARIANT_POPUP,
   PICKER_HIDDEN
 } from './events';
+import { lazyLoadEmoji } from './lazyLoad';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
 import { createElement, empty } from './util';
@@ -26,10 +27,8 @@ import {
   CLASS_PICKER_CONTENT,
   CLASS_EMOJI,
   CLASS_SEARCH_FIELD,
-  CLASS_VARIANT_OVERLAY,
   CLASS_WRAPPER,
   CLASS_OVERLAY,
-  CLASS_CUSTOM_EMOJI,
   CLASS_PLUGIN_CONTAINER
 } from './classes';
 
@@ -37,9 +36,14 @@ import {
   EmojiButtonOptions,
   I18NStrings,
   EmojiRecord,
-  EmojiTheme
+  EmojiTheme,
+  FixedPosition
 } from './types';
 import { EmojiArea } from './emojiArea';
+
+const MOBILE_BREAKPOINT = 450;
+
+const STYLE_TWEMOJI = 'twemoji';
 
 const DEFAULT_OPTIONS: EmojiButtonOptions = {
   position: 'auto',
@@ -92,6 +96,7 @@ export class EmojiButton {
   private focusTrap: FocusTrap;
 
   private emojiArea: EmojiArea;
+  private search: Search;
 
   private overlay?: HTMLElement;
 
@@ -132,7 +137,7 @@ export class EmojiButton {
 
   private buildPicker(): void {
     this.pickerEl = createElement('div', CLASS_PICKER);
-    this.updateTheme(this.theme);
+    this.pickerEl.classList.add(this.theme);
 
     if (!this.options.showAnimation) {
       this.pickerEl.style.setProperty('--animation-duration', '0s');
@@ -192,7 +197,7 @@ export class EmojiButton {
     }
 
     if (this.options.showSearch) {
-      const searchContainer = new Search(
+      this.search = new Search(
         this.events,
         this.i18n,
         this.options,
@@ -200,8 +205,8 @@ export class EmojiButton {
         (this.options.categories || []).map(category =>
           emojiData.categories.indexOf(category)
         )
-      ).render();
-      this.pickerEl.appendChild(searchContainer);
+      );
+      this.pickerEl.appendChild(this.search.render());
     }
 
     this.pickerEl.appendChild(this.pickerContent);
@@ -260,7 +265,7 @@ export class EmojiButton {
               name: emoji.name,
               custom: true
             });
-          } else if (this.options.style === 'twemoji') {
+          } else if (this.options.style === STYLE_TWEMOJI) {
             twemoji.parse(emoji.emoji, {
               ...this.options.twemojiOptions,
               callback: (icon, { base, size, ext }: any) => {
@@ -325,62 +330,70 @@ export class EmojiButton {
     });
   }
 
+  /**
+   * Initializes the IntersectionObserver for lazy loading emoji images
+   * as they are scrolled into view.
+   */
   private observeForLazyLoad() {
-    const onChange = changes => {
-      const visibleElements = Array.prototype.filter
-        .call(changes, change => {
-          return change.intersectionRatio > 0;
-        })
-        .map(entry => entry.target);
-
-      visibleElements.forEach(element => {
-        if (!element.dataset.loaded) {
-          if (element.dataset.custom) {
-            const img = createElement(
-              'img',
-              CLASS_CUSTOM_EMOJI
-            ) as HTMLImageElement;
-            img.src = element.dataset.emoji;
-            element.innerText = '';
-            element.appendChild(img);
-            element.dataset.loaded = true;
-            element.style.opacity = 1;
-          } else if (this.options.style === 'twemoji') {
-            element.innerHTML = twemoji.parse(
-              element.dataset.emoji,
-              this.options.twemojiOptions
-            );
-            element.dataset.loaded = true;
-            element.style.opacity = '1';
-          }
-        }
-      });
-    };
-
-    this.observer = new IntersectionObserver(onChange, {
+    this.observer = new IntersectionObserver(this.handleIntersectionChange, {
       root: this.emojiArea.emojis
     });
 
-    const emojiElements = this.emojiArea.emojis.querySelectorAll(
-      `.${CLASS_EMOJI}`
-    );
-
-    emojiElements.forEach(element => {
-      if (
-        this.options.style === 'twemoji' ||
-        (element as HTMLElement).dataset.custom === 'true'
-      ) {
-        this.observer.observe(element);
-      }
-    });
+    this.emojiArea.emojis
+      .querySelectorAll(`.${CLASS_EMOJI}`)
+      .forEach((element: Element) => {
+        if (this.shouldLazyLoad(element as HTMLElement)) {
+          this.observer.observe(element);
+        }
+      });
   }
 
+  /**
+   * IntersectionObserver callback that triggers lazy loading of emojis
+   * that need it.
+   *
+   * @param entries The entries observed by the IntersectionObserver.
+   */
+  private handleIntersectionChange(entries: IntersectionObserverEntry[]): void {
+    Array.prototype.filter
+      .call(
+        entries,
+        (entry: IntersectionObserverEntry) => entry.intersectionRatio > 0
+      )
+      .map((entry: IntersectionObserverEntry) => entry.target)
+      .forEach((element: Element) => {
+        lazyLoadEmoji(element as HTMLElement, this.options);
+      });
+  }
+
+  /**
+   * Determines whether or not an emoji should be lazily loaded.
+   *
+   * @param element The element containing the emoji.
+   * @return true if the emoji should be lazily loaded, false if not.
+   */
+  private shouldLazyLoad(element: HTMLElement): boolean {
+    return (
+      this.options.style === STYLE_TWEMOJI || element.dataset.custom === 'true'
+    );
+  }
+
+  /**
+   * Handles a click on the document, so that the picker is hidden
+   * if the mouse is clicked outside of it.
+   *
+   * @param event The MouseEvent that was dispatched.
+   */
   private onDocumentClick(event: MouseEvent): void {
     if (!this.pickerEl.contains(event.target as Node)) {
       this.hidePicker();
     }
   }
 
+  /**
+   * Destroys the picker. Once this is called, the picker can no longer
+   * be shown.
+   */
   destroyPicker(): void {
     this.events.off(EMOJI);
     this.events.off(HIDE_VARIANT_POPUP);
@@ -400,6 +413,9 @@ export class EmojiButton {
     }
   }
 
+  /**
+   * Hides, but does not destroy, the picker.
+   */
   hidePicker(): void {
     this.hideInProgress = true;
     this.focusTrap.deactivate();
@@ -418,6 +434,9 @@ export class EmojiButton {
     );
 
     this.pickerEl.classList.add('hiding');
+
+    // Let the transition finish before actually hiding the picker so that
+    // the user sees the hide animation.
     setTimeout(
       () => {
         this.wrapper.style.display = 'none';
@@ -428,19 +447,11 @@ export class EmojiButton {
           this.pickerContent.appendChild(this.emojiArea.container);
         }
 
-        const searchField = this.pickerEl.querySelector(
-          `.${CLASS_SEARCH_FIELD}`
-        ) as HTMLInputElement;
-        if (searchField) {
-          searchField.value = '';
+        if (this.search) {
+          this.search.clear();
         }
 
-        const variantOverlay = this.pickerEl.querySelector(
-          `.${CLASS_VARIANT_OVERLAY}`
-        );
-        if (variantOverlay) {
-          this.events.emit(HIDE_VARIANT_POPUP);
-        }
+        this.events.emit(HIDE_VARIANT_POPUP);
 
         this.hideInProgress = false;
         this.popper && this.popper.destroy();
@@ -456,6 +467,11 @@ export class EmojiButton {
     });
   }
 
+  /**
+   * Shows the picker.
+   *
+   * @param referenceEl The element to position relative to if relative positioning is used.
+   */
   showPicker(referenceEl: HTMLElement): void {
     if (this.hideInProgress) {
       setTimeout(() => this.showPicker(referenceEl), 100);
@@ -465,99 +481,152 @@ export class EmojiButton {
     this.pickerVisible = true;
     this.wrapper.style.display = 'block';
 
-    if (window.matchMedia('screen and (max-width: 450px)').matches) {
-      const style = window.getComputedStyle(this.pickerEl);
-      const htmlEl = document.querySelector('html');
-      const viewportHeight = htmlEl && htmlEl.clientHeight;
-      const viewportWidth = htmlEl && htmlEl.clientWidth;
-
-      const height = parseInt(style.height);
-      const newTop = viewportHeight ? viewportHeight / 2 - height / 2 : 0;
-
-      const width = parseInt(style.width);
-      const newLeft = viewportWidth ? viewportWidth / 2 - width / 2 : 0;
-
-      this.wrapper.style.position = 'fixed';
-      this.wrapper.style.top = `${newTop}px`;
-      this.wrapper.style.left = `${newLeft}px`;
-      this.wrapper.style.zIndex = '5000';
-
-      this.overlay = createElement('div', CLASS_OVERLAY);
-      document.body.appendChild(this.overlay);
-    } else if (typeof this.options.position === 'string') {
-      this.popper = createPopper(referenceEl, this.wrapper, {
-        placement: this.options.position as Placement
-      });
-    } else if (
-      this.options.position &&
-      (this.options.position.top || this.options.position.left)
-    ) {
-      this.wrapper.style.position = 'fixed';
-
-      if (this.options.position.top) {
-        this.wrapper.style.top = this.options.position.top;
-      }
-
-      if (this.options.position.bottom) {
-        this.wrapper.style.bottom = this.options.position.bottom;
-      }
-
-      if (this.options.position.left) {
-        this.wrapper.style.left = this.options.position.left;
-      }
-
-      if (this.options.position.right) {
-        this.wrapper.style.right = this.options.position.right;
-      }
-    }
+    this.determineDisplay(referenceEl);
 
     this.focusTrap.activate();
 
     setTimeout(() => {
-      document.addEventListener('click', this.onDocumentClick);
-      document.addEventListener('keydown', this.onDocumentKeydown);
-
-      const initialFocusElement = this.pickerEl.querySelector(
-        this.options.showSearch && this.options.autoFocusSearch
-          ? `.${CLASS_SEARCH_FIELD}`
-          : `.${CLASS_EMOJI}[tabindex="0"]`
-      ) as HTMLElement;
-      initialFocusElement.focus();
+      this.addEventListeners();
+      this.setInitialFocus();
     });
 
     this.emojiArea.reset();
   }
 
+  /**
+   * Determines which display and position are used for the picker, based on
+   * the viewport size and specified options.
+   *
+   * @param referenceEl The element to position relative to if relative positioning is used.
+   */
+  determineDisplay(referenceEl: HTMLElement): void {
+    if (
+      window.matchMedia(`screen and (max-width: ${MOBILE_BREAKPOINT}px)`)
+        .matches
+    ) {
+      this.showMobileView();
+    } else if (typeof this.options.position === 'string') {
+      this.setRelativePosition(referenceEl);
+    } else {
+      this.setFixedPosition();
+    }
+  }
+
+  /**
+   * Sets the initial focus to the appropriate element, depending on the specified
+   * options.
+   */
+  setInitialFocus(): void {
+    // If the search field is visible and should be auto-focused, set the focus on
+    // the search field. Otherwise, the initial focus will be on the first focusable emoji.
+    const initialFocusElement = this.pickerEl.querySelector(
+      this.options.showSearch && this.options.autoFocusSearch
+        ? `.${CLASS_SEARCH_FIELD}`
+        : `.${CLASS_EMOJI}[tabindex="0"]`
+    ) as HTMLElement;
+    initialFocusElement.focus();
+  }
+
+  /**
+   * Adds the event listeners that will close the picker without selecting an emoji.
+   */
+  private addEventListeners(): void {
+    document.addEventListener('click', this.onDocumentClick);
+    document.addEventListener('keydown', this.onDocumentKeydown);
+  }
+
+  /**
+   * Sets relative positioning with Popper.js.
+   *
+   * @param referenceEl The element to position relative to.
+   */
+  private setRelativePosition(referenceEl: HTMLElement): void {
+    this.popper = createPopper(referenceEl, this.wrapper, {
+      placement: this.options.position as Placement
+    });
+  }
+
+  /**
+   * Sets fixed positioning.
+   */
+  private setFixedPosition(): void {
+    if (this.options?.position) {
+      this.wrapper.style.position = 'fixed';
+
+      const fixedPosition = this.options.position as FixedPosition;
+
+      Object.keys(fixedPosition).forEach(key => {
+        this.wrapper.style[key] = fixedPosition[key];
+      });
+    }
+  }
+
+  /**
+   * Shows the picker in a mobile view.
+   */
+  private showMobileView(): void {
+    const style = window.getComputedStyle(this.pickerEl);
+    const htmlEl = document.querySelector('html');
+    const viewportHeight = htmlEl && htmlEl.clientHeight;
+    const viewportWidth = htmlEl && htmlEl.clientWidth;
+
+    const height = parseInt(style.height);
+    const newTop = viewportHeight ? viewportHeight / 2 - height / 2 : 0;
+
+    const width = parseInt(style.width);
+    const newLeft = viewportWidth ? viewportWidth / 2 - width / 2 : 0;
+
+    this.wrapper.style.position = 'fixed';
+    this.wrapper.style.top = `${newTop}px`;
+    this.wrapper.style.left = `${newLeft}px`;
+    this.wrapper.style.zIndex = '5000';
+
+    this.overlay = createElement('div', CLASS_OVERLAY);
+    document.body.appendChild(this.overlay);
+  }
+
+  /**
+   * Toggles the picker's visibility.
+   *
+   * @param referenceEl The element to position relative to if relative positioning is used.
+   */
   togglePicker(referenceEl: HTMLElement): void {
     this.pickerVisible ? this.hidePicker() : this.showPicker(referenceEl);
   }
 
+  /**
+   * Determines whether or not the picker is currently visible.
+   * @return true if the picker is visible, false if not.
+   */
   isPickerVisible(): boolean {
     return this.pickerVisible;
   }
 
+  /**
+   * Handles a keydown event on the document.
+   * @param event The keyboard event that was dispatched.
+   */
   private onDocumentKeydown(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
+      // Escape closes the picker.
       this.hidePicker();
     } else if (event.key === 'Tab') {
+      // The `keyboard` class adds some extra styling to indicate keyboard focus.
       this.pickerEl.classList.add('keyboard');
-    } else if (event.key.match(/^[\w]$/)) {
-      const searchField = this.pickerEl.querySelector(
-        `.${CLASS_SEARCH_FIELD}`
-      ) as HTMLInputElement;
-      searchField && searchField.focus();
+    } else if (event.key.match(/^[\w]$/) && this.search) {
+      // If a search term is entered, move the focus to the search field.
+      this.search.focus();
     }
   }
 
+  /**
+   * Sets the theme to use for the picker.
+   */
   setTheme(theme: EmojiTheme): void {
-    if (theme === this.theme) return;
-
-    this.pickerEl.classList.remove(this.theme);
-    this.theme = theme;
-    this.updateTheme(this.theme);
-  }
-
-  private updateTheme(theme: EmojiTheme): void {
-    this.pickerEl.classList.add(theme);
+    if (theme !== this.theme) {
+      this.pickerEl.classList.remove(this.theme);
+      this.theme = theme;
+      this.pickerEl.classList.add(theme);
+    }
   }
 }
