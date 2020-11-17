@@ -36,6 +36,7 @@ import {
   EmojiButtonOptions,
   I18NStrings,
   EmojiRecord,
+  EmojiSelection,
   EmojiTheme,
   FixedPosition
 } from './types';
@@ -127,18 +128,30 @@ export class EmojiButton {
     this.buildPicker();
   }
 
+  /**
+   * Adds an event listener to the picker.
+   *
+   * @param event The name of the event to listen for
+   * @param callback The function to call when the event is fired
+   */
   on(event: string, callback: (arg: string) => void): void {
     this.publicEvents.on(event, callback);
   }
 
+  /**
+   * Removes an event listener from the picker.
+   *
+   * @param event The name of the event
+   * @param callback The callback to remove
+   */
   off(event: string, callback: (arg: string) => void): void {
     this.publicEvents.off(event, callback);
   }
 
-  private buildPicker(): void {
-    this.pickerEl = createElement('div', CLASS_PICKER);
-    this.pickerEl.classList.add(this.theme);
-
+  /**
+   * Sets any CSS variable values that need to be set.
+   */
+  private setStyleProperties(): void {
     if (!this.options.showAnimation) {
       this.pickerEl.style.setProperty('--animation-duration', '0s');
     }
@@ -148,11 +161,13 @@ export class EmojiButton {
         '--emoji-per-row',
         this.options.emojisPerRow.toString()
       );
+
     this.options.rows &&
       this.pickerEl.style.setProperty(
         '--row-count',
         this.options.rows.toString()
       );
+
     this.options.emojiSize &&
       this.pickerEl.style.setProperty('--emoji-size', this.options.emojiSize);
 
@@ -170,17 +185,147 @@ export class EmojiButton {
         }
       });
     }
+  }
 
-    this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
-      clickOutsideDeactivates: true,
-      initialFocus:
-        this.options.showSearch && this.options.autoFocusSearch
-          ? '.emoji-picker__search'
-          : '.emoji-picker__emoji[tabindex="0"]'
+  /**
+   * Shows the search results in the main emoji area.
+   *
+   * @param searchResults The element containing the search results.
+   */
+  private showSearchResults(searchResults: HTMLElement): void {
+    empty(this.pickerContent);
+    searchResults.classList.add('search-results');
+    this.pickerContent.appendChild(searchResults);
+  }
+
+  /**
+   * Hides the search results and resets the picker.
+   */
+  private hideSearchResults(): void {
+    if (this.pickerContent.firstChild !== this.emojiArea.container) {
+      empty(this.pickerContent);
+      this.pickerContent.appendChild(this.emojiArea.container);
+    }
+
+    this.emojiArea.reset();
+  }
+
+  /**
+   * Emits a selected emoji event.
+   * @param param0 The selected emoji and show variants flag
+   */
+  private async emitEmoji({
+    emoji,
+    showVariants
+  }: {
+    emoji: EmojiRecord;
+    showVariants: boolean;
+  }): Promise<void> {
+    if (
+      (emoji as EmojiRecord).variations &&
+      showVariants &&
+      this.options.showVariants
+    ) {
+      this.showVariantPopup(emoji as EmojiRecord);
+    } else {
+      setTimeout(() => this.emojiArea.updateRecents());
+
+      let eventData: EmojiSelection;
+      if (emoji.custom) {
+        eventData = this.emitCustomEmoji(emoji);
+      } else if (this.options.style === STYLE_TWEMOJI) {
+        eventData = await this.emitTwemoji(emoji);
+      } else {
+        eventData = this.emitNativeEmoji(emoji);
+      }
+
+      this.publicEvents.emit(EMOJI, eventData);
+
+      if (this.options.autoHide) {
+        this.hidePicker();
+      }
+    }
+  }
+
+  /**
+   * Emits a native emoji record.
+   * @param emoji The selected emoji
+   */
+  private emitNativeEmoji(emoji: EmojiRecord): EmojiSelection {
+    return {
+      emoji: emoji.emoji,
+      name: emoji.name
+    };
+  }
+
+  /**
+   * Emits a custom emoji record.
+   * @param emoji The selected emoji
+   */
+  private emitCustomEmoji(emoji: EmojiRecord): EmojiSelection {
+    return {
+      url: emoji.emoji,
+      name: emoji.name,
+      custom: true
+    };
+  }
+
+  /**
+   * Emits a Twemoji emoji record.
+   * @param emoji The selected emoji
+   */
+  private emitTwemoji(emoji: EmojiRecord): Promise<EmojiSelection> {
+    return new Promise(resolve => {
+      twemoji.parse(emoji.emoji, {
+        ...this.options.twemojiOptions,
+        callback: (icon, { base, size, ext }: any) => {
+          const imageUrl = `${base}${size}/${icon}${ext}`;
+          resolve({
+            url: imageUrl,
+            emoji: emoji.emoji,
+            name: emoji.name
+          });
+
+          return imageUrl;
+        }
+      });
     });
+  }
 
-    this.pickerContent = createElement('div', CLASS_PICKER_CONTENT);
+  /**
+   * Builds the search UI.
+   */
+  private buildSearch(): void {
+    if (this.options.showSearch) {
+      this.search = new Search(
+        this.events,
+        this.i18n,
+        this.options,
+        emojiData.emoji,
+        (this.options.categories || []).map(category =>
+          emojiData.categories.indexOf(category)
+        )
+      );
 
+      this.pickerEl.appendChild(this.search.render());
+    }
+  }
+
+  /**
+   * Builds the emoji preview area.
+   */
+  private buildPreview(): void {
+    if (this.options.showPreview) {
+      this.pickerEl.appendChild(
+        new EmojiPreview(this.events, this.options).render()
+      );
+    }
+  }
+
+  /**
+   * Initializes any plugins that were specified.
+   */
+  private initPlugins(): void {
     if (this.options.plugins) {
       const pluginContainer = createElement('div', CLASS_PLUGIN_CONTAINER);
 
@@ -195,102 +340,46 @@ export class EmojiButton {
 
       this.pickerEl.appendChild(pluginContainer);
     }
+  }
 
-    if (this.options.showSearch) {
-      this.search = new Search(
-        this.events,
-        this.i18n,
-        this.options,
-        emojiData.emoji,
-        (this.options.categories || []).map(category =>
-          emojiData.categories.indexOf(category)
-        )
-      );
-      this.pickerEl.appendChild(this.search.render());
-    }
+  /**
+   * Initializes the emoji picker's focus trap.
+   */
+  private initFocusTrap(): void {
+    this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
+      clickOutsideDeactivates: true,
+      initialFocus:
+        this.options.showSearch && this.options.autoFocusSearch
+          ? '.emoji-picker__search'
+          : '.emoji-picker__emoji[tabindex="0"]'
+    });
+  }
+
+  /**
+   * Builds the emoji picker.
+   */
+  private buildPicker(): void {
+    this.pickerEl = createElement('div', CLASS_PICKER);
+    this.pickerEl.classList.add(this.theme);
+
+    this.setStyleProperties();
+    this.initFocusTrap();
+
+    this.pickerContent = createElement('div', CLASS_PICKER_CONTENT);
+
+    this.initPlugins();
+    this.buildSearch();
 
     this.pickerEl.appendChild(this.pickerContent);
 
     this.emojiArea = new EmojiArea(this.events, this.i18n, this.options);
     this.pickerContent.appendChild(this.emojiArea.render());
 
-    this.events.on(SHOW_SEARCH_RESULTS, (searchResults: HTMLElement) => {
-      empty(this.pickerContent);
-      searchResults.classList.add('search-results');
-      this.pickerContent.appendChild(searchResults);
-    });
+    this.events.on(SHOW_SEARCH_RESULTS, this.showSearchResults.bind(this));
+    this.events.on(HIDE_SEARCH_RESULTS, this.hideSearchResults.bind(this));
+    this.events.on(EMOJI, this.emitEmoji.bind(this));
 
-    this.events.on(HIDE_SEARCH_RESULTS, () => {
-      if (this.pickerContent.firstChild !== this.emojiArea.container) {
-        empty(this.pickerContent);
-        this.pickerContent.appendChild(this.emojiArea.container);
-      }
-
-      this.emojiArea.reset();
-    });
-
-    if (this.options.showPreview) {
-      this.pickerEl.appendChild(
-        new EmojiPreview(this.events, this.options).render()
-      );
-    }
-
-    let variantPopup: HTMLElement | null;
-
-    this.events.on(
-      EMOJI,
-      ({
-        emoji,
-        showVariants
-      }: {
-        emoji: EmojiRecord;
-        showVariants: boolean;
-      }) => {
-        if (
-          (emoji as EmojiRecord).variations &&
-          showVariants &&
-          this.options.showVariants
-        ) {
-          this.showVariantPopup(emoji as EmojiRecord);
-        } else {
-          if (variantPopup && variantPopup.parentNode === this.pickerEl) {
-            this.events.emit(HIDE_VARIANT_POPUP);
-          }
-
-          setTimeout(() => this.emojiArea.updateRecents());
-
-          if (emoji.custom) {
-            this.publicEvents.emit(EMOJI, {
-              url: emoji.emoji,
-              name: emoji.name,
-              custom: true
-            });
-          } else if (this.options.style === STYLE_TWEMOJI) {
-            twemoji.parse(emoji.emoji, {
-              ...this.options.twemojiOptions,
-              callback: (icon, { base, size, ext }: any) => {
-                const imageUrl = `${base}${size}/${icon}${ext}`;
-                this.publicEvents.emit(EMOJI, {
-                  url: imageUrl,
-                  emoji: emoji.emoji,
-                  name: emoji.name
-                });
-
-                return imageUrl;
-              }
-            });
-          } else {
-            this.publicEvents.emit(EMOJI, {
-              emoji: emoji.emoji,
-              name: emoji.name
-            });
-          }
-          if (this.options.autoHide) {
-            this.hidePicker();
-          }
-        }
-      }
-    );
+    this.buildPreview();
 
     this.wrapper = createElement('div', CLASS_WRAPPER);
     this.wrapper.appendChild(this.pickerEl);
@@ -307,7 +396,12 @@ export class EmojiButton {
     this.observeForLazyLoad();
   }
 
-  private showVariantPopup(emoji: EmojiRecord) {
+  /**
+   * Shows the variant popup for an emoji.
+   *
+   * @param emoji The emoji whose variants are to be shown.
+   */
+  private showVariantPopup(emoji: EmojiRecord): void {
     const variantPopup = new VariantPopup(
       this.events,
       emoji,
@@ -334,10 +428,13 @@ export class EmojiButton {
    * Initializes the IntersectionObserver for lazy loading emoji images
    * as they are scrolled into view.
    */
-  private observeForLazyLoad() {
-    this.observer = new IntersectionObserver(this.handleIntersectionChange, {
-      root: this.emojiArea.emojis
-    });
+  private observeForLazyLoad(): void {
+    this.observer = new IntersectionObserver(
+      this.handleIntersectionChange.bind(this),
+      {
+        root: this.emojiArea.emojis
+      }
+    );
 
     this.emojiArea.emojis
       .querySelectorAll(`.${CLASS_EMOJI}`)

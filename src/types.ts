@@ -17,6 +17,13 @@ export interface EmojiData {
   emojiData: EmojiRecord[];
 }
 
+export interface EmojiSelection {
+  name: string;
+  custom?: boolean;
+  emoji?: string;
+  url?: string;
+}
+
 export interface RecentEmoji {
   key: string;
   name: string;
