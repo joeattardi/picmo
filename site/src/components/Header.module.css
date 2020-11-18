@@ -53,3 +53,19 @@
 .buttons a:hover {
   filter: brightness(1.2);
 }
+
+@media (max-width: 400px) {
+  .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .buttons a {
+    margin: 0.5rem;
+    text-align: center;
+  }
+
+  .header h2 {
+    font-size: 1.5rem;
+  }
+}

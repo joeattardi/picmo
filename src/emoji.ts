@@ -27,32 +27,17 @@ export class Emoji {
 
     let content = this.emoji.emoji;
 
-    /*
-                const img = createElement(
-              'img',
-              CLASS_CUSTOM_EMOJI
-            ) as HTMLImageElement;
-            img.src = element.dataset.emoji;
-            element.innerText = '';
-            element.appendChild(img);
-            element.dataset.loaded = true;
-            element.style.opacity = 1;
-*/
-
     if (this.emoji.custom) {
       content = this.lazy
         ? smile
         : `<img class="${CLASS_CUSTOM_EMOJI}" src="${this.emoji.emoji}">`;
     } else if (this.options.style === 'twemoji') {
-      content = this.lazy ? smile : twemoji.parse(this.emoji.emoji);
+      content = this.lazy
+        ? smile
+        : twemoji.parse(this.emoji.emoji, this.options.twemojiOptions);
     }
 
     this.emojiButton.innerHTML = content;
-    // this.options.style === 'native'
-    //   ? this.emoji.emoji
-    //   : this.lazy
-    //   ? smile
-    //   : twemoji.parse(this.emoji.emoji);
     this.emojiButton.tabIndex = -1;
 
     this.emojiButton.dataset.emoji = this.emoji.emoji;

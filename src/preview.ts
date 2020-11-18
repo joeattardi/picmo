@@ -13,11 +13,6 @@ import {
   CLASS_CUSTOM_EMOJI
 } from './classes';
 
-const twemojiOptions = {
-  ext: '.svg',
-  folder: 'svg'
-};
-
 export class EmojiPreview {
   private emoji: HTMLElement;
   private name: HTMLElement;
@@ -47,7 +42,7 @@ export class EmojiPreview {
     if (emoji.custom) {
       content = `<img class="${CLASS_CUSTOM_EMOJI}" src="${emoji.emoji}">`;
     } else if (this.options.style === 'twemoji') {
-      content = twemoji.parse(emoji.emoji, twemojiOptions);
+      content = twemoji.parse(emoji.emoji, this.options.twemojiOptions);
     }
 
     this.emoji.innerHTML = content;

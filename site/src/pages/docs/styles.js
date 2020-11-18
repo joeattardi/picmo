@@ -40,6 +40,18 @@ export default function StylesExample() {
       </p>
 
       <p>
+        When using Twemoji, you can also optionally pass a{' '}
+        <code>twemojiOptions</code>
+        object to the <code>EmojiButton</code> options. This will customize how
+        Twemoji parses and generates an image URL. For valid Twemoji options,
+        see{' '}
+        <a href="https://github.com/twitter/twemoji">
+          the Twemoji documentation
+        </a>
+        .
+      </p>
+
+      <p>
         When using the Twemoji style, the argument to the <code>emoji</code>{' '}
         event has a <code>url</code> property, which is the URL of the Twemoji
         image corresponding to the emoji that was selected. The{' '}
