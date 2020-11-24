@@ -40,8 +40,8 @@ export class CategoryButtons {
     const container = createElement('div', CLASS_CATEGORY_BUTTONS);
 
     let categories = this.options.showRecents
-      ? ['recents', ...(this.options.categories || emojiData.categories)]
-      : this.options.categories || emojiData.categories;
+      ? ['recents', ...(this.options.categories || this.options.emojiData?.categories || emojiData.categories)]
+      : this.options.categories || this.options.emojiData?.categories || emojiData.categories;
 
     if (this.options.custom) {
       categories = [...categories, 'custom'];

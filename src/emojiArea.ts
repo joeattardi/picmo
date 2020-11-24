@@ -53,7 +53,7 @@ export class EmojiArea {
     private options: EmojiButtonOptions
   ) {
     this.emojisPerRow = options.emojisPerRow || 8;
-    this.categories = options.categories || emojiData.categories;
+    this.categories = options.categories || options.emojiData?.categories || emojiData.categories;
 
     if (options.showRecents) {
       this.categories = ['recents', ...this.categories];
