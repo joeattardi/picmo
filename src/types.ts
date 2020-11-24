@@ -54,7 +54,7 @@ export interface EmojiButtonOptions {
   showCategoryButtons?: boolean;
   recentsCount?: number;
   rootElement?: HTMLElement;
-  emojiData?: EmojiData,
+  emojiData?: EmojiData;
   emojiVersion?: EmojiVersion;
   i18n?: I18NStrings;
   zIndex?: number;

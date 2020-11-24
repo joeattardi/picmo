@@ -39,9 +39,14 @@ export class CategoryButtons {
   render(): HTMLElement {
     const container = createElement('div', CLASS_CATEGORY_BUTTONS);
 
+    const categoryData =
+      this.options.categories ||
+      this.options.emojiData?.categories ||
+      emojiData.categories;
+
     let categories = this.options.showRecents
-      ? ['recents', ...(this.options.categories || this.options.emojiData?.categories || emojiData.categories)]
-      : this.options.categories || this.options.emojiData?.categories || emojiData.categories;
+      ? ['recents', ...categoryData]
+      : categoryData;
 
     if (this.options.custom) {
       categories = [...categories, 'custom'];
