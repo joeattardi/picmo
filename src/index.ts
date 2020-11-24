@@ -134,7 +134,7 @@ export class EmojiButton {
    * @param event The name of the event to listen for
    * @param callback The function to call when the event is fired
    */
-  on(event: string, callback: (arg: string) => void): void {
+  on(event: string, callback: (arg: any) => void): void {
     this.publicEvents.on(event, callback);
   }
 
@@ -144,7 +144,7 @@ export class EmojiButton {
    * @param event The name of the event
    * @param callback The callback to remove
    */
-  off(event: string, callback: (arg: string) => void): void {
+  off(event: string, callback: (arg: any) => void): void {
     this.publicEvents.off(event, callback);
   }
 
