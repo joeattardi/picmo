@@ -5,13 +5,22 @@ import emojiData from './data/emoji';
 import { EmojiArea } from './emojiArea';
 import { i18n } from './i18n';
 
+import { buildEmojiCategoryData } from './util';
+
 const emitter = new Emitter();
+
+const emojiCategoryData = buildEmojiCategoryData(emojiData);
 
 describe('EmojiArea', () => {
   test('renders an emoji list for each category', () => {
-    const emojiArea = new EmojiArea(emitter, i18n, {
-      emojiVersion: '11.0'
-    }).render();
+    const emojiArea = new EmojiArea(
+      emitter,
+      i18n,
+      {
+        emojiVersion: '11.0'
+      },
+      emojiCategoryData
+    ).render();
 
     const containers = emojiArea.querySelectorAll('.emoji-picker__container');
     expect(containers).toHaveLength(emojiData.categories.length);
@@ -26,10 +35,15 @@ describe('EmojiArea', () => {
   });
 
   test('only renders emoji lists for specified categories', () => {
-    const emojiArea = new EmojiArea(emitter, i18n, {
-      emojiVersion: '11.0',
-      categories: ['smileys', 'animals']
-    }).render();
+    const emojiArea = new EmojiArea(
+      emitter,
+      i18n,
+      {
+        emojiVersion: '11.0',
+        categories: ['smileys', 'animals']
+      },
+      emojiCategoryData
+    ).render();
 
     const containers = emojiArea.querySelectorAll('.emoji-picker__container');
     expect(containers).toHaveLength(2);
@@ -45,11 +59,16 @@ describe('EmojiArea', () => {
   });
 
   test('includes the recents category if showRecents is true', () => {
-    const emojiArea = new EmojiArea(emitter, i18n, {
-      emojiVersion: '11.0',
-      categories: ['smileys', 'animals'],
-      showRecents: true
-    }).render();
+    const emojiArea = new EmojiArea(
+      emitter,
+      i18n,
+      {
+        emojiVersion: '11.0',
+        categories: ['smileys', 'animals'],
+        showRecents: true
+      },
+      emojiCategoryData
+    ).render();
 
     const containers = emojiArea.querySelectorAll('.emoji-picker__container');
     expect(containers).toHaveLength(3);
@@ -66,13 +85,18 @@ describe('EmojiArea', () => {
   });
 
   test('selects the initial category', () => {
-    const emojiArea = new EmojiArea(emitter, i18n, {
-      emojiVersion: '11.0',
-      categories: ['smileys', 'animals'],
-      showRecents: true,
-      initialCategory: 'animals',
-      showCategoryButtons: true
-    });
+    const emojiArea = new EmojiArea(
+      emitter,
+      i18n,
+      {
+        emojiVersion: '11.0',
+        categories: ['smileys', 'animals'],
+        showRecents: true,
+        initialCategory: 'animals',
+        showCategoryButtons: true
+      },
+      emojiCategoryData
+    );
     const container = emojiArea.render();
     emojiArea.reset();
 

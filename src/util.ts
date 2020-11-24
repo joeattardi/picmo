@@ -1,3 +1,5 @@
+import { EmojiData, EmojiRecord } from './types';
+
 export function createElement(
   tagName: string,
   className?: string
@@ -22,4 +24,24 @@ export function formatEmojiName(name: string): string {
   words[0] = words[0][0].toUpperCase() + words[0].slice(1);
 
   return words.join(' ');
+}
+
+export function buildEmojiCategoryData(
+  emojiData: EmojiData
+): { [key: string]: EmojiRecord[] } {
+  const emojiCategories = {};
+
+  emojiData.emoji.forEach(emoji => {
+    let categoryList =
+      emojiCategories[emojiData.categories[emoji.category || 0]];
+    if (!categoryList) {
+      categoryList = emojiCategories[
+        emojiData.categories[emoji.category || 0]
+      ] = [];
+    }
+
+    categoryList.push(emoji);
+  });
+
+  return emojiCategories;
 }

@@ -17,7 +17,7 @@ import {
 import { lazyLoadEmoji } from './lazyLoad';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
-import { createElement, empty } from './util';
+import { createElement, empty, buildEmojiCategoryData } from './util';
 import { VariantPopup } from './variantPopup';
 
 import { i18n } from './i18n';
@@ -108,6 +108,8 @@ export class EmojiButton {
 
   private theme: EmojiTheme;
 
+  private emojiCategories: { [key: string]: EmojiRecord[] };
+
   constructor(options: EmojiButtonOptions = {}) {
     this.pickerVisible = false;
 
@@ -125,6 +127,10 @@ export class EmojiButton {
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
 
     this.theme = this.options.theme || 'light';
+
+    this.emojiCategories = buildEmojiCategoryData(
+      this.options.emojiData || emojiData
+    );
 
     this.buildPicker();
   }
@@ -302,9 +308,9 @@ export class EmojiButton {
         this.events,
         this.i18n,
         this.options,
-        this.options.emojiData.emoji,
+        this.options.emojiData?.emoji || emojiData.emoji,
         (this.options.categories || []).map(category =>
-          this.options.emojiData.categories.indexOf(category)
+          (this.options.emojiData || emojiData).categories.indexOf(category)
         )
       );
 
@@ -373,7 +379,12 @@ export class EmojiButton {
 
     this.pickerEl.appendChild(this.pickerContent);
 
-    this.emojiArea = new EmojiArea(this.events, this.i18n, this.options);
+    this.emojiArea = new EmojiArea(
+      this.events,
+      this.i18n,
+      this.options,
+      this.emojiCategories
+    );
     this.pickerContent.appendChild(this.emojiArea.render());
 
     this.events.on(SHOW_SEARCH_RESULTS, this.showSearchResults.bind(this));

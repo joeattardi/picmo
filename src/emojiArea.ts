@@ -24,15 +24,15 @@ import {
 import { createElement } from './util';
 import { load } from './recent';
 
-const emojiCategories: { [key: string]: EmojiRecord[] } = {};
-emojiData.emoji.forEach(emoji => {
-  let categoryList = emojiCategories[emojiData.categories[emoji.category]];
-  if (!categoryList) {
-    categoryList = emojiCategories[emojiData.categories[emoji.category]] = [];
-  }
+// const emojiCategories: { [key: string]: EmojiRecord[] } = {};
+// emojiData.emoji.forEach(emoji => {
+//   let categoryList = emojiCategories[emojiData.categories[emoji.category]];
+//   if (!categoryList) {
+//     categoryList = emojiCategories[emojiData.categories[emoji.category]] = [];
+//   }
 
-  categoryList.push(emoji);
-});
+//   categoryList.push(emoji);
+// });
 
 export class EmojiArea {
   private headerOffsets: number[];
@@ -50,10 +50,14 @@ export class EmojiArea {
   constructor(
     private events: Emitter,
     private i18n: I18NStrings,
-    private options: EmojiButtonOptions
+    private options: EmojiButtonOptions,
+    private emojiCategories: { [key: string]: EmojiRecord[] }
   ) {
     this.emojisPerRow = options.emojisPerRow || 8;
-    this.categories = options.categories || options.emojiData?.categories || emojiData.categories;
+    this.categories =
+      options.emojiData?.categories ||
+      options.categories ||
+      emojiData.categories;
 
     if (options.showRecents) {
       this.categories = ['recents', ...this.categories];
@@ -66,14 +70,14 @@ export class EmojiArea {
 
   updateRecents(): void {
     if (this.options.showRecents) {
-      emojiCategories.recents = load();
+      this.emojiCategories.recents = load();
       const recentsContainer = this.emojis.querySelector(
         `.${CLASS_EMOJI_CONTAINER}`
       ) as HTMLElement;
       if (recentsContainer && recentsContainer.parentNode) {
         recentsContainer.parentNode.replaceChild(
           new EmojiContainer(
-            emojiCategories.recents,
+            this.emojiCategories.recents,
             true,
             this.events,
             this.options,
@@ -100,18 +104,18 @@ export class EmojiArea {
     this.emojis = createElement('div', CLASS_EMOJIS);
 
     if (this.options.showRecents) {
-      emojiCategories.recents = load();
+      this.emojiCategories.recents = load();
     }
 
     if (this.options.custom) {
-      emojiCategories.custom = this.options.custom.map(custom => ({
+      this.emojiCategories.custom = this.options.custom.map(custom => ({
         ...custom,
         custom: true
       }));
     }
 
     this.categories.forEach(category =>
-      this.addCategory(category, emojiCategories[category])
+      this.addCategory(category, this.emojiCategories[category])
     );
 
     requestAnimationFrame(() => {

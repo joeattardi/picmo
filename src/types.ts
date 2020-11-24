@@ -14,7 +14,7 @@ export interface EmojiRecord {
 
 export interface EmojiData {
   categories: string[];
-  emojiData: EmojiRecord[];
+  emoji: EmojiRecord[];
 }
 
 export interface EmojiSelection {
