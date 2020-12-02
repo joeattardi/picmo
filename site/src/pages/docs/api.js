@@ -16,8 +16,8 @@ export default function ApiDocs() {
       people: 'People & Body',
       animals: 'Animals & Nature',
       food: 'Food & Drink',
-      activities: 'Activities',
       travel: 'Travel & Places',
+      activities: 'Activities',
       objects: 'Objects',
       symbols: 'Symbols',
       flags: 'Flags',
@@ -550,10 +550,10 @@ export default function ApiDocs() {
             <code>'food'</code>
           </li>
           <li>
-            <code>'activities'</code>
+            <code>'travel'</code>
           </li>
           <li>
-            <code>'travel'</code>
+            <code>'activities'</code>
           </li>
           <li>
             <code>'objects'</code>
@@ -606,10 +606,10 @@ export default function ApiDocs() {
                 <code>food</code>: The Food &amp; Drink category.
               </li>
               <li>
-                <code>activities</code>: The Activities category.
+                <code>travel</code>: The Travel &amp; Places category.
               </li>
               <li>
-                <code>travel</code>: The Travel &amp; Places category.
+                <code>activities</code>: The Activities category.
               </li>
               <li>
                 <code>objects</code>: The Objects category.

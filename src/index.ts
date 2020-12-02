@@ -65,8 +65,8 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
     'people',
     'animals',
     'food',
-    'activities',
     'travel',
+    'activities',
     'objects',
     'symbols',
     'flags'

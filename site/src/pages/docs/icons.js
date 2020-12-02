@@ -60,10 +60,10 @@ export default function IconsExample() {
               <code>food</code>
             </li>
             <li>
-              <code>activities</code>
+              <code>travel</code>
             </li>
             <li>
-              <code>travel</code>
+              <code>activities</code>
             </li>
             <li>
               <code>objects</code>
