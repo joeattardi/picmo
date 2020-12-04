@@ -24,15 +24,19 @@ import {
 import { createElement } from './util';
 import { load } from './recent';
 
-// const emojiCategories: { [key: string]: EmojiRecord[] } = {};
-// emojiData.emoji.forEach(emoji => {
-//   let categoryList = emojiCategories[emojiData.categories[emoji.category]];
-//   if (!categoryList) {
-//     categoryList = emojiCategories[emojiData.categories[emoji.category]] = [];
-//   }
-
-//   categoryList.push(emoji);
-// });
+const categorySortOrder = [
+  'recents',
+  'smileys',
+  'people',
+  'animals',
+  'food',
+  'activities',
+  'travel',
+  'objects',
+  'symbols',
+  'flags',
+  'custom'
+];
 
 export class EmojiArea {
   private headerOffsets: number[];
@@ -66,6 +70,10 @@ export class EmojiArea {
     if (options.custom) {
       this.categories = [...this.categories, 'custom'];
     }
+
+    this.categories.sort(
+      (a, b) => categorySortOrder.indexOf(a) - categorySortOrder.indexOf(b)
+    );
   }
 
   updateRecents(): void {

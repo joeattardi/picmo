@@ -10,14 +10,14 @@ const categoryKeys = {
   'People & Body': 'people',
   'Animals & Nature': 'animals',
   'Food & Drink': 'food',
-  'Travel & Places': 'travel',
   'Activities': 'activities',
+  'Travel & Places': 'travel',
   'Objects': 'objects',
   'Symbols': 'symbols',
   'Flags': 'flags'
 };
 
-const BLACKLIST = [
+const EXCLUDE_LIST = [
   'light skin tone',
   'medium-light skin tone',
   'medium skin tone',
@@ -100,7 +100,7 @@ interface.on('close', () => {
   data.emoji = data.emoji.filter(e => !toDelete.includes(e));
   toDelete = [];
 
-  BLACKLIST.forEach(name => toDelete.push(data.emoji.find(e => e.name === name)));
+  EXCLUDE_LIST.forEach(name => toDelete.push(data.emoji.find(e => e.name === name)));
 
   const emojisWithVariations = data.emoji.filter(emoji => emoji.name.includes(':') && !emoji.name.startsWith('family'));
   emojisWithVariations.forEach(emoji => {
