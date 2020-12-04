@@ -132,6 +132,22 @@ export default function ApiDocs() {
 
             <tr>
               <th scope="row">
+                <code>emojiData</code>
+              </th>
+              <td>object</td>
+              <td>Built-in emoji data</td>
+              <td>
+                The custom emoji data to use. This is typically used for
+                providing translated emoji names, such as from the{' '}
+                <a href="https://www.npmjs.com/package/@roderickhsiao/emoji-button-locale-data">
+                  @roderickhsiao/emoji-button-locale-data
+                </a>{' '}
+                package.
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">
                 <code>emojiSize</code>
               </th>
               <td>string</td>
