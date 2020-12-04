@@ -1,4 +1,4 @@
-import { EmojiButton } from './dist/index.js';
+import { EmojiButton } from '@joeattardi/emoji-button';
 
 const trigger = document.querySelector('#trigger');
 
