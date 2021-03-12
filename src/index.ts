@@ -405,7 +405,9 @@ export class EmojiButton {
       this.options.rootElement.appendChild(this.wrapper);
     }
 
-    this.observeForLazyLoad();
+    if ('IntersectionObserver' in window) {
+      this.observeForLazyLoad();
+    }
   }
 
   /**
