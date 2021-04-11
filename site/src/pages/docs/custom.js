@@ -42,6 +42,9 @@ export default function CustomExample() {
         <li>
           <code>emoji</code>: The URL of the image to use for the custom emoji
         </li>
+        <li>
+          <code>customData</code>: An object containing any custom data you might wanna get back when selecting the emoji
+        </li>
       </ul>
 
       <p>
