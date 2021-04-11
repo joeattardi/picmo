@@ -273,6 +273,7 @@ export class EmojiButton {
     return {
       url: emoji.emoji,
       name: emoji.name,
+      customData: emoji.customData,
       custom: true
     };
   }

@@ -10,6 +10,7 @@ export interface EmojiRecord {
   version?: string;
   variations?: string[];
   key?: string;
+  customData?: object;
 }
 
 export interface EmojiData {
@@ -22,6 +23,7 @@ export interface EmojiSelection {
   custom?: boolean;
   emoji?: string;
   url?: string;
+  customData?: object;
 }
 
 export interface RecentEmoji {
