@@ -6,7 +6,11 @@ const picker = new EmojiButton({
   custom: [
     {
       name: 'Conga parrot',
-      emoji: './site/static/conga_parrot.gif'
+      emoji: './site/static/conga_parrot.gif',
+      customData: {
+        'foo': 'bar',
+        'id': 3
+      }
     },
     {
       name: 'O RLY?',
