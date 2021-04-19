@@ -1,0 +1,10 @@
+{
+  "name": "cldr-annotations-full",
+  "version": "39.0",
+  "main": "annotations/**/*.json",
+  "ignore": [
+    ".gitattributes",
+    "README.md"
+  ],
+  "license": "Unicode-DFS-2016"
+}

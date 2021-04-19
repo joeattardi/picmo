@@ -1,0 +1,19 @@
+{
+  "name": "cldr-annotations-modern",
+  "version": "39.0",
+  "homepage": "http://cldr.unicode.org",
+  "author": "The Unicode Consortium",
+  "maintainers": [
+    {
+      "name": "John Emmons",
+      "email": "emmo@us.ibm.com",
+      "url": "https://github.com/JCEmmons"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/unicode-cldr/cldr-json.git"
+  },
+  "license": "Unicode-DFS-2016",
+  "bugs": "http://cldr.unicode.org/index/bug-reports#TOC-Filing-a-Ticket"
+}
