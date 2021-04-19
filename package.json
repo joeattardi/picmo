@@ -17,7 +17,8 @@
     "test": "jest src/**.test.ts",
     "test:watch": "jest --watchAll",
     "lint": "eslint src/*.ts",
-    "prettify": "prettier src/*.ts --write"
+    "prettify": "prettier src/*.ts --write",
+    "fetch-emoji": "node scripts/processEmojiData.js"
   },
   "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.codes)",
   "repository": {
@@ -37,6 +38,8 @@
     "@typescript-eslint/parser": "^3.1.0",
     "babel-jest": "^26.0.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "cldr-annotations-full": "^38.1.0",
+    "cldr-annotations-modern": "^38.1.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
@@ -61,6 +64,7 @@
     "@types/twemoji": "^12.1.1",
     "focus-trap": "^5.1.0",
     "fuzzysort": "^1.1.4",
+    "nodefetchline": "^1.0.1",
     "tiny-emitter": "^2.1.0",
     "tslib": "^2.0.0",
     "twemoji": "^13.0.0"

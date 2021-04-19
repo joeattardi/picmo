@@ -1,5 +1,7 @@
+const fetchline = require('nodefetchline');
 const fs = require('fs');
-const readline = require('readline');
+
+const URL = 'https://www.unicode.org/Public/emoji/13.1/emoji-test.txt'
 
 const DATA_LINE_REGEX = /((?:[0-9A-F]+ ?)+)\s+;(.+)\s+#.+E([0-9.]+) (.+)/;
 const EMOJI_WITH_MODIFIER_REGEX = /([a-z]+): ([a-z -]+)/;
@@ -33,9 +35,9 @@ const MODIFIER_SUBSTITUTIONS = {
   'bald': 'no hair'
 };
 
-const stream = fs.createReadStream('emoji-test.txt');
+// const stream = getStream(URL); //fs.createReadStream('emoji-test.txt');
 
-const interface = readline.createInterface(stream);
+// const interface = readline.createInterface(stream);
 
 let currentGroup;
 let currentSubgroup;
@@ -46,48 +48,48 @@ const data = {
   emoji: []
 };
 
-interface.on('line', line => {
-  if (line.startsWith('# group:')) {
-    currentGroup = line.slice('# group: '.length);
-    if (currentGroup !== 'Component') {
-      data.categories.push(categoryKeys[currentGroup]);
-      categoryIndex = data.categories.length - 1;
-    }
-  } else if (line.startsWith('# subgroup:')) {
-    currentSubgroup = line.slice('# subgroup: '.length);
-  } else if (!line.startsWith('#') && currentGroup !== 'Component') {
-    const matcher = DATA_LINE_REGEX.exec(line);
-    if (matcher) {
-      const sequence = matcher[1].trim();
-      const emoji = getEmoji(sequence);
-      let name = matcher[4];
+const lineIterator = fetchline(URL);
 
-      let version = matcher[3];
-      if (version === '0.6' || version === '0.7') {
-        version = '1.0';
+(async () => {
+  for await (const line of lineIterator) {
+    if (line.startsWith('# group:')) {
+      currentGroup = line.slice('# group: '.length);
+      if (currentGroup !== 'Component') {
+        data.categories.push(categoryKeys[currentGroup]);
+        categoryIndex = data.categories.length - 1;
       }
+    } else if (line.startsWith('# subgroup:')) {
+      currentSubgroup = line.slice('# subgroup: '.length);
+    } else if (!line.startsWith('#') && currentGroup !== 'Component') {
+      const matcher = DATA_LINE_REGEX.exec(line);
+      if (matcher) {
+        const sequence = matcher[1].trim();
+        const emoji = getEmoji(sequence);
+        let name = matcher[4];
 
-      if (currentSubgroup === 'person') {
-        const modifierMatcher = EMOJI_WITH_MODIFIER_REGEX.exec(name);
-        const skinToneMatcher = EMOJI_WITH_SKIN_TONE_AND_MODIFIER_REGEX.exec(name);
-        if (skinToneMatcher) {
-          name = skinToneMatcher[1] + ' with ' + substituteModifier(skinToneMatcher[3]) + ': ' + skinToneMatcher[2];
-        } else if (modifierMatcher) {
-          if (!modifierMatcher[2].includes('skin tone')) {
-            name = modifierMatcher[1] + ' with ' + substituteModifier(modifierMatcher[2]);
+        let version = matcher[3];
+        if (version === '0.6' || version === '0.7') {
+          version = '1.0';
+        }
+
+        if (currentSubgroup === 'person') {
+          const modifierMatcher = EMOJI_WITH_MODIFIER_REGEX.exec(name);
+          const skinToneMatcher = EMOJI_WITH_SKIN_TONE_AND_MODIFIER_REGEX.exec(name);
+          if (skinToneMatcher) {
+            name = skinToneMatcher[1] + ' with ' + substituteModifier(skinToneMatcher[3]) + ': ' + skinToneMatcher[2];
+          } else if (modifierMatcher) {
+            if (!modifierMatcher[2].includes('skin tone')) {
+              name = modifierMatcher[1] + ' with ' + substituteModifier(modifierMatcher[2]);
+            }
           }
         }
-      }
 
-      if (matcher[2].trim() !== 'unqualified') {
-        data.emoji.push({ sequence, emoji, category: categoryIndex, name, variations: [], version });
+        if (matcher[2].trim() !== 'unqualified') {
+          data.emoji.push({ sequence, emoji, category: categoryIndex, name, variations: [], version });
+        }
       }
     }
   }
-});
-
-interface.on('close', () => {
-  stream.close();
 
   let toDelete = [];
 
@@ -122,7 +124,9 @@ interface.on('close', () => {
   });
 
   fs.writeFileSync('src/data/emoji.js', `export default ${JSON.stringify(data)}`);
-});
+  fs.writeFileSync('src/data/emoji.json', JSON.stringify(data, null, 4));
+
+})();
 
 function getEmoji(sequence) {
   const chars = sequence.split(' ');
