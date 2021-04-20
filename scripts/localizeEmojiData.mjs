@@ -10,7 +10,8 @@ const dataPath = 'src/data';
 
 const avaliableLocales = await getLocaleList(cldrPath);
 
-const emojiData = (await getJsonData(`${dataPath}/emoji.json`))?.emoji;
+const originalData = await getJsonData(`${dataPath}/emoji.json`);
+const emojiData = originalData?.emoji;
 console.log(`Found ${emojiData?.length} emojis in file "${dataPath}/emoji.json"`);
 
 for await (const locale of avaliableLocales) {
@@ -36,7 +37,7 @@ for await (const locale of avaliableLocales) {
   }));
   console.log(`${locale.toUpperCase()}: Processed ${emojis.length} emoji annotations. Saving to JSON file...`);
   const data = {
-    categories: emojiData.categories,
+    categories: originalData.categories,
     emoji: emojis,
   }
 
