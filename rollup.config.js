@@ -9,11 +9,17 @@ const production = process.env.NODE_ENV === 'production';
 
 export default {
   input: 'src/index.ts',
-  output: {
-    file: 'dist/index.js',
-    format: 'es',
-    name: 'EmojiButton'
-  },
+  output: [
+    {
+      file: 'dist/index.js',
+      format: 'es',
+      name: 'EmojiButton'
+    },
+    {
+      file: 'dist/node/index.js',
+      format: 'cjs',
+    }
+  ],
   watch: {
     buildDelay: 500
   },
