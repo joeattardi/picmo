@@ -24,7 +24,7 @@ import {
 import fuzzysort from 'fuzzysort';
 
 class NotFoundMessage {
-  constructor(private message: string, private iconUrl?: string) {}
+  constructor(private message: string, private iconUrl?: string) { }
 
   render(): HTMLElement {
     const container = createElement('div', CLASS_NOT_FOUND);
@@ -225,7 +225,10 @@ export class Search {
         .go(this.searchField.value, this.emojiData, {
           allowTypo: true,
           limit: 100,
-          key: 'name'
+          threshold: -500,
+          keys: ['name', 'keywords'],
+          // Create a custom combined score to sort by. Add more value to keywords
+          scoreFn: (a) => Math.max(a[0] ? a[0].score - 50 : -1000, a[1] ? a[1].score : -1000)
         })
         .map(result => result.obj);
 

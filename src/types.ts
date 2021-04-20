@@ -10,6 +10,7 @@ export interface EmojiRecord {
   version?: string;
   variations?: string[];
   key?: string;
+  keywords?: string;
 }
 
 export interface EmojiData {

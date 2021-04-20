@@ -1,1 +1,14597 @@
-export default {"categories":["smileys","people","animals","food","travel","activities","objects","symbols","flags"],"emoji":[{"emoji":"😀","category":0,"name":"grinning face","version":"1.0"},{"emoji":"😃","category":0,"name":"grinning face with big eyes","version":"1.0"},{"emoji":"😄","category":0,"name":"grinning face with smiling eyes","version":"1.0"},{"emoji":"😁","category":0,"name":"beaming face with smiling eyes","version":"1.0"},{"emoji":"😆","category":0,"name":"grinning squinting face","version":"1.0"},{"emoji":"😅","category":0,"name":"grinning face with sweat","version":"1.0"},{"emoji":"🤣","category":0,"name":"rolling on the floor laughing","version":"3.0"},{"emoji":"😂","category":0,"name":"face with tears of joy","version":"1.0"},{"emoji":"🙂","category":0,"name":"slightly smiling face","version":"1.0"},{"emoji":"🙃","category":0,"name":"upside-down face","version":"1.0"},{"emoji":"😉","category":0,"name":"winking face","version":"1.0"},{"emoji":"😊","category":0,"name":"smiling face with smiling eyes","version":"1.0"},{"emoji":"😇","category":0,"name":"smiling face with halo","version":"1.0"},{"emoji":"🥰","category":0,"name":"smiling face with hearts","version":"11.0"},{"emoji":"😍","category":0,"name":"smiling face with heart-eyes","version":"1.0"},{"emoji":"🤩","category":0,"name":"star-struck","version":"5.0"},{"emoji":"😘","category":0,"name":"face blowing a kiss","version":"1.0"},{"emoji":"😗","category":0,"name":"kissing face","version":"1.0"},{"emoji":"☺️","category":0,"name":"smiling face","version":"1.0"},{"emoji":"😚","category":0,"name":"kissing face with closed eyes","version":"1.0"},{"emoji":"😙","category":0,"name":"kissing face with smiling eyes","version":"1.0"},{"emoji":"🥲","category":0,"name":"smiling face with tear","version":"13.0"},{"emoji":"😋","category":0,"name":"face savoring food","version":"1.0"},{"emoji":"😛","category":0,"name":"face with tongue","version":"1.0"},{"emoji":"😜","category":0,"name":"winking face with tongue","version":"1.0"},{"emoji":"🤪","category":0,"name":"zany face","version":"5.0"},{"emoji":"😝","category":0,"name":"squinting face with tongue","version":"1.0"},{"emoji":"🤑","category":0,"name":"money-mouth face","version":"1.0"},{"emoji":"🤗","category":0,"name":"hugging face","version":"1.0"},{"emoji":"🤭","category":0,"name":"face with hand over mouth","version":"5.0"},{"emoji":"🤫","category":0,"name":"shushing face","version":"5.0"},{"emoji":"🤔","category":0,"name":"thinking face","version":"1.0"},{"emoji":"🤐","category":0,"name":"zipper-mouth face","version":"1.0"},{"emoji":"🤨","category":0,"name":"face with raised eyebrow","version":"5.0"},{"emoji":"😐","category":0,"name":"neutral face","version":"1.0"},{"emoji":"😑","category":0,"name":"expressionless face","version":"1.0"},{"emoji":"😶","category":0,"name":"face without mouth","version":"1.0"},{"emoji":"😏","category":0,"name":"smirking face","version":"1.0"},{"emoji":"😒","category":0,"name":"unamused face","version":"1.0"},{"emoji":"🙄","category":0,"name":"face with rolling eyes","version":"1.0"},{"emoji":"😬","category":0,"name":"grimacing face","version":"1.0"},{"emoji":"🤥","category":0,"name":"lying face","version":"3.0"},{"emoji":"😌","category":0,"name":"relieved face","version":"1.0"},{"emoji":"😔","category":0,"name":"pensive face","version":"1.0"},{"emoji":"😪","category":0,"name":"sleepy face","version":"1.0"},{"emoji":"🤤","category":0,"name":"drooling face","version":"3.0"},{"emoji":"😴","category":0,"name":"sleeping face","version":"1.0"},{"emoji":"😷","category":0,"name":"face with medical mask","version":"1.0"},{"emoji":"🤒","category":0,"name":"face with thermometer","version":"1.0"},{"emoji":"🤕","category":0,"name":"face with head-bandage","version":"1.0"},{"emoji":"🤢","category":0,"name":"nauseated face","version":"3.0"},{"emoji":"🤮","category":0,"name":"face vomiting","version":"5.0"},{"emoji":"🤧","category":0,"name":"sneezing face","version":"3.0"},{"emoji":"🥵","category":0,"name":"hot face","version":"11.0"},{"emoji":"🥶","category":0,"name":"cold face","version":"11.0"},{"emoji":"🥴","category":0,"name":"woozy face","version":"11.0"},{"emoji":"😵","category":0,"name":"dizzy face","version":"1.0"},{"emoji":"🤯","category":0,"name":"exploding head","version":"5.0"},{"emoji":"🤠","category":0,"name":"cowboy hat face","version":"3.0"},{"emoji":"🥳","category":0,"name":"partying face","version":"11.0"},{"emoji":"🥸","category":0,"name":"disguised face","version":"13.0"},{"emoji":"😎","category":0,"name":"smiling face with sunglasses","version":"1.0"},{"emoji":"🤓","category":0,"name":"nerd face","version":"1.0"},{"emoji":"🧐","category":0,"name":"face with monocle","version":"5.0"},{"emoji":"😕","category":0,"name":"confused face","version":"1.0"},{"emoji":"😟","category":0,"name":"worried face","version":"1.0"},{"emoji":"🙁","category":0,"name":"slightly frowning face","version":"1.0"},{"emoji":"☹️","category":0,"name":"frowning face","version":"1.0"},{"emoji":"😮","category":0,"name":"face with open mouth","version":"1.0"},{"emoji":"😯","category":0,"name":"hushed face","version":"1.0"},{"emoji":"😲","category":0,"name":"astonished face","version":"1.0"},{"emoji":"😳","category":0,"name":"flushed face","version":"1.0"},{"emoji":"🥺","category":0,"name":"pleading face","version":"11.0"},{"emoji":"😦","category":0,"name":"frowning face with open mouth","version":"1.0"},{"emoji":"😧","category":0,"name":"anguished face","version":"1.0"},{"emoji":"😨","category":0,"name":"fearful face","version":"1.0"},{"emoji":"😰","category":0,"name":"anxious face with sweat","version":"1.0"},{"emoji":"😥","category":0,"name":"sad but relieved face","version":"1.0"},{"emoji":"😢","category":0,"name":"crying face","version":"1.0"},{"emoji":"😭","category":0,"name":"loudly crying face","version":"1.0"},{"emoji":"😱","category":0,"name":"face screaming in fear","version":"1.0"},{"emoji":"😖","category":0,"name":"confounded face","version":"1.0"},{"emoji":"😣","category":0,"name":"persevering face","version":"1.0"},{"emoji":"😞","category":0,"name":"disappointed face","version":"1.0"},{"emoji":"😓","category":0,"name":"downcast face with sweat","version":"1.0"},{"emoji":"😩","category":0,"name":"weary face","version":"1.0"},{"emoji":"😫","category":0,"name":"tired face","version":"1.0"},{"emoji":"🥱","category":0,"name":"yawning face","version":"12.0"},{"emoji":"😤","category":0,"name":"face with steam from nose","version":"1.0"},{"emoji":"😡","category":0,"name":"pouting face","version":"1.0"},{"emoji":"😠","category":0,"name":"angry face","version":"1.0"},{"emoji":"🤬","category":0,"name":"face with symbols on mouth","version":"5.0"},{"emoji":"😈","category":0,"name":"smiling face with horns","version":"1.0"},{"emoji":"👿","category":0,"name":"angry face with horns","version":"1.0"},{"emoji":"💀","category":0,"name":"skull","version":"1.0"},{"emoji":"☠️","category":0,"name":"skull and crossbones","version":"1.0"},{"emoji":"💩","category":0,"name":"pile of poo","version":"1.0"},{"emoji":"🤡","category":0,"name":"clown face","version":"3.0"},{"emoji":"👹","category":0,"name":"ogre","version":"1.0"},{"emoji":"👺","category":0,"name":"goblin","version":"1.0"},{"emoji":"👻","category":0,"name":"ghost","version":"1.0"},{"emoji":"👽","category":0,"name":"alien","version":"1.0"},{"emoji":"👾","category":0,"name":"alien monster","version":"1.0"},{"emoji":"🤖","category":0,"name":"robot","version":"1.0"},{"emoji":"😺","category":0,"name":"grinning cat","version":"1.0"},{"emoji":"😸","category":0,"name":"grinning cat with smiling eyes","version":"1.0"},{"emoji":"😹","category":0,"name":"cat with tears of joy","version":"1.0"},{"emoji":"😻","category":0,"name":"smiling cat with heart-eyes","version":"1.0"},{"emoji":"😼","category":0,"name":"cat with wry smile","version":"1.0"},{"emoji":"😽","category":0,"name":"kissing cat","version":"1.0"},{"emoji":"🙀","category":0,"name":"weary cat","version":"1.0"},{"emoji":"😿","category":0,"name":"crying cat","version":"1.0"},{"emoji":"😾","category":0,"name":"pouting cat","version":"1.0"},{"emoji":"🙈","category":0,"name":"see-no-evil monkey","version":"1.0"},{"emoji":"🙉","category":0,"name":"hear-no-evil monkey","version":"1.0"},{"emoji":"🙊","category":0,"name":"speak-no-evil monkey","version":"1.0"},{"emoji":"💋","category":0,"name":"kiss mark","version":"1.0"},{"emoji":"💌","category":0,"name":"love letter","version":"1.0"},{"emoji":"💘","category":0,"name":"heart with arrow","version":"1.0"},{"emoji":"💝","category":0,"name":"heart with ribbon","version":"1.0"},{"emoji":"💖","category":0,"name":"sparkling heart","version":"1.0"},{"emoji":"💗","category":0,"name":"growing heart","version":"1.0"},{"emoji":"💓","category":0,"name":"beating heart","version":"1.0"},{"emoji":"💞","category":0,"name":"revolving hearts","version":"1.0"},{"emoji":"💕","category":0,"name":"two hearts","version":"1.0"},{"emoji":"💟","category":0,"name":"heart decoration","version":"1.0"},{"emoji":"❣️","category":0,"name":"heart exclamation","version":"1.0"},{"emoji":"💔","category":0,"name":"broken heart","version":"1.0"},{"emoji":"❤️","category":0,"name":"red heart","version":"1.0"},{"emoji":"🧡","category":0,"name":"orange heart","version":"5.0"},{"emoji":"💛","category":0,"name":"yellow heart","version":"1.0"},{"emoji":"💚","category":0,"name":"green heart","version":"1.0"},{"emoji":"💙","category":0,"name":"blue heart","version":"1.0"},{"emoji":"💜","category":0,"name":"purple heart","version":"1.0"},{"emoji":"🤎","category":0,"name":"brown heart","version":"12.0"},{"emoji":"🖤","category":0,"name":"black heart","version":"3.0"},{"emoji":"🤍","category":0,"name":"white heart","version":"12.0"},{"emoji":"💯","category":0,"name":"hundred points","version":"1.0"},{"emoji":"💢","category":0,"name":"anger symbol","version":"1.0"},{"emoji":"💥","category":0,"name":"collision","version":"1.0"},{"emoji":"💫","category":0,"name":"dizzy","version":"1.0"},{"emoji":"💦","category":0,"name":"sweat droplets","version":"1.0"},{"emoji":"💨","category":0,"name":"dashing away","version":"1.0"},{"emoji":"🕳️","category":0,"name":"hole","version":"1.0"},{"emoji":"💣","category":0,"name":"bomb","version":"1.0"},{"emoji":"💬","category":0,"name":"speech balloon","version":"1.0"},{"emoji":"👁️‍🗨️","category":0,"name":"eye in speech bubble","version":"2.0"},{"emoji":"🗨️","category":0,"name":"left speech bubble","version":"2.0"},{"emoji":"🗯️","category":0,"name":"right anger bubble","version":"1.0"},{"emoji":"💭","category":0,"name":"thought balloon","version":"1.0"},{"emoji":"💤","category":0,"name":"zzz","version":"1.0"},{"emoji":"👋","category":1,"name":"waving hand","variations":["👋🏻","👋🏼","👋🏽","👋🏾","👋🏿"],"version":"1.0"},{"emoji":"🤚","category":1,"name":"raised back of hand","variations":["🤚🏻","🤚🏼","🤚🏽","🤚🏾","🤚🏿"],"version":"3.0"},{"emoji":"🖐️","category":1,"name":"hand with fingers splayed","variations":["🖐🏻","🖐🏼","🖐🏽","🖐🏾","🖐🏿"],"version":"1.0"},{"emoji":"✋","category":1,"name":"raised hand","variations":["✋🏻","✋🏼","✋🏽","✋🏾","✋🏿"],"version":"1.0"},{"emoji":"🖖","category":1,"name":"vulcan salute","variations":["🖖🏻","🖖🏼","🖖🏽","🖖🏾","🖖🏿"],"version":"1.0"},{"emoji":"👌","category":1,"name":"OK hand","variations":["👌🏻","👌🏼","👌🏽","👌🏾","👌🏿"],"version":"1.0"},{"emoji":"🤌","category":1,"name":"pinched fingers","variations":["🤌🏻","🤌🏼","🤌🏽","🤌🏾","🤌🏿"],"version":"13.0"},{"emoji":"🤏","category":1,"name":"pinching hand","variations":["🤏🏻","🤏🏼","🤏🏽","🤏🏾","🤏🏿"],"version":"12.0"},{"emoji":"✌️","category":1,"name":"victory hand","variations":["✌🏻","✌🏼","✌🏽","✌🏾","✌🏿"],"version":"1.0"},{"emoji":"🤞","category":1,"name":"crossed fingers","variations":["🤞🏻","🤞🏼","🤞🏽","🤞🏾","🤞🏿"],"version":"3.0"},{"emoji":"🤟","category":1,"name":"love-you gesture","variations":["🤟🏻","🤟🏼","🤟🏽","🤟🏾","🤟🏿"],"version":"5.0"},{"emoji":"🤘","category":1,"name":"sign of the horns","variations":["🤘🏻","🤘🏼","🤘🏽","🤘🏾","🤘🏿"],"version":"1.0"},{"emoji":"🤙","category":1,"name":"call me hand","variations":["🤙🏻","🤙🏼","🤙🏽","🤙🏾","🤙🏿"],"version":"3.0"},{"emoji":"👈","category":1,"name":"backhand index pointing left","variations":["👈🏻","👈🏼","👈🏽","👈🏾","👈🏿"],"version":"1.0"},{"emoji":"👉","category":1,"name":"backhand index pointing right","variations":["👉🏻","👉🏼","👉🏽","👉🏾","👉🏿"],"version":"1.0"},{"emoji":"👆","category":1,"name":"backhand index pointing up","variations":["👆🏻","👆🏼","👆🏽","👆🏾","👆🏿"],"version":"1.0"},{"emoji":"🖕","category":1,"name":"middle finger","variations":["🖕🏻","🖕🏼","🖕🏽","🖕🏾","🖕🏿"],"version":"1.0"},{"emoji":"👇","category":1,"name":"backhand index pointing down","variations":["👇🏻","👇🏼","👇🏽","👇🏾","👇🏿"],"version":"1.0"},{"emoji":"☝️","category":1,"name":"index pointing up","variations":["☝🏻","☝🏼","☝🏽","☝🏾","☝🏿"],"version":"1.0"},{"emoji":"👍","category":1,"name":"thumbs up","variations":["👍🏻","👍🏼","👍🏽","👍🏾","👍🏿"],"version":"1.0"},{"emoji":"👎","category":1,"name":"thumbs down","variations":["👎🏻","👎🏼","👎🏽","👎🏾","👎🏿"],"version":"1.0"},{"emoji":"✊","category":1,"name":"raised fist","variations":["✊🏻","✊🏼","✊🏽","✊🏾","✊🏿"],"version":"1.0"},{"emoji":"👊","category":1,"name":"oncoming fist","variations":["👊🏻","👊🏼","👊🏽","👊🏾","👊🏿"],"version":"1.0"},{"emoji":"🤛","category":1,"name":"left-facing fist","variations":["🤛🏻","🤛🏼","🤛🏽","🤛🏾","🤛🏿"],"version":"3.0"},{"emoji":"🤜","category":1,"name":"right-facing fist","variations":["🤜🏻","🤜🏼","🤜🏽","🤜🏾","🤜🏿"],"version":"3.0"},{"emoji":"👏","category":1,"name":"clapping hands","variations":["👏🏻","👏🏼","👏🏽","👏🏾","👏🏿"],"version":"1.0"},{"emoji":"🙌","category":1,"name":"raising hands","variations":["🙌🏻","🙌🏼","🙌🏽","🙌🏾","🙌🏿"],"version":"1.0"},{"emoji":"👐","category":1,"name":"open hands","variations":["👐🏻","👐🏼","👐🏽","👐🏾","👐🏿"],"version":"1.0"},{"emoji":"🤲","category":1,"name":"palms up together","variations":["🤲🏻","🤲🏼","🤲🏽","🤲🏾","🤲🏿"],"version":"5.0"},{"emoji":"🤝","category":1,"name":"handshake","version":"3.0"},{"emoji":"🙏","category":1,"name":"folded hands","variations":["🙏🏻","🙏🏼","🙏🏽","🙏🏾","🙏🏿"],"version":"1.0"},{"emoji":"✍️","category":1,"name":"writing hand","variations":["✍🏻","✍🏼","✍🏽","✍🏾","✍🏿"],"version":"1.0"},{"emoji":"💅","category":1,"name":"nail polish","variations":["💅🏻","💅🏼","💅🏽","💅🏾","💅🏿"],"version":"1.0"},{"emoji":"🤳","category":1,"name":"selfie","variations":["🤳🏻","🤳🏼","🤳🏽","🤳🏾","🤳🏿"],"version":"3.0"},{"emoji":"💪","category":1,"name":"flexed biceps","variations":["💪🏻","💪🏼","💪🏽","💪🏾","💪🏿"],"version":"1.0"},{"emoji":"🦾","category":1,"name":"mechanical arm","version":"12.0"},{"emoji":"🦿","category":1,"name":"mechanical leg","version":"12.0"},{"emoji":"🦵","category":1,"name":"leg","variations":["🦵🏻","🦵🏼","🦵🏽","🦵🏾","🦵🏿"],"version":"11.0"},{"emoji":"🦶","category":1,"name":"foot","variations":["🦶🏻","🦶🏼","🦶🏽","🦶🏾","🦶🏿"],"version":"11.0"},{"emoji":"👂","category":1,"name":"ear","variations":["👂🏻","👂🏼","👂🏽","👂🏾","👂🏿"],"version":"1.0"},{"emoji":"🦻","category":1,"name":"ear with hearing aid","variations":["🦻🏻","🦻🏼","🦻🏽","🦻🏾","🦻🏿"],"version":"12.0"},{"emoji":"👃","category":1,"name":"nose","variations":["👃🏻","👃🏼","👃🏽","👃🏾","👃🏿"],"version":"1.0"},{"emoji":"🧠","category":1,"name":"brain","version":"5.0"},{"emoji":"🫀","category":1,"name":"anatomical heart","version":"13.0"},{"emoji":"🫁","category":1,"name":"lungs","version":"13.0"},{"emoji":"🦷","category":1,"name":"tooth","version":"11.0"},{"emoji":"🦴","category":1,"name":"bone","version":"11.0"},{"emoji":"👀","category":1,"name":"eyes","version":"1.0"},{"emoji":"👁️","category":1,"name":"eye","version":"1.0"},{"emoji":"👅","category":1,"name":"tongue","version":"1.0"},{"emoji":"👄","category":1,"name":"mouth","version":"1.0"},{"emoji":"👶","category":1,"name":"baby","variations":["👶🏻","👶🏼","👶🏽","👶🏾","👶🏿"],"version":"1.0"},{"emoji":"🧒","category":1,"name":"child","variations":["🧒🏻","🧒🏼","🧒🏽","🧒🏾","🧒🏿"],"version":"5.0"},{"emoji":"👦","category":1,"name":"boy","variations":["👦🏻","👦🏼","👦🏽","👦🏾","👦🏿"],"version":"1.0"},{"emoji":"👧","category":1,"name":"girl","variations":["👧🏻","👧🏼","👧🏽","👧🏾","👧🏿"],"version":"1.0"},{"emoji":"🧑","category":1,"name":"person","variations":["🧑🏻","🧑🏼","🧑🏽","🧑🏾","🧑🏿"],"version":"5.0"},{"emoji":"👱","category":1,"name":"person with blond hair","variations":["👱🏻","👱🏼","👱🏽","👱🏾","👱🏿"],"version":"1.0"},{"emoji":"👨","category":1,"name":"man","variations":["👨🏻","👨🏼","👨🏽","👨🏾","👨🏿"],"version":"1.0"},{"emoji":"🧔","category":1,"name":"man with beard","variations":["🧔🏻","🧔🏼","🧔🏽","🧔🏾","🧔🏿"],"version":"5.0"},{"emoji":"👨‍🦰","category":1,"name":"man with red hair","variations":["👨🏻‍🦰","👨🏼‍🦰","👨🏽‍🦰","👨🏾‍🦰","👨🏿‍🦰"],"version":"11.0"},{"emoji":"👨‍🦱","category":1,"name":"man with curly hair","variations":["👨🏻‍🦱","👨🏼‍🦱","👨🏽‍🦱","👨🏾‍🦱","👨🏿‍🦱"],"version":"11.0"},{"emoji":"👨‍🦳","category":1,"name":"man with white hair","variations":["👨🏻‍🦳","👨🏼‍🦳","👨🏽‍🦳","👨🏾‍🦳","👨🏿‍🦳"],"version":"11.0"},{"emoji":"👨‍🦲","category":1,"name":"man with no hair","variations":["👨🏻‍🦲","👨🏼‍🦲","👨🏽‍🦲","👨🏾‍🦲","👨🏿‍🦲"],"version":"11.0"},{"emoji":"👩","category":1,"name":"woman","variations":["👩🏻","👩🏼","👩🏽","👩🏾","👩🏿"],"version":"1.0"},{"emoji":"👩‍🦰","category":1,"name":"woman with red hair","variations":["👩🏻‍🦰","👩🏼‍🦰","👩🏽‍🦰","👩🏾‍🦰","👩🏿‍🦰"],"version":"11.0"},{"emoji":"🧑‍🦰","category":1,"name":"person with red hair","variations":["🧑🏻‍🦰","🧑🏼‍🦰","🧑🏽‍🦰","🧑🏾‍🦰","🧑🏿‍🦰"],"version":"12.1"},{"emoji":"👩‍🦱","category":1,"name":"woman with curly hair","variations":["👩🏻‍🦱","👩🏼‍🦱","👩🏽‍🦱","👩🏾‍🦱","👩🏿‍🦱"],"version":"11.0"},{"emoji":"🧑‍🦱","category":1,"name":"person with curly hair","variations":["🧑🏻‍🦱","🧑🏼‍🦱","🧑🏽‍🦱","🧑🏾‍🦱","🧑🏿‍🦱"],"version":"12.1"},{"emoji":"👩‍🦳","category":1,"name":"woman with white hair","variations":["👩🏻‍🦳","👩🏼‍🦳","👩🏽‍🦳","👩🏾‍🦳","👩🏿‍🦳"],"version":"11.0"},{"emoji":"🧑‍🦳","category":1,"name":"person with white hair","variations":["🧑🏻‍🦳","🧑🏼‍🦳","🧑🏽‍🦳","🧑🏾‍🦳","🧑🏿‍🦳"],"version":"12.1"},{"emoji":"👩‍🦲","category":1,"name":"woman with no hair","variations":["👩🏻‍🦲","👩🏼‍🦲","👩🏽‍🦲","👩🏾‍🦲","👩🏿‍🦲"],"version":"11.0"},{"emoji":"🧑‍🦲","category":1,"name":"person with no hair","variations":["🧑🏻‍🦲","🧑🏼‍🦲","🧑🏽‍🦲","🧑🏾‍🦲","🧑🏿‍🦲"],"version":"12.1"},{"emoji":"👱‍♀️","category":1,"name":"woman with blond hair","variations":["👱🏻‍♀️","👱🏼‍♀️","👱🏽‍♀️","👱🏾‍♀️","👱🏿‍♀️"],"version":"4.0"},{"emoji":"👱‍♂️","category":1,"name":"man with blond hair","variations":["👱🏻‍♂️","👱🏼‍♂️","👱🏽‍♂️","👱🏾‍♂️","👱🏿‍♂️"],"version":"4.0"},{"emoji":"🧓","category":1,"name":"older person","variations":["🧓🏻","🧓🏼","🧓🏽","🧓🏾","🧓🏿"],"version":"5.0"},{"emoji":"👴","category":1,"name":"old man","variations":["👴🏻","👴🏼","👴🏽","👴🏾","👴🏿"],"version":"1.0"},{"emoji":"👵","category":1,"name":"old woman","variations":["👵🏻","👵🏼","👵🏽","👵🏾","👵🏿"],"version":"1.0"},{"emoji":"🙍","category":1,"name":"person frowning","variations":["🙍🏻","🙍🏼","🙍🏽","🙍🏾","🙍🏿"],"version":"1.0"},{"emoji":"🙍‍♂️","category":1,"name":"man frowning","variations":["🙍🏻‍♂️","🙍🏼‍♂️","🙍🏽‍♂️","🙍🏾‍♂️","🙍🏿‍♂️"],"version":"4.0"},{"emoji":"🙍‍♀️","category":1,"name":"woman frowning","variations":["🙍🏻‍♀️","🙍🏼‍♀️","🙍🏽‍♀️","🙍🏾‍♀️","🙍🏿‍♀️"],"version":"4.0"},{"emoji":"🙎","category":1,"name":"person pouting","variations":["🙎🏻","🙎🏼","🙎🏽","🙎🏾","🙎🏿"],"version":"1.0"},{"emoji":"🙎‍♂️","category":1,"name":"man pouting","variations":["🙎🏻‍♂️","🙎🏼‍♂️","🙎🏽‍♂️","🙎🏾‍♂️","🙎🏿‍♂️"],"version":"4.0"},{"emoji":"🙎‍♀️","category":1,"name":"woman pouting","variations":["🙎🏻‍♀️","🙎🏼‍♀️","🙎🏽‍♀️","🙎🏾‍♀️","🙎🏿‍♀️"],"version":"4.0"},{"emoji":"🙅","category":1,"name":"person gesturing NO","variations":["🙅🏻","🙅🏼","🙅🏽","🙅🏾","🙅🏿"],"version":"1.0"},{"emoji":"🙅‍♂️","category":1,"name":"man gesturing NO","variations":["🙅🏻‍♂️","🙅🏼‍♂️","🙅🏽‍♂️","🙅🏾‍♂️","🙅🏿‍♂️"],"version":"4.0"},{"emoji":"🙅‍♀️","category":1,"name":"woman gesturing NO","variations":["🙅🏻‍♀️","🙅🏼‍♀️","🙅🏽‍♀️","🙅🏾‍♀️","🙅🏿‍♀️"],"version":"4.0"},{"emoji":"🙆","category":1,"name":"person gesturing OK","variations":["🙆🏻","🙆🏼","🙆🏽","🙆🏾","🙆🏿"],"version":"1.0"},{"emoji":"🙆‍♂️","category":1,"name":"man gesturing OK","variations":["🙆🏻‍♂️","🙆🏼‍♂️","🙆🏽‍♂️","🙆🏾‍♂️","🙆🏿‍♂️"],"version":"4.0"},{"emoji":"🙆‍♀️","category":1,"name":"woman gesturing OK","variations":["🙆🏻‍♀️","🙆🏼‍♀️","🙆🏽‍♀️","🙆🏾‍♀️","🙆🏿‍♀️"],"version":"4.0"},{"emoji":"💁","category":1,"name":"person tipping hand","variations":["💁🏻","💁🏼","💁🏽","💁🏾","💁🏿"],"version":"1.0"},{"emoji":"💁‍♂️","category":1,"name":"man tipping hand","variations":["💁🏻‍♂️","💁🏼‍♂️","💁🏽‍♂️","💁🏾‍♂️","💁🏿‍♂️"],"version":"4.0"},{"emoji":"💁‍♀️","category":1,"name":"woman tipping hand","variations":["💁🏻‍♀️","💁🏼‍♀️","💁🏽‍♀️","💁🏾‍♀️","💁🏿‍♀️"],"version":"4.0"},{"emoji":"🙋","category":1,"name":"person raising hand","variations":["🙋🏻","🙋🏼","🙋🏽","🙋🏾","🙋🏿"],"version":"1.0"},{"emoji":"🙋‍♂️","category":1,"name":"man raising hand","variations":["🙋🏻‍♂️","🙋🏼‍♂️","🙋🏽‍♂️","🙋🏾‍♂️","🙋🏿‍♂️"],"version":"4.0"},{"emoji":"🙋‍♀️","category":1,"name":"woman raising hand","variations":["🙋🏻‍♀️","🙋🏼‍♀️","🙋🏽‍♀️","🙋🏾‍♀️","🙋🏿‍♀️"],"version":"4.0"},{"emoji":"🧏","category":1,"name":"deaf person","variations":["🧏🏻","🧏🏼","🧏🏽","🧏🏾","🧏🏿"],"version":"12.0"},{"emoji":"🧏‍♂️","category":1,"name":"deaf man","variations":["🧏🏻‍♂️","🧏🏼‍♂️","🧏🏽‍♂️","🧏🏾‍♂️","🧏🏿‍♂️"],"version":"12.0"},{"emoji":"🧏‍♀️","category":1,"name":"deaf woman","variations":["🧏🏻‍♀️","🧏🏼‍♀️","🧏🏽‍♀️","🧏🏾‍♀️","🧏🏿‍♀️"],"version":"12.0"},{"emoji":"🙇","category":1,"name":"person bowing","variations":["🙇🏻","🙇🏼","🙇🏽","🙇🏾","🙇🏿"],"version":"1.0"},{"emoji":"🙇‍♂️","category":1,"name":"man bowing","variations":["🙇🏻‍♂️","🙇🏼‍♂️","🙇🏽‍♂️","🙇🏾‍♂️","🙇🏿‍♂️"],"version":"4.0"},{"emoji":"🙇‍♀️","category":1,"name":"woman bowing","variations":["🙇🏻‍♀️","🙇🏼‍♀️","🙇🏽‍♀️","🙇🏾‍♀️","🙇🏿‍♀️"],"version":"4.0"},{"emoji":"🤦","category":1,"name":"person facepalming","variations":["🤦🏻","🤦🏼","🤦🏽","🤦🏾","🤦🏿"],"version":"3.0"},{"emoji":"🤦‍♂️","category":1,"name":"man facepalming","variations":["🤦🏻‍♂️","🤦🏼‍♂️","🤦🏽‍♂️","🤦🏾‍♂️","🤦🏿‍♂️"],"version":"4.0"},{"emoji":"🤦‍♀️","category":1,"name":"woman facepalming","variations":["🤦🏻‍♀️","🤦🏼‍♀️","🤦🏽‍♀️","🤦🏾‍♀️","🤦🏿‍♀️"],"version":"4.0"},{"emoji":"🤷","category":1,"name":"person shrugging","variations":["🤷🏻","🤷🏼","🤷🏽","🤷🏾","🤷🏿"],"version":"3.0"},{"emoji":"🤷‍♂️","category":1,"name":"man shrugging","variations":["🤷🏻‍♂️","🤷🏼‍♂️","🤷🏽‍♂️","🤷🏾‍♂️","🤷🏿‍♂️"],"version":"4.0"},{"emoji":"🤷‍♀️","category":1,"name":"woman shrugging","variations":["🤷🏻‍♀️","🤷🏼‍♀️","🤷🏽‍♀️","🤷🏾‍♀️","🤷🏿‍♀️"],"version":"4.0"},{"emoji":"🧑‍⚕️","category":1,"name":"health worker","variations":["🧑🏻‍⚕️","🧑🏼‍⚕️","🧑🏽‍⚕️","🧑🏾‍⚕️","🧑🏿‍⚕️"],"version":"12.1"},{"emoji":"👨‍⚕️","category":1,"name":"man health worker","variations":["👨🏻‍⚕️","👨🏼‍⚕️","👨🏽‍⚕️","👨🏾‍⚕️","👨🏿‍⚕️"],"version":"4.0"},{"emoji":"👩‍⚕️","category":1,"name":"woman health worker","variations":["👩🏻‍⚕️","👩🏼‍⚕️","👩🏽‍⚕️","👩🏾‍⚕️","👩🏿‍⚕️"],"version":"4.0"},{"emoji":"🧑‍🎓","category":1,"name":"student","variations":["🧑🏻‍🎓","🧑🏼‍🎓","🧑🏽‍🎓","🧑🏾‍🎓","🧑🏿‍🎓"],"version":"12.1"},{"emoji":"👨‍🎓","category":1,"name":"man student","variations":["👨🏻‍🎓","👨🏼‍🎓","👨🏽‍🎓","👨🏾‍🎓","👨🏿‍🎓"],"version":"4.0"},{"emoji":"👩‍🎓","category":1,"name":"woman student","variations":["👩🏻‍🎓","👩🏼‍🎓","👩🏽‍🎓","👩🏾‍🎓","👩🏿‍🎓"],"version":"4.0"},{"emoji":"🧑‍🏫","category":1,"name":"teacher","variations":["🧑🏻‍🏫","🧑🏼‍🏫","🧑🏽‍🏫","🧑🏾‍🏫","🧑🏿‍🏫"],"version":"12.1"},{"emoji":"👨‍🏫","category":1,"name":"man teacher","variations":["👨🏻‍🏫","👨🏼‍🏫","👨🏽‍🏫","👨🏾‍🏫","👨🏿‍🏫"],"version":"4.0"},{"emoji":"👩‍🏫","category":1,"name":"woman teacher","variations":["👩🏻‍🏫","👩🏼‍🏫","👩🏽‍🏫","👩🏾‍🏫","👩🏿‍🏫"],"version":"4.0"},{"emoji":"🧑‍⚖️","category":1,"name":"judge","variations":["🧑🏻‍⚖️","🧑🏼‍⚖️","🧑🏽‍⚖️","🧑🏾‍⚖️","🧑🏿‍⚖️"],"version":"12.1"},{"emoji":"👨‍⚖️","category":1,"name":"man judge","variations":["👨🏻‍⚖️","👨🏼‍⚖️","👨🏽‍⚖️","👨🏾‍⚖️","👨🏿‍⚖️"],"version":"4.0"},{"emoji":"👩‍⚖️","category":1,"name":"woman judge","variations":["👩🏻‍⚖️","👩🏼‍⚖️","👩🏽‍⚖️","👩🏾‍⚖️","👩🏿‍⚖️"],"version":"4.0"},{"emoji":"🧑‍🌾","category":1,"name":"farmer","variations":["🧑🏻‍🌾","🧑🏼‍🌾","🧑🏽‍🌾","🧑🏾‍🌾","🧑🏿‍🌾"],"version":"12.1"},{"emoji":"👨‍🌾","category":1,"name":"man farmer","variations":["👨🏻‍🌾","👨🏼‍🌾","👨🏽‍🌾","👨🏾‍🌾","👨🏿‍🌾"],"version":"4.0"},{"emoji":"👩‍🌾","category":1,"name":"woman farmer","variations":["👩🏻‍🌾","👩🏼‍🌾","👩🏽‍🌾","👩🏾‍🌾","👩🏿‍🌾"],"version":"4.0"},{"emoji":"🧑‍🍳","category":1,"name":"cook","variations":["🧑🏻‍🍳","🧑🏼‍🍳","🧑🏽‍🍳","🧑🏾‍🍳","🧑🏿‍🍳"],"version":"12.1"},{"emoji":"👨‍🍳","category":1,"name":"man cook","variations":["👨🏻‍🍳","👨🏼‍🍳","👨🏽‍🍳","👨🏾‍🍳","👨🏿‍🍳"],"version":"4.0"},{"emoji":"👩‍🍳","category":1,"name":"woman cook","variations":["👩🏻‍🍳","👩🏼‍🍳","👩🏽‍🍳","👩🏾‍🍳","👩🏿‍🍳"],"version":"4.0"},{"emoji":"🧑‍🔧","category":1,"name":"mechanic","variations":["🧑🏻‍🔧","🧑🏼‍🔧","🧑🏽‍🔧","🧑🏾‍🔧","🧑🏿‍🔧"],"version":"12.1"},{"emoji":"👨‍🔧","category":1,"name":"man mechanic","variations":["👨🏻‍🔧","👨🏼‍🔧","👨🏽‍🔧","👨🏾‍🔧","👨🏿‍🔧"],"version":"4.0"},{"emoji":"👩‍🔧","category":1,"name":"woman mechanic","variations":["👩🏻‍🔧","👩🏼‍🔧","👩🏽‍🔧","👩🏾‍🔧","👩🏿‍🔧"],"version":"4.0"},{"emoji":"🧑‍🏭","category":1,"name":"factory worker","variations":["🧑🏻‍🏭","🧑🏼‍🏭","🧑🏽‍🏭","🧑🏾‍🏭","🧑🏿‍🏭"],"version":"12.1"},{"emoji":"👨‍🏭","category":1,"name":"man factory worker","variations":["👨🏻‍🏭","👨🏼‍🏭","👨🏽‍🏭","👨🏾‍🏭","👨🏿‍🏭"],"version":"4.0"},{"emoji":"👩‍🏭","category":1,"name":"woman factory worker","variations":["👩🏻‍🏭","👩🏼‍🏭","👩🏽‍🏭","👩🏾‍🏭","👩🏿‍🏭"],"version":"4.0"},{"emoji":"🧑‍💼","category":1,"name":"office worker","variations":["🧑🏻‍💼","🧑🏼‍💼","🧑🏽‍💼","🧑🏾‍💼","🧑🏿‍💼"],"version":"12.1"},{"emoji":"👨‍💼","category":1,"name":"man office worker","variations":["👨🏻‍💼","👨🏼‍💼","👨🏽‍💼","👨🏾‍💼","👨🏿‍💼"],"version":"4.0"},{"emoji":"👩‍💼","category":1,"name":"woman office worker","variations":["👩🏻‍💼","👩🏼‍💼","👩🏽‍💼","👩🏾‍💼","👩🏿‍💼"],"version":"4.0"},{"emoji":"🧑‍🔬","category":1,"name":"scientist","variations":["🧑🏻‍🔬","🧑🏼‍🔬","🧑🏽‍🔬","🧑🏾‍🔬","🧑🏿‍🔬"],"version":"12.1"},{"emoji":"👨‍🔬","category":1,"name":"man scientist","variations":["👨🏻‍🔬","👨🏼‍🔬","👨🏽‍🔬","👨🏾‍🔬","👨🏿‍🔬"],"version":"4.0"},{"emoji":"👩‍🔬","category":1,"name":"woman scientist","variations":["👩🏻‍🔬","👩🏼‍🔬","👩🏽‍🔬","👩🏾‍🔬","👩🏿‍🔬"],"version":"4.0"},{"emoji":"🧑‍💻","category":1,"name":"technologist","variations":["🧑🏻‍💻","🧑🏼‍💻","🧑🏽‍💻","🧑🏾‍💻","🧑🏿‍💻"],"version":"12.1"},{"emoji":"👨‍💻","category":1,"name":"man technologist","variations":["👨🏻‍💻","👨🏼‍💻","👨🏽‍💻","👨🏾‍💻","👨🏿‍💻"],"version":"4.0"},{"emoji":"👩‍💻","category":1,"name":"woman technologist","variations":["👩🏻‍💻","👩🏼‍💻","👩🏽‍💻","👩🏾‍💻","👩🏿‍💻"],"version":"4.0"},{"emoji":"🧑‍🎤","category":1,"name":"singer","variations":["🧑🏻‍🎤","🧑🏼‍🎤","🧑🏽‍🎤","🧑🏾‍🎤","🧑🏿‍🎤"],"version":"12.1"},{"emoji":"👨‍🎤","category":1,"name":"man singer","variations":["👨🏻‍🎤","👨🏼‍🎤","👨🏽‍🎤","👨🏾‍🎤","👨🏿‍🎤"],"version":"4.0"},{"emoji":"👩‍🎤","category":1,"name":"woman singer","variations":["👩🏻‍🎤","👩🏼‍🎤","👩🏽‍🎤","👩🏾‍🎤","👩🏿‍🎤"],"version":"4.0"},{"emoji":"🧑‍🎨","category":1,"name":"artist","variations":["🧑🏻‍🎨","🧑🏼‍🎨","🧑🏽‍🎨","🧑🏾‍🎨","🧑🏿‍🎨"],"version":"12.1"},{"emoji":"👨‍🎨","category":1,"name":"man artist","variations":["👨🏻‍🎨","👨🏼‍🎨","👨🏽‍🎨","👨🏾‍🎨","👨🏿‍🎨"],"version":"4.0"},{"emoji":"👩‍🎨","category":1,"name":"woman artist","variations":["👩🏻‍🎨","👩🏼‍🎨","👩🏽‍🎨","👩🏾‍🎨","👩🏿‍🎨"],"version":"4.0"},{"emoji":"🧑‍✈️","category":1,"name":"pilot","variations":["🧑🏻‍✈️","🧑🏼‍✈️","🧑🏽‍✈️","🧑🏾‍✈️","🧑🏿‍✈️"],"version":"12.1"},{"emoji":"👨‍✈️","category":1,"name":"man pilot","variations":["👨🏻‍✈️","👨🏼‍✈️","👨🏽‍✈️","👨🏾‍✈️","👨🏿‍✈️"],"version":"4.0"},{"emoji":"👩‍✈️","category":1,"name":"woman pilot","variations":["👩🏻‍✈️","👩🏼‍✈️","👩🏽‍✈️","👩🏾‍✈️","👩🏿‍✈️"],"version":"4.0"},{"emoji":"🧑‍🚀","category":1,"name":"astronaut","variations":["🧑🏻‍🚀","🧑🏼‍🚀","🧑🏽‍🚀","🧑🏾‍🚀","🧑🏿‍🚀"],"version":"12.1"},{"emoji":"👨‍🚀","category":1,"name":"man astronaut","variations":["👨🏻‍🚀","👨🏼‍🚀","👨🏽‍🚀","👨🏾‍🚀","👨🏿‍🚀"],"version":"4.0"},{"emoji":"👩‍🚀","category":1,"name":"woman astronaut","variations":["👩🏻‍🚀","👩🏼‍🚀","👩🏽‍🚀","👩🏾‍🚀","👩🏿‍🚀"],"version":"4.0"},{"emoji":"🧑‍🚒","category":1,"name":"firefighter","variations":["🧑🏻‍🚒","🧑🏼‍🚒","🧑🏽‍🚒","🧑🏾‍🚒","🧑🏿‍🚒"],"version":"12.1"},{"emoji":"👨‍🚒","category":1,"name":"man firefighter","variations":["👨🏻‍🚒","👨🏼‍🚒","👨🏽‍🚒","👨🏾‍🚒","👨🏿‍🚒"],"version":"4.0"},{"emoji":"👩‍🚒","category":1,"name":"woman firefighter","variations":["👩🏻‍🚒","👩🏼‍🚒","👩🏽‍🚒","👩🏾‍🚒","👩🏿‍🚒"],"version":"4.0"},{"emoji":"👮","category":1,"name":"police officer","variations":["👮🏻","👮🏼","👮🏽","👮🏾","👮🏿"],"version":"1.0"},{"emoji":"👮‍♂️","category":1,"name":"man police officer","variations":["👮🏻‍♂️","👮🏼‍♂️","👮🏽‍♂️","👮🏾‍♂️","👮🏿‍♂️"],"version":"4.0"},{"emoji":"👮‍♀️","category":1,"name":"woman police officer","variations":["👮🏻‍♀️","👮🏼‍♀️","👮🏽‍♀️","👮🏾‍♀️","👮🏿‍♀️"],"version":"4.0"},{"emoji":"🕵️","category":1,"name":"detective","variations":["🕵🏻","🕵🏼","🕵🏽","🕵🏾","🕵🏿"],"version":"1.0"},{"emoji":"🕵️‍♂️","category":1,"name":"man detective","variations":["🕵🏻‍♂️","🕵🏼‍♂️","🕵🏽‍♂️","🕵🏾‍♂️","🕵🏿‍♂️"],"version":"4.0"},{"emoji":"🕵️‍♀️","category":1,"name":"woman detective","variations":["🕵🏻‍♀️","🕵🏼‍♀️","🕵🏽‍♀️","🕵🏾‍♀️","🕵🏿‍♀️"],"version":"4.0"},{"emoji":"💂","category":1,"name":"guard","variations":["💂🏻","💂🏼","💂🏽","💂🏾","💂🏿"],"version":"1.0"},{"emoji":"💂‍♂️","category":1,"name":"man guard","variations":["💂🏻‍♂️","💂🏼‍♂️","💂🏽‍♂️","💂🏾‍♂️","💂🏿‍♂️"],"version":"4.0"},{"emoji":"💂‍♀️","category":1,"name":"woman guard","variations":["💂🏻‍♀️","💂🏼‍♀️","💂🏽‍♀️","💂🏾‍♀️","💂🏿‍♀️"],"version":"4.0"},{"emoji":"🥷","category":1,"name":"ninja","variations":["🥷🏻","🥷🏼","🥷🏽","🥷🏾","🥷🏿"],"version":"13.0"},{"emoji":"👷","category":1,"name":"construction worker","variations":["👷🏻","👷🏼","👷🏽","👷🏾","👷🏿"],"version":"1.0"},{"emoji":"👷‍♂️","category":1,"name":"man construction worker","variations":["👷🏻‍♂️","👷🏼‍♂️","👷🏽‍♂️","👷🏾‍♂️","👷🏿‍♂️"],"version":"4.0"},{"emoji":"👷‍♀️","category":1,"name":"woman construction worker","variations":["👷🏻‍♀️","👷🏼‍♀️","👷🏽‍♀️","👷🏾‍♀️","👷🏿‍♀️"],"version":"4.0"},{"emoji":"🤴","category":1,"name":"prince","variations":["🤴🏻","🤴🏼","🤴🏽","🤴🏾","🤴🏿"],"version":"3.0"},{"emoji":"👸","category":1,"name":"princess","variations":["👸🏻","👸🏼","👸🏽","👸🏾","👸🏿"],"version":"1.0"},{"emoji":"👳","category":1,"name":"person wearing turban","variations":["👳🏻","👳🏼","👳🏽","👳🏾","👳🏿"],"version":"1.0"},{"emoji":"👳‍♂️","category":1,"name":"man wearing turban","variations":["👳🏻‍♂️","👳🏼‍♂️","👳🏽‍♂️","👳🏾‍♂️","👳🏿‍♂️"],"version":"4.0"},{"emoji":"👳‍♀️","category":1,"name":"woman wearing turban","variations":["👳🏻‍♀️","👳🏼‍♀️","👳🏽‍♀️","👳🏾‍♀️","👳🏿‍♀️"],"version":"4.0"},{"emoji":"👲","category":1,"name":"person with skullcap","variations":["👲🏻","👲🏼","👲🏽","👲🏾","👲🏿"],"version":"1.0"},{"emoji":"🧕","category":1,"name":"woman with headscarf","variations":["🧕🏻","🧕🏼","🧕🏽","🧕🏾","🧕🏿"],"version":"5.0"},{"emoji":"🤵","category":1,"name":"person in tuxedo","variations":["🤵🏻","🤵🏼","🤵🏽","🤵🏾","🤵🏿"],"version":"3.0"},{"emoji":"🤵‍♂️","category":1,"name":"man in tuxedo","variations":["🤵🏻‍♂️","🤵🏼‍♂️","🤵🏽‍♂️","🤵🏾‍♂️","🤵🏿‍♂️"],"version":"13.0"},{"emoji":"🤵‍♀️","category":1,"name":"woman in tuxedo","variations":["🤵🏻‍♀️","🤵🏼‍♀️","🤵🏽‍♀️","🤵🏾‍♀️","🤵🏿‍♀️"],"version":"13.0"},{"emoji":"👰","category":1,"name":"person with veil","variations":["👰🏻","👰🏼","👰🏽","👰🏾","👰🏿"],"version":"1.0"},{"emoji":"👰‍♂️","category":1,"name":"man with veil","variations":["👰🏻‍♂️","👰🏼‍♂️","👰🏽‍♂️","👰🏾‍♂️","👰🏿‍♂️"],"version":"13.0"},{"emoji":"👰‍♀️","category":1,"name":"woman with veil","variations":["👰🏻‍♀️","👰🏼‍♀️","👰🏽‍♀️","👰🏾‍♀️","👰🏿‍♀️"],"version":"13.0"},{"emoji":"🤰","category":1,"name":"pregnant woman","variations":["🤰🏻","🤰🏼","🤰🏽","🤰🏾","🤰🏿"],"version":"3.0"},{"emoji":"🤱","category":1,"name":"breast-feeding","variations":["🤱🏻","🤱🏼","🤱🏽","🤱🏾","🤱🏿"],"version":"5.0"},{"emoji":"👩‍🍼","category":1,"name":"woman feeding baby","variations":["👩🏻‍🍼","👩🏼‍🍼","👩🏽‍🍼","👩🏾‍🍼","👩🏿‍🍼"],"version":"13.0"},{"emoji":"👨‍🍼","category":1,"name":"man feeding baby","variations":["👨🏻‍🍼","👨🏼‍🍼","👨🏽‍🍼","👨🏾‍🍼","👨🏿‍🍼"],"version":"13.0"},{"emoji":"🧑‍🍼","category":1,"name":"person feeding baby","variations":["🧑🏻‍🍼","🧑🏼‍🍼","🧑🏽‍🍼","🧑🏾‍🍼","🧑🏿‍🍼"],"version":"13.0"},{"emoji":"👼","category":1,"name":"baby angel","variations":["👼🏻","👼🏼","👼🏽","👼🏾","👼🏿"],"version":"1.0"},{"emoji":"🎅","category":1,"name":"Santa Claus","variations":["🎅🏻","🎅🏼","🎅🏽","🎅🏾","🎅🏿"],"version":"1.0"},{"emoji":"🤶","category":1,"name":"Mrs. Claus","variations":["🤶🏻","🤶🏼","🤶🏽","🤶🏾","🤶🏿"],"version":"3.0"},{"emoji":"🧑‍🎄","category":1,"name":"mx claus","variations":["🧑🏻‍🎄","🧑🏼‍🎄","🧑🏽‍🎄","🧑🏾‍🎄","🧑🏿‍🎄"],"version":"13.0"},{"emoji":"🦸","category":1,"name":"superhero","variations":["🦸🏻","🦸🏼","🦸🏽","🦸🏾","🦸🏿"],"version":"11.0"},{"emoji":"🦸‍♂️","category":1,"name":"man superhero","variations":["🦸🏻‍♂️","🦸🏼‍♂️","🦸🏽‍♂️","🦸🏾‍♂️","🦸🏿‍♂️"],"version":"11.0"},{"emoji":"🦸‍♀️","category":1,"name":"woman superhero","variations":["🦸🏻‍♀️","🦸🏼‍♀️","🦸🏽‍♀️","🦸🏾‍♀️","🦸🏿‍♀️"],"version":"11.0"},{"emoji":"🦹","category":1,"name":"supervillain","variations":["🦹🏻","🦹🏼","🦹🏽","🦹🏾","🦹🏿"],"version":"11.0"},{"emoji":"🦹‍♂️","category":1,"name":"man supervillain","variations":["🦹🏻‍♂️","🦹🏼‍♂️","🦹🏽‍♂️","🦹🏾‍♂️","🦹🏿‍♂️"],"version":"11.0"},{"emoji":"🦹‍♀️","category":1,"name":"woman supervillain","variations":["🦹🏻‍♀️","🦹🏼‍♀️","🦹🏽‍♀️","🦹🏾‍♀️","🦹🏿‍♀️"],"version":"11.0"},{"emoji":"🧙","category":1,"name":"mage","variations":["🧙🏻","🧙🏼","🧙🏽","🧙🏾","🧙🏿"],"version":"5.0"},{"emoji":"🧙‍♂️","category":1,"name":"man mage","variations":["🧙🏻‍♂️","🧙🏼‍♂️","🧙🏽‍♂️","🧙🏾‍♂️","🧙🏿‍♂️"],"version":"5.0"},{"emoji":"🧙‍♀️","category":1,"name":"woman mage","variations":["🧙🏻‍♀️","🧙🏼‍♀️","🧙🏽‍♀️","🧙🏾‍♀️","🧙🏿‍♀️"],"version":"5.0"},{"emoji":"🧚","category":1,"name":"fairy","variations":["🧚🏻","🧚🏼","🧚🏽","🧚🏾","🧚🏿"],"version":"5.0"},{"emoji":"🧚‍♂️","category":1,"name":"man fairy","variations":["🧚🏻‍♂️","🧚🏼‍♂️","🧚🏽‍♂️","🧚🏾‍♂️","🧚🏿‍♂️"],"version":"5.0"},{"emoji":"🧚‍♀️","category":1,"name":"woman fairy","variations":["🧚🏻‍♀️","🧚🏼‍♀️","🧚🏽‍♀️","🧚🏾‍♀️","🧚🏿‍♀️"],"version":"5.0"},{"emoji":"🧛","category":1,"name":"vampire","variations":["🧛🏻","🧛🏼","🧛🏽","🧛🏾","🧛🏿"],"version":"5.0"},{"emoji":"🧛‍♂️","category":1,"name":"man vampire","variations":["🧛🏻‍♂️","🧛🏼‍♂️","🧛🏽‍♂️","🧛🏾‍♂️","🧛🏿‍♂️"],"version":"5.0"},{"emoji":"🧛‍♀️","category":1,"name":"woman vampire","variations":["🧛🏻‍♀️","🧛🏼‍♀️","🧛🏽‍♀️","🧛🏾‍♀️","🧛🏿‍♀️"],"version":"5.0"},{"emoji":"🧜","category":1,"name":"merperson","variations":["🧜🏻","🧜🏼","🧜🏽","🧜🏾","🧜🏿"],"version":"5.0"},{"emoji":"🧜‍♂️","category":1,"name":"merman","variations":["🧜🏻‍♂️","🧜🏼‍♂️","🧜🏽‍♂️","🧜🏾‍♂️","🧜🏿‍♂️"],"version":"5.0"},{"emoji":"🧜‍♀️","category":1,"name":"mermaid","variations":["🧜🏻‍♀️","🧜🏼‍♀️","🧜🏽‍♀️","🧜🏾‍♀️","🧜🏿‍♀️"],"version":"5.0"},{"emoji":"🧝","category":1,"name":"elf","variations":["🧝🏻","🧝🏼","🧝🏽","🧝🏾","🧝🏿"],"version":"5.0"},{"emoji":"🧝‍♂️","category":1,"name":"man elf","variations":["🧝🏻‍♂️","🧝🏼‍♂️","🧝🏽‍♂️","🧝🏾‍♂️","🧝🏿‍♂️"],"version":"5.0"},{"emoji":"🧝‍♀️","category":1,"name":"woman elf","variations":["🧝🏻‍♀️","🧝🏼‍♀️","🧝🏽‍♀️","🧝🏾‍♀️","🧝🏿‍♀️"],"version":"5.0"},{"emoji":"🧞","category":1,"name":"genie","version":"5.0"},{"emoji":"🧞‍♂️","category":1,"name":"man genie","version":"5.0"},{"emoji":"🧞‍♀️","category":1,"name":"woman genie","version":"5.0"},{"emoji":"🧟","category":1,"name":"zombie","version":"5.0"},{"emoji":"🧟‍♂️","category":1,"name":"man zombie","version":"5.0"},{"emoji":"🧟‍♀️","category":1,"name":"woman zombie","version":"5.0"},{"emoji":"💆","category":1,"name":"person getting massage","variations":["💆🏻","💆🏼","💆🏽","💆🏾","💆🏿"],"version":"1.0"},{"emoji":"💆‍♂️","category":1,"name":"man getting massage","variations":["💆🏻‍♂️","💆🏼‍♂️","💆🏽‍♂️","💆🏾‍♂️","💆🏿‍♂️"],"version":"4.0"},{"emoji":"💆‍♀️","category":1,"name":"woman getting massage","variations":["💆🏻‍♀️","💆🏼‍♀️","💆🏽‍♀️","💆🏾‍♀️","💆🏿‍♀️"],"version":"4.0"},{"emoji":"💇","category":1,"name":"person getting haircut","variations":["💇🏻","💇🏼","💇🏽","💇🏾","💇🏿"],"version":"1.0"},{"emoji":"💇‍♂️","category":1,"name":"man getting haircut","variations":["💇🏻‍♂️","💇🏼‍♂️","💇🏽‍♂️","💇🏾‍♂️","💇🏿‍♂️"],"version":"4.0"},{"emoji":"💇‍♀️","category":1,"name":"woman getting haircut","variations":["💇🏻‍♀️","💇🏼‍♀️","💇🏽‍♀️","💇🏾‍♀️","💇🏿‍♀️"],"version":"4.0"},{"emoji":"🚶","category":1,"name":"person walking","variations":["🚶🏻","🚶🏼","🚶🏽","🚶🏾","🚶🏿"],"version":"1.0"},{"emoji":"🚶‍♂️","category":1,"name":"man walking","variations":["🚶🏻‍♂️","🚶🏼‍♂️","🚶🏽‍♂️","🚶🏾‍♂️","🚶🏿‍♂️"],"version":"4.0"},{"emoji":"🚶‍♀️","category":1,"name":"woman walking","variations":["🚶🏻‍♀️","🚶🏼‍♀️","🚶🏽‍♀️","🚶🏾‍♀️","🚶🏿‍♀️"],"version":"4.0"},{"emoji":"🧍","category":1,"name":"person standing","variations":["🧍🏻","🧍🏼","🧍🏽","🧍🏾","🧍🏿"],"version":"12.0"},{"emoji":"🧍‍♂️","category":1,"name":"man standing","variations":["🧍🏻‍♂️","🧍🏼‍♂️","🧍🏽‍♂️","🧍🏾‍♂️","🧍🏿‍♂️"],"version":"12.0"},{"emoji":"🧍‍♀️","category":1,"name":"woman standing","variations":["🧍🏻‍♀️","🧍🏼‍♀️","🧍🏽‍♀️","🧍🏾‍♀️","🧍🏿‍♀️"],"version":"12.0"},{"emoji":"🧎","category":1,"name":"person kneeling","variations":["🧎🏻","🧎🏼","🧎🏽","🧎🏾","🧎🏿"],"version":"12.0"},{"emoji":"🧎‍♂️","category":1,"name":"man kneeling","variations":["🧎🏻‍♂️","🧎🏼‍♂️","🧎🏽‍♂️","🧎🏾‍♂️","🧎🏿‍♂️"],"version":"12.0"},{"emoji":"🧎‍♀️","category":1,"name":"woman kneeling","variations":["🧎🏻‍♀️","🧎🏼‍♀️","🧎🏽‍♀️","🧎🏾‍♀️","🧎🏿‍♀️"],"version":"12.0"},{"emoji":"🧑‍🦯","category":1,"name":"person with white cane","variations":["🧑🏻‍🦯","🧑🏼‍🦯","🧑🏽‍🦯","🧑🏾‍🦯","🧑🏿‍🦯"],"version":"12.1"},{"emoji":"👨‍🦯","category":1,"name":"man with white cane","variations":["👨🏻‍🦯","👨🏼‍🦯","👨🏽‍🦯","👨🏾‍🦯","👨🏿‍🦯"],"version":"12.0"},{"emoji":"👩‍🦯","category":1,"name":"woman with white cane","variations":["👩🏻‍🦯","👩🏼‍🦯","👩🏽‍🦯","👩🏾‍🦯","👩🏿‍🦯"],"version":"12.0"},{"emoji":"🧑‍🦼","category":1,"name":"person in motorized wheelchair","variations":["🧑🏻‍🦼","🧑🏼‍🦼","🧑🏽‍🦼","🧑🏾‍🦼","🧑🏿‍🦼"],"version":"12.1"},{"emoji":"👨‍🦼","category":1,"name":"man in motorized wheelchair","variations":["👨🏻‍🦼","👨🏼‍🦼","👨🏽‍🦼","👨🏾‍🦼","👨🏿‍🦼"],"version":"12.0"},{"emoji":"👩‍🦼","category":1,"name":"woman in motorized wheelchair","variations":["👩🏻‍🦼","👩🏼‍🦼","👩🏽‍🦼","👩🏾‍🦼","👩🏿‍🦼"],"version":"12.0"},{"emoji":"🧑‍🦽","category":1,"name":"person in manual wheelchair","variations":["🧑🏻‍🦽","🧑🏼‍🦽","🧑🏽‍🦽","🧑🏾‍🦽","🧑🏿‍🦽"],"version":"12.1"},{"emoji":"👨‍🦽","category":1,"name":"man in manual wheelchair","variations":["👨🏻‍🦽","👨🏼‍🦽","👨🏽‍🦽","👨🏾‍🦽","👨🏿‍🦽"],"version":"12.0"},{"emoji":"👩‍🦽","category":1,"name":"woman in manual wheelchair","variations":["👩🏻‍🦽","👩🏼‍🦽","👩🏽‍🦽","👩🏾‍🦽","👩🏿‍🦽"],"version":"12.0"},{"emoji":"🏃","category":1,"name":"person running","variations":["🏃🏻","🏃🏼","🏃🏽","🏃🏾","🏃🏿"],"version":"1.0"},{"emoji":"🏃‍♂️","category":1,"name":"man running","variations":["🏃🏻‍♂️","🏃🏼‍♂️","🏃🏽‍♂️","🏃🏾‍♂️","🏃🏿‍♂️"],"version":"4.0"},{"emoji":"🏃‍♀️","category":1,"name":"woman running","variations":["🏃🏻‍♀️","🏃🏼‍♀️","🏃🏽‍♀️","🏃🏾‍♀️","🏃🏿‍♀️"],"version":"4.0"},{"emoji":"💃","category":1,"name":"woman dancing","variations":["💃🏻","💃🏼","💃🏽","💃🏾","💃🏿"],"version":"1.0"},{"emoji":"🕺","category":1,"name":"man dancing","variations":["🕺🏻","🕺🏼","🕺🏽","🕺🏾","🕺🏿"],"version":"3.0"},{"emoji":"🕴️","category":1,"name":"person in suit levitating","variations":["🕴🏻","🕴🏼","🕴🏽","🕴🏾","🕴🏿"],"version":"1.0"},{"emoji":"👯","category":1,"name":"people with bunny ears","version":"1.0"},{"emoji":"👯‍♂️","category":1,"name":"men with bunny ears","version":"4.0"},{"emoji":"👯‍♀️","category":1,"name":"women with bunny ears","version":"4.0"},{"emoji":"🧖","category":1,"name":"person in steamy room","variations":["🧖🏻","🧖🏼","🧖🏽","🧖🏾","🧖🏿"],"version":"5.0"},{"emoji":"🧖‍♂️","category":1,"name":"man in steamy room","variations":["🧖🏻‍♂️","🧖🏼‍♂️","🧖🏽‍♂️","🧖🏾‍♂️","🧖🏿‍♂️"],"version":"5.0"},{"emoji":"🧖‍♀️","category":1,"name":"woman in steamy room","variations":["🧖🏻‍♀️","🧖🏼‍♀️","🧖🏽‍♀️","🧖🏾‍♀️","🧖🏿‍♀️"],"version":"5.0"},{"emoji":"🧗","category":1,"name":"person climbing","variations":["🧗🏻","🧗🏼","🧗🏽","🧗🏾","🧗🏿"],"version":"5.0"},{"emoji":"🧗‍♂️","category":1,"name":"man climbing","variations":["🧗🏻‍♂️","🧗🏼‍♂️","🧗🏽‍♂️","🧗🏾‍♂️","🧗🏿‍♂️"],"version":"5.0"},{"emoji":"🧗‍♀️","category":1,"name":"woman climbing","variations":["🧗🏻‍♀️","🧗🏼‍♀️","🧗🏽‍♀️","🧗🏾‍♀️","🧗🏿‍♀️"],"version":"5.0"},{"emoji":"🤺","category":1,"name":"person fencing","version":"3.0"},{"emoji":"🏇","category":1,"name":"horse racing","variations":["🏇🏻","🏇🏼","🏇🏽","🏇🏾","🏇🏿"],"version":"1.0"},{"emoji":"⛷️","category":1,"name":"skier","version":"1.0"},{"emoji":"🏂","category":1,"name":"snowboarder","variations":["🏂🏻","🏂🏼","🏂🏽","🏂🏾","🏂🏿"],"version":"1.0"},{"emoji":"🏌️","category":1,"name":"person golfing","variations":["🏌🏻","🏌🏼","🏌🏽","🏌🏾","🏌🏿"],"version":"1.0"},{"emoji":"🏌️‍♂️","category":1,"name":"man golfing","variations":["🏌🏻‍♂️","🏌🏼‍♂️","🏌🏽‍♂️","🏌🏾‍♂️","🏌🏿‍♂️"],"version":"4.0"},{"emoji":"🏌️‍♀️","category":1,"name":"woman golfing","variations":["🏌🏻‍♀️","🏌🏼‍♀️","🏌🏽‍♀️","🏌🏾‍♀️","🏌🏿‍♀️"],"version":"4.0"},{"emoji":"🏄","category":1,"name":"person surfing","variations":["🏄🏻","🏄🏼","🏄🏽","🏄🏾","🏄🏿"],"version":"1.0"},{"emoji":"🏄‍♂️","category":1,"name":"man surfing","variations":["🏄🏻‍♂️","🏄🏼‍♂️","🏄🏽‍♂️","🏄🏾‍♂️","🏄🏿‍♂️"],"version":"4.0"},{"emoji":"🏄‍♀️","category":1,"name":"woman surfing","variations":["🏄🏻‍♀️","🏄🏼‍♀️","🏄🏽‍♀️","🏄🏾‍♀️","🏄🏿‍♀️"],"version":"4.0"},{"emoji":"🚣","category":1,"name":"person rowing boat","variations":["🚣🏻","🚣🏼","🚣🏽","🚣🏾","🚣🏿"],"version":"1.0"},{"emoji":"🚣‍♂️","category":1,"name":"man rowing boat","variations":["🚣🏻‍♂️","🚣🏼‍♂️","🚣🏽‍♂️","🚣🏾‍♂️","🚣🏿‍♂️"],"version":"4.0"},{"emoji":"🚣‍♀️","category":1,"name":"woman rowing boat","variations":["🚣🏻‍♀️","🚣🏼‍♀️","🚣🏽‍♀️","🚣🏾‍♀️","🚣🏿‍♀️"],"version":"4.0"},{"emoji":"🏊","category":1,"name":"person swimming","variations":["🏊🏻","🏊🏼","🏊🏽","🏊🏾","🏊🏿"],"version":"1.0"},{"emoji":"🏊‍♂️","category":1,"name":"man swimming","variations":["🏊🏻‍♂️","🏊🏼‍♂️","🏊🏽‍♂️","🏊🏾‍♂️","🏊🏿‍♂️"],"version":"4.0"},{"emoji":"🏊‍♀️","category":1,"name":"woman swimming","variations":["🏊🏻‍♀️","🏊🏼‍♀️","🏊🏽‍♀️","🏊🏾‍♀️","🏊🏿‍♀️"],"version":"4.0"},{"emoji":"⛹️","category":1,"name":"person bouncing ball","variations":["⛹🏻","⛹🏼","⛹🏽","⛹🏾","⛹🏿"],"version":"1.0"},{"emoji":"⛹️‍♂️","category":1,"name":"man bouncing ball","variations":["⛹🏻‍♂️","⛹🏼‍♂️","⛹🏽‍♂️","⛹🏾‍♂️","⛹🏿‍♂️"],"version":"4.0"},{"emoji":"⛹️‍♀️","category":1,"name":"woman bouncing ball","variations":["⛹🏻‍♀️","⛹🏼‍♀️","⛹🏽‍♀️","⛹🏾‍♀️","⛹🏿‍♀️"],"version":"4.0"},{"emoji":"🏋️","category":1,"name":"person lifting weights","variations":["🏋🏻","🏋🏼","🏋🏽","🏋🏾","🏋🏿"],"version":"1.0"},{"emoji":"🏋️‍♂️","category":1,"name":"man lifting weights","variations":["🏋🏻‍♂️","🏋🏼‍♂️","🏋🏽‍♂️","🏋🏾‍♂️","🏋🏿‍♂️"],"version":"4.0"},{"emoji":"🏋️‍♀️","category":1,"name":"woman lifting weights","variations":["🏋🏻‍♀️","🏋🏼‍♀️","🏋🏽‍♀️","🏋🏾‍♀️","🏋🏿‍♀️"],"version":"4.0"},{"emoji":"🚴","category":1,"name":"person biking","variations":["🚴🏻","🚴🏼","🚴🏽","🚴🏾","🚴🏿"],"version":"1.0"},{"emoji":"🚴‍♂️","category":1,"name":"man biking","variations":["🚴🏻‍♂️","🚴🏼‍♂️","🚴🏽‍♂️","🚴🏾‍♂️","🚴🏿‍♂️"],"version":"4.0"},{"emoji":"🚴‍♀️","category":1,"name":"woman biking","variations":["🚴🏻‍♀️","🚴🏼‍♀️","🚴🏽‍♀️","🚴🏾‍♀️","🚴🏿‍♀️"],"version":"4.0"},{"emoji":"🚵","category":1,"name":"person mountain biking","variations":["🚵🏻","🚵🏼","🚵🏽","🚵🏾","🚵🏿"],"version":"1.0"},{"emoji":"🚵‍♂️","category":1,"name":"man mountain biking","variations":["🚵🏻‍♂️","🚵🏼‍♂️","🚵🏽‍♂️","🚵🏾‍♂️","🚵🏿‍♂️"],"version":"4.0"},{"emoji":"🚵‍♀️","category":1,"name":"woman mountain biking","variations":["🚵🏻‍♀️","🚵🏼‍♀️","🚵🏽‍♀️","🚵🏾‍♀️","🚵🏿‍♀️"],"version":"4.0"},{"emoji":"🤸","category":1,"name":"person cartwheeling","variations":["🤸🏻","🤸🏼","🤸🏽","🤸🏾","🤸🏿"],"version":"3.0"},{"emoji":"🤸‍♂️","category":1,"name":"man cartwheeling","variations":["🤸🏻‍♂️","🤸🏼‍♂️","🤸🏽‍♂️","🤸🏾‍♂️","🤸🏿‍♂️"],"version":"4.0"},{"emoji":"🤸‍♀️","category":1,"name":"woman cartwheeling","variations":["🤸🏻‍♀️","🤸🏼‍♀️","🤸🏽‍♀️","🤸🏾‍♀️","🤸🏿‍♀️"],"version":"4.0"},{"emoji":"🤼","category":1,"name":"people wrestling","version":"3.0"},{"emoji":"🤼‍♂️","category":1,"name":"men wrestling","version":"4.0"},{"emoji":"🤼‍♀️","category":1,"name":"women wrestling","version":"4.0"},{"emoji":"🤽","category":1,"name":"person playing water polo","variations":["🤽🏻","🤽🏼","🤽🏽","🤽🏾","🤽🏿"],"version":"3.0"},{"emoji":"🤽‍♂️","category":1,"name":"man playing water polo","variations":["🤽🏻‍♂️","🤽🏼‍♂️","🤽🏽‍♂️","🤽🏾‍♂️","🤽🏿‍♂️"],"version":"4.0"},{"emoji":"🤽‍♀️","category":1,"name":"woman playing water polo","variations":["🤽🏻‍♀️","🤽🏼‍♀️","🤽🏽‍♀️","🤽🏾‍♀️","🤽🏿‍♀️"],"version":"4.0"},{"emoji":"🤾","category":1,"name":"person playing handball","variations":["🤾🏻","🤾🏼","🤾🏽","🤾🏾","🤾🏿"],"version":"3.0"},{"emoji":"🤾‍♂️","category":1,"name":"man playing handball","variations":["🤾🏻‍♂️","🤾🏼‍♂️","🤾🏽‍♂️","🤾🏾‍♂️","🤾🏿‍♂️"],"version":"4.0"},{"emoji":"🤾‍♀️","category":1,"name":"woman playing handball","variations":["🤾🏻‍♀️","🤾🏼‍♀️","🤾🏽‍♀️","🤾🏾‍♀️","🤾🏿‍♀️"],"version":"4.0"},{"emoji":"🤹","category":1,"name":"person juggling","variations":["🤹🏻","🤹🏼","🤹🏽","🤹🏾","🤹🏿"],"version":"3.0"},{"emoji":"🤹‍♂️","category":1,"name":"man juggling","variations":["🤹🏻‍♂️","🤹🏼‍♂️","🤹🏽‍♂️","🤹🏾‍♂️","🤹🏿‍♂️"],"version":"4.0"},{"emoji":"🤹‍♀️","category":1,"name":"woman juggling","variations":["🤹🏻‍♀️","🤹🏼‍♀️","🤹🏽‍♀️","🤹🏾‍♀️","🤹🏿‍♀️"],"version":"4.0"},{"emoji":"🧘","category":1,"name":"person in lotus position","variations":["🧘🏻","🧘🏼","🧘🏽","🧘🏾","🧘🏿"],"version":"5.0"},{"emoji":"🧘‍♂️","category":1,"name":"man in lotus position","variations":["🧘🏻‍♂️","🧘🏼‍♂️","🧘🏽‍♂️","🧘🏾‍♂️","🧘🏿‍♂️"],"version":"5.0"},{"emoji":"🧘‍♀️","category":1,"name":"woman in lotus position","variations":["🧘🏻‍♀️","🧘🏼‍♀️","🧘🏽‍♀️","🧘🏾‍♀️","🧘🏿‍♀️"],"version":"5.0"},{"emoji":"🛀","category":1,"name":"person taking bath","variations":["🛀🏻","🛀🏼","🛀🏽","🛀🏾","🛀🏿"],"version":"1.0"},{"emoji":"🛌","category":1,"name":"person in bed","variations":["🛌🏻","🛌🏼","🛌🏽","🛌🏾","🛌🏿"],"version":"1.0"},{"emoji":"🧑‍🤝‍🧑","category":1,"name":"people holding hands","variations":["🧑🏻‍🤝‍🧑🏻","🧑🏻‍🤝‍🧑🏼","🧑🏻‍🤝‍🧑🏽","🧑🏻‍🤝‍🧑🏾","🧑🏻‍🤝‍🧑🏿","🧑🏼‍🤝‍🧑🏻","🧑🏼‍🤝‍🧑🏼","🧑🏼‍🤝‍🧑🏽","🧑🏼‍🤝‍🧑🏾","🧑🏼‍🤝‍🧑🏿","🧑🏽‍🤝‍🧑🏻","🧑🏽‍🤝‍🧑🏼","🧑🏽‍🤝‍🧑🏽","🧑🏽‍🤝‍🧑🏾","🧑🏽‍🤝‍🧑🏿","🧑🏾‍🤝‍🧑🏻","🧑🏾‍🤝‍🧑🏼","🧑🏾‍🤝‍🧑🏽","🧑🏾‍🤝‍🧑🏾","🧑🏾‍🤝‍🧑🏿","🧑🏿‍🤝‍🧑🏻","🧑🏿‍🤝‍🧑🏼","🧑🏿‍🤝‍🧑🏽","🧑🏿‍🤝‍🧑🏾","🧑🏿‍🤝‍🧑🏿"],"version":"12.0"},{"emoji":"👭","category":1,"name":"women holding hands","variations":["👭🏻","👩🏻‍🤝‍👩🏼","👩🏻‍🤝‍👩🏽","👩🏻‍🤝‍👩🏾","👩🏻‍🤝‍👩🏿","👩🏼‍🤝‍👩🏻","👭🏼","👩🏼‍🤝‍👩🏽","👩🏼‍🤝‍👩🏾","👩🏼‍🤝‍👩🏿","👩🏽‍🤝‍👩🏻","👩🏽‍🤝‍👩🏼","👭🏽","👩🏽‍🤝‍👩🏾","👩🏽‍🤝‍👩🏿","👩🏾‍🤝‍👩🏻","👩🏾‍🤝‍👩🏼","👩🏾‍🤝‍👩🏽","👭🏾","👩🏾‍🤝‍👩🏿","👩🏿‍🤝‍👩🏻","👩🏿‍🤝‍👩🏼","👩🏿‍🤝‍👩🏽","👩🏿‍🤝‍👩🏾","👭🏿"],"version":"1.0"},{"emoji":"👫","category":1,"name":"woman and man holding hands","variations":["👫🏻","👩🏻‍🤝‍👨🏼","👩🏻‍🤝‍👨🏽","👩🏻‍🤝‍👨🏾","👩🏻‍🤝‍👨🏿","👩🏼‍🤝‍👨🏻","👫🏼","👩🏼‍🤝‍👨🏽","👩🏼‍🤝‍👨🏾","👩🏼‍🤝‍👨🏿","👩🏽‍🤝‍👨🏻","👩🏽‍🤝‍👨🏼","👫🏽","👩🏽‍🤝‍👨🏾","👩🏽‍🤝‍👨🏿","👩🏾‍🤝‍👨🏻","👩🏾‍🤝‍👨🏼","👩🏾‍🤝‍👨🏽","👫🏾","👩🏾‍🤝‍👨🏿","👩🏿‍🤝‍👨🏻","👩🏿‍🤝‍👨🏼","👩🏿‍🤝‍👨🏽","👩🏿‍🤝‍👨🏾","👫🏿"],"version":"1.0"},{"emoji":"👬","category":1,"name":"men holding hands","variations":["👬🏻","👨🏻‍🤝‍👨🏼","👨🏻‍🤝‍👨🏽","👨🏻‍🤝‍👨🏾","👨🏻‍🤝‍👨🏿","👨🏼‍🤝‍👨🏻","👬🏼","👨🏼‍🤝‍👨🏽","👨🏼‍🤝‍👨🏾","👨🏼‍🤝‍👨🏿","👨🏽‍🤝‍👨🏻","👨🏽‍🤝‍👨🏼","👬🏽","👨🏽‍🤝‍👨🏾","👨🏽‍🤝‍👨🏿","👨🏾‍🤝‍👨🏻","👨🏾‍🤝‍👨🏼","👨🏾‍🤝‍👨🏽","👬🏾","👨🏾‍🤝‍👨🏿","👨🏿‍🤝‍👨🏻","👨🏿‍🤝‍👨🏼","👨🏿‍🤝‍👨🏽","👨🏿‍🤝‍👨🏾","👬🏿"],"version":"1.0"},{"emoji":"💏","category":1,"name":"kiss","variations":["👩‍❤️‍💋‍👨","👨‍❤️‍💋‍👨","👩‍❤️‍💋‍👩"],"version":"1.0"},{"emoji":"💑","category":1,"name":"couple with heart","variations":["👩‍❤️‍👨","👨‍❤️‍👨","👩‍❤️‍👩"],"version":"1.0"},{"emoji":"👪","category":1,"name":"family","version":"1.0"},{"emoji":"👨‍👩‍👦","category":1,"name":"family: man, woman, boy","version":"2.0"},{"emoji":"👨‍👩‍👧","category":1,"name":"family: man, woman, girl","version":"2.0"},{"emoji":"👨‍👩‍👧‍👦","category":1,"name":"family: man, woman, girl, boy","version":"2.0"},{"emoji":"👨‍👩‍👦‍👦","category":1,"name":"family: man, woman, boy, boy","version":"2.0"},{"emoji":"👨‍👩‍👧‍👧","category":1,"name":"family: man, woman, girl, girl","version":"2.0"},{"emoji":"👨‍👨‍👦","category":1,"name":"family: man, man, boy","version":"2.0"},{"emoji":"👨‍👨‍👧","category":1,"name":"family: man, man, girl","version":"2.0"},{"emoji":"👨‍👨‍👧‍👦","category":1,"name":"family: man, man, girl, boy","version":"2.0"},{"emoji":"👨‍👨‍👦‍👦","category":1,"name":"family: man, man, boy, boy","version":"2.0"},{"emoji":"👨‍👨‍👧‍👧","category":1,"name":"family: man, man, girl, girl","version":"2.0"},{"emoji":"👩‍👩‍👦","category":1,"name":"family: woman, woman, boy","version":"2.0"},{"emoji":"👩‍👩‍👧","category":1,"name":"family: woman, woman, girl","version":"2.0"},{"emoji":"👩‍👩‍👧‍👦","category":1,"name":"family: woman, woman, girl, boy","version":"2.0"},{"emoji":"👩‍👩‍👦‍👦","category":1,"name":"family: woman, woman, boy, boy","version":"2.0"},{"emoji":"👩‍👩‍👧‍👧","category":1,"name":"family: woman, woman, girl, girl","version":"2.0"},{"emoji":"👨‍👦","category":1,"name":"family: man, boy","version":"4.0"},{"emoji":"👨‍👦‍👦","category":1,"name":"family: man, boy, boy","version":"4.0"},{"emoji":"👨‍👧","category":1,"name":"family: man, girl","version":"4.0"},{"emoji":"👨‍👧‍👦","category":1,"name":"family: man, girl, boy","version":"4.0"},{"emoji":"👨‍👧‍👧","category":1,"name":"family: man, girl, girl","version":"4.0"},{"emoji":"👩‍👦","category":1,"name":"family: woman, boy","version":"4.0"},{"emoji":"👩‍👦‍👦","category":1,"name":"family: woman, boy, boy","version":"4.0"},{"emoji":"👩‍👧","category":1,"name":"family: woman, girl","version":"4.0"},{"emoji":"👩‍👧‍👦","category":1,"name":"family: woman, girl, boy","version":"4.0"},{"emoji":"👩‍👧‍👧","category":1,"name":"family: woman, girl, girl","version":"4.0"},{"emoji":"🗣️","category":1,"name":"speaking head","version":"1.0"},{"emoji":"👤","category":1,"name":"bust in silhouette","version":"1.0"},{"emoji":"👥","category":1,"name":"busts in silhouette","version":"1.0"},{"emoji":"🫂","category":1,"name":"people hugging","version":"13.0"},{"emoji":"👣","category":1,"name":"footprints","version":"1.0"},{"emoji":"🐵","category":2,"name":"monkey face","version":"1.0"},{"emoji":"🐒","category":2,"name":"monkey","version":"1.0"},{"emoji":"🦍","category":2,"name":"gorilla","version":"3.0"},{"emoji":"🦧","category":2,"name":"orangutan","version":"12.0"},{"emoji":"🐶","category":2,"name":"dog face","version":"1.0"},{"emoji":"🐕","category":2,"name":"dog","version":"1.0"},{"emoji":"🦮","category":2,"name":"guide dog","version":"12.0"},{"emoji":"🐕‍🦺","category":2,"name":"service dog","version":"12.0"},{"emoji":"🐩","category":2,"name":"poodle","version":"1.0"},{"emoji":"🐺","category":2,"name":"wolf","version":"1.0"},{"emoji":"🦊","category":2,"name":"fox","version":"3.0"},{"emoji":"🦝","category":2,"name":"raccoon","version":"11.0"},{"emoji":"🐱","category":2,"name":"cat face","version":"1.0"},{"emoji":"🐈","category":2,"name":"cat","version":"1.0"},{"emoji":"🐈‍⬛","category":2,"name":"black cat","version":"13.0"},{"emoji":"🦁","category":2,"name":"lion","version":"1.0"},{"emoji":"🐯","category":2,"name":"tiger face","version":"1.0"},{"emoji":"🐅","category":2,"name":"tiger","version":"1.0"},{"emoji":"🐆","category":2,"name":"leopard","version":"1.0"},{"emoji":"🐴","category":2,"name":"horse face","version":"1.0"},{"emoji":"🐎","category":2,"name":"horse","version":"1.0"},{"emoji":"🦄","category":2,"name":"unicorn","version":"1.0"},{"emoji":"🦓","category":2,"name":"zebra","version":"5.0"},{"emoji":"🦌","category":2,"name":"deer","version":"3.0"},{"emoji":"🦬","category":2,"name":"bison","version":"13.0"},{"emoji":"🐮","category":2,"name":"cow face","version":"1.0"},{"emoji":"🐂","category":2,"name":"ox","version":"1.0"},{"emoji":"🐃","category":2,"name":"water buffalo","version":"1.0"},{"emoji":"🐄","category":2,"name":"cow","version":"1.0"},{"emoji":"🐷","category":2,"name":"pig face","version":"1.0"},{"emoji":"🐖","category":2,"name":"pig","version":"1.0"},{"emoji":"🐗","category":2,"name":"boar","version":"1.0"},{"emoji":"🐽","category":2,"name":"pig nose","version":"1.0"},{"emoji":"🐏","category":2,"name":"ram","version":"1.0"},{"emoji":"🐑","category":2,"name":"ewe","version":"1.0"},{"emoji":"🐐","category":2,"name":"goat","version":"1.0"},{"emoji":"🐪","category":2,"name":"camel","version":"1.0"},{"emoji":"🐫","category":2,"name":"two-hump camel","version":"1.0"},{"emoji":"🦙","category":2,"name":"llama","version":"11.0"},{"emoji":"🦒","category":2,"name":"giraffe","version":"5.0"},{"emoji":"🐘","category":2,"name":"elephant","version":"1.0"},{"emoji":"🦣","category":2,"name":"mammoth","version":"13.0"},{"emoji":"🦏","category":2,"name":"rhinoceros","version":"3.0"},{"emoji":"🦛","category":2,"name":"hippopotamus","version":"11.0"},{"emoji":"🐭","category":2,"name":"mouse face","version":"1.0"},{"emoji":"🐁","category":2,"name":"mouse","version":"1.0"},{"emoji":"🐀","category":2,"name":"rat","version":"1.0"},{"emoji":"🐹","category":2,"name":"hamster","version":"1.0"},{"emoji":"🐰","category":2,"name":"rabbit face","version":"1.0"},{"emoji":"🐇","category":2,"name":"rabbit","version":"1.0"},{"emoji":"🐿️","category":2,"name":"chipmunk","version":"1.0"},{"emoji":"🦫","category":2,"name":"beaver","version":"13.0"},{"emoji":"🦔","category":2,"name":"hedgehog","version":"5.0"},{"emoji":"🦇","category":2,"name":"bat","version":"3.0"},{"emoji":"🐻","category":2,"name":"bear","version":"1.0"},{"emoji":"🐻‍❄️","category":2,"name":"polar bear","version":"13.0"},{"emoji":"🐨","category":2,"name":"koala","version":"1.0"},{"emoji":"🐼","category":2,"name":"panda","version":"1.0"},{"emoji":"🦥","category":2,"name":"sloth","version":"12.0"},{"emoji":"🦦","category":2,"name":"otter","version":"12.0"},{"emoji":"🦨","category":2,"name":"skunk","version":"12.0"},{"emoji":"🦘","category":2,"name":"kangaroo","version":"11.0"},{"emoji":"🦡","category":2,"name":"badger","version":"11.0"},{"emoji":"🐾","category":2,"name":"paw prints","version":"1.0"},{"emoji":"🦃","category":2,"name":"turkey","version":"1.0"},{"emoji":"🐔","category":2,"name":"chicken","version":"1.0"},{"emoji":"🐓","category":2,"name":"rooster","version":"1.0"},{"emoji":"🐣","category":2,"name":"hatching chick","version":"1.0"},{"emoji":"🐤","category":2,"name":"baby chick","version":"1.0"},{"emoji":"🐥","category":2,"name":"front-facing baby chick","version":"1.0"},{"emoji":"🐦","category":2,"name":"bird","version":"1.0"},{"emoji":"🐧","category":2,"name":"penguin","version":"1.0"},{"emoji":"🕊️","category":2,"name":"dove","version":"1.0"},{"emoji":"🦅","category":2,"name":"eagle","version":"3.0"},{"emoji":"🦆","category":2,"name":"duck","version":"3.0"},{"emoji":"🦢","category":2,"name":"swan","version":"11.0"},{"emoji":"🦉","category":2,"name":"owl","version":"3.0"},{"emoji":"🦤","category":2,"name":"dodo","version":"13.0"},{"emoji":"🪶","category":2,"name":"feather","version":"13.0"},{"emoji":"🦩","category":2,"name":"flamingo","version":"12.0"},{"emoji":"🦚","category":2,"name":"peacock","version":"11.0"},{"emoji":"🦜","category":2,"name":"parrot","version":"11.0"},{"emoji":"🐸","category":2,"name":"frog","version":"1.0"},{"emoji":"🐊","category":2,"name":"crocodile","version":"1.0"},{"emoji":"🐢","category":2,"name":"turtle","version":"1.0"},{"emoji":"🦎","category":2,"name":"lizard","version":"3.0"},{"emoji":"🐍","category":2,"name":"snake","version":"1.0"},{"emoji":"🐲","category":2,"name":"dragon face","version":"1.0"},{"emoji":"🐉","category":2,"name":"dragon","version":"1.0"},{"emoji":"🦕","category":2,"name":"sauropod","version":"5.0"},{"emoji":"🦖","category":2,"name":"T-Rex","version":"5.0"},{"emoji":"🐳","category":2,"name":"spouting whale","version":"1.0"},{"emoji":"🐋","category":2,"name":"whale","version":"1.0"},{"emoji":"🐬","category":2,"name":"dolphin","version":"1.0"},{"emoji":"🦭","category":2,"name":"seal","version":"13.0"},{"emoji":"🐟","category":2,"name":"fish","version":"1.0"},{"emoji":"🐠","category":2,"name":"tropical fish","version":"1.0"},{"emoji":"🐡","category":2,"name":"blowfish","version":"1.0"},{"emoji":"🦈","category":2,"name":"shark","version":"3.0"},{"emoji":"🐙","category":2,"name":"octopus","version":"1.0"},{"emoji":"🐚","category":2,"name":"spiral shell","version":"1.0"},{"emoji":"🐌","category":2,"name":"snail","version":"1.0"},{"emoji":"🦋","category":2,"name":"butterfly","version":"3.0"},{"emoji":"🐛","category":2,"name":"bug","version":"1.0"},{"emoji":"🐜","category":2,"name":"ant","version":"1.0"},{"emoji":"🐝","category":2,"name":"honeybee","version":"1.0"},{"emoji":"🪲","category":2,"name":"beetle","version":"13.0"},{"emoji":"🐞","category":2,"name":"lady beetle","version":"1.0"},{"emoji":"🦗","category":2,"name":"cricket","version":"5.0"},{"emoji":"🪳","category":2,"name":"cockroach","version":"13.0"},{"emoji":"🕷️","category":2,"name":"spider","version":"1.0"},{"emoji":"🕸️","category":2,"name":"spider web","version":"1.0"},{"emoji":"🦂","category":2,"name":"scorpion","version":"1.0"},{"emoji":"🦟","category":2,"name":"mosquito","version":"11.0"},{"emoji":"🪰","category":2,"name":"fly","version":"13.0"},{"emoji":"🪱","category":2,"name":"worm","version":"13.0"},{"emoji":"🦠","category":2,"name":"microbe","version":"11.0"},{"emoji":"💐","category":2,"name":"bouquet","version":"1.0"},{"emoji":"🌸","category":2,"name":"cherry blossom","version":"1.0"},{"emoji":"💮","category":2,"name":"white flower","version":"1.0"},{"emoji":"🏵️","category":2,"name":"rosette","version":"1.0"},{"emoji":"🌹","category":2,"name":"rose","version":"1.0"},{"emoji":"🥀","category":2,"name":"wilted flower","version":"3.0"},{"emoji":"🌺","category":2,"name":"hibiscus","version":"1.0"},{"emoji":"🌻","category":2,"name":"sunflower","version":"1.0"},{"emoji":"🌼","category":2,"name":"blossom","version":"1.0"},{"emoji":"🌷","category":2,"name":"tulip","version":"1.0"},{"emoji":"🌱","category":2,"name":"seedling","version":"1.0"},{"emoji":"🪴","category":2,"name":"potted plant","version":"13.0"},{"emoji":"🌲","category":2,"name":"evergreen tree","version":"1.0"},{"emoji":"🌳","category":2,"name":"deciduous tree","version":"1.0"},{"emoji":"🌴","category":2,"name":"palm tree","version":"1.0"},{"emoji":"🌵","category":2,"name":"cactus","version":"1.0"},{"emoji":"🌾","category":2,"name":"sheaf of rice","version":"1.0"},{"emoji":"🌿","category":2,"name":"herb","version":"1.0"},{"emoji":"☘️","category":2,"name":"shamrock","version":"1.0"},{"emoji":"🍀","category":2,"name":"four leaf clover","version":"1.0"},{"emoji":"🍁","category":2,"name":"maple leaf","version":"1.0"},{"emoji":"🍂","category":2,"name":"fallen leaf","version":"1.0"},{"emoji":"🍃","category":2,"name":"leaf fluttering in wind","version":"1.0"},{"emoji":"🍇","category":3,"name":"grapes","version":"1.0"},{"emoji":"🍈","category":3,"name":"melon","version":"1.0"},{"emoji":"🍉","category":3,"name":"watermelon","version":"1.0"},{"emoji":"🍊","category":3,"name":"tangerine","version":"1.0"},{"emoji":"🍋","category":3,"name":"lemon","version":"1.0"},{"emoji":"🍌","category":3,"name":"banana","version":"1.0"},{"emoji":"🍍","category":3,"name":"pineapple","version":"1.0"},{"emoji":"🥭","category":3,"name":"mango","version":"11.0"},{"emoji":"🍎","category":3,"name":"red apple","version":"1.0"},{"emoji":"🍏","category":3,"name":"green apple","version":"1.0"},{"emoji":"🍐","category":3,"name":"pear","version":"1.0"},{"emoji":"🍑","category":3,"name":"peach","version":"1.0"},{"emoji":"🍒","category":3,"name":"cherries","version":"1.0"},{"emoji":"🍓","category":3,"name":"strawberry","version":"1.0"},{"emoji":"🫐","category":3,"name":"blueberries","version":"13.0"},{"emoji":"🥝","category":3,"name":"kiwi fruit","version":"3.0"},{"emoji":"🍅","category":3,"name":"tomato","version":"1.0"},{"emoji":"🫒","category":3,"name":"olive","version":"13.0"},{"emoji":"🥥","category":3,"name":"coconut","version":"5.0"},{"emoji":"🥑","category":3,"name":"avocado","version":"3.0"},{"emoji":"🍆","category":3,"name":"eggplant","version":"1.0"},{"emoji":"🥔","category":3,"name":"potato","version":"3.0"},{"emoji":"🥕","category":3,"name":"carrot","version":"3.0"},{"emoji":"🌽","category":3,"name":"ear of corn","version":"1.0"},{"emoji":"🌶️","category":3,"name":"hot pepper","version":"1.0"},{"emoji":"🫑","category":3,"name":"bell pepper","version":"13.0"},{"emoji":"🥒","category":3,"name":"cucumber","version":"3.0"},{"emoji":"🥬","category":3,"name":"leafy green","version":"11.0"},{"emoji":"🥦","category":3,"name":"broccoli","version":"5.0"},{"emoji":"🧄","category":3,"name":"garlic","version":"12.0"},{"emoji":"🧅","category":3,"name":"onion","version":"12.0"},{"emoji":"🍄","category":3,"name":"mushroom","version":"1.0"},{"emoji":"🥜","category":3,"name":"peanuts","version":"3.0"},{"emoji":"🌰","category":3,"name":"chestnut","version":"1.0"},{"emoji":"🍞","category":3,"name":"bread","version":"1.0"},{"emoji":"🥐","category":3,"name":"croissant","version":"3.0"},{"emoji":"🥖","category":3,"name":"baguette bread","version":"3.0"},{"emoji":"🫓","category":3,"name":"flatbread","version":"13.0"},{"emoji":"🥨","category":3,"name":"pretzel","version":"5.0"},{"emoji":"🥯","category":3,"name":"bagel","version":"11.0"},{"emoji":"🥞","category":3,"name":"pancakes","version":"3.0"},{"emoji":"🧇","category":3,"name":"waffle","version":"12.0"},{"emoji":"🧀","category":3,"name":"cheese wedge","version":"1.0"},{"emoji":"🍖","category":3,"name":"meat on bone","version":"1.0"},{"emoji":"🍗","category":3,"name":"poultry leg","version":"1.0"},{"emoji":"🥩","category":3,"name":"cut of meat","version":"5.0"},{"emoji":"🥓","category":3,"name":"bacon","version":"3.0"},{"emoji":"🍔","category":3,"name":"hamburger","version":"1.0"},{"emoji":"🍟","category":3,"name":"french fries","version":"1.0"},{"emoji":"🍕","category":3,"name":"pizza","version":"1.0"},{"emoji":"🌭","category":3,"name":"hot dog","version":"1.0"},{"emoji":"🥪","category":3,"name":"sandwich","version":"5.0"},{"emoji":"🌮","category":3,"name":"taco","version":"1.0"},{"emoji":"🌯","category":3,"name":"burrito","version":"1.0"},{"emoji":"🫔","category":3,"name":"tamale","version":"13.0"},{"emoji":"🥙","category":3,"name":"stuffed flatbread","version":"3.0"},{"emoji":"🧆","category":3,"name":"falafel","version":"12.0"},{"emoji":"🥚","category":3,"name":"egg","version":"3.0"},{"emoji":"🍳","category":3,"name":"cooking","version":"1.0"},{"emoji":"🥘","category":3,"name":"shallow pan of food","version":"3.0"},{"emoji":"🍲","category":3,"name":"pot of food","version":"1.0"},{"emoji":"🫕","category":3,"name":"fondue","version":"13.0"},{"emoji":"🥣","category":3,"name":"bowl with spoon","version":"5.0"},{"emoji":"🥗","category":3,"name":"green salad","version":"3.0"},{"emoji":"🍿","category":3,"name":"popcorn","version":"1.0"},{"emoji":"🧈","category":3,"name":"butter","version":"12.0"},{"emoji":"🧂","category":3,"name":"salt","version":"11.0"},{"emoji":"🥫","category":3,"name":"canned food","version":"5.0"},{"emoji":"🍱","category":3,"name":"bento box","version":"1.0"},{"emoji":"🍘","category":3,"name":"rice cracker","version":"1.0"},{"emoji":"🍙","category":3,"name":"rice ball","version":"1.0"},{"emoji":"🍚","category":3,"name":"cooked rice","version":"1.0"},{"emoji":"🍛","category":3,"name":"curry rice","version":"1.0"},{"emoji":"🍜","category":3,"name":"steaming bowl","version":"1.0"},{"emoji":"🍝","category":3,"name":"spaghetti","version":"1.0"},{"emoji":"🍠","category":3,"name":"roasted sweet potato","version":"1.0"},{"emoji":"🍢","category":3,"name":"oden","version":"1.0"},{"emoji":"🍣","category":3,"name":"sushi","version":"1.0"},{"emoji":"🍤","category":3,"name":"fried shrimp","version":"1.0"},{"emoji":"🍥","category":3,"name":"fish cake with swirl","version":"1.0"},{"emoji":"🥮","category":3,"name":"moon cake","version":"11.0"},{"emoji":"🍡","category":3,"name":"dango","version":"1.0"},{"emoji":"🥟","category":3,"name":"dumpling","version":"5.0"},{"emoji":"🥠","category":3,"name":"fortune cookie","version":"5.0"},{"emoji":"🥡","category":3,"name":"takeout box","version":"5.0"},{"emoji":"🦀","category":3,"name":"crab","version":"1.0"},{"emoji":"🦞","category":3,"name":"lobster","version":"11.0"},{"emoji":"🦐","category":3,"name":"shrimp","version":"3.0"},{"emoji":"🦑","category":3,"name":"squid","version":"3.0"},{"emoji":"🦪","category":3,"name":"oyster","version":"12.0"},{"emoji":"🍦","category":3,"name":"soft ice cream","version":"1.0"},{"emoji":"🍧","category":3,"name":"shaved ice","version":"1.0"},{"emoji":"🍨","category":3,"name":"ice cream","version":"1.0"},{"emoji":"🍩","category":3,"name":"doughnut","version":"1.0"},{"emoji":"🍪","category":3,"name":"cookie","version":"1.0"},{"emoji":"🎂","category":3,"name":"birthday cake","version":"1.0"},{"emoji":"🍰","category":3,"name":"shortcake","version":"1.0"},{"emoji":"🧁","category":3,"name":"cupcake","version":"11.0"},{"emoji":"🥧","category":3,"name":"pie","version":"5.0"},{"emoji":"🍫","category":3,"name":"chocolate bar","version":"1.0"},{"emoji":"🍬","category":3,"name":"candy","version":"1.0"},{"emoji":"🍭","category":3,"name":"lollipop","version":"1.0"},{"emoji":"🍮","category":3,"name":"custard","version":"1.0"},{"emoji":"🍯","category":3,"name":"honey pot","version":"1.0"},{"emoji":"🍼","category":3,"name":"baby bottle","version":"1.0"},{"emoji":"🥛","category":3,"name":"glass of milk","version":"3.0"},{"emoji":"☕","category":3,"name":"hot beverage","version":"1.0"},{"emoji":"🫖","category":3,"name":"teapot","version":"13.0"},{"emoji":"🍵","category":3,"name":"teacup without handle","version":"1.0"},{"emoji":"🍶","category":3,"name":"sake","version":"1.0"},{"emoji":"🍾","category":3,"name":"bottle with popping cork","version":"1.0"},{"emoji":"🍷","category":3,"name":"wine glass","version":"1.0"},{"emoji":"🍸","category":3,"name":"cocktail glass","version":"1.0"},{"emoji":"🍹","category":3,"name":"tropical drink","version":"1.0"},{"emoji":"🍺","category":3,"name":"beer mug","version":"1.0"},{"emoji":"🍻","category":3,"name":"clinking beer mugs","version":"1.0"},{"emoji":"🥂","category":3,"name":"clinking glasses","version":"3.0"},{"emoji":"🥃","category":3,"name":"tumbler glass","version":"3.0"},{"emoji":"🥤","category":3,"name":"cup with straw","version":"5.0"},{"emoji":"🧋","category":3,"name":"bubble tea","version":"13.0"},{"emoji":"🧃","category":3,"name":"beverage box","version":"12.0"},{"emoji":"🧉","category":3,"name":"mate","version":"12.0"},{"emoji":"🧊","category":3,"name":"ice","version":"12.0"},{"emoji":"🥢","category":3,"name":"chopsticks","version":"5.0"},{"emoji":"🍽️","category":3,"name":"fork and knife with plate","version":"1.0"},{"emoji":"🍴","category":3,"name":"fork and knife","version":"1.0"},{"emoji":"🥄","category":3,"name":"spoon","version":"3.0"},{"emoji":"🔪","category":3,"name":"kitchen knife","version":"1.0"},{"emoji":"🏺","category":3,"name":"amphora","version":"1.0"},{"emoji":"🌍","category":4,"name":"globe showing Europe-Africa","version":"1.0"},{"emoji":"🌎","category":4,"name":"globe showing Americas","version":"1.0"},{"emoji":"🌏","category":4,"name":"globe showing Asia-Australia","version":"1.0"},{"emoji":"🌐","category":4,"name":"globe with meridians","version":"1.0"},{"emoji":"🗺️","category":4,"name":"world map","version":"1.0"},{"emoji":"🗾","category":4,"name":"map of Japan","version":"1.0"},{"emoji":"🧭","category":4,"name":"compass","version":"11.0"},{"emoji":"🏔️","category":4,"name":"snow-capped mountain","version":"1.0"},{"emoji":"⛰️","category":4,"name":"mountain","version":"1.0"},{"emoji":"🌋","category":4,"name":"volcano","version":"1.0"},{"emoji":"🗻","category":4,"name":"mount fuji","version":"1.0"},{"emoji":"🏕️","category":4,"name":"camping","version":"1.0"},{"emoji":"🏖️","category":4,"name":"beach with umbrella","version":"1.0"},{"emoji":"🏜️","category":4,"name":"desert","version":"1.0"},{"emoji":"🏝️","category":4,"name":"desert island","version":"1.0"},{"emoji":"🏞️","category":4,"name":"national park","version":"1.0"},{"emoji":"🏟️","category":4,"name":"stadium","version":"1.0"},{"emoji":"🏛️","category":4,"name":"classical building","version":"1.0"},{"emoji":"🏗️","category":4,"name":"building construction","version":"1.0"},{"emoji":"🧱","category":4,"name":"brick","version":"11.0"},{"emoji":"🪨","category":4,"name":"rock","version":"13.0"},{"emoji":"🪵","category":4,"name":"wood","version":"13.0"},{"emoji":"🛖","category":4,"name":"hut","version":"13.0"},{"emoji":"🏘️","category":4,"name":"houses","version":"1.0"},{"emoji":"🏚️","category":4,"name":"derelict house","version":"1.0"},{"emoji":"🏠","category":4,"name":"house","version":"1.0"},{"emoji":"🏡","category":4,"name":"house with garden","version":"1.0"},{"emoji":"🏢","category":4,"name":"office building","version":"1.0"},{"emoji":"🏣","category":4,"name":"Japanese post office","version":"1.0"},{"emoji":"🏤","category":4,"name":"post office","version":"1.0"},{"emoji":"🏥","category":4,"name":"hospital","version":"1.0"},{"emoji":"🏦","category":4,"name":"bank","version":"1.0"},{"emoji":"🏨","category":4,"name":"hotel","version":"1.0"},{"emoji":"🏩","category":4,"name":"love hotel","version":"1.0"},{"emoji":"🏪","category":4,"name":"convenience store","version":"1.0"},{"emoji":"🏫","category":4,"name":"school","version":"1.0"},{"emoji":"🏬","category":4,"name":"department store","version":"1.0"},{"emoji":"🏭","category":4,"name":"factory","version":"1.0"},{"emoji":"🏯","category":4,"name":"Japanese castle","version":"1.0"},{"emoji":"🏰","category":4,"name":"castle","version":"1.0"},{"emoji":"💒","category":4,"name":"wedding","version":"1.0"},{"emoji":"🗼","category":4,"name":"Tokyo tower","version":"1.0"},{"emoji":"🗽","category":4,"name":"Statue of Liberty","version":"1.0"},{"emoji":"⛪","category":4,"name":"church","version":"1.0"},{"emoji":"🕌","category":4,"name":"mosque","version":"1.0"},{"emoji":"🛕","category":4,"name":"hindu temple","version":"12.0"},{"emoji":"🕍","category":4,"name":"synagogue","version":"1.0"},{"emoji":"⛩️","category":4,"name":"shinto shrine","version":"1.0"},{"emoji":"🕋","category":4,"name":"kaaba","version":"1.0"},{"emoji":"⛲","category":4,"name":"fountain","version":"1.0"},{"emoji":"⛺","category":4,"name":"tent","version":"1.0"},{"emoji":"🌁","category":4,"name":"foggy","version":"1.0"},{"emoji":"🌃","category":4,"name":"night with stars","version":"1.0"},{"emoji":"🏙️","category":4,"name":"cityscape","version":"1.0"},{"emoji":"🌄","category":4,"name":"sunrise over mountains","version":"1.0"},{"emoji":"🌅","category":4,"name":"sunrise","version":"1.0"},{"emoji":"🌆","category":4,"name":"cityscape at dusk","version":"1.0"},{"emoji":"🌇","category":4,"name":"sunset","version":"1.0"},{"emoji":"🌉","category":4,"name":"bridge at night","version":"1.0"},{"emoji":"♨️","category":4,"name":"hot springs","version":"1.0"},{"emoji":"🎠","category":4,"name":"carousel horse","version":"1.0"},{"emoji":"🎡","category":4,"name":"ferris wheel","version":"1.0"},{"emoji":"🎢","category":4,"name":"roller coaster","version":"1.0"},{"emoji":"💈","category":4,"name":"barber pole","version":"1.0"},{"emoji":"🎪","category":4,"name":"circus tent","version":"1.0"},{"emoji":"🚂","category":4,"name":"locomotive","version":"1.0"},{"emoji":"🚃","category":4,"name":"railway car","version":"1.0"},{"emoji":"🚄","category":4,"name":"high-speed train","version":"1.0"},{"emoji":"🚅","category":4,"name":"bullet train","version":"1.0"},{"emoji":"🚆","category":4,"name":"train","version":"1.0"},{"emoji":"🚇","category":4,"name":"metro","version":"1.0"},{"emoji":"🚈","category":4,"name":"light rail","version":"1.0"},{"emoji":"🚉","category":4,"name":"station","version":"1.0"},{"emoji":"🚊","category":4,"name":"tram","version":"1.0"},{"emoji":"🚝","category":4,"name":"monorail","version":"1.0"},{"emoji":"🚞","category":4,"name":"mountain railway","version":"1.0"},{"emoji":"🚋","category":4,"name":"tram car","version":"1.0"},{"emoji":"🚌","category":4,"name":"bus","version":"1.0"},{"emoji":"🚍","category":4,"name":"oncoming bus","version":"1.0"},{"emoji":"🚎","category":4,"name":"trolleybus","version":"1.0"},{"emoji":"🚐","category":4,"name":"minibus","version":"1.0"},{"emoji":"🚑","category":4,"name":"ambulance","version":"1.0"},{"emoji":"🚒","category":4,"name":"fire engine","version":"1.0"},{"emoji":"🚓","category":4,"name":"police car","version":"1.0"},{"emoji":"🚔","category":4,"name":"oncoming police car","version":"1.0"},{"emoji":"🚕","category":4,"name":"taxi","version":"1.0"},{"emoji":"🚖","category":4,"name":"oncoming taxi","version":"1.0"},{"emoji":"🚗","category":4,"name":"automobile","version":"1.0"},{"emoji":"🚘","category":4,"name":"oncoming automobile","version":"1.0"},{"emoji":"🚙","category":4,"name":"sport utility vehicle","version":"1.0"},{"emoji":"🛻","category":4,"name":"pickup truck","version":"13.0"},{"emoji":"🚚","category":4,"name":"delivery truck","version":"1.0"},{"emoji":"🚛","category":4,"name":"articulated lorry","version":"1.0"},{"emoji":"🚜","category":4,"name":"tractor","version":"1.0"},{"emoji":"🏎️","category":4,"name":"racing car","version":"1.0"},{"emoji":"🏍️","category":4,"name":"motorcycle","version":"1.0"},{"emoji":"🛵","category":4,"name":"motor scooter","version":"3.0"},{"emoji":"🦽","category":4,"name":"manual wheelchair","version":"12.0"},{"emoji":"🦼","category":4,"name":"motorized wheelchair","version":"12.0"},{"emoji":"🛺","category":4,"name":"auto rickshaw","version":"12.0"},{"emoji":"🚲","category":4,"name":"bicycle","version":"1.0"},{"emoji":"🛴","category":4,"name":"kick scooter","version":"3.0"},{"emoji":"🛹","category":4,"name":"skateboard","version":"11.0"},{"emoji":"🛼","category":4,"name":"roller skate","version":"13.0"},{"emoji":"🚏","category":4,"name":"bus stop","version":"1.0"},{"emoji":"🛣️","category":4,"name":"motorway","version":"1.0"},{"emoji":"🛤️","category":4,"name":"railway track","version":"1.0"},{"emoji":"🛢️","category":4,"name":"oil drum","version":"1.0"},{"emoji":"⛽","category":4,"name":"fuel pump","version":"1.0"},{"emoji":"🚨","category":4,"name":"police car light","version":"1.0"},{"emoji":"🚥","category":4,"name":"horizontal traffic light","version":"1.0"},{"emoji":"🚦","category":4,"name":"vertical traffic light","version":"1.0"},{"emoji":"🛑","category":4,"name":"stop sign","version":"3.0"},{"emoji":"🚧","category":4,"name":"construction","version":"1.0"},{"emoji":"⚓","category":4,"name":"anchor","version":"1.0"},{"emoji":"⛵","category":4,"name":"sailboat","version":"1.0"},{"emoji":"🛶","category":4,"name":"canoe","version":"3.0"},{"emoji":"🚤","category":4,"name":"speedboat","version":"1.0"},{"emoji":"🛳️","category":4,"name":"passenger ship","version":"1.0"},{"emoji":"⛴️","category":4,"name":"ferry","version":"1.0"},{"emoji":"🛥️","category":4,"name":"motor boat","version":"1.0"},{"emoji":"🚢","category":4,"name":"ship","version":"1.0"},{"emoji":"✈️","category":4,"name":"airplane","version":"1.0"},{"emoji":"🛩️","category":4,"name":"small airplane","version":"1.0"},{"emoji":"🛫","category":4,"name":"airplane departure","version":"1.0"},{"emoji":"🛬","category":4,"name":"airplane arrival","version":"1.0"},{"emoji":"🪂","category":4,"name":"parachute","version":"12.0"},{"emoji":"💺","category":4,"name":"seat","version":"1.0"},{"emoji":"🚁","category":4,"name":"helicopter","version":"1.0"},{"emoji":"🚟","category":4,"name":"suspension railway","version":"1.0"},{"emoji":"🚠","category":4,"name":"mountain cableway","version":"1.0"},{"emoji":"🚡","category":4,"name":"aerial tramway","version":"1.0"},{"emoji":"🛰️","category":4,"name":"satellite","version":"1.0"},{"emoji":"🚀","category":4,"name":"rocket","version":"1.0"},{"emoji":"🛸","category":4,"name":"flying saucer","version":"5.0"},{"emoji":"🛎️","category":4,"name":"bellhop bell","version":"1.0"},{"emoji":"🧳","category":4,"name":"luggage","version":"11.0"},{"emoji":"⌛","category":4,"name":"hourglass done","version":"1.0"},{"emoji":"⏳","category":4,"name":"hourglass not done","version":"1.0"},{"emoji":"⌚","category":4,"name":"watch","version":"1.0"},{"emoji":"⏰","category":4,"name":"alarm clock","version":"1.0"},{"emoji":"⏱️","category":4,"name":"stopwatch","version":"1.0"},{"emoji":"⏲️","category":4,"name":"timer clock","version":"1.0"},{"emoji":"🕰️","category":4,"name":"mantelpiece clock","version":"1.0"},{"emoji":"🕛","category":4,"name":"twelve o’clock","version":"1.0"},{"emoji":"🕧","category":4,"name":"twelve-thirty","version":"1.0"},{"emoji":"🕐","category":4,"name":"one o’clock","version":"1.0"},{"emoji":"🕜","category":4,"name":"one-thirty","version":"1.0"},{"emoji":"🕑","category":4,"name":"two o’clock","version":"1.0"},{"emoji":"🕝","category":4,"name":"two-thirty","version":"1.0"},{"emoji":"🕒","category":4,"name":"three o’clock","version":"1.0"},{"emoji":"🕞","category":4,"name":"three-thirty","version":"1.0"},{"emoji":"🕓","category":4,"name":"four o’clock","version":"1.0"},{"emoji":"🕟","category":4,"name":"four-thirty","version":"1.0"},{"emoji":"🕔","category":4,"name":"five o’clock","version":"1.0"},{"emoji":"🕠","category":4,"name":"five-thirty","version":"1.0"},{"emoji":"🕕","category":4,"name":"six o’clock","version":"1.0"},{"emoji":"🕡","category":4,"name":"six-thirty","version":"1.0"},{"emoji":"🕖","category":4,"name":"seven o’clock","version":"1.0"},{"emoji":"🕢","category":4,"name":"seven-thirty","version":"1.0"},{"emoji":"🕗","category":4,"name":"eight o’clock","version":"1.0"},{"emoji":"🕣","category":4,"name":"eight-thirty","version":"1.0"},{"emoji":"🕘","category":4,"name":"nine o’clock","version":"1.0"},{"emoji":"🕤","category":4,"name":"nine-thirty","version":"1.0"},{"emoji":"🕙","category":4,"name":"ten o’clock","version":"1.0"},{"emoji":"🕥","category":4,"name":"ten-thirty","version":"1.0"},{"emoji":"🕚","category":4,"name":"eleven o’clock","version":"1.0"},{"emoji":"🕦","category":4,"name":"eleven-thirty","version":"1.0"},{"emoji":"🌑","category":4,"name":"new moon","version":"1.0"},{"emoji":"🌒","category":4,"name":"waxing crescent moon","version":"1.0"},{"emoji":"🌓","category":4,"name":"first quarter moon","version":"1.0"},{"emoji":"🌔","category":4,"name":"waxing gibbous moon","version":"1.0"},{"emoji":"🌕","category":4,"name":"full moon","version":"1.0"},{"emoji":"🌖","category":4,"name":"waning gibbous moon","version":"1.0"},{"emoji":"🌗","category":4,"name":"last quarter moon","version":"1.0"},{"emoji":"🌘","category":4,"name":"waning crescent moon","version":"1.0"},{"emoji":"🌙","category":4,"name":"crescent moon","version":"1.0"},{"emoji":"🌚","category":4,"name":"new moon face","version":"1.0"},{"emoji":"🌛","category":4,"name":"first quarter moon face","version":"1.0"},{"emoji":"🌜","category":4,"name":"last quarter moon face","version":"1.0"},{"emoji":"🌡️","category":4,"name":"thermometer","version":"1.0"},{"emoji":"☀️","category":4,"name":"sun","version":"1.0"},{"emoji":"🌝","category":4,"name":"full moon face","version":"1.0"},{"emoji":"🌞","category":4,"name":"sun with face","version":"1.0"},{"emoji":"🪐","category":4,"name":"ringed planet","version":"12.0"},{"emoji":"⭐","category":4,"name":"star","version":"1.0"},{"emoji":"🌟","category":4,"name":"glowing star","version":"1.0"},{"emoji":"🌠","category":4,"name":"shooting star","version":"1.0"},{"emoji":"🌌","category":4,"name":"milky way","version":"1.0"},{"emoji":"☁️","category":4,"name":"cloud","version":"1.0"},{"emoji":"⛅","category":4,"name":"sun behind cloud","version":"1.0"},{"emoji":"⛈️","category":4,"name":"cloud with lightning and rain","version":"1.0"},{"emoji":"🌤️","category":4,"name":"sun behind small cloud","version":"1.0"},{"emoji":"🌥️","category":4,"name":"sun behind large cloud","version":"1.0"},{"emoji":"🌦️","category":4,"name":"sun behind rain cloud","version":"1.0"},{"emoji":"🌧️","category":4,"name":"cloud with rain","version":"1.0"},{"emoji":"🌨️","category":4,"name":"cloud with snow","version":"1.0"},{"emoji":"🌩️","category":4,"name":"cloud with lightning","version":"1.0"},{"emoji":"🌪️","category":4,"name":"tornado","version":"1.0"},{"emoji":"🌫️","category":4,"name":"fog","version":"1.0"},{"emoji":"🌬️","category":4,"name":"wind face","version":"1.0"},{"emoji":"🌀","category":4,"name":"cyclone","version":"1.0"},{"emoji":"🌈","category":4,"name":"rainbow","version":"1.0"},{"emoji":"🌂","category":4,"name":"closed umbrella","version":"1.0"},{"emoji":"☂️","category":4,"name":"umbrella","version":"1.0"},{"emoji":"☔","category":4,"name":"umbrella with rain drops","version":"1.0"},{"emoji":"⛱️","category":4,"name":"umbrella on ground","version":"1.0"},{"emoji":"⚡","category":4,"name":"high voltage","version":"1.0"},{"emoji":"❄️","category":4,"name":"snowflake","version":"1.0"},{"emoji":"☃️","category":4,"name":"snowman","version":"1.0"},{"emoji":"⛄","category":4,"name":"snowman without snow","version":"1.0"},{"emoji":"☄️","category":4,"name":"comet","version":"1.0"},{"emoji":"🔥","category":4,"name":"fire","version":"1.0"},{"emoji":"💧","category":4,"name":"droplet","version":"1.0"},{"emoji":"🌊","category":4,"name":"water wave","version":"1.0"},{"emoji":"🎃","category":5,"name":"jack-o-lantern","version":"1.0"},{"emoji":"🎄","category":5,"name":"Christmas tree","version":"1.0"},{"emoji":"🎆","category":5,"name":"fireworks","version":"1.0"},{"emoji":"🎇","category":5,"name":"sparkler","version":"1.0"},{"emoji":"🧨","category":5,"name":"firecracker","version":"11.0"},{"emoji":"✨","category":5,"name":"sparkles","version":"1.0"},{"emoji":"🎈","category":5,"name":"balloon","version":"1.0"},{"emoji":"🎉","category":5,"name":"party popper","version":"1.0"},{"emoji":"🎊","category":5,"name":"confetti ball","version":"1.0"},{"emoji":"🎋","category":5,"name":"tanabata tree","version":"1.0"},{"emoji":"🎍","category":5,"name":"pine decoration","version":"1.0"},{"emoji":"🎎","category":5,"name":"Japanese dolls","version":"1.0"},{"emoji":"🎏","category":5,"name":"carp streamer","version":"1.0"},{"emoji":"🎐","category":5,"name":"wind chime","version":"1.0"},{"emoji":"🎑","category":5,"name":"moon viewing ceremony","version":"1.0"},{"emoji":"🧧","category":5,"name":"red envelope","version":"11.0"},{"emoji":"🎀","category":5,"name":"ribbon","version":"1.0"},{"emoji":"🎁","category":5,"name":"wrapped gift","version":"1.0"},{"emoji":"🎗️","category":5,"name":"reminder ribbon","version":"1.0"},{"emoji":"🎟️","category":5,"name":"admission tickets","version":"1.0"},{"emoji":"🎫","category":5,"name":"ticket","version":"1.0"},{"emoji":"🎖️","category":5,"name":"military medal","version":"1.0"},{"emoji":"🏆","category":5,"name":"trophy","version":"1.0"},{"emoji":"🏅","category":5,"name":"sports medal","version":"1.0"},{"emoji":"🥇","category":5,"name":"1st place medal","version":"3.0"},{"emoji":"🥈","category":5,"name":"2nd place medal","version":"3.0"},{"emoji":"🥉","category":5,"name":"3rd place medal","version":"3.0"},{"emoji":"⚽","category":5,"name":"soccer ball","version":"1.0"},{"emoji":"⚾","category":5,"name":"baseball","version":"1.0"},{"emoji":"🥎","category":5,"name":"softball","version":"11.0"},{"emoji":"🏀","category":5,"name":"basketball","version":"1.0"},{"emoji":"🏐","category":5,"name":"volleyball","version":"1.0"},{"emoji":"🏈","category":5,"name":"american football","version":"1.0"},{"emoji":"🏉","category":5,"name":"rugby football","version":"1.0"},{"emoji":"🎾","category":5,"name":"tennis","version":"1.0"},{"emoji":"🥏","category":5,"name":"flying disc","version":"11.0"},{"emoji":"🎳","category":5,"name":"bowling","version":"1.0"},{"emoji":"🏏","category":5,"name":"cricket game","version":"1.0"},{"emoji":"🏑","category":5,"name":"field hockey","version":"1.0"},{"emoji":"🏒","category":5,"name":"ice hockey","version":"1.0"},{"emoji":"🥍","category":5,"name":"lacrosse","version":"11.0"},{"emoji":"🏓","category":5,"name":"ping pong","version":"1.0"},{"emoji":"🏸","category":5,"name":"badminton","version":"1.0"},{"emoji":"🥊","category":5,"name":"boxing glove","version":"3.0"},{"emoji":"🥋","category":5,"name":"martial arts uniform","version":"3.0"},{"emoji":"🥅","category":5,"name":"goal net","version":"3.0"},{"emoji":"⛳","category":5,"name":"flag in hole","version":"1.0"},{"emoji":"⛸️","category":5,"name":"ice skate","version":"1.0"},{"emoji":"🎣","category":5,"name":"fishing pole","version":"1.0"},{"emoji":"🤿","category":5,"name":"diving mask","version":"12.0"},{"emoji":"🎽","category":5,"name":"running shirt","version":"1.0"},{"emoji":"🎿","category":5,"name":"skis","version":"1.0"},{"emoji":"🛷","category":5,"name":"sled","version":"5.0"},{"emoji":"🥌","category":5,"name":"curling stone","version":"5.0"},{"emoji":"🎯","category":5,"name":"direct hit","version":"1.0"},{"emoji":"🪀","category":5,"name":"yo-yo","version":"12.0"},{"emoji":"🪁","category":5,"name":"kite","version":"12.0"},{"emoji":"🎱","category":5,"name":"pool 8 ball","version":"1.0"},{"emoji":"🔮","category":5,"name":"crystal ball","version":"1.0"},{"emoji":"🪄","category":5,"name":"magic wand","version":"13.0"},{"emoji":"🧿","category":5,"name":"nazar amulet","version":"11.0"},{"emoji":"🎮","category":5,"name":"video game","version":"1.0"},{"emoji":"🕹️","category":5,"name":"joystick","version":"1.0"},{"emoji":"🎰","category":5,"name":"slot machine","version":"1.0"},{"emoji":"🎲","category":5,"name":"game die","version":"1.0"},{"emoji":"🧩","category":5,"name":"puzzle piece","version":"11.0"},{"emoji":"🧸","category":5,"name":"teddy bear","version":"11.0"},{"emoji":"🪅","category":5,"name":"piñata","version":"13.0"},{"emoji":"🪆","category":5,"name":"nesting dolls","version":"13.0"},{"emoji":"♠️","category":5,"name":"spade suit","version":"1.0"},{"emoji":"♥️","category":5,"name":"heart suit","version":"1.0"},{"emoji":"♦️","category":5,"name":"diamond suit","version":"1.0"},{"emoji":"♣️","category":5,"name":"club suit","version":"1.0"},{"emoji":"♟️","category":5,"name":"chess pawn","version":"11.0"},{"emoji":"🃏","category":5,"name":"joker","version":"1.0"},{"emoji":"🀄","category":5,"name":"mahjong red dragon","version":"1.0"},{"emoji":"🎴","category":5,"name":"flower playing cards","version":"1.0"},{"emoji":"🎭","category":5,"name":"performing arts","version":"1.0"},{"emoji":"🖼️","category":5,"name":"framed picture","version":"1.0"},{"emoji":"🎨","category":5,"name":"artist palette","version":"1.0"},{"emoji":"🧵","category":5,"name":"thread","version":"11.0"},{"emoji":"🪡","category":5,"name":"sewing needle","version":"13.0"},{"emoji":"🧶","category":5,"name":"yarn","version":"11.0"},{"emoji":"🪢","category":5,"name":"knot","version":"13.0"},{"emoji":"👓","category":6,"name":"glasses","version":"1.0"},{"emoji":"🕶️","category":6,"name":"sunglasses","version":"1.0"},{"emoji":"🥽","category":6,"name":"goggles","version":"11.0"},{"emoji":"🥼","category":6,"name":"lab coat","version":"11.0"},{"emoji":"🦺","category":6,"name":"safety vest","version":"12.0"},{"emoji":"👔","category":6,"name":"necktie","version":"1.0"},{"emoji":"👕","category":6,"name":"t-shirt","version":"1.0"},{"emoji":"👖","category":6,"name":"jeans","version":"1.0"},{"emoji":"🧣","category":6,"name":"scarf","version":"5.0"},{"emoji":"🧤","category":6,"name":"gloves","version":"5.0"},{"emoji":"🧥","category":6,"name":"coat","version":"5.0"},{"emoji":"🧦","category":6,"name":"socks","version":"5.0"},{"emoji":"👗","category":6,"name":"dress","version":"1.0"},{"emoji":"👘","category":6,"name":"kimono","version":"1.0"},{"emoji":"🥻","category":6,"name":"sari","version":"12.0"},{"emoji":"🩱","category":6,"name":"one-piece swimsuit","version":"12.0"},{"emoji":"🩲","category":6,"name":"briefs","version":"12.0"},{"emoji":"🩳","category":6,"name":"shorts","version":"12.0"},{"emoji":"👙","category":6,"name":"bikini","version":"1.0"},{"emoji":"👚","category":6,"name":"woman’s clothes","version":"1.0"},{"emoji":"👛","category":6,"name":"purse","version":"1.0"},{"emoji":"👜","category":6,"name":"handbag","version":"1.0"},{"emoji":"👝","category":6,"name":"clutch bag","version":"1.0"},{"emoji":"🛍️","category":6,"name":"shopping bags","version":"1.0"},{"emoji":"🎒","category":6,"name":"backpack","version":"1.0"},{"emoji":"🩴","category":6,"name":"thong sandal","version":"13.0"},{"emoji":"👞","category":6,"name":"man’s shoe","version":"1.0"},{"emoji":"👟","category":6,"name":"running shoe","version":"1.0"},{"emoji":"🥾","category":6,"name":"hiking boot","version":"11.0"},{"emoji":"🥿","category":6,"name":"flat shoe","version":"11.0"},{"emoji":"👠","category":6,"name":"high-heeled shoe","version":"1.0"},{"emoji":"👡","category":6,"name":"woman’s sandal","version":"1.0"},{"emoji":"🩰","category":6,"name":"ballet shoes","version":"12.0"},{"emoji":"👢","category":6,"name":"woman’s boot","version":"1.0"},{"emoji":"👑","category":6,"name":"crown","version":"1.0"},{"emoji":"👒","category":6,"name":"woman’s hat","version":"1.0"},{"emoji":"🎩","category":6,"name":"top hat","version":"1.0"},{"emoji":"🎓","category":6,"name":"graduation cap","version":"1.0"},{"emoji":"🧢","category":6,"name":"billed cap","version":"5.0"},{"emoji":"🪖","category":6,"name":"military helmet","version":"13.0"},{"emoji":"⛑️","category":6,"name":"rescue worker’s helmet","version":"1.0"},{"emoji":"📿","category":6,"name":"prayer beads","version":"1.0"},{"emoji":"💄","category":6,"name":"lipstick","version":"1.0"},{"emoji":"💍","category":6,"name":"ring","version":"1.0"},{"emoji":"💎","category":6,"name":"gem stone","version":"1.0"},{"emoji":"🔇","category":6,"name":"muted speaker","version":"1.0"},{"emoji":"🔈","category":6,"name":"speaker low volume","version":"1.0"},{"emoji":"🔉","category":6,"name":"speaker medium volume","version":"1.0"},{"emoji":"🔊","category":6,"name":"speaker high volume","version":"1.0"},{"emoji":"📢","category":6,"name":"loudspeaker","version":"1.0"},{"emoji":"📣","category":6,"name":"megaphone","version":"1.0"},{"emoji":"📯","category":6,"name":"postal horn","version":"1.0"},{"emoji":"🔔","category":6,"name":"bell","version":"1.0"},{"emoji":"🔕","category":6,"name":"bell with slash","version":"1.0"},{"emoji":"🎼","category":6,"name":"musical score","version":"1.0"},{"emoji":"🎵","category":6,"name":"musical note","version":"1.0"},{"emoji":"🎶","category":6,"name":"musical notes","version":"1.0"},{"emoji":"🎙️","category":6,"name":"studio microphone","version":"1.0"},{"emoji":"🎚️","category":6,"name":"level slider","version":"1.0"},{"emoji":"🎛️","category":6,"name":"control knobs","version":"1.0"},{"emoji":"🎤","category":6,"name":"microphone","version":"1.0"},{"emoji":"🎧","category":6,"name":"headphone","version":"1.0"},{"emoji":"📻","category":6,"name":"radio","version":"1.0"},{"emoji":"🎷","category":6,"name":"saxophone","version":"1.0"},{"emoji":"🪗","category":6,"name":"accordion","version":"13.0"},{"emoji":"🎸","category":6,"name":"guitar","version":"1.0"},{"emoji":"🎹","category":6,"name":"musical keyboard","version":"1.0"},{"emoji":"🎺","category":6,"name":"trumpet","version":"1.0"},{"emoji":"🎻","category":6,"name":"violin","version":"1.0"},{"emoji":"🪕","category":6,"name":"banjo","version":"12.0"},{"emoji":"🥁","category":6,"name":"drum","version":"3.0"},{"emoji":"🪘","category":6,"name":"long drum","version":"13.0"},{"emoji":"📱","category":6,"name":"mobile phone","version":"1.0"},{"emoji":"📲","category":6,"name":"mobile phone with arrow","version":"1.0"},{"emoji":"☎️","category":6,"name":"telephone","version":"1.0"},{"emoji":"📞","category":6,"name":"telephone receiver","version":"1.0"},{"emoji":"📟","category":6,"name":"pager","version":"1.0"},{"emoji":"📠","category":6,"name":"fax machine","version":"1.0"},{"emoji":"🔋","category":6,"name":"battery","version":"1.0"},{"emoji":"🔌","category":6,"name":"electric plug","version":"1.0"},{"emoji":"💻","category":6,"name":"laptop","version":"1.0"},{"emoji":"🖥️","category":6,"name":"desktop computer","version":"1.0"},{"emoji":"🖨️","category":6,"name":"printer","version":"1.0"},{"emoji":"⌨️","category":6,"name":"keyboard","version":"1.0"},{"emoji":"🖱️","category":6,"name":"computer mouse","version":"1.0"},{"emoji":"🖲️","category":6,"name":"trackball","version":"1.0"},{"emoji":"💽","category":6,"name":"computer disk","version":"1.0"},{"emoji":"💾","category":6,"name":"floppy disk","version":"1.0"},{"emoji":"💿","category":6,"name":"optical disk","version":"1.0"},{"emoji":"📀","category":6,"name":"dvd","version":"1.0"},{"emoji":"🧮","category":6,"name":"abacus","version":"11.0"},{"emoji":"🎥","category":6,"name":"movie camera","version":"1.0"},{"emoji":"🎞️","category":6,"name":"film frames","version":"1.0"},{"emoji":"📽️","category":6,"name":"film projector","version":"1.0"},{"emoji":"🎬","category":6,"name":"clapper board","version":"1.0"},{"emoji":"📺","category":6,"name":"television","version":"1.0"},{"emoji":"📷","category":6,"name":"camera","version":"1.0"},{"emoji":"📸","category":6,"name":"camera with flash","version":"1.0"},{"emoji":"📹","category":6,"name":"video camera","version":"1.0"},{"emoji":"📼","category":6,"name":"videocassette","version":"1.0"},{"emoji":"🔍","category":6,"name":"magnifying glass tilted left","version":"1.0"},{"emoji":"🔎","category":6,"name":"magnifying glass tilted right","version":"1.0"},{"emoji":"🕯️","category":6,"name":"candle","version":"1.0"},{"emoji":"💡","category":6,"name":"light bulb","version":"1.0"},{"emoji":"🔦","category":6,"name":"flashlight","version":"1.0"},{"emoji":"🏮","category":6,"name":"red paper lantern","version":"1.0"},{"emoji":"🪔","category":6,"name":"diya lamp","version":"12.0"},{"emoji":"📔","category":6,"name":"notebook with decorative cover","version":"1.0"},{"emoji":"📕","category":6,"name":"closed book","version":"1.0"},{"emoji":"📖","category":6,"name":"open book","version":"1.0"},{"emoji":"📗","category":6,"name":"green book","version":"1.0"},{"emoji":"📘","category":6,"name":"blue book","version":"1.0"},{"emoji":"📙","category":6,"name":"orange book","version":"1.0"},{"emoji":"📚","category":6,"name":"books","version":"1.0"},{"emoji":"📓","category":6,"name":"notebook","version":"1.0"},{"emoji":"📒","category":6,"name":"ledger","version":"1.0"},{"emoji":"📃","category":6,"name":"page with curl","version":"1.0"},{"emoji":"📜","category":6,"name":"scroll","version":"1.0"},{"emoji":"📄","category":6,"name":"page facing up","version":"1.0"},{"emoji":"📰","category":6,"name":"newspaper","version":"1.0"},{"emoji":"🗞️","category":6,"name":"rolled-up newspaper","version":"1.0"},{"emoji":"📑","category":6,"name":"bookmark tabs","version":"1.0"},{"emoji":"🔖","category":6,"name":"bookmark","version":"1.0"},{"emoji":"🏷️","category":6,"name":"label","version":"1.0"},{"emoji":"💰","category":6,"name":"money bag","version":"1.0"},{"emoji":"🪙","category":6,"name":"coin","version":"13.0"},{"emoji":"💴","category":6,"name":"yen banknote","version":"1.0"},{"emoji":"💵","category":6,"name":"dollar banknote","version":"1.0"},{"emoji":"💶","category":6,"name":"euro banknote","version":"1.0"},{"emoji":"💷","category":6,"name":"pound banknote","version":"1.0"},{"emoji":"💸","category":6,"name":"money with wings","version":"1.0"},{"emoji":"💳","category":6,"name":"credit card","version":"1.0"},{"emoji":"🧾","category":6,"name":"receipt","version":"11.0"},{"emoji":"💹","category":6,"name":"chart increasing with yen","version":"1.0"},{"emoji":"✉️","category":6,"name":"envelope","version":"1.0"},{"emoji":"📧","category":6,"name":"e-mail","version":"1.0"},{"emoji":"📨","category":6,"name":"incoming envelope","version":"1.0"},{"emoji":"📩","category":6,"name":"envelope with arrow","version":"1.0"},{"emoji":"📤","category":6,"name":"outbox tray","version":"1.0"},{"emoji":"📥","category":6,"name":"inbox tray","version":"1.0"},{"emoji":"📦","category":6,"name":"package","version":"1.0"},{"emoji":"📫","category":6,"name":"closed mailbox with raised flag","version":"1.0"},{"emoji":"📪","category":6,"name":"closed mailbox with lowered flag","version":"1.0"},{"emoji":"📬","category":6,"name":"open mailbox with raised flag","version":"1.0"},{"emoji":"📭","category":6,"name":"open mailbox with lowered flag","version":"1.0"},{"emoji":"📮","category":6,"name":"postbox","version":"1.0"},{"emoji":"🗳️","category":6,"name":"ballot box with ballot","version":"1.0"},{"emoji":"✏️","category":6,"name":"pencil","version":"1.0"},{"emoji":"✒️","category":6,"name":"black nib","version":"1.0"},{"emoji":"🖋️","category":6,"name":"fountain pen","version":"1.0"},{"emoji":"🖊️","category":6,"name":"pen","version":"1.0"},{"emoji":"🖌️","category":6,"name":"paintbrush","version":"1.0"},{"emoji":"🖍️","category":6,"name":"crayon","version":"1.0"},{"emoji":"📝","category":6,"name":"memo","version":"1.0"},{"emoji":"💼","category":6,"name":"briefcase","version":"1.0"},{"emoji":"📁","category":6,"name":"file folder","version":"1.0"},{"emoji":"📂","category":6,"name":"open file folder","version":"1.0"},{"emoji":"🗂️","category":6,"name":"card index dividers","version":"1.0"},{"emoji":"📅","category":6,"name":"calendar","version":"1.0"},{"emoji":"📆","category":6,"name":"tear-off calendar","version":"1.0"},{"emoji":"🗒️","category":6,"name":"spiral notepad","version":"1.0"},{"emoji":"🗓️","category":6,"name":"spiral calendar","version":"1.0"},{"emoji":"📇","category":6,"name":"card index","version":"1.0"},{"emoji":"📈","category":6,"name":"chart increasing","version":"1.0"},{"emoji":"📉","category":6,"name":"chart decreasing","version":"1.0"},{"emoji":"📊","category":6,"name":"bar chart","version":"1.0"},{"emoji":"📋","category":6,"name":"clipboard","version":"1.0"},{"emoji":"📌","category":6,"name":"pushpin","version":"1.0"},{"emoji":"📍","category":6,"name":"round pushpin","version":"1.0"},{"emoji":"📎","category":6,"name":"paperclip","version":"1.0"},{"emoji":"🖇️","category":6,"name":"linked paperclips","version":"1.0"},{"emoji":"📏","category":6,"name":"straight ruler","version":"1.0"},{"emoji":"📐","category":6,"name":"triangular ruler","version":"1.0"},{"emoji":"✂️","category":6,"name":"scissors","version":"1.0"},{"emoji":"🗃️","category":6,"name":"card file box","version":"1.0"},{"emoji":"🗄️","category":6,"name":"file cabinet","version":"1.0"},{"emoji":"🗑️","category":6,"name":"wastebasket","version":"1.0"},{"emoji":"🔒","category":6,"name":"locked","version":"1.0"},{"emoji":"🔓","category":6,"name":"unlocked","version":"1.0"},{"emoji":"🔏","category":6,"name":"locked with pen","version":"1.0"},{"emoji":"🔐","category":6,"name":"locked with key","version":"1.0"},{"emoji":"🔑","category":6,"name":"key","version":"1.0"},{"emoji":"🗝️","category":6,"name":"old key","version":"1.0"},{"emoji":"🔨","category":6,"name":"hammer","version":"1.0"},{"emoji":"🪓","category":6,"name":"axe","version":"12.0"},{"emoji":"⛏️","category":6,"name":"pick","version":"1.0"},{"emoji":"⚒️","category":6,"name":"hammer and pick","version":"1.0"},{"emoji":"🛠️","category":6,"name":"hammer and wrench","version":"1.0"},{"emoji":"🗡️","category":6,"name":"dagger","version":"1.0"},{"emoji":"⚔️","category":6,"name":"crossed swords","version":"1.0"},{"emoji":"🔫","category":6,"name":"pistol","version":"1.0"},{"emoji":"🪃","category":6,"name":"boomerang","version":"13.0"},{"emoji":"🏹","category":6,"name":"bow and arrow","version":"1.0"},{"emoji":"🛡️","category":6,"name":"shield","version":"1.0"},{"emoji":"🪚","category":6,"name":"carpentry saw","version":"13.0"},{"emoji":"🔧","category":6,"name":"wrench","version":"1.0"},{"emoji":"🪛","category":6,"name":"screwdriver","version":"13.0"},{"emoji":"🔩","category":6,"name":"nut and bolt","version":"1.0"},{"emoji":"⚙️","category":6,"name":"gear","version":"1.0"},{"emoji":"🗜️","category":6,"name":"clamp","version":"1.0"},{"emoji":"⚖️","category":6,"name":"balance scale","version":"1.0"},{"emoji":"🦯","category":6,"name":"white cane","version":"12.0"},{"emoji":"🔗","category":6,"name":"link","version":"1.0"},{"emoji":"⛓️","category":6,"name":"chains","version":"1.0"},{"emoji":"🪝","category":6,"name":"hook","version":"13.0"},{"emoji":"🧰","category":6,"name":"toolbox","version":"11.0"},{"emoji":"🧲","category":6,"name":"magnet","version":"11.0"},{"emoji":"🪜","category":6,"name":"ladder","version":"13.0"},{"emoji":"⚗️","category":6,"name":"alembic","version":"1.0"},{"emoji":"🧪","category":6,"name":"test tube","version":"11.0"},{"emoji":"🧫","category":6,"name":"petri dish","version":"11.0"},{"emoji":"🧬","category":6,"name":"dna","version":"11.0"},{"emoji":"🔬","category":6,"name":"microscope","version":"1.0"},{"emoji":"🔭","category":6,"name":"telescope","version":"1.0"},{"emoji":"📡","category":6,"name":"satellite antenna","version":"1.0"},{"emoji":"💉","category":6,"name":"syringe","version":"1.0"},{"emoji":"🩸","category":6,"name":"drop of blood","version":"12.0"},{"emoji":"💊","category":6,"name":"pill","version":"1.0"},{"emoji":"🩹","category":6,"name":"adhesive bandage","version":"12.0"},{"emoji":"🩺","category":6,"name":"stethoscope","version":"12.0"},{"emoji":"🚪","category":6,"name":"door","version":"1.0"},{"emoji":"🛗","category":6,"name":"elevator","version":"13.0"},{"emoji":"🪞","category":6,"name":"mirror","version":"13.0"},{"emoji":"🪟","category":6,"name":"window","version":"13.0"},{"emoji":"🛏️","category":6,"name":"bed","version":"1.0"},{"emoji":"🛋️","category":6,"name":"couch and lamp","version":"1.0"},{"emoji":"🪑","category":6,"name":"chair","version":"12.0"},{"emoji":"🚽","category":6,"name":"toilet","version":"1.0"},{"emoji":"🪠","category":6,"name":"plunger","version":"13.0"},{"emoji":"🚿","category":6,"name":"shower","version":"1.0"},{"emoji":"🛁","category":6,"name":"bathtub","version":"1.0"},{"emoji":"🪤","category":6,"name":"mouse trap","version":"13.0"},{"emoji":"🪒","category":6,"name":"razor","version":"12.0"},{"emoji":"🧴","category":6,"name":"lotion bottle","version":"11.0"},{"emoji":"🧷","category":6,"name":"safety pin","version":"11.0"},{"emoji":"🧹","category":6,"name":"broom","version":"11.0"},{"emoji":"🧺","category":6,"name":"basket","version":"11.0"},{"emoji":"🧻","category":6,"name":"roll of paper","version":"11.0"},{"emoji":"🪣","category":6,"name":"bucket","version":"13.0"},{"emoji":"🧼","category":6,"name":"soap","version":"11.0"},{"emoji":"🪥","category":6,"name":"toothbrush","version":"13.0"},{"emoji":"🧽","category":6,"name":"sponge","version":"11.0"},{"emoji":"🧯","category":6,"name":"fire extinguisher","version":"11.0"},{"emoji":"🛒","category":6,"name":"shopping cart","version":"3.0"},{"emoji":"🚬","category":6,"name":"cigarette","version":"1.0"},{"emoji":"⚰️","category":6,"name":"coffin","version":"1.0"},{"emoji":"🪦","category":6,"name":"headstone","version":"13.0"},{"emoji":"⚱️","category":6,"name":"funeral urn","version":"1.0"},{"emoji":"🗿","category":6,"name":"moai","version":"1.0"},{"emoji":"🪧","category":6,"name":"placard","version":"13.0"},{"emoji":"🏧","category":7,"name":"ATM sign","version":"1.0"},{"emoji":"🚮","category":7,"name":"litter in bin sign","version":"1.0"},{"emoji":"🚰","category":7,"name":"potable water","version":"1.0"},{"emoji":"♿","category":7,"name":"wheelchair symbol","version":"1.0"},{"emoji":"🚹","category":7,"name":"men’s room","version":"1.0"},{"emoji":"🚺","category":7,"name":"women’s room","version":"1.0"},{"emoji":"🚻","category":7,"name":"restroom","version":"1.0"},{"emoji":"🚼","category":7,"name":"baby symbol","version":"1.0"},{"emoji":"🚾","category":7,"name":"water closet","version":"1.0"},{"emoji":"🛂","category":7,"name":"passport control","version":"1.0"},{"emoji":"🛃","category":7,"name":"customs","version":"1.0"},{"emoji":"🛄","category":7,"name":"baggage claim","version":"1.0"},{"emoji":"🛅","category":7,"name":"left luggage","version":"1.0"},{"emoji":"⚠️","category":7,"name":"warning","version":"1.0"},{"emoji":"🚸","category":7,"name":"children crossing","version":"1.0"},{"emoji":"⛔","category":7,"name":"no entry","version":"1.0"},{"emoji":"🚫","category":7,"name":"prohibited","version":"1.0"},{"emoji":"🚳","category":7,"name":"no bicycles","version":"1.0"},{"emoji":"🚭","category":7,"name":"no smoking","version":"1.0"},{"emoji":"🚯","category":7,"name":"no littering","version":"1.0"},{"emoji":"🚱","category":7,"name":"non-potable water","version":"1.0"},{"emoji":"🚷","category":7,"name":"no pedestrians","version":"1.0"},{"emoji":"📵","category":7,"name":"no mobile phones","version":"1.0"},{"emoji":"🔞","category":7,"name":"no one under eighteen","version":"1.0"},{"emoji":"☢️","category":7,"name":"radioactive","version":"1.0"},{"emoji":"☣️","category":7,"name":"biohazard","version":"1.0"},{"emoji":"⬆️","category":7,"name":"up arrow","version":"1.0"},{"emoji":"↗️","category":7,"name":"up-right arrow","version":"1.0"},{"emoji":"➡️","category":7,"name":"right arrow","version":"1.0"},{"emoji":"↘️","category":7,"name":"down-right arrow","version":"1.0"},{"emoji":"⬇️","category":7,"name":"down arrow","version":"1.0"},{"emoji":"↙️","category":7,"name":"down-left arrow","version":"1.0"},{"emoji":"⬅️","category":7,"name":"left arrow","version":"1.0"},{"emoji":"↖️","category":7,"name":"up-left arrow","version":"1.0"},{"emoji":"↕️","category":7,"name":"up-down arrow","version":"1.0"},{"emoji":"↔️","category":7,"name":"left-right arrow","version":"1.0"},{"emoji":"↩️","category":7,"name":"right arrow curving left","version":"1.0"},{"emoji":"↪️","category":7,"name":"left arrow curving right","version":"1.0"},{"emoji":"⤴️","category":7,"name":"right arrow curving up","version":"1.0"},{"emoji":"⤵️","category":7,"name":"right arrow curving down","version":"1.0"},{"emoji":"🔃","category":7,"name":"clockwise vertical arrows","version":"1.0"},{"emoji":"🔄","category":7,"name":"counterclockwise arrows button","version":"1.0"},{"emoji":"🔙","category":7,"name":"BACK arrow","version":"1.0"},{"emoji":"🔚","category":7,"name":"END arrow","version":"1.0"},{"emoji":"🔛","category":7,"name":"ON! arrow","version":"1.0"},{"emoji":"🔜","category":7,"name":"SOON arrow","version":"1.0"},{"emoji":"🔝","category":7,"name":"TOP arrow","version":"1.0"},{"emoji":"🛐","category":7,"name":"place of worship","version":"1.0"},{"emoji":"⚛️","category":7,"name":"atom symbol","version":"1.0"},{"emoji":"🕉️","category":7,"name":"om","version":"1.0"},{"emoji":"✡️","category":7,"name":"star of David","version":"1.0"},{"emoji":"☸️","category":7,"name":"wheel of dharma","version":"1.0"},{"emoji":"☯️","category":7,"name":"yin yang","version":"1.0"},{"emoji":"✝️","category":7,"name":"latin cross","version":"1.0"},{"emoji":"☦️","category":7,"name":"orthodox cross","version":"1.0"},{"emoji":"☪️","category":7,"name":"star and crescent","version":"1.0"},{"emoji":"☮️","category":7,"name":"peace symbol","version":"1.0"},{"emoji":"🕎","category":7,"name":"menorah","version":"1.0"},{"emoji":"🔯","category":7,"name":"dotted six-pointed star","version":"1.0"},{"emoji":"♈","category":7,"name":"Aries","version":"1.0"},{"emoji":"♉","category":7,"name":"Taurus","version":"1.0"},{"emoji":"♊","category":7,"name":"Gemini","version":"1.0"},{"emoji":"♋","category":7,"name":"Cancer","version":"1.0"},{"emoji":"♌","category":7,"name":"Leo","version":"1.0"},{"emoji":"♍","category":7,"name":"Virgo","version":"1.0"},{"emoji":"♎","category":7,"name":"Libra","version":"1.0"},{"emoji":"♏","category":7,"name":"Scorpio","version":"1.0"},{"emoji":"♐","category":7,"name":"Sagittarius","version":"1.0"},{"emoji":"♑","category":7,"name":"Capricorn","version":"1.0"},{"emoji":"♒","category":7,"name":"Aquarius","version":"1.0"},{"emoji":"♓","category":7,"name":"Pisces","version":"1.0"},{"emoji":"⛎","category":7,"name":"Ophiuchus","version":"1.0"},{"emoji":"🔀","category":7,"name":"shuffle tracks button","version":"1.0"},{"emoji":"🔁","category":7,"name":"repeat button","version":"1.0"},{"emoji":"🔂","category":7,"name":"repeat single button","version":"1.0"},{"emoji":"▶️","category":7,"name":"play button","version":"1.0"},{"emoji":"⏩","category":7,"name":"fast-forward button","version":"1.0"},{"emoji":"⏭️","category":7,"name":"next track button","version":"1.0"},{"emoji":"⏯️","category":7,"name":"play or pause button","version":"1.0"},{"emoji":"◀️","category":7,"name":"reverse button","version":"1.0"},{"emoji":"⏪","category":7,"name":"fast reverse button","version":"1.0"},{"emoji":"⏮️","category":7,"name":"last track button","version":"1.0"},{"emoji":"🔼","category":7,"name":"upwards button","version":"1.0"},{"emoji":"⏫","category":7,"name":"fast up button","version":"1.0"},{"emoji":"🔽","category":7,"name":"downwards button","version":"1.0"},{"emoji":"⏬","category":7,"name":"fast down button","version":"1.0"},{"emoji":"⏸️","category":7,"name":"pause button","version":"1.0"},{"emoji":"⏹️","category":7,"name":"stop button","version":"1.0"},{"emoji":"⏺️","category":7,"name":"record button","version":"1.0"},{"emoji":"⏏️","category":7,"name":"eject button","version":"1.0"},{"emoji":"🎦","category":7,"name":"cinema","version":"1.0"},{"emoji":"🔅","category":7,"name":"dim button","version":"1.0"},{"emoji":"🔆","category":7,"name":"bright button","version":"1.0"},{"emoji":"📶","category":7,"name":"antenna bars","version":"1.0"},{"emoji":"📳","category":7,"name":"vibration mode","version":"1.0"},{"emoji":"📴","category":7,"name":"mobile phone off","version":"1.0"},{"emoji":"♀️","category":7,"name":"female sign","version":"4.0"},{"emoji":"♂️","category":7,"name":"male sign","version":"4.0"},{"emoji":"⚧️","category":7,"name":"transgender symbol","version":"13.0"},{"emoji":"✖️","category":7,"name":"multiply","version":"1.0"},{"emoji":"➕","category":7,"name":"plus","version":"1.0"},{"emoji":"➖","category":7,"name":"minus","version":"1.0"},{"emoji":"➗","category":7,"name":"divide","version":"1.0"},{"emoji":"♾️","category":7,"name":"infinity","version":"11.0"},{"emoji":"‼️","category":7,"name":"double exclamation mark","version":"1.0"},{"emoji":"⁉️","category":7,"name":"exclamation question mark","version":"1.0"},{"emoji":"❓","category":7,"name":"question mark","version":"1.0"},{"emoji":"❔","category":7,"name":"white question mark","version":"1.0"},{"emoji":"❕","category":7,"name":"white exclamation mark","version":"1.0"},{"emoji":"❗","category":7,"name":"exclamation mark","version":"1.0"},{"emoji":"〰️","category":7,"name":"wavy dash","version":"1.0"},{"emoji":"💱","category":7,"name":"currency exchange","version":"1.0"},{"emoji":"💲","category":7,"name":"heavy dollar sign","version":"1.0"},{"emoji":"⚕️","category":7,"name":"medical symbol","version":"4.0"},{"emoji":"♻️","category":7,"name":"recycling symbol","version":"1.0"},{"emoji":"⚜️","category":7,"name":"fleur-de-lis","version":"1.0"},{"emoji":"🔱","category":7,"name":"trident emblem","version":"1.0"},{"emoji":"📛","category":7,"name":"name badge","version":"1.0"},{"emoji":"🔰","category":7,"name":"Japanese symbol for beginner","version":"1.0"},{"emoji":"⭕","category":7,"name":"hollow red circle","version":"1.0"},{"emoji":"✅","category":7,"name":"check mark button","version":"1.0"},{"emoji":"☑️","category":7,"name":"check box with check","version":"1.0"},{"emoji":"✔️","category":7,"name":"check mark","version":"1.0"},{"emoji":"❌","category":7,"name":"cross mark","version":"1.0"},{"emoji":"❎","category":7,"name":"cross mark button","version":"1.0"},{"emoji":"➰","category":7,"name":"curly loop","version":"1.0"},{"emoji":"➿","category":7,"name":"double curly loop","version":"1.0"},{"emoji":"〽️","category":7,"name":"part alternation mark","version":"1.0"},{"emoji":"✳️","category":7,"name":"eight-spoked asterisk","version":"1.0"},{"emoji":"✴️","category":7,"name":"eight-pointed star","version":"1.0"},{"emoji":"❇️","category":7,"name":"sparkle","version":"1.0"},{"emoji":"©️","category":7,"name":"copyright","version":"1.0"},{"emoji":"®️","category":7,"name":"registered","version":"1.0"},{"emoji":"™️","category":7,"name":"trade mark","version":"1.0"},{"emoji":"#️⃣","category":7,"name":"keycap: #","version":"1.0"},{"emoji":"*️⃣","category":7,"name":"keycap: *","version":"2.0"},{"emoji":"0️⃣","category":7,"name":"keycap: 0","version":"1.0"},{"emoji":"1️⃣","category":7,"name":"keycap: 1","version":"1.0"},{"emoji":"2️⃣","category":7,"name":"keycap: 2","version":"1.0"},{"emoji":"3️⃣","category":7,"name":"keycap: 3","version":"1.0"},{"emoji":"4️⃣","category":7,"name":"keycap: 4","version":"1.0"},{"emoji":"5️⃣","category":7,"name":"keycap: 5","version":"1.0"},{"emoji":"6️⃣","category":7,"name":"keycap: 6","version":"1.0"},{"emoji":"7️⃣","category":7,"name":"keycap: 7","version":"1.0"},{"emoji":"8️⃣","category":7,"name":"keycap: 8","version":"1.0"},{"emoji":"9️⃣","category":7,"name":"keycap: 9","version":"1.0"},{"emoji":"🔟","category":7,"name":"keycap: 10","version":"1.0"},{"emoji":"🔠","category":7,"name":"input latin uppercase","version":"1.0"},{"emoji":"🔡","category":7,"name":"input latin lowercase","version":"1.0"},{"emoji":"🔢","category":7,"name":"input numbers","version":"1.0"},{"emoji":"🔣","category":7,"name":"input symbols","version":"1.0"},{"emoji":"🔤","category":7,"name":"input latin letters","version":"1.0"},{"emoji":"🅰️","category":7,"name":"A button (blood type)","version":"1.0"},{"emoji":"🆎","category":7,"name":"AB button (blood type)","version":"1.0"},{"emoji":"🅱️","category":7,"name":"B button (blood type)","version":"1.0"},{"emoji":"🆑","category":7,"name":"CL button","version":"1.0"},{"emoji":"🆒","category":7,"name":"COOL button","version":"1.0"},{"emoji":"🆓","category":7,"name":"FREE button","version":"1.0"},{"emoji":"ℹ️","category":7,"name":"information","version":"1.0"},{"emoji":"🆔","category":7,"name":"ID button","version":"1.0"},{"emoji":"Ⓜ️","category":7,"name":"circled M","version":"1.0"},{"emoji":"🆕","category":7,"name":"NEW button","version":"1.0"},{"emoji":"🆖","category":7,"name":"NG button","version":"1.0"},{"emoji":"🅾️","category":7,"name":"O button (blood type)","version":"1.0"},{"emoji":"🆗","category":7,"name":"OK button","version":"1.0"},{"emoji":"🅿️","category":7,"name":"P button","version":"1.0"},{"emoji":"🆘","category":7,"name":"SOS button","version":"1.0"},{"emoji":"🆙","category":7,"name":"UP! button","version":"1.0"},{"emoji":"🆚","category":7,"name":"VS button","version":"1.0"},{"emoji":"🈁","category":7,"name":"Japanese “here” button","version":"1.0"},{"emoji":"🈂️","category":7,"name":"Japanese “service charge” button","version":"1.0"},{"emoji":"🈷️","category":7,"name":"Japanese “monthly amount” button","version":"1.0"},{"emoji":"🈶","category":7,"name":"Japanese “not free of charge” button","version":"1.0"},{"emoji":"🈯","category":7,"name":"Japanese “reserved” button","version":"1.0"},{"emoji":"🉐","category":7,"name":"Japanese “bargain” button","version":"1.0"},{"emoji":"🈹","category":7,"name":"Japanese “discount” button","version":"1.0"},{"emoji":"🈚","category":7,"name":"Japanese “free of charge” button","version":"1.0"},{"emoji":"🈲","category":7,"name":"Japanese “prohibited” button","version":"1.0"},{"emoji":"🉑","category":7,"name":"Japanese “acceptable” button","version":"1.0"},{"emoji":"🈸","category":7,"name":"Japanese “application” button","version":"1.0"},{"emoji":"🈴","category":7,"name":"Japanese “passing grade” button","version":"1.0"},{"emoji":"🈳","category":7,"name":"Japanese “vacancy” button","version":"1.0"},{"emoji":"㊗️","category":7,"name":"Japanese “congratulations” button","version":"1.0"},{"emoji":"㊙️","category":7,"name":"Japanese “secret” button","version":"1.0"},{"emoji":"🈺","category":7,"name":"Japanese “open for business” button","version":"1.0"},{"emoji":"🈵","category":7,"name":"Japanese “no vacancy” button","version":"1.0"},{"emoji":"🔴","category":7,"name":"red circle","version":"1.0"},{"emoji":"🟠","category":7,"name":"orange circle","version":"12.0"},{"emoji":"🟡","category":7,"name":"yellow circle","version":"12.0"},{"emoji":"🟢","category":7,"name":"green circle","version":"12.0"},{"emoji":"🔵","category":7,"name":"blue circle","version":"1.0"},{"emoji":"🟣","category":7,"name":"purple circle","version":"12.0"},{"emoji":"🟤","category":7,"name":"brown circle","version":"12.0"},{"emoji":"⚫","category":7,"name":"black circle","version":"1.0"},{"emoji":"⚪","category":7,"name":"white circle","version":"1.0"},{"emoji":"🟥","category":7,"name":"red square","version":"12.0"},{"emoji":"🟧","category":7,"name":"orange square","version":"12.0"},{"emoji":"🟨","category":7,"name":"yellow square","version":"12.0"},{"emoji":"🟩","category":7,"name":"green square","version":"12.0"},{"emoji":"🟦","category":7,"name":"blue square","version":"12.0"},{"emoji":"🟪","category":7,"name":"purple square","version":"12.0"},{"emoji":"🟫","category":7,"name":"brown square","version":"12.0"},{"emoji":"⬛","category":7,"name":"black large square","version":"1.0"},{"emoji":"⬜","category":7,"name":"white large square","version":"1.0"},{"emoji":"◼️","category":7,"name":"black medium square","version":"1.0"},{"emoji":"◻️","category":7,"name":"white medium square","version":"1.0"},{"emoji":"◾","category":7,"name":"black medium-small square","version":"1.0"},{"emoji":"◽","category":7,"name":"white medium-small square","version":"1.0"},{"emoji":"▪️","category":7,"name":"black small square","version":"1.0"},{"emoji":"▫️","category":7,"name":"white small square","version":"1.0"},{"emoji":"🔶","category":7,"name":"large orange diamond","version":"1.0"},{"emoji":"🔷","category":7,"name":"large blue diamond","version":"1.0"},{"emoji":"🔸","category":7,"name":"small orange diamond","version":"1.0"},{"emoji":"🔹","category":7,"name":"small blue diamond","version":"1.0"},{"emoji":"🔺","category":7,"name":"red triangle pointed up","version":"1.0"},{"emoji":"🔻","category":7,"name":"red triangle pointed down","version":"1.0"},{"emoji":"💠","category":7,"name":"diamond with a dot","version":"1.0"},{"emoji":"🔘","category":7,"name":"radio button","version":"1.0"},{"emoji":"🔳","category":7,"name":"white square button","version":"1.0"},{"emoji":"🔲","category":7,"name":"black square button","version":"1.0"},{"emoji":"🏁","category":8,"name":"chequered flag","version":"1.0"},{"emoji":"🚩","category":8,"name":"triangular flag","version":"1.0"},{"emoji":"🎌","category":8,"name":"crossed flags","version":"1.0"},{"emoji":"🏴","category":8,"name":"black flag","version":"1.0"},{"emoji":"🏳️","category":8,"name":"white flag","version":"1.0"},{"emoji":"🏳️‍🌈","category":8,"name":"rainbow flag","version":"4.0"},{"emoji":"🏳️‍⚧️","category":8,"name":"transgender flag","version":"13.0"},{"emoji":"🏴‍☠️","category":8,"name":"pirate flag","version":"11.0"},{"emoji":"🇦🇨","category":8,"name":"flag: Ascension Island","version":"2.0"},{"emoji":"🇦🇩","category":8,"name":"flag: Andorra","version":"2.0"},{"emoji":"🇦🇪","category":8,"name":"flag: United Arab Emirates","version":"2.0"},{"emoji":"🇦🇫","category":8,"name":"flag: Afghanistan","version":"2.0"},{"emoji":"🇦🇬","category":8,"name":"flag: Antigua & Barbuda","version":"2.0"},{"emoji":"🇦🇮","category":8,"name":"flag: Anguilla","version":"2.0"},{"emoji":"🇦🇱","category":8,"name":"flag: Albania","version":"2.0"},{"emoji":"🇦🇲","category":8,"name":"flag: Armenia","version":"2.0"},{"emoji":"🇦🇴","category":8,"name":"flag: Angola","version":"2.0"},{"emoji":"🇦🇶","category":8,"name":"flag: Antarctica","version":"2.0"},{"emoji":"🇦🇷","category":8,"name":"flag: Argentina","version":"2.0"},{"emoji":"🇦🇸","category":8,"name":"flag: American Samoa","version":"2.0"},{"emoji":"🇦🇹","category":8,"name":"flag: Austria","version":"2.0"},{"emoji":"🇦🇺","category":8,"name":"flag: Australia","version":"2.0"},{"emoji":"🇦🇼","category":8,"name":"flag: Aruba","version":"2.0"},{"emoji":"🇦🇽","category":8,"name":"flag: Åland Islands","version":"2.0"},{"emoji":"🇦🇿","category":8,"name":"flag: Azerbaijan","version":"2.0"},{"emoji":"🇧🇦","category":8,"name":"flag: Bosnia & Herzegovina","version":"2.0"},{"emoji":"🇧🇧","category":8,"name":"flag: Barbados","version":"2.0"},{"emoji":"🇧🇩","category":8,"name":"flag: Bangladesh","version":"2.0"},{"emoji":"🇧🇪","category":8,"name":"flag: Belgium","version":"2.0"},{"emoji":"🇧🇫","category":8,"name":"flag: Burkina Faso","version":"2.0"},{"emoji":"🇧🇬","category":8,"name":"flag: Bulgaria","version":"2.0"},{"emoji":"🇧🇭","category":8,"name":"flag: Bahrain","version":"2.0"},{"emoji":"🇧🇮","category":8,"name":"flag: Burundi","version":"2.0"},{"emoji":"🇧🇯","category":8,"name":"flag: Benin","version":"2.0"},{"emoji":"🇧🇱","category":8,"name":"flag: St. Barthélemy","version":"2.0"},{"emoji":"🇧🇲","category":8,"name":"flag: Bermuda","version":"2.0"},{"emoji":"🇧🇳","category":8,"name":"flag: Brunei","version":"2.0"},{"emoji":"🇧🇴","category":8,"name":"flag: Bolivia","version":"2.0"},{"emoji":"🇧🇶","category":8,"name":"flag: Caribbean Netherlands","version":"2.0"},{"emoji":"🇧🇷","category":8,"name":"flag: Brazil","version":"2.0"},{"emoji":"🇧🇸","category":8,"name":"flag: Bahamas","version":"2.0"},{"emoji":"🇧🇹","category":8,"name":"flag: Bhutan","version":"2.0"},{"emoji":"🇧🇻","category":8,"name":"flag: Bouvet Island","version":"2.0"},{"emoji":"🇧🇼","category":8,"name":"flag: Botswana","version":"2.0"},{"emoji":"🇧🇾","category":8,"name":"flag: Belarus","version":"2.0"},{"emoji":"🇧🇿","category":8,"name":"flag: Belize","version":"2.0"},{"emoji":"🇨🇦","category":8,"name":"flag: Canada","version":"2.0"},{"emoji":"🇨🇨","category":8,"name":"flag: Cocos (Keeling) Islands","version":"2.0"},{"emoji":"🇨🇩","category":8,"name":"flag: Congo - Kinshasa","version":"2.0"},{"emoji":"🇨🇫","category":8,"name":"flag: Central African Republic","version":"2.0"},{"emoji":"🇨🇬","category":8,"name":"flag: Congo - Brazzaville","version":"2.0"},{"emoji":"🇨🇭","category":8,"name":"flag: Switzerland","version":"2.0"},{"emoji":"🇨🇮","category":8,"name":"flag: Côte d’Ivoire","version":"2.0"},{"emoji":"🇨🇰","category":8,"name":"flag: Cook Islands","version":"2.0"},{"emoji":"🇨🇱","category":8,"name":"flag: Chile","version":"2.0"},{"emoji":"🇨🇲","category":8,"name":"flag: Cameroon","version":"2.0"},{"emoji":"🇨🇳","category":8,"name":"flag: China","version":"1.0"},{"emoji":"🇨🇴","category":8,"name":"flag: Colombia","version":"2.0"},{"emoji":"🇨🇵","category":8,"name":"flag: Clipperton Island","version":"2.0"},{"emoji":"🇨🇷","category":8,"name":"flag: Costa Rica","version":"2.0"},{"emoji":"🇨🇺","category":8,"name":"flag: Cuba","version":"2.0"},{"emoji":"🇨🇻","category":8,"name":"flag: Cape Verde","version":"2.0"},{"emoji":"🇨🇼","category":8,"name":"flag: Curaçao","version":"2.0"},{"emoji":"🇨🇽","category":8,"name":"flag: Christmas Island","version":"2.0"},{"emoji":"🇨🇾","category":8,"name":"flag: Cyprus","version":"2.0"},{"emoji":"🇨🇿","category":8,"name":"flag: Czechia","version":"2.0"},{"emoji":"🇩🇪","category":8,"name":"flag: Germany","version":"1.0"},{"emoji":"🇩🇬","category":8,"name":"flag: Diego Garcia","version":"2.0"},{"emoji":"🇩🇯","category":8,"name":"flag: Djibouti","version":"2.0"},{"emoji":"🇩🇰","category":8,"name":"flag: Denmark","version":"2.0"},{"emoji":"🇩🇲","category":8,"name":"flag: Dominica","version":"2.0"},{"emoji":"🇩🇴","category":8,"name":"flag: Dominican Republic","version":"2.0"},{"emoji":"🇩🇿","category":8,"name":"flag: Algeria","version":"2.0"},{"emoji":"🇪🇦","category":8,"name":"flag: Ceuta & Melilla","version":"2.0"},{"emoji":"🇪🇨","category":8,"name":"flag: Ecuador","version":"2.0"},{"emoji":"🇪🇪","category":8,"name":"flag: Estonia","version":"2.0"},{"emoji":"🇪🇬","category":8,"name":"flag: Egypt","version":"2.0"},{"emoji":"🇪🇭","category":8,"name":"flag: Western Sahara","version":"2.0"},{"emoji":"🇪🇷","category":8,"name":"flag: Eritrea","version":"2.0"},{"emoji":"🇪🇸","category":8,"name":"flag: Spain","version":"1.0"},{"emoji":"🇪🇹","category":8,"name":"flag: Ethiopia","version":"2.0"},{"emoji":"🇪🇺","category":8,"name":"flag: European Union","version":"2.0"},{"emoji":"🇫🇮","category":8,"name":"flag: Finland","version":"2.0"},{"emoji":"🇫🇯","category":8,"name":"flag: Fiji","version":"2.0"},{"emoji":"🇫🇰","category":8,"name":"flag: Falkland Islands","version":"2.0"},{"emoji":"🇫🇲","category":8,"name":"flag: Micronesia","version":"2.0"},{"emoji":"🇫🇴","category":8,"name":"flag: Faroe Islands","version":"2.0"},{"emoji":"🇫🇷","category":8,"name":"flag: France","version":"1.0"},{"emoji":"🇬🇦","category":8,"name":"flag: Gabon","version":"2.0"},{"emoji":"🇬🇧","category":8,"name":"flag: United Kingdom","version":"1.0"},{"emoji":"🇬🇩","category":8,"name":"flag: Grenada","version":"2.0"},{"emoji":"🇬🇪","category":8,"name":"flag: Georgia","version":"2.0"},{"emoji":"🇬🇫","category":8,"name":"flag: French Guiana","version":"2.0"},{"emoji":"🇬🇬","category":8,"name":"flag: Guernsey","version":"2.0"},{"emoji":"🇬🇭","category":8,"name":"flag: Ghana","version":"2.0"},{"emoji":"🇬🇮","category":8,"name":"flag: Gibraltar","version":"2.0"},{"emoji":"🇬🇱","category":8,"name":"flag: Greenland","version":"2.0"},{"emoji":"🇬🇲","category":8,"name":"flag: Gambia","version":"2.0"},{"emoji":"🇬🇳","category":8,"name":"flag: Guinea","version":"2.0"},{"emoji":"🇬🇵","category":8,"name":"flag: Guadeloupe","version":"2.0"},{"emoji":"🇬🇶","category":8,"name":"flag: Equatorial Guinea","version":"2.0"},{"emoji":"🇬🇷","category":8,"name":"flag: Greece","version":"2.0"},{"emoji":"🇬🇸","category":8,"name":"flag: South Georgia & South Sandwich Islands","version":"2.0"},{"emoji":"🇬🇹","category":8,"name":"flag: Guatemala","version":"2.0"},{"emoji":"🇬🇺","category":8,"name":"flag: Guam","version":"2.0"},{"emoji":"🇬🇼","category":8,"name":"flag: Guinea-Bissau","version":"2.0"},{"emoji":"🇬🇾","category":8,"name":"flag: Guyana","version":"2.0"},{"emoji":"🇭🇰","category":8,"name":"flag: Hong Kong SAR China","version":"2.0"},{"emoji":"🇭🇲","category":8,"name":"flag: Heard & McDonald Islands","version":"2.0"},{"emoji":"🇭🇳","category":8,"name":"flag: Honduras","version":"2.0"},{"emoji":"🇭🇷","category":8,"name":"flag: Croatia","version":"2.0"},{"emoji":"🇭🇹","category":8,"name":"flag: Haiti","version":"2.0"},{"emoji":"🇭🇺","category":8,"name":"flag: Hungary","version":"2.0"},{"emoji":"🇮🇨","category":8,"name":"flag: Canary Islands","version":"2.0"},{"emoji":"🇮🇩","category":8,"name":"flag: Indonesia","version":"2.0"},{"emoji":"🇮🇪","category":8,"name":"flag: Ireland","version":"2.0"},{"emoji":"🇮🇱","category":8,"name":"flag: Israel","version":"2.0"},{"emoji":"🇮🇲","category":8,"name":"flag: Isle of Man","version":"2.0"},{"emoji":"🇮🇳","category":8,"name":"flag: India","version":"2.0"},{"emoji":"🇮🇴","category":8,"name":"flag: British Indian Ocean Territory","version":"2.0"},{"emoji":"🇮🇶","category":8,"name":"flag: Iraq","version":"2.0"},{"emoji":"🇮🇷","category":8,"name":"flag: Iran","version":"2.0"},{"emoji":"🇮🇸","category":8,"name":"flag: Iceland","version":"2.0"},{"emoji":"🇮🇹","category":8,"name":"flag: Italy","version":"1.0"},{"emoji":"🇯🇪","category":8,"name":"flag: Jersey","version":"2.0"},{"emoji":"🇯🇲","category":8,"name":"flag: Jamaica","version":"2.0"},{"emoji":"🇯🇴","category":8,"name":"flag: Jordan","version":"2.0"},{"emoji":"🇯🇵","category":8,"name":"flag: Japan","version":"1.0"},{"emoji":"🇰🇪","category":8,"name":"flag: Kenya","version":"2.0"},{"emoji":"🇰🇬","category":8,"name":"flag: Kyrgyzstan","version":"2.0"},{"emoji":"🇰🇭","category":8,"name":"flag: Cambodia","version":"2.0"},{"emoji":"🇰🇮","category":8,"name":"flag: Kiribati","version":"2.0"},{"emoji":"🇰🇲","category":8,"name":"flag: Comoros","version":"2.0"},{"emoji":"🇰🇳","category":8,"name":"flag: St. Kitts & Nevis","version":"2.0"},{"emoji":"🇰🇵","category":8,"name":"flag: North Korea","version":"2.0"},{"emoji":"🇰🇷","category":8,"name":"flag: South Korea","version":"1.0"},{"emoji":"🇰🇼","category":8,"name":"flag: Kuwait","version":"2.0"},{"emoji":"🇰🇾","category":8,"name":"flag: Cayman Islands","version":"2.0"},{"emoji":"🇰🇿","category":8,"name":"flag: Kazakhstan","version":"2.0"},{"emoji":"🇱🇦","category":8,"name":"flag: Laos","version":"2.0"},{"emoji":"🇱🇧","category":8,"name":"flag: Lebanon","version":"2.0"},{"emoji":"🇱🇨","category":8,"name":"flag: St. Lucia","version":"2.0"},{"emoji":"🇱🇮","category":8,"name":"flag: Liechtenstein","version":"2.0"},{"emoji":"🇱🇰","category":8,"name":"flag: Sri Lanka","version":"2.0"},{"emoji":"🇱🇷","category":8,"name":"flag: Liberia","version":"2.0"},{"emoji":"🇱🇸","category":8,"name":"flag: Lesotho","version":"2.0"},{"emoji":"🇱🇹","category":8,"name":"flag: Lithuania","version":"2.0"},{"emoji":"🇱🇺","category":8,"name":"flag: Luxembourg","version":"2.0"},{"emoji":"🇱🇻","category":8,"name":"flag: Latvia","version":"2.0"},{"emoji":"🇱🇾","category":8,"name":"flag: Libya","version":"2.0"},{"emoji":"🇲🇦","category":8,"name":"flag: Morocco","version":"2.0"},{"emoji":"🇲🇨","category":8,"name":"flag: Monaco","version":"2.0"},{"emoji":"🇲🇩","category":8,"name":"flag: Moldova","version":"2.0"},{"emoji":"🇲🇪","category":8,"name":"flag: Montenegro","version":"2.0"},{"emoji":"🇲🇫","category":8,"name":"flag: St. Martin","version":"2.0"},{"emoji":"🇲🇬","category":8,"name":"flag: Madagascar","version":"2.0"},{"emoji":"🇲🇭","category":8,"name":"flag: Marshall Islands","version":"2.0"},{"emoji":"🇲🇰","category":8,"name":"flag: North Macedonia","version":"2.0"},{"emoji":"🇲🇱","category":8,"name":"flag: Mali","version":"2.0"},{"emoji":"🇲🇲","category":8,"name":"flag: Myanmar (Burma)","version":"2.0"},{"emoji":"🇲🇳","category":8,"name":"flag: Mongolia","version":"2.0"},{"emoji":"🇲🇴","category":8,"name":"flag: Macao SAR China","version":"2.0"},{"emoji":"🇲🇵","category":8,"name":"flag: Northern Mariana Islands","version":"2.0"},{"emoji":"🇲🇶","category":8,"name":"flag: Martinique","version":"2.0"},{"emoji":"🇲🇷","category":8,"name":"flag: Mauritania","version":"2.0"},{"emoji":"🇲🇸","category":8,"name":"flag: Montserrat","version":"2.0"},{"emoji":"🇲🇹","category":8,"name":"flag: Malta","version":"2.0"},{"emoji":"🇲🇺","category":8,"name":"flag: Mauritius","version":"2.0"},{"emoji":"🇲🇻","category":8,"name":"flag: Maldives","version":"2.0"},{"emoji":"🇲🇼","category":8,"name":"flag: Malawi","version":"2.0"},{"emoji":"🇲🇽","category":8,"name":"flag: Mexico","version":"2.0"},{"emoji":"🇲🇾","category":8,"name":"flag: Malaysia","version":"2.0"},{"emoji":"🇲🇿","category":8,"name":"flag: Mozambique","version":"2.0"},{"emoji":"🇳🇦","category":8,"name":"flag: Namibia","version":"2.0"},{"emoji":"🇳🇨","category":8,"name":"flag: New Caledonia","version":"2.0"},{"emoji":"🇳🇪","category":8,"name":"flag: Niger","version":"2.0"},{"emoji":"🇳🇫","category":8,"name":"flag: Norfolk Island","version":"2.0"},{"emoji":"🇳🇬","category":8,"name":"flag: Nigeria","version":"2.0"},{"emoji":"🇳🇮","category":8,"name":"flag: Nicaragua","version":"2.0"},{"emoji":"🇳🇱","category":8,"name":"flag: Netherlands","version":"2.0"},{"emoji":"🇳🇴","category":8,"name":"flag: Norway","version":"2.0"},{"emoji":"🇳🇵","category":8,"name":"flag: Nepal","version":"2.0"},{"emoji":"🇳🇷","category":8,"name":"flag: Nauru","version":"2.0"},{"emoji":"🇳🇺","category":8,"name":"flag: Niue","version":"2.0"},{"emoji":"🇳🇿","category":8,"name":"flag: New Zealand","version":"2.0"},{"emoji":"🇴🇲","category":8,"name":"flag: Oman","version":"2.0"},{"emoji":"🇵🇦","category":8,"name":"flag: Panama","version":"2.0"},{"emoji":"🇵🇪","category":8,"name":"flag: Peru","version":"2.0"},{"emoji":"🇵🇫","category":8,"name":"flag: French Polynesia","version":"2.0"},{"emoji":"🇵🇬","category":8,"name":"flag: Papua New Guinea","version":"2.0"},{"emoji":"🇵🇭","category":8,"name":"flag: Philippines","version":"2.0"},{"emoji":"🇵🇰","category":8,"name":"flag: Pakistan","version":"2.0"},{"emoji":"🇵🇱","category":8,"name":"flag: Poland","version":"2.0"},{"emoji":"🇵🇲","category":8,"name":"flag: St. Pierre & Miquelon","version":"2.0"},{"emoji":"🇵🇳","category":8,"name":"flag: Pitcairn Islands","version":"2.0"},{"emoji":"🇵🇷","category":8,"name":"flag: Puerto Rico","version":"2.0"},{"emoji":"🇵🇸","category":8,"name":"flag: Palestinian Territories","version":"2.0"},{"emoji":"🇵🇹","category":8,"name":"flag: Portugal","version":"2.0"},{"emoji":"🇵🇼","category":8,"name":"flag: Palau","version":"2.0"},{"emoji":"🇵🇾","category":8,"name":"flag: Paraguay","version":"2.0"},{"emoji":"🇶🇦","category":8,"name":"flag: Qatar","version":"2.0"},{"emoji":"🇷🇪","category":8,"name":"flag: Réunion","version":"2.0"},{"emoji":"🇷🇴","category":8,"name":"flag: Romania","version":"2.0"},{"emoji":"🇷🇸","category":8,"name":"flag: Serbia","version":"2.0"},{"emoji":"🇷🇺","category":8,"name":"flag: Russia","version":"1.0"},{"emoji":"🇷🇼","category":8,"name":"flag: Rwanda","version":"2.0"},{"emoji":"🇸🇦","category":8,"name":"flag: Saudi Arabia","version":"2.0"},{"emoji":"🇸🇧","category":8,"name":"flag: Solomon Islands","version":"2.0"},{"emoji":"🇸🇨","category":8,"name":"flag: Seychelles","version":"2.0"},{"emoji":"🇸🇩","category":8,"name":"flag: Sudan","version":"2.0"},{"emoji":"🇸🇪","category":8,"name":"flag: Sweden","version":"2.0"},{"emoji":"🇸🇬","category":8,"name":"flag: Singapore","version":"2.0"},{"emoji":"🇸🇭","category":8,"name":"flag: St. Helena","version":"2.0"},{"emoji":"🇸🇮","category":8,"name":"flag: Slovenia","version":"2.0"},{"emoji":"🇸🇯","category":8,"name":"flag: Svalbard & Jan Mayen","version":"2.0"},{"emoji":"🇸🇰","category":8,"name":"flag: Slovakia","version":"2.0"},{"emoji":"🇸🇱","category":8,"name":"flag: Sierra Leone","version":"2.0"},{"emoji":"🇸🇲","category":8,"name":"flag: San Marino","version":"2.0"},{"emoji":"🇸🇳","category":8,"name":"flag: Senegal","version":"2.0"},{"emoji":"🇸🇴","category":8,"name":"flag: Somalia","version":"2.0"},{"emoji":"🇸🇷","category":8,"name":"flag: Suriname","version":"2.0"},{"emoji":"🇸🇸","category":8,"name":"flag: South Sudan","version":"2.0"},{"emoji":"🇸🇹","category":8,"name":"flag: São Tomé & Príncipe","version":"2.0"},{"emoji":"🇸🇻","category":8,"name":"flag: El Salvador","version":"2.0"},{"emoji":"🇸🇽","category":8,"name":"flag: Sint Maarten","version":"2.0"},{"emoji":"🇸🇾","category":8,"name":"flag: Syria","version":"2.0"},{"emoji":"🇸🇿","category":8,"name":"flag: Eswatini","version":"2.0"},{"emoji":"🇹🇦","category":8,"name":"flag: Tristan da Cunha","version":"2.0"},{"emoji":"🇹🇨","category":8,"name":"flag: Turks & Caicos Islands","version":"2.0"},{"emoji":"🇹🇩","category":8,"name":"flag: Chad","version":"2.0"},{"emoji":"🇹🇫","category":8,"name":"flag: French Southern Territories","version":"2.0"},{"emoji":"🇹🇬","category":8,"name":"flag: Togo","version":"2.0"},{"emoji":"🇹🇭","category":8,"name":"flag: Thailand","version":"2.0"},{"emoji":"🇹🇯","category":8,"name":"flag: Tajikistan","version":"2.0"},{"emoji":"🇹🇰","category":8,"name":"flag: Tokelau","version":"2.0"},{"emoji":"🇹🇱","category":8,"name":"flag: Timor-Leste","version":"2.0"},{"emoji":"🇹🇲","category":8,"name":"flag: Turkmenistan","version":"2.0"},{"emoji":"🇹🇳","category":8,"name":"flag: Tunisia","version":"2.0"},{"emoji":"🇹🇴","category":8,"name":"flag: Tonga","version":"2.0"},{"emoji":"🇹🇷","category":8,"name":"flag: Turkey","version":"2.0"},{"emoji":"🇹🇹","category":8,"name":"flag: Trinidad & Tobago","version":"2.0"},{"emoji":"🇹🇻","category":8,"name":"flag: Tuvalu","version":"2.0"},{"emoji":"🇹🇼","category":8,"name":"flag: Taiwan","version":"2.0"},{"emoji":"🇹🇿","category":8,"name":"flag: Tanzania","version":"2.0"},{"emoji":"🇺🇦","category":8,"name":"flag: Ukraine","version":"2.0"},{"emoji":"🇺🇬","category":8,"name":"flag: Uganda","version":"2.0"},{"emoji":"🇺🇲","category":8,"name":"flag: U.S. Outlying Islands","version":"2.0"},{"emoji":"🇺🇳","category":8,"name":"flag: United Nations","version":"4.0"},{"emoji":"🇺🇸","category":8,"name":"flag: United States","version":"1.0"},{"emoji":"🇺🇾","category":8,"name":"flag: Uruguay","version":"2.0"},{"emoji":"🇺🇿","category":8,"name":"flag: Uzbekistan","version":"2.0"},{"emoji":"🇻🇦","category":8,"name":"flag: Vatican City","version":"2.0"},{"emoji":"🇻🇨","category":8,"name":"flag: St. Vincent & Grenadines","version":"2.0"},{"emoji":"🇻🇪","category":8,"name":"flag: Venezuela","version":"2.0"},{"emoji":"🇻🇬","category":8,"name":"flag: British Virgin Islands","version":"2.0"},{"emoji":"🇻🇮","category":8,"name":"flag: U.S. Virgin Islands","version":"2.0"},{"emoji":"🇻🇳","category":8,"name":"flag: Vietnam","version":"2.0"},{"emoji":"🇻🇺","category":8,"name":"flag: Vanuatu","version":"2.0"},{"emoji":"🇼🇫","category":8,"name":"flag: Wallis & Futuna","version":"2.0"},{"emoji":"🇼🇸","category":8,"name":"flag: Samoa","version":"2.0"},{"emoji":"🇽🇰","category":8,"name":"flag: Kosovo","version":"2.0"},{"emoji":"🇾🇪","category":8,"name":"flag: Yemen","version":"2.0"},{"emoji":"🇾🇹","category":8,"name":"flag: Mayotte","version":"2.0"},{"emoji":"🇿🇦","category":8,"name":"flag: South Africa","version":"2.0"},{"emoji":"🇿🇲","category":8,"name":"flag: Zambia","version":"2.0"},{"emoji":"🇿🇼","category":8,"name":"flag: Zimbabwe","version":"2.0"},{"emoji":"🏴󠁧󠁢󠁥󠁮󠁧󠁿","category":8,"name":"flag: England","version":"5.0"},{"emoji":"🏴󠁧󠁢󠁳󠁣󠁴󠁿","category":8,"name":"flag: Scotland","version":"5.0"},{"emoji":"🏴󠁧󠁢󠁷󠁬󠁳󠁿","category":8,"name":"flag: Wales","version":"5.0"}]}
+export default {
+  "categories": [
+      "smileys",
+      "people",
+      "animals",
+      "food",
+      "travel",
+      "activities",
+      "objects",
+      "symbols",
+      "flags"
+  ],
+  "emoji": [
+      {
+          "emoji": "😀",
+          "category": 0,
+          "name": "широко всміхнене обличчя",
+          "version": "1.0",
+          "keywords": "вищир | обличчя | оскал | посмішка | усмішка | широко всміхнене обличчя"
+      },
+      {
+          "emoji": "😃",
+          "category": 0,
+          "name": "широко всміхнене обличчя з очищами",
+          "version": "1.0",
+          "keywords": "відкритий | обличчя | посмішка | рот | широко всміхнене обличчя з очищами | широко усміхнене обличчя з великими очима | широко усміхнене обличчя з очищами"
+      },
+      {
+          "emoji": "😄",
+          "category": 0,
+          "name": "широко всміхнене обличчя з примруженими очима",
+          "version": "1.0",
+          "keywords": "відкритий | обличчя | очі | посмішка | рот | усміхнене обличчя з відкритим ротом і примруженими очима | широко всміхнене обличчя з примруженими очима | широко усміхнене обличчя зі змруженими очима"
+      },
+      {
+          "emoji": "😁",
+          "category": 0,
+          "name": "осяйно всміхнене обличчя й очі",
+          "version": "1.0",
+          "keywords": "обличчя | осяйно всміхнене обличчя й очі | осяйно усміхнене обличчя з усміхненими очима | осяйно усміхнене обличчя й очі | очі | усмішка"
+      },
+      {
+          "emoji": "😆",
+          "category": 0,
+          "name": "широко всміхнене замружене обличчя",
+          "version": "1.0",
+          "keywords": "відкритий | задоволений | обличчя | посмішка | рот | сміх | усміхнене обличчя з відкритим ротом і міцно заплющеними очима | широко всміхнене замружене обличчя"
+      },
+      {
+          "emoji": "😅",
+          "category": 0,
+          "name": "широко всміхнене обличчя з потом",
+          "version": "1.0",
+          "keywords": "відкритий | обличчя | піт | посмішка | усміхнене обличчя з відкритим ротом і холодним потом | холодний | широко всміхнене обличчя з потом"
+      },
+      {
+          "emoji": "🤣",
+          "category": 0,
+          "name": "качається від сміху",
+          "version": "3.0",
+          "keywords": "качається від сміху | обличчя | регіт | сміх"
+      },
+      {
+          "emoji": "😂",
+          "category": 0,
+          "name": "обличчя в сльозах радості",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя в сльозах радості | радість | сльози | сміх"
+      },
+      {
+          "emoji": "🙂",
+          "category": 0,
+          "name": "трохи всміхнене обличчя",
+          "version": "1.0",
+          "keywords": "обличчя | посмішка | трохи всміхнене обличчя | трохи усміхнене обличчя"
+      },
+      {
+          "emoji": "🙃",
+          "category": 0,
+          "name": "обличчя догори дриґом",
+          "version": "1.0",
+          "keywords": "догори ногами | обличчя | обличчя догори дном | обличчя догори дриґом"
+      },
+      {
+          "emoji": "😉",
+          "category": 0,
+          "name": "обличчя, що підморгує",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя, що підморгує | підморгування"
+      },
+      {
+          "emoji": "😊",
+          "category": 0,
+          "name": "усміхнене обличчя й очі",
+          "version": "1.0",
+          "keywords": "обличчя | очі | посмішка | рум’янець | усміхнене обличчя з примруженими очима | усміхнене обличчя й очі"
+      },
+      {
+          "emoji": "😇",
+          "category": 0,
+          "name": "усміхнене обличчя з німбом",
+          "version": "1.0",
+          "keywords": "ангел | безневинність | казка | німб | обличчя | посмішка | усміхнене обличчя з німбом | фантазія"
+      },
+      {
+          "emoji": "🥰",
+          "category": 0,
+          "name": "усміхнене обличчя із сердечками",
+          "version": "11.0",
+          "keywords": "закоханість | закохатися | кохання | любов | ніжність | усміхнене обличчя із сердечками"
+      },
+      {
+          "emoji": "😍",
+          "category": 0,
+          "name": "усміхнене обличчя з очима-серцями",
+          "version": "1.0",
+          "keywords": "кохання | обличчя | очі | посмішка | серце | усміхнене обличчя з очима у формі сердець | усміхнене обличчя з очима-серцями"
+      },
+      {
+          "emoji": "🤩",
+          "category": 0,
+          "name": "очі-зірочки",
+          "version": "5.0",
+          "keywords": "зірка | обличчя | очі | очі-зірочки | посмішка"
+      },
+      {
+          "emoji": "😘",
+          "category": 0,
+          "name": "обличчя, що надсилає цілунок",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя, що надсилає цілунок | поцілунок | серце"
+      },
+      {
+          "emoji": "😗",
+          "category": 0,
+          "name": "обличчя, що цілує",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя, що цілує"
+      },
+      {
+          "emoji": "☺️",
+          "category": 0,
+          "name": "smiling face",
+          "version": "1.0"
+      },
+      {
+          "emoji": "😚",
+          "category": 0,
+          "name": "обличчя із закритими очима, що цілує",
+          "version": "1.0",
+          "keywords": "закриті | обличчя | обличчя із закритими очима, що цілує | очі | поцілунок"
+      },
+      {
+          "emoji": "😙",
+          "category": 0,
+          "name": "обличчя з примруженими очима, що цілує",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя з примруженими очима, що цілує | очі | посмішка | поцілунок"
+      },
+      {
+          "emoji": "🥲",
+          "category": 0,
+          "name": "усмішка в сльозах",
+          "version": "13.0",
+          "keywords": "вдячність | гордість | зворушення | полегшення | сльоза | усмішка | усмішка в сльозах"
+      },
+      {
+          "emoji": "😋",
+          "category": 0,
+          "name": "усміхнене обличчя, що облизує губи",
+          "version": "1.0",
+          "keywords": "ммм | ням-ням | облизується | обличчя | посмішка | смакує | смачно | усміхнене обличчя, що облизує губи"
+      },
+      {
+          "emoji": "😛",
+          "category": 0,
+          "name": "обличчя з висунутим язиком",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя з висунутим язиком | язик"
+      },
+      {
+          "emoji": "😜",
+          "category": 0,
+          "name": "обличчя, що підморгує і показує язика",
+          "version": "1.0",
+          "keywords": "жарт | обличчя | обличчя, що підморгує і показує язика | очі | підморгування | язик"
+      },
+      {
+          "emoji": "🤪",
+          "category": 0,
+          "name": "божевільне обличчя",
+          "version": "5.0",
+          "keywords": "божевільне обличчя | великий | малий | око"
+      },
+      {
+          "emoji": "😝",
+          "category": 0,
+          "name": "обличчя з висунутим язиком і заплющеними очима",
+          "version": "1.0",
+          "keywords": "жахливий | обличчя | обличчя з висунутим язиком і заплющеними очима | очі | смак | язик"
+      },
+      {
+          "emoji": "🤑",
+          "category": 0,
+          "name": "обличчя з грішми замість очей та язика",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя з грішми замість очей та язика | рот"
+      },
+      {
+          "emoji": "🤗",
+          "category": 0,
+          "name": "щасливе обличчя з руками, що обіймають",
+          "version": "1.0",
+          "keywords": "обійматися | обличчя | щасливе обличчя з руками, що обіймають"
+      },
+      {
+          "emoji": "🤭",
+          "category": 0,
+          "name": "обличчя, що прикриває рота рукою",
+          "version": "5.0",
+          "keywords": "обличчя, що прикриває рота рукою | ой"
+      },
+      {
+          "emoji": "🤫",
+          "category": 0,
+          "name": "обличчя, що цикає",
+          "version": "5.0",
+          "keywords": "обличчя, що цикає | тихо | тссс"
+      },
+      {
+          "emoji": "🤔",
+          "category": 0,
+          "name": "обличчя в роздумах",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя в роздумах"
+      },
+      {
+          "emoji": "🤐",
+          "category": 0,
+          "name": "обличчя із застібкою замість рота",
+          "version": "1.0",
+          "keywords": "блискавка | обличчя | обличчя з застібкою замість рота | обличчя із застібкою замість рота | рот"
+      },
+      {
+          "emoji": "🤨",
+          "category": 0,
+          "name": "обличчя з піднятими бровами",
+          "version": "5.0",
+          "keywords": "недовіра | обличчя з піднятими бровами | скептичний"
+      },
+      {
+          "emoji": "😐",
+          "category": 0,
+          "name": "обличчя з нейтральним виразом",
+          "version": "1.0",
+          "keywords": "незворушний | нейтральний | обличчя | обличчя з нейтральним виразом"
+      },
+      {
+          "emoji": "😑",
+          "category": 0,
+          "name": "обличчя без емоцій",
+          "version": "1.0",
+          "keywords": "без емоцій | невиразний | обличчя | обличчя без емоцій"
+      },
+      {
+          "emoji": "😶",
+          "category": 0,
+          "name": "обличчя без рота",
+          "version": "1.0",
+          "keywords": "беззвучно | обличчя | обличчя без рота | рот | тихо"
+      },
+      {
+          "emoji": "😶‍🌫️",
+          "category": 0,
+          "name": "face in clouds",
+          "version": "13.1"
+      },
+      {
+          "emoji": "😏",
+          "category": 0,
+          "name": "самовдоволене обличчя",
+          "version": "1.0",
+          "keywords": "обличчя | самовдоволене обличчя"
+      },
+      {
+          "emoji": "😒",
+          "category": 0,
+          "name": "невдоволене обличчя",
+          "version": "1.0",
+          "keywords": "невдоволене обличчя | незадоволене обличчя | незадоволений | нещасливий | обличчя"
+      },
+      {
+          "emoji": "🙄",
+          "category": 0,
+          "name": "обличчя із закоченими очима",
+          "version": "1.0",
+          "keywords": "закочувати | обличчя | обличчя із закоченими очима | очі"
+      },
+      {
+          "emoji": "😬",
+          "category": 0,
+          "name": "обличчя з гримасою",
+          "version": "1.0",
+          "keywords": "кривляння | обличчя | обличчя з гримасою | скривлене обличчя"
+      },
+      {
+          "emoji": "😮‍💨",
+          "category": 0,
+          "name": "обличчя, що видихає",
+          "version": "13.1",
+          "keywords": "вдих | видих | обличчя, що видихає | полегшення | свист | стогін | шепотіння"
+      },
+      {
+          "emoji": "🤥",
+          "category": 0,
+          "name": "обличчя, що бреше",
+          "version": "3.0",
+          "keywords": "брехня | обличчя | обличчя, що бреше | піноккіо"
+      },
+      {
+          "emoji": "😌",
+          "category": 0,
+          "name": "заспокоєне обличчя",
+          "version": "1.0",
+          "keywords": "заспокоєне обличчя | обличчя"
+      },
+      {
+          "emoji": "😔",
+          "category": 0,
+          "name": "замислене обличчя",
+          "version": "1.0",
+          "keywords": "задумливий | замислене обличчя | обличчя | роздуми"
+      },
+      {
+          "emoji": "😪",
+          "category": 0,
+          "name": "заспане обличчя",
+          "version": "1.0",
+          "keywords": "заспане обличчя | обличчя | сон"
+      },
+      {
+          "emoji": "🤤",
+          "category": 0,
+          "name": "обличчя, що пускає слину",
+          "version": "3.0",
+          "keywords": "обличчя | обличчя, що пускає слину | слина"
+      },
+      {
+          "emoji": "😴",
+          "category": 0,
+          "name": "обличчя, що спить",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя, що спить"
+      },
+      {
+          "emoji": "😷",
+          "category": 0,
+          "name": "обличчя в медичній масці",
+          "version": "1.0",
+          "keywords": "застуда | лікар | маска | медицина | обличчя в медичній масці | хворий"
+      },
+      {
+          "emoji": "🤒",
+          "category": 0,
+          "name": "обличчя з термометром",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя з термометром | термометр | хворий"
+      },
+      {
+          "emoji": "🤕",
+          "category": 0,
+          "name": "обличчя з головною повʼязкою",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя з головною повʼязкою | пов’язка | поранений | рана"
+      },
+      {
+          "emoji": "🤢",
+          "category": 0,
+          "name": "обличчя, яке нудить",
+          "version": "3.0",
+          "keywords": "блювота | нудота | обличчя | обличчя, яке нудить"
+      },
+      {
+          "emoji": "🤮",
+          "category": 0,
+          "name": "обличчя, що блює",
+          "version": "5.0",
+          "keywords": "блювота | нудота | обличчя, що блює"
+      },
+      {
+          "emoji": "🤧",
+          "category": 0,
+          "name": "обличчя, що чхає",
+          "version": "3.0",
+          "keywords": "апчхи | обличчя | обличчя, що чхає | хвороба | чхання"
+      },
+      {
+          "emoji": "🥵",
+          "category": 0,
+          "name": "розпашіле обличчя",
+          "version": "11.0",
+          "keywords": "гаряче | жар | палати | розпашіле обличчя | сонячний удар | спека | червоне лице"
+      },
+      {
+          "emoji": "🥶",
+          "category": 0,
+          "name": "замерзле обличчя",
+          "version": "11.0",
+          "keywords": "бурулька | замерзле обличчя | зуб на зуб | мороз | синє лице | холод"
+      },
+      {
+          "emoji": "🥴",
+          "category": 0,
+          "name": "очманіле обличчя",
+          "version": "11.0",
+          "keywords": "запаморочений | кривулястий рот | одурманений | очманіле обличчя | ошалілий | перекошені очі"
+      },
+      {
+          "emoji": "😵",
+          "category": 0,
+          "name": "запаморочене обличчя",
+          "version": "1.0",
+          "keywords": "запаморочене обличчя | запаморочений | обличчя"
+      },
+      {
+          "emoji": "😵‍💫",
+          "category": 0,
+          "name": "очі-спіралі",
+          "version": "13.1",
+          "keywords": "гіпноз | заносить | запаморочення | ох | очі-спіралі | проблема"
+      },
+      {
+          "emoji": "🤯",
+          "category": 0,
+          "name": "голова, що вибухає",
+          "version": "5.0",
+          "keywords": "голова, що вибухає | шокований"
+      },
+      {
+          "emoji": "🤠",
+          "category": 0,
+          "name": "обличчя у ковбойському капелюсі",
+          "version": "3.0",
+          "keywords": "капелюх | ковбой | обличчя | обличчя у ковбойському капелюсі | широко усміхнене обличчя у ковбойському капелюсі"
+      },
+      {
+          "emoji": "🥳",
+          "category": 0,
+          "name": "святкове обличчя",
+          "version": "11.0",
+          "keywords": "вечірка | дудка | ковпак | святкове обличчя | святкування"
+      },
+      {
+          "emoji": "🥸",
+          "category": 0,
+          "name": "замасковане обличчя",
+          "version": "13.0",
+          "keywords": "замасковане обличчя | інкогніто | камуфляж | маска | ніс | обличчя | окуляри"
+      },
+      {
+          "emoji": "😎",
+          "category": 0,
+          "name": "усміхнене обличчя в темних окулярах",
+          "version": "1.0",
+          "keywords": "крутий | обличчя | окуляри | очі | погода | посмішка | сонце | сонцезахисні | темні окуляри | усміхнене обличчя в темних окулярах | яскраво"
+      },
+      {
+          "emoji": "🤓",
+          "category": 0,
+          "name": "обличчя всезнайка",
+          "version": "1.0",
+          "keywords": "дойда | дока | обличчя | обличчя всезнайка | обличчя заучки | унікум"
+      },
+      {
+          "emoji": "🧐",
+          "category": 0,
+          "name": "обличчя в моноклі",
+          "version": "5.0",
+          "keywords": "обличчя в моноклі | обличчя з моноклем | пановитий"
+      },
+      {
+          "emoji": "😕",
+          "category": 0,
+          "name": "спантеличене обличчя",
+          "version": "1.0",
+          "keywords": "обличчя | спантеличене обличчя | спантеличений"
+      },
+      {
+          "emoji": "😟",
+          "category": 0,
+          "name": "стурбоване обличчя",
+          "version": "1.0",
+          "keywords": "обличчя | стурбоване обличчя | стурбований"
+      },
+      {
+          "emoji": "🙁",
+          "category": 0,
+          "name": "трохи похмуре обличчя",
+          "version": "1.0",
+          "keywords": "нахмурений | обличчя | сумний | трохи похмуре обличчя"
+      },
+      {
+          "emoji": "☹️",
+          "category": 0,
+          "name": "frowning face",
+          "version": "1.0"
+      },
+      {
+          "emoji": "😮",
+          "category": 0,
+          "name": "обличчя з відкритим ротом",
+          "version": "1.0",
+          "keywords": "відкритий | здивоване обличчя з відкритим ротом | обличчя | обличчя з відкритим ротом | рот | співчуття"
+      },
+      {
+          "emoji": "😯",
+          "category": 0,
+          "name": "здивоване і збентежене обличчя з бровами",
+          "version": "1.0",
+          "keywords": "вражений | здивоване і збентежене обличчя з бровами | здивований | обличчя | приголомшений"
+      },
+      {
+          "emoji": "😲",
+          "category": 0,
+          "name": "вражене обличчя",
+          "version": "1.0",
+          "keywords": "вражене обличчя | здивований | обличчя | шокований"
+      },
+      {
+          "emoji": "😳",
+          "category": 0,
+          "name": "зашаріле обличчя",
+          "version": "1.0",
+          "keywords": "зашаріле обличчя | обличчя | обличчя із широко відкритими очима та зашарілими щоками | присоромлений"
+      },
+      {
+          "emoji": "🥺",
+          "category": 0,
+          "name": "благальне обличчя",
+          "version": "11.0",
+          "keywords": "благальне обличчя | благати | випрошувати | молити | просити"
+      },
+      {
+          "emoji": "😦",
+          "category": 0,
+          "name": "похмуре обличчя з відкритим ротом",
+          "version": "1.0",
+          "keywords": "відкритий | нахмурений | обличчя | похмуре обличчя з відкритим ротом | рот"
+      },
+      {
+          "emoji": "😧",
+          "category": 0,
+          "name": "стражденне обличчя",
+          "version": "1.0",
+          "keywords": "обличчя | страждання | стражденне обличчя"
+      },
+      {
+          "emoji": "😨",
+          "category": 0,
+          "name": "налякане обличчя",
+          "version": "1.0",
+          "keywords": "боязкий | налякане обличчя | наляканий | обличчя | страх"
+      },
+      {
+          "emoji": "😰",
+          "category": 0,
+          "name": "занепокоєне обличчя з потом",
+          "version": "1.0",
+          "keywords": "відкритий | занепокоєне обличчя з потом | обличчя | обличчя у холодному поту з відкритим ротом | піт | рот | синій | холодно"
+      },
+      {
+          "emoji": "😥",
+          "category": 0,
+          "name": "cумне, але втішене обличчя",
+          "version": "1.0",
+          "keywords": "cумне, але втішене обличчя | обличчя | полегшення | розчароване, але заспокоєне обличчя | розчарування | фух"
+      },
+      {
+          "emoji": "😢",
+          "category": 0,
+          "name": "обличчя, що плаче",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя, що плаче | сльоза | сумний"
+      },
+      {
+          "emoji": "😭",
+          "category": 0,
+          "name": "обличчя, що гучно ридає",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя, що гучно ридає | плач | ридання | сльоза | сумний"
+      },
+      {
+          "emoji": "😱",
+          "category": 0,
+          "name": "обличчя, що кричить із переляку",
+          "version": "1.0",
+          "keywords": "боязкий | крик | наляканий | обличчя | обличчя, що кричить із переляку | страх"
+      },
+      {
+          "emoji": "😖",
+          "category": 0,
+          "name": "збентежене обличчя",
+          "version": "1.0",
+          "keywords": "збентежене обличчя | збентежений | обличчя"
+      },
+      {
+          "emoji": "😣",
+          "category": 0,
+          "name": "невідступне обличчя",
+          "version": "1.0",
+          "keywords": "завзяте обличчя | невідступне обличчя | обличчя"
+      },
+      {
+          "emoji": "😞",
+          "category": 0,
+          "name": "розчароване обличчя",
+          "version": "1.0",
+          "keywords": "обличчя | розчароване обличчя | розчарований"
+      },
+      {
+          "emoji": "😓",
+          "category": 0,
+          "name": "понурене обличчя в поту",
+          "version": "1.0",
+          "keywords": "обличчя | обличчя з краплями холодного поту | піт | понурене обличчя в поту | холодний"
+      },
+      {
+          "emoji": "😩",
+          "category": 0,
+          "name": "замучене обличчя",
+          "version": "1.0",
+          "keywords": "втомлене обличчя | замучене обличчя | зморений | обличчя | стомлений"
+      },
+      {
+          "emoji": "😫",
+          "category": 0,
+          "name": "стомлене обличчя",
+          "version": "1.0",
+          "keywords": "обличчя | стомлене обличчя | стомлений"
+      },
+      {
+          "emoji": "🥱",
+          "category": 0,
+          "name": "обличчя, що позіхає",
+          "version": "12.0",
+          "keywords": "знуджений | обличчя, що позіхає | позіхайло | позіхати | стомлений"
+      },
+      {
+          "emoji": "😤",
+          "category": 0,
+          "name": "обличчя, що сердито видихає",
+          "version": "1.0",
+          "keywords": "виграш | обличчя | обличчя, що сердито видихає | тріумф"
+      },
+      {
+          "emoji": "😡",
+          "category": 0,
+          "name": "обличчя, що дується",
+          "version": "1.0",
+          "keywords": "гнів | злий | невдоволений | обличчя | обличчя, що дується | сердитий | червоний"
+      },
+      {
+          "emoji": "😠",
+          "category": 0,
+          "name": "сердите обличчя",
+          "version": "1.0",
+          "keywords": "злий | обличчя | сердите обличчя | сердитий"
+      },
+      {
+          "emoji": "🤬",
+          "category": 0,
+          "name": "обличчя із символами в роті",
+          "version": "5.0",
+          "keywords": "обличчя із символами в роті | пітніє"
+      },
+      {
+          "emoji": "😈",
+          "category": 0,
+          "name": "усміхнене обличчя з рогами",
+          "version": "1.0",
+          "keywords": "казка | обличчя | посмішка | ріжки | усміхнене обличчя з рогами | фантазія"
+      },
+      {
+          "emoji": "👿",
+          "category": 0,
+          "name": "сердите обличчя з рогами",
+          "version": "1.0",
+          "keywords": "демон | диявол | обличчя | сердите обличчя з рогами | фантазія"
+      },
+      {
+          "emoji": "💀",
+          "category": 0,
+          "name": "череп",
+          "version": "1.0",
+          "keywords": "казка | монстр | обличчя | смерть | тіло | череп"
+      },
+      {
+          "emoji": "☠️",
+          "category": 0,
+          "name": "skull and crossbones",
+          "version": "1.0"
+      },
+      {
+          "emoji": "💩",
+          "category": 0,
+          "name": "усміхнена купа лайна",
+          "version": "1.0",
+          "keywords": "екскременти | жарт | кака | лайно | усміхнена купа лайна"
+      },
+      {
+          "emoji": "🤡",
+          "category": 0,
+          "name": "обличчя клоуна",
+          "version": "3.0",
+          "keywords": "клоун | обличчя | обличчя клоуна"
+      },
+      {
+          "emoji": "👹",
+          "category": 0,
+          "name": "велетень-людожер",
+          "version": "1.0",
+          "keywords": "велетень-людожер | казка | монстр | обличчя | створіння | фантазія"
+      },
+      {
+          "emoji": "👺",
+          "category": 0,
+          "name": "гоблін",
+          "version": "1.0",
+          "keywords": "гоблін | монстр | обличчя | створіння | фантазія"
+      },
+      {
+          "emoji": "👻",
+          "category": 0,
+          "name": "привид",
+          "version": "1.0",
+          "keywords": "казка | монстр | обличчя | привид | створіння | фантазія"
+      },
+      {
+          "emoji": "👽",
+          "category": 0,
+          "name": "прибулець",
+          "version": "1.0",
+          "keywords": "нло | обличчя | позаземний | прибулець | створіння"
+      },
+      {
+          "emoji": "👾",
+          "category": 0,
+          "name": "іншопланетний монстр",
+          "version": "1.0",
+          "keywords": "іншопланетний монстр | нло | обличчя | позаземний | прибулець | створіння"
+      },
+      {
+          "emoji": "🤖",
+          "category": 0,
+          "name": "робот",
+          "version": "1.0",
+          "keywords": "голова | монстр | обличчя | робот"
+      },
+      {
+          "emoji": "😺",
+          "category": 0,
+          "name": "широко всміхнений кіт",
+          "version": "1.0",
+          "keywords": "відкритий | всміхнений | кіт | морда | паща | усмішка | широко всміхнений кіт"
+      },
+      {
+          "emoji": "😸",
+          "category": 0,
+          "name": "широко всміхнений кіт з усміхом в очах",
+          "version": "1.0",
+          "keywords": "вишкір | кіт | морда | око | усмішка | широко всміхнений кіт з усміхом в очах"
+      },
+      {
+          "emoji": "😹",
+          "category": 0,
+          "name": "кіт зі сльозами радості",
+          "version": "1.0",
+          "keywords": "кіт | кіт зі сльозами радості | морда | радість | сльози"
+      },
+      {
+          "emoji": "😻",
+          "category": 0,
+          "name": "усміхнений кіт з очима як серця",
+          "version": "1.0",
+          "keywords": "кіт | кохання | морда | око | серце | усміхнений кіт з очима як серця | усмішка"
+      },
+      {
+          "emoji": "😼",
+          "category": 0,
+          "name": "кіт із кривою посмішкою",
+          "version": "1.0",
+          "keywords": "глузлива | кіт із кривою посмішкою | котяча | морда | посмішка | скривлена"
+      },
+      {
+          "emoji": "😽",
+          "category": 0,
+          "name": "кіт, що цілує",
+          "version": "1.0",
+          "keywords": "кіт | кіт, що цілує | морда | око | поцілунок"
+      },
+      {
+          "emoji": "🙀",
+          "category": 0,
+          "name": "шокований кіт",
+          "version": "1.0",
+          "keywords": "зненацька | котяча | морда | ой | сюрприз | шок | шокований кіт"
+      },
+      {
+          "emoji": "😿",
+          "category": 0,
+          "name": "кіт, що плаче",
+          "version": "1.0",
+          "keywords": "зарюмана | кіт, що плаче | котяча | морда | сльоза | сумна"
+      },
+      {
+          "emoji": "😾",
+          "category": 0,
+          "name": "сердитий кіт",
+          "version": "1.0",
+          "keywords": "котяча | морда | сердита | сердитий кіт"
+      },
+      {
+          "emoji": "🙈",
+          "category": 0,
+          "name": "мавпа, що не бачить",
+          "version": "1.0",
+          "keywords": "бачити | заборонено | зло | мавпа | мавпа, що не бачить | обличчя"
+      },
+      {
+          "emoji": "🙉",
+          "category": 0,
+          "name": "мавпа, що не чує",
+          "version": "1.0",
+          "keywords": "заборонено | зло | мавпа | мавпа, що не чує | обличчя | чути"
+      },
+      {
+          "emoji": "🙊",
+          "category": 0,
+          "name": "мавпа, що не говорить",
+          "version": "1.0",
+          "keywords": "говорити | заборонено | зло | мавпа | мавпа, що не говорить | обличчя"
+      },
+      {
+          "emoji": "💋",
+          "category": 0,
+          "name": "слід цілунку",
+          "version": "1.0",
+          "keywords": "відбиток | відбиток вуст | губи | закоханість | поцілунок | серце | слід цілунку"
+      },
+      {
+          "emoji": "💌",
+          "category": 0,
+          "name": "любовний лист",
+          "version": "1.0",
+          "keywords": "закохансіть | кохання | лист | любовний лист | пошта | серце"
+      },
+      {
+          "emoji": "💘",
+          "category": 0,
+          "name": "серце, пробите стрілою",
+          "version": "1.0",
+          "keywords": "закоханість | купідон | серце | серце, пробите стрілою | стріла"
+      },
+      {
+          "emoji": "💝",
+          "category": 0,
+          "name": "серце зі стрічкою",
+          "version": "1.0",
+          "keywords": "валентин | серце | серце зі стрічкою | стрічка"
+      },
+      {
+          "emoji": "💖",
+          "category": 0,
+          "name": "серце, що виблискує",
+          "version": "1.0",
+          "keywords": "захоплення | серце | серце, що виблискує | сяйво"
+      },
+      {
+          "emoji": "💗",
+          "category": 0,
+          "name": "серце, що зростає",
+          "version": "1.0",
+          "keywords": "захоплення | збільшується | нервувати | серце | серце, що зростає | серцебиття"
+      },
+      {
+          "emoji": "💓",
+          "category": 0,
+          "name": "серце, що бʼється",
+          "version": "1.0",
+          "keywords": "биття | пульсувати | серце | серце, що бʼється | серцебиття"
+      },
+      {
+          "emoji": "💞",
+          "category": 0,
+          "name": "серця, що обертаються",
+          "version": "1.0",
+          "keywords": "обертатися | серце | серця, що обертаються"
+      },
+      {
+          "emoji": "💕",
+          "category": 0,
+          "name": "два серця",
+          "version": "1.0",
+          "keywords": "два серця | кохання | серце"
+      },
+      {
+          "emoji": "💟",
+          "category": 0,
+          "name": "прикраса із серцем",
+          "version": "1.0",
+          "keywords": "прикраса із серцем | серце"
+      },
+      {
+          "emoji": "❣️",
+          "category": 0,
+          "name": "heart exclamation",
+          "version": "1.0"
+      },
+      {
+          "emoji": "💔",
+          "category": 0,
+          "name": "розбите серце",
+          "version": "1.0",
+          "keywords": "розбивати | розбите | серце"
+      },
+      {
+          "emoji": "❤️‍🔥",
+          "category": 0,
+          "name": "heart on fire",
+          "version": "13.1"
+      },
+      {
+          "emoji": "❤️‍🩹",
+          "category": 0,
+          "name": "mending heart",
+          "version": "13.1"
+      },
+      {
+          "emoji": "❤️",
+          "category": 0,
+          "name": "red heart",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🧡",
+          "category": 0,
+          "name": "оранжеве серце",
+          "version": "5.0",
+          "keywords": "оранжеве серце | помаранчевий"
+      },
+      {
+          "emoji": "💛",
+          "category": 0,
+          "name": "жовте серце",
+          "version": "1.0",
+          "keywords": "жовте серце | жовтий | серце"
+      },
+      {
+          "emoji": "💚",
+          "category": 0,
+          "name": "зелене серце",
+          "version": "1.0",
+          "keywords": "зелене серце | зелений | серце"
+      },
+      {
+          "emoji": "💙",
+          "category": 0,
+          "name": "синє серце",
+          "version": "1.0",
+          "keywords": "серце | синє серце | синій"
+      },
+      {
+          "emoji": "💜",
+          "category": 0,
+          "name": "пурпурове серце",
+          "version": "1.0",
+          "keywords": "пурпурове серце | серце | фіолетовий"
+      },
+      {
+          "emoji": "🤎",
+          "category": 0,
+          "name": "коричневе серце",
+          "version": "12.0",
+          "keywords": "коричневе | серце"
+      },
+      {
+          "emoji": "🖤",
+          "category": 0,
+          "name": "чорне серце",
+          "version": "3.0",
+          "keywords": "зло | серце | чорне"
+      },
+      {
+          "emoji": "🤍",
+          "category": 0,
+          "name": "біле серце",
+          "version": "12.0",
+          "keywords": "біле | серце"
+      },
+      {
+          "emoji": "💯",
+          "category": 0,
+          "name": "cто балів",
+          "version": "1.0",
+          "keywords": "100 | cто балів | максимум | рахунок | сто | сто очок"
+      },
+      {
+          "emoji": "💢",
+          "category": 0,
+          "name": "символ гніву",
+          "version": "1.0",
+          "keywords": "злий | комікси | розлючений | символ гніву"
+      },
+      {
+          "emoji": "💥",
+          "category": 0,
+          "name": "зіткнення",
+          "version": "1.0",
+          "keywords": "бум | зіткнення | комікси"
+      },
+      {
+          "emoji": "💫",
+          "category": 0,
+          "name": "символ запаморочення",
+          "version": "1.0",
+          "keywords": "зірка | комікси | символ запаморочення"
+      },
+      {
+          "emoji": "💦",
+          "category": 0,
+          "name": "краплі поту",
+          "version": "1.0",
+          "keywords": "бризки | комікси | краплі поту | піт"
+      },
+      {
+          "emoji": "💨",
+          "category": 0,
+          "name": "порив вітру",
+          "version": "1.0",
+          "keywords": "біг | комікси | мчати | порив вітру"
+      },
+      {
+          "emoji": "🕳️",
+          "category": 0,
+          "name": "hole",
+          "version": "1.0"
+      },
+      {
+          "emoji": "💣",
+          "category": 0,
+          "name": "бомба",
+          "version": "1.0",
+          "keywords": "бомба | комікси"
+      },
+      {
+          "emoji": "💬",
+          "category": 0,
+          "name": "текстова булька",
+          "version": "1.0",
+          "keywords": "діалог | комікси | розмова | текстова булька | хмаринка"
+      },
+      {
+          "emoji": "👁️‍🗨️",
+          "category": 0,
+          "name": "eye in speech bubble",
+          "version": "2.0"
+      },
+      {
+          "emoji": "🗨️",
+          "category": 0,
+          "name": "left speech bubble",
+          "version": "2.0"
+      },
+      {
+          "emoji": "🗯️",
+          "category": 0,
+          "name": "right anger bubble",
+          "version": "1.0"
+      },
+      {
+          "emoji": "💭",
+          "category": 0,
+          "name": "булька роздумів",
+          "version": "1.0",
+          "keywords": "булька роздумів | думка | комікси | хмаринка"
+      },
+      {
+          "emoji": "💤",
+          "category": 0,
+          "name": "умовне позначення сну",
+          "version": "1.0",
+          "keywords": "комікси | умовне позначення сну"
+      },
+      {
+          "emoji": "👋",
+          "category": 1,
+          "name": "рука махає",
+          "variations": [
+              "👋🏻",
+              "👋🏼",
+              "👋🏽",
+              "👋🏾",
+              "👋🏿"
+          ],
+          "version": "1.0",
+          "keywords": "долоня | махати | помах | рука махає | тіло"
+      },
+      {
+          "emoji": "🤚",
+          "category": 1,
+          "name": "піднята рука тильною стороною",
+          "variations": [
+              "🤚🏻",
+              "🤚🏼",
+              "🤚🏽",
+              "🤚🏾",
+              "🤚🏿"
+          ],
+          "version": "3.0",
+          "keywords": "долоня | піднята | піднята рука тильною стороною | тильна"
+      },
+      {
+          "emoji": "🖐️",
+          "category": 1,
+          "name": "hand with fingers splayed",
+          "variations": [
+              "🖐🏻",
+              "🖐🏼",
+              "🖐🏽",
+              "🖐🏾",
+              "🖐🏿"
+          ],
+          "version": "1.0"
+      },
+      {
+          "emoji": "✋",
+          "category": 1,
+          "name": "піднята рука",
+          "variations": [
+              "✋🏻",
+              "✋🏼",
+              "✋🏽",
+              "✋🏾",
+              "✋🏿"
+          ],
+          "version": "1.0",
+          "keywords": "піднята рука | рука | тіло"
+      },
+      {
+          "emoji": "🖖",
+          "category": 1,
+          "name": "вулканське вітання",
+          "variations": [
+              "🖖🏻",
+              "🖖🏼",
+              "🖖🏽",
+              "🖖🏾",
+              "🖖🏿"
+          ],
+          "version": "1.0",
+          "keywords": "вулкан | вулканське вітання | зоряний шлях | палець | рука | спок | тіло"
+      },
+      {
+          "emoji": "👌",
+          "category": 1,
+          "name": "жест «окей»",
+          "variations": [
+              "👌🏻",
+              "👌🏼",
+              "👌🏽",
+              "👌🏾",
+              "👌🏿"
+          ],
+          "version": "1.0",
+          "keywords": "«о’кей» | жест «окей» | рука | тіло"
+      },
+      {
+          "emoji": "🤌",
+          "category": 1,
+          "name": "зведені пальці",
+          "variations": [
+              "🤌🏻",
+              "🤌🏼",
+              "🤌🏽",
+              "🤌🏾",
+              "🤌🏿"
+          ],
+          "version": "13.0",
+          "keywords": "жест рукою | запитання | зведені | пальці | сарказм"
+      },
+      {
+          "emoji": "🤏",
+          "category": 1,
+          "name": "жест «мало»",
+          "variations": [
+              "🤏🏻",
+              "🤏🏼",
+              "🤏🏽",
+              "🤏🏾",
+              "🤏🏿"
+          ],
+          "version": "12.0",
+          "keywords": "дещиця | жест «мало» | мало | небагато | невелика кількість | трохи | щіпка"
+      },
+      {
+          "emoji": "✌️",
+          "category": 1,
+          "name": "victory hand",
+          "variations": [
+              "✌🏻",
+              "✌🏼",
+              "✌🏽",
+              "✌🏾",
+              "✌🏿"
+          ],
+          "version": "1.0"
+      },
+      {
+          "emoji": "🤞",
+          "category": 1,
+          "name": "схрещені пальці",
+          "variations": [
+              "🤞🏻",
+              "🤞🏼",
+              "🤞🏽",
+              "🤞🏾",
+              "🤞🏿"
+          ],
+          "version": "3.0",
+          "keywords": "пальці | схрещені | удача"
+      },
+      {
+          "emoji": "🤟",
+          "category": 1,
+          "name": "жест «кохаю тебе»",
+          "variations": [
+              "🤟🏻",
+              "🤟🏼",
+              "🤟🏽",
+              "🤟🏾",
+              "🤟🏿"
+          ],
+          "version": "5.0",
+          "keywords": "жест «кохаю тебе» | піднята рука"
+      },
+      {
+          "emoji": "🤘",
+          "category": 1,
+          "name": "жест «роги»",
+          "variations": [
+              "🤘🏻",
+              "🤘🏼",
+              "🤘🏽",
+              "🤘🏾",
+              "🤘🏿"
+          ],
+          "version": "1.0",
+          "keywords": "жест «роги» | коза | палець | рука | символ рогів рукою"
+      },
+      {
+          "emoji": "🤙",
+          "category": 1,
+          "name": "жест «подзвони мені»",
+          "variations": [
+              "🤙🏻",
+              "🤙🏼",
+              "🤙🏽",
+              "🤙🏾",
+              "🤙🏿"
+          ],
+          "version": "3.0",
+          "keywords": "жест «подзвони мені» | жест рукою «подзвони мені» | рука | телефон"
+      },
+      {
+          "emoji": "👈",
+          "category": 1,
+          "name": "палець тильним боком, що вказує вліво",
+          "variations": [
+              "👈🏻",
+              "👈🏼",
+              "👈🏽",
+              "👈🏾",
+              "👈🏿"
+          ],
+          "version": "1.0",
+          "keywords": "вказівний палець тильною стороною, що вказує вліво | палець | палець тильним боком, що вказує вліво | показувати | рука | тіло | указувати"
+      },
+      {
+          "emoji": "👉",
+          "category": 1,
+          "name": "палець тильним боком, що вказує вправо",
+          "variations": [
+              "👉🏻",
+              "👉🏼",
+              "👉🏽",
+              "👉🏾",
+              "👉🏿"
+          ],
+          "version": "1.0",
+          "keywords": "вказівний | палець | палець тильним боком, що вказує вправо | рука | указувати | управо"
+      },
+      {
+          "emoji": "👆",
+          "category": 1,
+          "name": "палець тильним боком, що вказує вгору",
+          "variations": [
+              "👆🏻",
+              "👆🏼",
+              "👆🏽",
+              "👆🏾",
+              "👆🏿"
+          ],
+          "version": "1.0",
+          "keywords": "вказівний | палець | палець тильним боком, що вказує вгору | рука | угору | указувати"
+      },
+      {
+          "emoji": "🖕",
+          "category": 1,
+          "name": "середній палець",
+          "variations": [
+              "🖕🏻",
+              "🖕🏼",
+              "🖕🏽",
+              "🖕🏾",
+              "🖕🏿"
+          ],
+          "version": "1.0",
+          "keywords": "палець | рука | середній палець"
+      },
+      {
+          "emoji": "👇",
+          "category": 1,
+          "name": "палець тильним боком, що вказує вниз",
+          "variations": [
+              "👇🏻",
+              "👇🏼",
+              "👇🏽",
+              "👇🏾",
+              "👇🏿"
+          ],
+          "version": "1.0",
+          "keywords": "вказівний | палець | палець тильним боком, що вказує вниз | тильний | указувати | униз"
+      },
+      {
+          "emoji": "☝️",
+          "category": 1,
+          "name": "index pointing up",
+          "variations": [
+              "☝🏻",
+              "☝🏼",
+              "☝🏽",
+              "☝🏾",
+              "☝🏿"
+          ],
+          "version": "1.0"
+      },
+      {
+          "emoji": "👍",
+          "category": 1,
+          "name": "великі пальці вгору",
+          "variations": [
+              "👍🏻",
+              "👍🏼",
+              "👍🏽",
+              "👍🏾",
+              "👍🏿"
+          ],
+          "version": "1.0",
+          "keywords": "+1 | великі пальці вгору | подобається | рука | тіло"
+      },
+      {
+          "emoji": "👎",
+          "category": 1,
+          "name": "великі пальці вниз",
+          "variations": [
+              "👎🏻",
+              "👎🏼",
+              "👎🏽",
+              "👎🏾",
+              "👎🏿"
+          ],
+          "version": "1.0",
+          "keywords": "-1 | великі пальці вниз | не подобається | рука | тіло"
+      },
+      {
+          "emoji": "✊",
+          "category": 1,
+          "name": "піднятий кулак",
+          "variations": [
+              "✊🏻",
+              "✊🏼",
+              "✊🏽",
+              "✊🏾",
+              "✊🏿"
+          ],
+          "version": "1.0",
+          "keywords": "кулак | піднятий кулак | рука | стиснутий | тіло"
+      },
+      {
+          "emoji": "👊",
+          "category": 1,
+          "name": "кулак, що насувається",
+          "variations": [
+              "👊🏻",
+              "👊🏼",
+              "👊🏽",
+              "👊🏾",
+              "👊🏿"
+          ],
+          "version": "1.0",
+          "keywords": "кулак | кулак, що насувається | рука | стиснутий | тіло"
+      },
+      {
+          "emoji": "🤛",
+          "category": 1,
+          "name": "кулак уліво",
+          "variations": [
+              "🤛🏻",
+              "🤛🏼",
+              "🤛🏽",
+              "🤛🏾",
+              "🤛🏿"
+          ],
+          "version": "3.0",
+          "keywords": "кулак | уліво"
+      },
+      {
+          "emoji": "🤜",
+          "category": 1,
+          "name": "кулак управо",
+          "variations": [
+              "🤜🏻",
+              "🤜🏼",
+              "🤜🏽",
+              "🤜🏾",
+              "🤜🏿"
+          ],
+          "version": "3.0",
+          "keywords": "кулак | управо"
+      },
+      {
+          "emoji": "👏",
+          "category": 1,
+          "name": "руки, що аплодують",
+          "variations": [
+              "👏🏻",
+              "👏🏼",
+              "👏🏽",
+              "👏🏾",
+              "👏🏿"
+          ],
+          "version": "1.0",
+          "keywords": "плескати | рука | руки, що аплодують | тіло"
+      },
+      {
+          "emoji": "🙌",
+          "category": 1,
+          "name": "руки, підняті для святкування",
+          "variations": [
+              "🙌🏻",
+              "🙌🏼",
+              "🙌🏽",
+              "🙌🏾",
+              "🙌🏿"
+          ],
+          "version": "1.0",
+          "keywords": "жест | піднята | рука | руки, підняті для святкування | святкування | ура"
+      },
+      {
+          "emoji": "👐",
+          "category": 1,
+          "name": "відкриті долоні",
+          "variations": [
+              "👐🏻",
+              "👐🏼",
+              "👐🏽",
+              "👐🏾",
+              "👐🏿"
+          ],
+          "version": "1.0",
+          "keywords": "відкритий | відкриті долоні | рука | тіло"
+      },
+      {
+          "emoji": "🤲",
+          "category": 1,
+          "name": "долоні, підняті разом",
+          "variations": [
+              "🤲🏻",
+              "🤲🏼",
+              "🤲🏽",
+              "🤲🏾",
+              "🤲🏿"
+          ],
+          "version": "5.0",
+          "keywords": "долоні, підняті разом | молитва"
+      },
+      {
+          "emoji": "🤝",
+          "category": 1,
+          "name": "рукостискання",
+          "version": "3.0",
+          "keywords": "згода | потискання | руки | рукостискання"
+      },
+      {
+          "emoji": "🙏",
+          "category": 1,
+          "name": "руки, стиснуті разом",
+          "variations": [
+              "🙏🏻",
+              "🙏🏼",
+              "🙏🏽",
+              "🙏🏾",
+              "🙏🏿"
+          ],
+          "version": "1.0",
+          "keywords": "будь ласка | дякую | прошу | рука | руки, стиснуті разом | складені"
+      },
+      {
+          "emoji": "✍️",
+          "category": 1,
+          "name": "writing hand",
+          "variations": [
+              "✍🏻",
+              "✍🏼",
+              "✍🏽",
+              "✍🏾",
+              "✍🏿"
+          ],
+          "version": "1.0"
+      },
+      {
+          "emoji": "💅",
+          "category": 1,
+          "name": "лак для нігтів",
+          "variations": [
+              "💅🏻",
+              "💅🏼",
+              "💅🏽",
+              "💅🏾",
+              "💅🏿"
+          ],
+          "version": "1.0",
+          "keywords": "догляд | косметика | лак для нігтів | манікюр | ніготь | тіло"
+      },
+      {
+          "emoji": "🤳",
+          "category": 1,
+          "name": "селфі",
+          "variations": [
+              "🤳🏻",
+              "🤳🏼",
+              "🤳🏽",
+              "🤳🏾",
+              "🤳🏿"
+          ],
+          "version": "3.0",
+          "keywords": "автопортрет | камера | селфі | телефон"
+      },
+      {
+          "emoji": "💪",
+          "category": 1,
+          "name": "напружений біцепс",
+          "variations": [
+              "💪🏻",
+              "💪🏼",
+              "💪🏽",
+              "💪🏾",
+              "💪🏿"
+          ],
+          "version": "1.0",
+          "keywords": "біцепси | зігнутий | м’яз | напружений біцепс | тіло"
+      },
+      {
+          "emoji": "🦾",
+          "category": 1,
+          "name": "механічна рука",
+          "version": "12.0",
+          "keywords": "доступність | механічна рука | протез | спеціальні можливості"
+      },
+      {
+          "emoji": "🦿",
+          "category": 1,
+          "name": "механічна нога",
+          "version": "12.0",
+          "keywords": "доступність | механічна нога | протез | спеціальні можливості"
+      },
+      {
+          "emoji": "🦵",
+          "category": 1,
+          "name": "нога",
+          "variations": [
+              "🦵🏻",
+              "🦵🏼",
+              "🦵🏽",
+              "🦵🏾",
+              "🦵🏿"
+          ],
+          "version": "11.0",
+          "keywords": "копняк | нога | стегно | удар ногою"
+      },
+      {
+          "emoji": "🦶",
+          "category": 1,
+          "name": "ступня",
+          "variations": [
+              "🦶🏻",
+              "🦶🏼",
+              "🦶🏽",
+              "🦶🏾",
+              "🦶🏿"
+          ],
+          "version": "11.0",
+          "keywords": "ніжка | нога | стопа | ступня | удар"
+      },
+      {
+          "emoji": "👂",
+          "category": 1,
+          "name": "вухо",
+          "variations": [
+              "👂🏻",
+              "👂🏼",
+              "👂🏽",
+              "👂🏾",
+              "👂🏿"
+          ],
+          "version": "1.0",
+          "keywords": "вухо | тіло"
+      },
+      {
+          "emoji": "🦻",
+          "category": 1,
+          "name": "вухо зі слуховим апаратом",
+          "variations": [
+              "🦻🏻",
+              "🦻🏼",
+              "🦻🏽",
+              "🦻🏾",
+              "🦻🏿"
+          ],
+          "version": "12.0",
+          "keywords": "вади слуху | вухо зі слуховим апаратом | доступність | спеціальні можливості"
+      },
+      {
+          "emoji": "👃",
+          "category": 1,
+          "name": "ніс",
+          "variations": [
+              "👃🏻",
+              "👃🏼",
+              "👃🏽",
+              "👃🏾",
+              "👃🏿"
+          ],
+          "version": "1.0",
+          "keywords": "ніс | тіло"
+      },
+      {
+          "emoji": "🧠",
+          "category": 1,
+          "name": "мозок",
+          "version": "5.0",
+          "keywords": "інтелігент | мозок"
+      },
+      {
+          "emoji": "🫀",
+          "category": 1,
+          "name": "серце",
+          "version": "13.0",
+          "keywords": "кардіологія | орган | пульс | серце | серцебиття | центр"
+      },
+      {
+          "emoji": "🫁",
+          "category": 1,
+          "name": "легені",
+          "version": "13.0",
+          "keywords": "вдих | видих | дихання | легені | орган | подих"
+      },
+      {
+          "emoji": "🦷",
+          "category": 1,
+          "name": "зуб",
+          "version": "11.0",
+          "keywords": "дантист | зуб | зуби | стоматолог"
+      },
+      {
+          "emoji": "🦴",
+          "category": 1,
+          "name": "кістка",
+          "version": "11.0",
+          "keywords": "кальцій | кістка | кості | скелет"
+      },
+      {
+          "emoji": "👀",
+          "category": 1,
+          "name": "очі",
+          "version": "1.0",
+          "keywords": "обличчя | око | очі | тіло"
+      },
+      {
+          "emoji": "👁️",
+          "category": 1,
+          "name": "eye",
+          "version": "1.0"
+      },
+      {
+          "emoji": "👅",
+          "category": 1,
+          "name": "язик",
+          "version": "1.0",
+          "keywords": "тіло | язик"
+      },
+      {
+          "emoji": "👄",
+          "category": 1,
+          "name": "рот",
+          "version": "1.0",
+          "keywords": "губи | рот | тіло"
+      },
+      {
+          "emoji": "👶",
+          "category": 1,
+          "name": "немовля",
+          "variations": [
+              "👶🏻",
+              "👶🏼",
+              "👶🏽",
+              "👶🏾",
+              "👶🏿"
+          ],
+          "version": "1.0",
+          "keywords": "дитина | малеча | немовля"
+      },
+      {
+          "emoji": "🧒",
+          "category": 1,
+          "name": "дитина",
+          "variations": [
+              "🧒🏻",
+              "🧒🏼",
+              "🧒🏽",
+              "🧒🏾",
+              "🧒🏿"
+          ],
+          "version": "5.0",
+          "keywords": "гендерно-нейтральний | дитина | малеча | неозначеної статі"
+      },
+      {
+          "emoji": "👦",
+          "category": 1,
+          "name": "хлопчик",
+          "variations": [
+              "👦🏻",
+              "👦🏼",
+              "👦🏽",
+              "👦🏾",
+              "👦🏿"
+          ],
+          "version": "1.0",
+          "keywords": "малеча | хлопець | хлопчик"
+      },
+      {
+          "emoji": "👧",
+          "category": 1,
+          "name": "дівчинка",
+          "variations": [
+              "👧🏻",
+              "👧🏼",
+              "👧🏽",
+              "👧🏾",
+              "👧🏿"
+          ],
+          "version": "1.0",
+          "keywords": "діва | дівчина | дівчинка | зодіак"
+      },
+      {
+          "emoji": "🧑",
+          "category": 1,
+          "name": "людина",
+          "variations": [
+              "🧑🏻",
+              "🧑🏼",
+              "🧑🏽",
+              "🧑🏾",
+              "🧑🏿"
+          ],
+          "version": "5.0",
+          "keywords": "гендерно-нейтральний | дорослий | людина | неозначеної статі"
+      },
+      {
+          "emoji": "👱",
+          "category": 1,
+          "name": "людина з білявим волоссям",
+          "variations": [
+              "👱🏻",
+              "👱🏼",
+              "👱🏽",
+              "👱🏾",
+              "👱🏿"
+          ],
+          "version": "1.0",
+          "keywords": "біляве | волосся | людина з білявим волоссям | людина: біляве волосся"
+      },
+      {
+          "emoji": "👨",
+          "category": 1,
+          "name": "чоловік",
+          "variations": [
+              "👨🏻",
+              "👨🏼",
+              "👨🏽",
+              "👨🏾",
+              "👨🏿"
+          ],
+          "version": "1.0",
+          "keywords": "дорослий | чоловік"
+      },
+      {
+          "emoji": "🧔",
+          "category": 1,
+          "name": "людина з бородою",
+          "variations": [
+              "🧔🏻",
+              "🧔🏼",
+              "🧔🏽",
+              "🧔🏾",
+              "🧔🏿"
+          ],
+          "version": "5.0",
+          "keywords": "борода | бородань | людина з бородою"
+      },
+      {
+          "emoji": "🧔‍♂️",
+          "category": 1,
+          "name": "man with beard",
+          "variations": [
+              "🧔🏻‍♂️",
+              "🧔🏼‍♂️",
+              "🧔🏽‍♂️",
+              "🧔🏾‍♂️",
+              "🧔🏿‍♂️"
+          ],
+          "version": "13.1"
+      },
+      {
+          "emoji": "🧔‍♀️",
+          "category": 1,
+          "name": "woman with beard",
+          "variations": [
+              "🧔🏻‍♀️",
+              "🧔🏼‍♀️",
+              "🧔🏽‍♀️",
+              "🧔🏾‍♀️",
+              "🧔🏿‍♀️"
+          ],
+          "version": "13.1"
+      },
+      {
+          "emoji": "👨‍🦰",
+          "category": 1,
+          "name": "чоловік: руде волосся",
+          "variations": [
+              "👨🏻‍🦰",
+              "👨🏼‍🦰",
+              "👨🏽‍🦰",
+              "👨🏾‍🦰",
+              "👨🏿‍🦰"
+          ],
+          "version": "11.0",
+          "keywords": "дорослий | руде волосся | чоловік"
+      },
+      {
+          "emoji": "👨‍🦱",
+          "category": 1,
+          "name": "чоловік: кучеряве волосся",
+          "variations": [
+              "👨🏻‍🦱",
+              "👨🏼‍🦱",
+              "👨🏽‍🦱",
+              "👨🏾‍🦱",
+              "👨🏿‍🦱"
+          ],
+          "version": "11.0",
+          "keywords": "дорослий | кучеряве волосся | чоловік"
+      },
+      {
+          "emoji": "👨‍🦳",
+          "category": 1,
+          "name": "чоловік: сиве волосся",
+          "variations": [
+              "👨🏻‍🦳",
+              "👨🏼‍🦳",
+              "👨🏽‍🦳",
+              "👨🏾‍🦳",
+              "👨🏿‍🦳"
+          ],
+          "version": "11.0",
+          "keywords": "дорослий | сиве волосся | чоловік"
+      },
+      {
+          "emoji": "👨‍🦲",
+          "category": 1,
+          "name": "чоловік: лиса голова",
+          "variations": [
+              "👨🏻‍🦲",
+              "👨🏼‍🦲",
+              "👨🏽‍🦲",
+              "👨🏾‍🦲",
+              "👨🏿‍🦲"
+          ],
+          "version": "11.0",
+          "keywords": "дорослий | лиса голова | чоловік"
+      },
+      {
+          "emoji": "👩",
+          "category": 1,
+          "name": "жінка",
+          "variations": [
+              "👩🏻",
+              "👩🏼",
+              "👩🏽",
+              "👩🏾",
+              "👩🏿"
+          ],
+          "version": "1.0",
+          "keywords": "доросла | жінка"
+      },
+      {
+          "emoji": "👩‍🦰",
+          "category": 1,
+          "name": "жінка: руде волосся",
+          "variations": [
+              "👩🏻‍🦰",
+              "👩🏼‍🦰",
+              "👩🏽‍🦰",
+              "👩🏾‍🦰",
+              "👩🏿‍🦰"
+          ],
+          "version": "11.0",
+          "keywords": "доросла | жінка | руде волосся"
+      },
+      {
+          "emoji": "🧑‍🦰",
+          "category": 1,
+          "name": "людина: руде волосся",
+          "variations": [
+              "🧑🏻‍🦰",
+              "🧑🏼‍🦰",
+              "🧑🏽‍🦰",
+              "🧑🏾‍🦰",
+              "🧑🏿‍🦰"
+          ],
+          "version": "12.1",
+          "keywords": "гендерно-нейтральний | дорослий | людина | неозначеної статі | руде волосся"
+      },
+      {
+          "emoji": "👩‍🦱",
+          "category": 1,
+          "name": "жінка: кучеряве волосся",
+          "variations": [
+              "👩🏻‍🦱",
+              "👩🏼‍🦱",
+              "👩🏽‍🦱",
+              "👩🏾‍🦱",
+              "👩🏿‍🦱"
+          ],
+          "version": "11.0",
+          "keywords": "доросла | жінка | кучеряве волосся"
+      },
+      {
+          "emoji": "🧑‍🦱",
+          "category": 1,
+          "name": "людина: кучеряве волосся",
+          "variations": [
+              "🧑🏻‍🦱",
+              "🧑🏼‍🦱",
+              "🧑🏽‍🦱",
+              "🧑🏾‍🦱",
+              "🧑🏿‍🦱"
+          ],
+          "version": "12.1",
+          "keywords": "гендерно-нейтральний | дорослий | кучеряве волосся | людина | неозначеної статі"
+      },
+      {
+          "emoji": "👩‍🦳",
+          "category": 1,
+          "name": "жінка: сиве волосся",
+          "variations": [
+              "👩🏻‍🦳",
+              "👩🏼‍🦳",
+              "👩🏽‍🦳",
+              "👩🏾‍🦳",
+              "👩🏿‍🦳"
+          ],
+          "version": "11.0",
+          "keywords": "доросла | жінка | сиве волосся"
+      },
+      {
+          "emoji": "🧑‍🦳",
+          "category": 1,
+          "name": "людина: сиве волосся",
+          "variations": [
+              "🧑🏻‍🦳",
+              "🧑🏼‍🦳",
+              "🧑🏽‍🦳",
+              "🧑🏾‍🦳",
+              "🧑🏿‍🦳"
+          ],
+          "version": "12.1",
+          "keywords": "гендерно-нейтральний | дорослий | людина | неозначеної статі | сиве волосся"
+      },
+      {
+          "emoji": "👩‍🦲",
+          "category": 1,
+          "name": "жінка: лиса голова",
+          "variations": [
+              "👩🏻‍🦲",
+              "👩🏼‍🦲",
+              "👩🏽‍🦲",
+              "👩🏾‍🦲",
+              "👩🏿‍🦲"
+          ],
+          "version": "11.0",
+          "keywords": "доросла | жінка | лиса голова"
+      },
+      {
+          "emoji": "🧑‍🦲",
+          "category": 1,
+          "name": "людина: лиса голова",
+          "variations": [
+              "🧑🏻‍🦲",
+              "🧑🏼‍🦲",
+              "🧑🏽‍🦲",
+              "🧑🏾‍🦲",
+              "🧑🏿‍🦲"
+          ],
+          "version": "12.1",
+          "keywords": "гендерно-нейтральний | дорослий | лиса голова | людина | неозначеної статі"
+      },
+      {
+          "emoji": "👱‍♀️",
+          "category": 1,
+          "name": "woman with blond hair",
+          "variations": [
+              "👱🏻‍♀️",
+              "👱🏼‍♀️",
+              "👱🏽‍♀️",
+              "👱🏾‍♀️",
+              "👱🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "👱‍♂️",
+          "category": 1,
+          "name": "man with blond hair",
+          "variations": [
+              "👱🏻‍♂️",
+              "👱🏼‍♂️",
+              "👱🏽‍♂️",
+              "👱🏾‍♂️",
+              "👱🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🧓",
+          "category": 1,
+          "name": "літня людина",
+          "variations": [
+              "🧓🏻",
+              "🧓🏼",
+              "🧓🏽",
+              "🧓🏾",
+              "🧓🏿"
+          ],
+          "version": "5.0",
+          "keywords": "гендерно-нейтральний | дорослий | літня людина | неозначеної статі | старий | старша людина"
+      },
+      {
+          "emoji": "👴",
+          "category": 1,
+          "name": "літній чоловік",
+          "variations": [
+              "👴🏻",
+              "👴🏼",
+              "👴🏽",
+              "👴🏾",
+              "👴🏿"
+          ],
+          "version": "1.0",
+          "keywords": "дорослий | літній чоловік | старий | чоловік"
+      },
+      {
+          "emoji": "👵",
+          "category": 1,
+          "name": "літня жінка",
+          "variations": [
+              "👵🏻",
+              "👵🏼",
+              "👵🏽",
+              "👵🏾",
+              "👵🏿"
+          ],
+          "version": "1.0",
+          "keywords": "доросла | жінка | літня жінка | стара"
+      },
+      {
+          "emoji": "🙍",
+          "category": 1,
+          "name": "похмура людина",
+          "variations": [
+              "🙍🏻",
+              "🙍🏼",
+              "🙍🏽",
+              "🙍🏾",
+              "🙍🏿"
+          ],
+          "version": "1.0",
+          "keywords": "жест | нахмурений | похмура людина"
+      },
+      {
+          "emoji": "🙍‍♂️",
+          "category": 1,
+          "name": "man frowning",
+          "variations": [
+              "🙍🏻‍♂️",
+              "🙍🏼‍♂️",
+              "🙍🏽‍♂️",
+              "🙍🏾‍♂️",
+              "🙍🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🙍‍♀️",
+          "category": 1,
+          "name": "woman frowning",
+          "variations": [
+              "🙍🏻‍♀️",
+              "🙍🏼‍♀️",
+              "🙍🏽‍♀️",
+              "🙍🏾‍♀️",
+              "🙍🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🙎",
+          "category": 1,
+          "name": "людина, що дується",
+          "variations": [
+              "🙎🏻",
+              "🙎🏼",
+              "🙎🏽",
+              "🙎🏾",
+              "🙎🏿"
+          ],
+          "version": "1.0",
+          "keywords": "жест | злий | людина, що дується"
+      },
+      {
+          "emoji": "🙎‍♂️",
+          "category": 1,
+          "name": "man pouting",
+          "variations": [
+              "🙎🏻‍♂️",
+              "🙎🏼‍♂️",
+              "🙎🏽‍♂️",
+              "🙎🏾‍♂️",
+              "🙎🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🙎‍♀️",
+          "category": 1,
+          "name": "woman pouting",
+          "variations": [
+              "🙎🏻‍♀️",
+              "🙎🏼‍♀️",
+              "🙎🏽‍♀️",
+              "🙎🏾‍♀️",
+              "🙎🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🙅",
+          "category": 1,
+          "name": "людина, що жестом показує «ні»",
+          "variations": [
+              "🙅🏻",
+              "🙅🏼",
+              "🙅🏽",
+              "🙅🏾",
+              "🙅🏿"
+          ],
+          "version": "1.0",
+          "keywords": "жест | заборонено | людина | людина, що жестом показує «ні» | рука"
+      },
+      {
+          "emoji": "🙅‍♂️",
+          "category": 1,
+          "name": "man gesturing NO",
+          "variations": [
+              "🙅🏻‍♂️",
+              "🙅🏼‍♂️",
+              "🙅🏽‍♂️",
+              "🙅🏾‍♂️",
+              "🙅🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🙅‍♀️",
+          "category": 1,
+          "name": "woman gesturing NO",
+          "variations": [
+              "🙅🏻‍♀️",
+              "🙅🏼‍♀️",
+              "🙅🏽‍♀️",
+              "🙅🏾‍♀️",
+              "🙅🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🙆",
+          "category": 1,
+          "name": "людина, що жестом показує «окей»",
+          "variations": [
+              "🙆🏻",
+              "🙆🏼",
+              "🙆🏽",
+              "🙆🏾",
+              "🙆🏿"
+          ],
+          "version": "1.0",
+          "keywords": "жест | людина, що жестом показує «окей» | окей | рука"
+      },
+      {
+          "emoji": "🙆‍♂️",
+          "category": 1,
+          "name": "man gesturing OK",
+          "variations": [
+              "🙆🏻‍♂️",
+              "🙆🏼‍♂️",
+              "🙆🏽‍♂️",
+              "🙆🏾‍♂️",
+              "🙆🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🙆‍♀️",
+          "category": 1,
+          "name": "woman gesturing OK",
+          "variations": [
+              "🙆🏻‍♀️",
+              "🙆🏼‍♀️",
+              "🙆🏽‍♀️",
+              "🙆🏾‍♀️",
+              "🙆🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "💁",
+          "category": 1,
+          "name": "людина, що простягає руку допомоги",
+          "variations": [
+              "💁🏻",
+              "💁🏼",
+              "💁🏽",
+              "💁🏾",
+              "💁🏿"
+          ],
+          "version": "1.0",
+          "keywords": "допомога | інформація | людина, що простягає руку допомоги | працівник довідкового бюро | рука"
+      },
+      {
+          "emoji": "💁‍♂️",
+          "category": 1,
+          "name": "man tipping hand",
+          "variations": [
+              "💁🏻‍♂️",
+              "💁🏼‍♂️",
+              "💁🏽‍♂️",
+              "💁🏾‍♂️",
+              "💁🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "💁‍♀️",
+          "category": 1,
+          "name": "woman tipping hand",
+          "variations": [
+              "💁🏻‍♀️",
+              "💁🏼‍♀️",
+              "💁🏽‍♀️",
+              "💁🏾‍♀️",
+              "💁🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🙋",
+          "category": 1,
+          "name": "людина з піднятою рукою",
+          "variations": [
+              "🙋🏻",
+              "🙋🏼",
+              "🙋🏽",
+              "🙋🏾",
+              "🙋🏿"
+          ],
+          "version": "1.0",
+          "keywords": "жест | людина з піднятою рукою | піднята | рука | щасливий"
+      },
+      {
+          "emoji": "🙋‍♂️",
+          "category": 1,
+          "name": "man raising hand",
+          "variations": [
+              "🙋🏻‍♂️",
+              "🙋🏼‍♂️",
+              "🙋🏽‍♂️",
+              "🙋🏾‍♂️",
+              "🙋🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🙋‍♀️",
+          "category": 1,
+          "name": "woman raising hand",
+          "variations": [
+              "🙋🏻‍♀️",
+              "🙋🏼‍♀️",
+              "🙋🏽‍♀️",
+              "🙋🏾‍♀️",
+              "🙋🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🧏",
+          "category": 1,
+          "name": "людина з порушенням слуху",
+          "variations": [
+              "🧏🏻",
+              "🧏🏼",
+              "🧏🏽",
+              "🧏🏾",
+              "🧏🏿"
+          ],
+          "version": "12.0",
+          "keywords": "вада слуху | глухота | доступність | людина з порушенням слуху | слух | спеціальні можливості | чути"
+      },
+      {
+          "emoji": "🧏‍♂️",
+          "category": 1,
+          "name": "deaf man",
+          "variations": [
+              "🧏🏻‍♂️",
+              "🧏🏼‍♂️",
+              "🧏🏽‍♂️",
+              "🧏🏾‍♂️",
+              "🧏🏿‍♂️"
+          ],
+          "version": "12.0"
+      },
+      {
+          "emoji": "🧏‍♀️",
+          "category": 1,
+          "name": "deaf woman",
+          "variations": [
+              "🧏🏻‍♀️",
+              "🧏🏼‍♀️",
+              "🧏🏽‍♀️",
+              "🧏🏾‍♀️",
+              "🧏🏿‍♀️"
+          ],
+          "version": "12.0"
+      },
+      {
+          "emoji": "🙇",
+          "category": 1,
+          "name": "людина, що вклоняється",
+          "variations": [
+              "🙇🏻",
+              "🙇🏼",
+              "🙇🏽",
+              "🙇🏾",
+              "🙇🏿"
+          ],
+          "version": "1.0",
+          "keywords": "вибач | вибачення | жест | людина, що вклоняється | уклін"
+      },
+      {
+          "emoji": "🙇‍♂️",
+          "category": 1,
+          "name": "man bowing",
+          "variations": [
+              "🙇🏻‍♂️",
+              "🙇🏼‍♂️",
+              "🙇🏽‍♂️",
+              "🙇🏾‍♂️",
+              "🙇🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🙇‍♀️",
+          "category": 1,
+          "name": "woman bowing",
+          "variations": [
+              "🙇🏻‍♀️",
+              "🙇🏼‍♀️",
+              "🙇🏽‍♀️",
+              "🙇🏾‍♀️",
+              "🙇🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤦",
+          "category": 1,
+          "name": "людина з долонею до обличчя",
+          "variations": [
+              "🤦🏻",
+              "🤦🏼",
+              "🤦🏽",
+              "🤦🏾",
+              "🤦🏿"
+          ],
+          "version": "3.0",
+          "keywords": "людина з долонею до обличчя | людина, що підносить долоню до обличчя | обличчя | роздратування | розчарування | рука"
+      },
+      {
+          "emoji": "🤦‍♂️",
+          "category": 1,
+          "name": "man facepalming",
+          "variations": [
+              "🤦🏻‍♂️",
+              "🤦🏼‍♂️",
+              "🤦🏽‍♂️",
+              "🤦🏾‍♂️",
+              "🤦🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤦‍♀️",
+          "category": 1,
+          "name": "woman facepalming",
+          "variations": [
+              "🤦🏻‍♀️",
+              "🤦🏼‍♀️",
+              "🤦🏽‍♀️",
+              "🤦🏾‍♀️",
+              "🤦🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤷",
+          "category": 1,
+          "name": "людина, що знизує плечима",
+          "variations": [
+              "🤷🏻",
+              "🤷🏼",
+              "🤷🏽",
+              "🤷🏾",
+              "🤷🏿"
+          ],
+          "version": "3.0",
+          "keywords": "байдужість | знизування | людина, що знизує плечима | невідомість | сумнів"
+      },
+      {
+          "emoji": "🤷‍♂️",
+          "category": 1,
+          "name": "man shrugging",
+          "variations": [
+              "🤷🏻‍♂️",
+              "🤷🏼‍♂️",
+              "🤷🏽‍♂️",
+              "🤷🏾‍♂️",
+              "🤷🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤷‍♀️",
+          "category": 1,
+          "name": "woman shrugging",
+          "variations": [
+              "🤷🏻‍♀️",
+              "🤷🏼‍♀️",
+              "🤷🏽‍♀️",
+              "🤷🏾‍♀️",
+              "🤷🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🧑‍⚕️",
+          "category": 1,
+          "name": "health worker",
+          "variations": [
+              "🧑🏻‍⚕️",
+              "🧑🏼‍⚕️",
+              "🧑🏽‍⚕️",
+              "🧑🏾‍⚕️",
+              "🧑🏿‍⚕️"
+          ],
+          "version": "12.1"
+      },
+      {
+          "emoji": "👨‍⚕️",
+          "category": 1,
+          "name": "man health worker",
+          "variations": [
+              "👨🏻‍⚕️",
+              "👨🏼‍⚕️",
+              "👨🏽‍⚕️",
+              "👨🏾‍⚕️",
+              "👨🏿‍⚕️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "👩‍⚕️",
+          "category": 1,
+          "name": "woman health worker",
+          "variations": [
+              "👩🏻‍⚕️",
+              "👩🏼‍⚕️",
+              "👩🏽‍⚕️",
+              "👩🏾‍⚕️",
+              "👩🏿‍⚕️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🧑‍🎓",
+          "category": 1,
+          "name": "слухач",
+          "variations": [
+              "🧑🏻‍🎓",
+              "🧑🏼‍🎓",
+              "🧑🏽‍🎓",
+              "🧑🏾‍🎓",
+              "🧑🏿‍🎓"
+          ],
+          "version": "12.1",
+          "keywords": "випускник | слухач | студент"
+      },
+      {
+          "emoji": "👨‍🎓",
+          "category": 1,
+          "name": "студент",
+          "variations": [
+              "👨🏻‍🎓",
+              "👨🏼‍🎓",
+              "👨🏽‍🎓",
+              "👨🏾‍🎓",
+              "👨🏿‍🎓"
+          ],
+          "version": "4.0",
+          "keywords": "абітурієнт | випускник | студент | чоловік"
+      },
+      {
+          "emoji": "👩‍🎓",
+          "category": 1,
+          "name": "студентка",
+          "variations": [
+              "👩🏻‍🎓",
+              "👩🏼‍🎓",
+              "👩🏽‍🎓",
+              "👩🏾‍🎓",
+              "👩🏿‍🎓"
+          ],
+          "version": "4.0",
+          "keywords": "абітурієнтка | випускниця | жінка | студентка"
+      },
+      {
+          "emoji": "🧑‍🏫",
+          "category": 1,
+          "name": "освітянин",
+          "variations": [
+              "🧑🏻‍🏫",
+              "🧑🏼‍🏫",
+              "🧑🏽‍🏫",
+              "🧑🏾‍🏫",
+              "🧑🏿‍🏫"
+          ],
+          "version": "12.1",
+          "keywords": "викладач | інструктор | освітянин | учитель"
+      },
+      {
+          "emoji": "👨‍🏫",
+          "category": 1,
+          "name": "учитель",
+          "variations": [
+              "👨🏻‍🏫",
+              "👨🏼‍🏫",
+              "👨🏽‍🏫",
+              "👨🏾‍🏫",
+              "👨🏿‍🏫"
+          ],
+          "version": "4.0",
+          "keywords": "викладач | вчитель | інструктор | професор | учитель | чоловік"
+      },
+      {
+          "emoji": "👩‍🏫",
+          "category": 1,
+          "name": "учителька",
+          "variations": [
+              "👩🏻‍🏫",
+              "👩🏼‍🏫",
+              "👩🏽‍🏫",
+              "👩🏾‍🏫",
+              "👩🏿‍🏫"
+          ],
+          "version": "4.0",
+          "keywords": "викладачка | вчителька | жінка | інструктор | професор | учителька"
+      },
+      {
+          "emoji": "🧑‍⚖️",
+          "category": 1,
+          "name": "judge",
+          "variations": [
+              "🧑🏻‍⚖️",
+              "🧑🏼‍⚖️",
+              "🧑🏽‍⚖️",
+              "🧑🏾‍⚖️",
+              "🧑🏿‍⚖️"
+          ],
+          "version": "12.1"
+      },
+      {
+          "emoji": "👨‍⚖️",
+          "category": 1,
+          "name": "man judge",
+          "variations": [
+              "👨🏻‍⚖️",
+              "👨🏼‍⚖️",
+              "👨🏽‍⚖️",
+              "👨🏾‍⚖️",
+              "👨🏿‍⚖️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "👩‍⚖️",
+          "category": 1,
+          "name": "woman judge",
+          "variations": [
+              "👩🏻‍⚖️",
+              "👩🏼‍⚖️",
+              "👩🏽‍⚖️",
+              "👩🏾‍⚖️",
+              "👩🏿‍⚖️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🧑‍🌾",
+          "category": 1,
+          "name": "селянин",
+          "variations": [
+              "🧑🏻‍🌾",
+              "🧑🏼‍🌾",
+              "🧑🏽‍🌾",
+              "🧑🏾‍🌾",
+              "🧑🏿‍🌾"
+          ],
+          "version": "12.1",
+          "keywords": "землероб | садівник | селянин | скотар"
+      },
+      {
+          "emoji": "👨‍🌾",
+          "category": 1,
+          "name": "фермер",
+          "variations": [
+              "👨🏻‍🌾",
+              "👨🏼‍🌾",
+              "👨🏽‍🌾",
+              "👨🏾‍🌾",
+              "👨🏿‍🌾"
+          ],
+          "version": "4.0",
+          "keywords": "господар | садівник | фермер | чоловік"
+      },
+      {
+          "emoji": "👩‍🌾",
+          "category": 1,
+          "name": "фермерка",
+          "variations": [
+              "👩🏻‍🌾",
+              "👩🏼‍🌾",
+              "👩🏽‍🌾",
+              "👩🏾‍🌾",
+              "👩🏿‍🌾"
+          ],
+          "version": "4.0",
+          "keywords": "господарка | жінка | садівниця | фермерка"
+      },
+      {
+          "emoji": "🧑‍🍳",
+          "category": 1,
+          "name": "куховар",
+          "variations": [
+              "🧑🏻‍🍳",
+              "🧑🏼‍🍳",
+              "🧑🏽‍🍳",
+              "🧑🏾‍🍳",
+              "🧑🏿‍🍳"
+          ],
+          "version": "12.1",
+          "keywords": "кухар | куховар | шеф"
+      },
+      {
+          "emoji": "👨‍🍳",
+          "category": 1,
+          "name": "кухар",
+          "variations": [
+              "👨🏻‍🍳",
+              "👨🏼‍🍳",
+              "👨🏽‍🍳",
+              "👨🏾‍🍳",
+              "👨🏿‍🍳"
+          ],
+          "version": "4.0",
+          "keywords": "кулінар | кухар | чоловік | шеф-кухар"
+      },
+      {
+          "emoji": "👩‍🍳",
+          "category": 1,
+          "name": "кухарка",
+          "variations": [
+              "👩🏻‍🍳",
+              "👩🏼‍🍳",
+              "👩🏽‍🍳",
+              "👩🏾‍🍳",
+              "👩🏿‍🍳"
+          ],
+          "version": "4.0",
+          "keywords": "жінка | кулінарка | кухарка | шеф-кухарка"
+      },
+      {
+          "emoji": "🧑‍🔧",
+          "category": 1,
+          "name": "фахівець із механіки",
+          "variations": [
+              "🧑🏻‍🔧",
+              "🧑🏼‍🔧",
+              "🧑🏽‍🔧",
+              "🧑🏾‍🔧",
+              "🧑🏿‍🔧"
+          ],
+          "version": "12.1",
+          "keywords": "електрик | майстер | механік | сантехнік | фахівець із механіки"
+      },
+      {
+          "emoji": "👨‍🔧",
+          "category": 1,
+          "name": "механік",
+          "variations": [
+              "👨🏻‍🔧",
+              "👨🏼‍🔧",
+              "👨🏽‍🔧",
+              "👨🏾‍🔧",
+              "👨🏿‍🔧"
+          ],
+          "version": "4.0",
+          "keywords": "водопровідник | електрик | електротехнік | механік | фахівець | чоловік"
+      },
+      {
+          "emoji": "👩‍🔧",
+          "category": 1,
+          "name": "жінка-механік",
+          "variations": [
+              "👩🏻‍🔧",
+              "👩🏼‍🔧",
+              "👩🏽‍🔧",
+              "👩🏾‍🔧",
+              "👩🏿‍🔧"
+          ],
+          "version": "4.0",
+          "keywords": "жінка-електротехнік | жінка-механік | жінка-сантехнік | жінка-фахівець | майстриня"
+      },
+      {
+          "emoji": "🧑‍🏭",
+          "category": 1,
+          "name": "фабричний працівник",
+          "variations": [
+              "🧑🏻‍🏭",
+              "🧑🏼‍🏭",
+              "🧑🏽‍🏭",
+              "🧑🏾‍🏭",
+              "🧑🏿‍🏭"
+          ],
+          "version": "12.1",
+          "keywords": "завод | конвеєр | промисловість | робітник | фабричний працівник"
+      },
+      {
+          "emoji": "👨‍🏭",
+          "category": 1,
+          "name": "робітник",
+          "variations": [
+              "👨🏻‍🏭",
+              "👨🏼‍🏭",
+              "👨🏽‍🏭",
+              "👨🏾‍🏭",
+              "👨🏿‍🏭"
+          ],
+          "version": "4.0",
+          "keywords": "конвеєр | промисловий | робітник | трудівник | фабрика | чоловік"
+      },
+      {
+          "emoji": "👩‍🏭",
+          "category": 1,
+          "name": "робітниця",
+          "variations": [
+              "👩🏻‍🏭",
+              "👩🏼‍🏭",
+              "👩🏽‍🏭",
+              "👩🏾‍🏭",
+              "👩🏿‍🏭"
+          ],
+          "version": "4.0",
+          "keywords": "жінка | конвеєр | промисловий | робітниця | трудівниця | фабрика"
+      },
+      {
+          "emoji": "🧑‍💼",
+          "category": 1,
+          "name": "офісний працівник",
+          "variations": [
+              "🧑🏻‍💼",
+              "🧑🏼‍💼",
+              "🧑🏽‍💼",
+              "🧑🏾‍💼",
+              "🧑🏿‍💼"
+          ],
+          "version": "12.1",
+          "keywords": "архітектор | бізнес | білий комірець | менеджер | офісний працівник"
+      },
+      {
+          "emoji": "👨‍💼",
+          "category": 1,
+          "name": "службовець",
+          "variations": [
+              "👨🏻‍💼",
+              "👨🏼‍💼",
+              "👨🏽‍💼",
+              "👨🏾‍💼",
+              "👨🏿‍💼"
+          ],
+          "version": "4.0",
+          "keywords": "менеджер | офіс | офісний працівник | службовець | чоловік"
+      },
+      {
+          "emoji": "👩‍💼",
+          "category": 1,
+          "name": "службовка",
+          "variations": [
+              "👩🏻‍💼",
+              "👩🏼‍💼",
+              "👩🏽‍💼",
+              "👩🏾‍💼",
+              "👩🏿‍💼"
+          ],
+          "version": "4.0",
+          "keywords": "жінка | менеджер | офіс | офісна працівниця | службовка"
+      },
+      {
+          "emoji": "🧑‍🔬",
+          "category": 1,
+          "name": "науковий працівник",
+          "variations": [
+              "🧑🏻‍🔬",
+              "🧑🏼‍🔬",
+              "🧑🏽‍🔬",
+              "🧑🏾‍🔬",
+              "🧑🏿‍🔬"
+          ],
+          "version": "12.1",
+          "keywords": "біолог | інженер | науковець | науковий працівник | фізик | хімік"
+      },
+      {
+          "emoji": "👨‍🔬",
+          "category": 1,
+          "name": "науковець",
+          "variations": [
+              "👨🏻‍🔬",
+              "👨🏼‍🔬",
+              "👨🏽‍🔬",
+              "👨🏾‍🔬",
+              "👨🏿‍🔬"
+          ],
+          "version": "4.0",
+          "keywords": "біолог | інженер | науковець | фізик | хімік | чоловік"
+      },
+      {
+          "emoji": "👩‍🔬",
+          "category": 1,
+          "name": "жінка-науковець",
+          "variations": [
+              "👩🏻‍🔬",
+              "👩🏼‍🔬",
+              "👩🏽‍🔬",
+              "👩🏾‍🔬",
+              "👩🏿‍🔬"
+          ],
+          "version": "4.0",
+          "keywords": "жінка | жінка-біолог | жінка-інженер | жінка-науковець | жінка-фізик | жінка-хімік"
+      },
+      {
+          "emoji": "🧑‍💻",
+          "category": 1,
+          "name": "технічний працівник",
+          "variations": [
+              "🧑🏻‍💻",
+              "🧑🏼‍💻",
+              "🧑🏽‍💻",
+              "🧑🏾‍💻",
+              "🧑🏿‍💻"
+          ],
+          "version": "12.1",
+          "keywords": "винахідник | програміст | програмне забезпечення | розробник | технічний працівник | технолог"
+      },
+      {
+          "emoji": "👨‍💻",
+          "category": 1,
+          "name": "технолог",
+          "variations": [
+              "👨🏻‍💻",
+              "👨🏼‍💻",
+              "👨🏽‍💻",
+              "👨🏾‍💻",
+              "👨🏿‍💻"
+          ],
+          "version": "4.0",
+          "keywords": "винахідник | кодувальник | розробник | технік-програміст | технолог | чоловік"
+      },
+      {
+          "emoji": "👩‍💻",
+          "category": 1,
+          "name": "жінка-технолог",
+          "variations": [
+              "👩🏻‍💻",
+              "👩🏼‍💻",
+              "👩🏽‍💻",
+              "👩🏾‍💻",
+              "👩🏿‍💻"
+          ],
+          "version": "4.0",
+          "keywords": "винахідниця | жінка | жінка-технолог | кодувальниця | технік-програміст"
+      },
+      {
+          "emoji": "🧑‍🎤",
+          "category": 1,
+          "name": "вокаліст",
+          "variations": [
+              "🧑🏻‍🎤",
+              "🧑🏼‍🎤",
+              "🧑🏽‍🎤",
+              "🧑🏾‍🎤",
+              "🧑🏿‍🎤"
+          ],
+          "version": "12.1",
+          "keywords": "актор | артист | вокаліст | зірка | рок | співак"
+      },
+      {
+          "emoji": "👨‍🎤",
+          "category": 1,
+          "name": "співак",
+          "variations": [
+              "👨🏻‍🎤",
+              "👨🏼‍🎤",
+              "👨🏽‍🎤",
+              "👨🏾‍🎤",
+              "👨🏿‍🎤"
+          ],
+          "version": "4.0",
+          "keywords": "артист | виконавець | пісняр | соліст | співак | чоловік"
+      },
+      {
+          "emoji": "👩‍🎤",
+          "category": 1,
+          "name": "співачка",
+          "variations": [
+              "👩🏻‍🎤",
+              "👩🏼‍🎤",
+              "👩🏽‍🎤",
+              "👩🏾‍🎤",
+              "👩🏿‍🎤"
+          ],
+          "version": "4.0",
+          "keywords": "артистка | виконавиця | зірка | солістка | співачка"
+      },
+      {
+          "emoji": "🧑‍🎨",
+          "category": 1,
+          "name": "художник",
+          "variations": [
+              "🧑🏻‍🎨",
+              "🧑🏼‍🎨",
+              "🧑🏽‍🎨",
+              "🧑🏾‍🎨",
+              "🧑🏿‍🎨"
+          ],
+          "version": "12.1",
+          "keywords": "митець | палітра | художник"
+      },
+      {
+          "emoji": "👨‍🎨",
+          "category": 1,
+          "name": "чоловік-художник",
+          "variations": [
+              "👨🏻‍🎨",
+              "👨🏼‍🎨",
+              "👨🏽‍🎨",
+              "👨🏾‍🎨",
+              "👨🏿‍🎨"
+          ],
+          "version": "4.0",
+          "keywords": "живописець | маляр | митець | палітра | художник | чоловік-художник"
+      },
+      {
+          "emoji": "👩‍🎨",
+          "category": 1,
+          "name": "художниця",
+          "variations": [
+              "👩🏻‍🎨",
+              "👩🏼‍🎨",
+              "👩🏽‍🎨",
+              "👩🏾‍🎨",
+              "👩🏿‍🎨"
+          ],
+          "version": "4.0",
+          "keywords": "жінка-митець | малярка | палітра | художниця"
+      },
+      {
+          "emoji": "🧑‍✈️",
+          "category": 1,
+          "name": "pilot",
+          "variations": [
+              "🧑🏻‍✈️",
+              "🧑🏼‍✈️",
+              "🧑🏽‍✈️",
+              "🧑🏾‍✈️",
+              "🧑🏿‍✈️"
+          ],
+          "version": "12.1"
+      },
+      {
+          "emoji": "👨‍✈️",
+          "category": 1,
+          "name": "man pilot",
+          "variations": [
+              "👨🏻‍✈️",
+              "👨🏼‍✈️",
+              "👨🏽‍✈️",
+              "👨🏾‍✈️",
+              "👨🏿‍✈️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "👩‍✈️",
+          "category": 1,
+          "name": "woman pilot",
+          "variations": [
+              "👩🏻‍✈️",
+              "👩🏼‍✈️",
+              "👩🏽‍✈️",
+              "👩🏾‍✈️",
+              "👩🏿‍✈️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🧑‍🚀",
+          "category": 1,
+          "name": "космонавт",
+          "variations": [
+              "🧑🏻‍🚀",
+              "🧑🏼‍🚀",
+              "🧑🏽‍🚀",
+              "🧑🏾‍🚀",
+              "🧑🏿‍🚀"
+          ],
+          "version": "12.1",
+          "keywords": "космонавт | ракета"
+      },
+      {
+          "emoji": "👨‍🚀",
+          "category": 1,
+          "name": "астронавт",
+          "variations": [
+              "👨🏻‍🚀",
+              "👨🏼‍🚀",
+              "👨🏽‍🚀",
+              "👨🏾‍🚀",
+              "👨🏿‍🚀"
+          ],
+          "version": "4.0",
+          "keywords": "астронавт | космонавт | космос | ракета | чоловік"
+      },
+      {
+          "emoji": "👩‍🚀",
+          "category": 1,
+          "name": "астронавтка",
+          "variations": [
+              "👩🏻‍🚀",
+              "👩🏼‍🚀",
+              "👩🏽‍🚀",
+              "👩🏾‍🚀",
+              "👩🏿‍🚀"
+          ],
+          "version": "4.0",
+          "keywords": "астронавтка | жінка | космонавтка | ракета"
+      },
+      {
+          "emoji": "🧑‍🚒",
+          "category": 1,
+          "name": "вогнеборець",
+          "variations": [
+              "🧑🏻‍🚒",
+              "🧑🏼‍🚒",
+              "🧑🏽‍🚒",
+              "🧑🏾‍🚒",
+              "🧑🏿‍🚒"
+          ],
+          "version": "12.1",
+          "keywords": "вогнеборець | пожежна машина | пожежник"
+      },
+      {
+          "emoji": "👨‍🚒",
+          "category": 1,
+          "name": "пожежник",
+          "variations": [
+              "👨🏻‍🚒",
+              "👨🏼‍🚒",
+              "👨🏽‍🚒",
+              "👨🏾‍🚒",
+              "👨🏿‍🚒"
+          ],
+          "version": "4.0",
+          "keywords": "вогнеборець | пожежний автомобіль | пожежник | чоловік"
+      },
+      {
+          "emoji": "👩‍🚒",
+          "category": 1,
+          "name": "жінка-пожежник",
+          "variations": [
+              "👩🏻‍🚒",
+              "👩🏼‍🚒",
+              "👩🏽‍🚒",
+              "👩🏾‍🚒",
+              "👩🏿‍🚒"
+          ],
+          "version": "4.0",
+          "keywords": "жінка | жінка-вогнеборець | жінка-пожежник | пожежний автомобіль"
+      },
+      {
+          "emoji": "👮",
+          "category": 1,
+          "name": "працівник поліції",
+          "variations": [
+              "👮🏻",
+              "👮🏼",
+              "👮🏽",
+              "👮🏾",
+              "👮🏿"
+          ],
+          "version": "1.0",
+          "keywords": "коп | поліція | працівник поліції | співробітник"
+      },
+      {
+          "emoji": "👮‍♂️",
+          "category": 1,
+          "name": "man police officer",
+          "variations": [
+              "👮🏻‍♂️",
+              "👮🏼‍♂️",
+              "👮🏽‍♂️",
+              "👮🏾‍♂️",
+              "👮🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "👮‍♀️",
+          "category": 1,
+          "name": "woman police officer",
+          "variations": [
+              "👮🏻‍♀️",
+              "👮🏼‍♀️",
+              "👮🏽‍♀️",
+              "👮🏾‍♀️",
+              "👮🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🕵️",
+          "category": 1,
+          "name": "detective",
+          "variations": [
+              "🕵🏻",
+              "🕵🏼",
+              "🕵🏽",
+              "🕵🏾",
+              "🕵🏿"
+          ],
+          "version": "1.0"
+      },
+      {
+          "emoji": "🕵️‍♂️",
+          "category": 1,
+          "name": "man detective",
+          "variations": [
+              "🕵🏻‍♂️",
+              "🕵🏼‍♂️",
+              "🕵🏽‍♂️",
+              "🕵🏾‍♂️",
+              "🕵🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🕵️‍♀️",
+          "category": 1,
+          "name": "woman detective",
+          "variations": [
+              "🕵🏻‍♀️",
+              "🕵🏼‍♀️",
+              "🕵🏽‍♀️",
+              "🕵🏾‍♀️",
+              "🕵🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "💂",
+          "category": 1,
+          "name": "варта",
+          "variations": [
+              "💂🏻",
+              "💂🏼",
+              "💂🏽",
+              "💂🏾",
+              "💂🏿"
+          ],
+          "version": "1.0",
+          "keywords": "варта | караул | охорона | сторожа | чати"
+      },
+      {
+          "emoji": "💂‍♂️",
+          "category": 1,
+          "name": "man guard",
+          "variations": [
+              "💂🏻‍♂️",
+              "💂🏼‍♂️",
+              "💂🏽‍♂️",
+              "💂🏾‍♂️",
+              "💂🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "💂‍♀️",
+          "category": 1,
+          "name": "woman guard",
+          "variations": [
+              "💂🏻‍♀️",
+              "💂🏼‍♀️",
+              "💂🏽‍♀️",
+              "💂🏾‍♀️",
+              "💂🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🥷",
+          "category": 1,
+          "name": "ніндзя",
+          "variations": [
+              "🥷🏻",
+              "🥷🏼",
+              "🥷🏽",
+              "🥷🏾",
+              "🥷🏿"
+          ],
+          "version": "13.0",
+          "keywords": "боєць | невидимка | ніндзя | покрадьки"
+      },
+      {
+          "emoji": "👷",
+          "category": 1,
+          "name": "будівельник",
+          "variations": [
+              "👷🏻",
+              "👷🏼",
+              "👷🏽",
+              "👷🏾",
+              "👷🏿"
+          ],
+          "version": "1.0",
+          "keywords": "будівельник | будівництво | каска | робітник"
+      },
+      {
+          "emoji": "👷‍♂️",
+          "category": 1,
+          "name": "man construction worker",
+          "variations": [
+              "👷🏻‍♂️",
+              "👷🏼‍♂️",
+              "👷🏽‍♂️",
+              "👷🏾‍♂️",
+              "👷🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "👷‍♀️",
+          "category": 1,
+          "name": "woman construction worker",
+          "variations": [
+              "👷🏻‍♀️",
+              "👷🏼‍♀️",
+              "👷🏽‍♀️",
+              "👷🏾‍♀️",
+              "👷🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤴",
+          "category": 1,
+          "name": "принц",
+          "variations": [
+              "🤴🏻",
+              "🤴🏼",
+              "🤴🏽",
+              "🤴🏾",
+              "🤴🏿"
+          ],
+          "version": "3.0",
+          "keywords": "королевич | принц"
+      },
+      {
+          "emoji": "👸",
+          "category": 1,
+          "name": "принцеса",
+          "variations": [
+              "👸🏻",
+              "👸🏼",
+              "👸🏽",
+              "👸🏾",
+              "👸🏿"
+          ],
+          "version": "1.0",
+          "keywords": "казкова | королівна | принцеса | чарівна"
+      },
+      {
+          "emoji": "👳",
+          "category": 1,
+          "name": "людина в тюрбані",
+          "variations": [
+              "👳🏻",
+              "👳🏼",
+              "👳🏽",
+              "👳🏾",
+              "👳🏿"
+          ],
+          "version": "1.0",
+          "keywords": "людина в тюрбані | тюрбан"
+      },
+      {
+          "emoji": "👳‍♂️",
+          "category": 1,
+          "name": "man wearing turban",
+          "variations": [
+              "👳🏻‍♂️",
+              "👳🏼‍♂️",
+              "👳🏽‍♂️",
+              "👳🏾‍♂️",
+              "👳🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "👳‍♀️",
+          "category": 1,
+          "name": "woman wearing turban",
+          "variations": [
+              "👳🏻‍♀️",
+              "👳🏼‍♀️",
+              "👳🏽‍♀️",
+              "👳🏾‍♀️",
+              "👳🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "👲",
+          "category": 1,
+          "name": "чоловік у китайській шапці",
+          "variations": [
+              "👲🏻",
+              "👲🏼",
+              "👲🏽",
+              "👲🏾",
+              "👲🏿"
+          ],
+          "version": "1.0",
+          "keywords": "гуа пі мао | кругла | чоловік | чоловік у китайській шапці | шапочка"
+      },
+      {
+          "emoji": "🧕",
+          "category": 1,
+          "name": "жінка в хустині",
+          "variations": [
+              "🧕🏻",
+              "🧕🏼",
+              "🧕🏽",
+              "🧕🏾",
+              "🧕🏿"
+          ],
+          "version": "5.0",
+          "keywords": "жінка в хустині | мантилья | тихля | хіджаб | хустина"
+      },
+      {
+          "emoji": "🤵",
+          "category": 1,
+          "name": "людина в смокінгу",
+          "variations": [
+              "🤵🏻",
+              "🤵🏼",
+              "🤵🏽",
+              "🤵🏾",
+              "🤵🏿"
+          ],
+          "version": "3.0",
+          "keywords": "людина | людина в смокінгу | наречений | смокінг"
+      },
+      {
+          "emoji": "🤵‍♂️",
+          "category": 1,
+          "name": "man in tuxedo",
+          "variations": [
+              "🤵🏻‍♂️",
+              "🤵🏼‍♂️",
+              "🤵🏽‍♂️",
+              "🤵🏾‍♂️",
+              "🤵🏿‍♂️"
+          ],
+          "version": "13.0"
+      },
+      {
+          "emoji": "🤵‍♀️",
+          "category": 1,
+          "name": "woman in tuxedo",
+          "variations": [
+              "🤵🏻‍♀️",
+              "🤵🏼‍♀️",
+              "🤵🏽‍♀️",
+              "🤵🏾‍♀️",
+              "🤵🏿‍♀️"
+          ],
+          "version": "13.0"
+      },
+      {
+          "emoji": "👰",
+          "category": 1,
+          "name": "людина у фаті",
+          "variations": [
+              "👰🏻",
+              "👰🏼",
+              "👰🏽",
+              "👰🏾",
+              "👰🏿"
+          ],
+          "version": "1.0",
+          "keywords": "весілля | людина | людина з фатою | людина у фаті | наречена | фата"
+      },
+      {
+          "emoji": "👰‍♂️",
+          "category": 1,
+          "name": "man with veil",
+          "variations": [
+              "👰🏻‍♂️",
+              "👰🏼‍♂️",
+              "👰🏽‍♂️",
+              "👰🏾‍♂️",
+              "👰🏿‍♂️"
+          ],
+          "version": "13.0"
+      },
+      {
+          "emoji": "👰‍♀️",
+          "category": 1,
+          "name": "woman with veil",
+          "variations": [
+              "👰🏻‍♀️",
+              "👰🏼‍♀️",
+              "👰🏽‍♀️",
+              "👰🏾‍♀️",
+              "👰🏿‍♀️"
+          ],
+          "version": "13.0"
+      },
+      {
+          "emoji": "🤰",
+          "category": 1,
+          "name": "вагітна жінка",
+          "variations": [
+              "🤰🏻",
+              "🤰🏼",
+              "🤰🏽",
+              "🤰🏾",
+              "🤰🏿"
+          ],
+          "version": "3.0",
+          "keywords": "вагітна | жінка"
+      },
+      {
+          "emoji": "🤱",
+          "category": 1,
+          "name": "грудне вигодовування",
+          "variations": [
+              "🤱🏻",
+              "🤱🏼",
+              "🤱🏽",
+              "🤱🏾",
+              "🤱🏿"
+          ],
+          "version": "5.0",
+          "keywords": "годування | груди | грудне вигодовування | немовля"
+      },
+      {
+          "emoji": "👩‍🍼",
+          "category": 1,
+          "name": "жінка годує дитину",
+          "variations": [
+              "👩🏻‍🍼",
+              "👩🏼‍🍼",
+              "👩🏽‍🍼",
+              "👩🏾‍🍼",
+              "👩🏿‍🍼"
+          ],
+          "version": "13.0",
+          "keywords": "годування | дитина | догляд | жінка | жінка годує дитину"
+      },
+      {
+          "emoji": "👨‍🍼",
+          "category": 1,
+          "name": "чоловік годує дитину",
+          "variations": [
+              "👨🏻‍🍼",
+              "👨🏼‍🍼",
+              "👨🏽‍🍼",
+              "👨🏾‍🍼",
+              "👨🏿‍🍼"
+          ],
+          "version": "13.0",
+          "keywords": "годування | дитина | догляд | чоловік | чоловік годує дитину"
+      },
+      {
+          "emoji": "🧑‍🍼",
+          "category": 1,
+          "name": "людина годує дитину",
+          "variations": [
+              "🧑🏻‍🍼",
+              "🧑🏼‍🍼",
+              "🧑🏽‍🍼",
+              "🧑🏾‍🍼",
+              "🧑🏿‍🍼"
+          ],
+          "version": "13.0",
+          "keywords": "годування | дитина | догляд | людина | людина годує дитину"
+      },
+      {
+          "emoji": "👼",
+          "category": 1,
+          "name": "янголятко",
+          "variations": [
+              "👼🏻",
+              "👼🏼",
+              "👼🏽",
+              "👼🏾",
+              "👼🏿"
+          ],
+          "version": "1.0",
+          "keywords": "ангел | казка | немовля | обличчя | фантазія | янголятко"
+      },
+      {
+          "emoji": "🎅",
+          "category": 1,
+          "name": "Санта Клаус",
+          "variations": [
+              "🎅🏻",
+              "🎅🏼",
+              "🎅🏽",
+              "🎅🏾",
+              "🎅🏿"
+          ],
+          "version": "1.0",
+          "keywords": "дід | Різдво | Санта Клаус | Святий Миколай | святкування"
+      },
+      {
+          "emoji": "🤶",
+          "category": 1,
+          "name": "Пані Клаус",
+          "variations": [
+              "🤶🏻",
+              "🤶🏼",
+              "🤶🏽",
+              "🤶🏾",
+              "🤶🏿"
+          ],
+          "version": "3.0",
+          "keywords": "жінка | Пані Клаус | Різдво"
+      },
+      {
+          "emoji": "🧑‍🎄",
+          "category": 1,
+          "name": "Мікс Клаус",
+          "variations": [
+              "🧑🏻‍🎄",
+              "🧑🏼‍🎄",
+              "🧑🏽‍🎄",
+              "🧑🏾‍🎄",
+              "🧑🏿‍🎄"
+          ],
+          "version": "13.0",
+          "keywords": "Мікс Клаус"
+      },
+      {
+          "emoji": "🦸",
+          "category": 1,
+          "name": "супергерой",
+          "variations": [
+              "🦸🏻",
+              "🦸🏼",
+              "🦸🏽",
+              "🦸🏾",
+              "🦸🏿"
+          ],
+          "version": "11.0",
+          "keywords": "героїня | герой | добро | супергерой | суперсила"
+      },
+      {
+          "emoji": "🦸‍♂️",
+          "category": 1,
+          "name": "man superhero",
+          "variations": [
+              "🦸🏻‍♂️",
+              "🦸🏼‍♂️",
+              "🦸🏽‍♂️",
+              "🦸🏾‍♂️",
+              "🦸🏿‍♂️"
+          ],
+          "version": "11.0"
+      },
+      {
+          "emoji": "🦸‍♀️",
+          "category": 1,
+          "name": "woman superhero",
+          "variations": [
+              "🦸🏻‍♀️",
+              "🦸🏼‍♀️",
+              "🦸🏽‍♀️",
+              "🦸🏾‍♀️",
+              "🦸🏿‍♀️"
+          ],
+          "version": "11.0"
+      },
+      {
+          "emoji": "🦹",
+          "category": 1,
+          "name": "суперзлодій",
+          "variations": [
+              "🦹🏻",
+              "🦹🏼",
+              "🦹🏽",
+              "🦹🏾",
+              "🦹🏿"
+          ],
+          "version": "11.0",
+          "keywords": "зло | злодій | злочинець | суперзлодій | суперсила"
+      },
+      {
+          "emoji": "🦹‍♂️",
+          "category": 1,
+          "name": "man supervillain",
+          "variations": [
+              "🦹🏻‍♂️",
+              "🦹🏼‍♂️",
+              "🦹🏽‍♂️",
+              "🦹🏾‍♂️",
+              "🦹🏿‍♂️"
+          ],
+          "version": "11.0"
+      },
+      {
+          "emoji": "🦹‍♀️",
+          "category": 1,
+          "name": "woman supervillain",
+          "variations": [
+              "🦹🏻‍♀️",
+              "🦹🏼‍♀️",
+              "🦹🏽‍♀️",
+              "🦹🏾‍♀️",
+              "🦹🏿‍♀️"
+          ],
+          "version": "11.0"
+      },
+      {
+          "emoji": "🧙",
+          "category": 1,
+          "name": "маг",
+          "variations": [
+              "🧙🏻",
+              "🧙🏼",
+              "🧙🏽",
+              "🧙🏾",
+              "🧙🏿"
+          ],
+          "version": "5.0",
+          "keywords": "відьма | маг | чаклун | чаклунка | чародій"
+      },
+      {
+          "emoji": "🧙‍♂️",
+          "category": 1,
+          "name": "man mage",
+          "variations": [
+              "🧙🏻‍♂️",
+              "🧙🏼‍♂️",
+              "🧙🏽‍♂️",
+              "🧙🏾‍♂️",
+              "🧙🏿‍♂️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧙‍♀️",
+          "category": 1,
+          "name": "woman mage",
+          "variations": [
+              "🧙🏻‍♀️",
+              "🧙🏼‍♀️",
+              "🧙🏽‍♀️",
+              "🧙🏾‍♀️",
+              "🧙🏿‍♀️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧚",
+          "category": 1,
+          "name": "фея",
+          "variations": [
+              "🧚🏻",
+              "🧚🏼",
+              "🧚🏽",
+              "🧚🏾",
+              "🧚🏿"
+          ],
+          "version": "5.0",
+          "keywords": "Оберон | Пак | Титанія | фея"
+      },
+      {
+          "emoji": "🧚‍♂️",
+          "category": 1,
+          "name": "man fairy",
+          "variations": [
+              "🧚🏻‍♂️",
+              "🧚🏼‍♂️",
+              "🧚🏽‍♂️",
+              "🧚🏾‍♂️",
+              "🧚🏿‍♂️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧚‍♀️",
+          "category": 1,
+          "name": "woman fairy",
+          "variations": [
+              "🧚🏻‍♀️",
+              "🧚🏼‍♀️",
+              "🧚🏽‍♀️",
+              "🧚🏾‍♀️",
+              "🧚🏿‍♀️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧛",
+          "category": 1,
+          "name": "вампір",
+          "variations": [
+              "🧛🏻",
+              "🧛🏼",
+              "🧛🏽",
+              "🧛🏾",
+              "🧛🏿"
+          ],
+          "version": "5.0",
+          "keywords": "вампір | Дракула | нежить"
+      },
+      {
+          "emoji": "🧛‍♂️",
+          "category": 1,
+          "name": "man vampire",
+          "variations": [
+              "🧛🏻‍♂️",
+              "🧛🏼‍♂️",
+              "🧛🏽‍♂️",
+              "🧛🏾‍♂️",
+              "🧛🏿‍♂️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧛‍♀️",
+          "category": 1,
+          "name": "woman vampire",
+          "variations": [
+              "🧛🏻‍♀️",
+              "🧛🏼‍♀️",
+              "🧛🏽‍♀️",
+              "🧛🏾‍♀️",
+              "🧛🏿‍♀️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧜",
+          "category": 1,
+          "name": "казкова водяна істота",
+          "variations": [
+              "🧜🏻",
+              "🧜🏼",
+              "🧜🏽",
+              "🧜🏾",
+              "🧜🏿"
+          ],
+          "version": "5.0",
+          "keywords": "жінка-русалка | казкова водяна істота | русалка | чоловік-русалка"
+      },
+      {
+          "emoji": "🧜‍♂️",
+          "category": 1,
+          "name": "merman",
+          "variations": [
+              "🧜🏻‍♂️",
+              "🧜🏼‍♂️",
+              "🧜🏽‍♂️",
+              "🧜🏾‍♂️",
+              "🧜🏿‍♂️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧜‍♀️",
+          "category": 1,
+          "name": "mermaid",
+          "variations": [
+              "🧜🏻‍♀️",
+              "🧜🏼‍♀️",
+              "🧜🏽‍♀️",
+              "🧜🏾‍♀️",
+              "🧜🏿‍♀️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧝",
+          "category": 1,
+          "name": "ельф",
+          "variations": [
+              "🧝🏻",
+              "🧝🏼",
+              "🧝🏽",
+              "🧝🏾",
+              "🧝🏿"
+          ],
+          "version": "5.0",
+          "keywords": "ельф | магічний"
+      },
+      {
+          "emoji": "🧝‍♂️",
+          "category": 1,
+          "name": "man elf",
+          "variations": [
+              "🧝🏻‍♂️",
+              "🧝🏼‍♂️",
+              "🧝🏽‍♂️",
+              "🧝🏾‍♂️",
+              "🧝🏿‍♂️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧝‍♀️",
+          "category": 1,
+          "name": "woman elf",
+          "variations": [
+              "🧝🏻‍♀️",
+              "🧝🏼‍♀️",
+              "🧝🏽‍♀️",
+              "🧝🏾‍♀️",
+              "🧝🏿‍♀️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧞",
+          "category": 1,
+          "name": "джин",
+          "version": "5.0",
+          "keywords": "джин"
+      },
+      {
+          "emoji": "🧞‍♂️",
+          "category": 1,
+          "name": "man genie",
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧞‍♀️",
+          "category": 1,
+          "name": "woman genie",
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧟",
+          "category": 1,
+          "name": "зомбі",
+          "version": "5.0",
+          "keywords": "живий мрець | зомбі | нечисть"
+      },
+      {
+          "emoji": "🧟‍♂️",
+          "category": 1,
+          "name": "man zombie",
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧟‍♀️",
+          "category": 1,
+          "name": "woman zombie",
+          "version": "5.0"
+      },
+      {
+          "emoji": "💆",
+          "category": 1,
+          "name": "людина, якій роблять масаж голови",
+          "variations": [
+              "💆🏻",
+              "💆🏼",
+              "💆🏽",
+              "💆🏾",
+              "💆🏿"
+          ],
+          "version": "1.0",
+          "keywords": "людина, якій роблять масаж голови | масаж | салон"
+      },
+      {
+          "emoji": "💆‍♂️",
+          "category": 1,
+          "name": "man getting massage",
+          "variations": [
+              "💆🏻‍♂️",
+              "💆🏼‍♂️",
+              "💆🏽‍♂️",
+              "💆🏾‍♂️",
+              "💆🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "💆‍♀️",
+          "category": 1,
+          "name": "woman getting massage",
+          "variations": [
+              "💆🏻‍♀️",
+              "💆🏼‍♀️",
+              "💆🏽‍♀️",
+              "💆🏾‍♀️",
+              "💆🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "💇",
+          "category": 1,
+          "name": "людина, якій роблять стрижку",
+          "variations": [
+              "💇🏻",
+              "💇🏼",
+              "💇🏽",
+              "💇🏾",
+              "💇🏿"
+          ],
+          "version": "1.0",
+          "keywords": "краса | людина, якій роблять стрижку | перукар | салон"
+      },
+      {
+          "emoji": "💇‍♂️",
+          "category": 1,
+          "name": "man getting haircut",
+          "variations": [
+              "💇🏻‍♂️",
+              "💇🏼‍♂️",
+              "💇🏽‍♂️",
+              "💇🏾‍♂️",
+              "💇🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "💇‍♀️",
+          "category": 1,
+          "name": "woman getting haircut",
+          "variations": [
+              "💇🏻‍♀️",
+              "💇🏼‍♀️",
+              "💇🏽‍♀️",
+              "💇🏾‍♀️",
+              "💇🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🚶",
+          "category": 1,
+          "name": "людина, що йде пішки",
+          "variations": [
+              "🚶🏻",
+              "🚶🏼",
+              "🚶🏽",
+              "🚶🏾",
+              "🚶🏿"
+          ],
+          "version": "1.0",
+          "keywords": "іти | людина, що йде пішки"
+      },
+      {
+          "emoji": "🚶‍♂️",
+          "category": 1,
+          "name": "man walking",
+          "variations": [
+              "🚶🏻‍♂️",
+              "🚶🏼‍♂️",
+              "🚶🏽‍♂️",
+              "🚶🏾‍♂️",
+              "🚶🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🚶‍♀️",
+          "category": 1,
+          "name": "woman walking",
+          "variations": [
+              "🚶🏻‍♀️",
+              "🚶🏼‍♀️",
+              "🚶🏽‍♀️",
+              "🚶🏾‍♀️",
+              "🚶🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🧍",
+          "category": 1,
+          "name": "людина, що стоїть",
+          "variations": [
+              "🧍🏻",
+              "🧍🏼",
+              "🧍🏽",
+              "🧍🏾",
+              "🧍🏿"
+          ],
+          "version": "12.0",
+          "keywords": "людина, що стоїть | стояння | стояти | стоячи | стоячки"
+      },
+      {
+          "emoji": "🧍‍♂️",
+          "category": 1,
+          "name": "man standing",
+          "variations": [
+              "🧍🏻‍♂️",
+              "🧍🏼‍♂️",
+              "🧍🏽‍♂️",
+              "🧍🏾‍♂️",
+              "🧍🏿‍♂️"
+          ],
+          "version": "12.0"
+      },
+      {
+          "emoji": "🧍‍♀️",
+          "category": 1,
+          "name": "woman standing",
+          "variations": [
+              "🧍🏻‍♀️",
+              "🧍🏼‍♀️",
+              "🧍🏽‍♀️",
+              "🧍🏾‍♀️",
+              "🧍🏿‍♀️"
+          ],
+          "version": "12.0"
+      },
+      {
+          "emoji": "🧎",
+          "category": 1,
+          "name": "людина навколішках",
+          "variations": [
+              "🧎🏻",
+              "🧎🏼",
+              "🧎🏽",
+              "🧎🏾",
+              "🧎🏿"
+          ],
+          "version": "12.0",
+          "keywords": "коліна | людина навколішках | на колінах | навколішках | опускатися навколішки"
+      },
+      {
+          "emoji": "🧎‍♂️",
+          "category": 1,
+          "name": "man kneeling",
+          "variations": [
+              "🧎🏻‍♂️",
+              "🧎🏼‍♂️",
+              "🧎🏽‍♂️",
+              "🧎🏾‍♂️",
+              "🧎🏿‍♂️"
+          ],
+          "version": "12.0"
+      },
+      {
+          "emoji": "🧎‍♀️",
+          "category": 1,
+          "name": "woman kneeling",
+          "variations": [
+              "🧎🏻‍♀️",
+              "🧎🏼‍♀️",
+              "🧎🏽‍♀️",
+              "🧎🏾‍♀️",
+              "🧎🏿‍♀️"
+          ],
+          "version": "12.0"
+      },
+      {
+          "emoji": "🧑‍🦯",
+          "category": 1,
+          "name": "людина з тактильним ціпком",
+          "variations": [
+              "🧑🏻‍🦯",
+              "🧑🏼‍🦯",
+              "🧑🏽‍🦯",
+              "🧑🏾‍🦯",
+              "🧑🏿‍🦯"
+          ],
+          "version": "12.1",
+          "keywords": "людина з тактильним ціпком | незрячі | спеціальні можливості"
+      },
+      {
+          "emoji": "👨‍🦯",
+          "category": 1,
+          "name": "чоловік із тактильною тростиною",
+          "variations": [
+              "👨🏻‍🦯",
+              "👨🏼‍🦯",
+              "👨🏽‍🦯",
+              "👨🏾‍🦯",
+              "👨🏿‍🦯"
+          ],
+          "version": "12.0",
+          "keywords": "доступність | незрячий | сліпий | спеціальні можливості | чоловік із тактильною тростиною"
+      },
+      {
+          "emoji": "👩‍🦯",
+          "category": 1,
+          "name": "жінка з тактильною тростиною",
+          "variations": [
+              "👩🏻‍🦯",
+              "👩🏼‍🦯",
+              "👩🏽‍🦯",
+              "👩🏾‍🦯",
+              "👩🏿‍🦯"
+          ],
+          "version": "12.0",
+          "keywords": "жінка | жінка з тактильною тростиною | обмежені можливості | сліпа"
+      },
+      {
+          "emoji": "🧑‍🦼",
+          "category": 1,
+          "name": "людина на моторизованому візку",
+          "variations": [
+              "🧑🏻‍🦼",
+              "🧑🏼‍🦼",
+              "🧑🏽‍🦼",
+              "🧑🏾‍🦼",
+              "🧑🏿‍🦼"
+          ],
+          "version": "12.1",
+          "keywords": "колісне крісло | людина на моторизованому візку | спеціальні можливості"
+      },
+      {
+          "emoji": "👨‍🦼",
+          "category": 1,
+          "name": "чоловік у візку з електроприводом",
+          "variations": [
+              "👨🏻‍🦼",
+              "👨🏼‍🦼",
+              "👨🏽‍🦼",
+              "👨🏾‍🦼",
+              "👨🏿‍🦼"
+          ],
+          "version": "12.0",
+          "keywords": "візок | доступність | колісне крісло | спеціальні можливості | чоловік | чоловік у візку з електроприводом"
+      },
+      {
+          "emoji": "👩‍🦼",
+          "category": 1,
+          "name": "жінка у візку з електроприводом",
+          "variations": [
+              "👩🏻‍🦼",
+              "👩🏼‍🦼",
+              "👩🏽‍🦼",
+              "👩🏾‍🦼",
+              "👩🏿‍🦼"
+          ],
+          "version": "12.0",
+          "keywords": "візок | доступність | жінка | жінка у візку з електроприводом | колісне крісло | спеціальні можливості"
+      },
+      {
+          "emoji": "🧑‍🦽",
+          "category": 1,
+          "name": "людина у візку з ручним керуванням",
+          "variations": [
+              "🧑🏻‍🦽",
+              "🧑🏼‍🦽",
+              "🧑🏽‍🦽",
+              "🧑🏾‍🦽",
+              "🧑🏿‍🦽"
+          ],
+          "version": "12.1",
+          "keywords": "колісне крісло | людина у візку з ручним керуванням | спеціальні можливості"
+      },
+      {
+          "emoji": "👨‍🦽",
+          "category": 1,
+          "name": "чоловік у візку з ручним приводом",
+          "variations": [
+              "👨🏻‍🦽",
+              "👨🏼‍🦽",
+              "👨🏽‍🦽",
+              "👨🏾‍🦽",
+              "👨🏿‍🦽"
+          ],
+          "version": "12.0",
+          "keywords": "візок | доступність | колісне крісло | спеціальні можливості | чоловік | чоловік у візку з ручним приводом"
+      },
+      {
+          "emoji": "👩‍🦽",
+          "category": 1,
+          "name": "жінка у візку з ручним приводом",
+          "variations": [
+              "👩🏻‍🦽",
+              "👩🏼‍🦽",
+              "👩🏽‍🦽",
+              "👩🏾‍🦽",
+              "👩🏿‍🦽"
+          ],
+          "version": "12.0",
+          "keywords": "візок | доступність | жінка | жінка у візку з ручним приводом | колісне крісло | спеціальні можливості"
+      },
+      {
+          "emoji": "🏃",
+          "category": 1,
+          "name": "людина, що біжить",
+          "variations": [
+              "🏃🏻",
+              "🏃🏼",
+              "🏃🏽",
+              "🏃🏾",
+              "🏃🏿"
+          ],
+          "version": "1.0",
+          "keywords": "біг | людина, що біжить | марафон"
+      },
+      {
+          "emoji": "🏃‍♂️",
+          "category": 1,
+          "name": "man running",
+          "variations": [
+              "🏃🏻‍♂️",
+              "🏃🏼‍♂️",
+              "🏃🏽‍♂️",
+              "🏃🏾‍♂️",
+              "🏃🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🏃‍♀️",
+          "category": 1,
+          "name": "woman running",
+          "variations": [
+              "🏃🏻‍♀️",
+              "🏃🏼‍♀️",
+              "🏃🏽‍♀️",
+              "🏃🏾‍♀️",
+              "🏃🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "💃",
+          "category": 1,
+          "name": "жінка, що танцює",
+          "variations": [
+              "💃🏻",
+              "💃🏼",
+              "💃🏽",
+              "💃🏾",
+              "💃🏿"
+          ],
+          "version": "1.0",
+          "keywords": "жінка | жінка, що танцює | танець"
+      },
+      {
+          "emoji": "🕺",
+          "category": 1,
+          "name": "чоловік, що танцює",
+          "variations": [
+              "🕺🏻",
+              "🕺🏼",
+              "🕺🏽",
+              "🕺🏾",
+              "🕺🏿"
+          ],
+          "version": "3.0",
+          "keywords": "танці | чоловік | чоловік, що танцює"
+      },
+      {
+          "emoji": "🕴️",
+          "category": 1,
+          "name": "person in suit levitating",
+          "variations": [
+              "🕴🏻",
+              "🕴🏼",
+              "🕴🏽",
+              "🕴🏾",
+              "🕴🏿"
+          ],
+          "version": "1.0"
+      },
+      {
+          "emoji": "👯",
+          "category": 1,
+          "name": "люди з кролячими вухами",
+          "version": "1.0",
+          "keywords": "вуха | дівчина | жінка | кролик | люди з кролячими вухами | танцівниця"
+      },
+      {
+          "emoji": "👯‍♂️",
+          "category": 1,
+          "name": "men with bunny ears",
+          "version": "4.0"
+      },
+      {
+          "emoji": "👯‍♀️",
+          "category": 1,
+          "name": "women with bunny ears",
+          "version": "4.0"
+      },
+      {
+          "emoji": "🧖",
+          "category": 1,
+          "name": "людина в паркому приміщенні",
+          "variations": [
+              "🧖🏻",
+              "🧖🏼",
+              "🧖🏽",
+              "🧖🏾",
+              "🧖🏿"
+          ],
+          "version": "5.0",
+          "keywords": "людина в лазні | людина в паркому приміщенні | парильня | сауна"
+      },
+      {
+          "emoji": "🧖‍♂️",
+          "category": 1,
+          "name": "man in steamy room",
+          "variations": [
+              "🧖🏻‍♂️",
+              "🧖🏼‍♂️",
+              "🧖🏽‍♂️",
+              "🧖🏾‍♂️",
+              "🧖🏿‍♂️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧖‍♀️",
+          "category": 1,
+          "name": "woman in steamy room",
+          "variations": [
+              "🧖🏻‍♀️",
+              "🧖🏼‍♀️",
+              "🧖🏽‍♀️",
+              "🧖🏾‍♀️",
+              "🧖🏿‍♀️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧗",
+          "category": 1,
+          "name": "людина, що лізе скелею",
+          "variations": [
+              "🧗🏻",
+              "🧗🏼",
+              "🧗🏽",
+              "🧗🏾",
+              "🧗🏿"
+          ],
+          "version": "5.0",
+          "keywords": "людина, що лізе скелею | скелелаз"
+      },
+      {
+          "emoji": "🧗‍♂️",
+          "category": 1,
+          "name": "man climbing",
+          "variations": [
+              "🧗🏻‍♂️",
+              "🧗🏼‍♂️",
+              "🧗🏽‍♂️",
+              "🧗🏾‍♂️",
+              "🧗🏿‍♂️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧗‍♀️",
+          "category": 1,
+          "name": "woman climbing",
+          "variations": [
+              "🧗🏻‍♀️",
+              "🧗🏼‍♀️",
+              "🧗🏽‍♀️",
+              "🧗🏾‍♀️",
+              "🧗🏿‍♀️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🤺",
+          "category": 1,
+          "name": "фехтувальник",
+          "version": "3.0",
+          "keywords": "фехтувальник | фехтувальниця | фехтування | шабля | шпага"
+      },
+      {
+          "emoji": "🏇",
+          "category": 1,
+          "name": "кінні перегони",
+          "variations": [
+              "🏇🏻",
+              "🏇🏼",
+              "🏇🏽",
+              "🏇🏾",
+              "🏇🏿"
+          ],
+          "version": "1.0",
+          "keywords": "біговий кінь | жокей | кінні перегони | кінь | перегони"
+      },
+      {
+          "emoji": "⛷️",
+          "category": 1,
+          "name": "skier",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏂",
+          "category": 1,
+          "name": "сноубордист",
+          "variations": [
+              "🏂🏻",
+              "🏂🏼",
+              "🏂🏽",
+              "🏂🏾",
+              "🏂🏿"
+          ],
+          "version": "1.0",
+          "keywords": "лижі | сніг | сноуборд | сноубордист"
+      },
+      {
+          "emoji": "🏌️",
+          "category": 1,
+          "name": "person golfing",
+          "variations": [
+              "🏌🏻",
+              "🏌🏼",
+              "🏌🏽",
+              "🏌🏾",
+              "🏌🏿"
+          ],
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏌️‍♂️",
+          "category": 1,
+          "name": "man golfing",
+          "variations": [
+              "🏌🏻‍♂️",
+              "🏌🏼‍♂️",
+              "🏌🏽‍♂️",
+              "🏌🏾‍♂️",
+              "🏌🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🏌️‍♀️",
+          "category": 1,
+          "name": "woman golfing",
+          "variations": [
+              "🏌🏻‍♀️",
+              "🏌🏼‍♀️",
+              "🏌🏽‍♀️",
+              "🏌🏾‍♀️",
+              "🏌🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🏄",
+          "category": 1,
+          "name": "людина, що займається серфінгом",
+          "variations": [
+              "🏄🏻",
+              "🏄🏼",
+              "🏄🏽",
+              "🏄🏾",
+              "🏄🏿"
+          ],
+          "version": "1.0",
+          "keywords": "людина, що займається серфінгом | серфінг"
+      },
+      {
+          "emoji": "🏄‍♂️",
+          "category": 1,
+          "name": "man surfing",
+          "variations": [
+              "🏄🏻‍♂️",
+              "🏄🏼‍♂️",
+              "🏄🏽‍♂️",
+              "🏄🏾‍♂️",
+              "🏄🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🏄‍♀️",
+          "category": 1,
+          "name": "woman surfing",
+          "variations": [
+              "🏄🏻‍♀️",
+              "🏄🏼‍♀️",
+              "🏄🏽‍♀️",
+              "🏄🏾‍♀️",
+              "🏄🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🚣",
+          "category": 1,
+          "name": "людина, що веслує на човні",
+          "variations": [
+              "🚣🏻",
+              "🚣🏼",
+              "🚣🏽",
+              "🚣🏾",
+              "🚣🏿"
+          ],
+          "version": "1.0",
+          "keywords": "людина, що веслує на човні | транспорт | човен"
+      },
+      {
+          "emoji": "🚣‍♂️",
+          "category": 1,
+          "name": "man rowing boat",
+          "variations": [
+              "🚣🏻‍♂️",
+              "🚣🏼‍♂️",
+              "🚣🏽‍♂️",
+              "🚣🏾‍♂️",
+              "🚣🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🚣‍♀️",
+          "category": 1,
+          "name": "woman rowing boat",
+          "variations": [
+              "🚣🏻‍♀️",
+              "🚣🏼‍♀️",
+              "🚣🏽‍♀️",
+              "🚣🏾‍♀️",
+              "🚣🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🏊",
+          "category": 1,
+          "name": "людина, що пливе",
+          "variations": [
+              "🏊🏻",
+              "🏊🏼",
+              "🏊🏽",
+              "🏊🏾",
+              "🏊🏿"
+          ],
+          "version": "1.0",
+          "keywords": "людина, що пливе | плавати"
+      },
+      {
+          "emoji": "🏊‍♂️",
+          "category": 1,
+          "name": "man swimming",
+          "variations": [
+              "🏊🏻‍♂️",
+              "🏊🏼‍♂️",
+              "🏊🏽‍♂️",
+              "🏊🏾‍♂️",
+              "🏊🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🏊‍♀️",
+          "category": 1,
+          "name": "woman swimming",
+          "variations": [
+              "🏊🏻‍♀️",
+              "🏊🏼‍♀️",
+              "🏊🏽‍♀️",
+              "🏊🏾‍♀️",
+              "🏊🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "⛹️",
+          "category": 1,
+          "name": "person bouncing ball",
+          "variations": [
+              "⛹🏻",
+              "⛹🏼",
+              "⛹🏽",
+              "⛹🏾",
+              "⛹🏿"
+          ],
+          "version": "1.0"
+      },
+      {
+          "emoji": "⛹️‍♂️",
+          "category": 1,
+          "name": "man bouncing ball",
+          "variations": [
+              "⛹🏻‍♂️",
+              "⛹🏼‍♂️",
+              "⛹🏽‍♂️",
+              "⛹🏾‍♂️",
+              "⛹🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "⛹️‍♀️",
+          "category": 1,
+          "name": "woman bouncing ball",
+          "variations": [
+              "⛹🏻‍♀️",
+              "⛹🏼‍♀️",
+              "⛹🏽‍♀️",
+              "⛹🏾‍♀️",
+              "⛹🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🏋️",
+          "category": 1,
+          "name": "person lifting weights",
+          "variations": [
+              "🏋🏻",
+              "🏋🏼",
+              "🏋🏽",
+              "🏋🏾",
+              "🏋🏿"
+          ],
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏋️‍♂️",
+          "category": 1,
+          "name": "man lifting weights",
+          "variations": [
+              "🏋🏻‍♂️",
+              "🏋🏼‍♂️",
+              "🏋🏽‍♂️",
+              "🏋🏾‍♂️",
+              "🏋🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🏋️‍♀️",
+          "category": 1,
+          "name": "woman lifting weights",
+          "variations": [
+              "🏋🏻‍♀️",
+              "🏋🏼‍♀️",
+              "🏋🏽‍♀️",
+              "🏋🏾‍♀️",
+              "🏋🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🚴",
+          "category": 1,
+          "name": "людина, що їде на велосипеді",
+          "variations": [
+              "🚴🏻",
+              "🚴🏼",
+              "🚴🏽",
+              "🚴🏾",
+              "🚴🏿"
+          ],
+          "version": "1.0",
+          "keywords": "велосипед | людина, що їде на велосипеді"
+      },
+      {
+          "emoji": "🚴‍♂️",
+          "category": 1,
+          "name": "man biking",
+          "variations": [
+              "🚴🏻‍♂️",
+              "🚴🏼‍♂️",
+              "🚴🏽‍♂️",
+              "🚴🏾‍♂️",
+              "🚴🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🚴‍♀️",
+          "category": 1,
+          "name": "woman biking",
+          "variations": [
+              "🚴🏻‍♀️",
+              "🚴🏼‍♀️",
+              "🚴🏽‍♀️",
+              "🚴🏾‍♀️",
+              "🚴🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🚵",
+          "category": 1,
+          "name": "людина, що їде на гірському велосипеді",
+          "variations": [
+              "🚵🏻",
+              "🚵🏼",
+              "🚵🏽",
+              "🚵🏾",
+              "🚵🏿"
+          ],
+          "version": "1.0",
+          "keywords": "велосипед | велосипедист | гора | людина, що їде на гірському велосипеді"
+      },
+      {
+          "emoji": "🚵‍♂️",
+          "category": 1,
+          "name": "man mountain biking",
+          "variations": [
+              "🚵🏻‍♂️",
+              "🚵🏼‍♂️",
+              "🚵🏽‍♂️",
+              "🚵🏾‍♂️",
+              "🚵🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🚵‍♀️",
+          "category": 1,
+          "name": "woman mountain biking",
+          "variations": [
+              "🚵🏻‍♀️",
+              "🚵🏼‍♀️",
+              "🚵🏽‍♀️",
+              "🚵🏾‍♀️",
+              "🚵🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤸",
+          "category": 1,
+          "name": "людина, що перевертається «колесом»",
+          "variations": [
+              "🤸🏻",
+              "🤸🏼",
+              "🤸🏽",
+              "🤸🏾",
+              "🤸🏿"
+          ],
+          "version": "3.0",
+          "keywords": "гімнастика | колесо | людина | людина, що перевертається «колесом» | спорт"
+      },
+      {
+          "emoji": "🤸‍♂️",
+          "category": 1,
+          "name": "man cartwheeling",
+          "variations": [
+              "🤸🏻‍♂️",
+              "🤸🏼‍♂️",
+              "🤸🏽‍♂️",
+              "🤸🏾‍♂️",
+              "🤸🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤸‍♀️",
+          "category": 1,
+          "name": "woman cartwheeling",
+          "variations": [
+              "🤸🏻‍♀️",
+              "🤸🏼‍♀️",
+              "🤸🏽‍♀️",
+              "🤸🏾‍♀️",
+              "🤸🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤼",
+          "category": 1,
+          "name": "борці",
+          "version": "3.0",
+          "keywords": "борець | боротьба | борці | людина | спорт"
+      },
+      {
+          "emoji": "🤼‍♂️",
+          "category": 1,
+          "name": "men wrestling",
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤼‍♀️",
+          "category": 1,
+          "name": "women wrestling",
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤽",
+          "category": 1,
+          "name": "людина, що грає у ватерполо",
+          "variations": [
+              "🤽🏻",
+              "🤽🏼",
+              "🤽🏽",
+              "🤽🏾",
+              "🤽🏿"
+          ],
+          "version": "3.0",
+          "keywords": "вода | людина | людина, що грає у ватерполо | поло | спорт"
+      },
+      {
+          "emoji": "🤽‍♂️",
+          "category": 1,
+          "name": "man playing water polo",
+          "variations": [
+              "🤽🏻‍♂️",
+              "🤽🏼‍♂️",
+              "🤽🏽‍♂️",
+              "🤽🏾‍♂️",
+              "🤽🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤽‍♀️",
+          "category": 1,
+          "name": "woman playing water polo",
+          "variations": [
+              "🤽🏻‍♀️",
+              "🤽🏼‍♀️",
+              "🤽🏽‍♀️",
+              "🤽🏾‍♀️",
+              "🤽🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤾",
+          "category": 1,
+          "name": "людина, що грає у гандбол",
+          "variations": [
+              "🤾🏻",
+              "🤾🏼",
+              "🤾🏽",
+              "🤾🏾",
+              "🤾🏿"
+          ],
+          "version": "3.0",
+          "keywords": "гандбол | людина | людина, що грає у гандбол | м’яч | спорт"
+      },
+      {
+          "emoji": "🤾‍♂️",
+          "category": 1,
+          "name": "man playing handball",
+          "variations": [
+              "🤾🏻‍♂️",
+              "🤾🏼‍♂️",
+              "🤾🏽‍♂️",
+              "🤾🏾‍♂️",
+              "🤾🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤾‍♀️",
+          "category": 1,
+          "name": "woman playing handball",
+          "variations": [
+              "🤾🏻‍♀️",
+              "🤾🏼‍♀️",
+              "🤾🏽‍♀️",
+              "🤾🏾‍♀️",
+              "🤾🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤹",
+          "category": 1,
+          "name": "людина, що жонглює",
+          "variations": [
+              "🤹🏻",
+              "🤹🏼",
+              "🤹🏽",
+              "🤹🏾",
+              "🤹🏿"
+          ],
+          "version": "3.0",
+          "keywords": "баланс | жонглювання | людина, що жонглює | уміння"
+      },
+      {
+          "emoji": "🤹‍♂️",
+          "category": 1,
+          "name": "man juggling",
+          "variations": [
+              "🤹🏻‍♂️",
+              "🤹🏼‍♂️",
+              "🤹🏽‍♂️",
+              "🤹🏾‍♂️",
+              "🤹🏿‍♂️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🤹‍♀️",
+          "category": 1,
+          "name": "woman juggling",
+          "variations": [
+              "🤹🏻‍♀️",
+              "🤹🏼‍♀️",
+              "🤹🏽‍♀️",
+              "🤹🏾‍♀️",
+              "🤹🏿‍♀️"
+          ],
+          "version": "4.0"
+      },
+      {
+          "emoji": "🧘",
+          "category": 1,
+          "name": "людина в позі лотоса",
+          "variations": [
+              "🧘🏻",
+              "🧘🏼",
+              "🧘🏽",
+              "🧘🏾",
+              "🧘🏿"
+          ],
+          "version": "5.0",
+          "keywords": "йога | людина в позі лотоса | медитація | поза лотоса"
+      },
+      {
+          "emoji": "🧘‍♂️",
+          "category": 1,
+          "name": "man in lotus position",
+          "variations": [
+              "🧘🏻‍♂️",
+              "🧘🏼‍♂️",
+              "🧘🏽‍♂️",
+              "🧘🏾‍♂️",
+              "🧘🏿‍♂️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🧘‍♀️",
+          "category": 1,
+          "name": "woman in lotus position",
+          "variations": [
+              "🧘🏻‍♀️",
+              "🧘🏼‍♀️",
+              "🧘🏽‍♀️",
+              "🧘🏾‍♀️",
+              "🧘🏿‍♀️"
+          ],
+          "version": "5.0"
+      },
+      {
+          "emoji": "🛀",
+          "category": 1,
+          "name": "людина, що приймає ванну",
+          "variations": [
+              "🛀🏻",
+              "🛀🏼",
+              "🛀🏽",
+              "🛀🏾",
+              "🛀🏿"
+          ],
+          "version": "1.0",
+          "keywords": "ванна | купатися | людина, що приймає ванну"
+      },
+      {
+          "emoji": "🛌",
+          "category": 1,
+          "name": "людина в ліжку",
+          "variations": [
+              "🛌🏻",
+              "🛌🏼",
+              "🛌🏽",
+              "🛌🏾",
+              "🛌🏿"
+          ],
+          "version": "1.0",
+          "keywords": "готель | людина в ліжку | сон"
+      },
+      {
+          "emoji": "🧑‍🤝‍🧑",
+          "category": 1,
+          "name": "люди, що тримаються за руки",
+          "variations": [
+              "🧑🏻‍🤝‍🧑🏻",
+              "🧑🏻‍🤝‍🧑🏼",
+              "🧑🏻‍🤝‍🧑🏽",
+              "🧑🏻‍🤝‍🧑🏾",
+              "🧑🏻‍🤝‍🧑🏿",
+              "🧑🏼‍🤝‍🧑🏻",
+              "🧑🏼‍🤝‍🧑🏼",
+              "🧑🏼‍🤝‍🧑🏽",
+              "🧑🏼‍🤝‍🧑🏾",
+              "🧑🏼‍🤝‍🧑🏿",
+              "🧑🏽‍🤝‍🧑🏻",
+              "🧑🏽‍🤝‍🧑🏼",
+              "🧑🏽‍🤝‍🧑🏽",
+              "🧑🏽‍🤝‍🧑🏾",
+              "🧑🏽‍🤝‍🧑🏿",
+              "🧑🏾‍🤝‍🧑🏻",
+              "🧑🏾‍🤝‍🧑🏼",
+              "🧑🏾‍🤝‍🧑🏽",
+              "🧑🏾‍🤝‍🧑🏾",
+              "🧑🏾‍🤝‍🧑🏿",
+              "🧑🏿‍🤝‍🧑🏻",
+              "🧑🏿‍🤝‍🧑🏼",
+              "🧑🏿‍🤝‍🧑🏽",
+              "🧑🏿‍🤝‍🧑🏾",
+              "🧑🏿‍🤝‍🧑🏿"
+          ],
+          "version": "12.0",
+          "keywords": "люди, що тримаються за руки | людина | пара | рука | руки | тримати | тримаються"
+      },
+      {
+          "emoji": "👭",
+          "category": 1,
+          "name": "жінки, що тримаються за руки",
+          "variations": [
+              "👭🏻",
+              "👩🏻‍🤝‍👩🏼",
+              "👩🏻‍🤝‍👩🏽",
+              "👩🏻‍🤝‍👩🏾",
+              "👩🏻‍🤝‍👩🏿",
+              "👩🏼‍🤝‍👩🏻",
+              "👭🏼",
+              "👩🏼‍🤝‍👩🏽",
+              "👩🏼‍🤝‍👩🏾",
+              "👩🏼‍🤝‍👩🏿",
+              "👩🏽‍🤝‍👩🏻",
+              "👩🏽‍🤝‍👩🏼",
+              "👭🏽",
+              "👩🏽‍🤝‍👩🏾",
+              "👩🏽‍🤝‍👩🏿",
+              "👩🏾‍🤝‍👩🏻",
+              "👩🏾‍🤝‍👩🏼",
+              "👩🏾‍🤝‍👩🏽",
+              "👭🏾",
+              "👩🏾‍🤝‍👩🏿",
+              "👩🏿‍🤝‍👩🏻",
+              "👩🏿‍🤝‍👩🏼",
+              "👩🏿‍🤝‍👩🏽",
+              "👩🏿‍🤝‍👩🏾",
+              "👭🏿"
+          ],
+          "version": "1.0",
+          "keywords": "жінки | жінки, що тримаються за руки | пара | рука | тримаються за руки"
+      },
+      {
+          "emoji": "👫",
+          "category": 1,
+          "name": "жінка й чоловік, що тримаються за руки",
+          "variations": [
+              "👫🏻",
+              "👩🏻‍🤝‍👨🏼",
+              "👩🏻‍🤝‍👨🏽",
+              "👩🏻‍🤝‍👨🏾",
+              "👩🏻‍🤝‍👨🏿",
+              "👩🏼‍🤝‍👨🏻",
+              "👫🏼",
+              "👩🏼‍🤝‍👨🏽",
+              "👩🏼‍🤝‍👨🏾",
+              "👩🏼‍🤝‍👨🏿",
+              "👩🏽‍🤝‍👨🏻",
+              "👩🏽‍🤝‍👨🏼",
+              "👫🏽",
+              "👩🏽‍🤝‍👨🏾",
+              "👩🏽‍🤝‍👨🏿",
+              "👩🏾‍🤝‍👨🏻",
+              "👩🏾‍🤝‍👨🏼",
+              "👩🏾‍🤝‍👨🏽",
+              "👫🏾",
+              "👩🏾‍🤝‍👨🏿",
+              "👩🏿‍🤝‍👨🏻",
+              "👩🏿‍🤝‍👨🏼",
+              "👩🏿‍🤝‍👨🏽",
+              "👩🏿‍🤝‍👨🏾",
+              "👫🏿"
+          ],
+          "version": "1.0",
+          "keywords": "жінка | жінка й чоловік, що тримаються за руки | пара | рука | тримати | тримаються за руки | чоловік"
+      },
+      {
+          "emoji": "👬",
+          "category": 1,
+          "name": "чоловіки, що тримаються за руки",
+          "variations": [
+              "👬🏻",
+              "👨🏻‍🤝‍👨🏼",
+              "👨🏻‍🤝‍👨🏽",
+              "👨🏻‍🤝‍👨🏾",
+              "👨🏻‍🤝‍👨🏿",
+              "👨🏼‍🤝‍👨🏻",
+              "👬🏼",
+              "👨🏼‍🤝‍👨🏽",
+              "👨🏼‍🤝‍👨🏾",
+              "👨🏼‍🤝‍👨🏿",
+              "👨🏽‍🤝‍👨🏻",
+              "👨🏽‍🤝‍👨🏼",
+              "👬🏽",
+              "👨🏽‍🤝‍👨🏾",
+              "👨🏽‍🤝‍👨🏿",
+              "👨🏾‍🤝‍👨🏻",
+              "👨🏾‍🤝‍👨🏼",
+              "👨🏾‍🤝‍👨🏽",
+              "👬🏾",
+              "👨🏾‍🤝‍👨🏿",
+              "👨🏿‍🤝‍👨🏻",
+              "👨🏿‍🤝‍👨🏼",
+              "👨🏿‍🤝‍👨🏽",
+              "👨🏿‍🤝‍👨🏾",
+              "👬🏿"
+          ],
+          "version": "1.0",
+          "keywords": "близнюки | Близнята | зодіакальний знак | пара | тримаються за руки | чоловік | чоловіки | чоловіки, що тримаються за руки"
+      },
+      {
+          "emoji": "💏",
+          "category": 1,
+          "name": "чоловік і жінка, що цілуються",
+          "variations": [
+              "💏🏻",
+              "💏🏼",
+              "💏🏽",
+              "💏🏾",
+              "💏🏿",
+              "🧑🏻‍❤️‍💋‍🧑🏼",
+              "🧑🏻‍❤️‍💋‍🧑🏽",
+              "🧑🏻‍❤️‍💋‍🧑🏾",
+              "🧑🏻‍❤️‍💋‍🧑🏿",
+              "🧑🏼‍❤️‍💋‍🧑🏻",
+              "🧑🏼‍❤️‍💋‍🧑🏽",
+              "🧑🏼‍❤️‍💋‍🧑🏾",
+              "🧑🏼‍❤️‍💋‍🧑🏿",
+              "🧑🏽‍❤️‍💋‍🧑🏻",
+              "🧑🏽‍❤️‍💋‍🧑🏼",
+              "🧑🏽‍❤️‍💋‍🧑🏾",
+              "🧑🏽‍❤️‍💋‍🧑🏿",
+              "🧑🏾‍❤️‍💋‍🧑🏻",
+              "🧑🏾‍❤️‍💋‍🧑🏼",
+              "🧑🏾‍❤️‍💋‍🧑🏽",
+              "🧑🏾‍❤️‍💋‍🧑🏿",
+              "🧑🏿‍❤️‍💋‍🧑🏻",
+              "🧑🏿‍❤️‍💋‍🧑🏼",
+              "🧑🏿‍❤️‍💋‍🧑🏽",
+              "🧑🏿‍❤️‍💋‍🧑🏾",
+              "👩‍❤️‍💋‍👨",
+              "👩🏻‍❤️‍💋‍👨🏻",
+              "👩🏻‍❤️‍💋‍👨🏼",
+              "👩🏻‍❤️‍💋‍👨🏽",
+              "👩🏻‍❤️‍💋‍👨🏾",
+              "👩🏻‍❤️‍💋‍👨🏿",
+              "👩🏼‍❤️‍💋‍👨🏻",
+              "👩🏼‍❤️‍💋‍👨🏼",
+              "👩🏼‍❤️‍💋‍👨🏽",
+              "👩🏼‍❤️‍💋‍👨🏾",
+              "👩🏼‍❤️‍💋‍👨🏿",
+              "👩🏽‍❤️‍💋‍👨🏻",
+              "👩🏽‍❤️‍💋‍👨🏼",
+              "👩🏽‍❤️‍💋‍👨🏽",
+              "👩🏽‍❤️‍💋‍👨🏾",
+              "👩🏽‍❤️‍💋‍👨🏿",
+              "👩🏾‍❤️‍💋‍👨🏻",
+              "👩🏾‍❤️‍💋‍👨🏼",
+              "👩🏾‍❤️‍💋‍👨🏽",
+              "👩🏾‍❤️‍💋‍👨🏾",
+              "👩🏾‍❤️‍💋‍👨🏿",
+              "👩🏿‍❤️‍💋‍👨🏻",
+              "👩🏿‍❤️‍💋‍👨🏼",
+              "👩🏿‍❤️‍💋‍👨🏽",
+              "👩🏿‍❤️‍💋‍👨🏾",
+              "👩🏿‍❤️‍💋‍👨🏿",
+              "👨‍❤️‍💋‍👨",
+              "👨🏻‍❤️‍💋‍👨🏻",
+              "👨🏻‍❤️‍💋‍👨🏼",
+              "👨🏻‍❤️‍💋‍👨🏽",
+              "👨🏻‍❤️‍💋‍👨🏾",
+              "👨🏻‍❤️‍💋‍👨🏿",
+              "👨🏼‍❤️‍💋‍👨🏻",
+              "👨🏼‍❤️‍💋‍👨🏼",
+              "👨🏼‍❤️‍💋‍👨🏽",
+              "👨🏼‍❤️‍💋‍👨🏾",
+              "👨🏼‍❤️‍💋‍👨🏿",
+              "👨🏽‍❤️‍💋‍👨🏻",
+              "👨🏽‍❤️‍💋‍👨🏼",
+              "👨🏽‍❤️‍💋‍👨🏽",
+              "👨🏽‍❤️‍💋‍👨🏾",
+              "👨🏽‍❤️‍💋‍👨🏿",
+              "👨🏾‍❤️‍💋‍👨🏻",
+              "👨🏾‍❤️‍💋‍👨🏼",
+              "👨🏾‍❤️‍💋‍👨🏽",
+              "👨🏾‍❤️‍💋‍👨🏾",
+              "👨🏾‍❤️‍💋‍👨🏿",
+              "👨🏿‍❤️‍💋‍👨🏻",
+              "👨🏿‍❤️‍💋‍👨🏼",
+              "👨🏿‍❤️‍💋‍👨🏽",
+              "👨🏿‍❤️‍💋‍👨🏾",
+              "👨🏿‍❤️‍💋‍👨🏿",
+              "👩‍❤️‍💋‍👩",
+              "👩🏻‍❤️‍💋‍👩🏻",
+              "👩🏻‍❤️‍💋‍👩🏼",
+              "👩🏻‍❤️‍💋‍👩🏽",
+              "👩🏻‍❤️‍💋‍👩🏾",
+              "👩🏻‍❤️‍💋‍👩🏿",
+              "👩🏼‍❤️‍💋‍👩🏻",
+              "👩🏼‍❤️‍💋‍👩🏼",
+              "👩🏼‍❤️‍💋‍👩🏽",
+              "👩🏼‍❤️‍💋‍👩🏾",
+              "👩🏼‍❤️‍💋‍👩🏿",
+              "👩🏽‍❤️‍💋‍👩🏻",
+              "👩🏽‍❤️‍💋‍👩🏼",
+              "👩🏽‍❤️‍💋‍👩🏽",
+              "👩🏽‍❤️‍💋‍👩🏾",
+              "👩🏽‍❤️‍💋‍👩🏿",
+              "👩🏾‍❤️‍💋‍👩🏻",
+              "👩🏾‍❤️‍💋‍👩🏼",
+              "👩🏾‍❤️‍💋‍👩🏽",
+              "👩🏾‍❤️‍💋‍👩🏾",
+              "👩🏾‍❤️‍💋‍👩🏿",
+              "👩🏿‍❤️‍💋‍👩🏻",
+              "👩🏿‍❤️‍💋‍👩🏼",
+              "👩🏿‍❤️‍💋‍👩🏽",
+              "👩🏿‍❤️‍💋‍👩🏾",
+              "👩🏿‍❤️‍💋‍👩🏿"
+          ],
+          "version": "1.0",
+          "keywords": "закоханість | пара | чоловік і жінка, що цілуються"
+      },
+      {
+          "emoji": "💑",
+          "category": 1,
+          "name": "чоловік і жінка із серцем між ними",
+          "variations": [
+              "💑🏻",
+              "💑🏼",
+              "💑🏽",
+              "💑🏾",
+              "💑🏿",
+              "🧑🏻‍❤️‍🧑🏼",
+              "🧑🏻‍❤️‍🧑🏽",
+              "🧑🏻‍❤️‍🧑🏾",
+              "🧑🏻‍❤️‍🧑🏿",
+              "🧑🏼‍❤️‍🧑🏻",
+              "🧑🏼‍❤️‍🧑🏽",
+              "🧑🏼‍❤️‍🧑🏾",
+              "🧑🏼‍❤️‍🧑🏿",
+              "🧑🏽‍❤️‍🧑🏻",
+              "🧑🏽‍❤️‍🧑🏼",
+              "🧑🏽‍❤️‍🧑🏾",
+              "🧑🏽‍❤️‍🧑🏿",
+              "🧑🏾‍❤️‍🧑🏻",
+              "🧑🏾‍❤️‍🧑🏼",
+              "🧑🏾‍❤️‍🧑🏽",
+              "🧑🏾‍❤️‍🧑🏿",
+              "🧑🏿‍❤️‍🧑🏻",
+              "🧑🏿‍❤️‍🧑🏼",
+              "🧑🏿‍❤️‍🧑🏽",
+              "🧑🏿‍❤️‍🧑🏾",
+              "👩‍❤️‍👨",
+              "👩🏻‍❤️‍👨🏻",
+              "👩🏻‍❤️‍👨🏼",
+              "👩🏻‍❤️‍👨🏽",
+              "👩🏻‍❤️‍👨🏾",
+              "👩🏻‍❤️‍👨🏿",
+              "👩🏼‍❤️‍👨🏻",
+              "👩🏼‍❤️‍👨🏼",
+              "👩🏼‍❤️‍👨🏽",
+              "👩🏼‍❤️‍👨🏾",
+              "👩🏼‍❤️‍👨🏿",
+              "👩🏽‍❤️‍👨🏻",
+              "👩🏽‍❤️‍👨🏼",
+              "👩🏽‍❤️‍👨🏽",
+              "👩🏽‍❤️‍👨🏾",
+              "👩🏽‍❤️‍👨🏿",
+              "👩🏾‍❤️‍👨🏻",
+              "👩🏾‍❤️‍👨🏼",
+              "👩🏾‍❤️‍👨🏽",
+              "👩🏾‍❤️‍👨🏾",
+              "👩🏾‍❤️‍👨🏿",
+              "👩🏿‍❤️‍👨🏻",
+              "👩🏿‍❤️‍👨🏼",
+              "👩🏿‍❤️‍👨🏽",
+              "👩🏿‍❤️‍👨🏾",
+              "👩🏿‍❤️‍👨🏿",
+              "👨‍❤️‍👨",
+              "👨🏻‍❤️‍👨🏻",
+              "👨🏻‍❤️‍👨🏼",
+              "👨🏻‍❤️‍👨🏽",
+              "👨🏻‍❤️‍👨🏾",
+              "👨🏻‍❤️‍👨🏿",
+              "👨🏼‍❤️‍👨🏻",
+              "👨🏼‍❤️‍👨🏼",
+              "👨🏼‍❤️‍👨🏽",
+              "👨🏼‍❤️‍👨🏾",
+              "👨🏼‍❤️‍👨🏿",
+              "👨🏽‍❤️‍👨🏻",
+              "👨🏽‍❤️‍👨🏼",
+              "👨🏽‍❤️‍👨🏽",
+              "👨🏽‍❤️‍👨🏾",
+              "👨🏽‍❤️‍👨🏿",
+              "👨🏾‍❤️‍👨🏻",
+              "👨🏾‍❤️‍👨🏼",
+              "👨🏾‍❤️‍👨🏽",
+              "👨🏾‍❤️‍👨🏾",
+              "👨🏾‍❤️‍👨🏿",
+              "👨🏿‍❤️‍👨🏻",
+              "👨🏿‍❤️‍👨🏼",
+              "👨🏿‍❤️‍👨🏽",
+              "👨🏿‍❤️‍👨🏾",
+              "👨🏿‍❤️‍👨🏿",
+              "👩‍❤️‍👩",
+              "👩🏻‍❤️‍👩🏻",
+              "👩🏻‍❤️‍👩🏼",
+              "👩🏻‍❤️‍👩🏽",
+              "👩🏻‍❤️‍👩🏾",
+              "👩🏻‍❤️‍👩🏿",
+              "👩🏼‍❤️‍👩🏻",
+              "👩🏼‍❤️‍👩🏼",
+              "👩🏼‍❤️‍👩🏽",
+              "👩🏼‍❤️‍👩🏾",
+              "👩🏼‍❤️‍👩🏿",
+              "👩🏽‍❤️‍👩🏻",
+              "👩🏽‍❤️‍👩🏼",
+              "👩🏽‍❤️‍👩🏽",
+              "👩🏽‍❤️‍👩🏾",
+              "👩🏽‍❤️‍👩🏿",
+              "👩🏾‍❤️‍👩🏻",
+              "👩🏾‍❤️‍👩🏼",
+              "👩🏾‍❤️‍👩🏽",
+              "👩🏾‍❤️‍👩🏾",
+              "👩🏾‍❤️‍👩🏿",
+              "👩🏿‍❤️‍👩🏻",
+              "👩🏿‍❤️‍👩🏼",
+              "👩🏿‍❤️‍👩🏽",
+              "👩🏿‍❤️‍👩🏾",
+              "👩🏿‍❤️‍👩🏿"
+          ],
+          "version": "1.0",
+          "keywords": "закоханість | кохання | пара | серце | чоловік і жінка із серцем між ними"
+      },
+      {
+          "emoji": "👪",
+          "category": 1,
+          "name": "родина",
+          "version": "1.0",
+          "keywords": "батько | дитина | мама | матір | родина | тато"
+      },
+      {
+          "emoji": "👨‍👩‍👦",
+          "category": 1,
+          "name": "родина: чоловік, жінка і хлопчик",
+          "version": "2.0",
+          "keywords": "батько | дитина | жінка | мама | матір | родина | тато | хлопчик | чоловік"
+      },
+      {
+          "emoji": "👨‍👩‍👧",
+          "category": 1,
+          "name": "родина: чоловік, жінка і дівчинка",
+          "version": "2.0",
+          "keywords": "батько | дитина | дівчинка | жінка | мама | матір | родина | тато | чоловік"
+      },
+      {
+          "emoji": "👨‍👩‍👧‍👦",
+          "category": 1,
+          "name": "родина: чоловік, жінка, дівчинка і хлопчик",
+          "version": "2.0",
+          "keywords": "батько | дитина | дівчинка | жінка | мама | матір | родина | тато | хлопчик | чоловік"
+      },
+      {
+          "emoji": "👨‍👩‍👦‍👦",
+          "category": 1,
+          "name": "родина: чоловік, жінка, хлопчик і хлопчик",
+          "version": "2.0",
+          "keywords": "батько | дитина | жінка | мама | матір | родина | тато | хлопчик | чоловік"
+      },
+      {
+          "emoji": "👨‍👩‍👧‍👧",
+          "category": 1,
+          "name": "родина: чоловік, жінка, дівчинка і дівчинка",
+          "version": "2.0",
+          "keywords": "батько | дитина | дівчинка | жінка | мама | матір | родина | тато | чоловік"
+      },
+      {
+          "emoji": "👨‍👨‍👦",
+          "category": 1,
+          "name": "родина: чоловік, чоловік і хлопчик",
+          "version": "2.0",
+          "keywords": "батько | дитина | мама | матір | родина | тато | хлопчик | чоловік"
+      },
+      {
+          "emoji": "👨‍👨‍👧",
+          "category": 1,
+          "name": "родина: чоловік, чоловік і дівчинка",
+          "version": "2.0",
+          "keywords": "батько | дитина | дівчинка | мама | матір | родина | тато | чоловік"
+      },
+      {
+          "emoji": "👨‍👨‍👧‍👦",
+          "category": 1,
+          "name": "родина: чоловік, чоловік, дівчинка і хлопчик",
+          "version": "2.0",
+          "keywords": "батько | дитина | дівчинка | мама | матір | родина | тато | хлопчик | чоловік"
+      },
+      {
+          "emoji": "👨‍👨‍👦‍👦",
+          "category": 1,
+          "name": "родина: чоловік, чоловік, хлопчик і хлопчик",
+          "version": "2.0",
+          "keywords": "батько | дитина | мама | матір | родина | тато | хлопчик | чоловік"
+      },
+      {
+          "emoji": "👨‍👨‍👧‍👧",
+          "category": 1,
+          "name": "родина: чоловік, чоловік, дівчинка і дівчинка",
+          "version": "2.0",
+          "keywords": "батько | дитина | дівчинка | мама | матір | родина | тато | чоловік"
+      },
+      {
+          "emoji": "👩‍👩‍👦",
+          "category": 1,
+          "name": "родина: жінка, жінка і хлопчик",
+          "version": "2.0",
+          "keywords": "батько | дитина | жінка | мама | матір | родина | тато | хлопчик"
+      },
+      {
+          "emoji": "👩‍👩‍👧",
+          "category": 1,
+          "name": "родина: жінка, жінка і дівчинка",
+          "version": "2.0",
+          "keywords": "батько | дитина | дівчинка | жінка | мама | матір | родина | тато"
+      },
+      {
+          "emoji": "👩‍👩‍👧‍👦",
+          "category": 1,
+          "name": "родина: жінка, жінка, дівчинка і хлопчик",
+          "version": "2.0",
+          "keywords": "батько | дитина | дівчинка | жінка | мама | матір | родина | тато | хлопчик"
+      },
+      {
+          "emoji": "👩‍👩‍👦‍👦",
+          "category": 1,
+          "name": "родина: жінка, жінка, хлопчик і хлопчик",
+          "version": "2.0",
+          "keywords": "батько | дитина | жінка | мама | матір | родина | тато | хлопчик"
+      },
+      {
+          "emoji": "👩‍👩‍👧‍👧",
+          "category": 1,
+          "name": "родина: жінка, жінка, дівчинка і дівчинка",
+          "version": "2.0",
+          "keywords": "батько | дитина | дівчинка | жінка | мама | матір | родина | тато"
+      },
+      {
+          "emoji": "👨‍👦",
+          "category": 1,
+          "name": "родина: чоловік і хлопчик",
+          "version": "4.0",
+          "keywords": "батько | дитина | мама | матір | родина | тато | хлопчик | чоловік"
+      },
+      {
+          "emoji": "👨‍👦‍👦",
+          "category": 1,
+          "name": "родина: чоловік, хлопчик і хлопчик",
+          "version": "4.0",
+          "keywords": "батько | дитина | мама | матір | родина | тато | хлопчик | чоловік"
+      },
+      {
+          "emoji": "👨‍👧",
+          "category": 1,
+          "name": "родина: чоловік і дівчинка",
+          "version": "4.0",
+          "keywords": "батько | дитина | дівчинка | мама | матір | родина | тато | чоловік"
+      },
+      {
+          "emoji": "👨‍👧‍👦",
+          "category": 1,
+          "name": "родина: чоловік, дівчинка і хлопчик",
+          "version": "4.0",
+          "keywords": "батько | дитина | дівчинка | мама | матір | родина | тато | хлопчик | чоловік"
+      },
+      {
+          "emoji": "👨‍👧‍👧",
+          "category": 1,
+          "name": "родина: чоловік, дівчинка і дівчинка",
+          "version": "4.0",
+          "keywords": "батько | дитина | дівчинка | мама | матір | родина | тато | чоловік"
+      },
+      {
+          "emoji": "👩‍👦",
+          "category": 1,
+          "name": "родина: жінка і хлопчик",
+          "version": "4.0",
+          "keywords": "батько | дитина | жінка | мама | матір | родина | тато | хлопчик"
+      },
+      {
+          "emoji": "👩‍👦‍👦",
+          "category": 1,
+          "name": "родина: жінка, хлопчик і хлопчик",
+          "version": "4.0",
+          "keywords": "батько | дитина | жінка | мама | матір | родина | тато | хлопчик"
+      },
+      {
+          "emoji": "👩‍👧",
+          "category": 1,
+          "name": "родина: жінка і дівчинка",
+          "version": "4.0",
+          "keywords": "батько | дитина | дівчинка | жінка | мама | матір | родина | тато"
+      },
+      {
+          "emoji": "👩‍👧‍👦",
+          "category": 1,
+          "name": "родина: жінка, дівчинка і хлопчик",
+          "version": "4.0",
+          "keywords": "батько | дитина | дівчинка | жінка | мама | матір | родина | тато | хлопчик"
+      },
+      {
+          "emoji": "👩‍👧‍👧",
+          "category": 1,
+          "name": "родина: жінка, дівчинка і дівчинка",
+          "version": "4.0",
+          "keywords": "батько | дитина | дівчинка | жінка | мама | матір | родина | тато"
+      },
+      {
+          "emoji": "🗣️",
+          "category": 1,
+          "name": "speaking head",
+          "version": "1.0"
+      },
+      {
+          "emoji": "👤",
+          "category": 1,
+          "name": "силует бюсту людини",
+          "version": "1.0",
+          "keywords": "бюст | силует | силует бюсту людини"
+      },
+      {
+          "emoji": "👥",
+          "category": 1,
+          "name": "силуети двох людських бюстів",
+          "version": "1.0",
+          "keywords": "бюст | силует | силуети двох людських бюстів"
+      },
+      {
+          "emoji": "🫂",
+          "category": 1,
+          "name": "люди обіймаються",
+          "version": "13.0",
+          "keywords": "вдячність | люди обіймаються | обійми | привітання | прощання"
+      },
+      {
+          "emoji": "👣",
+          "category": 1,
+          "name": "сліди ніг",
+          "version": "1.0",
+          "keywords": "відбиток | нога | одяг | слід | сліди ніг | тіло"
+      },
+      {
+          "emoji": "🐵",
+          "category": 2,
+          "name": "морда мавпи",
+          "version": "1.0",
+          "keywords": "мавпа | морда | морда мавпи"
+      },
+      {
+          "emoji": "🐒",
+          "category": 2,
+          "name": "мавпа",
+          "version": "1.0",
+          "keywords": "мавпа"
+      },
+      {
+          "emoji": "🦍",
+          "category": 2,
+          "name": "горила",
+          "version": "3.0",
+          "keywords": "горила | тварина"
+      },
+      {
+          "emoji": "🦧",
+          "category": 2,
+          "name": "орангутанг",
+          "version": "12.0",
+          "keywords": "антропоїд | людиноподібна | мавпа | орангутанг"
+      },
+      {
+          "emoji": "🐶",
+          "category": 2,
+          "name": "морда собаки",
+          "version": "1.0",
+          "keywords": "морда | морда собаки | пес | собака"
+      },
+      {
+          "emoji": "🐕",
+          "category": 2,
+          "name": "собака",
+          "version": "1.0",
+          "keywords": "пес | собака"
+      },
+      {
+          "emoji": "🦮",
+          "category": 2,
+          "name": "собака-поводир",
+          "version": "12.0",
+          "keywords": "для незрячих | доступність | поводир | собака-поводир | спеціальні можливості"
+      },
+      {
+          "emoji": "🐕‍🦺",
+          "category": 2,
+          "name": "службовий собака",
+          "version": "12.0",
+          "keywords": "допомога | доступність | службовий | собака | спеціальні можливості | супровід"
+      },
+      {
+          "emoji": "🐩",
+          "category": 2,
+          "name": "пудель",
+          "version": "1.0",
+          "keywords": "пес | пудель | собака"
+      },
+      {
+          "emoji": "🐺",
+          "category": 2,
+          "name": "вовк",
+          "version": "1.0",
+          "keywords": "вовк | вовча | морда"
+      },
+      {
+          "emoji": "🦊",
+          "category": 2,
+          "name": "лис",
+          "version": "3.0",
+          "keywords": "лис | лисиця | лисича | лисяча | морда"
+      },
+      {
+          "emoji": "🦝",
+          "category": 2,
+          "name": "єнот",
+          "version": "11.0",
+          "keywords": "єнот | полоскун | ракун | хитрий | шибеник"
+      },
+      {
+          "emoji": "🐱",
+          "category": 2,
+          "name": "морда кота",
+          "version": "1.0",
+          "keywords": "домашня тварина | кіт | морда | морда кота"
+      },
+      {
+          "emoji": "🐈",
+          "category": 2,
+          "name": "кіт",
+          "version": "1.0",
+          "keywords": "домашній улюбленець | кіт"
+      },
+      {
+          "emoji": "🐈‍⬛",
+          "category": 2,
+          "name": "чорний кіт",
+          "version": "13.0",
+          "keywords": "кіт | невдаха | нещастя | чорний"
+      },
+      {
+          "emoji": "🦁",
+          "category": 2,
+          "name": "лев",
+          "version": "1.0",
+          "keywords": "знак | зодіак | лев | морда | морда лева"
+      },
+      {
+          "emoji": "🐯",
+          "category": 2,
+          "name": "морда тигра",
+          "version": "1.0",
+          "keywords": "морда | морда тигра | тигр | тигряча морда"
+      },
+      {
+          "emoji": "🐅",
+          "category": 2,
+          "name": "тигр",
+          "version": "1.0",
+          "keywords": "тигр"
+      },
+      {
+          "emoji": "🐆",
+          "category": 2,
+          "name": "леопард",
+          "version": "1.0",
+          "keywords": "леопард"
+      },
+      {
+          "emoji": "🐴",
+          "category": 2,
+          "name": "голова коня",
+          "version": "1.0",
+          "keywords": "голова коня | кінь | морда"
+      },
+      {
+          "emoji": "🐎",
+          "category": 2,
+          "name": "кінь",
+          "version": "1.0",
+          "keywords": "верхогони | кінні | кінь | перегони"
+      },
+      {
+          "emoji": "🦄",
+          "category": 2,
+          "name": "єдиноріг",
+          "version": "1.0",
+          "keywords": "голова | єдиноріг | морда"
+      },
+      {
+          "emoji": "🦓",
+          "category": 2,
+          "name": "зебра",
+          "version": "5.0",
+          "keywords": "зебра | смуга"
+      },
+      {
+          "emoji": "🦌",
+          "category": 2,
+          "name": "олень",
+          "version": "3.0",
+          "keywords": "олень | тварина"
+      },
+      {
+          "emoji": "🦬",
+          "category": 2,
+          "name": "бізон",
+          "version": "13.0",
+          "keywords": "бізон | буйвол | зубр | стадо"
+      },
+      {
+          "emoji": "🐮",
+          "category": 2,
+          "name": "морда корови",
+          "version": "1.0",
+          "keywords": "коровʼяча морда | корова | морда | морда корови"
+      },
+      {
+          "emoji": "🐂",
+          "category": 2,
+          "name": "бик",
+          "version": "1.0",
+          "keywords": "бик | віл | зодіак | телець"
+      },
+      {
+          "emoji": "🐃",
+          "category": 2,
+          "name": "буйвіл",
+          "version": "1.0",
+          "keywords": "буйвіл"
+      },
+      {
+          "emoji": "🐄",
+          "category": 2,
+          "name": "корова",
+          "version": "1.0",
+          "keywords": "корова"
+      },
+      {
+          "emoji": "🐷",
+          "category": 2,
+          "name": "рило свині",
+          "version": "1.0",
+          "keywords": "морда | рило свині | свиня | свиняче рило"
+      },
+      {
+          "emoji": "🐖",
+          "category": 2,
+          "name": "свиня",
+          "version": "1.0",
+          "keywords": "льоха | свиноматка | свиня"
+      },
+      {
+          "emoji": "🐗",
+          "category": 2,
+          "name": "вепр",
+          "version": "1.0",
+          "keywords": "вепр | кабан | кнур"
+      },
+      {
+          "emoji": "🐽",
+          "category": 2,
+          "name": "свинячий пʼятак",
+          "version": "1.0",
+          "keywords": "морда | рило | свиня | свинячий пʼятак"
+      },
+      {
+          "emoji": "🐏",
+          "category": 2,
+          "name": "баран",
+          "version": "1.0",
+          "keywords": "баран | вівця | зодіак | овен"
+      },
+      {
+          "emoji": "🐑",
+          "category": 2,
+          "name": "вівця",
+          "version": "1.0",
+          "keywords": "вівця"
+      },
+      {
+          "emoji": "🐐",
+          "category": 2,
+          "name": "козел",
+          "version": "1.0",
+          "keywords": "зодіак | козел | козеріг"
+      },
+      {
+          "emoji": "🐪",
+          "category": 2,
+          "name": "одногорбий верблюд",
+          "version": "1.0",
+          "keywords": "верблюд | горб | дромадер | одногорбий"
+      },
+      {
+          "emoji": "🐫",
+          "category": 2,
+          "name": "двогорбий верблюд",
+          "version": "1.0",
+          "keywords": "бактріан | верблюд | горб | двогорбий"
+      },
+      {
+          "emoji": "🦙",
+          "category": 2,
+          "name": "лама",
+          "version": "11.0",
+          "keywords": "альпака | гуанако | лама | тварина | хутро | шерсть"
+      },
+      {
+          "emoji": "🦒",
+          "category": 2,
+          "name": "жирафа",
+          "version": "5.0",
+          "keywords": "жирафа | плями"
+      },
+      {
+          "emoji": "🐘",
+          "category": 2,
+          "name": "слон",
+          "version": "1.0",
+          "keywords": "слон"
+      },
+      {
+          "emoji": "🦣",
+          "category": 2,
+          "name": "мамонт",
+          "version": "13.0",
+          "keywords": "бивень | великий | вимирання | волохатий | мамонт"
+      },
+      {
+          "emoji": "🦏",
+          "category": 2,
+          "name": "носоріг",
+          "version": "3.0",
+          "keywords": "носоріг | тварина"
+      },
+      {
+          "emoji": "🦛",
+          "category": 2,
+          "name": "бегемот",
+          "version": "11.0",
+          "keywords": "бегемот | гіпопотам | гіпотам | ссавець | тварина"
+      },
+      {
+          "emoji": "🐭",
+          "category": 2,
+          "name": "морда миші",
+          "version": "1.0",
+          "keywords": "миша | мишача морда | морда | морда миші"
+      },
+      {
+          "emoji": "🐁",
+          "category": 2,
+          "name": "миша",
+          "version": "1.0",
+          "keywords": "миша"
+      },
+      {
+          "emoji": "🐀",
+          "category": 2,
+          "name": "щур",
+          "version": "1.0",
+          "keywords": "пацюк | щур"
+      },
+      {
+          "emoji": "🐹",
+          "category": 2,
+          "name": "хомʼяк",
+          "version": "1.0",
+          "keywords": "домашня тварина | морда | хом’якова | хомʼяк"
+      },
+      {
+          "emoji": "🐰",
+          "category": 2,
+          "name": "морда кроля",
+          "version": "1.0",
+          "keywords": "кролик | кроляча морда | морда | морда кроля"
+      },
+      {
+          "emoji": "🐇",
+          "category": 2,
+          "name": "кролик",
+          "version": "1.0",
+          "keywords": "кріль | кролик"
+      },
+      {
+          "emoji": "🐿️",
+          "category": 2,
+          "name": "chipmunk",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🦫",
+          "category": 2,
+          "name": "бобер",
+          "version": "13.0",
+          "keywords": "бобер | боброва | гребля"
+      },
+      {
+          "emoji": "🦔",
+          "category": 2,
+          "name": "їжак",
+          "version": "5.0",
+          "keywords": "голчастий | їжак"
+      },
+      {
+          "emoji": "🦇",
+          "category": 2,
+          "name": "кажан",
+          "version": "3.0",
+          "keywords": "вампір | кажан | тварина"
+      },
+      {
+          "emoji": "🐻",
+          "category": 2,
+          "name": "ведмідь",
+          "version": "1.0",
+          "keywords": "ведмедева | ведмежа | ведмежача | ведмідь | морда"
+      },
+      {
+          "emoji": "🐻‍❄️",
+          "category": 2,
+          "name": "polar bear",
+          "version": "13.0"
+      },
+      {
+          "emoji": "🐨",
+          "category": 2,
+          "name": "коала",
+          "version": "1.0",
+          "keywords": "ведмідь | коала"
+      },
+      {
+          "emoji": "🐼",
+          "category": 2,
+          "name": "панда",
+          "version": "1.0",
+          "keywords": "морда | панда"
+      },
+      {
+          "emoji": "🦥",
+          "category": 2,
+          "name": "лінивець",
+          "version": "12.0",
+          "keywords": "ледачий | лінивець | лінивий | млявий | повільний"
+      },
+      {
+          "emoji": "🦦",
+          "category": 2,
+          "name": "видра",
+          "version": "12.0",
+          "keywords": "видра | водяний звір | рибалка"
+      },
+      {
+          "emoji": "🦨",
+          "category": 2,
+          "name": "скунс",
+          "version": "12.0",
+          "keywords": "скунс | смердіти | сморід | тхнути"
+      },
+      {
+          "emoji": "🦘",
+          "category": 2,
+          "name": "кенгуру",
+          "version": "11.0",
+          "keywords": "Австралія | кенгуру | кенгурятко | стрибок | сумчастий"
+      },
+      {
+          "emoji": "🦡",
+          "category": 2,
+          "name": "борсук",
+          "version": "11.0",
+          "keywords": "борсук | куницеві | мустелові | ссавець | хутро"
+      },
+      {
+          "emoji": "🐾",
+          "category": 2,
+          "name": "сліди лап",
+          "version": "1.0",
+          "keywords": "відбитки лап | лапа | слід | сліди лап"
+      },
+      {
+          "emoji": "🦃",
+          "category": 2,
+          "name": "індик",
+          "version": "1.0",
+          "keywords": "індик | індичка | птах"
+      },
+      {
+          "emoji": "🐔",
+          "category": 2,
+          "name": "курка",
+          "version": "1.0",
+          "keywords": "квочка | курка | птах"
+      },
+      {
+          "emoji": "🐓",
+          "category": 2,
+          "name": "півень",
+          "version": "1.0",
+          "keywords": "когут | півень | птах"
+      },
+      {
+          "emoji": "🐣",
+          "category": 2,
+          "name": "курча, що вилуплюється",
+          "version": "1.0",
+          "keywords": "вилуплюватися | курча | курча, що вилуплюється | прокльовуватися | птах | пташка"
+      },
+      {
+          "emoji": "🐤",
+          "category": 2,
+          "name": "мале курча",
+          "version": "1.0",
+          "keywords": "курка | курча | курчатко | мале курча"
+      },
+      {
+          "emoji": "🐥",
+          "category": 2,
+          "name": "курча, що стоїть",
+          "version": "1.0",
+          "keywords": "курка | курча | курча, що стоїть | курчатко | мале курча | пташка"
+      },
+      {
+          "emoji": "🐦",
+          "category": 2,
+          "name": "птах",
+          "version": "1.0",
+          "keywords": "птах | пташка"
+      },
+      {
+          "emoji": "🐧",
+          "category": 2,
+          "name": "пінгвін",
+          "version": "1.0",
+          "keywords": "пінгвін | птах"
+      },
+      {
+          "emoji": "🕊️",
+          "category": 2,
+          "name": "dove",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🦅",
+          "category": 2,
+          "name": "орел",
+          "version": "3.0",
+          "keywords": "орел | птах"
+      },
+      {
+          "emoji": "🦆",
+          "category": 2,
+          "name": "качка",
+          "version": "3.0",
+          "keywords": "качка | птах"
+      },
+      {
+          "emoji": "🦢",
+          "category": 2,
+          "name": "лебідь",
+          "version": "11.0",
+          "keywords": "гидке каченя | лебідь | озеро | птах"
+      },
+      {
+          "emoji": "🦉",
+          "category": 2,
+          "name": "сова",
+          "version": "3.0",
+          "keywords": "мудрість | птах | сова"
+      },
+      {
+          "emoji": "🦤",
+          "category": 2,
+          "name": "дронт",
+          "version": "13.0",
+          "keywords": "великий | вимирання | дронт | маврикійський"
+      },
+      {
+          "emoji": "🪶",
+          "category": 2,
+          "name": "пір’їна",
+          "version": "13.0",
+          "keywords": "невагома | оперення | пір’їна | політ | птах"
+      },
+      {
+          "emoji": "🦩",
+          "category": 2,
+          "name": "фламінго",
+          "version": "12.0",
+          "keywords": "птах | рожевий | тропіки | тропічний | фламінго"
+      },
+      {
+          "emoji": "🦚",
+          "category": 2,
+          "name": "павич",
+          "version": "11.0",
+          "keywords": "павич | павлін | птах | фазан | хвіст"
+      },
+      {
+          "emoji": "🦜",
+          "category": 2,
+          "name": "папуга",
+          "version": "11.0",
+          "keywords": "ара | папуга | папужка | пірат | птах"
+      },
+      {
+          "emoji": "🐸",
+          "category": 2,
+          "name": "жаба",
+          "version": "1.0",
+          "keywords": "жабʼяча | жаба | жабина | морда"
+      },
+      {
+          "emoji": "🐊",
+          "category": 2,
+          "name": "крокодил",
+          "version": "1.0",
+          "keywords": "крокодил"
+      },
+      {
+          "emoji": "🐢",
+          "category": 2,
+          "name": "черепаха",
+          "version": "1.0",
+          "keywords": "черепаха"
+      },
+      {
+          "emoji": "🦎",
+          "category": 2,
+          "name": "ящірка",
+          "version": "3.0",
+          "keywords": "плазун | рептилія | ящірка"
+      },
+      {
+          "emoji": "🐍",
+          "category": 2,
+          "name": "змія",
+          "version": "1.0",
+          "keywords": "гадюка | змієносець | змій | змія | зодіак"
+      },
+      {
+          "emoji": "🐲",
+          "category": 2,
+          "name": "голова дракона",
+          "version": "1.0",
+          "keywords": "голова | голова дракона | дракон | казка"
+      },
+      {
+          "emoji": "🐉",
+          "category": 2,
+          "name": "дракон",
+          "version": "1.0",
+          "keywords": "дракон | казка"
+      },
+      {
+          "emoji": "🦕",
+          "category": 2,
+          "name": "завропод",
+          "version": "5.0",
+          "keywords": "апатозавр | брахіозавр | бронтозавр | диплодок | завропод | зауропод"
+      },
+      {
+          "emoji": "🦖",
+          "category": 2,
+          "name": "тиранозавр",
+          "version": "5.0",
+          "keywords": "тиранозавр | тиранозавр королівський | Тиранозавр Рекс"
+      },
+      {
+          "emoji": "🐳",
+          "category": 2,
+          "name": "кит, що пускає фонтан",
+          "version": "1.0",
+          "keywords": "кит | кит, що пускає фонтан | фонтан"
+      },
+      {
+          "emoji": "🐋",
+          "category": 2,
+          "name": "кит",
+          "version": "1.0",
+          "keywords": "кит"
+      },
+      {
+          "emoji": "🐬",
+          "category": 2,
+          "name": "дельфін",
+          "version": "1.0",
+          "keywords": "дельфін | плавець"
+      },
+      {
+          "emoji": "🦭",
+          "category": 2,
+          "name": "тюлень",
+          "version": "13.0",
+          "keywords": "морський лев | тюлень"
+      },
+      {
+          "emoji": "🐟",
+          "category": 2,
+          "name": "риба",
+          "version": "1.0",
+          "keywords": "зодіак | риба | риби"
+      },
+      {
+          "emoji": "🐠",
+          "category": 2,
+          "name": "тропічна риба",
+          "version": "1.0",
+          "keywords": "риба | тропічна риба | тропічний"
+      },
+      {
+          "emoji": "🐡",
+          "category": 2,
+          "name": "риба-куля",
+          "version": "1.0",
+          "keywords": "риба | риба-куля"
+      },
+      {
+          "emoji": "🦈",
+          "category": 2,
+          "name": "акула",
+          "version": "3.0",
+          "keywords": "акула | риба"
+      },
+      {
+          "emoji": "🐙",
+          "category": 2,
+          "name": "восьминіг",
+          "version": "1.0",
+          "keywords": "восьминіг"
+      },
+      {
+          "emoji": "🐚",
+          "category": 2,
+          "name": "морська мушля",
+          "version": "1.0",
+          "keywords": "морська мушля | мушля | спіральний"
+      },
+      {
+          "emoji": "🐌",
+          "category": 2,
+          "name": "равлик",
+          "version": "1.0",
+          "keywords": "павлик-равлик | петрик | равлик | слимак"
+      },
+      {
+          "emoji": "🦋",
+          "category": 2,
+          "name": "метелик",
+          "version": "3.0",
+          "keywords": "гарний | комаха | метелик"
+      },
+      {
+          "emoji": "🐛",
+          "category": 2,
+          "name": "комаха",
+          "version": "1.0",
+          "keywords": "комаха | комашина | комашка"
+      },
+      {
+          "emoji": "🐜",
+          "category": 2,
+          "name": "мураха",
+          "version": "1.0",
+          "keywords": "комаха | мураха"
+      },
+      {
+          "emoji": "🐝",
+          "category": 2,
+          "name": "бджола",
+          "version": "1.0",
+          "keywords": "бджола | комаха"
+      },
+      {
+          "emoji": "🪲",
+          "category": 2,
+          "name": "жук",
+          "version": "13.0",
+          "keywords": "жук | комаха | кузка"
+      },
+      {
+          "emoji": "🐞",
+          "category": 2,
+          "name": "сонечко",
+          "version": "1.0",
+          "keywords": "жучок | комаха | корівка | сонечко"
+      },
+      {
+          "emoji": "🦗",
+          "category": 2,
+          "name": "цвіркун",
+          "version": "5.0",
+          "keywords": "коник | цвіркун"
+      },
+      {
+          "emoji": "🪳",
+          "category": 2,
+          "name": "тарган",
+          "version": "13.0",
+          "keywords": "комаха | прусак | тарган | шкідник"
+      },
+      {
+          "emoji": "🕷️",
+          "category": 2,
+          "name": "spider",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🕸️",
+          "category": 2,
+          "name": "spider web",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🦂",
+          "category": 2,
+          "name": "скорпіон",
+          "version": "1.0",
+          "keywords": "зодіак | скорпіон"
+      },
+      {
+          "emoji": "🦟",
+          "category": 2,
+          "name": "комар",
+          "version": "11.0",
+          "keywords": "вірус | гарячка | комар | комаха | малярія | хвороба"
+      },
+      {
+          "emoji": "🪰",
+          "category": 2,
+          "name": "муха",
+          "version": "13.0",
+          "keywords": "гниль | личинка | муха | хвороба | шкідник"
+      },
+      {
+          "emoji": "🪱",
+          "category": 2,
+          "name": "хробак",
+          "version": "13.0",
+          "keywords": "дощовий хробак | кільчастий черв | паразит | хробак"
+      },
+      {
+          "emoji": "🦠",
+          "category": 2,
+          "name": "мікроб",
+          "version": "11.0",
+          "keywords": "амеба | бактерія | вірус | мікроб | мікроорганізм | хвороба"
+      },
+      {
+          "emoji": "💐",
+          "category": 2,
+          "name": "букет",
+          "version": "1.0",
+          "keywords": "букет | квітка | кохання | рослина"
+      },
+      {
+          "emoji": "🌸",
+          "category": 2,
+          "name": "вишневий цвіт",
+          "version": "1.0",
+          "keywords": "вишневий цвіт | вишня | квітка | рослина | цвіт"
+      },
+      {
+          "emoji": "💮",
+          "category": 2,
+          "name": "біла квітка",
+          "version": "1.0",
+          "keywords": "біла квітка | квітка"
+      },
+      {
+          "emoji": "🏵️",
+          "category": 2,
+          "name": "rosette",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌹",
+          "category": 2,
+          "name": "троянда",
+          "version": "1.0",
+          "keywords": "квітка | рослина | троянда"
+      },
+      {
+          "emoji": "🥀",
+          "category": 2,
+          "name": "привʼяла троянда",
+          "version": "3.0",
+          "keywords": "завʼяла троянда | зів’яла | квітка | привʼяла троянда"
+      },
+      {
+          "emoji": "🌺",
+          "category": 2,
+          "name": "гібіскус",
+          "version": "1.0",
+          "keywords": "гібіскус | квітка | рослина"
+      },
+      {
+          "emoji": "🌻",
+          "category": 2,
+          "name": "соняшник",
+          "version": "1.0",
+          "keywords": "квітка | рослина | сонце | соняшник"
+      },
+      {
+          "emoji": "🌼",
+          "category": 2,
+          "name": "жовта квітка",
+          "version": "1.0",
+          "keywords": "жовта квітка | квітка | рослина"
+      },
+      {
+          "emoji": "🌷",
+          "category": 2,
+          "name": "тюльпан",
+          "version": "1.0",
+          "keywords": "квітка | рослина | тюльпан"
+      },
+      {
+          "emoji": "🌱",
+          "category": 2,
+          "name": "сіянець",
+          "version": "1.0",
+          "keywords": "паросток | рослина | сіянець"
+      },
+      {
+          "emoji": "🪴",
+          "category": 2,
+          "name": "рослина в горщику",
+          "version": "13.0",
+          "keywords": "безглузда | вирощувати | догляд | домашня | нудна | рослина | рослина в горщику"
+      },
+      {
+          "emoji": "🌲",
+          "category": 2,
+          "name": "вічнозелене дерево",
+          "version": "1.0",
+          "keywords": "вічнозелене дерево | дерево | рослина"
+      },
+      {
+          "emoji": "🌳",
+          "category": 2,
+          "name": "листяне дерево",
+          "version": "1.0",
+          "keywords": "дерево | листяне дерево | листяний | опадає | рослина"
+      },
+      {
+          "emoji": "🌴",
+          "category": 2,
+          "name": "пальма",
+          "version": "1.0",
+          "keywords": "дерево | пальма | рослина"
+      },
+      {
+          "emoji": "🌵",
+          "category": 2,
+          "name": "кактус",
+          "version": "1.0",
+          "keywords": "кактус | рослина"
+      },
+      {
+          "emoji": "🌾",
+          "category": 2,
+          "name": "сніпок рису",
+          "version": "1.0",
+          "keywords": "колос | рис | рисовий колосок | рослина | сніпок рису"
+      },
+      {
+          "emoji": "🌿",
+          "category": 2,
+          "name": "лікарська рослина",
+          "version": "1.0",
+          "keywords": "листок | лікарська рослина | рослина"
+      },
+      {
+          "emoji": "☘️",
+          "category": 2,
+          "name": "shamrock",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🍀",
+          "category": 2,
+          "name": "чотирилисткова конюшина",
+          "version": "1.0",
+          "keywords": "4 | конюшина | листок | рослина | чотири | чотирилисткова конюшина"
+      },
+      {
+          "emoji": "🍁",
+          "category": 2,
+          "name": "кленовий листок",
+          "version": "1.0",
+          "keywords": "клен | кленовий листок | листок | опадати | рослина"
+      },
+      {
+          "emoji": "🍂",
+          "category": 2,
+          "name": "опале листя",
+          "version": "1.0",
+          "keywords": "листок | опадати | опале листя | рослина"
+      },
+      {
+          "emoji": "🍃",
+          "category": 2,
+          "name": "листя, що кружляє за вітром",
+          "version": "1.0",
+          "keywords": "вітер | дути | кружляти | листок | листя | листя, що кружляє за вітром"
+      },
+      {
+          "emoji": "🍇",
+          "category": 3,
+          "name": "виноград",
+          "version": "1.0",
+          "keywords": "виноград | виноградина | виноградини | плід"
+      },
+      {
+          "emoji": "🍈",
+          "category": 3,
+          "name": "диня",
+          "version": "1.0",
+          "keywords": "диня | плід"
+      },
+      {
+          "emoji": "🍉",
+          "category": 3,
+          "name": "кавун",
+          "version": "1.0",
+          "keywords": "кавун | плід"
+      },
+      {
+          "emoji": "🍊",
+          "category": 3,
+          "name": "танжерин",
+          "version": "1.0",
+          "keywords": "мандарин | оранжевий | плід | танжерин"
+      },
+      {
+          "emoji": "🍋",
+          "category": 3,
+          "name": "лимон",
+          "version": "1.0",
+          "keywords": "лимон | плід | цитрус"
+      },
+      {
+          "emoji": "🍌",
+          "category": 3,
+          "name": "банан",
+          "version": "1.0",
+          "keywords": "банан | плід"
+      },
+      {
+          "emoji": "🍍",
+          "category": 3,
+          "name": "ананас",
+          "version": "1.0",
+          "keywords": "ананас | плід"
+      },
+      {
+          "emoji": "🥭",
+          "category": 3,
+          "name": "манго",
+          "version": "11.0",
+          "keywords": "манго | плід | тропічний"
+      },
+      {
+          "emoji": "🍎",
+          "category": 3,
+          "name": "червоне яблуко",
+          "version": "1.0",
+          "keywords": "плід | червоне яблуко | червоний | яблуко"
+      },
+      {
+          "emoji": "🍏",
+          "category": 3,
+          "name": "зелене яблуко",
+          "version": "1.0",
+          "keywords": "зелене яблуко | зелений | плід | яблуко"
+      },
+      {
+          "emoji": "🍐",
+          "category": 3,
+          "name": "груша",
+          "version": "1.0",
+          "keywords": "груша | плід"
+      },
+      {
+          "emoji": "🍑",
+          "category": 3,
+          "name": "персик",
+          "version": "1.0",
+          "keywords": "персик | плід"
+      },
+      {
+          "emoji": "🍒",
+          "category": 3,
+          "name": "вишні",
+          "version": "1.0",
+          "keywords": "вишні | вишня | плоди | червоні"
+      },
+      {
+          "emoji": "🍓",
+          "category": 3,
+          "name": "полуниця",
+          "version": "1.0",
+          "keywords": "плід | полуниця | ягода"
+      },
+      {
+          "emoji": "🫐",
+          "category": 3,
+          "name": "лохина",
+          "version": "13.0",
+          "keywords": "лохина | синя | чорниця | ягода"
+      },
+      {
+          "emoji": "🥝",
+          "category": 3,
+          "name": "ківі",
+          "version": "3.0",
+          "keywords": "їжа | ківі | плід"
+      },
+      {
+          "emoji": "🍅",
+          "category": 3,
+          "name": "томат",
+          "version": "1.0",
+          "keywords": "овоч | плід | помідор | томат"
+      },
+      {
+          "emoji": "🫒",
+          "category": 3,
+          "name": "оливка",
+          "version": "13.0",
+          "keywords": "їжа | оливка"
+      },
+      {
+          "emoji": "🥥",
+          "category": 3,
+          "name": "кокос",
+          "version": "5.0",
+          "keywords": "кокос | пальма | пінья колада"
+      },
+      {
+          "emoji": "🥑",
+          "category": 3,
+          "name": "авокадо",
+          "version": "3.0",
+          "keywords": "авокадо | їжа | плід"
+      },
+      {
+          "emoji": "🍆",
+          "category": 3,
+          "name": "баклажан",
+          "version": "1.0",
+          "keywords": "баклажан | овоч"
+      },
+      {
+          "emoji": "🥔",
+          "category": 3,
+          "name": "картопля",
+          "version": "3.0",
+          "keywords": "їжа | картопля | овоч"
+      },
+      {
+          "emoji": "🥕",
+          "category": 3,
+          "name": "морква",
+          "version": "3.0",
+          "keywords": "їжа | морква | морквина | овоч"
+      },
+      {
+          "emoji": "🌽",
+          "category": 3,
+          "name": "качан кукурудзи",
+          "version": "1.0",
+          "keywords": "качан | качан кукурудзи | кукурудза | маїс | суцвіття"
+      },
+      {
+          "emoji": "🌶️",
+          "category": 3,
+          "name": "hot pepper",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🫑",
+          "category": 3,
+          "name": "солодкий перець",
+          "version": "13.0",
+          "keywords": "овоч | паприка | перець | солодкий перець"
+      },
+      {
+          "emoji": "🥒",
+          "category": 3,
+          "name": "огірок",
+          "version": "3.0",
+          "keywords": "їжа | корнішон | овоч | огірок | окірок"
+      },
+      {
+          "emoji": "🥬",
+          "category": 3,
+          "name": "листя салату",
+          "version": "11.0",
+          "keywords": "бок-чой | зелень | капуста | листок | листя | листя салату | салат"
+      },
+      {
+          "emoji": "🥦",
+          "category": 3,
+          "name": "броколі",
+          "version": "5.0",
+          "keywords": "броколі | кучерява | цвітна капуста"
+      },
+      {
+          "emoji": "🧄",
+          "category": 3,
+          "name": "часник",
+          "version": "12.0",
+          "keywords": "приправа | спеції | часник | часниковий"
+      },
+      {
+          "emoji": "🧅",
+          "category": 3,
+          "name": "цибуля",
+          "version": "12.0",
+          "keywords": "з цибулі | приправа | спеції | цибулинний | цибуля"
+      },
+      {
+          "emoji": "🍄",
+          "category": 3,
+          "name": "гриб",
+          "version": "1.0",
+          "keywords": "гриб | гриб із шапинкою | плодове тіло"
+      },
+      {
+          "emoji": "🥜",
+          "category": 3,
+          "name": "арахіс",
+          "version": "3.0",
+          "keywords": "арахіс | горіх | земляний горіх | їстівний"
+      },
+      {
+          "emoji": "🌰",
+          "category": 3,
+          "name": "каштан",
+          "version": "1.0",
+          "keywords": "каштан | рослина"
+      },
+      {
+          "emoji": "🍞",
+          "category": 3,
+          "name": "хліб",
+          "version": "1.0",
+          "keywords": "паляниця | хліб | хлібина"
+      },
+      {
+          "emoji": "🥐",
+          "category": 3,
+          "name": "круасан",
+          "version": "3.0",
+          "keywords": "булочний виріб | звій півмісяцем | їжа | круасан | французький"
+      },
+      {
+          "emoji": "🥖",
+          "category": 3,
+          "name": "багет",
+          "version": "3.0",
+          "keywords": "багет | булка | їжа | французький | хліб"
+      },
+      {
+          "emoji": "🫓",
+          "category": 3,
+          "name": "корж",
+          "version": "13.0",
+          "keywords": "арепа | корж | лаваш | наан | піта"
+      },
+      {
+          "emoji": "🥨",
+          "category": 3,
+          "name": "крендель",
+          "version": "5.0",
+          "keywords": "кренделик | крендель | сплетений"
+      },
+      {
+          "emoji": "🥯",
+          "category": 3,
+          "name": "бейгл",
+          "version": "11.0",
+          "keywords": "багель | бейгл | бублик | булочка | випічка | пончик | сніданок"
+      },
+      {
+          "emoji": "🥞",
+          "category": 3,
+          "name": "млинці",
+          "version": "3.0",
+          "keywords": "їжа | креп | млинець | млинці | налисник | налисники | сніданок"
+      },
+      {
+          "emoji": "🧇",
+          "category": 3,
+          "name": "вафля",
+          "version": "12.0",
+          "keywords": "вафельний | вафлі | вафля | десерт | сніданок"
+      },
+      {
+          "emoji": "🧀",
+          "category": 3,
+          "name": "кусень сиру",
+          "version": "1.0",
+          "keywords": "кусень сиру | сир | шматок сиру"
+      },
+      {
+          "emoji": "🍖",
+          "category": 3,
+          "name": "м’ясо на кістці",
+          "version": "1.0",
+          "keywords": "кістка | м’ясо | м’ясо на кістці"
+      },
+      {
+          "emoji": "🍗",
+          "category": 3,
+          "name": "ніжка свійської птиці",
+          "version": "1.0",
+          "keywords": "кістка | курка | ніжка | ніжка свійської птиці | птиця"
+      },
+      {
+          "emoji": "🥩",
+          "category": 3,
+          "name": "мʼясний філей",
+          "version": "5.0",
+          "keywords": "бараняча відбивна | котлета | мʼясний філей | свиняча котлета | стейк"
+      },
+      {
+          "emoji": "🥓",
+          "category": 3,
+          "name": "бекон",
+          "version": "3.0",
+          "keywords": "бекон | їжа | м’ясо"
+      },
+      {
+          "emoji": "🍔",
+          "category": 3,
+          "name": "гамбургер",
+          "version": "1.0",
+          "keywords": "бургер | гамбургер"
+      },
+      {
+          "emoji": "🍟",
+          "category": 3,
+          "name": "картопля фрі",
+          "version": "1.0",
+          "keywords": "картопля | фрі"
+      },
+      {
+          "emoji": "🍕",
+          "category": 3,
+          "name": "піца",
+          "version": "1.0",
+          "keywords": "піца | сир | шматок"
+      },
+      {
+          "emoji": "🌭",
+          "category": 3,
+          "name": "хот-дог",
+          "version": "1.0",
+          "keywords": "сосиска | хот-дог"
+      },
+      {
+          "emoji": "🥪",
+          "category": 3,
+          "name": "сандвіч",
+          "version": "5.0",
+          "keywords": "сандвіч | хліб"
+      },
+      {
+          "emoji": "🌮",
+          "category": 3,
+          "name": "тако",
+          "version": "1.0",
+          "keywords": "їжа | мексика | тако"
+      },
+      {
+          "emoji": "🌯",
+          "category": 3,
+          "name": "буріто",
+          "version": "1.0",
+          "keywords": "буріто | їжа | мексика"
+      },
+      {
+          "emoji": "🫔",
+          "category": 3,
+          "name": "тамале",
+          "version": "13.0",
+          "keywords": "завиванець | мексиканська страва | тамале"
+      },
+      {
+          "emoji": "🥙",
+          "category": 3,
+          "name": "піта",
+          "version": "3.0",
+          "keywords": "їжа | кебаб | лаваш | начинка | піта | фалафель"
+      },
+      {
+          "emoji": "🧆",
+          "category": 3,
+          "name": "фалафель",
+          "version": "12.0",
+          "keywords": "кулька з нуту | нут | фалафель"
+      },
+      {
+          "emoji": "🥚",
+          "category": 3,
+          "name": "яйце",
+          "version": "3.0",
+          "keywords": "їжа | яйце"
+      },
+      {
+          "emoji": "🍳",
+          "category": 3,
+          "name": "готування їжі",
+          "version": "1.0",
+          "keywords": "готування їжі | пательня | яйце"
+      },
+      {
+          "emoji": "🥘",
+          "category": 3,
+          "name": "каструля з їжею",
+          "version": "3.0",
+          "keywords": "їжа | каструля | каструля з їжею | плов | рагу"
+      },
+      {
+          "emoji": "🍲",
+          "category": 3,
+          "name": "горщик з їжею",
+          "version": "1.0",
+          "keywords": "горщик | горщик з їжею | рагу"
+      },
+      {
+          "emoji": "🫕",
+          "category": 3,
+          "name": "фондю",
+          "version": "13.0",
+          "keywords": "горщичок | сир | топлений | фондю | швейцарська страва | шоколад"
+      },
+      {
+          "emoji": "🥣",
+          "category": 3,
+          "name": "миска з ложкою",
+          "version": "5.0",
+          "keywords": "злаки | миска з ложкою | рисова каша | сніданок"
+      },
+      {
+          "emoji": "🥗",
+          "category": 3,
+          "name": "зелений салат",
+          "version": "3.0",
+          "keywords": "зелений | їжа | салат"
+      },
+      {
+          "emoji": "🍿",
+          "category": 3,
+          "name": "попкорн",
+          "version": "1.0",
+          "keywords": "попкорн"
+      },
+      {
+          "emoji": "🧈",
+          "category": 3,
+          "name": "масло",
+          "version": "12.0",
+          "keywords": "масло | молочні продукти"
+      },
+      {
+          "emoji": "🧂",
+          "category": 3,
+          "name": "сіль",
+          "version": "11.0",
+          "keywords": "приправа | сіль | сільниця | сільничка | сольничка"
+      },
+      {
+          "emoji": "🥫",
+          "category": 3,
+          "name": "консерви",
+          "version": "5.0",
+          "keywords": "банка | консерви"
+      },
+      {
+          "emoji": "🍱",
+          "category": 3,
+          "name": "обід у коробці",
+          "version": "1.0",
+          "keywords": "бенто | обід у коробці | упаковка"
+      },
+      {
+          "emoji": "🍘",
+          "category": 3,
+          "name": "рисовий крекер",
+          "version": "1.0",
+          "keywords": "крекер | рис | рисовий крекер"
+      },
+      {
+          "emoji": "🍙",
+          "category": 3,
+          "name": "рисова кулька",
+          "version": "1.0",
+          "keywords": "кулька | рис | рисова кулька | японський"
+      },
+      {
+          "emoji": "🍚",
+          "category": 3,
+          "name": "приготований рис",
+          "version": "1.0",
+          "keywords": "варений | приготований рис | рис"
+      },
+      {
+          "emoji": "🍛",
+          "category": 3,
+          "name": "рис із карі",
+          "version": "1.0",
+          "keywords": "карі | рис | рис із карі"
+      },
+      {
+          "emoji": "🍜",
+          "category": 3,
+          "name": "миска, з якої піднімається пара",
+          "version": "1.0",
+          "keywords": "локшина | миска | миска, з якої піднімається пара | парувати | рамен"
+      },
+      {
+          "emoji": "🍝",
+          "category": 3,
+          "name": "спагеті",
+          "version": "1.0",
+          "keywords": "паста | спагеті"
+      },
+      {
+          "emoji": "🍠",
+          "category": 3,
+          "name": "печений батат",
+          "version": "1.0",
+          "keywords": "батат | печений батат | печений топінамбур | смажити"
+      },
+      {
+          "emoji": "🍢",
+          "category": 3,
+          "name": "оден",
+          "version": "1.0",
+          "keywords": "їжа | кебаб | морський | оден | шампур"
+      },
+      {
+          "emoji": "🍣",
+          "category": 3,
+          "name": "суші",
+          "version": "1.0",
+          "keywords": "суші"
+      },
+      {
+          "emoji": "🍤",
+          "category": 3,
+          "name": "смажена креветка",
+          "version": "1.0",
+          "keywords": "креветка | смажена креветка | смажений | темпура"
+      },
+      {
+          "emoji": "🍥",
+          "category": 3,
+          "name": "рибний рулет зі спіральним візерунком",
+          "version": "1.0",
+          "keywords": "випічка | рибний | рибний рулет зі спіральним візерунком | рулет"
+      },
+      {
+          "emoji": "🥮",
+          "category": 3,
+          "name": "мункейк",
+          "version": "11.0",
+          "keywords": "Азія | місячний пиріг | мункейк | осінь | пиріжок | фестиваль"
+      },
+      {
+          "emoji": "🍡",
+          "category": 3,
+          "name": "рисові кульки на шпажці",
+          "version": "1.0",
+          "keywords": "десерт | рисові кульки на шпажці | солодкий | шампур | японський"
+      },
+      {
+          "emoji": "🥟",
+          "category": 3,
+          "name": "вареник",
+          "version": "5.0",
+          "keywords": "вареник | вушко | галушка | пельмень | пироги"
+      },
+      {
+          "emoji": "🥠",
+          "category": 3,
+          "name": "печиво з передбаченням",
+          "version": "5.0",
+          "keywords": "печиво з передбаченням | пророцтво"
+      },
+      {
+          "emoji": "🥡",
+          "category": 3,
+          "name": "коробка з їжею на винос",
+          "version": "5.0",
+          "keywords": "коробка з їжею на винос | коробка з китайською їжею"
+      },
+      {
+          "emoji": "🦀",
+          "category": 3,
+          "name": "краб",
+          "version": "1.0",
+          "keywords": "зодіак | краб | рак"
+      },
+      {
+          "emoji": "🦞",
+          "category": 3,
+          "name": "омар",
+          "version": "11.0",
+          "keywords": "дари моря | клешні | лобстер | морепродукти | омар | рак"
+      },
+      {
+          "emoji": "🦐",
+          "category": 3,
+          "name": "креветка",
+          "version": "3.0",
+          "keywords": "їжа | креветка | морепродукт"
+      },
+      {
+          "emoji": "🦑",
+          "category": 3,
+          "name": "кальмар",
+          "version": "3.0",
+          "keywords": "їжа | кальмар | молюск"
+      },
+      {
+          "emoji": "🦪",
+          "category": 3,
+          "name": "устриця",
+          "version": "12.0",
+          "keywords": "мушля | перли | перлина | устриця | устричний"
+      },
+      {
+          "emoji": "🍦",
+          "category": 3,
+          "name": "морозиво в ріжку",
+          "version": "1.0",
+          "keywords": "десерт | м’який | морозиво | морозиво в ріжку | солодкий"
+      },
+      {
+          "emoji": "🍧",
+          "category": 3,
+          "name": "льодова стружка",
+          "version": "1.0",
+          "keywords": "десерт | лід | льодова стружка | солодкий | стружка"
+      },
+      {
+          "emoji": "🍨",
+          "category": 3,
+          "name": "морозиво",
+          "version": "1.0",
+          "keywords": "десерт | морозиво | солодкий"
+      },
+      {
+          "emoji": "🍩",
+          "category": 3,
+          "name": "пончик",
+          "version": "1.0",
+          "keywords": "десерт | пончик | солодкий"
+      },
+      {
+          "emoji": "🍪",
+          "category": 3,
+          "name": "печиво",
+          "version": "1.0",
+          "keywords": "десерт | печиво | солодкий"
+      },
+      {
+          "emoji": "🎂",
+          "category": 3,
+          "name": "торт на день народження",
+          "version": "1.0",
+          "keywords": "випічка | день | десерт | народження | святкування | солодкий | торт | торт на день народження"
+      },
+      {
+          "emoji": "🍰",
+          "category": 3,
+          "name": "тістечко",
+          "version": "1.0",
+          "keywords": "випічка | десерт | солодкий | тістечко | шматок"
+      },
+      {
+          "emoji": "🧁",
+          "category": 3,
+          "name": "капкейк",
+          "version": "11.0",
+          "keywords": "випічка | капкейк | кекс | смаколик | тістечко | торт"
+      },
+      {
+          "emoji": "🥧",
+          "category": 3,
+          "name": "пиріг",
+          "version": "5.0",
+          "keywords": "випічка | начинка | пиріг"
+      },
+      {
+          "emoji": "🍫",
+          "category": 3,
+          "name": "плитка шоколаду",
+          "version": "1.0",
+          "keywords": "десерт | плитка | плитка шоколаду | солодкий | шоколад"
+      },
+      {
+          "emoji": "🍬",
+          "category": 3,
+          "name": "цукерка",
+          "version": "1.0",
+          "keywords": "десерт | солодкий | цукерка"
+      },
+      {
+          "emoji": "🍭",
+          "category": 3,
+          "name": "льодяник",
+          "version": "1.0",
+          "keywords": "десерт | льодяник | солодкий | цукерка"
+      },
+      {
+          "emoji": "🍮",
+          "category": 3,
+          "name": "заварний крем",
+          "version": "1.0",
+          "keywords": "десерт | заварний крем | пудинг | солодкий"
+      },
+      {
+          "emoji": "🍯",
+          "category": 3,
+          "name": "горщик із медом",
+          "version": "1.0",
+          "keywords": "горщик | горщик із медом | мед | солодкий"
+      },
+      {
+          "emoji": "🍼",
+          "category": 3,
+          "name": "пляшечка для немовляти",
+          "version": "1.0",
+          "keywords": "молоко | немовля | пити | пляшечка | пляшечка для немовляти"
+      },
+      {
+          "emoji": "🥛",
+          "category": 3,
+          "name": "склянка молока",
+          "version": "3.0",
+          "keywords": "молоко | напій | склянка | склянка молока"
+      },
+      {
+          "emoji": "☕",
+          "category": 3,
+          "name": "гарячий напій",
+          "version": "1.0",
+          "keywords": "гарячий | кава | напій | паруючий | пити | чай"
+      },
+      {
+          "emoji": "🫖",
+          "category": 3,
+          "name": "чайник",
+          "version": "13.0",
+          "keywords": "заварник | напій | чай | чайник"
+      },
+      {
+          "emoji": "🍵",
+          "category": 3,
+          "name": "чайна чашка без вушка",
+          "version": "1.0",
+          "keywords": "напій | чай | чайна чашка без вушка | чашка"
+      },
+      {
+          "emoji": "🍶",
+          "category": 3,
+          "name": "саке",
+          "version": "1.0",
+          "keywords": "бар | напій | пити | пляшка | саке | чашка"
+      },
+      {
+          "emoji": "🍾",
+          "category": 3,
+          "name": "пляшка з корком, що вилітає",
+          "version": "1.0",
+          "keywords": "бар | корок | пити | пляшка | пляшка з корком під тиском | пляшка з корком, що вилітає | стріляти"
+      },
+      {
+          "emoji": "🍷",
+          "category": 3,
+          "name": "келих для вина",
+          "version": "1.0",
+          "keywords": "бар | вино | келих | келих для вина | напій | пити"
+      },
+      {
+          "emoji": "🍸",
+          "category": 3,
+          "name": "бокал для коктейлю",
+          "version": "1.0",
+          "keywords": "бар | бокал | бокал для коктейлю | коктейль | пити"
+      },
+      {
+          "emoji": "🍹",
+          "category": 3,
+          "name": "тропічний напій",
+          "version": "1.0",
+          "keywords": "бар | пити | тропічний | тропічний напій"
+      },
+      {
+          "emoji": "🍺",
+          "category": 3,
+          "name": "кухоль із пивом",
+          "version": "1.0",
+          "keywords": "бар | кухоль | кухоль із пивом | пиво | пити"
+      },
+      {
+          "emoji": "🍻",
+          "category": 3,
+          "name": "кухлі з пивом, що цокаються",
+          "version": "1.0",
+          "keywords": "бар | кухлі з пивом, що цокаються | кухоль | пиво | пити | цокати"
+      },
+      {
+          "emoji": "🥂",
+          "category": 3,
+          "name": "дзвін бокалів",
+          "version": "3.0",
+          "keywords": "бокалів | будьмо | дзвін | напій | святкування"
+      },
+      {
+          "emoji": "🥃",
+          "category": 3,
+          "name": "бокал віскі",
+          "version": "3.0",
+          "keywords": "алкоголь | бокал | віскі | напій | спиртне"
+      },
+      {
+          "emoji": "🥤",
+          "category": 3,
+          "name": "стакан із трубочкою",
+          "version": "5.0",
+          "keywords": "сік | содова | стакан із трубочкою"
+      },
+      {
+          "emoji": "🧋",
+          "category": 3,
+          "name": "бульбашковий чай",
+          "version": "13.0",
+          "keywords": "бульбашковий | молочний | перловий | чай"
+      },
+      {
+          "emoji": "🧃",
+          "category": 3,
+          "name": "пакетик із напоєм",
+          "version": "12.0",
+          "keywords": "картонний | напій | пакет | пакетик із напоєм | сік | соломинка"
+      },
+      {
+          "emoji": "🧉",
+          "category": 3,
+          "name": "мате",
+          "version": "12.0",
+          "keywords": "калабас | мате | напій | чай із падуба"
+      },
+      {
+          "emoji": "🧊",
+          "category": 3,
+          "name": "кубик льоду",
+          "version": "12.0",
+          "keywords": "айсберг | кубик | кубик льоду | охолоджувати | холод | холодний"
+      },
+      {
+          "emoji": "🥢",
+          "category": 3,
+          "name": "палички для їжі",
+          "version": "5.0",
+          "keywords": "палички для їжі | хаші"
+      },
+      {
+          "emoji": "🍽️",
+          "category": 3,
+          "name": "fork and knife with plate",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🍴",
+          "category": 3,
+          "name": "виделка та ніж",
+          "version": "1.0",
+          "keywords": "виделка | виделка та ніж | кулінарія | ніж"
+      },
+      {
+          "emoji": "🥄",
+          "category": 3,
+          "name": "ложка",
+          "version": "3.0",
+          "keywords": "ложка | прибори"
+      },
+      {
+          "emoji": "🔪",
+          "category": 3,
+          "name": "кухонний ніж",
+          "version": "1.0",
+          "keywords": "зброя | знаряддя | кухня | кухонний ніж | ніж"
+      },
+      {
+          "emoji": "🏺",
+          "category": 3,
+          "name": "амфора",
+          "version": "1.0",
+          "keywords": "амфора | водолій | глек | зодіак | кулінарія | пити"
+      },
+      {
+          "emoji": "🌍",
+          "category": 4,
+          "name": "глобус, що показує Європу й Африку",
+          "version": "1.0",
+          "keywords": "африка | глобус | глобус, що показує Європу й Африку | європа | земля | світ"
+      },
+      {
+          "emoji": "🌎",
+          "category": 4,
+          "name": "глобус, що показує Америки",
+          "version": "1.0",
+          "keywords": "америка | глобус | глобус, що показує Америки | земля | світ"
+      },
+      {
+          "emoji": "🌏",
+          "category": 4,
+          "name": "глобус, що показує Азію і Австралію",
+          "version": "1.0",
+          "keywords": "австралія | азія | глобус | глобус, що показує Азію і Австралію | земля | світ"
+      },
+      {
+          "emoji": "🌐",
+          "category": 4,
+          "name": "земна куля з меридіанами",
+          "version": "1.0",
+          "keywords": "глобус | земля | земна куля з меридіанами | меридіани | світ"
+      },
+      {
+          "emoji": "🗺️",
+          "category": 4,
+          "name": "world map",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🗾",
+          "category": 4,
+          "name": "карта Японії",
+          "version": "1.0",
+          "keywords": "карта | карта Японії | японія"
+      },
+      {
+          "emoji": "🧭",
+          "category": 4,
+          "name": "компас",
+          "version": "11.0",
+          "keywords": "компас | магнетизм | магніт | навігація | орієнтування | сторони світу"
+      },
+      {
+          "emoji": "🏔️",
+          "category": 4,
+          "name": "snow-capped mountain",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⛰️",
+          "category": 4,
+          "name": "mountain",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌋",
+          "category": 4,
+          "name": "вулкан",
+          "version": "1.0",
+          "keywords": "виверження | вулкан | гора"
+      },
+      {
+          "emoji": "🗻",
+          "category": 4,
+          "name": "гора Фудзі",
+          "version": "1.0",
+          "keywords": "гора | гора Фудзі | фудзі"
+      },
+      {
+          "emoji": "🏕️",
+          "category": 4,
+          "name": "camping",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏖️",
+          "category": 4,
+          "name": "beach with umbrella",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏜️",
+          "category": 4,
+          "name": "desert",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏝️",
+          "category": 4,
+          "name": "desert island",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏞️",
+          "category": 4,
+          "name": "national park",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏟️",
+          "category": 4,
+          "name": "stadium",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏛️",
+          "category": 4,
+          "name": "classical building",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏗️",
+          "category": 4,
+          "name": "building construction",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🧱",
+          "category": 4,
+          "name": "цегла",
+          "version": "11.0",
+          "keywords": "глина | розчин | стіна | цегла | цеглина"
+      },
+      {
+          "emoji": "🪨",
+          "category": 4,
+          "name": "камінь",
+          "version": "13.0",
+          "keywords": "важкий | валун | камінь | кругляк | твердий"
+      },
+      {
+          "emoji": "🪵",
+          "category": 4,
+          "name": "деревина",
+          "version": "13.0",
+          "keywords": "деревина | дерево | колода | лісоматеріал"
+      },
+      {
+          "emoji": "🛖",
+          "category": 4,
+          "name": "хижа",
+          "version": "13.0",
+          "keywords": "купольний будинок | хатина | хижа | юрта"
+      },
+      {
+          "emoji": "🏘️",
+          "category": 4,
+          "name": "houses",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏚️",
+          "category": 4,
+          "name": "derelict house",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏠",
+          "category": 4,
+          "name": "будинок",
+          "version": "1.0",
+          "keywords": "будинок | будівля | дім"
+      },
+      {
+          "emoji": "🏡",
+          "category": 4,
+          "name": "будинок із садом",
+          "version": "1.0",
+          "keywords": "будинок | будинок із садом | будівля | дім | сад"
+      },
+      {
+          "emoji": "🏢",
+          "category": 4,
+          "name": "офісна будівля",
+          "version": "1.0",
+          "keywords": "будівля | офісна будівля"
+      },
+      {
+          "emoji": "🏣",
+          "category": 4,
+          "name": "японське поштове відділення",
+          "version": "1.0",
+          "keywords": "будівля | пошта | японське поштове відділення | японський"
+      },
+      {
+          "emoji": "🏤",
+          "category": 4,
+          "name": "поштове відділення",
+          "version": "1.0",
+          "keywords": "будівля | європейський | поштове відділення"
+      },
+      {
+          "emoji": "🏥",
+          "category": 4,
+          "name": "лікарня",
+          "version": "1.0",
+          "keywords": "будівля | лікар | лікарня | медицина"
+      },
+      {
+          "emoji": "🏦",
+          "category": 4,
+          "name": "банк",
+          "version": "1.0",
+          "keywords": "банк | будівля"
+      },
+      {
+          "emoji": "🏨",
+          "category": 4,
+          "name": "готель",
+          "version": "1.0",
+          "keywords": "будівля | готель"
+      },
+      {
+          "emoji": "🏩",
+          "category": 4,
+          "name": "готель кохання",
+          "version": "1.0",
+          "keywords": "будівля | готель | кохання"
+      },
+      {
+          "emoji": "🏪",
+          "category": 4,
+          "name": "цілодобовий магазин",
+          "version": "1.0",
+          "keywords": "будівля | магазин | цілодобовий"
+      },
+      {
+          "emoji": "🏫",
+          "category": 4,
+          "name": "школа",
+          "version": "1.0",
+          "keywords": "будівля | школа"
+      },
+      {
+          "emoji": "🏬",
+          "category": 4,
+          "name": "універмаг",
+          "version": "1.0",
+          "keywords": "будівля | універмаг"
+      },
+      {
+          "emoji": "🏭",
+          "category": 4,
+          "name": "фабрика",
+          "version": "1.0",
+          "keywords": "будівля | фабрика"
+      },
+      {
+          "emoji": "🏯",
+          "category": 4,
+          "name": "японський замок",
+          "version": "1.0",
+          "keywords": "будівля | японський замок"
+      },
+      {
+          "emoji": "🏰",
+          "category": 4,
+          "name": "замок",
+          "version": "1.0",
+          "keywords": "будівля | європейська | замок"
+      },
+      {
+          "emoji": "💒",
+          "category": 4,
+          "name": "весілля",
+          "version": "1.0",
+          "keywords": "весілля | каплиця | кохання"
+      },
+      {
+          "emoji": "🗼",
+          "category": 4,
+          "name": "Токійська вежа",
+          "version": "1.0",
+          "keywords": "вежа | токійська вежа | Токійська вежа | токіо"
+      },
+      {
+          "emoji": "🗽",
+          "category": 4,
+          "name": "Статуя Свободи",
+          "version": "1.0",
+          "keywords": "свобода | статуя | статуя свободи | Статуя Свободи"
+      },
+      {
+          "emoji": "⛪",
+          "category": 4,
+          "name": "церква",
+          "version": "1.0",
+          "keywords": "релігія | хрест | християнський | церква"
+      },
+      {
+          "emoji": "🕌",
+          "category": 4,
+          "name": "мечеть",
+          "version": "1.0",
+          "keywords": "іслам | мечеть | мусульманський | релігія"
+      },
+      {
+          "emoji": "🛕",
+          "category": 4,
+          "name": "індуїстський храм",
+          "version": "12.0",
+          "keywords": "індуїстський | храм"
+      },
+      {
+          "emoji": "🕍",
+          "category": 4,
+          "name": "синагога",
+          "version": "1.0",
+          "keywords": "єврей | єврейський | релігія | синагога | храм"
+      },
+      {
+          "emoji": "⛩️",
+          "category": 4,
+          "name": "shinto shrine",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🕋",
+          "category": 4,
+          "name": "Кааба",
+          "version": "1.0",
+          "keywords": "іслам | Кааба | мусульманський | релігія"
+      },
+      {
+          "emoji": "⛲",
+          "category": 4,
+          "name": "фонтан",
+          "version": "1.0",
+          "keywords": "фонтан"
+      },
+      {
+          "emoji": "⛺",
+          "category": 4,
+          "name": "намет",
+          "version": "1.0",
+          "keywords": "намет | похід"
+      },
+      {
+          "emoji": "🌁",
+          "category": 4,
+          "name": "туманно",
+          "version": "1.0",
+          "keywords": "погода | туман | туманно"
+      },
+      {
+          "emoji": "🌃",
+          "category": 4,
+          "name": "зоряна ніч",
+          "version": "1.0",
+          "keywords": "зірка | зоряна ніч | ніч | погода"
+      },
+      {
+          "emoji": "🏙️",
+          "category": 4,
+          "name": "cityscape",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌄",
+          "category": 4,
+          "name": "схід сонця над горами",
+          "version": "1.0",
+          "keywords": "гора | погода | ранок | сонце | схід | схід сонця над горами"
+      },
+      {
+          "emoji": "🌅",
+          "category": 4,
+          "name": "схід сонця",
+          "version": "1.0",
+          "keywords": "погода | ранок | сонце | схід сонця"
+      },
+      {
+          "emoji": "🌆",
+          "category": 4,
+          "name": "місто в сутінках",
+          "version": "1.0",
+          "keywords": "вечір | захід | ландшафт | місто | місто в сутінках | сутінки"
+      },
+      {
+          "emoji": "🌇",
+          "category": 4,
+          "name": "захід сонця",
+          "version": "1.0",
+          "keywords": "захід сонця | сонце | сутінки"
+      },
+      {
+          "emoji": "🌉",
+          "category": 4,
+          "name": "міст уночі",
+          "version": "1.0",
+          "keywords": "міст | міст уночі | ніч | погода"
+      },
+      {
+          "emoji": "♨️",
+          "category": 4,
+          "name": "hot springs",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎠",
+          "category": 4,
+          "name": "коник на каруселі",
+          "version": "1.0",
+          "keywords": "карусель | кінь | коник на каруселі"
+      },
+      {
+          "emoji": "🎡",
+          "category": 4,
+          "name": "чортове колесо",
+          "version": "1.0",
+          "keywords": "колесо | огляд | парк розваг | чортове колесо"
+      },
+      {
+          "emoji": "🎢",
+          "category": 4,
+          "name": "американські гірки",
+          "version": "1.0",
+          "keywords": "американський | американські гірки | гірки | парк розваг"
+      },
+      {
+          "emoji": "💈",
+          "category": 4,
+          "name": "вивіска перукаря (смугастий стовп)",
+          "version": "1.0",
+          "keywords": "вивіска | вивіска перукаря (смугастий стовп) | зачіска | перукар"
+      },
+      {
+          "emoji": "🎪",
+          "category": 4,
+          "name": "циркове шатро",
+          "version": "1.0",
+          "keywords": "намет | цирк | циркове шатро"
+      },
+      {
+          "emoji": "🚂",
+          "category": 4,
+          "name": "паровий локомотив",
+          "version": "1.0",
+          "keywords": "двигун | залізниця | паровий | паровий локомотив | потяг | транспорт"
+      },
+      {
+          "emoji": "🚃",
+          "category": 4,
+          "name": "вагон",
+          "version": "1.0",
+          "keywords": "вагон | електричний | залізниця | трамвай | тролейбус"
+      },
+      {
+          "emoji": "🚄",
+          "category": 4,
+          "name": "швидкісний потяг",
+          "version": "1.0",
+          "keywords": "залізниця | інтерсіті | потяг | транспорт | швидкісний"
+      },
+      {
+          "emoji": "🚅",
+          "category": 4,
+          "name": "швидкісний потяг з округлим носом",
+          "version": "1.0",
+          "keywords": "залізниця | інтерсіті | кулеподібний | потяг | транспорт | швидкісний | швидкісний потяг з округлим носом"
+      },
+      {
+          "emoji": "🚆",
+          "category": 4,
+          "name": "потяг",
+          "version": "1.0",
+          "keywords": "залізниця | потяг | транспорт"
+      },
+      {
+          "emoji": "🚇",
+          "category": 4,
+          "name": "метро",
+          "version": "1.0",
+          "keywords": "метро | транспорт"
+      },
+      {
+          "emoji": "🚈",
+          "category": 4,
+          "name": "швидкісний трамвай",
+          "version": "1.0",
+          "keywords": "залізниця | транспорт | швидкісний трамвай"
+      },
+      {
+          "emoji": "🚉",
+          "category": 4,
+          "name": "станція",
+          "version": "1.0",
+          "keywords": "cтанція | залізниця | потяг | станція | транспорт"
+      },
+      {
+          "emoji": "🚊",
+          "category": 4,
+          "name": "трамвай",
+          "version": "1.0",
+          "keywords": "трамвай | транспорт | тролейбус"
+      },
+      {
+          "emoji": "🚝",
+          "category": 4,
+          "name": "монорейка",
+          "version": "1.0",
+          "keywords": "монорейка | транспорт"
+      },
+      {
+          "emoji": "🚞",
+          "category": 4,
+          "name": "залізниця в горах",
+          "version": "1.0",
+          "keywords": "вагон | гора | залізниця | залізниця в горах | транспорт"
+      },
+      {
+          "emoji": "🚋",
+          "category": 4,
+          "name": "вагон трамвая",
+          "version": "1.0",
+          "keywords": "вагон | вагон трамвая | трамвай | транспорт | тролейбус"
+      },
+      {
+          "emoji": "🚌",
+          "category": 4,
+          "name": "автобус",
+          "version": "1.0",
+          "keywords": "автобус | транспорт"
+      },
+      {
+          "emoji": "🚍",
+          "category": 4,
+          "name": "автобус, що наближається",
+          "version": "1.0",
+          "keywords": "автобус | автобус, що наближається | наближатися | транспорт"
+      },
+      {
+          "emoji": "🚎",
+          "category": 4,
+          "name": "тролейбус",
+          "version": "1.0",
+          "keywords": "автобус | трамвай | транспорт | тролейбус"
+      },
+      {
+          "emoji": "🚐",
+          "category": 4,
+          "name": "мікроавтобус",
+          "version": "1.0",
+          "keywords": "автобус | мікроавтобус | транспорт"
+      },
+      {
+          "emoji": "🚑",
+          "category": 4,
+          "name": "автомобіль швидкої допомоги",
+          "version": "1.0",
+          "keywords": "автомобіль швидкої допомоги | транспорт"
+      },
+      {
+          "emoji": "🚒",
+          "category": 4,
+          "name": "пожежна машина",
+          "version": "1.0",
+          "keywords": "вантажівка | двигун | пожежна машина | пожежний"
+      },
+      {
+          "emoji": "🚓",
+          "category": 4,
+          "name": "поліцейська машина",
+          "version": "1.0",
+          "keywords": "автомобіль | патруль | поліцейська машина | поліцейський автомобіль | поліція"
+      },
+      {
+          "emoji": "🚔",
+          "category": 4,
+          "name": "поліцейська машина, що наближається",
+          "version": "1.0",
+          "keywords": "автомобіль | наближається | поліцейська машина, що наближається | поліцейський автомобіль, що наближається | поліція"
+      },
+      {
+          "emoji": "🚕",
+          "category": 4,
+          "name": "таксі",
+          "version": "1.0",
+          "keywords": "таксі | транспорт"
+      },
+      {
+          "emoji": "🚖",
+          "category": 4,
+          "name": "таксі, що наближається",
+          "version": "1.0",
+          "keywords": "наближатися | таксі | таксі, що наближається | транспорт"
+      },
+      {
+          "emoji": "🚗",
+          "category": 4,
+          "name": "автомобіль",
+          "version": "1.0",
+          "keywords": "автомобіль | транспорт"
+      },
+      {
+          "emoji": "🚘",
+          "category": 4,
+          "name": "автомобіль, що наближається",
+          "version": "1.0",
+          "keywords": "автомобіль | автомобіль, що наближається | машина | наближається | транспорт"
+      },
+      {
+          "emoji": "🚙",
+          "category": 4,
+          "name": "позашляховик",
+          "version": "1.0",
+          "keywords": "житловий | позашляховик | транспорт | трейлер | фургон"
+      },
+      {
+          "emoji": "🛻",
+          "category": 4,
+          "name": "автомобіль-пікап",
+          "version": "13.0",
+          "keywords": "автомобіль-пікап | вантажівка | легка вантажівка | пікап"
+      },
+      {
+          "emoji": "🚚",
+          "category": 4,
+          "name": "вантажівка для доставки",
+          "version": "1.0",
+          "keywords": "вантажівка для доставки | доставка | транспорт | фургон"
+      },
+      {
+          "emoji": "🚛",
+          "category": 4,
+          "name": "вантажівка з причепом",
+          "version": "1.0",
+          "keywords": "вантажівка | вантажівка з причепом | транспорт | фургон"
+      },
+      {
+          "emoji": "🚜",
+          "category": 4,
+          "name": "трактор",
+          "version": "1.0",
+          "keywords": "трактор | транспорт"
+      },
+      {
+          "emoji": "🏎️",
+          "category": 4,
+          "name": "racing car",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏍️",
+          "category": 4,
+          "name": "motorcycle",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🛵",
+          "category": 4,
+          "name": "мопед",
+          "version": "3.0",
+          "keywords": "мопед | скутер"
+      },
+      {
+          "emoji": "🦽",
+          "category": 4,
+          "name": "колісний візок із ручним приводом",
+          "version": "12.0",
+          "keywords": "доступність | колісний візок із ручним приводом | спеціальний засіб"
+      },
+      {
+          "emoji": "🦼",
+          "category": 4,
+          "name": "колісний візок з електроприводом",
+          "version": "12.0",
+          "keywords": "доступність | колісний візок з електроприводом | спеціальний засіб"
+      },
+      {
+          "emoji": "🛺",
+          "category": 4,
+          "name": "авторикша",
+          "version": "12.0",
+          "keywords": "авторикша | рикша | тук-тук"
+      },
+      {
+          "emoji": "🚲",
+          "category": 4,
+          "name": "велосипед",
+          "version": "1.0",
+          "keywords": "велосипед | транспорт"
+      },
+      {
+          "emoji": "🛴",
+          "category": 4,
+          "name": "самокат",
+          "version": "3.0",
+          "keywords": "самокат"
+      },
+      {
+          "emoji": "🛹",
+          "category": 4,
+          "name": "скейтборд",
+          "version": "11.0",
+          "keywords": "борд | дошка | скейт | скейтборд"
+      },
+      {
+          "emoji": "🛼",
+          "category": 4,
+          "name": "роликовий ковзан",
+          "version": "13.0",
+          "keywords": "ковзан | роликовий"
+      },
+      {
+          "emoji": "🚏",
+          "category": 4,
+          "name": "автобусна зупинка",
+          "version": "1.0",
+          "keywords": "автобус | автобусна зупинка | зупинка"
+      },
+      {
+          "emoji": "🛣️",
+          "category": 4,
+          "name": "motorway",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🛤️",
+          "category": 4,
+          "name": "railway track",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🛢️",
+          "category": 4,
+          "name": "oil drum",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⛽",
+          "category": 4,
+          "name": "бензоколонка",
+          "version": "1.0",
+          "keywords": "бензоколонка | заправка | насос | пальне"
+      },
+      {
+          "emoji": "🚨",
+          "category": 4,
+          "name": "проблисковий маячок",
+          "version": "1.0",
+          "keywords": "автомобіль | вогні поліцейського автомобіля | маяк | мигати | обертатися | поліція | проблисковий маячок"
+      },
+      {
+          "emoji": "🚥",
+          "category": 4,
+          "name": "горизонтальний світлофор",
+          "version": "1.0",
+          "keywords": "горизонтальний світлофор | світлофор | транспорт"
+      },
+      {
+          "emoji": "🚦",
+          "category": 4,
+          "name": "вертикальний світлофор",
+          "version": "1.0",
+          "keywords": "вертикальний світлофор | світлофор | транспорт"
+      },
+      {
+          "emoji": "🛑",
+          "category": 4,
+          "name": "восьмикутний червоний знак",
+          "version": "3.0",
+          "keywords": "восьмикутний червоний знак | восьмикутник | знак | стоп"
+      },
+      {
+          "emoji": "🚧",
+          "category": 4,
+          "name": "знак ремонтних робіт",
+          "version": "1.0",
+          "keywords": "знак ремонтних робіт | паркан"
+      },
+      {
+          "emoji": "⚓",
+          "category": 4,
+          "name": "якір",
+          "version": "1.0",
+          "keywords": "знаряддя | корабель | якір"
+      },
+      {
+          "emoji": "⛵",
+          "category": 4,
+          "name": "вітрильник",
+          "version": "1.0",
+          "keywords": "відпочинок | вітрильник | море | транспорт | човен | яхта"
+      },
+      {
+          "emoji": "🛶",
+          "category": 4,
+          "name": "каное",
+          "version": "3.0",
+          "keywords": "каное | човен"
+      },
+      {
+          "emoji": "🚤",
+          "category": 4,
+          "name": "швидкохідний катер",
+          "version": "1.0",
+          "keywords": "транспорт | човен | швидкохідний катер"
+      },
+      {
+          "emoji": "🛳️",
+          "category": 4,
+          "name": "passenger ship",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⛴️",
+          "category": 4,
+          "name": "ferry",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🛥️",
+          "category": 4,
+          "name": "motor boat",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🚢",
+          "category": 4,
+          "name": "корабель",
+          "version": "1.0",
+          "keywords": "корабель | транспорт"
+      },
+      {
+          "emoji": "✈️",
+          "category": 4,
+          "name": "airplane",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🛩️",
+          "category": 4,
+          "name": "small airplane",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🛫",
+          "category": 4,
+          "name": "літак злітає",
+          "version": "1.0",
+          "keywords": "відправлення | літак | літак злітає | реєстрація | транспорт"
+      },
+      {
+          "emoji": "🛬",
+          "category": 4,
+          "name": "літак сідає",
+          "version": "1.0",
+          "keywords": "літак | літак сідає | прибуття | приземлення | транспорт"
+      },
+      {
+          "emoji": "🪂",
+          "category": 4,
+          "name": "парашут",
+          "version": "12.0",
+          "keywords": "кайт | параплан | парапланеризм | парафойл | парашут | парашут-крило"
+      },
+      {
+          "emoji": "💺",
+          "category": 4,
+          "name": "сидіння",
+          "version": "1.0",
+          "keywords": "крісло | сидіння"
+      },
+      {
+          "emoji": "🚁",
+          "category": 4,
+          "name": "гелікоптер",
+          "version": "1.0",
+          "keywords": "гелікоптер | транспорт"
+      },
+      {
+          "emoji": "🚟",
+          "category": 4,
+          "name": "підвісна монорейка",
+          "version": "1.0",
+          "keywords": "залізниця | підвісна монорейка | підвісний | транспорт"
+      },
+      {
+          "emoji": "🚠",
+          "category": 4,
+          "name": "канатна дорога в горах",
+          "version": "1.0",
+          "keywords": "гондола | гора | кабель | канатна дорога в горах | транспорт"
+      },
+      {
+          "emoji": "🚡",
+          "category": 4,
+          "name": "канатна дорога",
+          "version": "1.0",
+          "keywords": "автомобіль | гондола | кабель | канатна дорога | підвісна дорога | повітряний | транспорт"
+      },
+      {
+          "emoji": "🛰️",
+          "category": 4,
+          "name": "satellite",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🚀",
+          "category": 4,
+          "name": "ракета",
+          "version": "1.0",
+          "keywords": "космос | ракета | транспорт"
+      },
+      {
+          "emoji": "🛸",
+          "category": 4,
+          "name": "летюча тарілка",
+          "version": "5.0",
+          "keywords": "летюча тарілка | НЛО"
+      },
+      {
+          "emoji": "🛎️",
+          "category": 4,
+          "name": "bellhop bell",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🧳",
+          "category": 4,
+          "name": "багаж",
+          "version": "11.0",
+          "keywords": "багаж | валіза | подорож | чемодан"
+      },
+      {
+          "emoji": "⌛",
+          "category": 4,
+          "name": "пісковий годинник",
+          "version": "1.0",
+          "keywords": "пісковий годинник | пісок | пісочний годинник | таймер"
+      },
+      {
+          "emoji": "⏳",
+          "category": 4,
+          "name": "пісковий годинник із піском, який сиплеться",
+          "version": "1.0",
+          "keywords": "пісковий годинник із піском, який сиплеться | пісок | пісочний годинник | пісочний годинник із піском, який сиплеться | таймер"
+      },
+      {
+          "emoji": "⌚",
+          "category": 4,
+          "name": "наручний годинник",
+          "version": "1.0",
+          "keywords": "годинник | наручний годинник"
+      },
+      {
+          "emoji": "⏰",
+          "category": 4,
+          "name": "будильник",
+          "version": "1.0",
+          "keywords": "будильник | годинник"
+      },
+      {
+          "emoji": "⏱️",
+          "category": 4,
+          "name": "stopwatch",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⏲️",
+          "category": 4,
+          "name": "timer clock",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🕰️",
+          "category": 4,
+          "name": "mantelpiece clock",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🕛",
+          "category": 4,
+          "name": "дванадцята година",
+          "version": "1.0",
+          "keywords": "00 | 12 | 12:00 | година | годинник | дванадцята година | дванадцять"
+      },
+      {
+          "emoji": "🕧",
+          "category": 4,
+          "name": "пів на першу",
+          "version": "1.0",
+          "keywords": "12 | 12:30 | 30 | годинник | дванадцять | пів на першу | тридцять"
+      },
+      {
+          "emoji": "🕐",
+          "category": 4,
+          "name": "перша година",
+          "version": "1.0",
+          "keywords": "00 | 1 | 1:00 | година | годинник | один | перша година"
+      },
+      {
+          "emoji": "🕜",
+          "category": 4,
+          "name": "пів на другу",
+          "version": "1.0",
+          "keywords": "1 | 1:30 | 30 | годинник | один | пів на другу | тридцять"
+      },
+      {
+          "emoji": "🕑",
+          "category": 4,
+          "name": "друга година",
+          "version": "1.0",
+          "keywords": "00 | 2 | 2:00 | година | годинник | два | друга година"
+      },
+      {
+          "emoji": "🕝",
+          "category": 4,
+          "name": "пів на третю",
+          "version": "1.0",
+          "keywords": "2 | 2:30 | 30 | годинник | два | пів на третю | тридцять"
+      },
+      {
+          "emoji": "🕒",
+          "category": 4,
+          "name": "третя година",
+          "version": "1.0",
+          "keywords": "00 | 3 | 3:00 | година | годинник | третя година | три"
+      },
+      {
+          "emoji": "🕞",
+          "category": 4,
+          "name": "пів на четверту",
+          "version": "1.0",
+          "keywords": "3 | 3:30 | 30 | годинник | пів на четверту | три | тридцять"
+      },
+      {
+          "emoji": "🕓",
+          "category": 4,
+          "name": "четверта година",
+          "version": "1.0",
+          "keywords": "00 | 4 | 4:00 | година | годинник | четверта година | чотири"
+      },
+      {
+          "emoji": "🕟",
+          "category": 4,
+          "name": "пів на п’яту",
+          "version": "1.0",
+          "keywords": "30 | 4 | 4:30 | годинник | пів на п’яту | тридцять | чотири"
+      },
+      {
+          "emoji": "🕔",
+          "category": 4,
+          "name": "п’ята година",
+          "version": "1.0",
+          "keywords": "00 | 5 | 5:00 | година | годинник | п’ята година | п’ять"
+      },
+      {
+          "emoji": "🕠",
+          "category": 4,
+          "name": "пів на шосту",
+          "version": "1.0",
+          "keywords": "30 | 5 | 5:30 | годинник | п’ять | пів на шосту | тридцять"
+      },
+      {
+          "emoji": "🕕",
+          "category": 4,
+          "name": "шоста година",
+          "version": "1.0",
+          "keywords": "00 | 6 | 6:00 | година | годинник | шість | шоста година"
+      },
+      {
+          "emoji": "🕡",
+          "category": 4,
+          "name": "пів на сьому",
+          "version": "1.0",
+          "keywords": "30 | 6 | 6:30 | годинник | пів на сьому | тридцять | шість"
+      },
+      {
+          "emoji": "🕖",
+          "category": 4,
+          "name": "сьома година",
+          "version": "1.0",
+          "keywords": "00 | 7 | 7:00 | година | годинник | сім | сьома година"
+      },
+      {
+          "emoji": "🕢",
+          "category": 4,
+          "name": "пів на восьму",
+          "version": "1.0",
+          "keywords": "30 | 7 | 7:30 | годинник | пів на восьму | сім | тридцять"
+      },
+      {
+          "emoji": "🕗",
+          "category": 4,
+          "name": "восьма година",
+          "version": "1.0",
+          "keywords": "00 | 8 | 8:00 | вісім | восьма година | година | годинник"
+      },
+      {
+          "emoji": "🕣",
+          "category": 4,
+          "name": "пів на дев’яту",
+          "version": "1.0",
+          "keywords": "30 | 8 | 8:30 | вісім | годинник | пів на дев’яту | тридцять"
+      },
+      {
+          "emoji": "🕘",
+          "category": 4,
+          "name": "дев’ята година",
+          "version": "1.0",
+          "keywords": "00 | 9 | 9:00 | година | годинник | дев’ята година | дев’ять"
+      },
+      {
+          "emoji": "🕤",
+          "category": 4,
+          "name": "пів на десяту",
+          "version": "1.0",
+          "keywords": "30 | 9 | 9:30 | годинник | дев’ять | пів на десяту | тридцять"
+      },
+      {
+          "emoji": "🕙",
+          "category": 4,
+          "name": "десята година",
+          "version": "1.0",
+          "keywords": "00 | 10 | 10:00 | година | годинник | десята година | десять"
+      },
+      {
+          "emoji": "🕥",
+          "category": 4,
+          "name": "пів на одинадцяту",
+          "version": "1.0",
+          "keywords": "10 | 10:30 | 30 | годинник | десять | пів на одинадцяту | тридцять"
+      },
+      {
+          "emoji": "🕚",
+          "category": 4,
+          "name": "одинадцята година",
+          "version": "1.0",
+          "keywords": "00 | 11 | 11:00 | година | годинник | одинадцята година | одинадцять"
+      },
+      {
+          "emoji": "🕦",
+          "category": 4,
+          "name": "пів на дванадцяту",
+          "version": "1.0",
+          "keywords": "11 | 11:30 | 30 | годинник | одинадцять | пів на дванадцяту | тридцять"
+      },
+      {
+          "emoji": "🌑",
+          "category": 4,
+          "name": "молодий місяць",
+          "version": "1.0",
+          "keywords": "космос | місяць | молодий місяць | погода | темний"
+      },
+      {
+          "emoji": "🌒",
+          "category": 4,
+          "name": "місяць у першій чверті",
+          "version": "1.0",
+          "keywords": "зростаючий | космос | місяць | місяць у першій чверті | півмісяць | погода"
+      },
+      {
+          "emoji": "🌓",
+          "category": 4,
+          "name": "перша чверть місяця",
+          "version": "1.0",
+          "keywords": "космос | місяць | перша чверть місяця | погода | чверть"
+      },
+      {
+          "emoji": "🌔",
+          "category": 4,
+          "name": "місяць у другій чверті",
+          "version": "1.0",
+          "keywords": "зростаючий | космос | місяць | місяць у другій чверті | погода | серпоподібний"
+      },
+      {
+          "emoji": "🌕",
+          "category": 4,
+          "name": "повний місяць",
+          "version": "1.0",
+          "keywords": "космос | місяць | повний | погода"
+      },
+      {
+          "emoji": "🌖",
+          "category": 4,
+          "name": "місяць у третій чверті",
+          "version": "1.0",
+          "keywords": "космос | місяць | місяць у третій чверті | погода | серпоподібний | спадаючий"
+      },
+      {
+          "emoji": "🌗",
+          "category": 4,
+          "name": "остання чверть місяця",
+          "version": "1.0",
+          "keywords": "космос | місяць | остання чверть місяця | погода | чверть"
+      },
+      {
+          "emoji": "🌘",
+          "category": 4,
+          "name": "місяць у четвертій чверті",
+          "version": "1.0",
+          "keywords": "космос | місяць | місяць у четвертій чверті | півмісяць | погода | спадаючий"
+      },
+      {
+          "emoji": "🌙",
+          "category": 4,
+          "name": "серп місяця",
+          "version": "1.0",
+          "keywords": "космос | місяць | погода | серп місяця"
+      },
+      {
+          "emoji": "🌚",
+          "category": 4,
+          "name": "молодий місяць з обличчям",
+          "version": "1.0",
+          "keywords": "космос | місяць | молодий місяць з обличчям | обличчя | погода"
+      },
+      {
+          "emoji": "🌛",
+          "category": 4,
+          "name": "перша чверть місяця з обличчям",
+          "version": "1.0",
+          "keywords": "космос | місяць | обличчя | перша чверть місяця з обличчям | погода | чверть"
+      },
+      {
+          "emoji": "🌜",
+          "category": 4,
+          "name": "остання чверть місяця з обличчям",
+          "version": "1.0",
+          "keywords": "космос | місяць | обличчя | остання чверть місяця з обличчям | погода | чверть"
+      },
+      {
+          "emoji": "🌡️",
+          "category": 4,
+          "name": "thermometer",
+          "version": "1.0"
+      },
+      {
+          "emoji": "☀️",
+          "category": 4,
+          "name": "sun",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌝",
+          "category": 4,
+          "name": "повний місяць з обличчям",
+          "version": "1.0",
+          "keywords": "місяць | обличчя | повний | повний місяць з обличчям | яскравий"
+      },
+      {
+          "emoji": "🌞",
+          "category": 4,
+          "name": "сонце з обличчям",
+          "version": "1.0",
+          "keywords": "космос | обличчя | погода | сонце | сонце з обличчям | яскравий"
+      },
+      {
+          "emoji": "🪐",
+          "category": 4,
+          "name": "планета з кільцем",
+          "version": "12.0",
+          "keywords": "планета з кільцем | сатурн"
+      },
+      {
+          "emoji": "⭐",
+          "category": 4,
+          "name": "зірка",
+          "version": "1.0",
+          "keywords": "зірка | середня біла зірка"
+      },
+      {
+          "emoji": "🌟",
+          "category": 4,
+          "name": "сяйна зірка",
+          "version": "1.0",
+          "keywords": "блискучий | зірка | іскра | світиться | світло | сяє | сяйна зірка"
+      },
+      {
+          "emoji": "🌠",
+          "category": 4,
+          "name": "метеор",
+          "version": "1.0",
+          "keywords": "зірка | космос | метеор | небо | падає"
+      },
+      {
+          "emoji": "🌌",
+          "category": 4,
+          "name": "Чумацький шлях",
+          "version": "1.0",
+          "keywords": "космос | погода | Чумацький шлях"
+      },
+      {
+          "emoji": "☁️",
+          "category": 4,
+          "name": "cloud",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⛅",
+          "category": 4,
+          "name": "сонце за хмарою",
+          "version": "1.0",
+          "keywords": "погода | сонце | сонце за хмарою | хмара"
+      },
+      {
+          "emoji": "⛈️",
+          "category": 4,
+          "name": "cloud with lightning and rain",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌤️",
+          "category": 4,
+          "name": "sun behind small cloud",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌥️",
+          "category": 4,
+          "name": "sun behind large cloud",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌦️",
+          "category": 4,
+          "name": "sun behind rain cloud",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌧️",
+          "category": 4,
+          "name": "cloud with rain",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌨️",
+          "category": 4,
+          "name": "cloud with snow",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌩️",
+          "category": 4,
+          "name": "cloud with lightning",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌪️",
+          "category": 4,
+          "name": "tornado",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌫️",
+          "category": 4,
+          "name": "fog",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌬️",
+          "category": 4,
+          "name": "wind face",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🌀",
+          "category": 4,
+          "name": "циклон",
+          "version": "1.0",
+          "keywords": "запаморочення | погода | смерч | тайфун | циклон"
+      },
+      {
+          "emoji": "🌈",
+          "category": 4,
+          "name": "веселка",
+          "version": "1.0",
+          "keywords": "веселка | дощ | погода"
+      },
+      {
+          "emoji": "🌂",
+          "category": 4,
+          "name": "складена парасолька",
+          "version": "1.0",
+          "keywords": "дощ | одяг | парасолька | погода | складена парасолька"
+      },
+      {
+          "emoji": "☂️",
+          "category": 4,
+          "name": "umbrella",
+          "version": "1.0"
+      },
+      {
+          "emoji": "☔",
+          "category": 4,
+          "name": "парасолька з краплями дощу",
+          "version": "1.0",
+          "keywords": "дощ | крапля | одяг | парасолька | парасолька з краплями дощу"
+      },
+      {
+          "emoji": "⛱️",
+          "category": 4,
+          "name": "umbrella on ground",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⚡",
+          "category": 4,
+          "name": "висока напруга",
+          "version": "1.0",
+          "keywords": "блискавка | висока напруга | електрика | електричний | напруга | небезпека"
+      },
+      {
+          "emoji": "❄️",
+          "category": 4,
+          "name": "snowflake",
+          "version": "1.0"
+      },
+      {
+          "emoji": "☃️",
+          "category": 4,
+          "name": "snowman",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⛄",
+          "category": 4,
+          "name": "сніговик без снігу",
+          "version": "1.0",
+          "keywords": "cніговик | погода | сніг | сніговик | сніговик без снігу | холодний"
+      },
+      {
+          "emoji": "☄️",
+          "category": 4,
+          "name": "comet",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🔥",
+          "category": 4,
+          "name": "вогонь",
+          "version": "1.0",
+          "keywords": "вогонь | інструмент | полум’я"
+      },
+      {
+          "emoji": "💧",
+          "category": 4,
+          "name": "крапля",
+          "version": "1.0",
+          "keywords": "комічний | крапля | піт | погода | холодний"
+      },
+      {
+          "emoji": "🌊",
+          "category": 4,
+          "name": "хвиля",
+          "version": "1.0",
+          "keywords": "вода | океан | погода | хвиля"
+      },
+      {
+          "emoji": "🎃",
+          "category": 5,
+          "name": "ліхтар-гарбуз",
+          "version": "1.0",
+          "keywords": "гарбуз | ліхтар | ліхтар-гарбуз | святкування | хелловін"
+      },
+      {
+          "emoji": "🎄",
+          "category": 5,
+          "name": "різдвяна ялинка",
+          "version": "1.0",
+          "keywords": "дерево | різдво | різдвяна ялинка | святкування | ялинка"
+      },
+      {
+          "emoji": "🎆",
+          "category": 5,
+          "name": "феєрверки",
+          "version": "1.0",
+          "keywords": "святкування | феєрверки"
+      },
+      {
+          "emoji": "🎇",
+          "category": 5,
+          "name": "бенгальський вогонь",
+          "version": "1.0",
+          "keywords": "бенгальський вогонь | іскра | святкування | феєрверки"
+      },
+      {
+          "emoji": "🧨",
+          "category": 5,
+          "name": "петарда",
+          "version": "11.0",
+          "keywords": "бомба | вибухівка | динаміт | петарда | феєрверк"
+      },
+      {
+          "emoji": "✨",
+          "category": 5,
+          "name": "блискітки",
+          "version": "1.0",
+          "keywords": "блискітки | зірка | іскра | іскри"
+      },
+      {
+          "emoji": "🎈",
+          "category": 5,
+          "name": "повітряна кулька",
+          "version": "1.0",
+          "keywords": "повітряна кулька | святкування"
+      },
+      {
+          "emoji": "🎉",
+          "category": 5,
+          "name": "хлопавка",
+          "version": "1.0",
+          "keywords": "вечірка | святкування | сюрприз | хлопавка"
+      },
+      {
+          "emoji": "🎊",
+          "category": 5,
+          "name": "кулька з конфеті",
+          "version": "1.0",
+          "keywords": "конфеті | кулька з конфеті | святкування"
+      },
+      {
+          "emoji": "🎋",
+          "category": 5,
+          "name": "танабата, гілка тандзаку",
+          "version": "1.0",
+          "keywords": "банер | дерево | святкування | танабата, гілка тандзаку | японський"
+      },
+      {
+          "emoji": "🎍",
+          "category": 5,
+          "name": "прикраси на ялинку",
+          "version": "1.0",
+          "keywords": "бамбук | прикраси на ялинку | рослина | святкування | сосна | японський"
+      },
+      {
+          "emoji": "🎎",
+          "category": 5,
+          "name": "японські ляльки",
+          "version": "1.0",
+          "keywords": "лялька | святкування | фестиваль | японський | японські ляльки"
+      },
+      {
+          "emoji": "🎏",
+          "category": 5,
+          "name": "вітровказ у формі коропів",
+          "version": "1.0",
+          "keywords": "вітровказ у формі коропів | карп | святкування | транспарант | транспарант із карпами"
+      },
+      {
+          "emoji": "🎐",
+          "category": 5,
+          "name": "китайські дзвіночки",
+          "version": "1.0",
+          "keywords": "вітер | дзвіночки | дзвоник | китайські дзвіночки | святкування"
+      },
+      {
+          "emoji": "🎑",
+          "category": 5,
+          "name": "церемонія вшанування місяця",
+          "version": "1.0",
+          "keywords": "місяць | святкування | церемонія | церемонія вшанування місяця"
+      },
+      {
+          "emoji": "🧧",
+          "category": 5,
+          "name": "червоний конверт",
+          "version": "11.0",
+          "keywords": "гроші | конверт | лист | на щастя | подарунок | червоний конверт"
+      },
+      {
+          "emoji": "🎀",
+          "category": 5,
+          "name": "бант зі стрічки",
+          "version": "1.0",
+          "keywords": "бант зі стрічки | святкування"
+      },
+      {
+          "emoji": "🎁",
+          "category": 5,
+          "name": "подарунок",
+          "version": "1.0",
+          "keywords": "дарунок | запакований | коробка | подарунок | святкування"
+      },
+      {
+          "emoji": "🎗️",
+          "category": 5,
+          "name": "reminder ribbon",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎟️",
+          "category": 5,
+          "name": "admission tickets",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎫",
+          "category": 5,
+          "name": "квиток",
+          "version": "1.0",
+          "keywords": "вхідний | квиток"
+      },
+      {
+          "emoji": "🎖️",
+          "category": 5,
+          "name": "military medal",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏆",
+          "category": 5,
+          "name": "приз",
+          "version": "1.0",
+          "keywords": "нагорода | приз | трофей"
+      },
+      {
+          "emoji": "🏅",
+          "category": 5,
+          "name": "спортивна медаль",
+          "version": "1.0",
+          "keywords": "медаль | спортивна медаль"
+      },
+      {
+          "emoji": "🥇",
+          "category": 5,
+          "name": "золота медаль",
+          "version": "3.0",
+          "keywords": "золота медаль | золото | медаль | місце | перше"
+      },
+      {
+          "emoji": "🥈",
+          "category": 5,
+          "name": "срібна медаль",
+          "version": "3.0",
+          "keywords": "друге | медаль | місце | срібло | срібна медаль"
+      },
+      {
+          "emoji": "🥉",
+          "category": 5,
+          "name": "бронзова медаль",
+          "version": "3.0",
+          "keywords": "бронза | бронзова медаль | медаль | місце | третє"
+      },
+      {
+          "emoji": "⚽",
+          "category": 5,
+          "name": "футбольний м’яч",
+          "version": "1.0",
+          "keywords": "м’яч | футбол | футбольний м’яч"
+      },
+      {
+          "emoji": "⚾",
+          "category": 5,
+          "name": "бейсбольний м’яч",
+          "version": "1.0",
+          "keywords": "бейсбольний м’яч | м’яч"
+      },
+      {
+          "emoji": "🥎",
+          "category": 5,
+          "name": "софтбольний мʼяч",
+          "version": "11.0",
+          "keywords": "бейсбол | м’яч | рукавичка | софт | софтбольний мʼяч | спорт"
+      },
+      {
+          "emoji": "🏀",
+          "category": 5,
+          "name": "баскетбольний м’яч",
+          "version": "1.0",
+          "keywords": "баскетбольний м’яч | кільце | м’яч"
+      },
+      {
+          "emoji": "🏐",
+          "category": 5,
+          "name": "волейбольний м’яч",
+          "version": "1.0",
+          "keywords": "волейбольний м’яч | гра | м’яч"
+      },
+      {
+          "emoji": "🏈",
+          "category": 5,
+          "name": "мʼяч для американського футболу",
+          "version": "1.0",
+          "keywords": "американський | м’яч | мʼяч для американського футболу | футбол"
+      },
+      {
+          "emoji": "🏉",
+          "category": 5,
+          "name": "мʼяч для регбі",
+          "version": "1.0",
+          "keywords": "м’яч | мʼяч для регбі | регбі | футбол"
+      },
+      {
+          "emoji": "🎾",
+          "category": 5,
+          "name": "тенісний м’яч",
+          "version": "1.0",
+          "keywords": "м’яч | ракетка | тенісний м’яч"
+      },
+      {
+          "emoji": "🥏",
+          "category": 5,
+          "name": "літаючий диск",
+          "version": "11.0",
+          "keywords": "алтимат | диск | кидок | літаючий диск | тарілка | фризбі | фрізбі"
+      },
+      {
+          "emoji": "🎳",
+          "category": 5,
+          "name": "куля і кеглі для боулінгу",
+          "version": "1.0",
+          "keywords": "гра | куля і кеглі для боулінгу | м’яч"
+      },
+      {
+          "emoji": "🏏",
+          "category": 5,
+          "name": "бита і мʼяч для крикету",
+          "version": "1.0",
+          "keywords": "бита | бита і мʼяч для крикету | гра | м’яч"
+      },
+      {
+          "emoji": "🏑",
+          "category": 5,
+          "name": "ключка і мʼяч для хокею на траві",
+          "version": "1.0",
+          "keywords": "гра | ключка | ключка і мʼяч для хокею на траві | м’яч | поле | хокей"
+      },
+      {
+          "emoji": "🏒",
+          "category": 5,
+          "name": "ключка і шайба для хокею",
+          "version": "1.0",
+          "keywords": "гра | ключка | ключка і шайба для хокею | лід | хокей | шайба"
+      },
+      {
+          "emoji": "🥍",
+          "category": 5,
+          "name": "стік для лакросу",
+          "version": "11.0",
+          "keywords": "гол | лакрос | м’яч | палиця | стік | стік для лакросу"
+      },
+      {
+          "emoji": "🏓",
+          "category": 5,
+          "name": "ракетка і кулька для пінг-понгу",
+          "version": "1.0",
+          "keywords": "кулька | пінг-понг | ракетка | ракетка і кулька для пінг-понгу | стіл | теніс"
+      },
+      {
+          "emoji": "🏸",
+          "category": 5,
+          "name": "ракетка і волан для бадмінтону",
+          "version": "1.0",
+          "keywords": "волан | воланчик | гра | ракетка | ракетка і волан для бадмінтону"
+      },
+      {
+          "emoji": "🥊",
+          "category": 5,
+          "name": "боксерська рукавичка",
+          "version": "3.0",
+          "keywords": "бокс | боксерська рукавичка | рукавичка | спорт"
+      },
+      {
+          "emoji": "🥋",
+          "category": 5,
+          "name": "одяг для єдиноборств",
+          "version": "3.0",
+          "keywords": "бойові мистецтва | дзюдо | карате | одяг для єдиноборств | тхеквондо | уніформа"
+      },
+      {
+          "emoji": "🥅",
+          "category": 5,
+          "name": "сітка воріт",
+          "version": "3.0",
+          "keywords": "ворота | сітка | сітка воріт | спорт"
+      },
+      {
+          "emoji": "⛳",
+          "category": 5,
+          "name": "лунка для гольфу з прапорцем",
+          "version": "1.0",
+          "keywords": "гольф | лунка | лунка для гольфу з прапорцем"
+      },
+      {
+          "emoji": "⛸️",
+          "category": 5,
+          "name": "ice skate",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎣",
+          "category": 5,
+          "name": "рибацька вудка",
+          "version": "1.0",
+          "keywords": "вудка і риба | риба | рибацька вудка"
+      },
+      {
+          "emoji": "🤿",
+          "category": 5,
+          "name": "маска з трубкою",
+          "version": "12.0",
+          "keywords": "акваланг | дайвінг | занурення | маска з трубкою | маска і ласти | маска і трубка | підводне плавання | сноркелінг"
+      },
+      {
+          "emoji": "🎽",
+          "category": 5,
+          "name": "бігова теніска",
+          "version": "1.0",
+          "keywords": "біг | бігова теніска | сорочка | стрічка"
+      },
+      {
+          "emoji": "🎿",
+          "category": 5,
+          "name": "лижі",
+          "version": "1.0",
+          "keywords": "лижі | сніг"
+      },
+      {
+          "emoji": "🛷",
+          "category": 5,
+          "name": "сани",
+          "version": "5.0",
+          "keywords": "сани"
+      },
+      {
+          "emoji": "🥌",
+          "category": 5,
+          "name": "камʼяна шайба для керлінгу",
+          "version": "5.0",
+          "keywords": "гра | камʼяна шайба для керлінгу | камінь"
+      },
+      {
+          "emoji": "🎯",
+          "category": 5,
+          "name": "мішень із прямим влученням",
+          "version": "1.0",
+          "keywords": "в яблучко | влучення | дротик | мішень із прямим влученням | точно | ціль"
+      },
+      {
+          "emoji": "🪀",
+          "category": 5,
+          "name": "йо-йо",
+          "version": "12.0",
+          "keywords": "бовтатися | іграшка | йо-йо | метлятися | теліпатися | хилитатися"
+      },
+      {
+          "emoji": "🪁",
+          "category": 5,
+          "name": "повітряний змій",
+          "version": "12.0",
+          "keywords": "витати | линути | літати | підніматися | повітряний змій | ширяти"
+      },
+      {
+          "emoji": "🎱",
+          "category": 5,
+          "name": "більярдна куля 8",
+          "version": "1.0",
+          "keywords": "8 | більярд | більярдна куля 8 | вісім | куля"
+      },
+      {
+          "emoji": "🔮",
+          "category": 5,
+          "name": "кришталева куля",
+          "version": "1.0",
+          "keywords": "віщування | кришталева куля | фантазія | фортуна"
+      },
+      {
+          "emoji": "🪄",
+          "category": 5,
+          "name": "чарівна паличка",
+          "version": "13.0",
+          "keywords": "магія | чаклун | чаклунка | чарівна | чарівна паличка"
+      },
+      {
+          "emoji": "🧿",
+          "category": 5,
+          "name": "Око Фатіми",
+          "version": "11.0",
+          "keywords": "амулет | наврочити | назар | Око Фатіми | пристріт | талісман"
+      },
+      {
+          "emoji": "🎮",
+          "category": 5,
+          "name": "ігровий контролер",
+          "version": "1.0",
+          "keywords": "гра | ігровий контролер | контролер"
+      },
+      {
+          "emoji": "🕹️",
+          "category": 5,
+          "name": "joystick",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎰",
+          "category": 5,
+          "name": "гральний автомат",
+          "version": "1.0",
+          "keywords": "автомат | гральний автомат | ігровий"
+      },
+      {
+          "emoji": "🎲",
+          "category": 5,
+          "name": "гральна кість",
+          "version": "1.0",
+          "keywords": "гра | гральна кість | кубик"
+      },
+      {
+          "emoji": "🧩",
+          "category": 5,
+          "name": "елемент пазла",
+          "version": "11.0",
+          "keywords": "головоломка | елемент пазла | пазл | підказка | частина | шматок"
+      },
+      {
+          "emoji": "🧸",
+          "category": 5,
+          "name": "ведмедик",
+          "version": "11.0",
+          "keywords": "ведмедик | іграшка | м’яка іграшка | плюшева іграшка"
+      },
+      {
+          "emoji": "🪅",
+          "category": 5,
+          "name": "піньята",
+          "version": "13.0",
+          "keywords": "вечірка | піньята | свято"
+      },
+      {
+          "emoji": "🪆",
+          "category": 5,
+          "name": "ляльки-матрьошки",
+          "version": "13.0",
+          "keywords": "лялька | ляльки-матрьошки | матрьошка | росія"
+      },
+      {
+          "emoji": "♠️",
+          "category": 5,
+          "name": "spade suit",
+          "version": "1.0"
+      },
+      {
+          "emoji": "♥️",
+          "category": 5,
+          "name": "heart suit",
+          "version": "1.0"
+      },
+      {
+          "emoji": "♦️",
+          "category": 5,
+          "name": "diamond suit",
+          "version": "1.0"
+      },
+      {
+          "emoji": "♣️",
+          "category": 5,
+          "name": "club suit",
+          "version": "1.0"
+      },
+      {
+          "emoji": "♟️",
+          "category": 5,
+          "name": "chess pawn",
+          "version": "11.0"
+      },
+      {
+          "emoji": "🃏",
+          "category": 5,
+          "name": "джокер",
+          "version": "1.0",
+          "keywords": "гра | грати | джокер | карта"
+      },
+      {
+          "emoji": "🀄",
+          "category": 5,
+          "name": "фішка маджонгу «червоний дракон»",
+          "version": "1.0",
+          "keywords": "гра | маджонг | фішка маджонг червоний дракон | фішка маджонгу «червоний дракон» | червоний"
+      },
+      {
+          "emoji": "🎴",
+          "category": 5,
+          "name": "гральні карти з квітами (ханафуда)",
+          "version": "1.0",
+          "keywords": "гра | гральні карти з квітами | гральні карти з квітами (ханафуда) | грати | карта | ханафуда"
+      },
+      {
+          "emoji": "🎭",
+          "category": 5,
+          "name": "театральне мистецтво",
+          "version": "1.0",
+          "keywords": "вистава | маска | мистецтво | театр | театральне мистецтво"
+      },
+      {
+          "emoji": "🖼️",
+          "category": 5,
+          "name": "framed picture",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎨",
+          "category": 5,
+          "name": "палітра художника",
+          "version": "1.0",
+          "keywords": "картина | мистецтво | музей | палітра | палітра художника"
+      },
+      {
+          "emoji": "🧵",
+          "category": 5,
+          "name": "нитка",
+          "version": "11.0",
+          "keywords": "голка | нитка | пряжа | шиття"
+      },
+      {
+          "emoji": "🪡",
+          "category": 5,
+          "name": "швацька голка",
+          "version": "13.0",
+          "keywords": "вишивання | голка | кравецтво | стібки | швацька голка | шви | шиття"
+      },
+      {
+          "emoji": "🧶",
+          "category": 5,
+          "name": "пряжа",
+          "version": "11.0",
+          "keywords": "клубок | моток | мотузка | нитка | прядиво | пряжа"
+      },
+      {
+          "emoji": "🪢",
+          "category": 5,
+          "name": "вузол",
+          "version": "13.0",
+          "keywords": "вузол | мотузка | петля | плетення | плетиво | шнурок"
+      },
+      {
+          "emoji": "👓",
+          "category": 6,
+          "name": "окуляри",
+          "version": "1.0",
+          "keywords": "одяг | око | окуляри"
+      },
+      {
+          "emoji": "🕶️",
+          "category": 6,
+          "name": "sunglasses",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🥽",
+          "category": 6,
+          "name": "захисні окуляри",
+          "version": "11.0",
+          "keywords": "захисні окуляри | захист | захист очей | зварювання | плавання"
+      },
+      {
+          "emoji": "🥼",
+          "category": 6,
+          "name": "лабораторний халат",
+          "version": "11.0",
+          "keywords": "доктор | експеримент | лабораторний халат | лікар | науковець"
+      },
+      {
+          "emoji": "🦺",
+          "category": 6,
+          "name": "сигнальний жилет",
+          "version": "12.0",
+          "keywords": "аварійно-захисний | аварійно-рятувальний | жилет | сигнальний жилет"
+      },
+      {
+          "emoji": "👔",
+          "category": 6,
+          "name": "краватка",
+          "version": "1.0",
+          "keywords": "краватка | одяг"
+      },
+      {
+          "emoji": "👕",
+          "category": 6,
+          "name": "теніска поло",
+          "version": "1.0",
+          "keywords": "одяг | теніска поло | топ | футболка"
+      },
+      {
+          "emoji": "👖",
+          "category": 6,
+          "name": "джинси",
+          "version": "1.0",
+          "keywords": "джинси | одяг | штани"
+      },
+      {
+          "emoji": "🧣",
+          "category": 6,
+          "name": "шарф",
+          "version": "5.0",
+          "keywords": "шарф | шия"
+      },
+      {
+          "emoji": "🧤",
+          "category": 6,
+          "name": "рукавички",
+          "version": "5.0",
+          "keywords": "рука | рукавички"
+      },
+      {
+          "emoji": "🧥",
+          "category": 6,
+          "name": "пальто",
+          "version": "5.0",
+          "keywords": "куртка | пальто"
+      },
+      {
+          "emoji": "🧦",
+          "category": 6,
+          "name": "шкарпетки",
+          "version": "5.0",
+          "keywords": "панчохи | шкарпетки"
+      },
+      {
+          "emoji": "👗",
+          "category": 6,
+          "name": "сукня",
+          "version": "1.0",
+          "keywords": "одяг | сукня"
+      },
+      {
+          "emoji": "👘",
+          "category": 6,
+          "name": "кімоно",
+          "version": "1.0",
+          "keywords": "кімоно | одяг"
+      },
+      {
+          "emoji": "🥻",
+          "category": 6,
+          "name": "сарі",
+          "version": "12.0",
+          "keywords": "вбрання | одяг | сарі"
+      },
+      {
+          "emoji": "🩱",
+          "category": 6,
+          "name": "суцільний купальник",
+          "version": "12.0",
+          "keywords": "закритий | купальний костюм | суцільний купальник"
+      },
+      {
+          "emoji": "🩲",
+          "category": 6,
+          "name": "плавки",
+          "version": "12.0",
+          "keywords": "брифи | купальник | одинарний | плавки | спіднє | труси"
+      },
+      {
+          "emoji": "🩳",
+          "category": 6,
+          "name": "шорти",
+          "version": "12.0",
+          "keywords": "купальник | спіднє | труси | шорти"
+      },
+      {
+          "emoji": "👙",
+          "category": 6,
+          "name": "бікіні",
+          "version": "1.0",
+          "keywords": "бікіні | одяг | плавати"
+      },
+      {
+          "emoji": "👚",
+          "category": 6,
+          "name": "жіночий одяг",
+          "version": "1.0",
+          "keywords": "жінка | жіночий одяг | одяг"
+      },
+      {
+          "emoji": "👛",
+          "category": 6,
+          "name": "гаманець",
+          "version": "1.0",
+          "keywords": "аксесуар | гаманець | гроші | монета | одяг"
+      },
+      {
+          "emoji": "👜",
+          "category": 6,
+          "name": "сумка",
+          "version": "1.0",
+          "keywords": "одяг | сумка"
+      },
+      {
+          "emoji": "👝",
+          "category": 6,
+          "name": "клатч",
+          "version": "1.0",
+          "keywords": "клатч | одяг | сумка"
+      },
+      {
+          "emoji": "🛍️",
+          "category": 6,
+          "name": "shopping bags",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎒",
+          "category": 6,
+          "name": "шкільний рюкзак",
+          "version": "1.0",
+          "keywords": "навчання | ранець | сумка | шкільний рюкзак | школа"
+      },
+      {
+          "emoji": "🩴",
+          "category": 6,
+          "name": "в’єтнамки",
+          "version": "13.0",
+          "keywords": "в’єтнамки | дзорі | пляжні сандалі | сандалі | шльопанці"
+      },
+      {
+          "emoji": "👞",
+          "category": 6,
+          "name": "чоловіча туфля",
+          "version": "1.0",
+          "keywords": "взуття | одяг | чоловік | чоловіча туфля"
+      },
+      {
+          "emoji": "👟",
+          "category": 6,
+          "name": "кросівка",
+          "version": "1.0",
+          "keywords": "взуття | кросівка | кросівок | одяг | спортивний"
+      },
+      {
+          "emoji": "🥾",
+          "category": 6,
+          "name": "похідні черевики",
+          "version": "11.0",
+          "keywords": "взуття | похід | похідні черевики | табір | туристичні чоботи | хайкінг"
+      },
+      {
+          "emoji": "🥿",
+          "category": 6,
+          "name": "туфлі без підборів",
+          "version": "11.0",
+          "keywords": "балетки | кеди | сліпони | тапочки | туфлі без підборів"
+      },
+      {
+          "emoji": "👠",
+          "category": 6,
+          "name": "туфля на високому підборі",
+          "version": "1.0",
+          "keywords": "взуття | жінка | каблук | одяг | туфля на високому підборі"
+      },
+      {
+          "emoji": "👡",
+          "category": 6,
+          "name": "жіноча сандалія з підбором",
+          "version": "1.0",
+          "keywords": "взуття | жінка | жіноча сандалія з підбором | одяг | сандалі"
+      },
+      {
+          "emoji": "🩰",
+          "category": 6,
+          "name": "балетні туфлі",
+          "version": "12.0",
+          "keywords": "балет | балетні туфлі | пуанти | танцювальні"
+      },
+      {
+          "emoji": "👢",
+          "category": 6,
+          "name": "жіночий чобіт",
+          "version": "1.0",
+          "keywords": "взуття | жінка | жіночий чобіт | одяг | чобіт"
+      },
+      {
+          "emoji": "👑",
+          "category": 6,
+          "name": "корона",
+          "version": "1.0",
+          "keywords": "королева | король | корона | одяг"
+      },
+      {
+          "emoji": "👒",
+          "category": 6,
+          "name": "жіночий капелюшок",
+          "version": "1.0",
+          "keywords": "жінка | жіночий капелюшок | капелюх | одяг"
+      },
+      {
+          "emoji": "🎩",
+          "category": 6,
+          "name": "циліндр (капелюх)",
+          "version": "1.0",
+          "keywords": "капелюх | одяг | циліндр (капелюх) | чоловік"
+      },
+      {
+          "emoji": "🎓",
+          "category": 6,
+          "name": "квадратна академічна шапочка",
+          "version": "1.0",
+          "keywords": "випуск | капелюх | квадратна академічна шапочка | одяг | шапка"
+      },
+      {
+          "emoji": "🧢",
+          "category": 6,
+          "name": "бейсболка",
+          "version": "5.0",
+          "keywords": "бейсболка | кашкет"
+      },
+      {
+          "emoji": "🪖",
+          "category": 6,
+          "name": "військовий шолом",
+          "version": "13.0",
+          "keywords": "армія | військовий | воїн | солдатський | шолом"
+      },
+      {
+          "emoji": "⛑️",
+          "category": 6,
+          "name": "rescue worker’s helmet",
+          "version": "1.0"
+      },
+      {
+          "emoji": "📿",
+          "category": 6,
+          "name": "молитовні чотки",
+          "version": "1.0",
+          "keywords": "вервиця | молитися | молитовні чотки | одяг | релігія | чотки"
+      },
+      {
+          "emoji": "💄",
+          "category": 6,
+          "name": "помада",
+          "version": "1.0",
+          "keywords": "губна помада | косметика | помада"
+      },
+      {
+          "emoji": "💍",
+          "category": 6,
+          "name": "каблучка",
+          "version": "1.0",
+          "keywords": "діамант | каблучка | кохання"
+      },
+      {
+          "emoji": "💎",
+          "category": 6,
+          "name": "коштовний камінь",
+          "version": "1.0",
+          "keywords": "діамант | дорогоцінний | камінь | кохання | коштовний камінь"
+      },
+      {
+          "emoji": "🔇",
+          "category": 6,
+          "name": "заглушений динамік",
+          "version": "1.0",
+          "keywords": "беззвучно | динамік | заглушений динамік | звук динаміка вимкнено | нечутно | тихо"
+      },
+      {
+          "emoji": "🔈",
+          "category": 6,
+          "name": "низька гучність динаміка",
+          "version": "1.0",
+          "keywords": "негучно | низька гучність динаміка | приглушено"
+      },
+      {
+          "emoji": "🔉",
+          "category": 6,
+          "name": "середня гучність динаміка",
+          "version": "1.0",
+          "keywords": "середньо | середня гучність динаміка"
+      },
+      {
+          "emoji": "🔊",
+          "category": 6,
+          "name": "високий рівень гучності динаміка",
+          "version": "1.0",
+          "keywords": "висока гучність динаміка | високий рівень гучності динаміка | гучно"
+      },
+      {
+          "emoji": "📢",
+          "category": 6,
+          "name": "гучномовець",
+          "version": "1.0",
+          "keywords": "гучний | гучномовець | звукове оповіщення"
+      },
+      {
+          "emoji": "📣",
+          "category": 6,
+          "name": "мегафон",
+          "version": "1.0",
+          "keywords": "мегафон | підбадьорення"
+      },
+      {
+          "emoji": "📯",
+          "category": 6,
+          "name": "поштовий ріжок",
+          "version": "1.0",
+          "keywords": "пошта | поштовий | ріжок"
+      },
+      {
+          "emoji": "🔔",
+          "category": 6,
+          "name": "дзвінок",
+          "version": "1.0",
+          "keywords": "дзвін | дзвінок | дзвоник"
+      },
+      {
+          "emoji": "🔕",
+          "category": 6,
+          "name": "заглушений дзвінок",
+          "version": "1.0",
+          "keywords": "беззвучно | глушити | дзвінок | дзвінок зі скісною рискою | заборонено | заглушений дзвінок | тиша"
+      },
+      {
+          "emoji": "🎼",
+          "category": 6,
+          "name": "партитура",
+          "version": "1.0",
+          "keywords": "музичний | партитура"
+      },
+      {
+          "emoji": "🎵",
+          "category": 6,
+          "name": "музична нота",
+          "version": "1.0",
+          "keywords": "музична нота | музичний | нота"
+      },
+      {
+          "emoji": "🎶",
+          "category": 6,
+          "name": "музичні ноти",
+          "version": "1.0",
+          "keywords": "музичний | музичні ноти | нота | ноти"
+      },
+      {
+          "emoji": "🎙️",
+          "category": 6,
+          "name": "studio microphone",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎚️",
+          "category": 6,
+          "name": "level slider",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎛️",
+          "category": 6,
+          "name": "control knobs",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎤",
+          "category": 6,
+          "name": "мікрофон",
+          "version": "1.0",
+          "keywords": "караоке | мікрофон"
+      },
+      {
+          "emoji": "🎧",
+          "category": 6,
+          "name": "навушники",
+          "version": "1.0",
+          "keywords": "навушники"
+      },
+      {
+          "emoji": "📻",
+          "category": 6,
+          "name": "радіоприймач",
+          "version": "1.0",
+          "keywords": "відео | радіо | радіоприймач"
+      },
+      {
+          "emoji": "🎷",
+          "category": 6,
+          "name": "саксофон",
+          "version": "1.0",
+          "keywords": "інструмент | музичний | саксофон"
+      },
+      {
+          "emoji": "🪗",
+          "category": 6,
+          "name": "акордеон",
+          "version": "13.0",
+          "keywords": "акордеон | гармоніка | концертина"
+      },
+      {
+          "emoji": "🎸",
+          "category": 6,
+          "name": "гітара",
+          "version": "1.0",
+          "keywords": "гітара | інструмент | музичний"
+      },
+      {
+          "emoji": "🎹",
+          "category": 6,
+          "name": "музична клавіатура",
+          "version": "1.0",
+          "keywords": "інструмент | клавіатура | музична клавіатура | музичний | піаніно"
+      },
+      {
+          "emoji": "🎺",
+          "category": 6,
+          "name": "труба",
+          "version": "1.0",
+          "keywords": "інструмент | музичний | труба"
+      },
+      {
+          "emoji": "🎻",
+          "category": 6,
+          "name": "скрипка",
+          "version": "1.0",
+          "keywords": "інструмент | музичний | скрипка"
+      },
+      {
+          "emoji": "🪕",
+          "category": 6,
+          "name": "банджо",
+          "version": "12.0",
+          "keywords": "банджо | інструмент | музичний | струнний | щипковий"
+      },
+      {
+          "emoji": "🥁",
+          "category": 6,
+          "name": "барабан",
+          "version": "3.0",
+          "keywords": "барабан | музика | палички"
+      },
+      {
+          "emoji": "🪘",
+          "category": 6,
+          "name": "циліндричний барабан",
+          "version": "13.0",
+          "keywords": "барабан | конґа | ритм | ударні | циліндричний барабан"
+      },
+      {
+          "emoji": "📱",
+          "category": 6,
+          "name": "мобільний телефон",
+          "version": "1.0",
+          "keywords": "мобільний | стільниковий | телефон"
+      },
+      {
+          "emoji": "📲",
+          "category": 6,
+          "name": "мобільний телефон зі стрілкою",
+          "version": "1.0",
+          "keywords": "мобільний | мобільний телефон зі стрілкою | отримувати | стільниковий | стрілка | телефон | телефонувати"
+      },
+      {
+          "emoji": "☎️",
+          "category": 6,
+          "name": "telephone",
+          "version": "1.0"
+      },
+      {
+          "emoji": "📞",
+          "category": 6,
+          "name": "телефонна слухавка",
+          "version": "1.0",
+          "keywords": "слухавка | телефон | телефонна слухавка"
+      },
+      {
+          "emoji": "📟",
+          "category": 6,
+          "name": "пейджер",
+          "version": "1.0",
+          "keywords": "пейджер"
+      },
+      {
+          "emoji": "📠",
+          "category": 6,
+          "name": "факс",
+          "version": "1.0",
+          "keywords": "факс"
+      },
+      {
+          "emoji": "🔋",
+          "category": 6,
+          "name": "батарея",
+          "version": "1.0",
+          "keywords": "акумулятор | батарейка | батарея"
+      },
+      {
+          "emoji": "🔌",
+          "category": 6,
+          "name": "штепсель",
+          "version": "1.0",
+          "keywords": "вилка | електрика | електричний | штепсель"
+      },
+      {
+          "emoji": "💻",
+          "category": 6,
+          "name": "ноутбук",
+          "version": "1.0",
+          "keywords": "комп’ютер | ноутбук | персональний | пк"
+      },
+      {
+          "emoji": "🖥️",
+          "category": 6,
+          "name": "desktop computer",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🖨️",
+          "category": 6,
+          "name": "printer",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⌨️",
+          "category": 6,
+          "name": "keyboard",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🖱️",
+          "category": 6,
+          "name": "computer mouse",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🖲️",
+          "category": 6,
+          "name": "trackball",
+          "version": "1.0"
+      },
+      {
+          "emoji": "💽",
+          "category": 6,
+          "name": "міні-диск",
+          "version": "1.0",
+          "keywords": "диск | комп’ютер | міні-диск | оптичний"
+      },
+      {
+          "emoji": "💾",
+          "category": 6,
+          "name": "дискета",
+          "version": "1.0",
+          "keywords": "диск | дискета | комп’ютер"
+      },
+      {
+          "emoji": "💿",
+          "category": 6,
+          "name": "компакт-диск",
+          "version": "1.0",
+          "keywords": "blu-ray | cd | dvd | диск | комп’ютер | компакт-диск | оптичний"
+      },
+      {
+          "emoji": "📀",
+          "category": 6,
+          "name": "[DVD]-диск",
+          "version": "1.0",
+          "keywords": "[DVD]-диск | blu-ray | cd | DVD-диск | диск | комп’ютер | оптичний"
+      },
+      {
+          "emoji": "🧮",
+          "category": 6,
+          "name": "рахівниця",
+          "version": "11.0",
+          "keywords": "абак | обчислення | рахівниця"
+      },
+      {
+          "emoji": "🎥",
+          "category": 6,
+          "name": "кінокамера",
+          "version": "1.0",
+          "keywords": "камера | кіно | кінокамера | фільм"
+      },
+      {
+          "emoji": "🎞️",
+          "category": 6,
+          "name": "film frames",
+          "version": "1.0"
+      },
+      {
+          "emoji": "📽️",
+          "category": 6,
+          "name": "film projector",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎬",
+          "category": 6,
+          "name": "кінохлопавка",
+          "version": "1.0",
+          "keywords": "кінохлопавка | фільм | хлопавка"
+      },
+      {
+          "emoji": "📺",
+          "category": 6,
+          "name": "телевізор",
+          "version": "1.0",
+          "keywords": "відео | тб | телевізор"
+      },
+      {
+          "emoji": "📷",
+          "category": 6,
+          "name": "фотоапарат",
+          "version": "1.0",
+          "keywords": "відео | фотоапарат"
+      },
+      {
+          "emoji": "📸",
+          "category": 6,
+          "name": "фотоапарат зі спалахом",
+          "version": "1.0",
+          "keywords": "відео | камера | спалах | фотоапарат зі спалахом"
+      },
+      {
+          "emoji": "📹",
+          "category": 6,
+          "name": "відеокамера",
+          "version": "1.0",
+          "keywords": "відео | відеокамера | камера"
+      },
+      {
+          "emoji": "📼",
+          "category": 6,
+          "name": "відеокасета",
+          "version": "1.0",
+          "keywords": "відео | відеокасета | касета | стрічка"
+      },
+      {
+          "emoji": "🔍",
+          "category": 6,
+          "name": "збільшувальне скло з нахилом уліво",
+          "version": "1.0",
+          "keywords": "збільшувальне скло з нахилом уліво | збільшувальне скло, спрямоване ліворуч | інструмент | лупа | пошук"
+      },
+      {
+          "emoji": "🔎",
+          "category": 6,
+          "name": "збільшувальне скло з нахилом управо",
+          "version": "1.0",
+          "keywords": "збільшувальне скло з нахилом управо | збільшувальне скло, спрямоване праворуч | інструмент | лупа | пошук"
+      },
+      {
+          "emoji": "🕯️",
+          "category": 6,
+          "name": "candle",
+          "version": "1.0"
+      },
+      {
+          "emoji": "💡",
+          "category": 6,
+          "name": "лампочка",
+          "version": "1.0",
+          "keywords": "електричний | ідея | лампочка | малюнок | світло"
+      },
+      {
+          "emoji": "🔦",
+          "category": 6,
+          "name": "ліхтарик",
+          "version": "1.0",
+          "keywords": "електричний | інструмент | ліхтарик | світло"
+      },
+      {
+          "emoji": "🏮",
+          "category": 6,
+          "name": "червоний паперовий ліхтар",
+          "version": "1.0",
+          "keywords": "бар | ліхтар | ліхтар ізакайа | світло | червоний | червоний паперовий ліхтар | японський"
+      },
+      {
+          "emoji": "🪔",
+          "category": 6,
+          "name": "каганець",
+          "version": "12.0",
+          "keywords": "блимавка | каганець | лампа | лампадка | мигунець | олійна"
+      },
+      {
+          "emoji": "📔",
+          "category": 6,
+          "name": "записник у декоративній обкладинці",
+          "version": "1.0",
+          "keywords": "декоративна | записник | записник у декоративній обкладинці | книжка | обкладинка"
+      },
+      {
+          "emoji": "📕",
+          "category": 6,
+          "name": "закрита книга",
+          "version": "1.0",
+          "keywords": "закрита | закрита книга | книжка | червоний підручник"
+      },
+      {
+          "emoji": "📖",
+          "category": 6,
+          "name": "відкрита книга",
+          "version": "1.0",
+          "keywords": "відкрита | відкрита книга | книжка"
+      },
+      {
+          "emoji": "📗",
+          "category": 6,
+          "name": "зелений підручник",
+          "version": "1.0",
+          "keywords": "зелений | зелений підручник | книжка"
+      },
+      {
+          "emoji": "📘",
+          "category": 6,
+          "name": "синій підручник",
+          "version": "1.0",
+          "keywords": "книжка | синій | синій підручник"
+      },
+      {
+          "emoji": "📙",
+          "category": 6,
+          "name": "оранжевий підручник",
+          "version": "1.0",
+          "keywords": "книжка | оранжевий | оранжевий підручник"
+      },
+      {
+          "emoji": "📚",
+          "category": 6,
+          "name": "книги",
+          "version": "1.0",
+          "keywords": "книги | книжка"
+      },
+      {
+          "emoji": "📓",
+          "category": 6,
+          "name": "зошит для творів",
+          "version": "1.0",
+          "keywords": "блокнот | записник | зошит для творів"
+      },
+      {
+          "emoji": "📒",
+          "category": 6,
+          "name": "гросбух",
+          "version": "1.0",
+          "keywords": "гросбух | записник"
+      },
+      {
+          "emoji": "📃",
+          "category": 6,
+          "name": "сторінка із завитком",
+          "version": "1.0",
+          "keywords": "документ | завиток | сторінка | сторінка із завитком"
+      },
+      {
+          "emoji": "📜",
+          "category": 6,
+          "name": "сувій",
+          "version": "1.0",
+          "keywords": "папір | сувій"
+      },
+      {
+          "emoji": "📄",
+          "category": 6,
+          "name": "сторінка лицевою стороною",
+          "version": "1.0",
+          "keywords": "документ | сторінка | сторінка лицевою стороною"
+      },
+      {
+          "emoji": "📰",
+          "category": 6,
+          "name": "газета",
+          "version": "1.0",
+          "keywords": "газета | новини | папір"
+      },
+      {
+          "emoji": "🗞️",
+          "category": 6,
+          "name": "rolled-up newspaper",
+          "version": "1.0"
+      },
+      {
+          "emoji": "📑",
+          "category": 6,
+          "name": "мітки закладок",
+          "version": "1.0",
+          "keywords": "вкладка | закладка | значок | мітка | мітки закладок"
+      },
+      {
+          "emoji": "🔖",
+          "category": 6,
+          "name": "закладка",
+          "version": "1.0",
+          "keywords": "закладка | значок"
+      },
+      {
+          "emoji": "🏷️",
+          "category": 6,
+          "name": "label",
+          "version": "1.0"
+      },
+      {
+          "emoji": "💰",
+          "category": 6,
+          "name": "мішок грошей",
+          "version": "1.0",
+          "keywords": "гроші | долар | мішок | мішок грошей"
+      },
+      {
+          "emoji": "🪙",
+          "category": 6,
+          "name": "монета",
+          "version": "13.0",
+          "keywords": "гроші | золото | метал | монета | скарб | срібло"
+      },
+      {
+          "emoji": "💴",
+          "category": 6,
+          "name": "єнові банкноти",
+          "version": "1.0",
+          "keywords": "банкнота | валюта | гроші | єна | єнові банкноти | купюра"
+      },
+      {
+          "emoji": "💵",
+          "category": 6,
+          "name": "доларові банкноти",
+          "version": "1.0",
+          "keywords": "банкнота | валюта | гроші | долар | доларові банкноти | купюра"
+      },
+      {
+          "emoji": "💶",
+          "category": 6,
+          "name": "єврові банкноти",
+          "version": "1.0",
+          "keywords": "банкнота | валюта | гроші | євро | єврові банкноти | купюра"
+      },
+      {
+          "emoji": "💷",
+          "category": 6,
+          "name": "фунтові банкноти",
+          "version": "1.0",
+          "keywords": "банкнота | валюта | гроші | купюра | фунт | фунтові банкноти"
+      },
+      {
+          "emoji": "💸",
+          "category": 6,
+          "name": "гроші з крилами",
+          "version": "1.0",
+          "keywords": "банк | банкнота | гроші | гроші з крилами | долар | крила | купюра | літати"
+      },
+      {
+          "emoji": "💳",
+          "category": 6,
+          "name": "кредитна картка",
+          "version": "1.0",
+          "keywords": "банк | гроші | картка | кредитна"
+      },
+      {
+          "emoji": "🧾",
+          "category": 6,
+          "name": "квитанція",
+          "version": "11.0",
+          "keywords": "документ | інвойс | квитанція | рахунок | рахунок-фактура | чек"
+      },
+      {
+          "emoji": "💹",
+          "category": 6,
+          "name": "графік зростання і знак єни",
+          "version": "1.0",
+          "keywords": "банк | валюта | вгору | графік зростання і знак єни | графіка | гроші | діаграма | єна | збільшення | ринок | ріст | тенденція"
+      },
+      {
+          "emoji": "✉️",
+          "category": 6,
+          "name": "envelope",
+          "version": "1.0"
+      },
+      {
+          "emoji": "📧",
+          "category": 6,
+          "name": "електронний лист",
+          "version": "1.0",
+          "keywords": "електронний лист | емейл | лист | пошта"
+      },
+      {
+          "emoji": "📨",
+          "category": 6,
+          "name": "конверт вхідного листа",
+          "version": "1.0",
+          "keywords": "вхідний | емейл | конверт | конверт вхідного листа | лист | отримати | пошта"
+      },
+      {
+          "emoji": "📩",
+          "category": 6,
+          "name": "конверт зі стрілкою",
+          "version": "1.0",
+          "keywords": "вихідний | вниз | конверт | конверт зі стрілкою | лист | надісланий | пошта | стрілка"
+      },
+      {
+          "emoji": "📤",
+          "category": 6,
+          "name": "лоток вихідної скриньки",
+          "version": "1.0",
+          "keywords": "коробка | лист | лоток | лоток вихідної скриньки | надісланий | пошта"
+      },
+      {
+          "emoji": "📥",
+          "category": 6,
+          "name": "лоток вхідної скриньки",
+          "version": "1.0",
+          "keywords": "вхідна пошта | коробка | лист | лоток | лоток вхідної скриньки | отримувати | пошта"
+      },
+      {
+          "emoji": "📦",
+          "category": 6,
+          "name": "пакунок",
+          "version": "1.0",
+          "keywords": "пакунок | посилка"
+      },
+      {
+          "emoji": "📫",
+          "category": 6,
+          "name": "закрита поштова скринька з піднятим прапорцем",
+          "version": "1.0",
+          "keywords": "закрита поштова скринька з піднятим прапорцем | закритий | пошта | поштова скринька"
+      },
+      {
+          "emoji": "📪",
+          "category": 6,
+          "name": "закрита поштова скринька з опущеним прапорцем",
+          "version": "1.0",
+          "keywords": "закрита поштова скринька з опущеним прапорцем | закритий | опущений | пошта | поштова скринька"
+      },
+      {
+          "emoji": "📬",
+          "category": 6,
+          "name": "відкрита поштова скринька з піднятим прапорцем",
+          "version": "1.0",
+          "keywords": "відкрита поштова скринька з піднятим прапорцем | відкритий | пошта | поштова скринька"
+      },
+      {
+          "emoji": "📭",
+          "category": 6,
+          "name": "відкрита поштова скринька з опущеним прапорцем",
+          "version": "1.0",
+          "keywords": "відкрита поштова скринька з опущеним прапорцем | відкритий | опущений | пошта | поштова скринька"
+      },
+      {
+          "emoji": "📮",
+          "category": 6,
+          "name": "поштова скринька",
+          "version": "1.0",
+          "keywords": "пошта | поштова скринька | скринька"
+      },
+      {
+          "emoji": "🗳️",
+          "category": 6,
+          "name": "ballot box with ballot",
+          "version": "1.0"
+      },
+      {
+          "emoji": "✏️",
+          "category": 6,
+          "name": "pencil",
+          "version": "1.0"
+      },
+      {
+          "emoji": "✒️",
+          "category": 6,
+          "name": "black nib",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🖋️",
+          "category": 6,
+          "name": "fountain pen",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🖊️",
+          "category": 6,
+          "name": "pen",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🖌️",
+          "category": 6,
+          "name": "paintbrush",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🖍️",
+          "category": 6,
+          "name": "crayon",
+          "version": "1.0"
+      },
+      {
+          "emoji": "📝",
+          "category": 6,
+          "name": "памʼятка",
+          "version": "1.0",
+          "keywords": "олівець | памʼятка"
+      },
+      {
+          "emoji": "💼",
+          "category": 6,
+          "name": "кейс",
+          "version": "1.0",
+          "keywords": "кейс | портфель"
+      },
+      {
+          "emoji": "📁",
+          "category": 6,
+          "name": "тека для файлів",
+          "version": "1.0",
+          "keywords": "закрита папка для файлів | папка | тека для файлів"
+      },
+      {
+          "emoji": "📂",
+          "category": 6,
+          "name": "відкрита папка для файлів",
+          "version": "1.0",
+          "keywords": "відкрита папка для файлів | відкритий | папка"
+      },
+      {
+          "emoji": "🗂️",
+          "category": 6,
+          "name": "card index dividers",
+          "version": "1.0"
+      },
+      {
+          "emoji": "📅",
+          "category": 6,
+          "name": "календар",
+          "version": "1.0",
+          "keywords": "дата | календар"
+      },
+      {
+          "emoji": "📆",
+          "category": 6,
+          "name": "відривний календар",
+          "version": "1.0",
+          "keywords": "відривний календар | календар"
+      },
+      {
+          "emoji": "🗒️",
+          "category": 6,
+          "name": "spiral notepad",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🗓️",
+          "category": 6,
+          "name": "spiral calendar",
+          "version": "1.0"
+      },
+      {
+          "emoji": "📇",
+          "category": 6,
+          "name": "картотека",
+          "version": "1.0",
+          "keywords": "індекс | картотека | указівник"
+      },
+      {
+          "emoji": "📈",
+          "category": 6,
+          "name": "висхідний графік",
+          "version": "1.0",
+          "keywords": "вгору | висхідний графік | графік | графік підвищення | діаграма | ріст | тенденція"
+      },
+      {
+          "emoji": "📉",
+          "category": 6,
+          "name": "низхідний графік",
+          "version": "1.0",
+          "keywords": "вниз | графік | графік падіння | діаграма | низхідний графік | тенденція"
+      },
+      {
+          "emoji": "📊",
+          "category": 6,
+          "name": "гістограма",
+          "version": "1.0",
+          "keywords": "гістограма | графік"
+      },
+      {
+          "emoji": "📋",
+          "category": 6,
+          "name": "планшет для аркушів",
+          "version": "1.0",
+          "keywords": "папка | планшет | планшет для аркушів"
+      },
+      {
+          "emoji": "📌",
+          "category": 6,
+          "name": "канцелярська кнопка",
+          "version": "1.0",
+          "keywords": "канцелярська кнопка | кнопка"
+      },
+      {
+          "emoji": "📍",
+          "category": 6,
+          "name": "шпилька з круглою голівкою",
+          "version": "1.0",
+          "keywords": "канцелярський | кнопка | шпилька з круглою голівкою"
+      },
+      {
+          "emoji": "📎",
+          "category": 6,
+          "name": "скріпка",
+          "version": "1.0",
+          "keywords": "скріпка"
+      },
+      {
+          "emoji": "🖇️",
+          "category": 6,
+          "name": "linked paperclips",
+          "version": "1.0"
+      },
+      {
+          "emoji": "📏",
+          "category": 6,
+          "name": "пряма лінійка",
+          "version": "1.0",
+          "keywords": "лінійка | пряма лінійка | прямий кут"
+      },
+      {
+          "emoji": "📐",
+          "category": 6,
+          "name": "трикутна лінійка",
+          "version": "1.0",
+          "keywords": "лінійка | трикутна лінійка | трикутник"
+      },
+      {
+          "emoji": "✂️",
+          "category": 6,
+          "name": "scissors",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🗃️",
+          "category": 6,
+          "name": "card file box",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🗄️",
+          "category": 6,
+          "name": "file cabinet",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🗑️",
+          "category": 6,
+          "name": "wastebasket",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🔒",
+          "category": 6,
+          "name": "замкнений замок",
+          "version": "1.0",
+          "keywords": "закрито | замкнений замок"
+      },
+      {
+          "emoji": "🔓",
+          "category": 6,
+          "name": "відімкнений замок",
+          "version": "1.0",
+          "keywords": "відімкнений замок | відімкнути | відрити | замок"
+      },
+      {
+          "emoji": "🔏",
+          "category": 6,
+          "name": "замок і чорнильна ручка",
+          "version": "1.0",
+          "keywords": "замок | замок і чорнильна ручка | перо | приватність | ручка | чорнило"
+      },
+      {
+          "emoji": "🔐",
+          "category": 6,
+          "name": "замкнений замок із ключем",
+          "version": "1.0",
+          "keywords": "безпечно | замкнений замок із ключем | замкнено | замок | ключ"
+      },
+      {
+          "emoji": "🔑",
+          "category": 6,
+          "name": "ключ",
+          "version": "1.0",
+          "keywords": "ключ | пароль"
+      },
+      {
+          "emoji": "🗝️",
+          "category": 6,
+          "name": "old key",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🔨",
+          "category": 6,
+          "name": "молоток",
+          "version": "1.0",
+          "keywords": "інструмент | молоток"
+      },
+      {
+          "emoji": "🪓",
+          "category": 6,
+          "name": "сокира",
+          "version": "12.0",
+          "keywords": "дрова | розколювати | рубати | сокира | тесати | тяти"
+      },
+      {
+          "emoji": "⛏️",
+          "category": 6,
+          "name": "pick",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⚒️",
+          "category": 6,
+          "name": "hammer and pick",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🛠️",
+          "category": 6,
+          "name": "hammer and wrench",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🗡️",
+          "category": 6,
+          "name": "dagger",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⚔️",
+          "category": 6,
+          "name": "crossed swords",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🔫",
+          "category": 6,
+          "name": "пістолет",
+          "version": "1.0",
+          "keywords": "водяний пістолет | зброя | знаряддя | пістолет | револьвер"
+      },
+      {
+          "emoji": "🪃",
+          "category": 6,
+          "name": "бумеранг",
+          "version": "13.0",
+          "keywords": "австралія | бумеранг | віддача | рикошет"
+      },
+      {
+          "emoji": "🏹",
+          "category": 6,
+          "name": "лук і стріла",
+          "version": "1.0",
+          "keywords": "зброя | знаряддя | зодіак | лук | лук і стріла | лучник | стріла | Стрілець"
+      },
+      {
+          "emoji": "🛡️",
+          "category": 6,
+          "name": "shield",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🪚",
+          "category": 6,
+          "name": "теслярська пила",
+          "version": "13.0",
+          "keywords": "деревина | інструмент | пила | тесля | теслярська пила"
+      },
+      {
+          "emoji": "🔧",
+          "category": 6,
+          "name": "гайковий ключ",
+          "version": "1.0",
+          "keywords": "гайковий ключ | інструмент"
+      },
+      {
+          "emoji": "🪛",
+          "category": 6,
+          "name": "викрутка",
+          "version": "13.0",
+          "keywords": "викрутка | гвинт | інструмент"
+      },
+      {
+          "emoji": "🔩",
+          "category": 6,
+          "name": "гайка та болт",
+          "version": "1.0",
+          "keywords": "болт | гайка | гайка та болт | інструмент"
+      },
+      {
+          "emoji": "⚙️",
+          "category": 6,
+          "name": "gear",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🗜️",
+          "category": 6,
+          "name": "clamp",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⚖️",
+          "category": 6,
+          "name": "balance scale",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🦯",
+          "category": 6,
+          "name": "тактильна тростина",
+          "version": "12.0",
+          "keywords": "доступність | незрячі | сліпота | спеціальні засоби | тактильна тростина"
+      },
+      {
+          "emoji": "🔗",
+          "category": 6,
+          "name": "символ зʼєднання ланок",
+          "version": "1.0",
+          "keywords": "ланка | посилання | символ зʼєднання ланок"
+      },
+      {
+          "emoji": "⛓️",
+          "category": 6,
+          "name": "chains",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🪝",
+          "category": 6,
+          "name": "гачок",
+          "version": "13.0",
+          "keywords": "гак | гачок | комерційний аргумент | крива | піймати | принада"
+      },
+      {
+          "emoji": "🧰",
+          "category": 6,
+          "name": "скриня для інструментів",
+          "version": "11.0",
+          "keywords": "інструмент | коробка | механік | скриня | скриня для інструментів"
+      },
+      {
+          "emoji": "🧲",
+          "category": 6,
+          "name": "магніт",
+          "version": "11.0",
+          "keywords": "магнетизм | магніт | підкова | притягувати | тяжіння"
+      },
+      {
+          "emoji": "🪜",
+          "category": 6,
+          "name": "драбина",
+          "version": "13.0",
+          "keywords": "вилізти | драбина | перекладина | сходинка"
+      },
+      {
+          "emoji": "⚗️",
+          "category": 6,
+          "name": "alembic",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🧪",
+          "category": 6,
+          "name": "пробірка",
+          "version": "11.0",
+          "keywords": "дослід | експеримент | лабораторія | наука | пробірка | хімік | хімія"
+      },
+      {
+          "emoji": "🧫",
+          "category": 6,
+          "name": "чашка Петрі",
+          "version": "11.0",
+          "keywords": "бактерія | біолог | біологія | культура | лабораторія | чашка Петрі"
+      },
+      {
+          "emoji": "🧬",
+          "category": 6,
+          "name": "ДНК",
+          "version": "11.0",
+          "keywords": "біолог | ген | генетика | ДНК | еволюція | життя"
+      },
+      {
+          "emoji": "🔬",
+          "category": 6,
+          "name": "мікроскоп",
+          "version": "1.0",
+          "keywords": "інструмент | мікроскоп"
+      },
+      {
+          "emoji": "🔭",
+          "category": 6,
+          "name": "телескоп",
+          "version": "1.0",
+          "keywords": "інструмент | телескоп"
+      },
+      {
+          "emoji": "📡",
+          "category": 6,
+          "name": "супутникова антена",
+          "version": "1.0",
+          "keywords": "антена | супутникова | тарілка"
+      },
+      {
+          "emoji": "💉",
+          "category": 6,
+          "name": "шприц",
+          "version": "1.0",
+          "keywords": "голка | інструмент | лікар | ліки | укол | хворий | шприц"
+      },
+      {
+          "emoji": "🩸",
+          "category": 6,
+          "name": "крапля крові",
+          "version": "12.0",
+          "keywords": "аналіз крові | донорство крові | крапля крові | медецина | місячне"
+      },
+      {
+          "emoji": "💊",
+          "category": 6,
+          "name": "пігулка",
+          "version": "1.0",
+          "keywords": "лікар | ліки | пігулка | хворий"
+      },
+      {
+          "emoji": "🩹",
+          "category": 6,
+          "name": "пластир",
+          "version": "12.0",
+          "keywords": "бандаж | клейка смужка | наліпка | пластир"
+      },
+      {
+          "emoji": "🩺",
+          "category": 6,
+          "name": "стетоскоп",
+          "version": "12.0",
+          "keywords": "вислухувати серце | лікар | медицина | стетоскоп"
+      },
+      {
+          "emoji": "🚪",
+          "category": 6,
+          "name": "двері",
+          "version": "1.0",
+          "keywords": "двері"
+      },
+      {
+          "emoji": "🛗",
+          "category": 6,
+          "name": "ліфт",
+          "version": "13.0",
+          "keywords": "ліфт | підіймач | підйомник | спеціальні можливості"
+      },
+      {
+          "emoji": "🪞",
+          "category": 6,
+          "name": "дзеркало",
+          "version": "13.0",
+          "keywords": "відбивач | відображення | дзеркало | рефлектор"
+      },
+      {
+          "emoji": "🪟",
+          "category": 6,
+          "name": "вікно",
+          "version": "13.0",
+          "keywords": "відчинити | вікно | краєвид | прозоре | рама | свіже повітря"
+      },
+      {
+          "emoji": "🛏️",
+          "category": 6,
+          "name": "bed",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🛋️",
+          "category": 6,
+          "name": "couch and lamp",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🪑",
+          "category": 6,
+          "name": "стілець",
+          "version": "12.0",
+          "keywords": "сидіння | сидіти | стілець"
+      },
+      {
+          "emoji": "🚽",
+          "category": 6,
+          "name": "унітаз",
+          "version": "1.0",
+          "keywords": "туалет | унітаз"
+      },
+      {
+          "emoji": "🪠",
+          "category": 6,
+          "name": "вантуз",
+          "version": "13.0",
+          "keywords": "вантуз | гумова присоска | прочищення | сантехнік | туалет"
+      },
+      {
+          "emoji": "🚿",
+          "category": 6,
+          "name": "душ",
+          "version": "1.0",
+          "keywords": "вода | душ"
+      },
+      {
+          "emoji": "🛁",
+          "category": 6,
+          "name": "ванна",
+          "version": "1.0",
+          "keywords": "ванна | купатися"
+      },
+      {
+          "emoji": "🪤",
+          "category": 6,
+          "name": "мишоловка",
+          "version": "13.0",
+          "keywords": "мишоловка | пастка | приманка | сильце"
+      },
+      {
+          "emoji": "🪒",
+          "category": 6,
+          "name": "бритва",
+          "version": "12.0",
+          "keywords": "бритва | голити | голитися | гостра | небезпечна"
+      },
+      {
+          "emoji": "🧴",
+          "category": 6,
+          "name": "лосьйон",
+          "version": "11.0",
+          "keywords": "зволожувач | лосьйон | сонцезахисний крем | шампунь"
+      },
+      {
+          "emoji": "🧷",
+          "category": 6,
+          "name": "англійська шпилька",
+          "version": "11.0",
+          "keywords": "англійська шпилька | булавка | зглаз | панк-рок | шпилька"
+      },
+      {
+          "emoji": "🧹",
+          "category": 6,
+          "name": "мітла",
+          "version": "11.0",
+          "keywords": "відьма | віник | мітла | підмітати | прибирати"
+      },
+      {
+          "emoji": "🧺",
+          "category": 6,
+          "name": "кошик",
+          "version": "11.0",
+          "keywords": "білизна | корзина | кошик | пікнік | ферма"
+      },
+      {
+          "emoji": "🧻",
+          "category": 6,
+          "name": "рулон паперу",
+          "version": "11.0",
+          "keywords": "паперові рушники | папір | рулон паперу | туалет | туалетний папір"
+      },
+      {
+          "emoji": "🪣",
+          "category": 6,
+          "name": "відро",
+          "version": "13.0",
+          "keywords": "бак | відро | чан | шаплик"
+      },
+      {
+          "emoji": "🧼",
+          "category": 6,
+          "name": "мило",
+          "version": "11.0",
+          "keywords": "купатися | мило | митися | чистити | шкіра"
+      },
+      {
+          "emoji": "🪥",
+          "category": 6,
+          "name": "зубна щітка",
+          "version": "13.0",
+          "keywords": "ванна кімната | гігієна | зуби | зубна | чистити | щітка"
+      },
+      {
+          "emoji": "🧽",
+          "category": 6,
+          "name": "губка",
+          "version": "11.0",
+          "keywords": "губка | мочалка | поглинати | пори | чистити"
+      },
+      {
+          "emoji": "🧯",
+          "category": 6,
+          "name": "вогнегасник",
+          "version": "11.0",
+          "keywords": "вогнегасник | вогонь | гасити | пожежа | тушити | тушіння"
+      },
+      {
+          "emoji": "🛒",
+          "category": 6,
+          "name": "магазинний візок",
+          "version": "3.0",
+          "keywords": "возик | магазин | магазинний візок | супермаркет | шопінг"
+      },
+      {
+          "emoji": "🚬",
+          "category": 6,
+          "name": "сигарета",
+          "version": "1.0",
+          "keywords": "куріння | сигарета"
+      },
+      {
+          "emoji": "⚰️",
+          "category": 6,
+          "name": "coffin",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🪦",
+          "category": 6,
+          "name": "надгробок",
+          "version": "13.0",
+          "keywords": "кладовище | могила | могильна плита | надгробок | цвинтар"
+      },
+      {
+          "emoji": "⚱️",
+          "category": 6,
+          "name": "funeral urn",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🗿",
+          "category": 6,
+          "name": "статуя з Острова Пасхи",
+          "version": "1.0",
+          "keywords": "лице | статуя | статуя з Острова Пасхи"
+      },
+      {
+          "emoji": "🪧",
+          "category": 6,
+          "name": "плакат",
+          "version": "13.0",
+          "keywords": "демонстрація | пікет | плакат | протест | транспарант"
+      },
+      {
+          "emoji": "🏧",
+          "category": 7,
+          "name": "символ банкомата",
+          "version": "1.0",
+          "keywords": "банківський автомат | банкомат | знак банкомата | символ банкомата | термінал самообслуговування"
+      },
+      {
+          "emoji": "🚮",
+          "category": 7,
+          "name": "знак кидати сміття в урну",
+          "version": "1.0",
+          "keywords": "знак кидати сміття в урну | памʼятка не смітити | сміття | урна"
+      },
+      {
+          "emoji": "🚰",
+          "category": 7,
+          "name": "питна вода",
+          "version": "1.0",
+          "keywords": "вода | питна | придатна для пиття"
+      },
+      {
+          "emoji": "♿",
+          "category": 7,
+          "name": "символ крісла-візка",
+          "version": "1.0",
+          "keywords": "доступність | символ візка | символ крісла-візка"
+      },
+      {
+          "emoji": "🚹",
+          "category": 7,
+          "name": "чоловіча вбиральня",
+          "version": "1.0",
+          "keywords": "вбиральня | для чоловіків | клозет | туалетна кімната | чоловіча вбиральня | чоловічий туалет"
+      },
+      {
+          "emoji": "🚺",
+          "category": 7,
+          "name": "жіноча вбиральня",
+          "version": "1.0",
+          "keywords": "для жінок | жіноча вбиральня | жіночий туалет | убиральня"
+      },
+      {
+          "emoji": "🚻",
+          "category": 7,
+          "name": "громадський туалет",
+          "version": "1.0",
+          "keywords": "вбиральня | громадський туалет | клозет | туалет"
+      },
+      {
+          "emoji": "🚼",
+          "category": 7,
+          "name": "символ немовляти",
+          "version": "1.0",
+          "keywords": "для немовлят | заміна пелюшок | немовля | символ немовляти"
+      },
+      {
+          "emoji": "🚾",
+          "category": 7,
+          "name": "символ убиральні [WC]",
+          "version": "1.0",
+          "keywords": "ванна | вбиральня | знак убиральні WC | кімната | символ убиральні [WC] | символ убиральні WC"
+      },
+      {
+          "emoji": "🛂",
+          "category": 7,
+          "name": "паспортний контроль",
+          "version": "1.0",
+          "keywords": "контроль | паспортний"
+      },
+      {
+          "emoji": "🛃",
+          "category": 7,
+          "name": "митниця",
+          "version": "1.0",
+          "keywords": "митний контроль | митниця"
+      },
+      {
+          "emoji": "🛄",
+          "category": 7,
+          "name": "видача багажу",
+          "version": "1.0",
+          "keywords": "багаж | видача | видача багажу | отримання"
+      },
+      {
+          "emoji": "🛅",
+          "category": 7,
+          "name": "камера схову",
+          "version": "1.0",
+          "keywords": "багаж | залишені речі | камера схову | комірка для зберігання | поклажа"
+      },
+      {
+          "emoji": "⚠️",
+          "category": 7,
+          "name": "warning",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🚸",
+          "category": 7,
+          "name": "попереджувальний знак «Діти»",
+          "version": "1.0",
+          "keywords": "діти | на дорозі | перехід дороги для дітей | пішоходи | попереджувальний знак «Діти» | рух"
+      },
+      {
+          "emoji": "⛔",
+          "category": 7,
+          "name": "вʼїзд заборонено",
+          "version": "1.0",
+          "keywords": "вʼїзд | заборонено | не дозволено | немає | рух"
+      },
+      {
+          "emoji": "🚫",
+          "category": 7,
+          "name": "заборонено",
+          "version": "1.0",
+          "keywords": "заборонено | забороняється | не дозволено | не допускається | немає"
+      },
+      {
+          "emoji": "🚳",
+          "category": 7,
+          "name": "велосипеди заборонено",
+          "version": "1.0",
+          "keywords": "велосипед | велосипеди заборонено | заборонено | рух на велосипеді заборонено | транспортний засіб"
+      },
+      {
+          "emoji": "🚭",
+          "category": 7,
+          "name": "палити заборонено",
+          "version": "1.0",
+          "keywords": "заборонено | курити | не | палити | символ «не палити»"
+      },
+      {
+          "emoji": "🚯",
+          "category": 7,
+          "name": "смітити заборонено",
+          "version": "1.0",
+          "keywords": "заборонено | знак «не смітити» | не | смітити"
+      },
+      {
+          "emoji": "🚱",
+          "category": 7,
+          "name": "непридатна для пиття вода",
+          "version": "1.0",
+          "keywords": "вода | заборонено | знак «непитна вода» | не | непридатна для пиття вода | непридатно | пити | пиття"
+      },
+      {
+          "emoji": "🚷",
+          "category": 7,
+          "name": "пішохідний рух заборонено",
+          "version": "1.0",
+          "keywords": "заборонено | пішохідний рух заборонено | рух пішоходів заборонено"
+      },
+      {
+          "emoji": "📵",
+          "category": 7,
+          "name": "мобільні телефони заборонено",
+          "version": "1.0",
+          "keywords": "заборонено | користуватися | мобільний | мобільні телефони заборонено | стільниковий | телефон"
+      },
+      {
+          "emoji": "🔞",
+          "category": 7,
+          "name": "вхід особам до 18 років заборонений",
+          "version": "1.0",
+          "keywords": "18 | вікове обмеження | вісімнадцять | вхід особам до 18 років заборонений | для | заборонено | лише | повнолітній"
+      },
+      {
+          "emoji": "☢️",
+          "category": 7,
+          "name": "radioactive",
+          "version": "1.0"
+      },
+      {
+          "emoji": "☣️",
+          "category": 7,
+          "name": "biohazard",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⬆️",
+          "category": 7,
+          "name": "up arrow",
+          "version": "1.0"
+      },
+      {
+          "emoji": "↗️",
+          "category": 7,
+          "name": "up-right arrow",
+          "version": "1.0"
+      },
+      {
+          "emoji": "➡️",
+          "category": 7,
+          "name": "right arrow",
+          "version": "1.0"
+      },
+      {
+          "emoji": "↘️",
+          "category": 7,
+          "name": "down-right arrow",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⬇️",
+          "category": 7,
+          "name": "down arrow",
+          "version": "1.0"
+      },
+      {
+          "emoji": "↙️",
+          "category": 7,
+          "name": "down-left arrow",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⬅️",
+          "category": 7,
+          "name": "left arrow",
+          "version": "1.0"
+      },
+      {
+          "emoji": "↖️",
+          "category": 7,
+          "name": "up-left arrow",
+          "version": "1.0"
+      },
+      {
+          "emoji": "↕️",
+          "category": 7,
+          "name": "up-down arrow",
+          "version": "1.0"
+      },
+      {
+          "emoji": "↔️",
+          "category": 7,
+          "name": "left-right arrow",
+          "version": "1.0"
+      },
+      {
+          "emoji": "↩️",
+          "category": 7,
+          "name": "right arrow curving left",
+          "version": "1.0"
+      },
+      {
+          "emoji": "↪️",
+          "category": 7,
+          "name": "left arrow curving right",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⤴️",
+          "category": 7,
+          "name": "right arrow curving up",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⤵️",
+          "category": 7,
+          "name": "right arrow curving down",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🔃",
+          "category": 7,
+          "name": "вертикальні стрілки за ходом годинника",
+          "version": "1.0",
+          "keywords": "вертикальні стрілки за ходом годинника | за годинниковою стрілкою | перезавантажити | стрілка | стрілки по колу за годинниковою стрілкою"
+      },
+      {
+          "emoji": "🔄",
+          "category": 7,
+          "name": "кнопка стрілок проти ходу годинника",
+          "version": "1.0",
+          "keywords": "кнопка зі стрілками, напрямленими проти годинникової стрілки | кнопка стрілок проти ходу годинника | проти годинникової стрілки | стрілка"
+      },
+      {
+          "emoji": "🔙",
+          "category": 7,
+          "name": "стрілка назад [BACK]",
+          "version": "1.0",
+          "keywords": "назад | стрілка | стрілка BACK | стрілка назад [BACK] | стрілка назад BACK"
+      },
+      {
+          "emoji": "🔚",
+          "category": 7,
+          "name": "стрілка [END]",
+          "version": "1.0",
+          "keywords": "кінець | стрілка | стрілка [END]"
+      },
+      {
+          "emoji": "🔛",
+          "category": 7,
+          "name": "стрілка [ON!]",
+          "version": "1.0",
+          "keywords": "ввімкнено | значок | стрілка | стрілка [ON!]"
+      },
+      {
+          "emoji": "🔜",
+          "category": 7,
+          "name": "стрілка [SOON]",
+          "version": "1.0",
+          "keywords": "незабаром | стрілка | стрілка [SOON]"
+      },
+      {
+          "emoji": "🔝",
+          "category": 7,
+          "name": "стрілка [TOP]",
+          "version": "1.0",
+          "keywords": "вверх | вгору | стрілка | стрілка [TOP]"
+      },
+      {
+          "emoji": "🛐",
+          "category": 7,
+          "name": "культова споруда",
+          "version": "1.0",
+          "keywords": "культова споруда | молитовний дім | поклоніння | релігія"
+      },
+      {
+          "emoji": "⚛️",
+          "category": 7,
+          "name": "atom symbol",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🕉️",
+          "category": 7,
+          "name": "om",
+          "version": "1.0"
+      },
+      {
+          "emoji": "✡️",
+          "category": 7,
+          "name": "star of David",
+          "version": "1.0"
+      },
+      {
+          "emoji": "☸️",
+          "category": 7,
+          "name": "wheel of dharma",
+          "version": "1.0"
+      },
+      {
+          "emoji": "☯️",
+          "category": 7,
+          "name": "yin yang",
+          "version": "1.0"
+      },
+      {
+          "emoji": "✝️",
+          "category": 7,
+          "name": "latin cross",
+          "version": "1.0"
+      },
+      {
+          "emoji": "☦️",
+          "category": 7,
+          "name": "orthodox cross",
+          "version": "1.0"
+      },
+      {
+          "emoji": "☪️",
+          "category": 7,
+          "name": "star and crescent",
+          "version": "1.0"
+      },
+      {
+          "emoji": "☮️",
+          "category": 7,
+          "name": "peace symbol",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🕎",
+          "category": 7,
+          "name": "менора",
+          "version": "1.0",
+          "keywords": "канделябр | менора | підсвічник | релігія"
+      },
+      {
+          "emoji": "🔯",
+          "category": 7,
+          "name": "шестикутна зірка з крапкою",
+          "version": "1.0",
+          "keywords": "зірка | удача | шестикутна зірка з крапкою"
+      },
+      {
+          "emoji": "♈",
+          "category": 7,
+          "name": "Овен",
+          "version": "1.0",
+          "keywords": "баран | зодіак | Овен"
+      },
+      {
+          "emoji": "♉",
+          "category": 7,
+          "name": "Телець",
+          "version": "1.0",
+          "keywords": "бик | віл | зодіак | Телець"
+      },
+      {
+          "emoji": "♊",
+          "category": 7,
+          "name": "Близнюки",
+          "version": "1.0",
+          "keywords": "Близнюки | зодіак"
+      },
+      {
+          "emoji": "♋",
+          "category": 7,
+          "name": "Рак",
+          "version": "1.0",
+          "keywords": "зодіак | краб | Рак"
+      },
+      {
+          "emoji": "♌",
+          "category": 7,
+          "name": "Лев (знак зодіаку)",
+          "version": "1.0",
+          "keywords": "зодіак | Лев | Лев (знак зодіаку)"
+      },
+      {
+          "emoji": "♍",
+          "category": 7,
+          "name": "Діва",
+          "version": "1.0",
+          "keywords": "Діва | зодіак"
+      },
+      {
+          "emoji": "♎",
+          "category": 7,
+          "name": "Терези",
+          "version": "1.0",
+          "keywords": "зодіак | рівновага | справедливість | Терези"
+      },
+      {
+          "emoji": "♏",
+          "category": 7,
+          "name": "Скорпіон (знак зодіаку)",
+          "version": "1.0",
+          "keywords": "зодіак | скорпіон | Скорпіон (знак зодіаку)"
+      },
+      {
+          "emoji": "♐",
+          "category": 7,
+          "name": "Стрілець",
+          "version": "1.0",
+          "keywords": "зодіак | Стрілець"
+      },
+      {
+          "emoji": "♑",
+          "category": 7,
+          "name": "Козоріг",
+          "version": "1.0",
+          "keywords": "зодіак | коза | Козеріг | Козоріг"
+      },
+      {
+          "emoji": "♒",
+          "category": 7,
+          "name": "Водолій",
+          "version": "1.0",
+          "keywords": "вода | Водолій | зодіак | носій"
+      },
+      {
+          "emoji": "♓",
+          "category": 7,
+          "name": "Риби",
+          "version": "1.0",
+          "keywords": "зодіак | риба | Риби"
+      },
+      {
+          "emoji": "⛎",
+          "category": 7,
+          "name": "Змієносець",
+          "version": "1.0",
+          "keywords": "Змієносець | змія | зодіак | носій"
+      },
+      {
+          "emoji": "🔀",
+          "category": 7,
+          "name": "кнопка тасування композицій",
+          "version": "1.0",
+          "keywords": "кнопка «Змішати композиції» | кнопка тасування композицій | перехрещені | стрілка"
+      },
+      {
+          "emoji": "🔁",
+          "category": 7,
+          "name": "кнопка повтору",
+          "version": "1.0",
+          "keywords": "за годинниковою стрілкою | кнопка «Повторити» | кнопка повтору | повторити | стрілка"
+      },
+      {
+          "emoji": "🔂",
+          "category": 7,
+          "name": "кнопка одноразового повтору",
+          "version": "1.0",
+          "keywords": "за годинниковою стрілкою | кнопка «Повторити одну композицію» | кнопка одноразового повтору | один раз | стрілка"
+      },
+      {
+          "emoji": "▶️",
+          "category": 7,
+          "name": "play button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⏩",
+          "category": 7,
+          "name": "кнопка перемотування вперед",
+          "version": "1.0",
+          "keywords": "вперед | дві | кнопка «Перемотати вперед» | кнопка мотання вперед | кнопка перемотування вперед | перемотати | стрілка"
+      },
+      {
+          "emoji": "⏭️",
+          "category": 7,
+          "name": "next track button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⏯️",
+          "category": 7,
+          "name": "play or pause button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "◀️",
+          "category": 7,
+          "name": "reverse button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⏪",
+          "category": 7,
+          "name": "кнопка перемотування назад",
+          "version": "1.0",
+          "keywords": "дві | кнопка «Швидко назад» | кнопка мотання назад | кнопка перемотування назад | перемотати | стрілка"
+      },
+      {
+          "emoji": "⏮️",
+          "category": 7,
+          "name": "last track button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🔼",
+          "category": 7,
+          "name": "кнопка догори",
+          "version": "1.0",
+          "keywords": "кнопка | кнопка «Угору» | кнопка догори | стрілка | червоний"
+      },
+      {
+          "emoji": "⏫",
+          "category": 7,
+          "name": "кнопка мотання вгору",
+          "version": "1.0",
+          "keywords": "дві | кнопка «Швидко вгору» | кнопка мотання вгору | стрілка"
+      },
+      {
+          "emoji": "🔽",
+          "category": 7,
+          "name": "кнопка донизу",
+          "version": "1.0",
+          "keywords": "вниз | кнопка | кнопка «Униз» | кнопка донизу | стрілка | червоний"
+      },
+      {
+          "emoji": "⏬",
+          "category": 7,
+          "name": "кнопка мотання вниз",
+          "version": "1.0",
+          "keywords": "вниз | дві | кнопка «Швидко вниз» | кнопка мотання вниз | стрілка"
+      },
+      {
+          "emoji": "⏸️",
+          "category": 7,
+          "name": "pause button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⏹️",
+          "category": 7,
+          "name": "stop button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⏺️",
+          "category": 7,
+          "name": "record button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⏏️",
+          "category": 7,
+          "name": "eject button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🎦",
+          "category": 7,
+          "name": "кінематограф",
+          "version": "1.0",
+          "keywords": "камера | кінематограф | кіно | фільм"
+      },
+      {
+          "emoji": "🔅",
+          "category": 7,
+          "name": "кнопка зменшення яскравості",
+          "version": "1.0",
+          "keywords": "зменшити | кнопка зменшення яскравості | яскравість"
+      },
+      {
+          "emoji": "🔆",
+          "category": 7,
+          "name": "кнопка збільшення яскравості",
+          "version": "1.0",
+          "keywords": "кнопка збільшення яскравості | яскравий | яскравість"
+      },
+      {
+          "emoji": "📶",
+          "category": 7,
+          "name": "рівень сигналу",
+          "version": "1.0",
+          "keywords": "мобільний | рівень | рівень сигналу | сигнал | стільниковий | телефон"
+      },
+      {
+          "emoji": "📳",
+          "category": 7,
+          "name": "віброрежим",
+          "version": "1.0",
+          "keywords": "вібрація | віброрежим | мобільний | режим вібрації | телефон"
+      },
+      {
+          "emoji": "📴",
+          "category": 7,
+          "name": "мобільний телефон вимкнено",
+          "version": "1.0",
+          "keywords": "вимкнено | мобільний | стільниковий | телефон"
+      },
+      {
+          "emoji": "♀️",
+          "category": 7,
+          "name": "female sign",
+          "version": "4.0"
+      },
+      {
+          "emoji": "♂️",
+          "category": 7,
+          "name": "male sign",
+          "version": "4.0"
+      },
+      {
+          "emoji": "⚧️",
+          "category": 7,
+          "name": "transgender symbol",
+          "version": "13.0"
+      },
+      {
+          "emoji": "✖️",
+          "category": 7,
+          "name": "multiply",
+          "version": "1.0"
+      },
+      {
+          "emoji": "➕",
+          "category": 7,
+          "name": "плюс",
+          "version": "1.0",
+          "keywords": "+ | знак | математичний | плюс"
+      },
+      {
+          "emoji": "➖",
+          "category": 7,
+          "name": "мінус",
+          "version": "1.0",
+          "keywords": "- | − | знак | математичний | мінус"
+      },
+      {
+          "emoji": "➗",
+          "category": 7,
+          "name": "ділення",
+          "version": "1.0",
+          "keywords": "÷ | ділення | знак | математичний"
+      },
+      {
+          "emoji": "♾️",
+          "category": 7,
+          "name": "infinity",
+          "version": "11.0"
+      },
+      {
+          "emoji": "‼️",
+          "category": 7,
+          "name": "double exclamation mark",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⁉️",
+          "category": 7,
+          "name": "exclamation question mark",
+          "version": "1.0"
+      },
+      {
+          "emoji": "❓",
+          "category": 7,
+          "name": "червоний знак питання",
+          "version": "1.0",
+          "keywords": "? | знак питання | питання | пунктуація | розділовий знак | червоний знак питання"
+      },
+      {
+          "emoji": "❔",
+          "category": 7,
+          "name": "білий знак питання",
+          "version": "1.0",
+          "keywords": "? | білий знак питання | контурний | питання | пунктуація | розділовий знак"
+      },
+      {
+          "emoji": "❕",
+          "category": 7,
+          "name": "білий знак оклику",
+          "version": "1.0",
+          "keywords": "! | білий знак оклику | контурний | оклик | пунктуація | розділовий знак"
+      },
+      {
+          "emoji": "❗",
+          "category": 7,
+          "name": "червоний знак оклику",
+          "version": "1.0",
+          "keywords": "! | знак оклику | оклик | пунктуація | розділовий знак | червоний знак оклику"
+      },
+      {
+          "emoji": "〰️",
+          "category": 7,
+          "name": "wavy dash",
+          "version": "1.0"
+      },
+      {
+          "emoji": "💱",
+          "category": 7,
+          "name": "обмін валют",
+          "version": "1.0",
+          "keywords": "банк | валюта | гроші | обмін | обмін валют"
+      },
+      {
+          "emoji": "💲",
+          "category": 7,
+          "name": "знак долара",
+          "version": "1.0",
+          "keywords": "валюта | гроші | долар | знак долара"
+      },
+      {
+          "emoji": "⚕️",
+          "category": 7,
+          "name": "medical symbol",
+          "version": "4.0"
+      },
+      {
+          "emoji": "♻️",
+          "category": 7,
+          "name": "recycling symbol",
+          "version": "1.0"
+      },
+      {
+          "emoji": "⚜️",
+          "category": 7,
+          "name": "fleur-de-lis",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🔱",
+          "category": 7,
+          "name": "тризуб",
+          "version": "1.0",
+          "keywords": "емблема | інструмент | корабель | тризуб | якір"
+      },
+      {
+          "emoji": "📛",
+          "category": 7,
+          "name": "бейдж з іменем",
+          "version": "1.0",
+          "keywords": "бейдж | бейдж з іменем | ім’я"
+      },
+      {
+          "emoji": "🔰",
+          "category": 7,
+          "name": "японський символ «початківець»",
+          "version": "1.0",
+          "keywords": "листок | початківець | шеврон | японський | японський символ «початківець»"
+      },
+      {
+          "emoji": "⭕",
+          "category": 7,
+          "name": "порожнисте червоне коло",
+          "version": "1.0",
+          "keywords": "велике | коло | о | порожнисте червоне коло | червоне"
+      },
+      {
+          "emoji": "✅",
+          "category": 7,
+          "name": "кнопка з галочкою",
+          "version": "1.0",
+          "keywords": "✓ | галочка | кнопка | кнопка з галочкою | опція | позначка"
+      },
+      {
+          "emoji": "☑️",
+          "category": 7,
+          "name": "check box with check",
+          "version": "1.0"
+      },
+      {
+          "emoji": "✔️",
+          "category": 7,
+          "name": "check mark",
+          "version": "1.0"
+      },
+      {
+          "emoji": "❌",
+          "category": 7,
+          "name": "хрестик",
+          "version": "1.0",
+          "keywords": "× | значок | множення | позначка | помножити | скасувати | х | хрестик"
+      },
+      {
+          "emoji": "❎",
+          "category": 7,
+          "name": "кнопка з хрестиком",
+          "version": "1.0",
+          "keywords": "× | значок | квадрат | кнопка з хрестиком | позначка | х"
+      },
+      {
+          "emoji": "➰",
+          "category": 7,
+          "name": "закручена петля",
+          "version": "1.0",
+          "keywords": "закручена петля | закручений | петля"
+      },
+      {
+          "emoji": "➿",
+          "category": 7,
+          "name": "подвійна закручена петля",
+          "version": "1.0",
+          "keywords": "закручений | петля | подвійна закручена петля | подвійний"
+      },
+      {
+          "emoji": "〽️",
+          "category": 7,
+          "name": "part alternation mark",
+          "version": "1.0"
+      },
+      {
+          "emoji": "✳️",
+          "category": 7,
+          "name": "eight-spoked asterisk",
+          "version": "1.0"
+      },
+      {
+          "emoji": "✴️",
+          "category": 7,
+          "name": "eight-pointed star",
+          "version": "1.0"
+      },
+      {
+          "emoji": "❇️",
+          "category": 7,
+          "name": "sparkle",
+          "version": "1.0"
+      },
+      {
+          "emoji": "©️",
+          "category": 7,
+          "name": "copyright",
+          "version": "1.0"
+      },
+      {
+          "emoji": "®️",
+          "category": 7,
+          "name": "registered",
+          "version": "1.0"
+      },
+      {
+          "emoji": "™️",
+          "category": 7,
+          "name": "trade mark",
+          "version": "1.0"
+      },
+      {
+          "emoji": "#️⃣",
+          "category": 7,
+          "name": "keycap: #",
+          "version": "1.0"
+      },
+      {
+          "emoji": "*️⃣",
+          "category": 7,
+          "name": "keycap: *",
+          "version": "2.0"
+      },
+      {
+          "emoji": "0️⃣",
+          "category": 7,
+          "name": "keycap: 0",
+          "version": "1.0"
+      },
+      {
+          "emoji": "1️⃣",
+          "category": 7,
+          "name": "keycap: 1",
+          "version": "1.0"
+      },
+      {
+          "emoji": "2️⃣",
+          "category": 7,
+          "name": "keycap: 2",
+          "version": "1.0"
+      },
+      {
+          "emoji": "3️⃣",
+          "category": 7,
+          "name": "keycap: 3",
+          "version": "1.0"
+      },
+      {
+          "emoji": "4️⃣",
+          "category": 7,
+          "name": "keycap: 4",
+          "version": "1.0"
+      },
+      {
+          "emoji": "5️⃣",
+          "category": 7,
+          "name": "keycap: 5",
+          "version": "1.0"
+      },
+      {
+          "emoji": "6️⃣",
+          "category": 7,
+          "name": "keycap: 6",
+          "version": "1.0"
+      },
+      {
+          "emoji": "7️⃣",
+          "category": 7,
+          "name": "keycap: 7",
+          "version": "1.0"
+      },
+      {
+          "emoji": "8️⃣",
+          "category": 7,
+          "name": "keycap: 8",
+          "version": "1.0"
+      },
+      {
+          "emoji": "9️⃣",
+          "category": 7,
+          "name": "keycap: 9",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🔟",
+          "category": 7,
+          "name": "клавіша: 10",
+          "version": "1.0",
+          "keywords": "клавіша"
+      },
+      {
+          "emoji": "🔠",
+          "category": 7,
+          "name": "введення великими латинськими літерами",
+          "version": "1.0",
+          "keywords": "введення | введення великими латинськими літерами | великі | латинські | літери"
+      },
+      {
+          "emoji": "🔡",
+          "category": 7,
+          "name": "введення малими латинськими літерами",
+          "version": "1.0",
+          "keywords": "abcd | алфавіт | введення | введення малими латинськими літерами | латинські | літери | малі"
+      },
+      {
+          "emoji": "🔢",
+          "category": 7,
+          "name": "введення цифрами",
+          "version": "1.0",
+          "keywords": "1234 | введення | введення цифрами | цифри"
+      },
+      {
+          "emoji": "🔣",
+          "category": 7,
+          "name": "введення символів",
+          "version": "1.0",
+          "keywords": "введення | введення символів"
+      },
+      {
+          "emoji": "🔤",
+          "category": 7,
+          "name": "введення латинськими літерами",
+          "version": "1.0",
+          "keywords": "abc | алфавіт | введення | введення латинськими літерами | латинські | літери"
+      },
+      {
+          "emoji": "🅰️",
+          "category": 7,
+          "name": "A button (blood type)",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🆎",
+          "category": 7,
+          "name": "кнопка AB (IV група крові)",
+          "version": "1.0",
+          "keywords": "3 | ab | iii | кнопка «група крові ab» | кнопка AB (IV група крові) | кров"
+      },
+      {
+          "emoji": "🅱️",
+          "category": 7,
+          "name": "B button (blood type)",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🆑",
+          "category": 7,
+          "name": "кнопка «очистити»",
+          "version": "1.0",
+          "keywords": "квадрат «очистити текст» | кнопка «очистити» | очистити текст"
+      },
+      {
+          "emoji": "🆒",
+          "category": 7,
+          "name": "кнопка \\\"COOL\\\"",
+          "version": "1.0",
+          "keywords": "квадрат «круто» | кнопка \\\"COOL\\\" | круто"
+      },
+      {
+          "emoji": "🆓",
+          "category": 7,
+          "name": "кнопка \\\"FREE\\\"",
+          "version": "1.0",
+          "keywords": "безкоштовно | квадрат «безкоштовно» | кнопка \\\"FREE\\\""
+      },
+      {
+          "emoji": "ℹ️",
+          "category": 7,
+          "name": "information",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🆔",
+          "category": 7,
+          "name": "кнопка \\\"ID\\\"",
+          "version": "1.0",
+          "keywords": "ідентифікатор | квадрат «ідентифікатор» | кнопка \\\"ID\\\" | особистість"
+      },
+      {
+          "emoji": "Ⓜ️",
+          "category": 7,
+          "name": "circled M",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🆕",
+          "category": 7,
+          "name": "кнопка \\\"NEW\\\"",
+          "version": "1.0",
+          "keywords": "квадрат «новий» | кнопка \\\"NEW\\\" | новий"
+      },
+      {
+          "emoji": "🆖",
+          "category": 7,
+          "name": "кнопка \\\"NG\\\"",
+          "version": "1.0",
+          "keywords": "квадрат «негативно» | кнопка \\\"NG\\\" | негативно"
+      },
+      {
+          "emoji": "🅾️",
+          "category": 7,
+          "name": "O button (blood type)",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🆗",
+          "category": 7,
+          "name": "кнопка «ОК»",
+          "version": "1.0",
+          "keywords": "ok | кнопка «ОК»"
+      },
+      {
+          "emoji": "🅿️",
+          "category": 7,
+          "name": "P button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🆘",
+          "category": 7,
+          "name": "кнопка \\\"SOS\\\"",
+          "version": "1.0",
+          "keywords": "sos | допомога | кнопка \\\"SOS\\\""
+      },
+      {
+          "emoji": "🆙",
+          "category": 7,
+          "name": "кнопка \\\"UP!\\\"",
+          "version": "1.0",
+          "keywords": "вгору | значок | кнопка \\\"UP!\\\""
+      },
+      {
+          "emoji": "🆚",
+          "category": 7,
+          "name": "кнопка \\\"VS\\\"",
+          "version": "1.0",
+          "keywords": "кнопка \\\"VS\\\" | проти"
+      },
+      {
+          "emoji": "🈁",
+          "category": 7,
+          "name": "кнопка \\\"тут\\\" японською",
+          "version": "1.0",
+          "keywords": "кнопка \\\"тут\\\" японською | японський"
+      },
+      {
+          "emoji": "🈂️",
+          "category": 7,
+          "name": "Japanese “service charge” button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🈷️",
+          "category": 7,
+          "name": "Japanese “monthly amount” button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🈶",
+          "category": 7,
+          "name": "кнопка \\\"не безкоштовно\\\" японською",
+          "version": "1.0",
+          "keywords": "кнопка \\\"не безкоштовно\\\" японською | японський"
+      },
+      {
+          "emoji": "🈯",
+          "category": 7,
+          "name": "кнопка \\\"зарезервовано\\\" японською",
+          "version": "1.0",
+          "keywords": "кнопка \\\"зарезервовано\\\" японською | японський"
+      },
+      {
+          "emoji": "🉐",
+          "category": 7,
+          "name": "кнопка \\\"угода\\\" японською",
+          "version": "1.0",
+          "keywords": "кнопка \\\"угода\\\" японською | японський"
+      },
+      {
+          "emoji": "🈹",
+          "category": 7,
+          "name": "кнопка \\\"знижка\\\" японською",
+          "version": "1.0",
+          "keywords": "кнопка \\\"знижка\\\" японською | японський"
+      },
+      {
+          "emoji": "🈚",
+          "category": 7,
+          "name": "кнопка \\\"безкоштовно\\\" японською",
+          "version": "1.0",
+          "keywords": "кнопка \\\"безкоштовно\\\" японською | японський"
+      },
+      {
+          "emoji": "🈲",
+          "category": 7,
+          "name": "кнопка \\\"заборонено\\\" японською",
+          "version": "1.0",
+          "keywords": "кнопка \\\"заборонено\\\" японською | японський"
+      },
+      {
+          "emoji": "🉑",
+          "category": 7,
+          "name": "кнопка \\\"прийнятно\\\" японською",
+          "version": "1.0",
+          "keywords": "китайський | кнопка \\\"прийнятно\\\" японською"
+      },
+      {
+          "emoji": "🈸",
+          "category": 7,
+          "name": "кнопка \\\"заявка\\\" японською",
+          "version": "1.0",
+          "keywords": "китайський | кнопка \\\"заявка\\\" японською"
+      },
+      {
+          "emoji": "🈴",
+          "category": 7,
+          "name": "кнопка \\\"достатня оцінка\\\" японською",
+          "version": "1.0",
+          "keywords": "китайський | кнопка \\\"достатня оцінка\\\" японською"
+      },
+      {
+          "emoji": "🈳",
+          "category": 7,
+          "name": "кнопка \\\"вільно\\\" японською",
+          "version": "1.0",
+          "keywords": "китайський | кнопка \\\"вільно\\\" японською"
+      },
+      {
+          "emoji": "㊗️",
+          "category": 7,
+          "name": "Japanese “congratulations” button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "㊙️",
+          "category": 7,
+          "name": "Japanese “secret” button",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🈺",
+          "category": 7,
+          "name": "кнопка \\\"робота\\\" японською",
+          "version": "1.0",
+          "keywords": "китайський | кнопка \\\"робота\\\" японською"
+      },
+      {
+          "emoji": "🈵",
+          "category": 7,
+          "name": "кнопка \\\"місць немає\\\" японською",
+          "version": "1.0",
+          "keywords": "китайський | кнопка \\\"місць немає\\\" японською"
+      },
+      {
+          "emoji": "🔴",
+          "category": 7,
+          "name": "червоний круг",
+          "version": "1.0",
+          "keywords": "геометричний | коло | червоне | червоний круг"
+      },
+      {
+          "emoji": "🟠",
+          "category": 7,
+          "name": "оранжевий круг",
+          "version": "12.0",
+          "keywords": "круг | оранжевий"
+      },
+      {
+          "emoji": "🟡",
+          "category": 7,
+          "name": "жовтий круг",
+          "version": "12.0",
+          "keywords": "жовтий | круг"
+      },
+      {
+          "emoji": "🟢",
+          "category": 7,
+          "name": "зелений круг",
+          "version": "12.0",
+          "keywords": "зелений | круг"
+      },
+      {
+          "emoji": "🔵",
+          "category": 7,
+          "name": "cиній круг",
+          "version": "1.0",
+          "keywords": "cиній круг | геометричний | коло | синє"
+      },
+      {
+          "emoji": "🟣",
+          "category": 7,
+          "name": "пурпуровий круг",
+          "version": "12.0",
+          "keywords": "круг | пурпуровий"
+      },
+      {
+          "emoji": "🟤",
+          "category": 7,
+          "name": "коричневий круг",
+          "version": "12.0",
+          "keywords": "коричневий | круг"
+      },
+      {
+          "emoji": "⚫",
+          "category": 7,
+          "name": "чорний круг",
+          "version": "1.0",
+          "keywords": "геометричний | коло | чорне | чорний круг"
+      },
+      {
+          "emoji": "⚪",
+          "category": 7,
+          "name": "білий круг",
+          "version": "1.0",
+          "keywords": "біле | білий круг | геометричний | коло"
+      },
+      {
+          "emoji": "🟥",
+          "category": 7,
+          "name": "червоний квадрат",
+          "version": "12.0",
+          "keywords": "квадрат | червоний"
+      },
+      {
+          "emoji": "🟧",
+          "category": 7,
+          "name": "оранжевий квадрат",
+          "version": "12.0",
+          "keywords": "квадрат | оранжевий"
+      },
+      {
+          "emoji": "🟨",
+          "category": 7,
+          "name": "жовтий квадрат",
+          "version": "12.0",
+          "keywords": "жовтий | квадрат"
+      },
+      {
+          "emoji": "🟩",
+          "category": 7,
+          "name": "зелений квадрат",
+          "version": "12.0",
+          "keywords": "зелений | квадрат"
+      },
+      {
+          "emoji": "🟦",
+          "category": 7,
+          "name": "синій квадрат",
+          "version": "12.0",
+          "keywords": "квадрат | синій"
+      },
+      {
+          "emoji": "🟪",
+          "category": 7,
+          "name": "пурпуровий квадрат",
+          "version": "12.0",
+          "keywords": "квадрат | пурпуровий"
+      },
+      {
+          "emoji": "🟫",
+          "category": 7,
+          "name": "коричневий квадрат",
+          "version": "12.0",
+          "keywords": "квадрат | коричневий"
+      },
+      {
+          "emoji": "⬛",
+          "category": 7,
+          "name": "великий чорний квадрат",
+          "version": "1.0",
+          "keywords": "великий чорний квадрат | геометричний | квадрат"
+      },
+      {
+          "emoji": "⬜",
+          "category": 7,
+          "name": "великий білий квадрат",
+          "version": "1.0",
+          "keywords": "великий білий квадрат | геометричний | квадрат"
+      },
+      {
+          "emoji": "◼️",
+          "category": 7,
+          "name": "black medium square",
+          "version": "1.0"
+      },
+      {
+          "emoji": "◻️",
+          "category": 7,
+          "name": "white medium square",
+          "version": "1.0"
+      },
+      {
+          "emoji": "◾",
+          "category": 7,
+          "name": "менший за середній чорний квадрат",
+          "version": "1.0",
+          "keywords": "геометричний | квадрат | менший за середній чорний квадрат"
+      },
+      {
+          "emoji": "◽",
+          "category": 7,
+          "name": "менший за середній білий квадрат",
+          "version": "1.0",
+          "keywords": "геометричний | квадрат | менший за середній білий квадрат"
+      },
+      {
+          "emoji": "▪️",
+          "category": 7,
+          "name": "black small square",
+          "version": "1.0"
+      },
+      {
+          "emoji": "▫️",
+          "category": 7,
+          "name": "white small square",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🔶",
+          "category": 7,
+          "name": "великий оранжевий ромб",
+          "version": "1.0",
+          "keywords": "великий | великий оранжевий ромб | великий помаранчевий ромб | геометричний | діамант | оранжевий"
+      },
+      {
+          "emoji": "🔷",
+          "category": 7,
+          "name": "великий синій ромб",
+          "version": "1.0",
+          "keywords": "великий синій ромб | геометричний | діамант | синій"
+      },
+      {
+          "emoji": "🔸",
+          "category": 7,
+          "name": "малий оранжевий ромб",
+          "version": "1.0",
+          "keywords": "геометричний | діамант | малий | малий оранжевий ромб | малий помаранчевий ромб | оранжевий"
+      },
+      {
+          "emoji": "🔹",
+          "category": 7,
+          "name": "малий синій ромб",
+          "version": "1.0",
+          "keywords": "геометричний | діамант | малий синій ромб | синій"
+      },
+      {
+          "emoji": "🔺",
+          "category": 7,
+          "name": "червоний трикутник, направлений угору",
+          "version": "1.0",
+          "keywords": "геометричний | червоний | червоний трикутник, направлений угору"
+      },
+      {
+          "emoji": "🔻",
+          "category": 7,
+          "name": "червоний трикутник, направлений униз",
+          "version": "1.0",
+          "keywords": "вниз | геометричний | червоний | червоний трикутник, направлений униз"
+      },
+      {
+          "emoji": "💠",
+          "category": 7,
+          "name": "ромб із крапкою",
+          "version": "1.0",
+          "keywords": "геометричний | діамант | крапка | малюнок | ромб із крапкою"
+      },
+      {
+          "emoji": "🔘",
+          "category": 7,
+          "name": "перемикач",
+          "version": "1.0",
+          "keywords": "геометричний | кнопка | перемикач"
+      },
+      {
+          "emoji": "🔳",
+          "category": 7,
+          "name": "квадратна кнопка з білою рамкою",
+          "version": "1.0",
+          "keywords": "біла квадратна кнопка | геометричний | квадрат | квадратна кнопка з білою рамкою | кнопка | контур"
+      },
+      {
+          "emoji": "🔲",
+          "category": 7,
+          "name": "квадратна кнопка з чорною рамкою",
+          "version": "1.0",
+          "keywords": "геометричний | квадрат | квадратна кнопка з чорною рамкою | кнопка | чорна квадратна кнопка"
+      },
+      {
+          "emoji": "🏁",
+          "category": 8,
+          "name": "картатий прапор",
+          "version": "1.0",
+          "keywords": "картатий | картатий прапор | клічастий | прапор для перегонів"
+      },
+      {
+          "emoji": "🚩",
+          "category": 8,
+          "name": "трикутний прапор",
+          "version": "1.0",
+          "keywords": "трикутний прапор | флагшток"
+      },
+      {
+          "emoji": "🎌",
+          "category": 8,
+          "name": "схрещені прапори",
+          "version": "1.0",
+          "keywords": "навхрест | прапори навхрест | схрещені прапори | урочистість | японські"
+      },
+      {
+          "emoji": "🏴",
+          "category": 8,
+          "name": "чорний прапор",
+          "version": "1.0",
+          "keywords": "майорить | чорний прапор"
+      },
+      {
+          "emoji": "🏳️",
+          "category": 8,
+          "name": "white flag",
+          "version": "1.0"
+      },
+      {
+          "emoji": "🏳️‍🌈",
+          "category": 8,
+          "name": "rainbow flag",
+          "version": "4.0"
+      },
+      {
+          "emoji": "🏳️‍⚧️",
+          "category": 8,
+          "name": "transgender flag",
+          "version": "13.0"
+      },
+      {
+          "emoji": "🏴‍☠️",
+          "category": 8,
+          "name": "pirate flag",
+          "version": "11.0"
+      },
+      {
+          "emoji": "🇦🇨",
+          "category": 8,
+          "name": "прапор: Острів Вознесіння",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇩",
+          "category": 8,
+          "name": "прапор: Андорра",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇪",
+          "category": 8,
+          "name": "прапор: Обʼєднані Арабські Емірати",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇫",
+          "category": 8,
+          "name": "прапор: Афганістан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇬",
+          "category": 8,
+          "name": "прапор: Антигуа і Барбуда",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇮",
+          "category": 8,
+          "name": "прапор: Ангілья",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇱",
+          "category": 8,
+          "name": "прапор: Албанія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇲",
+          "category": 8,
+          "name": "прапор: Вірменія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇴",
+          "category": 8,
+          "name": "прапор: Ангола",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇶",
+          "category": 8,
+          "name": "прапор: Антарктика",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇷",
+          "category": 8,
+          "name": "прапор: Аргентина",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇸",
+          "category": 8,
+          "name": "прапор: Американське Самоа",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇹",
+          "category": 8,
+          "name": "прапор: Австрія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇺",
+          "category": 8,
+          "name": "прапор: Австралія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇼",
+          "category": 8,
+          "name": "прапор: Аруба",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇽",
+          "category": 8,
+          "name": "прапор: Аландські Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇦🇿",
+          "category": 8,
+          "name": "прапор: Азербайджан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇦",
+          "category": 8,
+          "name": "прапор: Боснія і Герцеговина",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇧",
+          "category": 8,
+          "name": "прапор: Барбадос",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇩",
+          "category": 8,
+          "name": "прапор: Бангладеш",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇪",
+          "category": 8,
+          "name": "прапор: Бельгія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇫",
+          "category": 8,
+          "name": "прапор: Буркіна-Фасо",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇬",
+          "category": 8,
+          "name": "прапор: Болгарія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇭",
+          "category": 8,
+          "name": "прапор: Бахрейн",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇮",
+          "category": 8,
+          "name": "прапор: Бурунді",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇯",
+          "category": 8,
+          "name": "прапор: Бенін",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇱",
+          "category": 8,
+          "name": "прапор: Сен-Бартелемі",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇲",
+          "category": 8,
+          "name": "прапор: Бермудські Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇳",
+          "category": 8,
+          "name": "прапор: Бруней",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇴",
+          "category": 8,
+          "name": "прапор: Болівія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇶",
+          "category": 8,
+          "name": "прапор: Карибські Нідерланди",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇷",
+          "category": 8,
+          "name": "прапор: Бразилія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇸",
+          "category": 8,
+          "name": "прапор: Багамські Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇹",
+          "category": 8,
+          "name": "прапор: Бутан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇻",
+          "category": 8,
+          "name": "прапор: Острів Буве",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇼",
+          "category": 8,
+          "name": "прапор: Ботсвана",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇾",
+          "category": 8,
+          "name": "прапор: Білорусь",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇧🇿",
+          "category": 8,
+          "name": "прапор: Беліз",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇦",
+          "category": 8,
+          "name": "прапор: Канада",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇨",
+          "category": 8,
+          "name": "прапор: Кокосові (Кілінг) Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇩",
+          "category": 8,
+          "name": "прапор: Конго – Кіншаса",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇫",
+          "category": 8,
+          "name": "прапор: Центральноафриканська Республіка",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇬",
+          "category": 8,
+          "name": "прапор: Конго – Браззавіль",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇭",
+          "category": 8,
+          "name": "прапор: Швейцарія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇮",
+          "category": 8,
+          "name": "прапор: Кот-дʼІвуар",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇰",
+          "category": 8,
+          "name": "прапор: Острови Кука",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇱",
+          "category": 8,
+          "name": "прапор: Чилі",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇲",
+          "category": 8,
+          "name": "прапор: Камерун",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇳",
+          "category": 8,
+          "name": "прапор: Китай",
+          "version": "1.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇴",
+          "category": 8,
+          "name": "прапор: Колумбія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇵",
+          "category": 8,
+          "name": "прапор: Острів Кліппертон",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇷",
+          "category": 8,
+          "name": "прапор: Коста-Рика",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇺",
+          "category": 8,
+          "name": "прапор: Куба",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇻",
+          "category": 8,
+          "name": "прапор: Кабо-Верде",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇼",
+          "category": 8,
+          "name": "прапор: Кюрасао",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇽",
+          "category": 8,
+          "name": "прапор: Острів Різдва",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇾",
+          "category": 8,
+          "name": "прапор: Кіпр",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇨🇿",
+          "category": 8,
+          "name": "прапор: Чехія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇩🇪",
+          "category": 8,
+          "name": "прапор: Німеччина",
+          "version": "1.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇩🇬",
+          "category": 8,
+          "name": "прапор: Дієго-Гарсія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇩🇯",
+          "category": 8,
+          "name": "прапор: Джибуті",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇩🇰",
+          "category": 8,
+          "name": "прапор: Данія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇩🇲",
+          "category": 8,
+          "name": "прапор: Домініка",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇩🇴",
+          "category": 8,
+          "name": "прапор: Домініканська Республіка",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇩🇿",
+          "category": 8,
+          "name": "прапор: Алжир",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇪🇦",
+          "category": 8,
+          "name": "прапор: Сеута і Мелілья",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇪🇨",
+          "category": 8,
+          "name": "прапор: Еквадор",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇪🇪",
+          "category": 8,
+          "name": "прапор: Естонія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇪🇬",
+          "category": 8,
+          "name": "прапор: Єгипет",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇪🇭",
+          "category": 8,
+          "name": "прапор: Західна Сахара",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇪🇷",
+          "category": 8,
+          "name": "прапор: Еритрея",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇪🇸",
+          "category": 8,
+          "name": "прапор: Іспанія",
+          "version": "1.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇪🇹",
+          "category": 8,
+          "name": "прапор: Ефіопія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇪🇺",
+          "category": 8,
+          "name": "прапор: Європейський Союз",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇫🇮",
+          "category": 8,
+          "name": "прапор: Фінляндія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇫🇯",
+          "category": 8,
+          "name": "прапор: Фіджі",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇫🇰",
+          "category": 8,
+          "name": "прапор: Фолклендські Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇫🇲",
+          "category": 8,
+          "name": "прапор: Мікронезія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇫🇴",
+          "category": 8,
+          "name": "прапор: Фарерські Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇫🇷",
+          "category": 8,
+          "name": "прапор: Франція",
+          "version": "1.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇦",
+          "category": 8,
+          "name": "прапор: Габон",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇧",
+          "category": 8,
+          "name": "прапор: Велика Британія",
+          "version": "1.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇩",
+          "category": 8,
+          "name": "прапор: Гренада",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇪",
+          "category": 8,
+          "name": "прапор: Грузія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇫",
+          "category": 8,
+          "name": "прапор: Французька Гвіана",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇬",
+          "category": 8,
+          "name": "прапор: Гернсі",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇭",
+          "category": 8,
+          "name": "прапор: Гана",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇮",
+          "category": 8,
+          "name": "прапор: Гібралтар",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇱",
+          "category": 8,
+          "name": "прапор: Гренландія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇲",
+          "category": 8,
+          "name": "прапор: Гамбія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇳",
+          "category": 8,
+          "name": "прапор: Гвінея",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇵",
+          "category": 8,
+          "name": "прапор: Гваделупа",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇶",
+          "category": 8,
+          "name": "прапор: Екваторіальна Гвінея",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇷",
+          "category": 8,
+          "name": "прапор: Греція",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇸",
+          "category": 8,
+          "name": "прапор: Південна Джорджія та Південні Сандвічеві Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇹",
+          "category": 8,
+          "name": "прапор: Гватемала",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇺",
+          "category": 8,
+          "name": "прапор: Гуам",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇼",
+          "category": 8,
+          "name": "прапор: Гвінея-Бісау",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇬🇾",
+          "category": 8,
+          "name": "прапор: Гаяна",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇭🇰",
+          "category": 8,
+          "name": "прапор: Гонконг, ОАР Китаю",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇭🇲",
+          "category": 8,
+          "name": "прапор: Острови Герд і Макдоналд",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇭🇳",
+          "category": 8,
+          "name": "прапор: Гондурас",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇭🇷",
+          "category": 8,
+          "name": "прапор: Хорватія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇭🇹",
+          "category": 8,
+          "name": "прапор: Гаїті",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇭🇺",
+          "category": 8,
+          "name": "прапор: Угорщина",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇮🇨",
+          "category": 8,
+          "name": "прапор: Канарські Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇮🇩",
+          "category": 8,
+          "name": "прапор: Індонезія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇮🇪",
+          "category": 8,
+          "name": "прапор: Ірландія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇮🇱",
+          "category": 8,
+          "name": "прапор: Ізраїль",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇮🇲",
+          "category": 8,
+          "name": "прапор: Острів Мен",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇮🇳",
+          "category": 8,
+          "name": "прапор: Індія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇮🇴",
+          "category": 8,
+          "name": "прапор: Британська територія в Індійському Океані",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇮🇶",
+          "category": 8,
+          "name": "прапор: Ірак",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇮🇷",
+          "category": 8,
+          "name": "прапор: Іран",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇮🇸",
+          "category": 8,
+          "name": "прапор: Ісландія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇮🇹",
+          "category": 8,
+          "name": "прапор: Італія",
+          "version": "1.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇯🇪",
+          "category": 8,
+          "name": "прапор: Джерсі",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇯🇲",
+          "category": 8,
+          "name": "прапор: Ямайка",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇯🇴",
+          "category": 8,
+          "name": "прапор: Йорданія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇯🇵",
+          "category": 8,
+          "name": "прапор: Японія",
+          "version": "1.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇰🇪",
+          "category": 8,
+          "name": "прапор: Кенія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇰🇬",
+          "category": 8,
+          "name": "прапор: Киргизстан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇰🇭",
+          "category": 8,
+          "name": "прапор: Камбоджа",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇰🇮",
+          "category": 8,
+          "name": "прапор: Кірибаті",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇰🇲",
+          "category": 8,
+          "name": "прапор: Комори",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇰🇳",
+          "category": 8,
+          "name": "прапор: Сент-Кітс і Невіс",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇰🇵",
+          "category": 8,
+          "name": "прапор: Північна Корея",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇰🇷",
+          "category": 8,
+          "name": "прапор: Південна Корея",
+          "version": "1.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇰🇼",
+          "category": 8,
+          "name": "прапор: Кувейт",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇰🇾",
+          "category": 8,
+          "name": "прапор: Кайманові Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇰🇿",
+          "category": 8,
+          "name": "прапор: Казахстан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇱🇦",
+          "category": 8,
+          "name": "прапор: Лаос",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇱🇧",
+          "category": 8,
+          "name": "прапор: Ліван",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇱🇨",
+          "category": 8,
+          "name": "прапор: Сент-Люсія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇱🇮",
+          "category": 8,
+          "name": "прапор: Ліхтенштейн",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇱🇰",
+          "category": 8,
+          "name": "прапор: Шрі-Ланка",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇱🇷",
+          "category": 8,
+          "name": "прапор: Ліберія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇱🇸",
+          "category": 8,
+          "name": "прапор: Лесото",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇱🇹",
+          "category": 8,
+          "name": "прапор: Литва",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇱🇺",
+          "category": 8,
+          "name": "прапор: Люксембург",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇱🇻",
+          "category": 8,
+          "name": "прапор: Латвія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇱🇾",
+          "category": 8,
+          "name": "прапор: Лівія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇦",
+          "category": 8,
+          "name": "прапор: Марокко",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇨",
+          "category": 8,
+          "name": "прапор: Монако",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇩",
+          "category": 8,
+          "name": "прапор: Молдова",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇪",
+          "category": 8,
+          "name": "прапор: Чорногорія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇫",
+          "category": 8,
+          "name": "прапор: Сен-Мартен",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇬",
+          "category": 8,
+          "name": "прапор: Мадагаскар",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇭",
+          "category": 8,
+          "name": "прапор: Маршаллові Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇰",
+          "category": 8,
+          "name": "прапор: Північна Македонія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇱",
+          "category": 8,
+          "name": "прапор: Малі",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇲",
+          "category": 8,
+          "name": "прапор: Мʼянма (Бірма)",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇳",
+          "category": 8,
+          "name": "прапор: Монголія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇴",
+          "category": 8,
+          "name": "прапор: Макао, ОАР Китаю",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇵",
+          "category": 8,
+          "name": "прапор: Північні Маріанські Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇶",
+          "category": 8,
+          "name": "прапор: Мартиніка",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇷",
+          "category": 8,
+          "name": "прапор: Мавританія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇸",
+          "category": 8,
+          "name": "прапор: Монтсеррат",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇹",
+          "category": 8,
+          "name": "прапор: Мальта",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇺",
+          "category": 8,
+          "name": "прапор: Маврикій",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇻",
+          "category": 8,
+          "name": "прапор: Мальдіви",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇼",
+          "category": 8,
+          "name": "прапор: Малаві",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇽",
+          "category": 8,
+          "name": "прапор: Мексика",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇾",
+          "category": 8,
+          "name": "прапор: Малайзія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇲🇿",
+          "category": 8,
+          "name": "прапор: Мозамбік",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇦",
+          "category": 8,
+          "name": "прапор: Намібія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇨",
+          "category": 8,
+          "name": "прапор: Нова Каледонія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇪",
+          "category": 8,
+          "name": "прапор: Нігер",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇫",
+          "category": 8,
+          "name": "прапор: Острів Норфолк",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇬",
+          "category": 8,
+          "name": "прапор: Нігерія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇮",
+          "category": 8,
+          "name": "прапор: Нікарагуа",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇱",
+          "category": 8,
+          "name": "прапор: Нідерланди",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇴",
+          "category": 8,
+          "name": "прапор: Норвегія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇵",
+          "category": 8,
+          "name": "прапор: Непал",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇷",
+          "category": 8,
+          "name": "прапор: Науру",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇺",
+          "category": 8,
+          "name": "прапор: Ніуе",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇳🇿",
+          "category": 8,
+          "name": "прапор: Нова Зеландія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇴🇲",
+          "category": 8,
+          "name": "прапор: Оман",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇦",
+          "category": 8,
+          "name": "прапор: Панама",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇪",
+          "category": 8,
+          "name": "прапор: Перу",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇫",
+          "category": 8,
+          "name": "прапор: Французька Полінезія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇬",
+          "category": 8,
+          "name": "прапор: Папуа-Нова Гвінея",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇭",
+          "category": 8,
+          "name": "прапор: Філіппіни",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇰",
+          "category": 8,
+          "name": "прапор: Пакистан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇱",
+          "category": 8,
+          "name": "прапор: Польща",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇲",
+          "category": 8,
+          "name": "прапор: Сен-Пʼєр і Мікелон",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇳",
+          "category": 8,
+          "name": "прапор: Острови Піткерн",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇷",
+          "category": 8,
+          "name": "прапор: Пуерто-Рико",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇸",
+          "category": 8,
+          "name": "прапор: Палестинські території",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇹",
+          "category": 8,
+          "name": "прапор: Португалія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇼",
+          "category": 8,
+          "name": "прапор: Палау",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇵🇾",
+          "category": 8,
+          "name": "прапор: Парагвай",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇶🇦",
+          "category": 8,
+          "name": "прапор: Катар",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇷🇪",
+          "category": 8,
+          "name": "прапор: Реюньйон",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇷🇴",
+          "category": 8,
+          "name": "прапор: Румунія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇷🇸",
+          "category": 8,
+          "name": "прапор: Сербія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇷🇺",
+          "category": 8,
+          "name": "прапор: Росія",
+          "version": "1.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇷🇼",
+          "category": 8,
+          "name": "прапор: Руанда",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇦",
+          "category": 8,
+          "name": "прапор: Саудівська Аравія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇧",
+          "category": 8,
+          "name": "прапор: Соломонові Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇨",
+          "category": 8,
+          "name": "прапор: Сейшельські Острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇩",
+          "category": 8,
+          "name": "прапор: Судан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇪",
+          "category": 8,
+          "name": "прапор: Швеція",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇬",
+          "category": 8,
+          "name": "прапор: Сінгапур",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇭",
+          "category": 8,
+          "name": "прапор: Острів Святої Єлени",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇮",
+          "category": 8,
+          "name": "прапор: Словенія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇯",
+          "category": 8,
+          "name": "прапор: Шпіцберген та Ян-Маєн",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇰",
+          "category": 8,
+          "name": "прапор: Словаччина",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇱",
+          "category": 8,
+          "name": "прапор: Сьєрра-Леоне",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇲",
+          "category": 8,
+          "name": "прапор: Сан-Марино",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇳",
+          "category": 8,
+          "name": "прапор: Сенегал",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇴",
+          "category": 8,
+          "name": "прапор: Сомалі",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇷",
+          "category": 8,
+          "name": "прапор: Суринам",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇸",
+          "category": 8,
+          "name": "прапор: Південний Судан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇹",
+          "category": 8,
+          "name": "прапор: Сан-Томе і Принсіпі",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇻",
+          "category": 8,
+          "name": "прапор: Сальвадор",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇽",
+          "category": 8,
+          "name": "прапор: Сінт-Мартен",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇾",
+          "category": 8,
+          "name": "прапор: Сирія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇸🇿",
+          "category": 8,
+          "name": "прапор: Есватіні",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇦",
+          "category": 8,
+          "name": "прапор: Трістан-да-Кунья",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇨",
+          "category": 8,
+          "name": "прапор: Острови Теркс і Кайкос",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇩",
+          "category": 8,
+          "name": "прапор: Чад",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇫",
+          "category": 8,
+          "name": "прапор: Французькі Південні Території",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇬",
+          "category": 8,
+          "name": "прапор: Того",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇭",
+          "category": 8,
+          "name": "прапор: Таїланд",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇯",
+          "category": 8,
+          "name": "прапор: Таджикистан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇰",
+          "category": 8,
+          "name": "прапор: Токелау",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇱",
+          "category": 8,
+          "name": "прапор: Тімор-Лешті",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇲",
+          "category": 8,
+          "name": "прапор: Туркменістан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇳",
+          "category": 8,
+          "name": "прапор: Туніс",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇴",
+          "category": 8,
+          "name": "прапор: Тонга",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇷",
+          "category": 8,
+          "name": "прапор: Туреччина",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇹",
+          "category": 8,
+          "name": "прапор: Тринідад і Тобаго",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇻",
+          "category": 8,
+          "name": "прапор: Тувалу",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇼",
+          "category": 8,
+          "name": "прапор: Тайвань",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇹🇿",
+          "category": 8,
+          "name": "прапор: Танзанія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇺🇦",
+          "category": 8,
+          "name": "прапор: Україна",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇺🇬",
+          "category": 8,
+          "name": "прапор: Уганда",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇺🇲",
+          "category": 8,
+          "name": "прапор: Віддалені острови США",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇺🇳",
+          "category": 8,
+          "name": "прапор: Організація Об’єднаних Націй",
+          "version": "4.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇺🇸",
+          "category": 8,
+          "name": "прапор: Сполучені Штати",
+          "version": "1.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇺🇾",
+          "category": 8,
+          "name": "прапор: Уругвай",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇺🇿",
+          "category": 8,
+          "name": "прапор: Узбекистан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇻🇦",
+          "category": 8,
+          "name": "прапор: Ватикан",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇻🇨",
+          "category": 8,
+          "name": "прапор: Сент-Вінсент і Гренадіни",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇻🇪",
+          "category": 8,
+          "name": "прапор: Венесуела",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇻🇬",
+          "category": 8,
+          "name": "прапор: Британські Віргінські острови",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇻🇮",
+          "category": 8,
+          "name": "прапор: Віргінські Острови (США)",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇻🇳",
+          "category": 8,
+          "name": "прапор: Вʼєтнам",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇻🇺",
+          "category": 8,
+          "name": "прапор: Вануату",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇼🇫",
+          "category": 8,
+          "name": "прапор: Уолліс і Футуна",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇼🇸",
+          "category": 8,
+          "name": "прапор: Самоа",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇽🇰",
+          "category": 8,
+          "name": "прапор: Косово",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇾🇪",
+          "category": 8,
+          "name": "прапор: Ємен",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇾🇹",
+          "category": 8,
+          "name": "прапор: Майотта",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇿🇦",
+          "category": 8,
+          "name": "прапор: Південно-Африканська Республіка",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇿🇲",
+          "category": 8,
+          "name": "прапор: Замбія",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🇿🇼",
+          "category": 8,
+          "name": "прапор: Зімбабве",
+          "version": "2.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+          "category": 8,
+          "name": "прапор: Англія",
+          "version": "5.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+          "category": 8,
+          "name": "прапор: Шотландія",
+          "version": "5.0",
+          "keywords": "прапор"
+      },
+      {
+          "emoji": "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+          "category": 8,
+          "name": "прапор: Уельс",
+          "version": "5.0",
+          "keywords": "прапор"
+      }
+  ]
+}
