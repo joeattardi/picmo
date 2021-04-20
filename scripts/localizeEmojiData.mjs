@@ -11,11 +11,11 @@ const dataPath = 'src/data';
 const avaliableLocales = await getLocaleList(cldrPath);
 
 const emojiData = (await getJsonData(`${dataPath}/emoji.json`))?.emoji;
-console.log(`Found ${emojiData?.length} emojis in file ${dataPath}/emoji.json`);
+console.log(`Found ${emojiData?.length} emojis in file "${dataPath}/emoji.json"`);
 
-avaliableLocales.forEach(async locale => {
+for await (const locale of avaliableLocales) {
 
-  console.log(`Asynchronous processing locale ${locale.toUpperCase()}`);
+  console.log(`Processing locale ${locale.toUpperCase()}...`);
   const emojis = await Promise.all(emojiData.map(async emojiUnicodeData => {
     let annotations = (await getJsonData(`${cldrPath}/${annotationTypes.annotations}/${locale}/annotations.json`))?.annotations.annotations;
     if (!annotations[emojiUnicodeData.emoji]) {
@@ -35,16 +35,20 @@ avaliableLocales.forEach(async locale => {
 
   }));
   console.log(`${locale.toUpperCase()}: Processed ${emojis.length} emoji annotations. Saving to JSON file...`);
+  const data = {
+    categories: emojiData.categories,
+    emoji: emojis,
+  }
 
   const filename = `${dataPath}/emoji_${locale}.json`;
   try {
-    await fs.writeFile(filename, JSON.stringify(emojis, null, 4));
+    await fs.writeFile(filename, JSON.stringify(data, null, 4));
     console.log(`${locale.toUpperCase()}: File "${filename}" written succesfuly!`);
   } catch (err) {
     console.log(err);
   }
 
-});
+}
 
 async function getLocaleList(cldrJsonPath) {
   let locales = null;
