@@ -1,4 +1,5 @@
 import commonjs from 'rollup-plugin-commonjs';
+import copy from 'rollup-plugin-copy';
 import postcss from 'rollup-plugin-postcss';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from '@rollup/plugin-replace';
@@ -24,6 +25,11 @@ export default {
     buildDelay: 500
   },
   plugins: [
+    copy({
+      targets: [
+        { src: 'src/data/*.json', dest: 'dist/locale' }
+      ]
+    }),
     replace({
       'process.env.NODE_ENV': JSON.stringify(
         production ? 'production' : 'development'
