@@ -23,8 +23,8 @@ import {
 
 import fuzzysort from 'fuzzysort';
 
-import defaultEmojiData from './data/emoji';
-const defaultEmoji: EmojiRecord[] = defaultEmojiData.emoji;
+import defaultData from './data/emoji';
+const defaultEmojiData: EmojiRecord[] = defaultData.emoji;
 
 function doSearch(search: string, emojiData: EmojiKeyword[]) {
   const result = fuzzysort.go(search, emojiData, {
@@ -33,9 +33,9 @@ function doSearch(search: string, emojiData: EmojiKeyword[]) {
     threshold: -50,
     key: 'keyword',
   })
-    .filter(result => 
-      search.length < 2 ||
-      result.indexes[result.indexes.length-1] - result.indexes[0] < search.length + 2
+    .filter(result =>
+      search.length < 2 || // if just starting a search
+      result.indexes[result.indexes.length - 1] - result.indexes[0] < search.length + 2 // otherwise keep all the search letters not far appart 
     )
     .map(result => {
       console.log(result.score, result.obj.emoji.emoji, fuzzysort.highlight(result, '<', '>'));
@@ -95,13 +95,15 @@ export class Search {
         e.category !== undefined &&
         categories.indexOf(e.category) >= 0
     ).forEach(emoji => {
-      const keywords = emoji.keywords && emoji.keywords.split(' | ') || [emoji.name];
-      keywords.forEach(keyword => {
-        this.emojiSearchData.push({
-          keyword,
-          emoji
-        })
-      })
+      this.processEmojiKeywords(emoji);
+
+      if (emojiData !== defaultEmojiData) {
+        console.log('adding default keywords');
+        const defaultEmoji = defaultEmojiData.find(e => e.emoji === emoji.emoji);
+        if (defaultEmoji && defaultEmoji.name !== emoji.name) {
+          this.processEmojiKeywords(defaultEmoji, emoji);
+        }
+      }
     });
 
     if (this.options.custom) {
@@ -290,5 +292,20 @@ export class Search {
         );
       }
     }
+  }
+
+  processEmojiKeywords(emojiWithKeywords: EmojiRecord, emojiObj: EmojiRecord | null = null) {
+    if (!this.emojiSearchData) {
+      this.emojiSearchData = [];
+    }
+
+    const keywords = emojiWithKeywords.keywords && emojiWithKeywords.keywords.split(' | ') || [emojiWithKeywords.name];
+    keywords.forEach(keyword => {
+      this.emojiSearchData.push({
+        keyword,
+        emoji: emojiObj || emojiWithKeywords
+      })
+    });
+
   }
 }
