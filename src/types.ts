@@ -18,6 +18,11 @@ export interface EmojiData {
   emoji: EmojiRecord[];
 }
 
+export interface EmojiKeyword {
+  keyword: string;
+  emoji: EmojiRecord;
+}
+
 export interface EmojiSelection {
   name: string;
   custom?: boolean;

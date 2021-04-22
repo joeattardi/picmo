@@ -10,7 +10,7 @@ import {
   HIDE_SEARCH_RESULTS
 } from './events';
 import { createElement, empty } from './util';
-import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
+import { I18NStrings, EmojiButtonOptions, EmojiRecord, EmojiKeyword } from './types';
 
 import {
   CLASS_SEARCH_CONTAINER,
@@ -22,6 +22,27 @@ import {
 } from './classes';
 
 import fuzzysort from 'fuzzysort';
+
+import defaultEmojiData from './data/emoji';
+const defaultEmoji: EmojiRecord[] = defaultEmojiData.emoji;
+
+function doSearch(search: string, emojiData: EmojiKeyword[]) {
+  const result = fuzzysort.go(search, emojiData, {
+    allowTypo: false,
+    limit: 100,
+    threshold: -50,
+    key: 'keyword',
+  })
+    .filter(result => 
+      search.length < 2 ||
+      result.indexes[result.indexes.length-1] - result.indexes[0] < search.length + 2
+    )
+    .map(result => {
+      console.log(result.score, result.obj.emoji.emoji, fuzzysort.highlight(result, '<', '>'));
+      return result.obj.emoji
+    });
+  return [...new Set(result)];
+}
 
 class NotFoundMessage {
   constructor(private message: string, private iconUrl?: string) { }
@@ -48,7 +69,7 @@ class NotFoundMessage {
 }
 
 export class Search {
-  private emojiData: EmojiRecord[];
+  private emojiSearchData: EmojiKeyword[];
   private emojisPerRow: number;
   private focusedEmojiIndex = 0;
 
@@ -65,21 +86,34 @@ export class Search {
     categories: number[]
   ) {
     this.emojisPerRow = this.options.emojisPerRow || 8;
-    this.emojiData = emojiData.filter(
+
+    this.emojiSearchData = [];
+    emojiData.filter(
       e =>
         e.version &&
         parseFloat(e.version) <= parseFloat(options.emojiVersion as string) &&
         e.category !== undefined &&
         categories.indexOf(e.category) >= 0
-    );
+    ).forEach(emoji => {
+      const keywords = emoji.keywords && emoji.keywords.split(' | ') || [emoji.name];
+      keywords.forEach(keyword => {
+        this.emojiSearchData.push({
+          keyword,
+          emoji
+        })
+      })
+    });
 
     if (this.options.custom) {
       const customEmojis = this.options.custom.map(custom => ({
-        ...custom,
-        custom: true
+        keyword: custom.name,
+        emoji: {
+          ...custom,
+          custom: true
+        }
       }));
 
-      this.emojiData = [...this.emojiData, ...customEmojis];
+      this.emojiSearchData = [...this.emojiSearchData, ...customEmojis];
     }
 
     this.events.on(HIDE_VARIANT_POPUP, () => {
@@ -221,16 +255,7 @@ export class Search {
       }
       this.searchIcon.style.cursor = 'pointer';
 
-      const searchResults = fuzzysort
-        .go(this.searchField.value, this.emojiData, {
-          allowTypo: true,
-          limit: 100,
-          threshold: -500,
-          keys: ['name', 'keywords'],
-          // Create a custom combined score to sort by. Add more value to keywords
-          scoreFn: (a) => Math.max(a[0] ? a[0].score - 50 : -1000, a[1] ? a[1].score : -1000)
-        })
-        .map(result => result.obj);
+      let searchResults = doSearch(this.searchField.value, this.emojiSearchData);
 
       this.events.emit(HIDE_PREVIEW);
 
