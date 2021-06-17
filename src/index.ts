@@ -235,8 +235,6 @@ export class EmojiButton {
     ) {
       this.showVariantPopup(emoji as EmojiRecord);
     } else {
-      setTimeout(() => this.emojiArea.updateRecents());
-
       let eventData: EmojiSelection;
       if (emoji.custom) {
         eventData = this.emitCustomEmoji(emoji);
@@ -559,6 +557,8 @@ export class EmojiButton {
         if (this.search) {
           this.search.clear();
         }
+
+        this.emojiArea.updateRecents();
 
         this.events.emit(HIDE_VARIANT_POPUP);
 
