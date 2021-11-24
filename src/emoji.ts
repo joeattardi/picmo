@@ -1,4 +1,5 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
+import escape from 'escape-html';
 import twemoji from 'twemoji';
 
 import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
@@ -30,7 +31,9 @@ export class Emoji {
     if (this.emoji.custom) {
       content = this.lazy
         ? smile
-        : `<img class="${CLASS_CUSTOM_EMOJI}" src="${this.emoji.emoji}">`;
+        : `<img class="${CLASS_CUSTOM_EMOJI}" src="${escape(
+            this.emoji.emoji
+          )}">`;
     } else if (this.options.style === 'twemoji') {
       content = this.lazy
         ? smile

@@ -1,3 +1,4 @@
+import escape from 'escape-html';
 import twemoji from 'twemoji';
 
 import { CLASS_CUSTOM_EMOJI } from './classes';
@@ -25,7 +26,7 @@ function lazyLoadCustomEmoji(element: HTMLElement): void {
   const img = createElement('img', CLASS_CUSTOM_EMOJI) as HTMLImageElement;
 
   if (element.dataset.emoji) {
-    img.src = element.dataset.emoji;
+    img.src = escape(element.dataset.emoji);
     element.innerText = '';
     element.appendChild(img);
   }
