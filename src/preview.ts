@@ -49,7 +49,7 @@ export class EmojiPreview {
     }
 
     this.emoji.innerHTML = content;
-    this.name.innerHTML = emoji.name;
+    this.name.innerHTML = escape(emoji.name);
   }
 
   hidePreview(): void {

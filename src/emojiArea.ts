@@ -1,4 +1,5 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
+import escape from 'escape-html';
 
 import emojiData from './data/emoji';
 import { i18n as defaultI18n } from './i18n';
@@ -297,8 +298,9 @@ export class EmojiArea {
     emojis: Array<EmojiRecord | RecentEmoji>
   ): void => {
     const name = createElement('h2', CLASS_CATEGORY_NAME);
-    name.innerHTML =
-      this.i18n.categories[category] || defaultI18n.categories[category];
+    name.innerHTML = escape(
+      this.i18n.categories[category] || defaultI18n.categories[category]
+    );
     this.emojis.appendChild(name);
     this.headers.push(name);
 

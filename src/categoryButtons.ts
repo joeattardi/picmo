@@ -1,4 +1,5 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
+import escape from 'escape-html';
 
 import { CLASS_CATEGORY_BUTTONS, CLASS_CATEGORY_BUTTON } from './classes';
 

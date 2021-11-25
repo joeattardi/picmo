@@ -1,4 +1,5 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
+import escape from 'escape-html';
 
 import * as icons from './icons';
 
@@ -40,7 +41,7 @@ class NotFoundMessage {
     container.appendChild(iconContainer);
 
     const messageContainer = createElement('h2');
-    messageContainer.innerHTML = this.message;
+    messageContainer.innerHTML = escape(this.message);
     container.appendChild(messageContainer);
 
     return container;
