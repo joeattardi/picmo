@@ -46,6 +46,7 @@ export interface EmojiButtonOptions {
   position?: Placement | FixedPosition;
   autoHide?: boolean;
   autoFocusSearch?: boolean;
+  hideWhenOutsideClick?: boolean;
   showAnimation?: boolean;
   showPreview?: boolean;
   showSearch?: boolean;

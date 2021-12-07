@@ -50,6 +50,7 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   position: 'auto',
   autoHide: true,
   autoFocusSearch: true,
+  hideWhenOutsideClick: true,
   showAnimation: true,
   showPreview: true,
   showSearch: true,
@@ -114,6 +115,8 @@ export class EmojiButton {
     this.pickerVisible = false;
 
     this.options = { ...DEFAULT_OPTIONS, ...options };
+    console.log(this.options.hideWhenOutsideClick);
+    console.log(options.hideWhenOutsideClick);
     if (!this.options.rootElement) {
       this.options.rootElement = document.body;
     }
@@ -494,7 +497,7 @@ export class EmojiButton {
    * @param event The MouseEvent that was dispatched.
    */
   private onDocumentClick(event: MouseEvent): void {
-    if (!this.pickerEl.contains(event.target as Node)) {
+    if (this.options.hideWhenOutsideClick && !this.pickerEl.contains(event.target as Node)) {
       this.hidePicker();
     }
   }
