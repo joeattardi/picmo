@@ -115,8 +115,6 @@ export class EmojiButton {
     this.pickerVisible = false;
 
     this.options = { ...DEFAULT_OPTIONS, ...options };
-    console.log(this.options.hideWhenOutsideClick);
-    console.log(options.hideWhenOutsideClick);
     if (!this.options.rootElement) {
       this.options.rootElement = document.body;
     }
