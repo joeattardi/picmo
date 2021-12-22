@@ -86,6 +86,17 @@ export default function CustomizationExample() {
         }}
       />
       <SourceFile src={hideElementsExample} />
+
+      <h2>Disable modal on mobile</h2>
+      <p>
+        On mobile devices, the picker will display as a modal by default. This behavior can be changed.
+      </p>
+      <Example
+        options={{
+          showAsModalOnMobile: false
+        }}
+      />
+      <SourceFile src={hideElementsExample} />
     </DocLayout>
   );
 }

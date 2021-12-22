@@ -51,6 +51,7 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   autoHide: true,
   autoFocusSearch: true,
   showAnimation: true,
+  showAsModalOnMobile: true,
   showPreview: true,
   showSearch: true,
   showRecents: true,
@@ -609,10 +610,10 @@ export class EmojiButton {
    * @param referenceEl The element to position relative to if relative positioning is used.
    */
   determineDisplay(referenceEl: HTMLElement): void {
-    if (
-      window.matchMedia(`screen and (max-width: ${MOBILE_BREAKPOINT}px)`)
-        .matches
-    ) {
+    const {showAsModalOnMobile} = this.options;
+    const isMobileScreen = window.matchMedia(`screen and (max-width: ${MOBILE_BREAKPOINT}px)`).matches;
+
+    if (isMobileScreen && showAsModalOnMobile) {
       this.showMobileView();
     } else if (typeof this.options.position === 'string') {
       this.setRelativePosition(referenceEl);
