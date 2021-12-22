@@ -10,6 +10,7 @@ import sizeExample from '!!raw-loader!../../examples/customize/size.js';
 import emojiVersionExample from '!!raw-loader!../../examples/customize/emojiVersion.js';
 import initialCategoryExample from '!!raw-loader!../../examples/customize/initialCategory.js';
 import hideElementsExample from '!!raw-loader!../../examples/customize/hideElements.js';
+import disableModalOnMobile from '!!raw-loader!../../examples/customize/disableModalOnMobile.js';
 
 export default function CustomizationExample() {
   return (
@@ -96,7 +97,7 @@ export default function CustomizationExample() {
           showAsModalOnMobile: false
         }}
       />
-      <SourceFile src={hideElementsExample} />
+      <SourceFile src={disableModalOnMobile} />
     </DocLayout>
   );
 }
