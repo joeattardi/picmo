@@ -1,25 +1,35 @@
 {
   "name": "@joeattardi/emoji-button",
-  "version": "4.6.4",
+  "version": "5.0.0",
   "description": "Vanilla JavaScript emoji picker",
   "keywords": [
     "emoji",
     "javascript"
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "source": [
+    "src/index.ts"
+  ],
+  "targets": {
+    "default": {
+      "isLibrary": true,
+      "distDir": "./dist",
+      "outputFormat": "esmodule",
+      "includeNodeModules": false
+    }
+  },
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "cross-env NODE_ENV=production rollup -c",
-    "build:watch": "rollup -cw",
-    "start": "npm run build:watch",
-    "prepublishOnly": "cross-env NODE_ENV=production rollup -c",
+    "build": "npm run check && parcel build",
+    "check": "tsc --noEmit",
+    "check:watch": "tsc --noEmit --watch",
+    "start": "concurrently -n \"type-check,serve\" -c \"blueBright,yellowBright\" \"npm:check:watch\" \"npm:serve\"",
     "test": "jest src/**.test.ts",
     "test:watch": "jest --watchAll",
     "lint": "eslint src/*.ts",
-    "prettify": "prettier src/*.ts --write"
+    "prettify": "prettier src/*.ts --write",
+    "serve": "parcel dev/index.html"
   },
-  "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.codes)",
+  "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.dev)",
   "repository": {
     "type": "git",
     "url": "https://github.com/joeattardi/emoji-button.git"
@@ -28,30 +38,21 @@
   "bugs": "https://github.com/joeattardi/emoji-button/issues",
   "license": "MIT",
   "devDependencies": {
-    "@babel/core": "^7.10.2",
-    "@babel/preset-env": "^7.10.2",
-    "@babel/preset-typescript": "^7.10.1",
-    "@rollup/plugin-replace": "^2.3.3",
+    "@parcel/packager-ts": "^2.0.1",
+    "@parcel/transformer-typescript-types": "^2.0.1",
     "@types/jest": "^25.2.3",
     "@types/twemoji": "^12.1.2",
     "@typescript-eslint/eslint-plugin": "^3.1.0",
     "@typescript-eslint/parser": "^3.1.0",
-    "babel-jest": "^26.0.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
+    "concurrently": "^7.0.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.3",
     "jest": "^26.0.1",
+    "parcel": "^2.0.1",
     "prettier": "^2.0.5",
-    "rollup": "^2.22.1",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-postcss": "^3.1.2",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.29.0",
-    "ts-jest": "^26.1.0",
+    "ts-jest": "^26.5.6",
     "typescript": "^3.9.5"
   },
   "dependencies": {

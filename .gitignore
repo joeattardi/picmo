@@ -1,6 +1,4 @@
 .DS_Store
 node_modules
 dist
-test.js
-test.html
-
+.parcel-cache
