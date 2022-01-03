@@ -27,11 +27,7 @@ const categoryIcons: { [key in I18NCategory]: string } = {
 };
 
 export class CategoryButtons {
-  constructor(
-    private options: EmojiButtonOptions,
-    private events: Emitter,
-    private i18n: I18NStrings
-  ) {}
+  constructor(private options: EmojiButtonOptions, private events: Emitter, private i18n: I18NStrings) {}
 
   activeButton = 0;
 
@@ -40,14 +36,9 @@ export class CategoryButtons {
   render(): HTMLElement {
     const container = createElement('div', CLASS_CATEGORY_BUTTONS);
 
-    const categoryData =
-      this.options.categories ||
-      this.options.emojiData?.categories ||
-      emojiData.categories;
+    const categoryData = this.options.categories || this.options.emojiData?.categories || emojiData.categories;
 
-    let categories = this.options.showRecents
-      ? ['recents', ...categoryData]
-      : categoryData;
+    let categories = this.options.showRecents ? ['recents', ...categoryData] : categoryData;
 
     if (this.options.custom) {
       categories = [...categories, 'custom'];
@@ -56,14 +47,8 @@ export class CategoryButtons {
     categories.forEach((category: string) => {
       const button = createElement('button', CLASS_CATEGORY_BUTTON);
 
-      if (
-        this.options.icons &&
-        this.options.icons.categories &&
-        this.options.icons.categories[category]
-      ) {
-        button.appendChild(
-          icons.createIcon(this.options.icons.categories[category])
-        );
+      if (this.options.icons && this.options.icons.categories && this.options.icons.categories[category]) {
+        button.appendChild(icons.createIcon(this.options.icons.categories[category]));
       } else {
         button.innerHTML = categoryIcons[category];
       }
@@ -81,19 +66,12 @@ export class CategoryButtons {
     container.addEventListener('keydown', event => {
       switch (event.key) {
         case 'ArrowRight':
-          this.events.emit(
-            CATEGORY_CLICKED,
-            categories[(this.activeButton + 1) % this.buttons.length]
-          );
+          this.events.emit(CATEGORY_CLICKED, categories[(this.activeButton + 1) % this.buttons.length]);
           break;
         case 'ArrowLeft':
           this.events.emit(
             CATEGORY_CLICKED,
-            categories[
-              this.activeButton === 0
-                ? this.buttons.length - 1
-                : this.activeButton - 1
-            ]
+            categories[this.activeButton === 0 ? this.buttons.length - 1 : this.activeButton - 1]
           );
           break;
         case 'ArrowUp':

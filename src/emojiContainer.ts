@@ -20,8 +20,7 @@ export class EmojiContainer {
     this.emojis = emojis.filter(
       e =>
         !(e as EmojiRecord).version ||
-        parseFloat((e as EmojiRecord).version as string) <=
-          parseFloat(options.emojiVersion as string)
+        parseFloat((e as EmojiRecord).version as string) <= parseFloat(options.emojiVersion as string)
     );
   }
 
@@ -29,14 +28,7 @@ export class EmojiContainer {
     const emojiContainer = createElement('div', CLASS_EMOJI_CONTAINER);
     this.emojis.forEach(emoji =>
       emojiContainer.appendChild(
-        new Emoji(
-          emoji,
-          this.showVariants,
-          true,
-          this.events,
-          this.options,
-          this.lazy
-        ).render()
+        new Emoji(emoji, this.showVariants, true, this.events, this.options, this.lazy).render()
       )
     );
 

@@ -29,15 +29,9 @@ export class Emoji {
     let content = this.emoji.emoji;
 
     if (this.emoji.custom) {
-      content = this.lazy
-        ? smile
-        : `<img class="${CLASS_CUSTOM_EMOJI}" src="${escape(
-            this.emoji.emoji
-          )}">`;
+      content = this.lazy ? smile : `<img class="${CLASS_CUSTOM_EMOJI}" src="${escape(this.emoji.emoji)}">`;
     } else if (this.options.style === 'twemoji') {
-      content = this.lazy
-        ? smile
-        : twemoji.parse(this.emoji.emoji, this.options.twemojiOptions);
+      content = this.lazy ? smile : twemoji.parse(this.emoji.emoji, this.options.twemojiOptions);
     }
 
     this.emojiButton.innerHTML = content;
@@ -65,9 +59,7 @@ export class Emoji {
   onEmojiClick(): void {
     // TODO move this side effect out of Emoji, make the recent module listen for event
     if (
-      (!(this.emoji as EmojiRecord).variations ||
-        !this.showVariants ||
-        !this.options.showVariants) &&
+      (!(this.emoji as EmojiRecord).variations || !this.showVariants || !this.options.showVariants) &&
       this.options.showRecents
     ) {
       save(this.emoji, this.options);

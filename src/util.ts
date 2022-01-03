@@ -1,9 +1,6 @@
 import { EmojiData, EmojiRecord } from './types';
 
-export function createElement(
-  tagName: string,
-  className?: string
-): HTMLElement {
+export function createElement(tagName: string, className?: string): HTMLElement {
   const element = document.createElement(tagName);
 
   if (className) {
@@ -26,18 +23,13 @@ export function formatEmojiName(name: string): string {
   return words.join(' ');
 }
 
-export function buildEmojiCategoryData(
-  emojiData: EmojiData
-): { [key: string]: EmojiRecord[] } {
+export function buildEmojiCategoryData(emojiData: EmojiData): { [key: string]: EmojiRecord[] } {
   const emojiCategories = {};
 
   emojiData.emoji.forEach(emoji => {
-    let categoryList =
-      emojiCategories[emojiData.categories[emoji.category || 0]];
+    let categoryList = emojiCategories[emojiData.categories[emoji.category || 0]];
     if (!categoryList) {
-      categoryList = emojiCategories[
-        emojiData.categories[emoji.category || 0]
-      ] = [];
+      categoryList = emojiCategories[emojiData.categories[emoji.category || 0]] = [];
     }
 
     categoryList.push(emoji);

@@ -4,24 +4,13 @@ import escape from 'escape-html';
 import emojiData from './data/emoji';
 import { i18n as defaultI18n } from './i18n';
 
-import {
-  CLASS_EMOJI_CONTAINER,
-  CLASS_EMOJI,
-  CLASS_EMOJI_AREA,
-  CLASS_EMOJIS,
-  CLASS_CATEGORY_NAME
-} from './classes';
+import { CLASS_EMOJI_CONTAINER, CLASS_EMOJI, CLASS_EMOJI_AREA, CLASS_EMOJIS, CLASS_CATEGORY_NAME } from './classes';
 
 import { CategoryButtons } from './categoryButtons';
 import { EmojiContainer } from './emojiContainer';
 
 import { CATEGORY_CLICKED } from './events';
-import {
-  I18NStrings,
-  EmojiButtonOptions,
-  EmojiRecord,
-  RecentEmoji
-} from './types';
+import { I18NStrings, EmojiButtonOptions, EmojiRecord, RecentEmoji } from './types';
 import { createElement } from './util';
 import { load } from './recent';
 
@@ -59,10 +48,7 @@ export class EmojiArea {
     private emojiCategories: { [key: string]: EmojiRecord[] }
   ) {
     this.emojisPerRow = options.emojisPerRow || 8;
-    this.categories =
-      options.emojiData?.categories ||
-      options.categories ||
-      emojiData.categories;
+    this.categories = options.emojiData?.categories || options.categories || emojiData.categories;
 
     if (options.showRecents) {
       this.categories = ['recents', ...this.categories];
@@ -72,26 +58,16 @@ export class EmojiArea {
       this.categories = [...this.categories, 'custom'];
     }
 
-    this.categories.sort(
-      (a, b) => categorySortOrder.indexOf(a) - categorySortOrder.indexOf(b)
-    );
+    this.categories.sort((a, b) => categorySortOrder.indexOf(a) - categorySortOrder.indexOf(b));
   }
 
   updateRecents(): void {
     if (this.options.showRecents) {
       this.emojiCategories.recents = load();
-      const recentsContainer = this.emojis.querySelector(
-        `.${CLASS_EMOJI_CONTAINER}`
-      ) as HTMLElement;
+      const recentsContainer = this.emojis.querySelector(`.${CLASS_EMOJI_CONTAINER}`) as HTMLElement;
       if (recentsContainer && recentsContainer.parentNode) {
         recentsContainer.parentNode.replaceChild(
-          new EmojiContainer(
-            this.emojiCategories.recents,
-            true,
-            this.events,
-            this.options,
-            false
-          ).render(),
+          new EmojiContainer(this.emojiCategories.recents, true, this.events, this.options, false).render(),
           recentsContainer
         );
       }
@@ -102,11 +78,7 @@ export class EmojiArea {
     this.container = createElement('div', CLASS_EMOJI_AREA);
 
     if (this.options.showCategoryButtons) {
-      this.categoryButtons = new CategoryButtons(
-        this.options,
-        this.events,
-        this.i18n
-      );
+      this.categoryButtons = new CategoryButtons(this.options, this.events, this.i18n);
       this.container.appendChild(this.categoryButtons.render());
     }
 
@@ -123,15 +95,11 @@ export class EmojiArea {
       }));
     }
 
-    this.categories.forEach(category =>
-      this.addCategory(category, this.emojiCategories[category])
-    );
+    this.categories.forEach(category => this.addCategory(category, this.emojiCategories[category]));
 
     requestAnimationFrame(() => {
       setTimeout(() => {
-        setTimeout(() =>
-          this.emojis.addEventListener('scroll', this.highlightCategory)
-        );
+        setTimeout(() => this.emojis.addEventListener('scroll', this.highlightCategory));
       });
     });
 
@@ -141,24 +109,17 @@ export class EmojiArea {
 
     this.container.appendChild(this.emojis);
 
-    const firstEmoji = this.container.querySelectorAll(
-      `.${CLASS_EMOJI}`
-    )[0] as HTMLElement;
+    const firstEmoji = this.container.querySelectorAll(`.${CLASS_EMOJI}`)[0] as HTMLElement;
     firstEmoji.tabIndex = 0;
 
     return this.container;
   }
 
   reset(): void {
-    this.headerOffsets = Array.prototype.map.call(
-      this.headers,
-      header => header.offsetTop
-    ) as number[];
+    this.headerOffsets = Array.prototype.map.call(this.headers, header => header.offsetTop) as number[];
 
     this.selectCategory(this.options.initialCategory || 'smileys', false);
-    this.currentCategory = this.categories.indexOf(
-      (this.options.initialCategory as string) || 'smileys'
-    );
+    this.currentCategory = this.categories.indexOf((this.options.initialCategory as string) || 'smileys');
 
     if (this.options.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory, false);
@@ -166,15 +127,11 @@ export class EmojiArea {
   }
 
   private get currentCategoryEl(): HTMLElement {
-    return this.emojis.querySelectorAll(`.${CLASS_EMOJI_CONTAINER}`)[
-      this.currentCategory
-    ] as HTMLElement;
+    return this.emojis.querySelectorAll(`.${CLASS_EMOJI_CONTAINER}`)[this.currentCategory] as HTMLElement;
   }
 
   private get focusedEmoji(): HTMLElement {
-    return this.currentCategoryEl.querySelectorAll(`.${CLASS_EMOJI}`)[
-      this.focusedIndex
-    ] as HTMLElement;
+    return this.currentCategoryEl.querySelectorAll(`.${CLASS_EMOJI}`)[this.focusedIndex] as HTMLElement;
   }
 
   private get currentEmojiCount(): number {
@@ -182,9 +139,7 @@ export class EmojiArea {
   }
 
   private getEmojiCount(category: number): number {
-    const container = this.emojis.querySelectorAll(`.${CLASS_EMOJI_CONTAINER}`)[
-      category
-    ] as HTMLElement;
+    const container = this.emojis.querySelectorAll(`.${CLASS_EMOJI_CONTAINER}`)[category] as HTMLElement;
     return container.querySelectorAll(`.${CLASS_EMOJI}`).length;
   }
 
@@ -194,10 +149,7 @@ export class EmojiArea {
       case 'ArrowRight':
         this.focusedEmoji.tabIndex = -1;
 
-        if (
-          this.focusedIndex === this.currentEmojiCount - 1 &&
-          this.currentCategory < this.categories.length - 1
-        ) {
+        if (this.focusedIndex === this.currentEmojiCount - 1 && this.currentCategory < this.categories.length - 1) {
           if (this.options.showCategoryButtons) {
             this.categoryButtons.setActiveButton(++this.currentCategory);
           }
@@ -230,16 +182,8 @@ export class EmojiArea {
           if (this.options.showCategoryButtons) {
             this.categoryButtons.setActiveButton(this.currentCategory);
           }
-          this.setFocusedEmoji(
-            Math.min(
-              this.focusedIndex % this.emojisPerRow,
-              this.currentEmojiCount - 1
-            )
-          );
-        } else if (
-          this.currentEmojiCount - this.focusedIndex >
-          this.emojisPerRow
-        ) {
+          this.setFocusedEmoji(Math.min(this.focusedIndex % this.emojisPerRow, this.currentEmojiCount - 1));
+        } else if (this.currentEmojiCount - this.focusedIndex > this.emojisPerRow) {
           this.setFocusedEmoji(this.focusedIndex + this.emojisPerRow);
         }
         break;
@@ -248,9 +192,7 @@ export class EmojiArea {
         this.focusedEmoji.tabIndex = -1;
 
         if (this.focusedIndex < this.emojisPerRow && this.currentCategory > 0) {
-          const previousCategoryCount = this.getEmojiCount(
-            this.currentCategory - 1
-          );
+          const previousCategoryCount = this.getEmojiCount(this.currentCategory - 1);
           let previousLastRowCount = previousCategoryCount % this.emojisPerRow;
           if (previousLastRowCount === 0) {
             previousLastRowCount = this.emojisPerRow;
@@ -269,16 +211,12 @@ export class EmojiArea {
           this.setFocusedEmoji(newIndex);
         } else {
           this.setFocusedEmoji(
-            this.focusedIndex >= this.emojisPerRow
-              ? this.focusedIndex - this.emojisPerRow
-              : this.focusedIndex
+            this.focusedIndex >= this.emojisPerRow ? this.focusedIndex - this.emojisPerRow : this.focusedIndex
           );
         }
         break;
     }
-    requestAnimationFrame(() =>
-      this.emojis.addEventListener('scroll', this.highlightCategory)
-    );
+    requestAnimationFrame(() => this.emojis.addEventListener('scroll', this.highlightCategory));
   };
 
   private setFocusedEmoji(index: number, focus = true): void {
@@ -293,25 +231,14 @@ export class EmojiArea {
     }
   }
 
-  private addCategory = (
-    category: string,
-    emojis: Array<EmojiRecord | RecentEmoji>
-  ): void => {
+  private addCategory = (category: string, emojis: Array<EmojiRecord | RecentEmoji>): void => {
     const name = createElement('h2', CLASS_CATEGORY_NAME);
-    name.innerHTML = escape(
-      this.i18n.categories[category] || defaultI18n.categories[category]
-    );
+    name.innerHTML = escape(this.i18n.categories[category] || defaultI18n.categories[category]);
     this.emojis.appendChild(name);
     this.headers.push(name);
 
     this.emojis.appendChild(
-      new EmojiContainer(
-        emojis,
-        true,
-        this.events,
-        this.options,
-        category !== 'recents'
-      ).render()
+      new EmojiContainer(emojis, true, this.events, this.options, category !== 'recents').render()
     );
   };
 
@@ -330,27 +257,17 @@ export class EmojiArea {
 
     const targetPosition = this.headerOffsets[categoryIndex];
     this.emojis.scrollTop = targetPosition;
-    requestAnimationFrame(() =>
-      this.emojis.addEventListener('scroll', this.highlightCategory)
-    );
+    requestAnimationFrame(() => this.emojis.addEventListener('scroll', this.highlightCategory));
   };
 
   highlightCategory = (): void => {
-    if (
-      document.activeElement &&
-      document.activeElement.classList.contains('emoji-picker__emoji')
-    ) {
+    if (document.activeElement && document.activeElement.classList.contains('emoji-picker__emoji')) {
       return;
     }
 
-    let closestHeaderIndex = this.headerOffsets.findIndex(
-      offset => offset >= Math.round(this.emojis.scrollTop)
-    );
+    let closestHeaderIndex = this.headerOffsets.findIndex(offset => offset >= Math.round(this.emojis.scrollTop));
 
-    if (
-      this.emojis.scrollTop + this.emojis.offsetHeight ===
-      this.emojis.scrollHeight
-    ) {
+    if (this.emojis.scrollTop + this.emojis.offsetHeight === this.emojis.scrollHeight) {
       closestHeaderIndex = -1;
     }
 

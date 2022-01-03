@@ -8,10 +8,7 @@ export function load(): Array<RecentEmoji> {
   return recents.filter(recent => !!recent.emoji);
 }
 
-export function save(
-  emoji: EmojiRecord | RecentEmoji,
-  options: EmojiButtonOptions
-): void {
+export function save(emoji: EmojiRecord | RecentEmoji, options: EmojiButtonOptions): void {
   const recents = load();
 
   const recent = {
@@ -24,10 +21,7 @@ export function save(
   localStorage.setItem(
     LOCAL_STORAGE_KEY,
     JSON.stringify(
-      [
-        recent,
-        ...recents.filter((r: RecentEmoji) => !!r.emoji && r.key !== recent.key)
-      ].slice(0, options.recentsCount)
+      [recent, ...recents.filter((r: RecentEmoji) => !!r.emoji && r.key !== recent.key)].slice(0, options.recentsCount)
     )
   );
 }

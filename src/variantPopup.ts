@@ -7,36 +7,24 @@ import { HIDE_VARIANT_POPUP } from './events';
 
 import { EmojiRecord, EmojiButtonOptions } from './types';
 
-import {
-  CLASS_VARIANT_OVERLAY,
-  CLASS_VARIANT_POPUP,
-  CLASS_EMOJI
-} from './classes';
+import { CLASS_VARIANT_OVERLAY, CLASS_VARIANT_POPUP, CLASS_EMOJI } from './classes';
 
 export class VariantPopup {
   private popup: HTMLElement;
   private focusedEmojiIndex = 0;
 
-  constructor(
-    private events: Emitter,
-    private emoji: EmojiRecord,
-    private options: EmojiButtonOptions
-  ) {}
+  constructor(private events: Emitter, private emoji: EmojiRecord, private options: EmojiButtonOptions) {}
 
   getEmoji(index: number): Element {
     return this.popup.querySelectorAll(`.${CLASS_EMOJI}`)[index];
   }
 
   setFocusedEmoji(newIndex: number): void {
-    const currentFocusedEmoji = this.getEmoji(
-      this.focusedEmojiIndex
-    ) as HTMLElement;
+    const currentFocusedEmoji = this.getEmoji(this.focusedEmojiIndex) as HTMLElement;
     currentFocusedEmoji.tabIndex = -1;
 
     this.focusedEmojiIndex = newIndex;
-    const newFocusedEmoji = this.getEmoji(
-      this.focusedEmojiIndex
-    ) as HTMLElement;
+    const newFocusedEmoji = this.getEmoji(this.focusedEmojiIndex) as HTMLElement;
     newFocusedEmoji.tabIndex = 0;
     newFocusedEmoji.focus();
   }
@@ -53,16 +41,7 @@ export class VariantPopup {
       }
     });
 
-    this.popup.appendChild(
-      new Emoji(
-        this.emoji,
-        false,
-        false,
-        this.events,
-        this.options,
-        false
-      ).render()
-    );
+    this.popup.appendChild(new Emoji(this.emoji, false, false, this.events, this.options, false).render());
 
     (this.emoji.variations || []).forEach((variation, index) =>
       this.popup.appendChild(
@@ -81,9 +60,7 @@ export class VariantPopup {
       )
     );
 
-    const firstEmoji = this.popup.querySelector(
-      `.${CLASS_EMOJI}`
-    ) as HTMLElement;
+    const firstEmoji = this.popup.querySelector(`.${CLASS_EMOJI}`) as HTMLElement;
     this.focusedEmojiIndex = 0;
     firstEmoji.tabIndex = 0;
 
@@ -92,10 +69,7 @@ export class VariantPopup {
     this.popup.addEventListener('keydown', event => {
       if (event.key === 'ArrowRight') {
         this.setFocusedEmoji(
-          Math.min(
-            this.focusedEmojiIndex + 1,
-            this.popup.querySelectorAll(`.${CLASS_EMOJI}`).length - 1
-          )
+          Math.min(this.focusedEmojiIndex + 1, this.popup.querySelectorAll(`.${CLASS_EMOJI}`).length - 1)
         );
       } else if (event.key === 'ArrowLeft') {
         this.setFocusedEmoji(Math.max(this.focusedEmojiIndex - 1, 0));

@@ -10,13 +10,7 @@ import {
   faTimes,
   faUser
 } from '@fortawesome/free-solid-svg-icons';
-import {
-  faBuilding,
-  faFlag,
-  faFrown,
-  faLightbulb,
-  faSmile
-} from '@fortawesome/free-regular-svg-icons';
+import { faBuilding, faFlag, faFrown, faLightbulb, faSmile } from '@fortawesome/free-regular-svg-icons';
 
 library.add(
   faBuilding,

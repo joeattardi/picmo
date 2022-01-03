@@ -6,10 +6,7 @@ import { EmojiButtonOptions } from './types';
 
 import { createElement } from './util';
 
-export function lazyLoadEmoji(
-  element: HTMLElement,
-  options: EmojiButtonOptions
-): void {
+export function lazyLoadEmoji(element: HTMLElement, options: EmojiButtonOptions): void {
   if (!element.dataset.loaded) {
     if (element.dataset.custom) {
       lazyLoadCustomEmoji(element);
@@ -32,14 +29,8 @@ function lazyLoadCustomEmoji(element: HTMLElement): void {
   }
 }
 
-function lazyLoadTwemoji(
-  element: HTMLElement,
-  options: EmojiButtonOptions
-): void {
+function lazyLoadTwemoji(element: HTMLElement, options: EmojiButtonOptions): void {
   if (element.dataset.emoji) {
-    element.innerHTML = twemoji.parse(
-      element.dataset.emoji,
-      options.twemojiOptions
-    );
+    element.innerHTML = twemoji.parse(element.dataset.emoji, options.twemojiOptions);
   }
 }

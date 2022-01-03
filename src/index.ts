@@ -7,13 +7,7 @@ import twemoji from 'twemoji';
 
 import emojiData from './data/emoji';
 
-import {
-  EMOJI,
-  SHOW_SEARCH_RESULTS,
-  HIDE_SEARCH_RESULTS,
-  HIDE_VARIANT_POPUP,
-  PICKER_HIDDEN
-} from './events';
+import { EMOJI, SHOW_SEARCH_RESULTS, HIDE_SEARCH_RESULTS, HIDE_VARIANT_POPUP, PICKER_HIDDEN } from './events';
 import { lazyLoadEmoji } from './lazyLoad';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
@@ -32,14 +26,7 @@ import {
   CLASS_PLUGIN_CONTAINER
 } from './classes';
 
-import {
-  EmojiButtonOptions,
-  I18NStrings,
-  EmojiRecord,
-  EmojiSelection,
-  EmojiTheme,
-  FixedPosition
-} from './types';
+import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiSelection, EmojiTheme, FixedPosition } from './types';
 import { EmojiArea } from './emojiArea';
 
 const MOBILE_BREAKPOINT = 450;
@@ -60,17 +47,7 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   emojiData,
   emojiVersion: '12.1',
   theme: 'light',
-  categories: [
-    'smileys',
-    'people',
-    'animals',
-    'food',
-    'activities',
-    'travel',
-    'objects',
-    'symbols',
-    'flags'
-  ],
+  categories: ['smileys', 'people', 'animals', 'food', 'activities', 'travel', 'objects', 'symbols', 'flags'],
   style: 'native',
   twemojiOptions: {
     ext: '.svg',
@@ -128,9 +105,7 @@ export class EmojiButton {
 
     this.theme = this.options.theme || 'light';
 
-    this.emojiCategories = buildEmojiCategoryData(
-      this.options.emojiData || emojiData
-    );
+    this.emojiCategories = buildEmojiCategoryData(this.options.emojiData || emojiData);
 
     this.buildPicker();
   }
@@ -164,19 +139,11 @@ export class EmojiButton {
     }
 
     this.options.emojisPerRow &&
-      this.pickerEl.style.setProperty(
-        '--emoji-per-row',
-        this.options.emojisPerRow.toString()
-      );
+      this.pickerEl.style.setProperty('--emoji-per-row', this.options.emojisPerRow.toString());
 
-    this.options.rows &&
-      this.pickerEl.style.setProperty(
-        '--row-count',
-        this.options.rows.toString()
-      );
+    this.options.rows && this.pickerEl.style.setProperty('--row-count', this.options.rows.toString());
 
-    this.options.emojiSize &&
-      this.pickerEl.style.setProperty('--emoji-size', this.options.emojiSize);
+    this.options.emojiSize && this.pickerEl.style.setProperty('--emoji-size', this.options.emojiSize);
 
     if (!this.options.showCategoryButtons) {
       this.pickerEl.style.setProperty('--category-button-height', '0');
@@ -185,10 +152,7 @@ export class EmojiButton {
     if (this.options.styleProperties) {
       Object.keys(this.options.styleProperties).forEach(key => {
         if (this.options.styleProperties) {
-          this.pickerEl.style.setProperty(
-            key,
-            this.options.styleProperties[key]
-          );
+          this.pickerEl.style.setProperty(key, this.options.styleProperties[key]);
         }
       });
     }
@@ -221,18 +185,8 @@ export class EmojiButton {
    * Emits a selected emoji event.
    * @param param0 The selected emoji and show variants flag
    */
-  private async emitEmoji({
-    emoji,
-    showVariants
-  }: {
-    emoji: EmojiRecord;
-    showVariants: boolean;
-  }): Promise<void> {
-    if (
-      (emoji as EmojiRecord).variations &&
-      showVariants &&
-      this.options.showVariants
-    ) {
+  private async emitEmoji({ emoji, showVariants }: { emoji: EmojiRecord; showVariants: boolean }): Promise<void> {
+    if ((emoji as EmojiRecord).variations && showVariants && this.options.showVariants) {
       this.showVariantPopup(emoji as EmojiRecord);
     } else {
       setTimeout(() => this.emojiArea.updateRecents());
@@ -323,9 +277,7 @@ export class EmojiButton {
    */
   private buildPreview(): void {
     if (this.options.showPreview) {
-      this.pickerEl.appendChild(
-        new EmojiPreview(this.events, this.options).render()
-      );
+      this.pickerEl.appendChild(new EmojiPreview(this.events, this.options).render());
     }
   }
 
@@ -338,9 +290,7 @@ export class EmojiButton {
 
       this.options.plugins.forEach(plugin => {
         if (!plugin.render) {
-          throw new Error(
-            'Emoji Button plugins must have a "render" function.'
-          );
+          throw new Error('Emoji Button plugins must have a "render" function.');
         }
         pluginContainer.appendChild(plugin.render(this));
       });
@@ -379,12 +329,7 @@ export class EmojiButton {
 
     this.pickerEl.appendChild(this.pickerContent);
 
-    this.emojiArea = new EmojiArea(
-      this.events,
-      this.i18n,
-      this.options,
-      this.emojiCategories
-    );
+    this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories);
     this.pickerContent.appendChild(this.emojiArea.render());
 
     this.events.on(SHOW_SEARCH_RESULTS, this.showSearchResults.bind(this));
@@ -414,11 +359,7 @@ export class EmojiButton {
    * @param emoji The emoji whose variants are to be shown.
    */
   private showVariantPopup(emoji: EmojiRecord): void {
-    const variantPopup = new VariantPopup(
-      this.events,
-      emoji,
-      this.options
-    ).render();
+    const variantPopup = new VariantPopup(this.events, emoji, this.options).render();
 
     if (variantPopup) {
       this.pickerEl.appendChild(variantPopup);
@@ -441,20 +382,15 @@ export class EmojiButton {
    * as they are scrolled into view.
    */
   private observeForLazyLoad(): void {
-    this.observer = new IntersectionObserver(
-      this.handleIntersectionChange.bind(this),
-      {
-        root: this.emojiArea.emojis
-      }
-    );
+    this.observer = new IntersectionObserver(this.handleIntersectionChange.bind(this), {
+      root: this.emojiArea.emojis
+    });
 
-    this.emojiArea.emojis
-      .querySelectorAll(`.${CLASS_EMOJI}`)
-      .forEach((element: Element) => {
-        if (this.shouldLazyLoad(element as HTMLElement)) {
-          this.observer.observe(element);
-        }
-      });
+    this.emojiArea.emojis.querySelectorAll(`.${CLASS_EMOJI}`).forEach((element: Element) => {
+      if (this.shouldLazyLoad(element as HTMLElement)) {
+        this.observer.observe(element);
+      }
+    });
   }
 
   /**
@@ -465,10 +401,7 @@ export class EmojiButton {
    */
   private handleIntersectionChange(entries: IntersectionObserverEntry[]): void {
     Array.prototype.filter
-      .call(
-        entries,
-        (entry: IntersectionObserverEntry) => entry.intersectionRatio > 0
-      )
+      .call(entries, (entry: IntersectionObserverEntry) => entry.intersectionRatio > 0)
       .map((entry: IntersectionObserverEntry) => entry.target)
       .forEach((element: Element) => {
         lazyLoadEmoji(element as HTMLElement, this.options);
@@ -482,9 +415,7 @@ export class EmojiButton {
    * @return true if the emoji should be lazily loaded, false if not.
    */
   private shouldLazyLoad(element: HTMLElement): boolean {
-    return (
-      this.options.style === STYLE_TWEMOJI || element.dataset.custom === 'true'
-    );
+    return this.options.style === STYLE_TWEMOJI || element.dataset.custom === 'true';
   }
 
   /**
@@ -537,10 +468,7 @@ export class EmojiButton {
 
     // In some browsers, the delayed hide was triggering the scroll event handler
     // and stealing the focus. Remove the scroll listener before doing the delayed hide.
-    this.emojiArea.emojis.removeEventListener(
-      'scroll',
-      this.emojiArea.highlightCategory
-    );
+    this.emojiArea.emojis.removeEventListener('scroll', this.emojiArea.highlightCategory);
 
     this.pickerEl.classList.add('hiding');
 
@@ -609,10 +537,7 @@ export class EmojiButton {
    * @param referenceEl The element to position relative to if relative positioning is used.
    */
   determineDisplay(referenceEl: HTMLElement): void {
-    if (
-      window.matchMedia(`screen and (max-width: ${MOBILE_BREAKPOINT}px)`)
-        .matches
-    ) {
+    if (window.matchMedia(`screen and (max-width: ${MOBILE_BREAKPOINT}px)`).matches) {
       this.showMobileView();
     } else if (typeof this.options.position === 'string') {
       this.setRelativePosition(referenceEl);

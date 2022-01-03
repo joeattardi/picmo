@@ -4,12 +4,7 @@ import escape from 'escape-html';
 import * as icons from './icons';
 
 import { EmojiContainer } from './emojiContainer';
-import {
-  HIDE_PREVIEW,
-  HIDE_VARIANT_POPUP,
-  SHOW_SEARCH_RESULTS,
-  HIDE_SEARCH_RESULTS
-} from './events';
+import { HIDE_PREVIEW, HIDE_VARIANT_POPUP, SHOW_SEARCH_RESULTS, HIDE_SEARCH_RESULTS } from './events';
 import { createElement, empty } from './util';
 import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
 
@@ -91,10 +86,7 @@ export class Search {
   render(): HTMLElement {
     this.searchContainer = createElement('div', CLASS_SEARCH_CONTAINER);
 
-    this.searchField = createElement(
-      'input',
-      CLASS_SEARCH_FIELD
-    ) as HTMLInputElement;
+    this.searchField = createElement('input', CLASS_SEARCH_FIELD) as HTMLInputElement;
     this.searchField.placeholder = this.i18n.search;
     this.searchContainer.appendChild(this.searchField);
 
@@ -106,15 +98,11 @@ export class Search {
       this.searchIcon.innerHTML = icons.search;
     }
 
-    this.searchIcon.addEventListener('click', (event: MouseEvent) =>
-      this.onClearSearch(event)
-    );
+    this.searchIcon.addEventListener('click', (event: MouseEvent) => this.onClearSearch(event));
 
     this.searchContainer.appendChild(this.searchIcon);
 
-    this.searchField.addEventListener('keydown', (event: KeyboardEvent) =>
-      this.onKeyDown(event)
-    );
+    this.searchField.addEventListener('keydown', (event: KeyboardEvent) => this.onKeyDown(event));
     this.searchField.addEventListener('keyup', event => this.onKeyUp(event));
 
     return this.searchContainer;
@@ -137,9 +125,7 @@ export class Search {
 
       if (this.options.icons && this.options.icons.search) {
         empty(this.searchIcon);
-        this.searchIcon.appendChild(
-          icons.createIcon(this.options.icons.search)
-        );
+        this.searchIcon.appendChild(icons.createIcon(this.options.icons.search));
       } else {
         this.searchIcon.innerHTML = icons.search;
       }
@@ -169,9 +155,7 @@ export class Search {
     if (this.resultsContainer) {
       const emojis = this.resultsContainer.querySelectorAll(`.${CLASS_EMOJI}`);
       if (event.key === 'ArrowRight') {
-        this.setFocusedEmoji(
-          Math.min(this.focusedEmojiIndex + 1, emojis.length - 1)
-        );
+        this.setFocusedEmoji(Math.min(this.focusedEmojiIndex + 1, emojis.length - 1));
       } else if (event.key === 'ArrowLeft') {
         this.setFocusedEmoji(Math.max(0, this.focusedEmojiIndex - 1));
       } else if (event.key === 'ArrowDown') {
@@ -202,9 +186,7 @@ export class Search {
     } else if (!this.searchField.value) {
       if (this.options.icons && this.options.icons.search) {
         empty(this.searchIcon);
-        this.searchIcon.appendChild(
-          icons.createIcon(this.options.icons.search)
-        );
+        this.searchIcon.appendChild(icons.createIcon(this.options.icons.search));
       } else {
         this.searchIcon.innerHTML = icons.search;
       }
@@ -214,9 +196,7 @@ export class Search {
     } else {
       if (this.options.icons && this.options.icons.clearSearch) {
         empty(this.searchIcon);
-        this.searchIcon.appendChild(
-          icons.createIcon(this.options.icons.clearSearch)
-        );
+        this.searchIcon.appendChild(icons.createIcon(this.options.icons.clearSearch));
       } else {
         this.searchIcon.innerHTML = icons.times;
       }
@@ -233,33 +213,20 @@ export class Search {
       this.events.emit(HIDE_PREVIEW);
 
       if (searchResults.length) {
-        this.resultsContainer = new EmojiContainer(
-          searchResults,
-          true,
-          this.events,
-          this.options,
-          false
-        ).render();
+        this.resultsContainer = new EmojiContainer(searchResults, true, this.events, this.options, false).render();
 
         if (this.resultsContainer) {
-          (this.resultsContainer.querySelector(
-            `.${CLASS_EMOJI}`
-          ) as HTMLElement).tabIndex = 0;
+          (this.resultsContainer.querySelector(`.${CLASS_EMOJI}`) as HTMLElement).tabIndex = 0;
           this.focusedEmojiIndex = 0;
 
-          this.resultsContainer.addEventListener('keydown', event =>
-            this.handleResultsKeydown(event)
-          );
+          this.resultsContainer.addEventListener('keydown', event => this.handleResultsKeydown(event));
 
           this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer);
         }
       } else {
         this.events.emit(
           SHOW_SEARCH_RESULTS,
-          new NotFoundMessage(
-            this.i18n.notFound,
-            this.options.icons && this.options.icons.notFound
-          ).render()
+          new NotFoundMessage(this.i18n.notFound, this.options.icons && this.options.icons.notFound).render()
         );
       }
     }
