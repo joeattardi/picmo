@@ -1,9 +1,9 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
+import classes from './styles';
+
 import { Emoji } from './emoji';
 import { createElement } from './util';
-
-import { CLASS_EMOJI_CONTAINER } from './classes';
 
 import { EmojiButtonOptions, EmojiRecord, RecentEmoji } from './types';
 
@@ -25,7 +25,7 @@ export class EmojiContainer {
   }
 
   render(): HTMLElement {
-    const emojiContainer = createElement('div', CLASS_EMOJI_CONTAINER);
+    const emojiContainer = createElement('div', classes.emojiContainer);
     this.emojis.forEach(emoji =>
       emojiContainer.appendChild(
         new Emoji(emoji, this.showVariants, true, this.events, this.options, this.lazy).render()

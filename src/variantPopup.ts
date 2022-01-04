@@ -1,4 +1,5 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
+import classes from './styles';
 
 import { Emoji } from './emoji';
 import { createElement } from './util';
@@ -7,8 +8,6 @@ import { HIDE_VARIANT_POPUP } from './events';
 
 import { EmojiRecord, EmojiButtonOptions } from './types';
 
-import { CLASS_VARIANT_OVERLAY, CLASS_VARIANT_POPUP, CLASS_EMOJI } from './classes';
-
 export class VariantPopup {
   private popup: HTMLElement;
   private focusedEmojiIndex = 0;
@@ -16,7 +15,7 @@ export class VariantPopup {
   constructor(private events: Emitter, private emoji: EmojiRecord, private options: EmojiButtonOptions) {}
 
   getEmoji(index: number): Element {
-    return this.popup.querySelectorAll(`.${CLASS_EMOJI}`)[index];
+    return this.popup.querySelectorAll(`.${classes.emoji}`)[index];
   }
 
   setFocusedEmoji(newIndex: number): void {
@@ -30,9 +29,9 @@ export class VariantPopup {
   }
 
   render(): HTMLElement {
-    this.popup = createElement('div', CLASS_VARIANT_POPUP);
+    this.popup = createElement('div', classes.variantPopup);
 
-    const overlay = createElement('div', CLASS_VARIANT_OVERLAY);
+    const overlay = createElement('div', classes.variantOverlay);
     overlay.addEventListener('click', (event: MouseEvent) => {
       event.stopPropagation();
 
@@ -60,7 +59,7 @@ export class VariantPopup {
       )
     );
 
-    const firstEmoji = this.popup.querySelector(`.${CLASS_EMOJI}`) as HTMLElement;
+    const firstEmoji = this.popup.querySelector(`.${classes.emoji}`) as HTMLElement;
     this.focusedEmojiIndex = 0;
     firstEmoji.tabIndex = 0;
 
@@ -69,7 +68,7 @@ export class VariantPopup {
     this.popup.addEventListener('keydown', event => {
       if (event.key === 'ArrowRight') {
         this.setFocusedEmoji(
-          Math.min(this.focusedEmojiIndex + 1, this.popup.querySelectorAll(`.${CLASS_EMOJI}`).length - 1)
+          Math.min(this.focusedEmojiIndex + 1, this.popup.querySelectorAll(`.${classes.emoji}`).length - 1)
         );
       } else if (event.key === 'ArrowLeft') {
         this.setFocusedEmoji(Math.max(this.focusedEmojiIndex - 1, 0));

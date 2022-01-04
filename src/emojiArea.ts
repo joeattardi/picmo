@@ -1,10 +1,10 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 import escape from 'escape-html';
 
+import classes from './styles';
+
 import emojiData from './data/emoji';
 import { i18n as defaultI18n } from './i18n';
-
-import { CLASS_EMOJI_CONTAINER, CLASS_EMOJI, CLASS_EMOJI_AREA, CLASS_EMOJIS, CLASS_CATEGORY_NAME } from './classes';
 
 import { CategoryButtons } from './categoryButtons';
 import { EmojiContainer } from './emojiContainer';
@@ -64,7 +64,7 @@ export class EmojiArea {
   updateRecents(): void {
     if (this.options.showRecents) {
       this.emojiCategories.recents = load();
-      const recentsContainer = this.emojis.querySelector(`.${CLASS_EMOJI_CONTAINER}`) as HTMLElement;
+      const recentsContainer = this.emojis.querySelector(`.${classes.emojiContainer}`) as HTMLElement;
       if (recentsContainer && recentsContainer.parentNode) {
         recentsContainer.parentNode.replaceChild(
           new EmojiContainer(this.emojiCategories.recents, true, this.events, this.options, false).render(),
@@ -75,14 +75,14 @@ export class EmojiArea {
   }
 
   render(): HTMLElement {
-    this.container = createElement('div', CLASS_EMOJI_AREA);
+    this.container = createElement('div');
 
     if (this.options.showCategoryButtons) {
       this.categoryButtons = new CategoryButtons(this.options, this.events, this.i18n);
       this.container.appendChild(this.categoryButtons.render());
     }
 
-    this.emojis = createElement('div', CLASS_EMOJIS);
+    this.emojis = createElement('div', classes.emojis);
 
     if (this.options.showRecents) {
       this.emojiCategories.recents = load();
@@ -109,7 +109,7 @@ export class EmojiArea {
 
     this.container.appendChild(this.emojis);
 
-    const firstEmoji = this.container.querySelectorAll(`.${CLASS_EMOJI}`)[0] as HTMLElement;
+    const firstEmoji = this.container.querySelectorAll(`.${classes.emoji}`)[0] as HTMLElement;
     firstEmoji.tabIndex = 0;
 
     return this.container;
@@ -127,20 +127,20 @@ export class EmojiArea {
   }
 
   private get currentCategoryEl(): HTMLElement {
-    return this.emojis.querySelectorAll(`.${CLASS_EMOJI_CONTAINER}`)[this.currentCategory] as HTMLElement;
+    return this.emojis.querySelectorAll(`.${classes.emojiContainer}`)[this.currentCategory] as HTMLElement;
   }
 
   private get focusedEmoji(): HTMLElement {
-    return this.currentCategoryEl.querySelectorAll(`.${CLASS_EMOJI}`)[this.focusedIndex] as HTMLElement;
+    return this.currentCategoryEl.querySelectorAll(`.${classes.emoji}`)[this.focusedIndex] as HTMLElement;
   }
 
   private get currentEmojiCount(): number {
-    return this.currentCategoryEl.querySelectorAll(`.${CLASS_EMOJI}`).length;
+    return this.currentCategoryEl.querySelectorAll(`.${classes.emoji}`).length;
   }
 
   private getEmojiCount(category: number): number {
-    const container = this.emojis.querySelectorAll(`.${CLASS_EMOJI_CONTAINER}`)[category] as HTMLElement;
-    return container.querySelectorAll(`.${CLASS_EMOJI}`).length;
+    const container = this.emojis.querySelectorAll(`.${classes.emojiContainer}`)[category] as HTMLElement;
+    return container.querySelectorAll(`.${classes.emoji}`).length;
   }
 
   private handleKeyDown = (event: KeyboardEvent): void => {
@@ -232,7 +232,7 @@ export class EmojiArea {
   }
 
   private addCategory = (category: string, emojis: Array<EmojiRecord | RecentEmoji>): void => {
-    const name = createElement('h2', CLASS_CATEGORY_NAME);
+    const name = createElement('h2', classes.categoryName);
     name.innerHTML = escape(this.i18n.categories[category] || defaultI18n.categories[category]);
     this.emojis.appendChild(name);
     this.headers.push(name);

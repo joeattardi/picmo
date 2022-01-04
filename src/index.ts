@@ -1,4 +1,4 @@
-import '../css/emoji-button.css';
+import classes from './styles';
 
 import createFocusTrap, { FocusTrap } from 'focus-trap';
 import { TinyEmitter as Emitter } from 'tiny-emitter';
@@ -7,7 +7,14 @@ import twemoji from 'twemoji';
 
 import emojiData from './data/emoji';
 
-import { EMOJI, SHOW_SEARCH_RESULTS, HIDE_SEARCH_RESULTS, HIDE_VARIANT_POPUP, PICKER_HIDDEN } from './events';
+import {
+  EventCallback,
+  EMOJI,
+  SHOW_SEARCH_RESULTS,
+  HIDE_SEARCH_RESULTS,
+  HIDE_VARIANT_POPUP,
+  PICKER_HIDDEN
+} from './events';
 import { lazyLoadEmoji } from './lazyLoad';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
@@ -15,16 +22,6 @@ import { createElement, empty, buildEmojiCategoryData } from './util';
 import { VariantPopup } from './variantPopup';
 
 import { i18n } from './i18n';
-
-import {
-  CLASS_PICKER,
-  CLASS_PICKER_CONTENT,
-  CLASS_EMOJI,
-  CLASS_SEARCH_FIELD,
-  CLASS_WRAPPER,
-  CLASS_OVERLAY,
-  CLASS_PLUGIN_CONTAINER
-} from './classes';
 
 import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiSelection, EmojiTheme, FixedPosition } from './types';
 import { EmojiArea } from './emojiArea';
@@ -57,6 +54,14 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   rows: 6,
   emojiSize: '1.8em',
   initialCategory: 'smileys'
+};
+
+//  options as { base: string; size: string; ext: string };
+
+type TwemojiCallbackOptions = {
+  base: string;
+  size: string;
+  ext: string;
 };
 
 export class EmojiButton {
@@ -116,7 +121,7 @@ export class EmojiButton {
    * @param event The name of the event to listen for
    * @param callback The function to call when the event is fired
    */
-  on(event: string, callback: (arg?: any) => void): void {
+  on(event: string, callback: EventCallback): void {
     this.publicEvents.on(event, callback);
   }
 
@@ -126,7 +131,7 @@ export class EmojiButton {
    * @param event The name of the event
    * @param callback The callback to remove
    */
-  off(event: string, callback: (arg?: any) => void): void {
+  off(event: string, callback: EventCallback): void {
     this.publicEvents.off(event, callback);
   }
 
@@ -239,7 +244,9 @@ export class EmojiButton {
     return new Promise(resolve => {
       twemoji.parse(emoji.emoji, {
         ...this.options.twemojiOptions,
-        callback: (icon, { base, size, ext }: any) => {
+        className: classes.twemoji,
+        callback: (icon, options) => {
+          const { base, size, ext } = options as TwemojiCallbackOptions;
           const imageUrl = `${base}${size}/${icon}${ext}`;
           resolve({
             url: imageUrl,
@@ -286,7 +293,7 @@ export class EmojiButton {
    */
   private initPlugins(): void {
     if (this.options.plugins) {
-      const pluginContainer = createElement('div', CLASS_PLUGIN_CONTAINER);
+      const pluginContainer = createElement('div', classes.pluginContainer);
 
       this.options.plugins.forEach(plugin => {
         if (!plugin.render) {
@@ -307,8 +314,8 @@ export class EmojiButton {
       clickOutsideDeactivates: true,
       initialFocus:
         this.options.showSearch && this.options.autoFocusSearch
-          ? '.emoji-picker__search'
-          : '.emoji-picker__emoji[tabindex="0"]'
+          ? `.${classes.searchField}`
+          : `.${classes.emoji}[tabindex="0"]`
     });
   }
 
@@ -316,13 +323,13 @@ export class EmojiButton {
    * Builds the emoji picker.
    */
   private buildPicker(): void {
-    this.pickerEl = createElement('div', CLASS_PICKER);
-    this.pickerEl.classList.add(this.theme);
+    this.pickerEl = createElement('div', classes.picker);
+    this.pickerEl.classList.add(classes.themeLight);
 
     this.setStyleProperties();
     this.initFocusTrap();
 
-    this.pickerContent = createElement('div', CLASS_PICKER_CONTENT);
+    this.pickerContent = createElement('div', classes.content);
 
     this.initPlugins();
     this.buildSearch();
@@ -338,7 +345,7 @@ export class EmojiButton {
 
     this.buildPreview();
 
-    this.wrapper = createElement('div', CLASS_WRAPPER);
+    this.wrapper = createElement('div', classes.wrapper);
     this.wrapper.appendChild(this.pickerEl);
     this.wrapper.style.display = 'none';
 
@@ -386,7 +393,7 @@ export class EmojiButton {
       root: this.emojiArea.emojis
     });
 
-    this.emojiArea.emojis.querySelectorAll(`.${CLASS_EMOJI}`).forEach((element: Element) => {
+    this.emojiArea.emojis.querySelectorAll(`.${classes.emoji}`).forEach((element: Element) => {
       if (this.shouldLazyLoad(element as HTMLElement)) {
         this.observer.observe(element);
       }
@@ -555,8 +562,8 @@ export class EmojiButton {
     // the search field. Otherwise, the initial focus will be on the first focusable emoji.
     const initialFocusElement = this.pickerEl.querySelector(
       this.options.showSearch && this.options.autoFocusSearch
-        ? `.${CLASS_SEARCH_FIELD}`
-        : `.${CLASS_EMOJI}[tabindex="0"]`
+        ? `.${classes.searchField}`
+        : `.${classes.emoji}[tabindex="0"]`
     ) as HTMLElement;
     initialFocusElement.focus();
   }
@@ -615,7 +622,8 @@ export class EmojiButton {
     this.wrapper.style.left = `${newLeft}px`;
     this.wrapper.style.zIndex = '5000';
 
-    this.overlay = createElement('div', CLASS_OVERLAY);
+    this.overlay = createElement('div', classes.overlay);
+
     document.body.appendChild(this.overlay);
   }
 

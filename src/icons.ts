@@ -12,6 +12,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faBuilding, faFlag, faFrown, faLightbulb, faSmile } from '@fortawesome/free-regular-svg-icons';
 
+// TODO: Find a lighter weight alternative to fontawesome
 library.add(
   faBuilding,
   faCat,

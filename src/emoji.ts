@@ -2,12 +2,12 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 import escape from 'escape-html';
 import twemoji from 'twemoji';
 
+import classes from './styles';
+
 import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
 import { smile } from './icons';
 import { save } from './recent';
 import { createElement } from './util';
-
-import { CLASS_EMOJI, CLASS_CUSTOM_EMOJI } from './classes';
 
 import { EmojiButtonOptions, EmojiRecord } from './types';
 
@@ -24,14 +24,16 @@ export class Emoji {
   ) {}
 
   render(): HTMLElement {
-    this.emojiButton = createElement('button', CLASS_EMOJI);
+    this.emojiButton = createElement('button', classes.emoji);
 
     let content = this.emoji.emoji;
 
     if (this.emoji.custom) {
-      content = this.lazy ? smile : `<img class="${CLASS_CUSTOM_EMOJI}" src="${escape(this.emoji.emoji)}">`;
+      content = this.lazy ? smile : `<img class="${classes.customEmoji}" src="${escape(this.emoji.emoji)}">`;
     } else if (this.options.style === 'twemoji') {
-      content = this.lazy ? smile : twemoji.parse(this.emoji.emoji, this.options.twemojiOptions);
+      content = this.lazy
+        ? smile
+        : twemoji.parse(this.emoji.emoji, { ...this.options.twemojiOptions, className: classes.twemoji });
     }
 
     this.emojiButton.innerHTML = content;

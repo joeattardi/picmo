@@ -1,7 +1,6 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
-import escape from 'escape-html';
 
-import { CLASS_CATEGORY_BUTTONS, CLASS_CATEGORY_BUTTON } from './classes';
+import classes from './styles';
 
 import emojiData from './data/emoji';
 
@@ -34,7 +33,7 @@ export class CategoryButtons {
   buttons: HTMLElement[] = [];
 
   render(): HTMLElement {
-    const container = createElement('div', CLASS_CATEGORY_BUTTONS);
+    const container = createElement('div', classes.categoryButtons);
 
     const categoryData = this.options.categories || this.options.emojiData?.categories || emojiData.categories;
 
@@ -45,7 +44,7 @@ export class CategoryButtons {
     }
 
     categories.forEach((category: string) => {
-      const button = createElement('button', CLASS_CATEGORY_BUTTON);
+      const button = createElement('button', classes.categoryButton);
 
       if (this.options.icons && this.options.icons.categories && this.options.icons.categories[category]) {
         button.appendChild(icons.createIcon(this.options.icons.categories[category]));
@@ -86,13 +85,13 @@ export class CategoryButtons {
 
   setActiveButton(activeButton: number, focus = true): void {
     let activeButtonEl = this.buttons[this.activeButton];
-    activeButtonEl.classList.remove('active');
+    activeButtonEl.classList.remove(classes.categoryButtonActive);
     activeButtonEl.tabIndex = -1;
 
     this.activeButton = activeButton;
 
     activeButtonEl = this.buttons[this.activeButton];
-    activeButtonEl.classList.add('active');
+    activeButtonEl.classList.add(classes.categoryButtonActive);
     activeButtonEl.tabIndex = 0;
 
     if (focus) {

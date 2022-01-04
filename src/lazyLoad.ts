@@ -1,7 +1,8 @@
 import escape from 'escape-html';
 import twemoji from 'twemoji';
 
-import { CLASS_CUSTOM_EMOJI } from './classes';
+import classes from './styles';
+
 import { EmojiButtonOptions } from './types';
 
 import { createElement } from './util';
@@ -20,7 +21,7 @@ export function lazyLoadEmoji(element: HTMLElement, options: EmojiButtonOptions)
 }
 
 function lazyLoadCustomEmoji(element: HTMLElement): void {
-  const img = createElement('img', CLASS_CUSTOM_EMOJI) as HTMLImageElement;
+  const img = createElement('img', classes.customEmoji) as HTMLImageElement;
 
   if (element.dataset.emoji) {
     img.src = escape(element.dataset.emoji);
@@ -31,6 +32,6 @@ function lazyLoadCustomEmoji(element: HTMLElement): void {
 
 function lazyLoadTwemoji(element: HTMLElement, options: EmojiButtonOptions): void {
   if (element.dataset.emoji) {
-    element.innerHTML = twemoji.parse(element.dataset.emoji, options.twemojiOptions);
+    element.innerHTML = twemoji.parse(element.dataset.emoji, { ...options.twemojiOptions, className: classes.twemoji });
   }
 }

@@ -42,6 +42,7 @@ export interface Plugin {
   destroy?(): void;
 }
 
+// TODO make this required and use Partial for typing the passed in options
 export interface EmojiButtonOptions {
   position?: Placement | FixedPosition;
   autoHide?: boolean;
