@@ -1,0 +1,13 @@
+<div class="<%= classes.categoryButtons %>">
+  <% categories.forEach(category => { %>
+    <button 
+      class="fa-fw <%= classes.categoryButton %>"
+      tabindex="-1"
+      title="<%= i18n.categories[category] %>"
+      type="button"
+      data-category="<%= category %>"
+    >
+      <%- categoryIcons[category] || fallbackIcon %>
+    </button>
+  <% }); %>
+</div>

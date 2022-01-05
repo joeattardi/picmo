@@ -1,11 +1,11 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-import classes from './styles';
-
 import { Emoji } from './emoji';
-import { createElement } from './util';
 
 import { EmojiButtonOptions, EmojiRecord, RecentEmoji } from './types';
+
+import { renderTemplate } from './templates';
+import template from './templates/emojiContainer.ejs';
 
 export class EmojiContainer {
   private emojis: Array<EmojiRecord | RecentEmoji>;
@@ -15,7 +15,7 @@ export class EmojiContainer {
     private showVariants: boolean,
     private events: Emitter,
     private options: EmojiButtonOptions,
-    private lazy = true
+    private lazy = false
   ) {
     this.emojis = emojis.filter(
       e =>
@@ -25,13 +25,10 @@ export class EmojiContainer {
   }
 
   render(): HTMLElement {
-    const emojiContainer = createElement('div', classes.emojiContainer);
-    this.emojis.forEach(emoji =>
-      emojiContainer.appendChild(
+    return renderTemplate(template, {
+      emojis: this.emojis.map(emoji =>
         new Emoji(emoji, this.showVariants, true, this.events, this.options, this.lazy).render()
       )
-    );
-
-    return emojiContainer;
+    });
   }
 }

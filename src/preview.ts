@@ -2,12 +2,16 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import classes from './styles';
 
-import escape from 'escape-html';
 import twemoji from 'twemoji';
 
 import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
-import { createElement } from './util';
+import { queryByClass } from './util';
 import { EmojiRecord, EmojiButtonOptions } from './types';
+
+import previewTemplate from './templates/preview.ejs';
+import customPreviewTemplate from './templates/customPreview.ejs';
+
+import { renderTemplate, toElement } from './templates';
 
 export class EmojiPreview {
   private emoji: HTMLElement;
@@ -16,13 +20,10 @@ export class EmojiPreview {
   constructor(private events: Emitter, private options: EmojiButtonOptions) {}
 
   render(): HTMLElement {
-    const preview = createElement('div', classes.preview);
+    const preview = renderTemplate(previewTemplate);
 
-    this.emoji = createElement('div', classes.previewEmoji);
-    preview.appendChild(this.emoji);
-
-    this.name = createElement('div', classes.previewName);
-    preview.appendChild(this.name);
+    this.emoji = queryByClass(preview, classes.previewEmoji);
+    this.name = queryByClass(preview, classes.previewName);
 
     this.events.on(SHOW_PREVIEW, (emoji: EmojiRecord) => this.showPreview(emoji));
     this.events.on(HIDE_PREVIEW, () => this.hidePreview());
@@ -30,21 +31,29 @@ export class EmojiPreview {
     return preview;
   }
 
-  showPreview(emoji: EmojiRecord): void {
-    let content = emoji.emoji;
-
+  private getContent(emoji: EmojiRecord): Text | HTMLElement {
     if (emoji.custom) {
-      content = `<img class="${classes.customEmoji}" src="${escape(emoji.emoji)}">`;
-    } else if (this.options.style === 'twemoji') {
-      content = twemoji.parse(emoji.emoji, { ...this.options.twemojiOptions, className: classes.twemoji });
+      return renderTemplate(customPreviewTemplate, {
+        emoji: emoji.emoji
+      });
     }
 
-    this.emoji.innerHTML = content;
-    this.name.innerHTML = escape(emoji.name);
+    if (this.options.style === 'twemoji') {
+      return toElement(twemoji.parse(emoji.emoji, { ...this.options.twemojiOptions, className: classes.twemoji }));
+    }
+
+    return document.createTextNode(emoji.emoji);
+  }
+
+  showPreview(emoji: EmojiRecord): void {
+    const content = this.getContent(emoji);
+
+    this.emoji.replaceChildren(content);
+    this.name.textContent = emoji.name;
   }
 
   hidePreview(): void {
-    this.emoji.innerHTML = '';
-    this.name.innerHTML = '';
+    this.emoji.replaceChildren();
+    this.name.replaceChildren();
   }
 }

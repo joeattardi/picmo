@@ -7,11 +7,14 @@ import emojiData from './data/emoji';
 import { CATEGORY_CLICKED } from './events';
 
 import * as icons from './icons';
-import { createElement } from './util';
 
 import { EmojiButtonOptions, I18NCategory, I18NStrings } from './types';
 
-const categoryIcons: { [key in I18NCategory]: string } = {
+import template from './templates/categoryButtons.ejs';
+import { renderTemplate } from './templates';
+import { queryAllByClass } from './util';
+
+export const categoryIcons: { [key in I18NCategory]: string } = {
   recents: icons.history,
   smileys: icons.smile,
   people: icons.user,
@@ -30,11 +33,9 @@ export class CategoryButtons {
 
   activeButton = 0;
 
-  buttons: HTMLElement[] = [];
+  buttons: NodeListOf<HTMLButtonElement>;
 
   render(): HTMLElement {
-    const container = createElement('div', classes.categoryButtons);
-
     const categoryData = this.options.categories || this.options.emojiData?.categories || emojiData.categories;
 
     let categories = this.options.showRecents ? ['recents', ...categoryData] : categoryData;
@@ -43,22 +44,18 @@ export class CategoryButtons {
       categories = [...categories, 'custom'];
     }
 
-    categories.forEach((category: string) => {
-      const button = createElement('button', classes.categoryButton);
+    const container = renderTemplate(template, {
+      i18n: this.i18n,
+      categories,
+      categoryIcons,
+      fallbackIcon: icons.smile
+    });
 
-      if (this.options.icons && this.options.icons.categories && this.options.icons.categories[category]) {
-        button.appendChild(icons.createIcon(this.options.icons.categories[category]));
-      } else {
-        button.innerHTML = categoryIcons[category];
-      }
+    this.buttons = queryAllByClass(container, classes.categoryButton);
 
-      button.tabIndex = -1;
-      button.title = this.i18n.categories[category];
-      container.appendChild(button);
-      this.buttons.push(button);
-
+    this.buttons.forEach((button: HTMLButtonElement) => {
       button.addEventListener('click', () => {
-        this.events.emit(CATEGORY_CLICKED, category);
+        this.events.emit(CATEGORY_CLICKED, button.dataset.category);
       });
     });
 

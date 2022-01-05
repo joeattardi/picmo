@@ -1,0 +1,12 @@
+<div>
+  <div data-placeholder="categoryButtons"></div>
+  <div class="<%= classes.emojis %>">
+    <% categories.forEach(category => { %>
+      <h3 data-category="<%= category %>" class="<%= classes.categoryName %>">
+        <div data-placeholder="icon-<%= category %>"></div>
+        <%= i18n.categories[category] %>
+      </h3>
+      <div data-placeholder="emojis-<%= category %>"></div>
+    <% }) %>
+  </div>
+</div>

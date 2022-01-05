@@ -2,6 +2,7 @@ import { I18NStrings } from './types';
 
 export const i18n: I18NStrings = {
   search: 'Search emojis...',
+  clearSearch: 'Clear search',
   categories: {
     recents: 'Recent Emojis',
     smileys: 'Smileys & Emotion',

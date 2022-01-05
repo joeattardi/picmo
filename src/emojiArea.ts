@@ -1,18 +1,19 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
-import escape from 'escape-html';
 
 import classes from './styles';
 
 import emojiData from './data/emoji';
-import { i18n as defaultI18n } from './i18n';
 
-import { CategoryButtons } from './categoryButtons';
+import { CategoryButtons, categoryIcons } from './categoryButtons';
 import { EmojiContainer } from './emojiContainer';
 
 import { CATEGORY_CLICKED } from './events';
-import { I18NStrings, EmojiButtonOptions, EmojiRecord, RecentEmoji } from './types';
-import { createElement } from './util';
+import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
+import { queryAllByClass, queryByClass } from './util';
 import { load } from './recent';
+
+import template from './templates/emojiArea.ejs';
+import { renderTemplate, toElement } from './templates';
 
 const categorySortOrder = [
   'recents',
@@ -64,7 +65,7 @@ export class EmojiArea {
   updateRecents(): void {
     if (this.options.showRecents) {
       this.emojiCategories.recents = load();
-      const recentsContainer = this.emojis.querySelector(`.${classes.emojiContainer}`) as HTMLElement;
+      const recentsContainer = this.emojis.querySelector(`.${classes.emojiContainer}`);
       if (recentsContainer && recentsContainer.parentNode) {
         recentsContainer.parentNode.replaceChild(
           new EmojiContainer(this.emojiCategories.recents, true, this.events, this.options, false).render(),
@@ -75,14 +76,9 @@ export class EmojiArea {
   }
 
   render(): HTMLElement {
-    this.container = createElement('div');
-
     if (this.options.showCategoryButtons) {
       this.categoryButtons = new CategoryButtons(this.options, this.events, this.i18n);
-      this.container.appendChild(this.categoryButtons.render());
     }
-
-    this.emojis = createElement('div', classes.emojis);
 
     if (this.options.showRecents) {
       this.emojiCategories.recents = load();
@@ -95,24 +91,48 @@ export class EmojiArea {
       }));
     }
 
-    this.categories.forEach(category => this.addCategory(category, this.emojiCategories[category]));
+    const categoryIconElements = Object.entries(categoryIcons).reduce(
+      (result, [category, icon]) => ({
+        ...result,
+        [`icon-${category}`]: toElement(icon)
+      }),
+      {}
+    );
 
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        setTimeout(() => this.emojis.addEventListener('scroll', this.highlightCategory));
-      });
+    const categoryEmojiElements = this.categories.reduce(
+      (result, category) => ({
+        ...result,
+        [`emojis-${category}`]: this.renderEmojis(category)
+      }),
+      {}
+    );
+
+    this.container = renderTemplate(template, {
+      categoryButtons: this.options.showCategoryButtons ? this.categoryButtons?.render() : null,
+      categories: this.categories,
+      i18n: this.i18n,
+      ...categoryIconElements,
+      ...categoryEmojiElements
     });
 
+    // TODO idea: add something that wraps renderTemplate where you can also specify selectors of child elements you want back
+    this.emojis = queryByClass(this.container, classes.emojis);
+
+    this.headers = [...queryAllByClass<HTMLHeadingElement>(this.container, classes.categoryName)];
+
+    this.emojis.addEventListener('scroll', this.highlightCategory);
     this.emojis.addEventListener('keydown', this.handleKeyDown);
 
     this.events.on(CATEGORY_CLICKED, this.selectCategory);
 
-    this.container.appendChild(this.emojis);
-
-    const firstEmoji = this.container.querySelectorAll(`.${classes.emoji}`)[0] as HTMLElement;
+    const firstEmoji = this.container.querySelectorAll<HTMLElement>(`.${classes.emoji}`)[0];
     firstEmoji.tabIndex = 0;
 
     return this.container;
+  }
+
+  renderEmojis(category: string): HTMLElement {
+    return new EmojiContainer(this.emojiCategories[category], true, this.events, this.options, false).render();
   }
 
   reset(): void {
@@ -127,20 +147,20 @@ export class EmojiArea {
   }
 
   private get currentCategoryEl(): HTMLElement {
-    return this.emojis.querySelectorAll(`.${classes.emojiContainer}`)[this.currentCategory] as HTMLElement;
+    return this.emojis.querySelectorAll<HTMLElement>(`.${classes.emojiContainer}`)[this.currentCategory];
   }
 
   private get focusedEmoji(): HTMLElement {
-    return this.currentCategoryEl.querySelectorAll(`.${classes.emoji}`)[this.focusedIndex] as HTMLElement;
+    return this.currentCategoryEl.querySelectorAll<HTMLElement>(`.${classes.emoji}`)[this.focusedIndex];
   }
 
   private get currentEmojiCount(): number {
-    return this.currentCategoryEl.querySelectorAll(`.${classes.emoji}`).length;
+    return this.currentCategoryEl.querySelectorAll<HTMLElement>(`.${classes.emoji}`).length;
   }
 
   private getEmojiCount(category: number): number {
-    const container = this.emojis.querySelectorAll(`.${classes.emojiContainer}`)[category] as HTMLElement;
-    return container.querySelectorAll(`.${classes.emoji}`).length;
+    const container = this.emojis.querySelectorAll<HTMLElement>(`.${classes.emojiContainer}`)[category];
+    return container.querySelectorAll<HTMLElement>(`.${classes.emoji}`).length;
   }
 
   private handleKeyDown = (event: KeyboardEvent): void => {
@@ -230,17 +250,6 @@ export class EmojiArea {
       }
     }
   }
-
-  private addCategory = (category: string, emojis: Array<EmojiRecord | RecentEmoji>): void => {
-    const name = createElement('h2', classes.categoryName);
-    name.innerHTML = escape(this.i18n.categories[category] || defaultI18n.categories[category]);
-    this.emojis.appendChild(name);
-    this.headers.push(name);
-
-    this.emojis.appendChild(
-      new EmojiContainer(emojis, true, this.events, this.options, category !== 'recents').render()
-    );
-  };
 
   selectCategory = (category: string, focus = true): void => {
     this.emojis.removeEventListener('scroll', this.highlightCategory);

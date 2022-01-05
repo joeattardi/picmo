@@ -37,3 +37,14 @@ export function buildEmojiCategoryData(emojiData: EmojiData): { [key: string]: E
 
   return emojiCategories;
 }
+
+export function queryByClass<E extends HTMLElement = HTMLElement>(container: HTMLElement, className: string): E {
+  return container.querySelector<E>(`.${className}`) as E;
+}
+
+export function queryAllByClass<E extends HTMLElement = HTMLElement>(
+  container: HTMLElement,
+  className: string
+): NodeListOf<E> {
+  return container.querySelectorAll<E>(`.${className}`) as NodeListOf<E>;
+}

@@ -1,5 +1,5 @@
+import fuzzysort from 'fuzzysort';
 import { TinyEmitter as Emitter } from 'tiny-emitter';
-import escape from 'escape-html';
 
 import classes from './styles';
 
@@ -7,34 +7,14 @@ import * as icons from './icons';
 
 import { EmojiContainer } from './emojiContainer';
 import { HIDE_PREVIEW, HIDE_VARIANT_POPUP, SHOW_SEARCH_RESULTS, HIDE_SEARCH_RESULTS } from './events';
-import { createElement, empty } from './util';
 import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
 
-import fuzzysort from 'fuzzysort';
+import { renderTemplate, toElement } from './templates';
+import searchTemplate from './templates/search/search.ejs';
+import clearSearchButtonTemplate from './templates/search/clearButton.ejs';
+import notFoundTemplate from './templates/search/notFound.ejs';
 
-class NotFoundMessage {
-  constructor(private message: string, private iconUrl?: string) {}
-
-  render(): HTMLElement {
-    const container = createElement('div', classes.searchNotFound);
-
-    const iconContainer = createElement('div', classes.searchNotFoundIcon);
-
-    if (this.iconUrl) {
-      iconContainer.appendChild(icons.createIcon(this.iconUrl));
-    } else {
-      iconContainer.innerHTML = icons.frown;
-    }
-
-    container.appendChild(iconContainer);
-
-    const messageContainer = createElement('h2');
-    messageContainer.innerHTML = escape(this.message);
-    container.appendChild(messageContainer);
-
-    return container;
-  }
-}
+import { queryByClass } from './util';
 
 export class Search {
   private emojiData: EmojiRecord[];
@@ -43,8 +23,11 @@ export class Search {
 
   private searchContainer: HTMLElement;
   private searchField: HTMLInputElement;
-  private searchIcon: HTMLElement;
+  private searchAccessory: HTMLElement;
+  private searchIcon: HTMLImageElement;
+  private clearSearchButton: HTMLButtonElement;
   private resultsContainer: HTMLElement | null;
+  private notFoundMessage: HTMLElement;
 
   constructor(
     private events: Emitter,
@@ -77,26 +60,29 @@ export class Search {
   }
 
   render(): HTMLElement {
-    this.searchContainer = createElement('div', classes.searchContainer);
+    this.searchIcon = toElement(icons.search);
+    this.notFoundMessage = renderTemplate(notFoundTemplate, {
+      i18n: this.i18n,
+      icon: toElement(icons.timesCircle)
+    });
 
-    this.searchField = createElement('input', classes.searchField) as HTMLInputElement;
-    this.searchField.placeholder = this.i18n.search;
-    this.searchContainer.appendChild(this.searchField);
+    this.searchContainer = renderTemplate(searchTemplate, {
+      i18n: this.i18n
+    });
 
-    this.searchIcon = createElement('span', classes.searchIcon);
+    this.clearSearchButton = renderTemplate(clearSearchButtonTemplate, {
+      i18n: this.i18n,
+      icon: toElement(icons.times)
+    });
 
-    if (this.options.icons && this.options.icons.search) {
-      this.searchIcon.appendChild(icons.createIcon(this.options.icons.search));
-    } else {
-      this.searchIcon.innerHTML = icons.search;
-    }
+    this.searchField = queryByClass(this.searchContainer, classes.searchField);
+    this.searchAccessory = queryByClass(this.searchContainer, classes.searchAccessory);
 
-    this.searchIcon.addEventListener('click', (event: MouseEvent) => this.onClearSearch(event));
-
-    this.searchContainer.appendChild(this.searchIcon);
-
+    this.clearSearchButton.addEventListener('click', (event: MouseEvent) => this.onClearSearch(event));
     this.searchField.addEventListener('keydown', (event: KeyboardEvent) => this.onKeyDown(event));
     this.searchField.addEventListener('keyup', event => this.onKeyUp(event));
+
+    this.searchAccessory.replaceChildren(this.searchIcon);
 
     return this.searchContainer;
   }
@@ -116,29 +102,23 @@ export class Search {
       this.searchField.value = '';
       this.resultsContainer = null;
 
-      if (this.options.icons && this.options.icons.search) {
-        empty(this.searchIcon);
-        this.searchIcon.appendChild(icons.createIcon(this.options.icons.search));
-      } else {
-        this.searchIcon.innerHTML = icons.search;
-      }
-
-      this.searchIcon.style.cursor = 'default';
+      this.searchAccessory.replaceChildren(this.searchIcon);
 
       this.events.emit(HIDE_SEARCH_RESULTS);
 
+      // TODO: Find out why button steals focus on Escape key
       setTimeout(() => this.searchField.focus());
     }
   }
 
   setFocusedEmoji(index: number): void {
     if (this.resultsContainer) {
-      const emojis = this.resultsContainer.querySelectorAll(`.${classes.emoji}`);
-      const currentFocusedEmoji = emojis[this.focusedEmojiIndex] as HTMLElement;
+      const emojis = this.resultsContainer.querySelectorAll<HTMLElement>(`.${classes.emoji}`);
+      const currentFocusedEmoji = emojis[this.focusedEmojiIndex];
       currentFocusedEmoji.tabIndex = -1;
 
       this.focusedEmojiIndex = index;
-      const newFocusedEmoji = emojis[this.focusedEmojiIndex] as HTMLElement;
+      const newFocusedEmoji = emojis[this.focusedEmojiIndex];
       newFocusedEmoji.tabIndex = 0;
       newFocusedEmoji.focus();
     }
@@ -177,23 +157,10 @@ export class Search {
     if (event.key === 'Tab' || event.key === 'Shift') {
       return;
     } else if (!this.searchField.value) {
-      if (this.options.icons && this.options.icons.search) {
-        empty(this.searchIcon);
-        this.searchIcon.appendChild(icons.createIcon(this.options.icons.search));
-      } else {
-        this.searchIcon.innerHTML = icons.search;
-      }
-
-      this.searchIcon.style.cursor = 'default';
+      this.searchAccessory.replaceChildren(this.searchIcon);
       this.events.emit(HIDE_SEARCH_RESULTS);
     } else {
-      if (this.options.icons && this.options.icons.clearSearch) {
-        empty(this.searchIcon);
-        this.searchIcon.appendChild(icons.createIcon(this.options.icons.clearSearch));
-      } else {
-        this.searchIcon.innerHTML = icons.times;
-      }
-      this.searchIcon.style.cursor = 'pointer';
+      this.searchAccessory.replaceChildren(this.clearSearchButton);
 
       const searchResults = fuzzysort
         .go(this.searchField.value, this.emojiData, {
@@ -217,10 +184,7 @@ export class Search {
           this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer);
         }
       } else {
-        this.events.emit(
-          SHOW_SEARCH_RESULTS,
-          new NotFoundMessage(this.i18n.notFound, this.options.icons && this.options.icons.notFound).render()
-        );
+        this.events.emit(SHOW_SEARCH_RESULTS, this.notFoundMessage);
       }
     }
   }

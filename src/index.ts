@@ -393,8 +393,8 @@ export class EmojiButton {
       root: this.emojiArea.emojis
     });
 
-    this.emojiArea.emojis.querySelectorAll(`.${classes.emoji}`).forEach((element: Element) => {
-      if (this.shouldLazyLoad(element as HTMLElement)) {
+    this.emojiArea.emojis.querySelectorAll<HTMLElement>(`.${classes.emoji}`).forEach((element: HTMLElement) => {
+      if (this.shouldLazyLoad(element)) {
         this.observer.observe(element);
       }
     });

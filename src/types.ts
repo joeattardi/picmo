@@ -114,6 +114,7 @@ export type I18NCategory =
 
 export interface I18NStrings {
   search: string;
+  clearSearch: string;
   categories: {
     [key in I18NCategory]: string;
   };

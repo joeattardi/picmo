@@ -6,6 +6,7 @@ import {
   faHistory,
   faIcons,
   faMusic,
+  faTimesCircle,
   faSearch,
   faTimes,
   faUser
@@ -27,6 +28,7 @@ library.add(
   faSearch,
   faSmile,
   faTimes,
+  faTimesCircle,
   faUser
 );
 
@@ -43,10 +45,5 @@ export const music = icon({ prefix: 'fas', iconName: 'music' }).html[0];
 export const search = icon({ prefix: 'fas', iconName: 'search' }).html[0];
 export const smile = icon({ prefix: 'far', iconName: 'smile' }).html[0];
 export const times = icon({ prefix: 'fas', iconName: 'times' }).html[0];
+export const timesCircle = icon({ prefix: 'fas', iconName: 'times-circle' }).html[0];
 export const user = icon({ prefix: 'fas', iconName: 'user' }).html[0];
-
-export function createIcon(src: string): HTMLImageElement {
-  const img = document.createElement('img') as HTMLImageElement;
-  img.src = src;
-  return img;
-}

@@ -1,5 +1,4 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
-import escape from 'escape-html';
 import twemoji from 'twemoji';
 
 import classes from './styles';
@@ -7,9 +6,15 @@ import classes from './styles';
 import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
 import { smile } from './icons';
 import { save } from './recent';
-import { createElement } from './util';
 
 import { EmojiButtonOptions, EmojiRecord } from './types';
+
+import { compileTemplate, toElement } from './templates';
+import emojiTemplate from './templates/emoji.ejs';
+import customEmojiTemplate from './templates/customEmojiContent.ejs';
+
+const emojiCompiled = compileTemplate(emojiTemplate);
+const customCompiled = compileTemplate(customEmojiTemplate);
 
 export class Emoji {
   private emojiButton: HTMLElement;
@@ -20,30 +25,28 @@ export class Emoji {
     private showPreview: boolean,
     private events: Emitter,
     private options: EmojiButtonOptions,
-    private lazy = true
+    private lazy = false
   ) {}
 
   render(): HTMLElement {
-    this.emojiButton = createElement('button', classes.emoji);
+    this.emojiButton = emojiCompiled({ emoji: this.emoji });
 
-    let content = this.emoji.emoji;
-
-    if (this.emoji.custom) {
-      content = this.lazy ? smile : `<img class="${classes.customEmoji}" src="${escape(this.emoji.emoji)}">`;
+    let content: Text | HTMLElement;
+    if (this.lazy) {
+      // TODO fix lazy loading
+      content = toElement(smile);
+    } else if (this.emoji.custom) {
+      // TODO make sure XSS fix still works without escaping
+      content = customCompiled({ emoji: this.emoji.emoji });
     } else if (this.options.style === 'twemoji') {
-      content = this.lazy
-        ? smile
-        : twemoji.parse(this.emoji.emoji, { ...this.options.twemojiOptions, className: classes.twemoji });
+      content = toElement(
+        twemoji.parse(this.emoji.emoji, { ...this.options.twemojiOptions, className: classes.twemoji })
+      );
+    } else {
+      content = document.createTextNode(this.emoji.emoji);
     }
 
-    this.emojiButton.innerHTML = content;
-    this.emojiButton.tabIndex = -1;
-
-    this.emojiButton.dataset.emoji = this.emoji.emoji;
-    if (this.emoji.custom) {
-      this.emojiButton.dataset.custom = 'true';
-    }
-    this.emojiButton.title = this.emoji.name;
+    this.emojiButton.appendChild(content);
 
     this.emojiButton.addEventListener('focus', () => this.onEmojiHover());
     this.emojiButton.addEventListener('blur', () => this.onEmojiLeave());

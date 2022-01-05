@@ -2,11 +2,14 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 import classes from './styles';
 
 import { Emoji } from './emoji';
-import { createElement } from './util';
+import { queryByClass } from './util';
 
 import { HIDE_VARIANT_POPUP } from './events';
 
 import { EmojiRecord, EmojiButtonOptions } from './types';
+
+import { renderTemplate } from './templates';
+import template from './templates/variantPopup.ejs';
 
 export class VariantPopup {
   private popup: HTMLElement;
@@ -29,10 +32,10 @@ export class VariantPopup {
   }
 
   render(): HTMLElement {
-    this.popup = createElement('div', classes.variantPopup);
+    const container = renderTemplate(template);
+    this.popup = queryByClass(container, classes.variantPopup);
 
-    const overlay = createElement('div', classes.variantOverlay);
-    overlay.addEventListener('click', (event: MouseEvent) => {
+    container.addEventListener('click', (event: MouseEvent) => {
       event.stopPropagation();
 
       if (!this.popup.contains(event.target as Node)) {
@@ -78,8 +81,6 @@ export class VariantPopup {
       }
     });
 
-    overlay.appendChild(this.popup);
-
-    return overlay;
+    return container;
   }
 }

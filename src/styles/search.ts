@@ -40,7 +40,7 @@ export const search = {
     cursor: 'pointer'
   },
 
-  searchIcon: {
+  searchAccessory: {
     color: 'var(--search-icon-color)',
     height: '1em',
     position: 'absolute',
@@ -52,6 +52,13 @@ export const search = {
       width: '1em',
       height: '1em'
     }
+  },
+
+  clearSearchButton: {
+    cursor: 'pointer',
+    border: 'none',
+    background: 'transparent',
+    color: 'var(--search-icon-color)'
   },
 
   searchNotFound: {
