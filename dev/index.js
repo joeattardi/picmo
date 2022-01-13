@@ -1,5 +1,13 @@
 import { EmojiButton } from '../src/index';
 
+const removePlugin = {
+  render(picker) {
+    const button = document.createElement('button');
+    button.innerHTML = 'Plugin';
+    return button;
+  }
+};
+
 function createPickerInstance(button, options, onEmoji) {
   const picker = new EmojiButton(options);
   // const picker = new EmojiButton(options);
@@ -15,6 +23,7 @@ const native = document.querySelector('#native .emoji-button');
 createPickerInstance(
   native,
   {
+    // plugins: [removePlugin],
     placement: 'bottom-start',
     custom: [
       {
@@ -31,3 +40,8 @@ createPickerInstance(
     }
   }
 );
+
+const twemoji = document.querySelector('#twemoji .emoji-button');
+createPickerInstance(twemoji, {
+  style: 'twemoji'
+});

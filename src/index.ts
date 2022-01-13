@@ -18,13 +18,16 @@ import {
 import { lazyLoadEmoji } from './lazyLoad';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
-import { createElement, empty, buildEmojiCategoryData } from './util';
+import { buildEmojiCategoryData } from './util';
 import { VariantPopup } from './variantPopup';
 
 import { i18n } from './i18n';
 
 import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiSelection, EmojiTheme, FixedPosition } from './types';
 import { EmojiArea } from './emojiArea';
+
+import { renderTemplate } from './templates';
+import template from './templates/index.ejs';
 
 const MOBILE_BREAKPOINT = 450;
 
@@ -77,6 +80,7 @@ export class EmojiButton {
   private pickerEl: HTMLElement;
   private pickerContent: HTMLElement;
   private wrapper: HTMLElement;
+  private pluginContainer: HTMLElement;
   private focusTrap: FocusTrap;
 
   private emojiArea: EmojiArea;
@@ -169,7 +173,7 @@ export class EmojiButton {
    * @param searchResults The element containing the search results.
    */
   private showSearchResults(searchResults: HTMLElement): void {
-    empty(this.pickerContent);
+    this.pickerContent.replaceChildren();
     searchResults.classList.add('search-results');
     this.pickerContent.appendChild(searchResults);
   }
@@ -179,7 +183,7 @@ export class EmojiButton {
    */
   private hideSearchResults(): void {
     if (this.pickerContent.firstChild !== this.emojiArea.container) {
-      empty(this.pickerContent);
+      this.pickerContent.replaceChildren();
       this.pickerContent.appendChild(this.emojiArea.container);
     }
 
@@ -274,8 +278,6 @@ export class EmojiButton {
           (this.options.emojiData || emojiData).categories.indexOf(category)
         )
       );
-
-      this.pickerEl.appendChild(this.search.render());
     }
   }
 
@@ -293,16 +295,14 @@ export class EmojiButton {
    */
   private initPlugins(): void {
     if (this.options.plugins) {
-      const pluginContainer = createElement('div', classes.pluginContainer);
+      this.pluginContainer = renderTemplate('<div class="<%= classes.pluginContainer %>"></div>');
 
       this.options.plugins.forEach(plugin => {
         if (!plugin.render) {
           throw new Error('Emoji Button plugins must have a "render" function.');
         }
-        pluginContainer.appendChild(plugin.render(this));
+        this.pluginContainer.appendChild(plugin.render(this));
       });
-
-      this.pickerEl.appendChild(pluginContainer);
     }
   }
 
@@ -323,31 +323,34 @@ export class EmojiButton {
    * Builds the emoji picker.
    */
   private buildPicker(): void {
-    this.pickerEl = createElement('div', classes.picker);
+    this.initPlugins();
+    this.buildSearch();
+
+    this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories);
+
+    this.wrapper = renderTemplate(template, {
+      plugins: this.pluginContainer,
+      search: this.search?.render(),
+      emojiArea: this.emojiArea.render()
+    });
+    this.wrapper.style.display = 'none';
+
+    this.pickerEl = this.wrapper.firstElementChild as HTMLElement;
     this.pickerEl.classList.add(classes.themeLight);
 
     this.setStyleProperties();
     this.initFocusTrap();
 
-    this.pickerContent = createElement('div', classes.content);
+    this.pickerContent = this.pickerEl.firstElementChild as HTMLElement;
 
-    this.initPlugins();
-    this.buildSearch();
-
-    this.pickerEl.appendChild(this.pickerContent);
-
-    this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories);
-    this.pickerContent.appendChild(this.emojiArea.render());
+    // this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories);
+    // this.pickerContent.appendChild(this.emojiArea.render());
 
     this.events.on(SHOW_SEARCH_RESULTS, this.showSearchResults.bind(this));
     this.events.on(HIDE_SEARCH_RESULTS, this.hideSearchResults.bind(this));
     this.events.on(EMOJI, this.emitEmoji.bind(this));
 
     this.buildPreview();
-
-    this.wrapper = createElement('div', classes.wrapper);
-    this.wrapper.appendChild(this.pickerEl);
-    this.wrapper.style.display = 'none';
 
     if (this.options.zIndex) {
       this.wrapper.style.zIndex = this.options.zIndex + '';
@@ -486,10 +489,11 @@ export class EmojiButton {
         this.wrapper.style.display = 'none';
         this.pickerEl.classList.remove('hiding');
 
-        if (this.pickerContent.firstChild !== this.emojiArea.container) {
-          empty(this.pickerContent);
-          this.pickerContent.appendChild(this.emojiArea.container);
-        }
+        // TODO fix this, search is broken!
+        // if (this.pickerContent.firstChild !== this.emojiArea.container) {
+        //   empty(this.pickerContent);
+        //   this.pickerContent.appendChild(this.emojiArea.container);
+        // }
 
         if (this.search) {
           this.search.clear();
@@ -544,9 +548,10 @@ export class EmojiButton {
    * @param referenceEl The element to position relative to if relative positioning is used.
    */
   determineDisplay(referenceEl: HTMLElement): void {
-    if (window.matchMedia(`screen and (max-width: ${MOBILE_BREAKPOINT}px)`).matches) {
-      this.showMobileView();
-    } else if (typeof this.options.position === 'string') {
+    // if (window.matchMedia(`screen and (max-width: ${MOBILE_BREAKPOINT}px)`).matches) {
+    //   this.showMobileView();
+    // } else if (typeof this.options.position === 'string') {
+    if (typeof this.options.position === 'string') {
       this.setRelativePosition(referenceEl);
     } else {
       this.setFixedPosition();
@@ -606,25 +611,25 @@ export class EmojiButton {
    * Shows the picker in a mobile view.
    */
   private showMobileView(): void {
-    const style = window.getComputedStyle(this.pickerEl);
-    const htmlEl = document.querySelector('html');
-    const viewportHeight = htmlEl && htmlEl.clientHeight;
-    const viewportWidth = htmlEl && htmlEl.clientWidth;
+    // const style = window.getComputedStyle(this.pickerEl);
+    // const htmlEl = document.querySelector('html');
+    // const viewportHeight = htmlEl && htmlEl.clientHeight;
+    // const viewportWidth = htmlEl && htmlEl.clientWidth;
 
-    const height = parseInt(style.height);
-    const newTop = viewportHeight ? viewportHeight / 2 - height / 2 : 0;
+    // const height = parseInt(style.height);
+    // const newTop = viewportHeight ? viewportHeight / 2 - height / 2 : 0;
 
-    const width = parseInt(style.width);
-    const newLeft = viewportWidth ? viewportWidth / 2 - width / 2 : 0;
+    // const width = parseInt(style.width);
+    // const newLeft = viewportWidth ? viewportWidth / 2 - width / 2 : 0;
 
-    this.wrapper.style.position = 'fixed';
-    this.wrapper.style.top = `${newTop}px`;
-    this.wrapper.style.left = `${newLeft}px`;
-    this.wrapper.style.zIndex = '5000';
+    // this.wrapper.style.position = 'fixed';
+    // this.wrapper.style.top = `${newTop}px`;
+    // this.wrapper.style.left = `${newLeft}px`;
+    // this.wrapper.style.zIndex = '5000';
 
-    this.overlay = createElement('div', classes.overlay);
+    // this.overlay = createElement('div', classes.overlay);
 
-    document.body.appendChild(this.overlay);
+    // document.body.appendChild(this.overlay);
   }
 
   /**

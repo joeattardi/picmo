@@ -11,7 +11,7 @@ import {
   faTimes,
   faUser
 } from '@fortawesome/free-solid-svg-icons';
-import { faBuilding, faFlag, faFrown, faLightbulb, faSmile } from '@fortawesome/free-regular-svg-icons';
+import { faBuilding, faFlag, faFrown, faImage, faLightbulb, faSmile } from '@fortawesome/free-regular-svg-icons';
 
 // TODO: Find a lighter weight alternative to fontawesome
 library.add(
@@ -23,6 +23,7 @@ library.add(
   faFutbol,
   faHistory,
   faIcons,
+  faImage,
   faLightbulb,
   faMusic,
   faSearch,
@@ -40,6 +41,7 @@ export const futbol = icon({ prefix: 'fas', iconName: 'futbol' }).html[0];
 export const frown = icon({ prefix: 'far', iconName: 'frown' }).html[0];
 export const history = icon({ prefix: 'fas', iconName: 'history' }).html[0];
 export const icons = icon({ prefix: 'fas', iconName: 'icons' }).html[0];
+export const image = icon({ prefix: 'far', iconName: 'image' }).html[0];
 export const lightbulb = icon({ prefix: 'far', iconName: 'lightbulb' }).html[0];
 export const music = icon({ prefix: 'fas', iconName: 'music' }).html[0];
 export const search = icon({ prefix: 'fas', iconName: 'search' }).html[0];

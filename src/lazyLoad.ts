@@ -4,15 +4,20 @@ import twemoji from 'twemoji';
 import classes from './styles';
 
 import { EmojiButtonOptions } from './types';
+import preloadImage from './preload';
 
-import { createElement } from './util';
+type TwemojiCallbackOptions = {
+  base: string;
+  size: string;
+  ext: string;
+};
 
-export function lazyLoadEmoji(element: HTMLElement, options: EmojiButtonOptions): void {
+export async function lazyLoadEmoji(element: HTMLElement, options: EmojiButtonOptions): Promise<void> {
   if (!element.dataset.loaded) {
     if (element.dataset.custom) {
-      lazyLoadCustomEmoji(element);
+      await lazyLoadCustomEmoji(element);
     } else if (options.style === 'twemoji') {
-      lazyLoadTwemoji(element, options);
+      await lazyLoadTwemoji(element, options);
     }
 
     element.dataset.loaded = 'true';
@@ -20,18 +25,32 @@ export function lazyLoadEmoji(element: HTMLElement, options: EmojiButtonOptions)
   }
 }
 
-function lazyLoadCustomEmoji(element: HTMLElement): void {
-  const img = createElement('img', classes.customEmoji) as HTMLImageElement;
+function getTwemojiUrl(emoji: string, options: EmojiButtonOptions): Promise<string> {
+  return new Promise(resolve => {
+    twemoji.parse(emoji, {
+      ...options.twemojiOptions,
+      callback: (icon, options) => {
+        const { base, size, ext } = options as TwemojiCallbackOptions;
+        const imageUrl = `${base}${size}/${icon}${ext}`;
+        resolve(imageUrl);
 
-  if (element.dataset.emoji) {
-    img.src = escape(element.dataset.emoji);
-    element.innerText = '';
-    element.appendChild(img);
-  }
+        return imageUrl;
+      }
+    });
+  });
 }
 
-function lazyLoadTwemoji(element: HTMLElement, options: EmojiButtonOptions): void {
+async function lazyLoadCustomEmoji(element: HTMLElement): Promise<void> {
+  const img = await preloadImage(escape(element.dataset.emoji));
+  img.className = classes.customEmoji;
+  element.replaceChildren(img);
+}
+
+async function lazyLoadTwemoji(element: HTMLElement, options: EmojiButtonOptions): void {
   if (element.dataset.emoji) {
-    element.innerHTML = twemoji.parse(element.dataset.emoji, { ...options.twemojiOptions, className: classes.twemoji });
+    const url = await getTwemojiUrl(escape(element.dataset.emoji), options);
+    const img = await preloadImage(url);
+    img.className = classes.twemoji;
+    element.replaceChildren(img);
   }
 }

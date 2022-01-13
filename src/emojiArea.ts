@@ -8,7 +8,7 @@ import { CategoryButtons, categoryIcons } from './categoryButtons';
 import { EmojiContainer } from './emojiContainer';
 
 import { CATEGORY_CLICKED } from './events';
-import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
+import { I18NStrings, EmojiButtonOptions, EmojiRecord, Category } from './types';
 import { queryAllByClass, queryByClass } from './util';
 import { load } from './recent';
 
@@ -132,7 +132,13 @@ export class EmojiArea {
   }
 
   renderEmojis(category: string): HTMLElement {
-    return new EmojiContainer(this.emojiCategories[category], true, this.events, this.options, false).render();
+    return new EmojiContainer(
+      this.emojiCategories[category],
+      true,
+      this.events,
+      this.options,
+      category === 'custom'
+    ).render();
   }
 
   reset(): void {
