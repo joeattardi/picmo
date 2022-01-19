@@ -6,7 +6,7 @@ export const coreStyles = {
     '--border-radius': '5px',
     '--content-height': '22rem',
     '--emojis-per-row': '8',
-    '--emoji-preview-size': '2em',
+    '--emoji-preview-size': '2.75em',
     '--emoji-size': '1.5em',
     '--emoji-size-multiplier': '1.5',
     '--category-button-height': '2em',

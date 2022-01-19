@@ -22,12 +22,14 @@ export const preview = {
   previewEmoji: {
     fontSize: 'var(--emoji-preview-size)',
     marginRight: '0.25em',
-    fontFamily: 'var(--emoji-font)'
+    fontFamily: 'var(--emoji-font)',
+    display: 'flex',
+    alignItems: 'center'
   },
 
   previewName: {
     color: 'var(--text-color)',
-    fontSize: '0.85em',
+    fontSize: '1em',
     overflowWrap: 'break-word',
     wordBreak: 'break-all'
   }

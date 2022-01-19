@@ -53,7 +53,7 @@ export class EmojiPreview {
   }
 
   hidePreview(): void {
-    this.emoji.replaceChildren();
-    this.name.replaceChildren();
+    // this.emoji.replaceChildren();
+    // this.name.replaceChildren();
   }
 }

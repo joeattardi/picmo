@@ -2,6 +2,7 @@ export const categories = {
   categoryName: {
     fontSize: '1em',
     padding: [6, 12],
+    margin: 0,
     background: 'var(--category-name-background)',
     color: 'var(--category-name-text-color)',
     position: 'sticky',
@@ -61,7 +62,7 @@ export const categories = {
     },
 
     '&:hover': {
-      color: 'var(--category-button-highlight-color)'
+      fill: 'var(--category-button-highlight-color)'
     },
 
     '&:focus': {
@@ -71,7 +72,11 @@ export const categories = {
 
   categoryButtonActive: {
     background: 'var(--category-button-active-background)',
-    fill: 'var(--category-button-active-color)'
+    fill: 'var(--category-button-active-color)',
+
+    '&:hover': {
+      fill: 'var(--category-button-active-color)'
+    }
   }
 };
 
