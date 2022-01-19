@@ -4,17 +4,20 @@ import twemoji from 'twemoji';
 import classes from './styles';
 
 import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
-import { image } from './icons';
+import { placeholder } from './icons';
 import { save } from './recent';
 
 import { EmojiButtonOptions, EmojiRecord } from './types';
 
-import { compileTemplate, toElement } from './templates';
+import { renderTemplate, compileTemplate, toElement } from './templates';
 import emojiTemplate from './templates/emoji.ejs';
 import customEmojiTemplate from './templates/customEmojiContent.ejs';
+import placeholderTemplate from './templates/placeholder.ejs';
 
 const emojiCompiled = compileTemplate(emojiTemplate);
 const customCompiled = compileTemplate(customEmojiTemplate);
+
+const placeholder = renderTemplate(placeholderTemplate);
 
 export class Emoji {
   private emojiButton: HTMLElement;
@@ -34,7 +37,8 @@ export class Emoji {
     let content: Text | HTMLElement;
     if (this.lazy || this.options.style === 'twemoji') {
       // TODO fix lazy loading
-      content = toElement(image);
+      content = placeholder.cloneNode() as HTMLElement;
+      // content.classList.add(classes.imagePlaceholder);
     } else if (this.emoji.custom) {
       // TODO make sure XSS fix still works without escaping
       content = customCompiled({ emoji: this.emoji.emoji });
@@ -49,10 +53,6 @@ export class Emoji {
     this.emojiButton.addEventListener('click', () => this.onEmojiClick());
     this.emojiButton.addEventListener('mouseover', () => this.onEmojiHover());
     this.emojiButton.addEventListener('mouseout', () => this.onEmojiLeave());
-
-    if (this.options.style === 'twemoji' || this.lazy) {
-      this.emojiButton.style.opacity = '0.1';
-    }
 
     return this.emojiButton;
   }

@@ -16,7 +16,7 @@ export const coreStyles = {
     '--overlay-background-color': 'rgba(0, 0, 0, 0.8)',
     '--emoji-font':
       "'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI', 'Apple Color Emoji', 'Twemoji Mozilla', 'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji'",
-    '--ui-font': 'Arial, Helvetica, sans-serif'
+    '--ui-font': '-apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif'
   },
 
   picker: {

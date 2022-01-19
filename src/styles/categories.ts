@@ -1,19 +1,26 @@
 export const categories = {
   categoryName: {
-    margin: 0,
-    fontSize: '0.85em',
-    padding: '0.5em',
-    backgroundImage: 'var(--category-name-background)',
+    fontSize: '1em',
+    padding: [6, 12],
+    background: 'var(--category-name-background)',
     color: 'var(--category-name-text-color)',
-    textTransform: 'uppercase',
-    boxShadow: '0 0 2px 0 var(--category-name-shadow)',
     position: 'sticky',
     top: 0,
+    zIndex: 1,
+
+    '&::after': {
+      width: '100%',
+      height: 16,
+      content: '""',
+      position: 'absolute',
+      left: 0,
+      bottom: -16,
+      backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%)'
+    },
 
     '& svg': {
-      fontSize: '1.25em',
-      opacity: 0.5,
-      marginRight: '0.25em'
+      fill: 'var(--category-name-accent)',
+      width: '2rem'
     }
   },
 
@@ -34,6 +41,7 @@ export const categories = {
   },
 
   categoryButton: {
+    fill: 'var(--category-button-color)',
     background: 'transparent',
     border: 'none',
     borderRadius: '0.25em',
@@ -41,8 +49,11 @@ export const categories = {
     cursor: 'pointer',
     flexGrow: 1,
     fontSize: 'var(--category-button-size)',
-    padding: 0,
+    padding: 4,
     verticalAlign: 'middle',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
 
     '& img': {
       width: 'var(--category-button-size)',
@@ -60,7 +71,7 @@ export const categories = {
 
   categoryButtonActive: {
     background: 'var(--category-button-active-background)',
-    color: 'var(--category-button-active-color)'
+    fill: 'var(--category-button-active-color)'
   }
 };
 

@@ -42,15 +42,21 @@ export const search = {
 
   searchAccessory: {
     color: 'var(--search-icon-color)',
-    height: '1em',
+    height: '1.25rem',
     position: 'absolute',
     right: '0.75em',
-    top: 'calc(50% - 0.5em)',
-    width: '1em',
+    top: 'calc(50% - 0.625rem)',
+    width: '1.25rem',
 
     '& img': {
-      width: '1em',
-      height: '1em'
+      width: '1.25rem',
+      height: '1.25rem'
+    },
+
+    '& svg': {
+      fill: 'var(--search-icon-color)',
+      width: '1.25rem',
+      height: '1.25rem'
     }
   },
 
@@ -58,7 +64,12 @@ export const search = {
     cursor: 'pointer',
     border: 'none',
     background: 'transparent',
-    color: 'var(--search-icon-color)'
+    color: 'var(--search-icon-color)',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    padding: 0
   },
 
   searchNotFound: {

@@ -6,26 +6,26 @@ import emojiData from './data/emoji';
 
 import { CATEGORY_CLICKED } from './events';
 
-import * as icons from './icons';
-
 import { EmojiButtonOptions, I18NCategory, I18NStrings } from './types';
 
 import template from './templates/categoryButtons.ejs';
 import { renderTemplate } from './templates';
 import { queryAllByClass } from './util';
 
+import * as icons from './icons';
+
 export const categoryIcons: { [key in I18NCategory]: string } = {
-  recents: icons.history,
+  recents: icons.recents,
   smileys: icons.smile,
-  people: icons.user,
-  animals: icons.cat,
-  food: icons.coffee,
-  activities: icons.futbol,
-  travel: icons.building,
-  objects: icons.lightbulb,
-  symbols: icons.music,
-  flags: icons.flag,
-  custom: icons.icons
+  people: icons.people,
+  animals: icons.animals,
+  food: icons.food,
+  activities: icons.activities,
+  travel: icons.travel,
+  objects: icons.objects,
+  symbols: icons.symbols,
+  flags: icons.flags,
+  custom: icons.custom
 };
 
 export class CategoryButtons {

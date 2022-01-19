@@ -1,5 +1,6 @@
 import ejs, { Data } from 'ejs';
 
+import * as icons from './icons';
 import classes from './styles';
 
 type ElementTemplate = (data?: Data) => HTMLElement;
@@ -19,7 +20,8 @@ type ElementTemplate = (data?: Data) => HTMLElement;
 function addHelpers(data: Data = {}): Data {
   return {
     ...data,
-    classes
+    classes,
+    icons
   };
 }
 

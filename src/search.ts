@@ -59,11 +59,15 @@ export class Search {
     });
   }
 
+  reset(): void {
+    this.searchAccessory.replaceChildren(this.searchIcon);
+  }
+
   render(): HTMLElement {
-    this.searchIcon = toElement(icons.search);
+    this.searchIcon = renderTemplate(icons.search);
     this.notFoundMessage = renderTemplate(notFoundTemplate, {
       i18n: this.i18n,
-      icon: toElement(icons.timesCircle)
+      icon: toElement(icons.notFound)
     });
 
     this.searchContainer = renderTemplate(searchTemplate, {
@@ -72,7 +76,7 @@ export class Search {
 
     this.clearSearchButton = renderTemplate(clearSearchButtonTemplate, {
       i18n: this.i18n,
-      icon: toElement(icons.times)
+      icon: renderTemplate(icons.clear)
     });
 
     this.searchField = queryByClass(this.searchContainer, classes.searchField);

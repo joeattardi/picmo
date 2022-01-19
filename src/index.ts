@@ -18,7 +18,7 @@ import {
 import { lazyLoadEmoji } from './lazyLoad';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
-import { buildEmojiCategoryData } from './util';
+import { buildEmojiCategoryData, queryByClass } from './util';
 import { VariantPopup } from './variantPopup';
 
 import { i18n } from './i18n';
@@ -187,6 +187,7 @@ export class EmojiButton {
       this.pickerContent.appendChild(this.emojiArea.container);
     }
 
+    this.search.reset();
     this.emojiArea.reset();
   }
 
@@ -341,7 +342,8 @@ export class EmojiButton {
     this.setStyleProperties();
     this.initFocusTrap();
 
-    this.pickerContent = this.pickerEl.firstElementChild as HTMLElement;
+    this.pickerContent = queryByClass(this.pickerEl, classes.content);
+    // this.pickerContent = this.pickerEl.firstElementChild as HTMLElement;
 
     // this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories);
     // this.pickerContent.appendChild(this.emojiArea.render());
@@ -497,6 +499,7 @@ export class EmojiButton {
 
         if (this.search) {
           this.search.clear();
+          this.hideSearchResults();
         }
 
         this.events.emit(HIDE_VARIANT_POPUP);

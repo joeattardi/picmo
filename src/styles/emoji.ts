@@ -1,4 +1,16 @@
 export const emoji = {
+  '@keyframes pulse': {
+    '0%': {
+      opacity: 0
+    },
+    '50%': {
+      opacity: 0.2
+    },
+    '100%': {
+      opacity: 0
+    }
+  },
+
   emoji: {
     alignItems: 'center',
     background: 'transparent',
@@ -13,6 +25,7 @@ export const emoji = {
     overflow: 'hidden',
     padding: 0,
     width: '1.5em',
+    display: 'flex',
 
     '&:hover': {
       background: 'var(--hover-color)',
@@ -35,7 +48,7 @@ export const emoji = {
   },
 
   emojis: {
-    height: 'calc(var(--content-height) - var(--category-button-height) - 0.5em)',
+    height: 'calc(var(--content-height) - var(--category-button-height) - 1em)',
     overflowY: 'auto',
     position: 'relative'
   },
@@ -44,7 +57,7 @@ export const emoji = {
     display: 'grid',
     justifyContent: 'space-between',
     gap: '1px',
-    padding: '0.5em',
+    padding: [0, '0.5em'],
     gridTemplateColumns: 'repeat(var(--emojis-per-row), calc(var(--emoji-size) * var(--emoji-size-multiplier)))',
     gridAutoRows: 'calc(var(--emoji-size) * var(--emoji-size-multiplier))'
   },
@@ -55,8 +68,12 @@ export const emoji = {
   },
 
   imagePlaceholder: {
-    color: 'var(--image-placeholder-color)',
-    opacity: 0.1
+    animation: '$pulse 1.75s ease-in-out infinite alternate',
+    opacity: 0.1,
+    width: '2rem',
+    height: '2rem',
+    borderRadius: '50%',
+    background: 'var(--image-placeholder-color)'
   }
 };
 

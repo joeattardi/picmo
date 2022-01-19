@@ -46,7 +46,7 @@ async function lazyLoadCustomEmoji(element: HTMLElement): Promise<void> {
   element.replaceChildren(img);
 }
 
-async function lazyLoadTwemoji(element: HTMLElement, options: EmojiButtonOptions): void {
+async function lazyLoadTwemoji(element: HTMLElement, options: EmojiButtonOptions): Promise<void> {
   if (element.dataset.emoji) {
     const url = await getTwemojiUrl(escape(element.dataset.emoji), options);
     const img = await preloadImage(url);
