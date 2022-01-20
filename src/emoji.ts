@@ -4,7 +4,6 @@ import twemoji from 'twemoji';
 import classes from './styles';
 
 import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
-import { placeholder } from './icons';
 import { save } from './recent';
 
 import { EmojiButtonOptions, EmojiRecord } from './types';
