@@ -46,7 +46,7 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   recentsCount: 50,
   emojiData,
   emojiVersion: '12.1',
-  theme: 'light',
+  theme: classes.themeLight,
   categories: ['smileys', 'people', 'animals', 'food', 'activities', 'travel', 'objects', 'symbols', 'flags'],
   style: 'native',
   twemojiOptions: {
@@ -96,7 +96,7 @@ export class EmojiButton {
 
   private emojiCategories: { [key: string]: EmojiRecord[] };
 
-  constructor(options: EmojiButtonOptions = {}) {
+  constructor(options: Partial<EmojiButtonOptions> = {}) {
     this.pickerVisible = false;
 
     this.options = { ...DEFAULT_OPTIONS, ...options };
@@ -337,7 +337,7 @@ export class EmojiButton {
     this.wrapper.style.display = 'none';
 
     this.pickerEl = this.wrapper.firstElementChild as HTMLElement;
-    this.pickerEl.classList.add(classes.themeLight);
+    this.pickerEl.classList.add(this.options.theme);
 
     this.setStyleProperties();
     this.initFocusTrap();

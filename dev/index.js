@@ -23,6 +23,7 @@ const native = document.querySelector('#native .emoji-button');
 createPickerInstance(
   native,
   {
+    theme: 'dark',
     // plugins: [removePlugin],
     placement: 'bottom-start',
     custom: [

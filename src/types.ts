@@ -59,7 +59,7 @@ export interface EmojiButtonOptions {
   emojiVersion?: EmojiVersion;
   i18n?: I18NStrings;
   zIndex?: number;
-  theme?: EmojiTheme;
+  theme: string;
   categories?: Category[];
   style?: EmojiStyle;
   twemojiOptions?: Partial<ParseObject>;
@@ -83,8 +83,6 @@ export interface FixedPosition {
 }
 
 export type EmojiStyle = 'native' | 'twemoji';
-
-export type EmojiTheme = 'dark' | 'light' | 'auto';
 
 export type EmojiVersion = '1.0' | '2.0' | '3.0' | '4.0' | '5.0' | '11.0' | '12.0' | '12.1';
 
