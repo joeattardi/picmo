@@ -1,6 +1,7 @@
-import classes from './styles';
+import classes, { applyTheme } from './styles';
 
 import createFocusTrap, { FocusTrap } from 'focus-trap';
+import { Rule } from 'jss';
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 import { createPopper, Instance as Popper, Placement } from '@popperjs/core';
 import twemoji from 'twemoji';
@@ -23,11 +24,13 @@ import { VariantPopup } from './variantPopup';
 
 import { i18n } from './i18n';
 
-import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiSelection, EmojiTheme, FixedPosition } from './types';
+import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiSelection, FixedPosition } from './types';
 import { EmojiArea } from './emojiArea';
 
 import { renderTemplate } from './templates';
 import template from './templates/index.ejs';
+
+import lightTheme from './styles/theme/light';
 
 const MOBILE_BREAKPOINT = 450;
 
@@ -46,7 +49,7 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   recentsCount: 50,
   emojiData,
   emojiVersion: '12.1',
-  theme: classes.themeLight,
+  theme: lightTheme,
   categories: ['smileys', 'people', 'animals', 'food', 'activities', 'travel', 'objects', 'symbols', 'flags'],
   style: 'native',
   twemojiOptions: {
@@ -92,7 +95,7 @@ export class EmojiButton {
 
   private observer: IntersectionObserver;
 
-  private theme: EmojiTheme;
+  private theme: Rule;
 
   private emojiCategories: { [key: string]: EmojiRecord[] };
 
@@ -112,7 +115,7 @@ export class EmojiButton {
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
 
-    this.theme = this.options.theme || 'light';
+    this.theme = this.options.theme;
 
     this.emojiCategories = buildEmojiCategoryData(this.options.emojiData || emojiData);
 
@@ -337,7 +340,7 @@ export class EmojiButton {
     this.wrapper.style.display = 'none';
 
     this.pickerEl = this.wrapper.firstElementChild as HTMLElement;
-    this.pickerEl.classList.add(this.options.theme);
+    this.pickerEl.classList.add(applyTheme(this.theme));
 
     this.setStyleProperties();
     this.initFocusTrap();
@@ -618,20 +621,15 @@ export class EmojiButton {
     // const htmlEl = document.querySelector('html');
     // const viewportHeight = htmlEl && htmlEl.clientHeight;
     // const viewportWidth = htmlEl && htmlEl.clientWidth;
-
     // const height = parseInt(style.height);
     // const newTop = viewportHeight ? viewportHeight / 2 - height / 2 : 0;
-
     // const width = parseInt(style.width);
     // const newLeft = viewportWidth ? viewportWidth / 2 - width / 2 : 0;
-
     // this.wrapper.style.position = 'fixed';
     // this.wrapper.style.top = `${newTop}px`;
     // this.wrapper.style.left = `${newLeft}px`;
     // this.wrapper.style.zIndex = '5000';
-
     // this.overlay = createElement('div', classes.overlay);
-
     // document.body.appendChild(this.overlay);
   }
 
@@ -666,17 +664,6 @@ export class EmojiButton {
     } else if (event.key.match(/^[\w]$/) && this.search) {
       // If a search term is entered, move the focus to the search field.
       this.search.focus();
-    }
-  }
-
-  /**
-   * Sets the theme to use for the picker.
-   */
-  setTheme(theme: EmojiTheme): void {
-    if (theme !== this.theme) {
-      this.pickerEl.classList.remove(this.theme);
-      this.theme = theme;
-      this.pickerEl.classList.add(theme);
     }
   }
 }

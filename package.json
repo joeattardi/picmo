@@ -7,7 +7,10 @@
     "javascript"
   ],
   "source": [
-    "src/index.ts"
+    "src/index.ts",
+    "src/styles/theme/auto.ts",
+    "src/styles/theme/light.ts",
+    "src/styles/theme/dark.ts"
   ],
   "targets": {
     "default": {
@@ -17,7 +20,6 @@
       "includeNodeModules": false
     }
   },
-  "types": "dist/index.d.ts",
   "scripts": {
     "build": "npm run check && parcel build",
     "check": "tsc --noEmit",

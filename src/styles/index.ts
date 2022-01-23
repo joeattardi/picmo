@@ -2,7 +2,7 @@ import jss from 'jss';
 import preset from 'jss-preset-default';
 
 import { coreStyles, CoreKeys } from './core';
-import { themes, ThemeKeys } from './theme';
+// import { themes, ThemeKeys } from './theme';
 import { categories, CategoryKeys } from './categories';
 import { emoji, EmojiKeys } from './emoji';
 import { preview, PreviewKeys } from './preview';
@@ -16,7 +16,6 @@ jss.setup(preset());
 
 const sheet = jss.createStyleSheet({}, { classNamePrefix: 'emoji-button-' });
 
-sheet.addRules(themes);
 sheet.addRules(coreStyles);
 sheet.addRules(categories);
 sheet.addRules(emoji);
@@ -25,5 +24,12 @@ sheet.addRules(search);
 sheet.addRules(variants);
 sheet.attach();
 
-type ClassKeys = CoreKeys | ThemeKeys | CategoryKeys | EmojiKeys | PreviewKeys | SearchKeys | VariantKeys;
+type ClassKeys = CoreKeys | CategoryKeys | EmojiKeys | PreviewKeys | SearchKeys | VariantKeys;
 export default sheet.classes as { [key in ClassKeys]: string };
+
+export function applyTheme(theme) {
+  const themeSheet = jss.createStyleSheet({}, { classNamePrefix: 'emoji-button-' });
+  themeSheet.addRules(theme);
+  themeSheet.attach();
+  return (themeSheet.classes as { theme: string }).theme;
+}

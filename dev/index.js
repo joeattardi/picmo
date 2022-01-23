@@ -1,4 +1,5 @@
 import { EmojiButton } from '../src/index';
+import lightTheme from '../src/styles/theme/light';
 
 const removePlugin = {
   render(picker) {
@@ -23,7 +24,7 @@ const native = document.querySelector('#native .emoji-button');
 createPickerInstance(
   native,
   {
-    theme: 'dark',
+    theme: lightTheme,
     // plugins: [removePlugin],
     placement: 'bottom-start',
     custom: [

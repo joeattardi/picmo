@@ -19,6 +19,9 @@ export const variants = {
     padding: '0.5em',
     textAlign: 'center',
     userSelect: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
 
     '& > div': {
       display: 'inline-flex',

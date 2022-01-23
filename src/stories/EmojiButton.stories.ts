@@ -2,19 +2,29 @@ import { Story, Meta } from '@storybook/html';
 
 import { createNativePicker } from './EmojiButton';
 
-import * as themes from '../theme';
+// import * as themes from '../theme';
+
+import lightTheme from '../styles/theme/light';
+import darkTheme from '../styles/theme/dark';
+import autoTheme from '../styles/theme/auto';
+
+const themeOptions = {
+  lightTheme,
+  darkTheme,
+  autoTheme
+};
 
 export default {
   title: 'Emoji Picker',
   argTypes: {
     theme: {
-      options: [themes.auto, themes.light, themes.dark],
+      options: ['lightTheme', 'darkTheme', 'autoTheme'],
       control: {
         type: 'select',
         labels: {
-          [themes.light]: 'Light',
-          [themes.dark]: 'Dark',
-          [themes.auto]: 'Auto'
+          lightTheme: 'Light',
+          darkTheme: 'Dark',
+          autoTheme: 'Auto'
         }
       }
     }
@@ -22,13 +32,15 @@ export default {
 } as Meta;
 
 const NativeTemplate = args => {
+  console.log(themeOptions[args.theme]);
   return createNativePicker({
     placement: 'bottom-start',
-    ...args
+    ...args,
+    theme: themeOptions[args.theme]
   });
 };
 
 export const Simple = NativeTemplate.bind({});
 Simple.args = {
-  theme: themes.light
+  theme: 'lightTheme'
 };

@@ -15,7 +15,7 @@ export const preview = {
       position: 'absolute',
       left: 0,
       top: -17,
-      backgroundImage: 'linear-gradient(0deg, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%)'
+      backgroundImage: 'linear-gradient(0deg, var(--fade-gradient-start) 30%, var(--fade-gradient-end) 100%)'
     }
   },
 

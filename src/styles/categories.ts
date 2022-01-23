@@ -7,7 +7,6 @@ export const categories = {
     color: 'var(--category-name-text-color)',
     position: 'sticky',
     top: 0,
-    zIndex: 1,
 
     '&::after': {
       width: '100%',
@@ -16,7 +15,7 @@ export const categories = {
       position: 'absolute',
       left: 0,
       bottom: -16,
-      backgroundImage: 'linear-gradient(180deg, rgba(255,255,255,1) 30%, rgba(255,255,255,0) 100%)'
+      backgroundImage: 'linear-gradient(180deg, var(--fade-gradient-start) 30%, var(--fade-gradient-end) 100%)'
     },
 
     '& svg': {

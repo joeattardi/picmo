@@ -1,4 +1,5 @@
 import { Placement } from '@popperjs/core';
+import { Rule } from 'jss';
 import { EmojiButton } from './index';
 import { ParseObject } from 'twemoji';
 
@@ -59,7 +60,7 @@ export interface EmojiButtonOptions {
   emojiVersion?: EmojiVersion;
   i18n?: I18NStrings;
   zIndex?: number;
-  theme: string;
+  theme: Rule;
   categories?: Category[];
   style?: EmojiStyle;
   twemojiOptions?: Partial<ParseObject>;
