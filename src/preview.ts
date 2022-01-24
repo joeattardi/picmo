@@ -2,8 +2,6 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import classes from './styles';
 
-import twemoji from 'twemoji';
-
 import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
 import { queryByClass } from './util';
 import { EmojiRecord, EmojiButtonOptions } from './types';
@@ -11,7 +9,7 @@ import { EmojiRecord, EmojiButtonOptions } from './types';
 import previewTemplate from './templates/preview.ejs';
 import customPreviewTemplate from './templates/customPreview.ejs';
 
-import { renderTemplate, toElement } from './templates';
+import { renderTemplate } from './templates';
 
 export class EmojiPreview {
   private emoji: HTMLElement;
@@ -31,29 +29,27 @@ export class EmojiPreview {
     return preview;
   }
 
-  private getContent(emoji: EmojiRecord): Text | HTMLElement {
+  private async getContent(emoji: EmojiRecord): Promise<HTMLElement> {
+    // TODO lazy load this too?
     if (emoji.custom) {
       return renderTemplate(customPreviewTemplate, {
         emoji: emoji.emoji
       });
     }
 
-    if (this.options.style === 'twemoji') {
-      return toElement(twemoji.parse(emoji.emoji, { ...this.options.twemojiOptions, className: classes.twemoji }));
-    }
-
-    return document.createTextNode(emoji.emoji);
+    // TODO cache preview images to prevent refetching
+    return this.options.renderer.render(emoji);
   }
 
-  showPreview(emoji: EmojiRecord): void {
-    const content = this.getContent(emoji);
+  async showPreview(emoji: EmojiRecord): Promise<void> {
+    const content = await this.getContent(emoji);
 
     this.emoji.replaceChildren(content);
     this.name.textContent = emoji.name;
   }
 
   hidePreview(): void {
-    // this.emoji.replaceChildren();
-    // this.name.replaceChildren();
+    this.emoji.replaceChildren();
+    this.name.replaceChildren();
   }
 }

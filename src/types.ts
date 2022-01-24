@@ -2,6 +2,9 @@ import { Placement } from '@popperjs/core';
 import { Rule } from 'jss';
 import { EmojiButton } from './index';
 import { ParseObject } from 'twemoji';
+import { ParseObject } from 'twemoji';
+import { EmojiButton } from './index';
+import Renderer from './renderers/renderer';
 
 export interface EmojiRecord {
   name: string;
@@ -43,7 +46,13 @@ export interface Plugin {
   destroy?(): void;
 }
 
+export type Theme = {
+  theme: { [key: string]: string };
+};
+
 // TODO make this required and use Partial for typing the passed in options
+// TODO fix the type problems with optionals here. Define a type for the passed in options,
+// mark which are required/optional, and then have individual class properties for these?
 export interface EmojiButtonOptions {
   position?: Placement | FixedPosition;
   autoHide?: boolean;
@@ -60,7 +69,7 @@ export interface EmojiButtonOptions {
   emojiVersion?: EmojiVersion;
   i18n?: I18NStrings;
   zIndex?: number;
-  theme: Rule;
+  theme?: Theme;
   categories?: Category[];
   style?: EmojiStyle;
   twemojiOptions?: Partial<ParseObject>;
@@ -71,6 +80,7 @@ export interface EmojiButtonOptions {
   custom?: EmojiRecord[];
   plugins?: Plugin[];
   icons?: Icons;
+  renderer?: Renderer;
   styleProperties?: {
     [key: string]: string;
   };

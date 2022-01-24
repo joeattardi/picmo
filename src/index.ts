@@ -1,7 +1,6 @@
 import classes, { applyTheme } from './styles';
 
 import createFocusTrap, { FocusTrap } from 'focus-trap';
-import { Rule } from 'jss';
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 import { createPopper, Instance as Popper, Placement } from '@popperjs/core';
 import twemoji from 'twemoji';
@@ -16,7 +15,7 @@ import {
   HIDE_VARIANT_POPUP,
   PICKER_HIDDEN
 } from './events';
-import { lazyLoadEmoji } from './lazyLoad';
+import { LazyLoader, lazyLoadEmoji } from './lazyLoad';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
 import { buildEmojiCategoryData, queryByClass } from './util';
@@ -24,7 +23,7 @@ import { VariantPopup } from './variantPopup';
 
 import { i18n } from './i18n';
 
-import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiSelection, FixedPosition } from './types';
+import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiSelection, FixedPosition, Theme } from './types';
 import { EmojiArea } from './emojiArea';
 
 import { renderTemplate } from './templates';
@@ -32,11 +31,13 @@ import template from './templates/index.ejs';
 
 import lightTheme from './styles/theme/light';
 
+import NativeRenderer from './renderers/native';
+
 const MOBILE_BREAKPOINT = 450;
 
 const STYLE_TWEMOJI = 'twemoji';
 
-const DEFAULT_OPTIONS: EmojiButtonOptions = {
+const DEFAULT_OPTIONS: Partial<EmojiButtonOptions> = {
   position: 'auto',
   autoHide: true,
   autoFocusSearch: true,
@@ -59,7 +60,8 @@ const DEFAULT_OPTIONS: EmojiButtonOptions = {
   emojisPerRow: 8,
   rows: 6,
   emojiSize: '1.8em',
-  initialCategory: 'smileys'
+  initialCategory: 'smileys',
+  renderer: new NativeRenderer()
 };
 
 //  options as { base: string; size: string; ext: string };
@@ -69,6 +71,8 @@ type TwemojiCallbackOptions = {
   size: string;
   ext: string;
 };
+
+export { LazyLoader };
 
 export class EmojiButton {
   private pickerVisible: boolean;
@@ -95,8 +99,6 @@ export class EmojiButton {
 
   private observer: IntersectionObserver;
 
-  private theme: Rule;
-
   private emojiCategories: { [key: string]: EmojiRecord[] };
 
   constructor(options: Partial<EmojiButtonOptions> = {}) {
@@ -114,8 +116,6 @@ export class EmojiButton {
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
-
-    this.theme = this.options.theme;
 
     this.emojiCategories = buildEmojiCategoryData(this.options.emojiData || emojiData);
 
@@ -330,7 +330,13 @@ export class EmojiButton {
     this.initPlugins();
     this.buildSearch();
 
-    this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories);
+    // this.observer = new IntersectionObserver(this.handleIntersectionChange.bind(this), {
+    //   root: this.emojiArea.emojis
+    // });
+
+    const lazyLoader = new LazyLoader();
+
+    this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories, lazyLoader);
 
     this.wrapper = renderTemplate(template, {
       plugins: this.pluginContainer,
@@ -340,7 +346,7 @@ export class EmojiButton {
     this.wrapper.style.display = 'none';
 
     this.pickerEl = this.wrapper.firstElementChild as HTMLElement;
-    this.pickerEl.classList.add(applyTheme(this.theme));
+    this.pickerEl.classList.add(applyTheme(this.options.theme));
 
     this.setStyleProperties();
     this.initFocusTrap();
@@ -365,7 +371,7 @@ export class EmojiButton {
       this.options.rootElement.appendChild(this.wrapper);
     }
 
-    this.observeForLazyLoad();
+    lazyLoader.observe(this.emojiArea.emojis);
   }
 
   /**
@@ -390,6 +396,24 @@ export class EmojiButton {
 
       this.events.off(HIDE_VARIANT_POPUP);
     });
+  }
+
+  private createIntersectionObserver(): IntersectionObserver {
+    const observer = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        Array.prototype.filter
+          .call(entries, (entry: IntersectionObserverEntry) => entry.intersectionRatio > 0)
+          .map((entry: IntersectionObserverEntry) => entry.target)
+          .forEach((element: Element) => {
+            lazyLoadEmoji(element as HTMLElement, this.options);
+          });
+      },
+      {
+        root: null // EMOJIS AREA
+      }
+    );
+
+    return observer;
   }
 
   /**

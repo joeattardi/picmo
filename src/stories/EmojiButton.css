@@ -15,3 +15,8 @@
     'Apple Color Emoji', 'Twemoji Mozilla', 'Noto Color Emoji', 'EmojiOne Color',
     'Android Emoji';
 }
+
+.emoji-button img {
+  width: 32px;
+  height: 32px;
+}

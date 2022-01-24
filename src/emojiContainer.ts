@@ -6,6 +6,7 @@ import { EmojiButtonOptions, EmojiRecord, RecentEmoji } from './types';
 
 import { renderTemplate } from './templates';
 import template from './templates/emojiContainer.ejs';
+import { LazyLoader } from './lazyLoad';
 
 export class EmojiContainer {
   private emojis: Array<EmojiRecord | RecentEmoji>;
@@ -15,7 +16,8 @@ export class EmojiContainer {
     private showVariants: boolean,
     private events: Emitter,
     private options: EmojiButtonOptions,
-    private lazy = false
+    private lazy = false,
+    private lazyLoader: LazyLoader
   ) {
     this.emojis = emojis.filter(
       e =>
@@ -27,7 +29,7 @@ export class EmojiContainer {
   render(): HTMLElement {
     return renderTemplate(template, {
       emojis: this.emojis.map(emoji =>
-        new Emoji(emoji, this.showVariants, true, this.events, this.options, this.lazy).render()
+        new Emoji(emoji, this.showVariants, true, this.events, this.options, this.lazy, this.lazyLoader).render()
       )
     });
   }

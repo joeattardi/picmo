@@ -12,6 +12,7 @@ import { renderTemplate, compileTemplate, toElement } from './templates';
 import emojiTemplate from './templates/emoji.ejs';
 import customEmojiTemplate from './templates/customEmojiContent.ejs';
 import placeholderTemplate from './templates/placeholder.ejs';
+import { LazyLoader } from './lazyLoad';
 
 const emojiCompiled = compileTemplate(emojiTemplate);
 const customCompiled = compileTemplate(customEmojiTemplate);
@@ -27,23 +28,26 @@ export class Emoji {
     private showPreview: boolean,
     private events: Emitter,
     private options: EmojiButtonOptions,
-    private lazy = false
+    private lazy = false,
+    private lazyLoader: LazyLoader
   ) {}
 
   render(): HTMLElement {
     this.emojiButton = emojiCompiled({ emoji: this.emoji });
 
     let content: Text | HTMLElement;
-    if (this.lazy || this.options.style === 'twemoji') {
-      // TODO fix lazy loading
-      content = placeholder.cloneNode() as HTMLElement;
-      // content.classList.add(classes.imagePlaceholder);
-    } else if (this.emoji.custom) {
-      // TODO make sure XSS fix still works without escaping
-      content = customCompiled({ emoji: this.emoji.emoji });
-    } else {
-      content = document.createTextNode(this.emoji.emoji);
-    }
+    // if (this.lazy || this.options.style === 'twemoji') {
+    //   // TODO fix lazy loading
+    //   content = placeholder.cloneNode() as HTMLElement;
+    //   // content.classList.add(classes.imagePlaceholder);
+    // } else if (this.emoji.custom) {
+    //   // TODO make sure XSS fix still works without escaping
+    //   content = customCompiled({ emoji: this.emoji.emoji });
+    // } else {
+    //   content = document.createTextNode(this.emoji.emoji);
+    // }
+
+    content = this.options.renderer.render(this.emoji, this.lazyLoader);
 
     this.emojiButton.appendChild(content);
 

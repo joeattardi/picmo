@@ -7,6 +7,7 @@ export const categories = {
     color: 'var(--category-name-text-color)',
     position: 'sticky',
     top: 0,
+    zIndex: 1,
 
     '&::after': {
       width: '100%',

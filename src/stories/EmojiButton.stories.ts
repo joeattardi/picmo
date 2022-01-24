@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/html';
 
-import { createNativePicker } from './EmojiButton';
+import { createNativePicker, createTwemojiPicker } from './EmojiButton';
 
 // import * as themes from '../theme';
 
@@ -32,15 +32,27 @@ export default {
 } as Meta;
 
 const NativeTemplate = args => {
-  console.log(themeOptions[args.theme]);
   return createNativePicker({
     placement: 'bottom-start',
     ...args,
-    theme: themeOptions[args.theme]
+    theme: themeOptions[args.theme || 'lightTheme']
   });
 };
 
-export const Simple = NativeTemplate.bind({});
-Simple.args = {
+const TwemojiTemplate = args => {
+  return createTwemojiPicker({
+    placement: 'bottom-start',
+    ...args,
+    theme: themeOptions[args.theme || 'lightTheme']
+  });
+};
+
+export const Native = NativeTemplate.bind({});
+Native.args = {
+  theme: 'lightTheme'
+};
+
+export const Twemoji = TwemojiTemplate.bind({});
+Twemoji.args = {
   theme: 'lightTheme'
 };

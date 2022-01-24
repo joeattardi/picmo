@@ -39,14 +39,6 @@ export const emoji = {
     }
   },
 
-  // TODO need to remove this from here to make decoupled, only part of twemoji renderer
-  twemoji: {
-    height: '1em',
-    width: '1em',
-    margin: '0 0.05em 0 0.1em',
-    verticalAlign: '-0.1em'
-  },
-
   emojis: {
     height: 'calc(var(--content-height) - var(--category-button-height) - 1em)',
     overflowY: 'auto',

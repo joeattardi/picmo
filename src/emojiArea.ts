@@ -14,6 +14,7 @@ import { load } from './recent';
 
 import template from './templates/emojiArea.ejs';
 import { renderTemplate, toElement } from './templates';
+import { LazyLoader } from './lazyLoad';
 
 const categorySortOrder = [
   'recents',
@@ -46,7 +47,8 @@ export class EmojiArea {
     private events: Emitter,
     private i18n: I18NStrings,
     private options: EmojiButtonOptions,
-    private emojiCategories: { [key: string]: EmojiRecord[] }
+    private emojiCategories: { [key: string]: EmojiRecord[] },
+    private lazyLoader: LazyLoader
   ) {
     this.emojisPerRow = options.emojisPerRow || 8;
     this.categories = options.emojiData?.categories || options.categories || emojiData.categories;
@@ -137,7 +139,8 @@ export class EmojiArea {
       true,
       this.events,
       this.options,
-      category === 'custom'
+      category === 'custom',
+      this.lazyLoader
     ).render();
   }
 
