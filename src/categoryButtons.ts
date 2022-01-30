@@ -12,20 +12,20 @@ import template from './templates/categoryButtons.ejs';
 import { renderTemplate } from './templates';
 import { queryAllByClass } from './util';
 
-import * as icons from './icons';
+import icons from './icons';
 
-export const categoryIcons: { [key in I18NCategory]: string } = {
-  recents: icons.recents,
-  smileys: icons.smile,
-  people: icons.people,
-  animals: icons.animals,
-  food: icons.food,
-  activities: icons.activities,
-  travel: icons.travel,
-  objects: icons.objects,
-  symbols: icons.symbols,
-  flags: icons.flags,
-  custom: icons.custom
+export const categoryIcons: { [key in I18NCategory]: HTMLElement } = {
+  recents: icons.recents(),
+  smileys: icons.smile(),
+  people: icons.people(),
+  animals: icons.animals(),
+  food: icons.food(),
+  activities: icons.activities(),
+  travel: icons.travel(),
+  objects: icons.objects(),
+  symbols: icons.symbols(),
+  flags: icons.flags(),
+  custom: icons.custom()
 };
 
 export class CategoryButtons {
@@ -44,11 +44,18 @@ export class CategoryButtons {
       categories = [...categories, 'custom'];
     }
 
+    const icons = Object.entries(categoryIcons).reduce(
+      (result, [category, icon]) => ({
+        ...result,
+        [`icon-${category}`]: icon
+      }),
+      {}
+    );
+
     const container = renderTemplate(template, {
       i18n: this.i18n,
       categories,
-      categoryIcons,
-      fallbackIcon: icons.smile
+      ...icons
     });
 
     this.buttons = queryAllByClass(container, classes.categoryButton);

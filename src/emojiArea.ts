@@ -17,27 +17,14 @@ import template from './templates/emojiArea.ejs';
 import { renderTemplate, toElement } from './templates';
 import { LazyLoader } from './lazyLoad';
 
-// TODO: Can ths order be inferred by the enum itself?
-const categorySortOrder = [
-  EmojiCategory.RECENTS,
-  EmojiCategory.SMILEYS,
-  EmojiCategory.PEOPLE,
-  EmojiCategory.ANIMALS,
-  EmojiCategory.FOOD,
-  EmojiCategory.ACTIVITIES,
-  EmojiCategory.TRAVEL,
-  EmojiCategory.OBJECTS,
-  EmojiCategory.SYMBOLS,
-  EmojiCategory.FLAGS,
-  EmojiCategory.CUSTOM
-];
+const categorySortOrder = Object.values(EmojiCategory);
 
-const containers = {
+const containerClasses = {
   [EmojiCategory.RECENTS]: RecentsContainer
 };
 
 function getContainerClass(category: EmojiCategory) {
-  return containers[category] || EmojiContainer;
+  return containerClasses[category] || EmojiContainer;
 }
 
 export class EmojiArea {
@@ -74,26 +61,6 @@ export class EmojiArea {
     this.categories.sort((a, b) => categorySortOrder.indexOf(a) - categorySortOrder.indexOf(b));
   }
 
-  updateRecents(): void {
-    if (this.options.showRecents) {
-      this.emojiCategories.recents = load();
-      const recentsContainer = this.emojis.querySelector(`.${classes.emojiContainer}`);
-      if (recentsContainer && recentsContainer.parentNode) {
-        recentsContainer.parentNode.replaceChild(
-          new EmojiContainer(
-            this.emojiCategories.recents,
-            true,
-            this.events,
-            this.options,
-            false,
-            this.lazyLoader
-          ).render(),
-          recentsContainer
-        );
-      }
-    }
-  }
-
   async render(): Promise<HTMLElement> {
     if (this.options.showCategoryButtons) {
       this.categoryButtons = new CategoryButtons(this.options, this.events, this.i18n);
@@ -119,6 +86,7 @@ export class EmojiArea {
     );
 
     const emojiContainers = await Promise.all(this.categories.map(category => this.renderEmojis(category)));
+
     const categoryEmojiElements = {};
     this.categories.forEach((category, index) => {
       categoryEmojiElements[`emojis-${category}`] = emojiContainers[index];
@@ -153,7 +121,6 @@ export class EmojiArea {
       true,
       this.events,
       this.options,
-      category === 'custom',
       this.lazyLoader
     ).render();
   }

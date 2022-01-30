@@ -22,13 +22,11 @@ export class EmojiContainer {
     showVariants: boolean,
     events: Emitter,
     options: EmojiButtonOptions,
-    lazy = false,
     lazyLoader: LazyLoader
   ) {
     this.showVariants = showVariants;
     this.events = events;
     this.options = options;
-    this.lazy = lazy;
     this.lazyLoader = lazyLoader;
 
     this.emojis = emojis.filter(

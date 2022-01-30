@@ -92,12 +92,7 @@ export const search = {
   },
 
   searchNotFoundIcon: {
-    fontSize: '5em',
-
-    '& img': {
-      width: '1em',
-      height: '1em'
-    }
+    '--icon-size': '8rem'
   }
 };
 

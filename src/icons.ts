@@ -1,15 +1,52 @@
-export { default as activities } from '@mdi/svg/svg/basketball.svg';
-export { default as animals } from '@mdi/svg/svg/cat.svg';
-export { default as clear } from '@mdi/svg/svg/close-circle.svg';
-export { default as custom } from '@mdi/svg/svg/robot.svg';
-export { default as flags } from '@mdi/svg/svg/flag.svg';
-export { default as food } from '@mdi/svg/svg/food.svg';
-export { default as notFound } from '@mdi/svg/svg/emoticon-sad-outline.svg';
-export { default as objects } from '@mdi/svg/svg/lightbulb.svg';
-export { default as people } from '@mdi/svg/svg/account-multiple.svg';
-export { default as recents } from '@mdi/svg/svg/history.svg';
-export { default as search } from '@mdi/svg/svg/magnify.svg';
-export { default as smile } from '@mdi/svg/svg/emoticon.svg';
-export { default as symbols } from '@mdi/svg/svg/music-box.svg';
-export { default as travel } from '@mdi/svg/svg/train-car.svg';
-export { default as placeholder } from '@mdi/svg/svg/emoticon-excited-outline.svg';
+import {
+  mdiBasketball,
+  mdiCat,
+  mdiCloseCircle,
+  mdiRobot,
+  mdiFlag,
+  mdiFood,
+  mdiEmoticonSadOutline,
+  mdiLightbulb,
+  mdiAccountMultiple,
+  mdiHistory,
+  mdiMagnify,
+  mdiMagnifyClose,
+  mdiEmoticon,
+  mdiMusicBox,
+  mdiTrainCar
+} from '@mdi/js';
+
+import classes from './styles';
+import { compileTemplate } from './templates';
+
+const iconTemplate = compileTemplate(`
+  <svg class="<%- iconClass %>" width="24" height="24" viewBox="0 0 24 24">
+    <path d="<%- icon %>" />
+  </svg>
+`);
+
+function createIcon(icon) {
+  return () => {
+    return iconTemplate({
+      icon,
+      iconClass: classes.icon
+    });
+  };
+}
+
+export default {
+  activities: createIcon(mdiBasketball),
+  animals: createIcon(mdiCat),
+  clear: createIcon(mdiCloseCircle),
+  custom: createIcon(mdiRobot),
+  flags: createIcon(mdiFlag),
+  food: createIcon(mdiFood),
+  notFound: createIcon(mdiMagnifyClose),
+  objects: createIcon(mdiLightbulb),
+  people: createIcon(mdiAccountMultiple),
+  recents: createIcon(mdiHistory),
+  search: createIcon(mdiMagnify),
+  smile: createIcon(mdiEmoticon),
+  symbols: createIcon(mdiMusicBox),
+  travel: createIcon(mdiTrainCar)
+};

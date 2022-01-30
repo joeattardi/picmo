@@ -51,6 +51,12 @@ export const coreStyles = {
     overflow: 'hidden'
   },
 
+  icon: {
+    fill: 'currentColor',
+    width: 'var(--icon-size, 24)',
+    height: 'var(--icon-size, 24)'
+  },
+
   pluginContainer: {
     margin: '0.5em',
     display: 'flex',

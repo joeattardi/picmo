@@ -3,7 +3,7 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import classes from './styles';
 
-import * as icons from './icons';
+import icons from './icons';
 
 import { EmojiContainer } from './emojiContainer';
 import { HIDE_PREVIEW, HIDE_VARIANT_POPUP, SHOW_SEARCH_RESULTS, HIDE_SEARCH_RESULTS } from './events';
@@ -14,6 +14,7 @@ import searchTemplate from './templates/search/search.ejs';
 import clearSearchButtonTemplate from './templates/search/clearButton.ejs';
 import notFoundTemplate from './templates/search/notFound.ejs';
 
+import { LazyLoader } from './lazyLoad';
 import { queryByClass } from './util';
 
 export class Search {
@@ -64,10 +65,10 @@ export class Search {
   }
 
   render(): HTMLElement {
-    this.searchIcon = renderTemplate(icons.search);
+    this.searchIcon = icons.search();
     this.notFoundMessage = renderTemplate(notFoundTemplate, {
       i18n: this.i18n,
-      icon: toElement(icons.notFound)
+      icon: icons.notFound()
     });
 
     this.searchContainer = renderTemplate(searchTemplate, {
@@ -76,7 +77,7 @@ export class Search {
 
     this.clearSearchButton = renderTemplate(clearSearchButtonTemplate, {
       i18n: this.i18n,
-      icon: renderTemplate(icons.clear)
+      icon: icons.clear()
     });
 
     this.searchField = queryByClass(this.searchContainer, classes.searchField);
@@ -157,7 +158,7 @@ export class Search {
     }
   }
 
-  onKeyUp(event: KeyboardEvent): void {
+  async onKeyUp(event: KeyboardEvent): void {
     if (event.key === 'Tab' || event.key === 'Shift') {
       return;
     } else if (!this.searchField.value) {
@@ -177,7 +178,17 @@ export class Search {
       this.events.emit(HIDE_PREVIEW);
 
       if (searchResults.length) {
-        this.resultsContainer = new EmojiContainer(searchResults, true, this.events, this.options, false).render();
+        const lazyLoader = new LazyLoader();
+        this.resultsContainer = await new EmojiContainer(
+          searchResults,
+          true,
+          this.events,
+          this.options,
+          lazyLoader
+        ).render();
+        this.resultsContainer.classList.add(classes.searchResults);
+
+        lazyLoader.observe(this.resultsContainer);
 
         if (this.resultsContainer) {
           (this.resultsContainer.querySelector(`.${classes.emoji}`) as HTMLElement).tabIndex = 0;

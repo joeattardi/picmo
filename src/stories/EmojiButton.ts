@@ -1,5 +1,9 @@
 import './EmojiButton.css';
 import { EmojiButton } from '../../src/index';
+import icons from '../../src/icons';
+import { mdiEmoticon } from '@mdi/js';
+
+// console.log(mdiEmoticon);
 
 export function createPicker(options = {}) {
   const picker = new EmojiButton(options);
@@ -23,6 +27,9 @@ export function createPicker(options = {}) {
       button.replaceChildren(content);
     });
   });
+
+  // const img = icons.smile();
+  // return img;
 
   return button;
 }

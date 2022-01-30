@@ -15,7 +15,7 @@ import {
   HIDE_VARIANT_POPUP,
   PICKER_HIDDEN
 } from './events';
-import { LazyLoader, lazyLoadEmoji } from './lazyLoad';
+import { LazyLoader } from './lazyLoad';
 import { EmojiPreview } from './preview';
 import { Search } from './search';
 import { buildEmojiCategoryData, queryByClass } from './util';
@@ -176,9 +176,7 @@ export class EmojiButton {
    * @param searchResults The element containing the search results.
    */
   private showSearchResults(searchResults: HTMLElement): void {
-    this.pickerContent.replaceChildren();
-    searchResults.classList.add('search-results');
-    this.pickerContent.appendChild(searchResults);
+    this.pickerContent.replaceChildren(searchResults);
   }
 
   /**
@@ -202,8 +200,6 @@ export class EmojiButton {
     if ((emoji as EmojiRecord).variations && showVariants && this.options.showVariants) {
       this.showVariantPopup(emoji as EmojiRecord);
     } else {
-      // setTimeout(() => this.emojiArea.updateRecents());
-
       let eventData: EmojiSelection;
       if (emoji.custom) {
         eventData = this.emitCustomEmoji(emoji);
@@ -350,6 +346,7 @@ export class EmojiButton {
       search: this.search?.render(),
       emojiArea: await this.emojiArea.render()
     });
+
     this.wrapper.style.display = 'none';
 
     this.pickerEl = this.wrapper.firstElementChild as HTMLElement;
@@ -359,10 +356,6 @@ export class EmojiButton {
     this.initFocusTrap();
 
     this.pickerContent = queryByClass(this.pickerEl, classes.content);
-    // this.pickerContent = this.pickerEl.firstElementChild as HTMLElement;
-
-    // this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories);
-    // this.pickerContent.appendChild(this.emojiArea.render());
 
     this.events.on(SHOW_SEARCH_RESULTS, this.showSearchResults.bind(this));
     this.events.on(HIDE_SEARCH_RESULTS, this.hideSearchResults.bind(this));
@@ -386,8 +379,8 @@ export class EmojiButton {
    *
    * @param emoji The emoji whose variants are to be shown.
    */
-  private showVariantPopup(emoji: EmojiRecord): void {
-    const variantPopup = new VariantPopup(this.events, emoji, this.options).render();
+  private async showVariantPopup(emoji: EmojiRecord): void {
+    const variantPopup = await new VariantPopup(this.events, emoji, this.options).render();
 
     if (variantPopup) {
       this.pickerEl.appendChild(variantPopup);
@@ -403,65 +396,6 @@ export class EmojiButton {
 
       this.events.off(HIDE_VARIANT_POPUP);
     });
-  }
-
-  private createIntersectionObserver(): IntersectionObserver {
-    const observer = new IntersectionObserver(
-      (entries: IntersectionObserverEntry[]) => {
-        Array.prototype.filter
-          .call(entries, (entry: IntersectionObserverEntry) => entry.intersectionRatio > 0)
-          .map((entry: IntersectionObserverEntry) => entry.target)
-          .forEach((element: Element) => {
-            lazyLoadEmoji(element as HTMLElement, this.options);
-          });
-      },
-      {
-        root: null // EMOJIS AREA
-      }
-    );
-
-    return observer;
-  }
-
-  /**
-   * Initializes the IntersectionObserver for lazy loading emoji images
-   * as they are scrolled into view.
-   */
-  private observeForLazyLoad(): void {
-    this.observer = new IntersectionObserver(this.handleIntersectionChange.bind(this), {
-      root: this.emojiArea.emojis
-    });
-
-    this.emojiArea.emojis.querySelectorAll<HTMLElement>(`.${classes.emoji}`).forEach((element: HTMLElement) => {
-      if (this.shouldLazyLoad(element)) {
-        this.observer.observe(element);
-      }
-    });
-  }
-
-  /**
-   * IntersectionObserver callback that triggers lazy loading of emojis
-   * that need it.
-   *
-   * @param entries The entries observed by the IntersectionObserver.
-   */
-  private handleIntersectionChange(entries: IntersectionObserverEntry[]): void {
-    Array.prototype.filter
-      .call(entries, (entry: IntersectionObserverEntry) => entry.intersectionRatio > 0)
-      .map((entry: IntersectionObserverEntry) => entry.target)
-      .forEach((element: Element) => {
-        lazyLoadEmoji(element as HTMLElement, this.options);
-      });
-  }
-
-  /**
-   * Determines whether or not an emoji should be lazily loaded.
-   *
-   * @param element The element containing the emoji.
-   * @return true if the emoji should be lazily loaded, false if not.
-   */
-  private shouldLazyLoad(element: HTMLElement): boolean {
-    return this.options.style === STYLE_TWEMOJI || element.dataset.custom === 'true';
   }
 
   /**

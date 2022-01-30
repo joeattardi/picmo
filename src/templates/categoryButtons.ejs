@@ -7,7 +7,7 @@
       type="button"
       data-category="<%= category %>"
     >
-      <%- categoryIcons[category] || fallbackIcon %>
+      <div data-placeholder="icon-<%= category %>"></div>
     </button>
   <% }); %>
 </div>

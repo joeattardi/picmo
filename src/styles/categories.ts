@@ -19,7 +19,7 @@ export const categories = {
       backgroundImage: 'linear-gradient(180deg, var(--fade-gradient-start) 30%, var(--fade-gradient-end) 100%)'
     },
 
-    '& svg': {
+    '& img': {
       fill: 'var(--category-name-accent)',
       width: '2rem'
     }

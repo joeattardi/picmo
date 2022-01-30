@@ -105,6 +105,7 @@ export type EmojiStyle = 'native' | 'twemoji';
 export type EmojiVersion = '1.0' | '2.0' | '3.0' | '4.0' | '5.0' | '11.0' | '12.0' | '12.1';
 
 export enum EmojiCategory {
+  RECENTS = 'recents',
   SMILEYS = 'smileys',
   PEOPLE = 'people',
   ANIMALS = 'animals',
@@ -114,7 +115,6 @@ export enum EmojiCategory {
   OBJECTS = 'objects',
   SYMBOLS = 'symbols',
   FLAGS = 'flags',
-  RECENTS = 'recents',
   CUSTOM = 'custom'
 }
 
