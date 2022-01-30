@@ -2,7 +2,7 @@ import jss from 'jss';
 import twemoji from 'twemoji';
 
 import Renderer from './renderer';
-import { EmojiRecord } from '../types';
+import { EmojiRecord, EmojiSelection } from '../types';
 import { LazyLoader } from '../lazyLoad';
 import preloadImage from '../preload';
 
@@ -67,5 +67,10 @@ export default class TwemojiRenderer extends Renderer {
     }
 
     return factory();
+  }
+
+  async emit({ emoji, name }: EmojiRecord): Promise<EmojiSelection> {
+    const url = await getTwemojiUrl(emoji, this.options);
+    return { url, emoji, name };
   }
 }

@@ -1,3 +1,4 @@
+import { Emitter, ADD_RECENT } from './events';
 import { EmojiRecord, EmojiButtonOptions, RecentEmoji } from './types';
 
 const LOCAL_STORAGE_KEY = 'emojiPicker.recent';
@@ -8,7 +9,7 @@ export function load(): Array<RecentEmoji> {
   return recents.filter(recent => !!recent.emoji);
 }
 
-export function save(emoji: EmojiRecord | RecentEmoji, options: EmojiButtonOptions): void {
+export function save(emoji: EmojiRecord | RecentEmoji, options: EmojiButtonOptions, events: Emitter): void {
   const recents = load();
 
   const recent = {
@@ -17,6 +18,8 @@ export function save(emoji: EmojiRecord | RecentEmoji, options: EmojiButtonOptio
     key: (emoji as RecentEmoji).key || emoji.name,
     custom: emoji.custom
   };
+
+  events.emit(ADD_RECENT, recent);
 
   localStorage.setItem(
     LOCAL_STORAGE_KEY,

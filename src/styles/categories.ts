@@ -11,11 +11,11 @@ export const categories = {
 
     '&::after': {
       width: '100%',
-      height: 16,
+      height: 10,
       content: '""',
       position: 'absolute',
       left: 0,
-      bottom: -16,
+      bottom: -10,
       backgroundImage: 'linear-gradient(180deg, var(--fade-gradient-start) 30%, var(--fade-gradient-end) 100%)'
     },
 

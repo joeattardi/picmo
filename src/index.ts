@@ -202,16 +202,23 @@ export class EmojiButton {
     if ((emoji as EmojiRecord).variations && showVariants && this.options.showVariants) {
       this.showVariantPopup(emoji as EmojiRecord);
     } else {
-      setTimeout(() => this.emojiArea.updateRecents());
+      // setTimeout(() => this.emojiArea.updateRecents());
 
       let eventData: EmojiSelection;
       if (emoji.custom) {
         eventData = this.emitCustomEmoji(emoji);
-      } else if (this.options.style === STYLE_TWEMOJI) {
-        eventData = await this.emitTwemoji(emoji);
       } else {
-        eventData = this.emitNativeEmoji(emoji);
+        const content = await this.options.renderer?.render(emoji);
+        eventData = {
+          content,
+          emoji
+        };
       }
+      // } else if (this.options.style === STYLE_TWEMOJI) {
+      //   eventData = await this.emitTwemoji(emoji);
+      // } else {
+      //   eventData = this.emitNativeEmoji(emoji);
+      // }
 
       this.publicEvents.emit(EMOJI, eventData);
 
@@ -326,7 +333,7 @@ export class EmojiButton {
   /**
    * Builds the emoji picker.
    */
-  private buildPicker(): void {
+  private async buildPicker(): Promise<void> {
     this.initPlugins();
     this.buildSearch();
 
@@ -341,7 +348,7 @@ export class EmojiButton {
     this.wrapper = renderTemplate(template, {
       plugins: this.pluginContainer,
       search: this.search?.render(),
-      emojiArea: this.emojiArea.render()
+      emojiArea: await this.emojiArea.render()
     });
     this.wrapper.style.display = 'none';
 

@@ -28,11 +28,10 @@ export class Emoji {
     private showPreview: boolean,
     private events: Emitter,
     private options: EmojiButtonOptions,
-    private lazy = false,
-    private lazyLoader: LazyLoader
+    private lazyLoader?: LazyLoader
   ) {}
 
-  render(): HTMLElement {
+  async render(): Promise<HTMLElement> {
     this.emojiButton = emojiCompiled({ emoji: this.emoji });
 
     let content: Text | HTMLElement;
@@ -47,8 +46,7 @@ export class Emoji {
     //   content = document.createTextNode(this.emoji.emoji);
     // }
 
-    content = this.options.renderer.render(this.emoji, this.lazyLoader);
-
+    content = await this.options.renderer.render(this.emoji, this.lazyLoader);
     this.emojiButton.appendChild(content);
 
     this.emojiButton.addEventListener('focus', () => this.onEmojiHover());
@@ -66,7 +64,7 @@ export class Emoji {
       (!(this.emoji as EmojiRecord).variations || !this.showVariants || !this.options.showVariants) &&
       this.options.showRecents
     ) {
-      save(this.emoji, this.options);
+      save(this.emoji, this.options, this.events);
     }
 
     this.events.emit(EMOJI, {

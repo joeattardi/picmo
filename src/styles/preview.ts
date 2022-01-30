@@ -7,14 +7,15 @@ export const preview = {
     height: 'var(--emoji-preview-size)',
     padding: '0.5em',
     position: 'relative',
+    marginTop: 4,
 
     '&::after': {
       width: '100%',
-      height: 16,
+      height: 10,
       content: '""',
       position: 'absolute',
       left: 0,
-      top: -17,
+      top: -11,
       backgroundImage: 'linear-gradient(0deg, var(--fade-gradient-start) 30%, var(--fade-gradient-end) 100%)'
     }
   },

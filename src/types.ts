@@ -5,6 +5,8 @@ import { ParseObject } from 'twemoji';
 import { ParseObject } from 'twemoji';
 import { EmojiButton } from './index';
 import Renderer from './renderers/renderer';
+import Category from './categories';
+import { CategoryButtons } from './categoryButtons';
 
 export interface EmojiRecord {
   name: string;
@@ -21,7 +23,12 @@ export interface EmojiData {
   emoji: EmojiRecord[];
 }
 
-export interface EmojiSelection {
+export type EmojiSelection = {
+  content: HTMLElement;
+  emoji: EmojiRecord;
+};
+
+export interface EmojiSelectionOLD {
   name: string;
   custom?: boolean;
   emoji?: string;
@@ -97,16 +104,19 @@ export type EmojiStyle = 'native' | 'twemoji';
 
 export type EmojiVersion = '1.0' | '2.0' | '3.0' | '4.0' | '5.0' | '11.0' | '12.0' | '12.1';
 
-export type Category =
-  | 'smileys'
-  | 'people'
-  | 'animals'
-  | 'food'
-  | 'activities'
-  | 'travel'
-  | 'objects'
-  | 'symbols'
-  | 'flags';
+export enum EmojiCategory {
+  SMILEYS = 'smileys',
+  PEOPLE = 'people',
+  ANIMALS = 'animals',
+  FOOD = 'food',
+  ACTIVITIES = 'activities',
+  TRAVEL = 'travel',
+  OBJECTS = 'objects',
+  SYMBOLS = 'symbols',
+  FLAGS = 'flags',
+  RECENTS = 'recents',
+  CUSTOM = 'custom'
+}
 
 export type I18NCategory =
   | 'recents'

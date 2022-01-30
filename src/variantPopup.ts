@@ -31,7 +31,7 @@ export class VariantPopup {
     newFocusedEmoji.focus();
   }
 
-  render(): HTMLElement {
+  async render(): Promise<HTMLElement> {
     const container = renderTemplate(template);
     this.popup = queryByClass(container, classes.variantPopup);
 
@@ -43,11 +43,11 @@ export class VariantPopup {
       }
     });
 
-    this.popup.appendChild(new Emoji(this.emoji, false, false, this.events, this.options, false).render());
+    this.popup.appendChild(await new Emoji(this.emoji, false, false, this.events, this.options).render());
 
-    (this.emoji.variations || []).forEach((variation, index) =>
+    (this.emoji.variations || []).forEach(async (variation, index) =>
       this.popup.appendChild(
-        new Emoji(
+        await new Emoji(
           {
             name: this.emoji.name,
             emoji: variation,
@@ -56,8 +56,7 @@ export class VariantPopup {
           false,
           false,
           this.events,
-          this.options,
-          false
+          this.options
         ).render()
       )
     );

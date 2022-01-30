@@ -51,7 +51,9 @@ export const emoji = {
     gap: '1px',
     padding: [0, '0.5em'],
     gridTemplateColumns: 'repeat(var(--emojis-per-row), calc(var(--emoji-size) * var(--emoji-size-multiplier)))',
-    gridAutoRows: 'calc(var(--emoji-size) * var(--emoji-size-multiplier))'
+    gridAutoRows: 'calc(var(--emoji-size) * var(--emoji-size-multiplier))',
+    marginTop: 8,
+    marginBottom: 8
   },
 
   customEmoji: {

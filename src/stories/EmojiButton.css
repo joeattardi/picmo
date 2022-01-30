@@ -1,6 +1,7 @@
 .emoji-button {
   font-size: 2.5rem;
-  background: #eeeeee;
+  background: transparent;
+  border: none;
   border: 1px solid #cccccc;
   border-radius: 5px;
   padding: 0.5rem 1rem;
@@ -14,6 +15,19 @@
   font-family: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI',
     'Apple Color Emoji', 'Twemoji Mozilla', 'Noto Color Emoji', 'EmojiOne Color',
     'Android Emoji';
+}
+
+.emoji-button.empty {
+  background: url('smile.svg') no-repeat;
+  background-position: center;
+  background-size: 40px;
+  border: 2px dashed #333333;
+  opacity: 0.25;
+  transition: opacity 250ms;
+}
+
+.emoji-button.empty:hover {
+  opacity: 0.5;
 }
 
 .emoji-button img {

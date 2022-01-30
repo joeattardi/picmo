@@ -6,9 +6,10 @@ import emojiData from './data/emoji';
 
 import { CategoryButtons, categoryIcons } from './categoryButtons';
 import { EmojiContainer } from './emojiContainer';
+import { RecentsContainer } from './recentsContainer';
 
 import { CATEGORY_CLICKED } from './events';
-import { I18NStrings, EmojiButtonOptions, EmojiRecord, Category } from './types';
+import { I18NStrings, EmojiButtonOptions, EmojiRecord, EmojiCategory } from './types';
 import { queryAllByClass, queryByClass } from './util';
 import { load } from './recent';
 
@@ -16,19 +17,28 @@ import template from './templates/emojiArea.ejs';
 import { renderTemplate, toElement } from './templates';
 import { LazyLoader } from './lazyLoad';
 
+// TODO: Can ths order be inferred by the enum itself?
 const categorySortOrder = [
-  'recents',
-  'smileys',
-  'people',
-  'animals',
-  'food',
-  'activities',
-  'travel',
-  'objects',
-  'symbols',
-  'flags',
-  'custom'
+  EmojiCategory.RECENTS,
+  EmojiCategory.SMILEYS,
+  EmojiCategory.PEOPLE,
+  EmojiCategory.ANIMALS,
+  EmojiCategory.FOOD,
+  EmojiCategory.ACTIVITIES,
+  EmojiCategory.TRAVEL,
+  EmojiCategory.OBJECTS,
+  EmojiCategory.SYMBOLS,
+  EmojiCategory.FLAGS,
+  EmojiCategory.CUSTOM
 ];
+
+const containers = {
+  [EmojiCategory.RECENTS]: RecentsContainer
+};
+
+function getContainerClass(category: EmojiCategory) {
+  return containers[category] || EmojiContainer;
+}
 
 export class EmojiArea {
   private headerOffsets: number[];
@@ -70,14 +80,21 @@ export class EmojiArea {
       const recentsContainer = this.emojis.querySelector(`.${classes.emojiContainer}`);
       if (recentsContainer && recentsContainer.parentNode) {
         recentsContainer.parentNode.replaceChild(
-          new EmojiContainer(this.emojiCategories.recents, true, this.events, this.options, false).render(),
+          new EmojiContainer(
+            this.emojiCategories.recents,
+            true,
+            this.events,
+            this.options,
+            false,
+            this.lazyLoader
+          ).render(),
           recentsContainer
         );
       }
     }
   }
 
-  render(): HTMLElement {
+  async render(): Promise<HTMLElement> {
     if (this.options.showCategoryButtons) {
       this.categoryButtons = new CategoryButtons(this.options, this.events, this.i18n);
     }
@@ -101,13 +118,11 @@ export class EmojiArea {
       {}
     );
 
-    const categoryEmojiElements = this.categories.reduce(
-      (result, category) => ({
-        ...result,
-        [`emojis-${category}`]: this.renderEmojis(category)
-      }),
-      {}
-    );
+    const emojiContainers = await Promise.all(this.categories.map(category => this.renderEmojis(category)));
+    const categoryEmojiElements = {};
+    this.categories.forEach((category, index) => {
+      categoryEmojiElements[`emojis-${category}`] = emojiContainers[index];
+    });
 
     this.container = renderTemplate(template, {
       categoryButtons: this.options.showCategoryButtons ? this.categoryButtons?.render() : null,
@@ -117,7 +132,6 @@ export class EmojiArea {
       ...categoryEmojiElements
     });
 
-    // TODO idea: add something that wraps renderTemplate where you can also specify selectors of child elements you want back
     this.emojis = queryByClass(this.container, classes.emojis);
 
     this.headers = [...queryAllByClass<HTMLHeadingElement>(this.container, classes.categoryName)];
@@ -126,15 +140,15 @@ export class EmojiArea {
     this.emojis.addEventListener('keydown', this.handleKeyDown);
 
     this.events.on(CATEGORY_CLICKED, this.selectCategory);
-
     const firstEmoji = this.container.querySelectorAll<HTMLElement>(`.${classes.emoji}`)[0];
     firstEmoji.tabIndex = 0;
 
     return this.container;
   }
 
-  renderEmojis(category: string): HTMLElement {
-    return new EmojiContainer(
+  async renderEmojis(category: string): Promise<HTMLElement> {
+    const Container = getContainerClass(category as EmojiCategory);
+    return await new Container(
       this.emojiCategories[category],
       true,
       this.events,
