@@ -5,7 +5,6 @@ import {
   mdiRobot,
   mdiFlag,
   mdiFood,
-  mdiEmoticonSadOutline,
   mdiLightbulb,
   mdiAccountMultiple,
   mdiHistory,
