@@ -59,14 +59,6 @@ export class Emoji {
   }
 
   onEmojiClick(): void {
-    // TODO move this side effect out of Emoji, make the recent module listen for event
-    if (
-      (!(this.emoji as EmojiRecord).variations || !this.showVariants || !this.options.showVariants) &&
-      this.options.showRecents
-    ) {
-      save(this.emoji, this.options, this.events);
-    }
-
     this.events.emit(EMOJI, {
       emoji: this.emoji,
       showVariants: this.showVariants,

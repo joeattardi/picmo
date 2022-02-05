@@ -1,11 +1,11 @@
 import ejs, { Data } from 'ejs';
 
-import * as icons from './icons';
+import { templatePartials } from './icons';
 import classes from './styles';
 
 type ElementTemplate = (data?: Data) => HTMLElement;
 
-// TODO: add i18n to helpers, maybe icons too?
+// TODO: add i18n to helpers
 
 /**
  * Takes the data passed to a template, and adds the common template
@@ -21,7 +21,7 @@ function addHelpers(data: Data = {}): Data {
   return {
     ...data,
     classes,
-    icons
+    icons: templatePartials
   };
 }
 

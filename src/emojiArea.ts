@@ -11,7 +11,7 @@ import { RecentsContainer } from './recentsContainer';
 import { CATEGORY_CLICKED } from './events';
 import { I18NStrings, EmojiButtonOptions, EmojiRecord, EmojiCategory } from './types';
 import { queryAllByClass, queryByClass } from './util';
-import { load } from './recent';
+import { clear, load } from './recent';
 
 import template from './templates/emojiArea.ejs';
 import { renderTemplate, toElement } from './templates';
@@ -100,6 +100,16 @@ export class EmojiArea {
       ...categoryEmojiElements
     });
 
+    const recents = this.container.querySelector('h3[data-category="recents"]');
+    if (recents) {
+      const clearButton = renderTemplate('<button><%- icons.clear %></button>');
+      clearButton.addEventListener('click', () => {
+        recents.nextElementSibling.replaceChildren();
+        clear();
+      });
+      recents.appendChild(clearButton);
+    }
+
     this.emojis = queryByClass(this.container, classes.emojis);
 
     this.headers = [...queryAllByClass<HTMLHeadingElement>(this.container, classes.categoryName)];
@@ -125,7 +135,7 @@ export class EmojiArea {
     ).render();
   }
 
-  reset(): void {
+  async reset(): Promise<void> {
     this.headerOffsets = Array.prototype.map.call(this.headers, header => header.offsetTop) as number[];
 
     this.selectCategory(this.options.initialCategory || 'smileys', false);
@@ -133,6 +143,13 @@ export class EmojiArea {
 
     if (this.options.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory, false);
+    }
+
+    const recents = this.container.querySelector(`h3[data-category="recents"] ~ .${classes.emojiContainer}`);
+    if (recents) {
+      recents.replaceWith(
+        await new RecentsContainer(load(), true, this.events, this.options, this.lazyLoader).render()
+      );
     }
   }
 

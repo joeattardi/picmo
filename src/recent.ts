@@ -3,6 +3,10 @@ import { EmojiRecord, EmojiButtonOptions, RecentEmoji } from './types';
 
 const LOCAL_STORAGE_KEY = 'emojiPicker.recent';
 
+export function clear(): void {
+  localStorage.removeItem(LOCAL_STORAGE_KEY);
+}
+
 export function load(): Array<RecentEmoji> {
   const recentJson = localStorage.getItem(LOCAL_STORAGE_KEY);
   const recents = recentJson ? JSON.parse(recentJson) : [];

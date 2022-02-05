@@ -14,11 +14,12 @@ import {
   mdiMusicBox,
   mdiTrainCar
 } from '@mdi/js';
+import ejs from 'ejs';
 
 import classes from './styles';
-import { compileTemplate } from './templates';
+import { toElement } from './templates';
 
-const iconTemplate = compileTemplate(`
+const iconTemplate = ejs.compile(`
   <svg class="<%- iconClass %>" width="24" height="24" viewBox="0 0 24 24">
     <path d="<%- icon %>" />
   </svg>
@@ -26,26 +27,44 @@ const iconTemplate = compileTemplate(`
 
 function createIcon(icon) {
   return () => {
-    return iconTemplate({
-      icon,
-      iconClass: classes.icon
-    });
+    return toElement(
+      iconTemplate({
+        icon,
+        iconClass: classes.icon
+      })
+    );
   };
 }
 
-export default {
-  activities: createIcon(mdiBasketball),
-  animals: createIcon(mdiCat),
-  clear: createIcon(mdiCloseCircle),
-  custom: createIcon(mdiRobot),
-  flags: createIcon(mdiFlag),
-  food: createIcon(mdiFood),
-  notFound: createIcon(mdiMagnifyClose),
-  objects: createIcon(mdiLightbulb),
-  people: createIcon(mdiAccountMultiple),
-  recents: createIcon(mdiHistory),
-  search: createIcon(mdiMagnify),
-  smile: createIcon(mdiEmoticon),
-  symbols: createIcon(mdiMusicBox),
-  travel: createIcon(mdiTrainCar)
-};
+function createIconPartial(icon) {
+  return iconTemplate({
+    icon,
+    iconClass: classes.icon
+  });
+}
+
+const icons = {};
+const templatePartials = {};
+
+function addIcon(name, icon) {
+  icons[name] = createIcon(icon);
+  templatePartials[name] = createIconPartial(icon);
+}
+
+export default icons;
+export { templatePartials };
+
+addIcon('activities', mdiBasketball);
+addIcon('animals', mdiCat);
+addIcon('clear', mdiCloseCircle);
+addIcon('custom', mdiRobot);
+addIcon('flags', mdiFlag);
+addIcon('food', mdiFood);
+addIcon('notFound', mdiMagnifyClose);
+addIcon('objects', mdiLightbulb);
+addIcon('people', mdiAccountMultiple);
+addIcon('recents', mdiHistory);
+addIcon('search', mdiMagnify);
+addIcon('smile', mdiEmoticon);
+addIcon('symbols', mdiMusicBox);
+addIcon('travel', mdiTrainCar);

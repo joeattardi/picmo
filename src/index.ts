@@ -25,6 +25,7 @@ import { i18n } from './i18n';
 
 import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiSelection, FixedPosition, Theme } from './types';
 import { EmojiArea } from './emojiArea';
+import { save } from './recent';
 
 import { renderTemplate } from './templates';
 import template from './templates/index.ejs';
@@ -189,7 +190,7 @@ export class EmojiButton {
     }
 
     this.search.reset();
-    this.emojiArea.reset();
+    // this.emojiArea.reset();
   }
 
   /**
@@ -220,6 +221,13 @@ export class EmojiButton {
 
       if (this.options.autoHide) {
         this.hidePicker();
+      }
+
+      if (
+        (!(emoji as EmojiRecord).variations || !showVariants || !this.options.showVariants) &&
+        this.options.showRecents
+      ) {
+        save(emoji, this.options, this.events);
       }
     }
   }
@@ -454,31 +462,31 @@ export class EmojiButton {
 
     // Let the transition finish before actually hiding the picker so that
     // the user sees the hide animation.
-    setTimeout(
-      () => {
-        this.wrapper.style.display = 'none';
-        this.pickerEl.classList.remove('hiding');
+    // setTimeout(
+    // () => {
+    this.wrapper.style.display = 'none';
+    this.pickerEl.classList.remove('hiding');
 
-        // TODO fix this, search is broken!
-        // if (this.pickerContent.firstChild !== this.emojiArea.container) {
-        //   empty(this.pickerContent);
-        //   this.pickerContent.appendChild(this.emojiArea.container);
-        // }
+    // TODO fix this, search is broken!
+    // if (this.pickerContent.firstChild !== this.emojiArea.container) {
+    //   empty(this.pickerContent);
+    //   this.pickerContent.appendChild(this.emojiArea.container);
+    // }
 
-        if (this.search) {
-          this.search.clear();
-          this.hideSearchResults();
-        }
+    if (this.search) {
+      this.search.clear();
+      this.hideSearchResults();
+    }
 
-        this.events.emit(HIDE_VARIANT_POPUP);
+    this.events.emit(HIDE_VARIANT_POPUP);
 
-        this.hideInProgress = false;
-        this.popper && this.popper.destroy();
+    this.hideInProgress = false;
+    this.popper && this.popper.destroy();
 
-        this.publicEvents.emit(PICKER_HIDDEN);
-      },
-      this.options.showAnimation ? 170 : 0
-    );
+    this.publicEvents.emit(PICKER_HIDDEN);
+    // },
+    // this.options.showAnimation ? 170 : 0
+    // );
 
     setTimeout(() => {
       document.removeEventListener('click', this.onDocumentClick);

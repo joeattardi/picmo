@@ -8,6 +8,9 @@ export const categories = {
     position: 'sticky',
     top: 0,
     zIndex: 1,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
 
     '&::after': {
       width: '100%',
@@ -22,6 +25,21 @@ export const categories = {
     '& img': {
       fill: 'var(--category-name-accent)',
       width: '2rem'
+    },
+
+    '& button': {
+      background: 'transparent',
+      border: 'none',
+      '--icon-size': '1.2em',
+      display: 'flex',
+      alignItems: 'center',
+      cursor: 'pointer',
+      opacity: 0.3,
+      transition: 'opacity 200ms',
+
+      '&:hover': {
+        opacity: 1
+      }
     }
   },
 
