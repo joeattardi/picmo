@@ -102,7 +102,10 @@ export class EmojiArea {
 
     const recents = this.container.querySelector('h3[data-category="recents"]');
     if (recents) {
-      const clearButton = renderTemplate('<button><%- icons.clear %></button>');
+      const clearButton = renderTemplate(
+        `<button title="<%= i18n.get('recents.clear') %>"><%- icons.clear %></button>`,
+        { i18n: this.i18n }
+      );
       clearButton.addEventListener('click', () => {
         recents.nextElementSibling.replaceChildren();
         clear();

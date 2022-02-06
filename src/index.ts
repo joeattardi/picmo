@@ -21,7 +21,7 @@ import { Search } from './search';
 import { buildEmojiCategoryData, queryByClass } from './util';
 import { VariantPopup } from './variantPopup';
 
-import { i18n } from './i18n';
+import Bundle from './i18n';
 
 import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiSelection, FixedPosition, Theme } from './types';
 import { EmojiArea } from './emojiArea';
@@ -30,13 +30,12 @@ import { save } from './recent';
 import { renderTemplate } from './templates';
 import template from './templates/index.ejs';
 
-import lightTheme from './styles/theme/light';
 
+import lightTheme from './styles/theme/light';
+import en from './i18n/lang-en';
 import NativeRenderer from './renderers/native';
 
 const MOBILE_BREAKPOINT = 450;
-
-const STYLE_TWEMOJI = 'twemoji';
 
 const DEFAULT_OPTIONS: Partial<EmojiButtonOptions> = {
   position: 'auto',
@@ -83,7 +82,7 @@ export class EmojiButton {
   private events = new Emitter();
   private publicEvents = new Emitter();
   private options: EmojiButtonOptions;
-  private i18n: I18NStrings;
+  private i18n: Bundle;
 
   private pickerEl: HTMLElement;
   private pickerContent: HTMLElement;
@@ -98,22 +97,22 @@ export class EmojiButton {
 
   private popper: Popper;
 
-  private observer: IntersectionObserver;
-
   private emojiCategories: { [key: string]: EmojiRecord[] };
 
   constructor(options: Partial<EmojiButtonOptions> = {}) {
     this.pickerVisible = false;
+
+    this.i18n = new Bundle(en);
 
     this.options = { ...DEFAULT_OPTIONS, ...options };
     if (!this.options.rootElement) {
       this.options.rootElement = document.body;
     }
 
-    this.i18n = {
-      ...i18n,
-      ...options.i18n
-    };
+    // this.i18n = {
+    //   ...i18n,
+    //   ...options.i18n
+    // };
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
@@ -341,10 +340,6 @@ export class EmojiButton {
     this.initPlugins();
     this.buildSearch();
 
-    // this.observer = new IntersectionObserver(this.handleIntersectionChange.bind(this), {
-    //   root: this.emojiArea.emojis
-    // });
-
     const lazyLoader = new LazyLoader();
 
     this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories, lazyLoader);
@@ -431,8 +426,6 @@ export class EmojiButton {
 
       this.popper && this.popper.destroy();
     }
-
-    this.observer && this.observer.disconnect();
 
     if (this.options.plugins) {
       this.options.plugins.forEach(plugin => {

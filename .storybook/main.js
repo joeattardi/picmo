@@ -32,6 +32,8 @@ module.exports = {
       include: /node_modules/
     });
 
+    config.devtool = 'source-map';
+
     return config;
   }
 };

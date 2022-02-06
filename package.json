@@ -81,6 +81,7 @@
     "fuzzysort": "^1.1.4",
     "jss": "^10.9.0",
     "jss-preset-default": "^10.9.0",
+    "lisan": "^0.1.1",
     "tiny-emitter": "^2.1.0",
     "tslib": "^2.0.0",
     "twemoji": "^12.1.2"
