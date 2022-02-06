@@ -23,7 +23,7 @@ import { VariantPopup } from './variantPopup';
 
 import Bundle from './i18n';
 
-import { EmojiButtonOptions, I18NStrings, EmojiRecord, EmojiSelection, FixedPosition, Theme } from './types';
+import { EmojiButtonOptions, EmojiRecord, EmojiSelection, FixedPosition, Theme } from './types';
 import { EmojiArea } from './emojiArea';
 import { save } from './recent';
 
@@ -38,6 +38,7 @@ import NativeRenderer from './renderers/native';
 const MOBILE_BREAKPOINT = 450;
 
 const DEFAULT_OPTIONS: Partial<EmojiButtonOptions> = {
+  locale: en,
   position: 'auto',
   autoHide: true,
   autoFocusSearch: true,
@@ -102,17 +103,12 @@ export class EmojiButton {
   constructor(options: Partial<EmojiButtonOptions> = {}) {
     this.pickerVisible = false;
 
-    this.i18n = new Bundle(en);
-
     this.options = { ...DEFAULT_OPTIONS, ...options };
     if (!this.options.rootElement) {
       this.options.rootElement = document.body;
     }
 
-    // this.i18n = {
-    //   ...i18n,
-    //   ...options.i18n
-    // };
+    this.i18n = new Bundle(this.options.locale);
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);

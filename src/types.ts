@@ -5,8 +5,6 @@ import { ParseObject } from 'twemoji';
 import { ParseObject } from 'twemoji';
 import { EmojiButton } from './index';
 import Renderer from './renderers/renderer';
-import Category from './categories';
-import { CategoryButtons } from './categoryButtons';
 
 export interface EmojiRecord {
   name: string;
@@ -61,6 +59,7 @@ export type Theme = {
 // TODO fix the type problems with optionals here. Define a type for the passed in options,
 // mark which are required/optional, and then have individual class properties for these?
 export interface EmojiButtonOptions {
+  locale?: { [key: string]: string };
   position?: Placement | FixedPosition;
   autoHide?: boolean;
   autoFocusSearch?: boolean;
@@ -74,23 +73,20 @@ export interface EmojiButtonOptions {
   rootElement?: HTMLElement;
   emojiData?: EmojiData;
   emojiVersion?: EmojiVersion;
-  i18n?: I18NStrings;
   zIndex?: number;
   theme?: Theme;
-  categories?: Category[];
+  categories?: EmojiCategory[];
   style?: EmojiStyle;
   twemojiOptions?: Partial<ParseObject>;
   emojisPerRow?: number;
   rows?: number;
   emojiSize?: string;
-  initialCategory?: Category | 'recents';
+  initialCategory?: EmojiCategory;
   custom?: EmojiRecord[];
   plugins?: Plugin[];
   icons?: Icons;
   renderer?: Renderer;
-  styleProperties?: {
-    [key: string]: string;
-  };
+  styleProperties?: { [key: string]: string };
 }
 
 export interface FixedPosition {
@@ -118,33 +114,11 @@ export enum EmojiCategory {
   CUSTOM = 'custom'
 }
 
-export type I18NCategory =
-  | 'recents'
-  | 'smileys'
-  | 'people'
-  | 'animals'
-  | 'food'
-  | 'activities'
-  | 'travel'
-  | 'objects'
-  | 'symbols'
-  | 'flags'
-  | 'custom';
-
-export interface I18NStrings {
-  search: string;
-  clearSearch: string;
-  categories: {
-    [key in I18NCategory]: string;
-  };
-  notFound: string;
-}
-
 export interface Icons {
   search?: string;
   clearSearch?: string;
   categories?: {
-    [key in I18NCategory]?: string;
+    [key in EmojiCategory]?: string;
   };
   notFound?: string;
 }
