@@ -475,7 +475,7 @@ export class EmojiButton {
 
     this.events.emit(HIDE_VARIANT_POPUP);
 
-    this.popper && this.popper.destroy();
+    this.popper && this.popper?.destroy();
 
     this.publicEvents.emit(PICKER_HIDDEN);
 
@@ -576,7 +576,15 @@ export class EmojiButton {
     }
 
     this.popper = createPopper(this.referenceElement, this.wrapper, {
-      placement: this.options.position as Placement
+      placement: this.options.position as Placement,
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 5]
+          }
+        }
+      ]
     });
   }
 
