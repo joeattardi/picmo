@@ -499,7 +499,6 @@ export class EmojiButton {
         .map(animation => animation.finished)
     );
 
-    this.emojiArea.reset();
     this.pickerVisible = true;
 
     this.rootElement.appendChild(this.wrapper);
@@ -518,6 +517,8 @@ export class EmojiButton {
         easing: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)'
       }
     );
+
+    this.emojiArea.reset();
 
     setTimeout(() => {
       this.addEventListeners();
