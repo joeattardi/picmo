@@ -4,8 +4,8 @@ export default {
     '--border-color': '#666666',
     '--secondary-text-color': '#999999',
     '--text-color': '#ffffff',
-    '--hover-shadow-color': 'rgba(255, 255, 255, 50%)',
-    '--hover-color': 'hsl(0, 0%, 40%)',
+    '--hover-shadow-color': 'rgba(255, 255, 255, 0.2)',
+    '--hover-color': 'hsla(0, 0%, 40%, 0.85)',
     '--category-name-shadow': 'rgba(255, 255, 255, 0.5)',
     '--category-name-background': `linear-gradient(
         hsl(214, 40%, 30%),
