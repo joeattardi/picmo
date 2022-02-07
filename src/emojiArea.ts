@@ -150,9 +150,9 @@ export class EmojiArea {
 
     const recents = this.container.querySelector(`h3[data-category="recents"] ~ .${classes.emojiContainer}`);
     if (recents) {
-      recents.replaceWith(
-        await new RecentsContainer(load(), true, this.events, this.options, this.lazyLoader).render()
-      );
+      const recentsLoader = new LazyLoader();
+      recents.replaceWith(await new RecentsContainer(load(), true, this.events, this.options, recentsLoader).render());
+      recentsLoader.observe(this.emojis);
     }
   }
 

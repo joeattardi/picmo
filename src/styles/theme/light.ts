@@ -7,7 +7,7 @@ export default {
     '--hover-shadow-color': 'rgba(0, 0, 0, 0.2)',
     '--hover-color': 'hsla(198, 59%, 94%, 0.85)',
     '--category-name-shadow': 'rgba(0, 0, 0, 0.5)',
-    '--category-name-background': 'hsl(214, 98%, 96%)',
+    '--category-name-background': '#ffffff',
     '--category-name-text-color': 'hsl(214, 30%, 50%)',
     '--category-name-accent': 'hsl(214, 30%, 50%)',
     '--category-button-active-background': 'rgba(251, 184, 41, 0.2)',

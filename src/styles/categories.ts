@@ -1,6 +1,6 @@
 export const categories = {
   categoryName: {
-    fontSize: '1em',
+    fontSize: '1.2em',
     padding: [6, 12],
     margin: 0,
     background: 'var(--category-name-background)',
@@ -30,15 +30,19 @@ export const categories = {
     '& button': {
       background: 'transparent',
       border: 'none',
-      '--icon-size': '1.2em',
+      '--icon-size': '1.5em',
       display: 'flex',
       alignItems: 'center',
       cursor: 'pointer',
-      opacity: 0.3,
+      opacity: 0.75,
       transition: 'opacity 200ms',
 
       '&:hover': {
         opacity: 1
+      },
+
+      '& svg': {
+        fill: 'var(--category-button-color)'
       }
     }
   },

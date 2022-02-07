@@ -7,11 +7,8 @@ export default {
     '--hover-shadow-color': 'rgba(255, 255, 255, 0.2)',
     '--hover-color': 'hsla(0, 0%, 40%, 0.85)',
     '--category-name-shadow': 'rgba(255, 255, 255, 0.5)',
-    '--category-name-background': `linear-gradient(
-        hsl(214, 40%, 30%),
-        hsl(214, 30%, 28%)
-    )`,
-    '--category-name-text-color': 'hsl(214, 30%, 80%)',
+    '--category-name-background': '#333333',
+    '--category-name-text-color': '#ffffff',
     '--category-button-active-background': 'var(--blue-color)',
     '--category-button-active-color': '#ffffff',
     '--category-button-highlight-color': '#ffffff',

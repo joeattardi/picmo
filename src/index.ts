@@ -215,7 +215,7 @@ export class EmojiButton {
       this.publicEvents.emit(EMOJI, eventData);
 
       if (this.options.autoHide) {
-        this.hidePicker();
+        await this.hidePicker();
       }
 
       if (
@@ -453,14 +453,6 @@ export class EmojiButton {
     await animation.finished;
 
     this.rootElement.removeChild(this.wrapper);
-    // this.pickerEl.classList.add('hiding');
-
-    // Let the transition finish before actually hiding the picker so that
-    // the user sees the hide animation.
-    // setTimeout(
-    // () => {
-    // this.wrapper.style.display = 'none';
-    // this.pickerEl.classList.remove('hiding');
 
     // TODO fix this, search is broken!
     // if (this.pickerContent.firstChild !== this.emojiArea.container) {
