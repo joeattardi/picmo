@@ -1,7 +1,5 @@
 export const coreStyles = {
   wrapper: {
-    '--animation-duration': '0.2s',
-    '--animation-easing': 'ease-in-out',
     '--blue-color': '#4f81e5',
     '--border-radius': '5px',
     '--content-height': '22rem',

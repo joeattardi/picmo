@@ -1,15 +1,14 @@
 import './EmojiButton.css';
 import { EmojiButton } from '../../src/index';
-import icons from '../../src/icons';
-import { mdiEmoticon } from '@mdi/js';
-
-// console.log(mdiEmoticon);
 
 export function createPicker(options = {}) {
-  const picker = new EmojiButton(options);
-
   const button = document.createElement('button');
   button.className = 'emoji-button empty';
+
+  const picker = new EmojiButton({
+    ...options,
+    referenceElement: button
+  });
 
   button.addEventListener('click', () => {
     picker.togglePicker(button);
@@ -17,7 +16,9 @@ export function createPicker(options = {}) {
     window.parent.addEventListener(
       'click',
       () => {
-        picker.hidePicker();
+        if (picker.isPickerVisible()) {
+          picker.hidePicker();
+        }
       },
       { once: true }
     );

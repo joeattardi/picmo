@@ -10,7 +10,10 @@ const removePlugin = {
 };
 
 function createPickerInstance(button, options, onEmoji) {
-  const picker = new EmojiButton(options);
+  const picker = new EmojiButton({
+    ...options,
+    referenceElement: button
+  });
   // const picker = new EmojiButton(options);
   picker.on('emoji', data => {
     onEmoji(data);

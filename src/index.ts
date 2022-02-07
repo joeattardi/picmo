@@ -30,7 +30,6 @@ import { save } from './recent';
 import { renderTemplate } from './templates';
 import template from './templates/index.ejs';
 
-
 import lightTheme from './styles/theme/light';
 import en from './i18n/lang-en';
 import NativeRenderer from './renderers/native';
@@ -75,10 +74,10 @@ type TwemojiCallbackOptions = {
 
 export { LazyLoader };
 
+const SHOW_HIDE_DURATION = 200;
+
 export class EmojiButton {
   private pickerVisible: boolean;
-
-  private hideInProgress: boolean;
 
   private events = new Emitter();
   private publicEvents = new Emitter();
@@ -95,6 +94,8 @@ export class EmojiButton {
   private search: Search;
 
   private overlay?: HTMLElement;
+  private rootElement: HTMLElement;
+  private referenceElement: HTMLElement;
 
   private popper: Popper;
 
@@ -104,11 +105,9 @@ export class EmojiButton {
     this.pickerVisible = false;
 
     this.options = { ...DEFAULT_OPTIONS, ...options };
-    if (!this.options.rootElement) {
-      this.options.rootElement = document.body;
-    }
-
+    this.rootElement = this.options.rootElement || document.body;
     this.i18n = new Bundle(this.options.locale);
+    this.referenceElement = this.options.referenceElement;
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
@@ -143,6 +142,7 @@ export class EmojiButton {
    */
   private setStyleProperties(): void {
     if (!this.options.showAnimation) {
+      // TODO remove this
       this.pickerEl.style.setProperty('--animation-duration', '0s');
     }
 
@@ -346,8 +346,6 @@ export class EmojiButton {
       emojiArea: await this.emojiArea.render()
     });
 
-    this.wrapper.style.display = 'none';
-
     this.pickerEl = this.wrapper.firstElementChild as HTMLElement;
     this.pickerEl.classList.add(applyTheme(this.options.theme));
 
@@ -364,10 +362,6 @@ export class EmojiButton {
 
     if (this.options.zIndex) {
       this.wrapper.style.zIndex = this.options.zIndex + '';
-    }
-
-    if (this.options.rootElement) {
-      this.options.rootElement.appendChild(this.wrapper);
     }
 
     lazyLoader.observe(this.emojiArea.emojis);
@@ -404,7 +398,7 @@ export class EmojiButton {
    * @param event The MouseEvent that was dispatched.
    */
   private onDocumentClick(event: MouseEvent): void {
-    if (!this.pickerEl.contains(event.target as Node)) {
+    if (!this.pickerEl.contains(event.target as Node) && this.pickerVisible) {
       this.hidePicker();
     }
   }
@@ -417,11 +411,8 @@ export class EmojiButton {
     this.events.off(EMOJI);
     this.events.off(HIDE_VARIANT_POPUP);
 
-    if (this.options.rootElement) {
-      this.options.rootElement.removeChild(this.wrapper);
-
-      this.popper && this.popper.destroy();
-    }
+    this.rootElement.removeChild(this.wrapper);
+    this.popper?.destroy();
 
     if (this.options.plugins) {
       this.options.plugins.forEach(plugin => {
@@ -433,8 +424,7 @@ export class EmojiButton {
   /**
    * Hides, but does not destroy, the picker.
    */
-  hidePicker(): void {
-    this.hideInProgress = true;
+  async hidePicker(): Promise<void> {
     this.focusTrap.deactivate();
     this.pickerVisible = false;
 
@@ -447,14 +437,30 @@ export class EmojiButton {
     // and stealing the focus. Remove the scroll listener before doing the delayed hide.
     this.emojiArea.emojis.removeEventListener('scroll', this.emojiArea.highlightCategory);
 
-    this.pickerEl.classList.add('hiding');
+    const animation = this.pickerEl.animate(
+      {
+        opacity: [1, 0],
+        transform: ['scale(1)', 'scale(0.9)']
+      },
+      {
+        duration: SHOW_HIDE_DURATION,
+        id: 'hide-picker',
+        fill: 'both',
+        easing: 'cubic-bezier(0.600, -0.280, 0.735, 0.045)'
+      }
+    );
+
+    await animation.finished;
+
+    this.rootElement.removeChild(this.wrapper);
+    // this.pickerEl.classList.add('hiding');
 
     // Let the transition finish before actually hiding the picker so that
     // the user sees the hide animation.
     // setTimeout(
     // () => {
-    this.wrapper.style.display = 'none';
-    this.pickerEl.classList.remove('hiding');
+    // this.wrapper.style.display = 'none';
+    // this.pickerEl.classList.remove('hiding');
 
     // TODO fix this, search is broken!
     // if (this.pickerContent.firstChild !== this.emojiArea.container) {
@@ -469,13 +475,9 @@ export class EmojiButton {
 
     this.events.emit(HIDE_VARIANT_POPUP);
 
-    this.hideInProgress = false;
     this.popper && this.popper.destroy();
 
     this.publicEvents.emit(PICKER_HIDDEN);
-    // },
-    // this.options.showAnimation ? 170 : 0
-    // );
 
     setTimeout(() => {
       document.removeEventListener('click', this.onDocumentClick);
@@ -488,25 +490,39 @@ export class EmojiButton {
    *
    * @param referenceEl The element to position relative to if relative positioning is used.
    */
-  showPicker(referenceEl: HTMLElement): void {
-    if (this.hideInProgress) {
-      setTimeout(() => this.showPicker(referenceEl), 100);
-      return;
-    }
+  async showPicker(): Promise<void> {
+    // If triggered rapidly, make sure all pending animations finish before moving on
+    await Promise.all(
+      this.pickerEl
+        .getAnimations()
+        .filter(animation => animation.playState === 'running')
+        .map(animation => animation.finished)
+    );
 
+    this.emojiArea.reset();
     this.pickerVisible = true;
-    this.wrapper.style.display = 'block';
 
-    this.determineDisplay(referenceEl);
-
+    this.rootElement.appendChild(this.wrapper);
     this.focusTrap.activate();
+
+    this.determineDisplay();
+
+    this.pickerEl.animate(
+      {
+        opacity: [0, 1],
+        transform: ['scale(0.9)', 'scale(1)']
+      },
+      {
+        duration: SHOW_HIDE_DURATION,
+        fill: 'both',
+        easing: 'cubic-bezier(0.175, 0.885, 0.320, 1.275)'
+      }
+    );
 
     setTimeout(() => {
       this.addEventListeners();
       this.setInitialFocus();
     });
-
-    this.emojiArea.reset();
   }
 
   /**
@@ -515,12 +531,12 @@ export class EmojiButton {
    *
    * @param referenceEl The element to position relative to if relative positioning is used.
    */
-  determineDisplay(referenceEl: HTMLElement): void {
+  determineDisplay(): void {
     // if (window.matchMedia(`screen and (max-width: ${MOBILE_BREAKPOINT}px)`).matches) {
     //   this.showMobileView();
     // } else if (typeof this.options.position === 'string') {
     if (typeof this.options.position === 'string') {
-      this.setRelativePosition(referenceEl);
+      this.setRelativePosition();
     } else {
       this.setFixedPosition();
     }
@@ -554,8 +570,12 @@ export class EmojiButton {
    *
    * @param referenceEl The element to position relative to.
    */
-  private setRelativePosition(referenceEl: HTMLElement): void {
-    this.popper = createPopper(referenceEl, this.wrapper, {
+  private setRelativePosition(): void {
+    if (!this.referenceElement) {
+      throw new Error('Reference element is required for relative positioning');
+    }
+
+    this.popper = createPopper(this.referenceElement, this.wrapper, {
       placement: this.options.position as Placement
     });
   }
@@ -601,7 +621,7 @@ export class EmojiButton {
    * @param referenceEl The element to position relative to if relative positioning is used.
    */
   togglePicker(referenceEl: HTMLElement): void {
-    this.pickerVisible ? this.hidePicker() : this.showPicker(referenceEl);
+    this.pickerVisible ? this.hidePicker() : this.showPicker();
   }
 
   /**

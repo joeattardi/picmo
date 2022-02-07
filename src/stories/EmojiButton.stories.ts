@@ -33,7 +33,7 @@ export default {
 
 const Template = args => {
   return createPicker({
-    placement: 'bottom-start',
+    position: 'right-start',
     ...args,
     theme: themeOptions[args.theme || 'lightTheme']
   });
