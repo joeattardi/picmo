@@ -15,7 +15,7 @@ export const emoji = {
     alignItems: 'center',
     background: 'transparent',
     border: 'none',
-    borderRadius: '50%',
+    borderRadius: 5,
     cursor: 'pointer',
     fontFamily: 'var(--emoji-font)',
     fontSize: 'var(--emoji-size)',
@@ -26,7 +26,6 @@ export const emoji = {
     padding: 0,
     width: '1.5em',
     display: 'flex',
-    transition: 'all 150ms',
 
     '&:hover': {
       background: 'var(--hover-color)',

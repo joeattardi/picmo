@@ -67,7 +67,7 @@ export const categories = {
     fill: 'var(--category-button-color)',
     background: 'transparent',
     border: 'none',
-    borderRadius: '0.25em',
+    borderRadius: 5,
     color: 'var(--category-button-color)',
     cursor: 'pointer',
     flexGrow: 1,
@@ -77,6 +77,7 @@ export const categories = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    height: '2em',
 
     '& img': {
       width: 'var(--category-button-size)',
@@ -84,7 +85,7 @@ export const categories = {
     },
 
     '&:hover': {
-      fill: 'var(--category-button-highlight-color)'
+      color: 'var(--category-button-highlight-color)'
     },
 
     '&:focus': {
@@ -93,11 +94,11 @@ export const categories = {
   },
 
   categoryButtonActive: {
-    background: 'var(--category-button-active-background)',
-    fill: 'var(--category-button-active-color)',
+    color: 'var(--category-button-active-color)',
+    borderColor: 'var(--category-button-active-color)',
 
     '&:hover': {
-      fill: 'var(--category-button-active-color)'
+      color: 'var(--category-button-active-color)'
     }
   }
 };

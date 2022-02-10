@@ -10,7 +10,7 @@ export default {
     '--category-name-background': '#333333',
     '--category-name-text-color': '#ffffff',
     '--category-button-active-background': 'var(--blue-color)',
-    '--category-button-active-color': '#ffffff',
+    '--category-button-active-color': '#5496ff',
     '--category-button-highlight-color': '#ffffff',
     '--category-button-color': '#AAAAAA',
     '--focus-indicator-color': '#999999',
