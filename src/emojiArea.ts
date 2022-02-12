@@ -145,7 +145,7 @@ export class EmojiArea {
     this.currentCategory = this.categories.indexOf((this.options.initialCategory as string) || 'smileys');
 
     if (this.options.showCategoryButtons) {
-      this.categoryButtons.setActiveButton(this.currentCategory, false);
+      this.categoryButtons.setActiveButton(this.currentCategory, false, false);
     }
 
     const recents = this.container.querySelector(`h3[data-category="recents"] ~ .${classes.emojiContainer}`);
@@ -261,7 +261,7 @@ export class EmojiArea {
     }
   }
 
-  selectCategory = (category: string, focus = true): void => {
+  selectCategory = (category: string, focus = true, animate = true): void => {
     this.emojis.removeEventListener('scroll', this.highlightCategory);
     if (this.focusedEmoji) {
       this.focusedEmoji.tabIndex = -1;
@@ -271,7 +271,7 @@ export class EmojiArea {
     this.currentCategory = categoryIndex;
     this.setFocusedEmoji(0, false);
     if (this.options.showCategoryButtons) {
-      this.categoryButtons.setActiveButton(this.currentCategory, focus);
+      this.categoryButtons.setActiveButton(this.currentCategory, focus, animate);
     }
 
     const targetPosition = this.headerOffsets[categoryIndex];

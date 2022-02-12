@@ -10,9 +10,7 @@ import { EmojiButtonOptions, I18NCategory, I18NStrings } from './types';
 
 import template from './templates/categoryButtons.ejs';
 import { renderTemplate } from './templates';
-import { queryAllByClass } from './util';
-
-// import './icons';
+import { queryByClass, queryAllByClass } from './util';
 
 export const categoryIcons: { [key in I18NCategory]: string } = {
   recents: 'fa-clock-rotate-left',
@@ -34,6 +32,7 @@ export class CategoryButtons {
   activeButton = 0;
 
   buttons: NodeListOf<HTMLButtonElement>;
+  private activeIndicator: HTMLElement;
 
   render(): HTMLElement {
     const categoryData = this.options.categories || this.options.emojiData?.categories || emojiData.categories;
@@ -44,14 +43,6 @@ export class CategoryButtons {
       categories = [...categories, 'custom'];
     }
 
-    const icons = Object.entries(categoryIcons).reduce(
-      (result, [category, icon]) => ({
-        ...result,
-        [`icon-${category}`]: icon
-      }),
-      {}
-    );
-
     const container = renderTemplate(template, {
       i18n: this.i18n,
       categories,
@@ -59,6 +50,7 @@ export class CategoryButtons {
     });
 
     this.buttons = queryAllByClass(container, classes.categoryButton);
+    this.activeIndicator = queryByClass(container, classes.activeIndicator);
 
     this.buttons.forEach((button: HTMLButtonElement) => {
       button.addEventListener('click', () => {
@@ -87,7 +79,7 @@ export class CategoryButtons {
     return container;
   }
 
-  setActiveButton(activeButton: number, focus = true): void {
+  setActiveButton(activeButton: number, focus = true, animate = true): void {
     let activeButtonEl = this.buttons[this.activeButton];
     activeButtonEl.classList.remove(classes.categoryButtonActive);
     activeButtonEl.tabIndex = -1;
@@ -97,6 +89,10 @@ export class CategoryButtons {
     activeButtonEl = this.buttons[this.activeButton];
     activeButtonEl.classList.add(classes.categoryButtonActive);
     activeButtonEl.tabIndex = 0;
+
+    const left = activeButtonEl.offsetLeft;
+    this.activeIndicator.style.transition = animate ? 'transform 200ms' : 'none';
+    this.activeIndicator.style.transform = `translateX(${left}px)`;
 
     if (focus) {
       activeButtonEl.focus();

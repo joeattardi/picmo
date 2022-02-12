@@ -63,7 +63,18 @@ export const categories = {
     margin: 0,
     marginBottom: 8,
     padding: [0, 8, 8, 8],
-    borderBottom: '1px solid var(--border-color)'
+    borderBottom: '1px solid var(--border-color)',
+    position: 'relative'
+  },
+
+  activeIndicator: {
+    position: 'absolute',
+    content: '""',
+    bottom: 4,
+    left: 0,
+    width: 'calc(1.5em + 4px)',
+    height: 5,
+    background: 'var(--category-button-active-color)'
   },
 
   categoryButton: {
@@ -80,6 +91,7 @@ export const categories = {
     justifyContent: 'center',
     height: '1.5em',
     width: '1.5em',
+    transition: 'all 250ms',
 
     '& img': {
       width: 'var(--category-button-size)',
@@ -95,17 +107,6 @@ export const categories = {
     color: 'var(--category-button-active-color)',
     borderColor: 'var(--category-button-active-color)',
     position: 'relative',
-
-    '&::after': {
-      position: 'absolute',
-      content: '""',
-      bottom: -4,
-      left: 0,
-      width: '100%',
-      height: 5,
-      borderRadius: 10,
-      background: 'var(--category-button-active-color)'
-    },
 
     '&:hover': {
       color: 'var(--category-button-active-color)'
