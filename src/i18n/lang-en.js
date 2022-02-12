@@ -6,7 +6,7 @@ export default {
   'categories.food': 'Food & Drink',
   'categories.objects': 'Objects',
   'categories.people': 'People & Body',
-  'categories.recents': 'Recent Emojis',
+  'categories.recents': 'Recently Used',
   'categories.smileys': 'Smileys & Emotion',
   'categories.symbols': 'Symbols',
   'categories.travel': 'Travel & Places',

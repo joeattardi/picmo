@@ -12,20 +12,20 @@ import template from './templates/categoryButtons.ejs';
 import { renderTemplate } from './templates';
 import { queryAllByClass } from './util';
 
-import icons from './icons';
+// import './icons';
 
-export const categoryIcons: { [key in I18NCategory]: HTMLElement } = {
-  recents: icons.recents(),
-  smileys: icons.smile(),
-  people: icons.people(),
-  animals: icons.animals(),
-  food: icons.food(),
-  activities: icons.activities(),
-  travel: icons.travel(),
-  objects: icons.objects(),
-  symbols: icons.symbols(),
-  flags: icons.flags(),
-  custom: icons.custom()
+export const categoryIcons: { [key in I18NCategory]: string } = {
+  recents: 'fa-clock-rotate-left',
+  smileys: 'fa-face-smile',
+  people: 'fa-user',
+  animals: 'fa-cat',
+  food: 'fa-mug-saucer',
+  activities: 'fa-futbol',
+  travel: 'fa-car',
+  objects: 'fa-lightbulb',
+  symbols: 'fa-icons',
+  flags: 'fa-flag',
+  custom: 'fa-image'
 };
 
 export class CategoryButtons {
@@ -55,7 +55,7 @@ export class CategoryButtons {
     const container = renderTemplate(template, {
       i18n: this.i18n,
       categories,
-      ...icons
+      categoryIcons
     });
 
     this.buttons = queryAllByClass(container, classes.categoryButton);

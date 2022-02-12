@@ -1,70 +1,45 @@
+import { config, dom, icon as faIcon, library } from '@fortawesome/fontawesome-svg-core';
+
 import {
-  mdiBasketball,
-  mdiCat,
-  mdiCloseCircle,
-  mdiRobot,
-  mdiFlag,
-  mdiFood,
-  mdiLightbulb,
-  mdiAccountMultiple,
-  mdiHistory,
-  mdiMagnify,
-  mdiMagnifyClose,
-  mdiEmoticon,
-  mdiMusicBox,
-  mdiTrainCar
-} from '@mdi/js';
-import ejs from 'ejs';
+  faCar,
+  faCat,
+  faClockRotateLeft,
+  faFaceSmile,
+  faFlag,
+  faFutbol,
+  faIcons,
+  faImage,
+  faLightbulb,
+  faMagnifyingGlass,
+  faMugSaucer,
+  faSquareXmark,
+  faUser,
+  faXmark
+} from '@fortawesome/free-solid-svg-icons';
 
-import classes from './styles';
-import { toElement } from './templates';
+library.add(
+  faCar,
+  faCat,
+  faClockRotateLeft,
+  faFaceSmile,
+  faFlag,
+  faFutbol,
+  faIcons,
+  faImage,
+  faLightbulb,
+  faMagnifyingGlass,
+  faMugSaucer,
+  faSquareXmark,
+  faUser,
+  faXmark
+);
 
-const iconTemplate = ejs.compile(`
-  <svg class="<%- iconClass %>" width="24" height="24" viewBox="0 0 24 24">
-    <path d="<%- icon %>" />
-  </svg>
-`);
-
-function createIcon(icon) {
-  return () => {
-    return toElement(
-      iconTemplate({
-        icon,
-        iconClass: classes.icon
-      })
-    );
-  };
+export function icon(iconName, params) {
+  return faIcon(
+    {
+      prefix: 'fas',
+      iconName
+    },
+    params
+  ).node[0];
 }
-
-function createIconPartial(icon) {
-  return iconTemplate({
-    icon,
-    iconClass: classes.icon
-  });
-}
-
-const icons = {};
-const templatePartials = {};
-
-function addIcon(name, icon) {
-  icons[name] = createIcon(icon);
-  templatePartials[name] = createIconPartial(icon);
-}
-
-export default icons;
-export { templatePartials };
-
-addIcon('activities', mdiBasketball);
-addIcon('animals', mdiCat);
-addIcon('clear', mdiCloseCircle);
-addIcon('custom', mdiRobot);
-addIcon('flags', mdiFlag);
-addIcon('food', mdiFood);
-addIcon('notFound', mdiMagnifyClose);
-addIcon('objects', mdiLightbulb);
-addIcon('people', mdiAccountMultiple);
-addIcon('recents', mdiHistory);
-addIcon('search', mdiMagnify);
-addIcon('smile', mdiEmoticon);
-addIcon('symbols', mdiMusicBox);
-addIcon('travel', mdiTrainCar);

@@ -1,6 +1,7 @@
+import { dom } from '@fortawesome/fontawesome-svg-core';
+
 import ejs, { Data } from 'ejs';
 
-import { templatePartials } from './icons';
 import classes from './styles';
 
 type ElementTemplate = (data?: Data) => HTMLElement;
@@ -20,8 +21,7 @@ type ElementTemplate = (data?: Data) => HTMLElement;
 function addHelpers(data: Data = {}): Data {
   return {
     ...data,
-    classes,
-    icons: templatePartials
+    classes
   };
 }
 
@@ -70,6 +70,8 @@ export function renderTemplate<E extends HTMLElement = HTMLElement>(template: st
       }
     });
   }
+
+  dom.i2svg({ node: result });
 
   return result;
 }

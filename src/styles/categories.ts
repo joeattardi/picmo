@@ -1,6 +1,6 @@
 export const categories = {
   categoryName: {
-    fontSize: '1.2em',
+    fontSize: '1em',
     padding: [6, 12],
     margin: 0,
     background: 'var(--category-name-background)',
@@ -28,22 +28,22 @@ export const categories = {
     },
 
     '& button': {
+      opacity: 0,
       background: 'transparent',
       border: 'none',
-      '--icon-size': '1.5em',
       display: 'flex',
       alignItems: 'center',
       cursor: 'pointer',
-      opacity: 0.75,
-      transition: 'opacity 200ms',
+      transition: 'opacity 0.2s ease-in-out',
+      color: 'var(--category-name-button-color)',
 
       '&:hover': {
         opacity: 1
-      },
-
-      '& svg': {
-        fill: 'var(--category-button-color)'
       }
+    },
+
+    '&:hover button': {
+      opacity: 0.5
     }
   },
 
@@ -59,25 +59,27 @@ export const categories = {
     display: 'flex',
     flexDirection: 'row',
     height: 'var(--category-button-height)',
-    justifyContent: 'space-around',
-    margin: '0.5em'
+    justifyContent: 'space-between',
+    margin: 0,
+    marginBottom: 8,
+    padding: [0, 8, 8, 8],
+    borderBottom: '1px solid var(--border-color)'
   },
 
   categoryButton: {
-    fill: 'var(--category-button-color)',
     background: 'transparent',
     border: 'none',
     borderRadius: 5,
     color: 'var(--category-button-color)',
     cursor: 'pointer',
-    flexGrow: 1,
     fontSize: 'var(--category-button-size)',
     padding: 4,
     verticalAlign: 'middle',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '2em',
+    height: '1.5em',
+    width: '1.5em',
 
     '& img': {
       width: 'var(--category-button-size)',
@@ -86,16 +88,24 @@ export const categories = {
 
     '&:hover': {
       color: 'var(--category-button-highlight-color)'
-    },
-
-    '&:focus': {
-      outline: '1px dotted var(--focus-indicator-color)'
     }
   },
 
   categoryButtonActive: {
     color: 'var(--category-button-active-color)',
     borderColor: 'var(--category-button-active-color)',
+    position: 'relative',
+
+    '&::after': {
+      position: 'absolute',
+      content: '""',
+      bottom: -4,
+      left: 0,
+      width: '100%',
+      height: 5,
+      borderRadius: 10,
+      background: 'var(--category-button-active-color)'
+    },
 
     '&:hover': {
       color: 'var(--category-button-active-color)'

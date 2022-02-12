@@ -3,7 +3,7 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import classes from './styles';
 
-import icons from './icons';
+import { icon } from './icons';
 
 import { EmojiContainer } from './emojiContainer';
 import { HIDE_PREVIEW, HIDE_VARIANT_POPUP, SHOW_SEARCH_RESULTS, HIDE_SEARCH_RESULTS } from './events';
@@ -65,10 +65,9 @@ export class Search {
   }
 
   render(): HTMLElement {
-    this.searchIcon = icons.search();
+    this.searchIcon = icon('magnifying-glass', { classes: 'fa-fw' });
     this.notFoundMessage = renderTemplate(notFoundTemplate, {
-      i18n: this.i18n,
-      icon: icons.notFound()
+      i18n: this.i18n
     });
 
     this.searchContainer = renderTemplate(searchTemplate, {
@@ -76,8 +75,7 @@ export class Search {
     });
 
     this.clearSearchButton = renderTemplate(clearSearchButtonTemplate, {
-      i18n: this.i18n,
-      icon: icons.clear()
+      i18n: this.i18n
     });
 
     this.searchField = queryByClass(this.searchContainer, classes.searchField);

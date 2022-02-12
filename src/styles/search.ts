@@ -47,6 +47,8 @@ export const search = {
     right: '0.75em',
     top: 'calc(50% - 0.625rem)',
     width: '1.25rem',
+    display: 'flex',
+    alignItems: 'center',
 
     '& img': {
       width: '1.25rem',
@@ -54,9 +56,7 @@ export const search = {
     },
 
     '& svg': {
-      fill: 'var(--search-icon-color)',
-      width: '1.25rem',
-      height: '1.25rem'
+      fill: 'var(--search-icon-color)'
     }
   },
 
@@ -65,6 +65,7 @@ export const search = {
     border: 'none',
     background: 'transparent',
     color: 'var(--search-icon-color)',
+    fontSize: '1em',
     width: '100%',
     height: '100%',
     display: 'flex',
@@ -72,6 +73,7 @@ export const search = {
     padding: 0
   },
 
+  // TODO fix layering icons
   searchNotFound: {
     color: 'var(--secondary-text-color)',
     display: 'flex',
@@ -89,10 +91,6 @@ export const search = {
     color: 'var(--secondary-text-color)',
     fontSize: '1em',
     margin: '0.5em 0'
-  },
-
-  searchNotFoundIcon: {
-    '--icon-size': '8rem'
   }
 };
 
