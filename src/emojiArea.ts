@@ -6,10 +6,11 @@ import emojiData from './data/emoji';
 
 import { CategoryButtons, categoryIcons } from './categoryButtons';
 import { EmojiContainer } from './emojiContainer';
-import { RecentsContainer } from './recentsContainer';
+import { EmojiCategory } from './emojiCategory';
+import { RecentEmojiCategory } from './recentEmojiCategory';
 
 import { CATEGORY_CLICKED } from './events';
-import { I18NStrings, EmojiButtonOptions, EmojiRecord, EmojiCategory } from './types';
+import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
 import { queryAllByClass, queryByClass } from './util';
 import { clear, load } from './recent';
 
@@ -19,12 +20,12 @@ import { LazyLoader } from './lazyLoad';
 
 const categorySortOrder = Object.values(EmojiCategory);
 
-const containerClasses = {
-  [EmojiCategory.RECENTS]: RecentsContainer
+const categoryClasses = {
+  recents: RecentEmojiCategory
 };
 
-function getContainerClass(category: EmojiCategory) {
-  return containerClasses[category] || EmojiContainer;
+function getCategoryClass(category) {
+  return categoryClasses[category] || EmojiCategory;
 }
 
 export class EmojiArea {
@@ -77,16 +78,7 @@ export class EmojiArea {
       }));
     }
 
-    const categoryIconElements = Object.entries(categoryIcons).reduce(
-      (result, [category, icon]) => ({
-        ...result,
-        [`icon-${category}`]: toElement(icon)
-      }),
-      {}
-    );
-
     const emojiContainers = await Promise.all(this.categories.map(category => this.renderEmojis(category)));
-
     const categoryEmojiElements = {};
     this.categories.forEach((category, index) => {
       categoryEmojiElements[`emojis-${category}`] = emojiContainers[index];
@@ -96,22 +88,21 @@ export class EmojiArea {
       categoryButtons: this.options.showCategoryButtons ? this.categoryButtons?.render() : null,
       categories: this.categories,
       i18n: this.i18n,
-      ...categoryIconElements,
       ...categoryEmojiElements
     });
 
-    const recents = this.container.querySelector('h3[data-category="recents"]');
-    if (recents) {
-      const clearButton = renderTemplate(
-        `<button title="<%= i18n.get('recents.clear') %>"><i class="fa-solid fa-lg fa-square-xmark"></i></button>`,
-        { i18n: this.i18n }
-      );
-      clearButton.addEventListener('click', () => {
-        recents.nextElementSibling.replaceChildren();
-        clear();
-      });
-      recents.appendChild(clearButton);
-    }
+    // const recents = this.container.querySelector('h3[data-category="recents"]');
+    // if (recents) {
+    //   const clearButton = renderTemplate(
+    //     `<button title="<%= i18n.get('recents.clear') %>"><i class="fa-solid fa-lg fa-square-xmark"></i></button>`,
+    //     { i18n: this.i18n }
+    //   );
+    //   clearButton.addEventListener('click', () => {
+    //     recents.nextElementSibling.replaceChildren();
+    //     clear();
+    //   });
+    //   recents.appendChild(clearButton);
+    // }
 
     this.emojis = queryByClass(this.container, classes.emojis);
 
@@ -128,10 +119,11 @@ export class EmojiArea {
   }
 
   async renderEmojis(category: string): Promise<HTMLElement> {
-    const Container = getContainerClass(category as EmojiCategory);
-    return await new Container(
-      this.emojiCategories[category],
+    const CategoryClass = getCategoryClass(category);
+    return await new CategoryClass(
+      category,
       true,
+      this.emojiCategories[category],
       this.events,
       this.options,
       this.lazyLoader,
@@ -149,12 +141,12 @@ export class EmojiArea {
       this.categoryButtons.setActiveButton(this.currentCategory, false, false);
     }
 
-    const recents = this.container.querySelector(`h3[data-category="recents"] ~ .${classes.emojiContainer}`);
-    if (recents) {
-      const recentsLoader = new LazyLoader();
-      recents.replaceWith(await new RecentsContainer(load(), true, this.events, this.options, recentsLoader, this.i18n).render());
-      recentsLoader.observe(this.emojis);
-    }
+    // const recents = this.container.querySelector(`h3[data-category="recents"] ~ .${classes.emojiContainer}`);
+    // if (recents) {
+    //   const recentsLoader = new LazyLoader();
+    //   recents.replaceWith(await new RecentsContainer(load(), true, this.events, this.options, recentsLoader, this.i18n).render());
+    //   recentsLoader.observe(this.emojis);
+    // }
   }
 
   private get currentCategoryEl(): HTMLElement {

@@ -44,6 +44,16 @@ export const emoji = {
     position: 'relative'
   },
 
+  recentEmojis: {
+    '&[data-empty="true"]': {
+      display: 'none'
+    },
+
+    '&[data-empty="false"] + div': {
+      display: 'none'
+    }
+  },
+
   emojiContainer: {
     display: 'grid',
     justifyContent: 'space-between',
@@ -61,7 +71,7 @@ export const emoji = {
     fontSize: '0.8em',
     textAlign: 'center',
     display: 'block',
-    padding: [0, 12]
+    padding: 12
   },
 
   customEmoji: {

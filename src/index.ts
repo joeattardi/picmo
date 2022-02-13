@@ -51,7 +51,7 @@ const DEFAULT_OPTIONS: Partial<EmojiButtonOptions> = {
   emojiData,
   emojiVersion: '12.1',
   theme: lightTheme,
-  categories: ['smileys', 'people', 'animals', 'food', 'activities', 'travel', 'objects', 'symbols', 'flags'],
+  categories: ['smileys', 'people', 'animals', 'food', 'travel', 'activities', 'objects', 'symbols', 'flags'],
   style: 'native',
   twemojiOptions: {
     ext: '.svg',

@@ -2,9 +2,6 @@
   <div data-placeholder="categoryButtons"></div>
   <div class="<%= classes.emojis %>">
     <% categories.forEach(category => { %>
-      <h3 data-category="<%= category %>" class="<%= classes.categoryName %>">
-        <%= i18n.get(`categories.${category}`) %>
-      </h3>
       <div data-placeholder="emojis-<%= category %>"></div>
     <% }) %>
   </div>

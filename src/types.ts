@@ -100,14 +100,15 @@ export type EmojiStyle = 'native' | 'twemoji';
 
 export type EmojiVersion = '1.0' | '2.0' | '3.0' | '4.0' | '5.0' | '11.0' | '12.0' | '12.1';
 
+// TODO fix order when using emojibase data
 export enum EmojiCategory {
   RECENTS = 'recents',
   SMILEYS = 'smileys',
   PEOPLE = 'people',
   ANIMALS = 'animals',
   FOOD = 'food',
-  ACTIVITIES = 'activities',
   TRAVEL = 'travel',
+  ACTIVITIES = 'activities',
   OBJECTS = 'objects',
   SYMBOLS = 'symbols',
   FLAGS = 'flags',
