@@ -28,8 +28,7 @@ export const emoji = {
     display: 'flex',
 
     '&:hover': {
-      background: 'var(--hover-color)',
-      border: ['1px', 'solid', 'var(--hover-shadow-color)']
+      background: 'var(--hover-color)'
     },
 
     '&:focus': {
@@ -54,6 +53,15 @@ export const emoji = {
     gridAutoRows: 'calc(var(--emoji-size) * var(--emoji-size-multiplier))',
     marginTop: 8,
     marginBottom: 8
+  },
+
+  noRecents: {
+    color: 'var(--secondary-text-color)',
+    gridColumn: '1 / span var(--emojis-per-row)',
+    fontSize: '0.8em',
+    textAlign: 'center',
+    display: 'block',
+    padding: [0, 12]
   },
 
   customEmoji: {

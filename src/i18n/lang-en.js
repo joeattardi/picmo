@@ -11,6 +11,7 @@ export default {
   'categories.symbols': 'Symbols',
   'categories.travel': 'Travel & Places',
   'recents.clear': 'Clear recent emojis',
+  'recents.none': "You haven't selected any emojis yet.",
   'search.clear': 'Clear search',
   'search.notFound': 'No matching emojis found.',
   search: 'Search emojis...'

@@ -134,7 +134,8 @@ export class EmojiArea {
       true,
       this.events,
       this.options,
-      this.lazyLoader
+      this.lazyLoader,
+      this.i18n
     ).render();
   }
 
@@ -151,7 +152,7 @@ export class EmojiArea {
     const recents = this.container.querySelector(`h3[data-category="recents"] ~ .${classes.emojiContainer}`);
     if (recents) {
       const recentsLoader = new LazyLoader();
-      recents.replaceWith(await new RecentsContainer(load(), true, this.events, this.options, recentsLoader).render());
+      recents.replaceWith(await new RecentsContainer(load(), true, this.events, this.options, recentsLoader, this.i18n).render());
       recentsLoader.observe(this.emojis);
     }
   }

@@ -8,7 +8,6 @@ export const search = {
     display: 'flex',
     height: 'var(--search-height)',
     margin: '0.5em',
-    marginBottom: '0.25em',
     position: 'relative'
   },
 

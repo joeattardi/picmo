@@ -16,18 +16,23 @@ export class EmojiContainer {
   protected options: EmojiButtonOptions;
   protected lazy = false;
   protected lazyLoader: LazyLoader;
+  protected template: string;
+  protected i18n;
 
   constructor(
     emojis: Array<EmojiRecord | RecentEmoji>,
     showVariants: boolean,
     events: Emitter,
     options: EmojiButtonOptions,
-    lazyLoader: LazyLoader
+    lazyLoader: LazyLoader,
+    i18n
   ) {
     this.showVariants = showVariants;
     this.events = events;
     this.options = options;
     this.lazyLoader = lazyLoader;
+    this.template = template;
+    this.i18n = i18n;
 
     this.emojis = emojis.filter(
       e =>
@@ -48,7 +53,7 @@ export class EmojiContainer {
       )
     );
 
-    this.container = renderTemplate(template, { emojis });
+    this.container = renderTemplate(this.template, { emojis, i18n: this.i18n });
     return this.container;
   }
 }
