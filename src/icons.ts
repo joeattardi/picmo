@@ -1,4 +1,4 @@
-import { config, dom, icon as faIcon, library } from '@fortawesome/fontawesome-svg-core';
+import { icon as faIcon, library, IconName, IconParams } from '@fortawesome/fontawesome-svg-core';
 
 import {
   faCar,
@@ -34,12 +34,12 @@ library.add(
   faXmark
 );
 
-export function icon(iconName, params) {
+export function icon(iconName: IconName, params: IconParams): HTMLElement {
   return faIcon(
     {
       prefix: 'fas',
       iconName
     },
     params
-  ).node[0];
+  ).node[0] as HTMLElement;
 }

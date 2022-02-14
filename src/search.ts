@@ -3,59 +3,60 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import classes from './styles';
 
+import Bundle from './i18n';
+
 import { icon } from './icons';
 
 import { EmojiContainer } from './emojiContainer';
 import { HIDE_PREVIEW, HIDE_VARIANT_POPUP, SHOW_SEARCH_RESULTS, HIDE_SEARCH_RESULTS } from './events';
-import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
+import { CustomEmoji } from './types';
 
-import { renderTemplate, toElement } from './templates';
+import { renderTemplate } from './templates';
 import searchTemplate from './templates/search/search.ejs';
 import clearSearchButtonTemplate from './templates/search/clearButton.ejs';
 import notFoundTemplate from './templates/search/notFound.ejs';
 
 import { LazyLoader } from './lazyLoad';
 import { queryByClass } from './util';
+import Renderer from './renderers/renderer';
+
+type SearchOptions = {
+  events: Emitter;
+  i18n: Bundle;
+  emojiData: any;
+  emojisPerRow: number;
+  emojiVersion: string;
+  customEmojis: CustomEmoji[];
+  renderer: Renderer;
+};
 
 export class Search {
-  private emojiData: EmojiRecord[];
+  private emojiData: any[];
   private emojisPerRow: number;
   private focusedEmojiIndex = 0;
+  private i18n: Bundle;
+  private events: Emitter;
+  private emojiVersion: string;
+  private renderer: Renderer;
 
   private searchContainer: HTMLElement;
   private searchField: HTMLInputElement;
   private searchAccessory: HTMLElement;
-  private searchIcon: HTMLImageElement;
+  private searchIcon: HTMLElement;
   private clearSearchButton: HTMLButtonElement;
   private resultsContainer: HTMLElement | null;
   private notFoundMessage: HTMLElement;
 
-  constructor(
-    private events: Emitter,
-    private i18n: I18NStrings,
-    private options: EmojiButtonOptions,
-    emojiData: EmojiRecord[],
-    categories: number[]
-  ) {
-    this.emojisPerRow = this.options.emojisPerRow || 8;
-    this.emojiData = emojiData.filter(
-      e =>
-        e.version &&
-        parseFloat(e.version) <= parseFloat(options.emojiVersion as string) &&
-        e.category !== undefined &&
-        categories.indexOf(e.category) >= 0
-    );
+  constructor({ events, i18n, emojiData, emojisPerRow, emojiVersion, customEmojis = [], renderer }: SearchOptions) {
+    this.emojisPerRow = emojisPerRow;
+    this.emojiData = emojiData.filter(e => e.version && parseFloat(e.version) <= parseFloat(emojiVersion));
+    this.emojiData = [...this.emojiData, ...customEmojis];
+    this.i18n = i18n;
+    this.events = events;
+    this.emojiVersion = emojiVersion;
+    this.renderer = renderer;
 
-    if (this.options.custom) {
-      const customEmojis = this.options.custom.map(custom => ({
-        ...custom,
-        custom: true
-      }));
-
-      this.emojiData = [...this.emojiData, ...customEmojis];
-    }
-
-    this.events.on(HIDE_VARIANT_POPUP, () => {
+    events.on(HIDE_VARIANT_POPUP, () => {
       setTimeout(() => this.setFocusedEmoji(this.focusedEmojiIndex));
     });
   }
@@ -156,7 +157,7 @@ export class Search {
     }
   }
 
-  async onKeyUp(event: KeyboardEvent): void {
+  async onKeyUp(event: KeyboardEvent): Promise<void> {
     if (event.key === 'Tab' || event.key === 'Shift') {
       return;
     } else if (!this.searchField.value) {
@@ -177,13 +178,15 @@ export class Search {
 
       if (searchResults.length) {
         const lazyLoader = new LazyLoader();
-        this.resultsContainer = await new EmojiContainer(
-          searchResults,
-          true,
-          this.events,
-          this.options,
-          lazyLoader
-        ).render();
+        this.resultsContainer = await new EmojiContainer({
+          emojis: searchResults,
+          showVariants: true,
+          events: this.events,
+          i18n: this.i18n,
+          emojiVersion: this.emojiVersion,
+          renderer: this.renderer
+        }).render();
+
         this.resultsContainer.classList.add(classes.searchResults);
 
         lazyLoader.observe(this.resultsContainer);

@@ -23,7 +23,10 @@ import { VariantPopup } from './variantPopup';
 
 import Bundle from './i18n';
 
-import { EmojiButtonOptions, EmojiRecord, EmojiSelection, FixedPosition, Theme } from './types';
+// import { EmojiButtonOptions, EmojiRecord, EmojiSelection, FixedPosition, Theme } from './types';
+
+import { PickerOptions, CustomEmoji } from './types';
+
 import { EmojiArea } from './emojiArea';
 import { save } from './recent';
 
@@ -33,6 +36,7 @@ import template from './templates/index.ejs';
 import lightTheme from './styles/theme/light';
 import en from './i18n/lang-en';
 import NativeRenderer from './renderers/native';
+import Renderer from './renderers/renderer';
 
 const MOBILE_BREAKPOINT = 450;
 
@@ -66,6 +70,15 @@ const DEFAULT_OPTIONS: Partial<EmojiButtonOptions> = {
 
 //  options as { base: string; size: string; ext: string };
 
+const defaultOptions = {
+  rootElement: document.body,
+  renderer: new NativeRenderer(),
+
+  showSearch: true,
+
+  emojisPerRow: 8
+};
+
 type TwemojiCallbackOptions = {
   base: string;
   size: string;
@@ -76,8 +89,12 @@ export { LazyLoader };
 
 const SHOW_HIDE_DURATION = 200;
 
+function getOption(options: PickerOptions, key: keyof PickerOptions) {
+  return options[key] ?? defaultOptions[key];
+}
+
 export class EmojiButton {
-  private pickerVisible: boolean;
+  private pickerVisible = false;
 
   private events = new Emitter();
   private publicEvents = new Emitter();
@@ -93,26 +110,40 @@ export class EmojiButton {
   private emojiArea: EmojiArea;
   private search: Search;
 
+  private renderer: Renderer;
+
+  private customEmojis: CustomEmoji[] = [];
+
   private overlay?: HTMLElement;
   private rootElement: HTMLElement;
-  private referenceElement: HTMLElement;
+  private referenceElement?: HTMLElement;
+
+  private emojisPerRow: number;
+  private emojiVersion: string;
 
   private popper: Popper;
 
+  private showSearch: boolean;
+
   private emojiCategories: { [key: string]: EmojiRecord[] };
 
-  constructor(options: Partial<EmojiButtonOptions> = {}) {
-    this.pickerVisible = false;
+  constructor(options: PickerOptions = {}) {
+    this.showSearch = getOption(options, 'showSearch');
 
-    this.options = { ...DEFAULT_OPTIONS, ...options };
-    this.rootElement = this.options.rootElement || document.body;
-    this.i18n = new Bundle(this.options.locale);
-    this.referenceElement = this.options.referenceElement;
+    this.rootElement = getOption(options, 'rootElement');
+    this.referenceElement = getOption(options, 'referenceElement');
+    this.renderer = getOption(options, 'renderer');
+
+    this.emojisPerRow = getOption(options, 'emojisPerRow');
+    this.emojiVersion = getOption(options, 'emojiVersion');
+
+    this.customEmojis = getOption(options, 'custom');
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
 
-    this.emojiCategories = buildEmojiCategoryData(this.options.emojiData || emojiData);
+    this.i18n = new Bundle(this.options.locale);
+    this.emojiCategories = buildEmojiCategoryData(emojiData);
 
     this.buildPicker();
   }
@@ -278,16 +309,24 @@ export class EmojiButton {
    * Builds the search UI.
    */
   private buildSearch(): void {
-    if (this.options.showSearch) {
-      this.search = new Search(
-        this.events,
-        this.i18n,
-        this.options,
-        this.options.emojiData?.emoji || emojiData.emoji,
-        (this.options.categories || []).map(category =>
-          (this.options.emojiData || emojiData).categories.indexOf(category)
-        )
-      );
+    if (this.showSearch) {
+      this.search = new Search({
+        events: this.events,
+        i18n: this.i18n,
+        emojiData: emojiData.emoji,
+        emojisPerRow: this.emojisPerRow,
+        emojiVersion: this.emojiVersion,
+
+      });
+      // this.search = new Search(
+      //   this.events,
+      //   this.i18n,
+      //   this.options,
+      //   this.options.emojiData?.emoji || emojiData.emoji,
+      //   (this.options.categories || []).map(category =>
+      //     (this.options.emojiData || emojiData).categories.indexOf(category)
+      //   )
+      // );
     }
   }
 
@@ -333,7 +372,7 @@ export class EmojiButton {
    * Builds the emoji picker.
    */
   private async buildPicker(): Promise<void> {
-    this.initPlugins();
+    // this.initPlugins(); TODO plugins later
     this.buildSearch();
 
     const lazyLoader = new LazyLoader();
