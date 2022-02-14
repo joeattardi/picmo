@@ -1,15 +1,14 @@
 import Renderer from './renderer';
-import { EmojiRecord, EmojiSelection } from '../types';
 import { compileTemplate } from '../templates';
 
 const template = compileTemplate('<span><%= emoji %></span>');
 
 export default class NativeRenderer extends Renderer {
-  render(emoji: EmojiRecord): HTMLElement {
+  render(emoji: any): HTMLElement {
     return template({ emoji: emoji.emoji });
   }
 
-  emit({ emoji, name }: EmojiRecord): EmojiSelection {
+  emit({ emoji, name }: any): any {
     return { emoji, name };
   }
 }

@@ -25,7 +25,7 @@ import Bundle from './i18n';
 
 // import { EmojiButtonOptions, EmojiRecord, EmojiSelection, FixedPosition, Theme } from './types';
 
-import { PickerOptions, CustomEmoji } from './types';
+import { PickerOptions, CustomEmoji, Position } from './types';
 
 import { EmojiArea } from './emojiArea';
 import { save } from './recent';
@@ -40,7 +40,7 @@ import Renderer from './renderers/renderer';
 
 const MOBILE_BREAKPOINT = 450;
 
-const DEFAULT_OPTIONS: Partial<EmojiButtonOptions> = {
+const DEFAULT_OPTIONS = {
   locale: en,
   position: 'auto',
   autoHide: true,
@@ -68,21 +68,16 @@ const DEFAULT_OPTIONS: Partial<EmojiButtonOptions> = {
   renderer: new NativeRenderer()
 };
 
-//  options as { base: string; size: string; ext: string };
-
 const defaultOptions = {
   rootElement: document.body,
   renderer: new NativeRenderer(),
 
   showSearch: true,
+  showCategoryButtons: true,
+  showVariants: true,
 
+  position: 'auto',
   emojisPerRow: 8
-};
-
-type TwemojiCallbackOptions = {
-  base: string;
-  size: string;
-  ext: string;
 };
 
 export { LazyLoader };
@@ -98,7 +93,7 @@ export class EmojiButton {
 
   private events = new Emitter();
   private publicEvents = new Emitter();
-  private options: EmojiButtonOptions;
+  private options: any;
   private i18n: Bundle;
 
   private pickerEl: HTMLElement;
@@ -118,22 +113,30 @@ export class EmojiButton {
   private rootElement: HTMLElement;
   private referenceElement?: HTMLElement;
 
+  private position: Position;
   private emojisPerRow: number;
   private emojiVersion: string;
 
   private popper: Popper;
 
+  private showCategoryButtons: boolean;
   private showSearch: boolean;
+  private showVariants: boolean;
+  private showRecents: boolean;
 
-  private emojiCategories: { [key: string]: EmojiRecord[] };
+  private emojiCategories: { [key: string]: any[] };
 
   constructor(options: PickerOptions = {}) {
     this.showSearch = getOption(options, 'showSearch');
+    this.showVariants = getOption(options, 'showVariants');
+    this.showCategoryButtons = getOption(options, 'showCategoryButtons');
+    this.showRecents = getOption(options, 'showRecents');
 
     this.rootElement = getOption(options, 'rootElement');
     this.referenceElement = getOption(options, 'referenceElement');
     this.renderer = getOption(options, 'renderer');
 
+    this.position = getOption(options, 'position');
     this.emojisPerRow = getOption(options, 'emojisPerRow');
     this.emojiVersion = getOption(options, 'emojiVersion');
 
@@ -223,11 +226,11 @@ export class EmojiButton {
    * Emits a selected emoji event.
    * @param param0 The selected emoji and show variants flag
    */
-  private async emitEmoji({ emoji, showVariants }: { emoji: EmojiRecord; showVariants: boolean }): Promise<void> {
-    if ((emoji as EmojiRecord).variations && showVariants && this.options.showVariants) {
-      this.showVariantPopup(emoji as EmojiRecord);
+  private async emitEmoji({ emoji, showVariants }: { emoji: any; showVariants: boolean }): Promise<void> {
+    if (emoji.variations && showVariants && this.showVariants) {
+      this.showVariantPopup(emoji);
     } else {
-      let eventData: EmojiSelection;
+      let eventData;
       if (emoji.custom) {
         eventData = this.emitCustomEmoji(emoji);
       } else {
@@ -237,11 +240,6 @@ export class EmojiButton {
           emoji
         };
       }
-      // } else if (this.options.style === STYLE_TWEMOJI) {
-      //   eventData = await this.emitTwemoji(emoji);
-      // } else {
-      //   eventData = this.emitNativeEmoji(emoji);
-      // }
 
       this.publicEvents.emit(EMOJI, eventData);
 
@@ -249,11 +247,8 @@ export class EmojiButton {
         await this.hidePicker();
       }
 
-      if (
-        (!(emoji as EmojiRecord).variations || !showVariants || !this.options.showVariants) &&
-        this.options.showRecents
-      ) {
-        save(emoji, this.options, this.events);
+      if ((!emoji.variations || !showVariants || !this.options.showVariants) && this.options.showRecents) {
+        save(emoji, this.options.recentsCount, this.events);
       }
     }
   }
@@ -262,7 +257,7 @@ export class EmojiButton {
    * Emits a native emoji record.
    * @param emoji The selected emoji
    */
-  private emitNativeEmoji(emoji: EmojiRecord): EmojiSelection {
+  private emitNativeEmoji(emoji: any) {
     return {
       emoji: emoji.emoji,
       name: emoji.name
@@ -273,36 +268,12 @@ export class EmojiButton {
    * Emits a custom emoji record.
    * @param emoji The selected emoji
    */
-  private emitCustomEmoji(emoji: EmojiRecord): EmojiSelection {
+  private emitCustomEmoji(emoji: any) {
     return {
       url: emoji.emoji,
       name: emoji.name,
       custom: true
     };
-  }
-
-  /**
-   * Emits a Twemoji emoji record.
-   * @param emoji The selected emoji
-   */
-  private emitTwemoji(emoji: EmojiRecord): Promise<EmojiSelection> {
-    return new Promise(resolve => {
-      twemoji.parse(emoji.emoji, {
-        ...this.options.twemojiOptions,
-        className: classes.twemoji,
-        callback: (icon, options) => {
-          const { base, size, ext } = options as TwemojiCallbackOptions;
-          const imageUrl = `${base}${size}/${icon}${ext}`;
-          resolve({
-            url: imageUrl,
-            emoji: emoji.emoji,
-            name: emoji.name
-          });
-
-          return imageUrl;
-        }
-      });
-    });
   }
 
   /**
@@ -316,17 +287,9 @@ export class EmojiButton {
         emojiData: emojiData.emoji,
         emojisPerRow: this.emojisPerRow,
         emojiVersion: this.emojiVersion,
-
+        customEmojis: this.customEmojis,
+        renderer: this.renderer
       });
-      // this.search = new Search(
-      //   this.events,
-      //   this.i18n,
-      //   this.options,
-      //   this.options.emojiData?.emoji || emojiData.emoji,
-      //   (this.options.categories || []).map(category =>
-      //     (this.options.emojiData || emojiData).categories.indexOf(category)
-      //   )
-      // );
     }
   }
 
@@ -335,7 +298,12 @@ export class EmojiButton {
    */
   private buildPreview(): void {
     if (this.options.showPreview) {
-      this.pickerEl.appendChild(new EmojiPreview(this.events, this.options).render());
+      this.pickerEl.appendChild(
+        new EmojiPreview({
+          events: this.events,
+          renderer: this.renderer
+        }).render()
+      );
     }
   }
 
@@ -377,7 +345,19 @@ export class EmojiButton {
 
     const lazyLoader = new LazyLoader();
 
-    this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories, lazyLoader);
+    this.emojiArea = new EmojiArea({
+      events: this.events,
+      i18n: this.i18n,
+      emojiCategories: this.emojiCategories,
+      lazyLoader: lazyLoader,
+      emojisPerRow: this.emojisPerRow,
+      custom: this.customEmojis,
+      showCategoryButtons: this.showCategoryButtons,
+      showRecents: this.showRecents,
+      renderer: this.renderer,
+      emojiVersion: this.emojiVersion
+    });
+    // this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories, lazyLoader);
 
     this.wrapper = renderTemplate(template, {
       plugins: this.pluginContainer,
@@ -411,8 +391,12 @@ export class EmojiButton {
    *
    * @param emoji The emoji whose variants are to be shown.
    */
-  private async showVariantPopup(emoji: EmojiRecord): void {
-    const variantPopup = await new VariantPopup(this.events, emoji, this.options).render();
+  private async showVariantPopup(emoji: any): Promise<void> {
+    const variantPopup = await new VariantPopup({
+      events: this.events,
+      emoji,
+      renderer: this.renderer
+    }).render();
 
     if (variantPopup) {
       this.pickerEl.appendChild(variantPopup);
@@ -627,7 +611,7 @@ export class EmojiButton {
     if (this.options?.position) {
       this.wrapper.style.position = 'fixed';
 
-      const fixedPosition = this.options.position as FixedPosition;
+      const fixedPosition = this.options.position;
 
       Object.keys(fixedPosition).forEach(key => {
         this.wrapper.style[key] = fixedPosition[key];

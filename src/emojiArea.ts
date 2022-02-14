@@ -4,19 +4,20 @@ import classes from './styles';
 
 import emojiData from './data/emoji';
 
-import { CategoryButtons, categoryIcons } from './categoryButtons';
-import { EmojiContainer } from './emojiContainer';
+import { CategoryButtons } from './categoryButtons';
 import { EmojiCategory } from './emojiCategory';
 import { RecentEmojiCategory } from './recentEmojiCategory';
 
 import { CATEGORY_CLICKED } from './events';
-import { I18NStrings, EmojiButtonOptions, EmojiRecord } from './types';
 import { queryAllByClass, queryByClass } from './util';
-import { clear, load } from './recent';
+import { load } from './recent';
 
 import template from './templates/emojiArea.ejs';
-import { renderTemplate, toElement } from './templates';
+import { renderTemplate } from './templates';
 import { LazyLoader } from './lazyLoad';
+import Bundle from './i18n';
+import Renderer from './renderers/renderer';
+import { CustomEmoji } from './types';
 
 const categorySortOrder = Object.values(EmojiCategory);
 
@@ -28,6 +29,18 @@ function getCategoryClass(category) {
   return categoryClasses[category] || EmojiCategory;
 }
 
+type EmojiAreaOptions = {
+  events: Emitter;
+  i18n: Bundle;
+  emojiCategories: any;
+  lazyLoader?: LazyLoader;
+  emojisPerRow: number;
+  custom: CustomEmoji[];
+  showCategoryButtons: boolean;
+  showRecents: boolean;
+  renderer: Renderer;
+  emojiVersion: string;
+};
 export class EmojiArea {
   private headerOffsets: number[];
   private currentCategory = 0;
@@ -35,27 +48,57 @@ export class EmojiArea {
   private categoryButtons: CategoryButtons;
   private emojisPerRow: number;
   private categories: string[];
+  private custom: CustomEmoji[];
+
+  private events: Emitter;
+  private i18n: Bundle;
+  private emojiCategories: any;
+  private lazyLoader?: LazyLoader;
+
+  private renderer: Renderer;
+
+  private showCategoryButtons: boolean;
+  private showRecents: boolean;
+
+  private emojiVersion: string;
 
   private focusedIndex = 0;
 
   container: HTMLElement;
   emojis: HTMLElement;
 
-  constructor(
-    private events: Emitter,
-    private i18n: I18NStrings,
-    private options: EmojiButtonOptions,
-    private emojiCategories: { [key: string]: EmojiRecord[] },
-    private lazyLoader: LazyLoader
-  ) {
-    this.emojisPerRow = options.emojisPerRow || 8;
-    this.categories = options.emojiData?.categories || options.categories || emojiData.categories;
+  constructor({
+    events,
+    i18n,
+    emojiCategories,
+    lazyLoader,
+    emojisPerRow,
+    custom,
+    showCategoryButtons,
+    showRecents,
+    renderer,
+    emojiVersion
+  }: EmojiAreaOptions) {
+    this.emojisPerRow = emojisPerRow;
+    this.categories = emojiData.categories;
 
-    if (options.showRecents) {
+    this.showCategoryButtons = showCategoryButtons;
+    this.showRecents = showRecents;
+
+    this.events = events;
+    this.i18n = i18n;
+    this.renderer = renderer;
+    this.lazyLoader = lazyLoader;
+
+    this.emojiCategories = emojiCategories;
+    this.emojiVersion = emojiVersion;
+
+    if (showRecents) {
       this.categories = ['recents', ...this.categories];
     }
 
-    if (options.custom) {
+    if (custom) {
+      this.custom = custom;
       this.categories = [...this.categories, 'custom'];
     }
 
@@ -63,19 +106,21 @@ export class EmojiArea {
   }
 
   async render(): Promise<HTMLElement> {
-    if (this.options.showCategoryButtons) {
-      this.categoryButtons = new CategoryButtons(this.options, this.events, this.i18n);
+    if (this.showCategoryButtons) {
+      this.categoryButtons = new CategoryButtons({
+        events: this.events,
+        i18n: this.i18n,
+        showRecents: this.showRecents,
+        custom: this.custom
+      });
     }
 
-    if (this.options.showRecents) {
+    if (this.showRecents) {
       this.emojiCategories.recents = load();
     }
 
-    if (this.options.custom) {
-      this.emojiCategories.custom = this.options.custom.map(custom => ({
-        ...custom,
-        custom: true
-      }));
+    if (this.custom) {
+      this.emojiCategories.custom = this.custom;
     }
 
     const emojiContainers = await Promise.all(this.categories.map(category => this.renderEmojis(category)));
@@ -85,7 +130,7 @@ export class EmojiArea {
     });
 
     this.container = renderTemplate(template, {
-      categoryButtons: this.options.showCategoryButtons ? this.categoryButtons?.render() : null,
+      categoryButtons: this.showCategoryButtons ? this.categoryButtons?.render() : null,
       categories: this.categories,
       i18n: this.i18n,
       ...categoryEmojiElements
@@ -120,24 +165,26 @@ export class EmojiArea {
 
   async renderEmojis(category: string): Promise<HTMLElement> {
     const CategoryClass = getCategoryClass(category);
-    return await new CategoryClass(
+
+    return await new CategoryClass({
       category,
-      true,
-      this.emojiCategories[category],
-      this.events,
-      this.options,
-      this.lazyLoader,
-      this.i18n
-    ).render();
+      showVariants: true,
+      emojis: this.emojis,
+      events: this.events,
+      lazyLoader: this.lazyLoader,
+      i18n: this.i18n,
+      renderer: this.renderer,
+      emojiVersion: this.emojiVersion
+    }).render();
   }
 
   async reset(): Promise<void> {
     this.headerOffsets = Array.prototype.map.call(this.headers, header => header.offsetTop) as number[];
 
-    this.selectCategory(this.options.initialCategory || 'smileys', false);
-    this.currentCategory = this.categories.indexOf((this.options.initialCategory as string) || 'smileys');
+    this.selectCategory('smileys', false);
+    this.currentCategory = this.categories.indexOf('smileys');
 
-    if (this.options.showCategoryButtons) {
+    if (this.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory, false, false);
     }
 
@@ -173,7 +220,7 @@ export class EmojiArea {
         this.focusedEmoji.tabIndex = -1;
 
         if (this.focusedIndex === this.currentEmojiCount - 1 && this.currentCategory < this.categories.length - 1) {
-          if (this.options.showCategoryButtons) {
+          if (this.showCategoryButtons) {
             this.categoryButtons.setActiveButton(++this.currentCategory);
           }
           this.setFocusedEmoji(0);
@@ -185,7 +232,7 @@ export class EmojiArea {
         this.focusedEmoji.tabIndex = -1;
 
         if (this.focusedIndex === 0 && this.currentCategory > 0) {
-          if (this.options.showCategoryButtons) {
+          if (this.showCategoryButtons) {
             this.categoryButtons.setActiveButton(--this.currentCategory);
           }
           this.setFocusedEmoji(this.currentEmojiCount - 1);
@@ -202,7 +249,7 @@ export class EmojiArea {
           this.currentCategory < this.categories.length - 1
         ) {
           this.currentCategory++;
-          if (this.options.showCategoryButtons) {
+          if (this.showCategoryButtons) {
             this.categoryButtons.setActiveButton(this.currentCategory);
           }
           this.setFocusedEmoji(Math.min(this.focusedIndex % this.emojisPerRow, this.currentEmojiCount - 1));
@@ -227,7 +274,7 @@ export class EmojiArea {
               : previousCategoryCount - previousLastRowCount + currentColumn;
 
           this.currentCategory--;
-          if (this.options.showCategoryButtons) {
+          if (this.showCategoryButtons) {
             this.categoryButtons.setActiveButton(this.currentCategory);
           }
 
@@ -263,7 +310,7 @@ export class EmojiArea {
     const categoryIndex = this.categories.indexOf(category);
     this.currentCategory = categoryIndex;
     this.setFocusedEmoji(0, false);
-    if (this.options.showCategoryButtons) {
+    if (this.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory, focus, animate);
     }
 
@@ -294,7 +341,7 @@ export class EmojiArea {
     }
 
     this.currentCategory = closestHeaderIndex - 1;
-    if (this.options.showCategoryButtons) {
+    if (this.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory);
     }
   };

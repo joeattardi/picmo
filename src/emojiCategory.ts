@@ -1,45 +1,70 @@
+import { TinyEmitter as Emitter } from 'tiny-emitter';
+
 import { renderTemplate } from './templates';
 
 import template from './templates/emojiCategory.ejs';
 
 import { EmojiContainer } from './emojiContainer';
+import Bundle from './i18n';
+import { LazyLoader } from '.';
+import Renderer from './renderers/renderer';
 
+type EmojiCategoryOptions = {
+  category: string;
+  showVariants: boolean;
+  emojis: any[];
+  events: Emitter;
+  lazyLoader?: LazyLoader;
+  i18n: Bundle;
+  renderer: Renderer;
+  emojiVersion: string;
+};
 export class EmojiCategory {
   protected container: HTMLElement;
   private category: string;
-  private emojis;
-  private i18n;
-  private lazyLoader;
-  protected options;
-  protected events;
+  private emojis: any[];
+  private i18n: Bundle;
+  private lazyLoader?: LazyLoader;
+  protected renderer: Renderer;
+  protected events: Emitter;
   protected showVariants: boolean;
-  protected template;
+  protected template: string;
+  protected emojiVersion: string;
 
-  constructor(category: string, showVariants: boolean, emojis, events, options, lazyLoader, i18n) {
-    this.emojis = emojis;
-    this.showVariants = showVariants;
+  constructor({
+    category,
+    showVariants,
+    emojis,
+    events,
+    lazyLoader,
+    i18n,
+    renderer,
+    emojiVersion
+  }: EmojiCategoryOptions) {
     this.category = category;
+    this.showVariants = showVariants;
+    this.emojis = emojis;
     this.events = events;
-    this.options = options;
     this.lazyLoader = lazyLoader;
     this.i18n = i18n;
-
-    this.initialize();
+    this.renderer = renderer;
+    this.emojiVersion = emojiVersion;
   }
 
   initialize(): void {
     this.template = template;
   }
 
-  async render(): HTMLElement {
-    const emojis = await new EmojiContainer(
-      this.emojis || [],
-      this.showVariants,
-      this.events,
-      this.options,
-      this.lazyLoader,
-      this.i18n
-    ).render();
+  async render(): Promise<HTMLElement> {
+    const emojis = await new EmojiContainer({
+      emojis: this.emojis || [],
+      showVariants: this.showVariants,
+      events: this.events,
+      lazyLoader: this.lazyLoader,
+      renderer: this.renderer,
+      i18n: this.i18n,
+      emojiVersion: this.emojiVersion
+    }).render();
 
     this.container = renderTemplate(this.template, {
       category: this.category,

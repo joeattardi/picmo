@@ -23,26 +23,18 @@ export class EmojiContainer {
   protected showVariants: boolean;
   protected events: Emitter;
   private renderer: Renderer;
-  protected lazy = false;
   protected lazyLoader?: LazyLoader;
-  protected template: string;
   protected i18n;
 
   constructor({ emojis, showVariants, events, lazyLoader, i18n, emojiVersion, renderer }: EmojiContainerOptions) {
     this.showVariants = showVariants;
     this.events = events;
     this.lazyLoader = lazyLoader;
-    this.template = template;
     this.i18n = i18n;
     this.renderer = renderer;
 
     this.emojis = emojis.filter(e => !e.version || parseFloat(e.version as string) <= parseFloat(emojiVersion));
-
-    this.initialize();
   }
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  initialize(): void {}
 
   async render(): Promise<HTMLElement> {
     const emojis = await Promise.all(
@@ -58,7 +50,7 @@ export class EmojiContainer {
       )
     );
 
-    this.container = renderTemplate(this.template, { emojis, i18n: this.i18n });
+    this.container = renderTemplate(template, { emojis, i18n: this.i18n });
     return this.container;
   }
 }

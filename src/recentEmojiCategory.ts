@@ -19,8 +19,14 @@ export class RecentEmojiCategory extends EmojiCategory {
       }
 
       const emojiGrid = this.emojiContainer.firstElementChild;
-      emojiGrid.insertBefore(
-        await new Emoji(recent, this.showVariants, true, this.events, this.options).render(),
+      emojiGrid?.insertBefore(
+        await new Emoji({
+          emoji: recent,
+          showVariants: this.showVariants,
+          showPreview: true,
+          events: this.events,
+          renderer: this.renderer
+        }).render(),
         emojiGrid.firstChild
       );
 
@@ -28,7 +34,7 @@ export class RecentEmojiCategory extends EmojiCategory {
     });
   }
 
-  async render(): HTMLElement {
+  async render(): Promise<HTMLElement> {
     const container = await super.render();
     this.emojiContainer = queryByClass(this.container, classes.recentEmojis);
 

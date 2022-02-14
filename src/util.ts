@@ -1,4 +1,4 @@
-import { EmojiData, EmojiRecord } from './types';
+// import { EmojiData, EmojiRecord } from './types';
 
 export function formatEmojiName(name: string): string {
   const words = name.split(/[-_]/);
@@ -7,7 +7,7 @@ export function formatEmojiName(name: string): string {
   return words.join(' ');
 }
 
-export function buildEmojiCategoryData(emojiData: EmojiData): { [key: string]: EmojiRecord[] } {
+export function buildEmojiCategoryData(emojiData: any): { [key: string]: any[] } {
   const emojiCategories = {};
 
   emojiData.emoji.forEach(emoji => {

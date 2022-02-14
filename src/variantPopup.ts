@@ -6,16 +6,29 @@ import { queryByClass } from './util';
 
 import { HIDE_VARIANT_POPUP } from './events';
 
-import { EmojiRecord, EmojiButtonOptions } from './types';
-
 import { renderTemplate } from './templates';
 import template from './templates/variantPopup.ejs';
+import Renderer from './renderers/renderer';
+
+type VariantPopupOptions = {
+  emoji: any;
+  events: Emitter;
+  renderer: Renderer;
+};
 
 export class VariantPopup {
   private popup: HTMLElement;
   private focusedEmojiIndex = 0;
 
-  constructor(private events: Emitter, private emoji: EmojiRecord, private options: EmojiButtonOptions) {}
+  private events: Emitter;
+  private emoji: any;
+  private renderer: Renderer;
+
+  constructor({ events, emoji, renderer }: VariantPopupOptions) {
+    this.events = events;
+    this.emoji = emoji;
+    this.renderer = renderer;
+  }
 
   getEmoji(index: number): Element {
     return this.popup.querySelectorAll(`.${classes.emoji}`)[index];
@@ -43,21 +56,29 @@ export class VariantPopup {
       }
     });
 
-    this.popup.appendChild(await new Emoji(this.emoji, false, false, this.events, this.options).render());
+    this.popup.appendChild(
+      await new Emoji({
+        emoji: this.emoji,
+        showVariants: false,
+        showPreview: false,
+        events: this.events,
+        renderer: this.renderer
+      }).render()
+    );
 
     (this.emoji.variations || []).forEach(async (variation, index) =>
       this.popup.appendChild(
-        await new Emoji(
-          {
+        await new Emoji({
+          emoji: {
             name: this.emoji.name,
             emoji: variation,
             key: this.emoji.name + index
           },
-          false,
-          false,
-          this.events,
-          this.options
-        ).render()
+          showVariants: false,
+          showPreview: false,
+          events: this.events,
+          renderer: this.renderer
+        }).render()
       )
     );
 

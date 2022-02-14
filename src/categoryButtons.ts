@@ -4,15 +4,16 @@ import classes from './styles';
 
 import emojiData from './data/emoji';
 
-import { CATEGORY_CLICKED } from './events';
+import { CustomEmoji } from './types';
 
-import { EmojiButtonOptions, I18NCategory, I18NStrings } from './types';
+import Bundle from './i18n';
+import { CATEGORY_CLICKED } from './events';
 
 import template from './templates/categoryButtons.ejs';
 import { renderTemplate } from './templates';
 import { queryByClass, queryAllByClass } from './util';
 
-export const categoryIcons: { [key in I18NCategory]: string } = {
+export const categoryIcons = {
   recents: 'fa-clock-rotate-left',
   smileys: 'fa-face-smile',
   people: 'fa-user',
@@ -26,20 +27,37 @@ export const categoryIcons: { [key in I18NCategory]: string } = {
   custom: 'fa-image'
 };
 
+type CategoryButtonsOptions = {
+  events: Emitter;
+  i18n: Bundle;
+  showRecents: boolean;
+  custom: CustomEmoji[];
+};
+
 export class CategoryButtons {
-  constructor(private options: EmojiButtonOptions, private events: Emitter, private i18n: I18NStrings) {}
+  private events: Emitter;
+  private i18n: Bundle;
+  private showRecents: boolean;
+  private custom: CustomEmoji[];
 
   activeButton = 0;
 
   buttons: NodeListOf<HTMLButtonElement>;
   private activeIndicator: HTMLElement;
 
+  constructor({ events, i18n, showRecents, custom }: CategoryButtonsOptions) {
+    this.events = events;
+    this.i18n = i18n;
+    this.showRecents = showRecents;
+    this.custom = custom;
+  }
+
   render(): HTMLElement {
-    const categoryData = this.options.categories || this.options.emojiData?.categories || emojiData.categories;
+    const categoryData = emojiData.categories;
 
-    let categories = this.options.showRecents ? ['recents', ...categoryData] : categoryData;
+    let categories = this.showRecents ? ['recents', ...categoryData] : categoryData;
 
-    if (this.options.custom) {
+    if (this.custom) {
       categories = [...categories, 'custom'];
     }
 
