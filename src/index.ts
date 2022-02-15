@@ -37,6 +37,7 @@ import lightTheme from './styles/theme/light';
 import en from './i18n/lang-en';
 import NativeRenderer from './renderers/native';
 import Renderer from './renderers/renderer';
+import { Theme } from './types_OLD';
 
 const MOBILE_BREAKPOINT = 450;
 
@@ -45,7 +46,6 @@ const DEFAULT_OPTIONS = {
   position: 'auto',
   autoHide: true,
   autoFocusSearch: true,
-  showAnimation: true,
   showPreview: true,
   showSearch: true,
   showRecents: true,
@@ -71,13 +71,24 @@ const DEFAULT_OPTIONS = {
 const defaultOptions = {
   rootElement: document.body,
   renderer: new NativeRenderer(),
+  theme: lightTheme,
 
   showSearch: true,
   showCategoryButtons: true,
   showVariants: true,
+  showBoolean: true,
+  showRecents: true,
+  showPreview: true,
+
+  autoHide: true,
+  autoFocusSearch: true,
 
   position: 'auto',
-  emojisPerRow: 8
+  emojisPerRow: 8,
+
+  emojiVersion: '12.1',
+  maxRecents: 50,
+  locale: en
 };
 
 export { LazyLoader };
@@ -87,6 +98,16 @@ const SHOW_HIDE_DURATION = 200;
 function getOption(options: PickerOptions, key: keyof PickerOptions) {
   return options[key] ?? defaultOptions[key];
 }
+
+//    if (this.emojisPerRow) {
+// this.pickerEl.style.setProperty('--emoji-per-row', this.emojisPerRow.toString());
+// }
+
+const variableNames = {
+  emojisPerRow: '--emojis-per-row',
+  visibleRows: '--row-count',
+  emojiSize: '--emoji-size'
+};
 
 export class EmojiButton {
   private pickerVisible = false;
@@ -115,7 +136,10 @@ export class EmojiButton {
 
   private position: Position;
   private emojisPerRow: number;
+  private visibleRows: number;
+  private emojiSize: string;
   private emojiVersion: string;
+  private maxRecents: number;
 
   private popper: Popper;
 
@@ -123,6 +147,12 @@ export class EmojiButton {
   private showSearch: boolean;
   private showVariants: boolean;
   private showRecents: boolean;
+  private showPreview: boolean;
+
+  private autoHide: boolean;
+  private autoFocusSearch: boolean;
+
+  private theme: Theme;
 
   private emojiCategories: { [key: string]: any[] };
 
@@ -131,21 +161,30 @@ export class EmojiButton {
     this.showVariants = getOption(options, 'showVariants');
     this.showCategoryButtons = getOption(options, 'showCategoryButtons');
     this.showRecents = getOption(options, 'showRecents');
+    this.showPreview = getOption(options, 'showPreview');
+
+    this.autoHide = getOption(options, 'autoHide');
+    this.autoFocusSearch = getOption(options, 'autoFocusSearch');
 
     this.rootElement = getOption(options, 'rootElement');
     this.referenceElement = getOption(options, 'referenceElement');
     this.renderer = getOption(options, 'renderer');
+    this.theme = getOption(options, 'theme');
 
     this.position = getOption(options, 'position');
     this.emojisPerRow = getOption(options, 'emojisPerRow');
+    this.visibleRows = getOption(options, 'visibleRows');
+    this.emojiSize = getOption(options, 'emojiSize');
+
     this.emojiVersion = getOption(options, 'emojiVersion');
+    this.maxRecents = getOption(options, 'maxRecents');
 
     this.customEmojis = getOption(options, 'custom');
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
 
-    this.i18n = new Bundle(this.options.locale);
+    this.i18n = new Bundle(getOption(options, 'locale'));
     this.emojiCategories = buildEmojiCategoryData(emojiData);
 
     this.buildPicker();
@@ -175,29 +214,24 @@ export class EmojiButton {
    * Sets any CSS variable values that need to be set.
    */
   private setStyleProperties(): void {
-    if (!this.options.showAnimation) {
-      // TODO remove this
-      this.pickerEl.style.setProperty('--animation-duration', '0s');
-    }
+    Object.keys(variableNames).forEach(key => {
+      if (this[key]) {
+        this.pickerEl.style.setProperty(variableNames[key], this[key].toString());
+      }
+    });
 
-    this.options.emojisPerRow &&
-      this.pickerEl.style.setProperty('--emoji-per-row', this.options.emojisPerRow.toString());
+    // if (!this.showCategoryButtons) {
+    //   this.pickerEl.style.setProperty('--category-button-height', '0');
+    // }
 
-    this.options.rows && this.pickerEl.style.setProperty('--row-count', this.options.rows.toString());
-
-    this.options.emojiSize && this.pickerEl.style.setProperty('--emoji-size', this.options.emojiSize);
-
-    if (!this.options.showCategoryButtons) {
-      this.pickerEl.style.setProperty('--category-button-height', '0');
-    }
-
-    if (this.options.styleProperties) {
-      Object.keys(this.options.styleProperties).forEach(key => {
-        if (this.options.styleProperties) {
-          this.pickerEl.style.setProperty(key, this.options.styleProperties[key]);
-        }
-      });
-    }
+    // TODO re-enable this once CSS is straightened out
+    // if (this.options.styleProperties) {
+    //   Object.keys(this.options.styleProperties).forEach(key => {
+    //     if (this.options.styleProperties) {
+    //       this.pickerEl.style.setProperty(key, this.options.styleProperties[key]);
+    //     }
+    //   });
+    // }
   }
 
   /**
@@ -234,21 +268,17 @@ export class EmojiButton {
       if (emoji.custom) {
         eventData = this.emitCustomEmoji(emoji);
       } else {
-        const content = await this.options.renderer?.render(emoji);
-        eventData = {
-          content,
-          emoji
-        };
+        eventData = await this.renderer.emit(emoji);
       }
 
       this.publicEvents.emit(EMOJI, eventData);
 
-      if (this.options.autoHide) {
+      if (this.autoHide) {
         await this.hidePicker();
       }
 
-      if ((!emoji.variations || !showVariants || !this.options.showVariants) && this.options.showRecents) {
-        save(emoji, this.options.recentsCount, this.events);
+      if ((!emoji.variations || !showVariants || !this.showVariants) && this.showRecents) {
+        save(emoji, this.maxRecents, this.events);
       }
     }
   }
@@ -297,7 +327,7 @@ export class EmojiButton {
    * Builds the emoji preview area.
    */
   private buildPreview(): void {
-    if (this.options.showPreview) {
+    if (this.showPreview) {
       this.pickerEl.appendChild(
         new EmojiPreview({
           events: this.events,
@@ -308,19 +338,20 @@ export class EmojiButton {
   }
 
   /**
+   * TODO fix plugins later
    * Initializes any plugins that were specified.
    */
   private initPlugins(): void {
-    if (this.options.plugins) {
-      this.pluginContainer = renderTemplate('<div class="<%= classes.pluginContainer %>"></div>');
+    // if (this.options.plugins) {
+    //   this.pluginContainer = renderTemplate('<div class="<%= classes.pluginContainer %>"></div>');
 
-      this.options.plugins.forEach(plugin => {
-        if (!plugin.render) {
-          throw new Error('Emoji Button plugins must have a "render" function.');
-        }
-        this.pluginContainer.appendChild(plugin.render(this));
-      });
-    }
+    //   this.options.plugins.forEach(plugin => {
+    //     if (!plugin.render) {
+    //       throw new Error('Emoji Button plugins must have a "render" function.');
+    //     }
+    //     this.pluginContainer.appendChild(plugin.render(this));
+    //   });
+    // }
   }
 
   /**
@@ -330,9 +361,7 @@ export class EmojiButton {
     this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
       clickOutsideDeactivates: true,
       initialFocus:
-        this.options.showSearch && this.options.autoFocusSearch
-          ? `.${classes.searchField}`
-          : `.${classes.emoji}[tabindex="0"]`
+        this.showSearch && this.autoFocusSearch ? `.${classes.searchField}` : `.${classes.emoji}[tabindex="0"]`
     });
   }
 
@@ -357,7 +386,6 @@ export class EmojiButton {
       renderer: this.renderer,
       emojiVersion: this.emojiVersion
     });
-    // this.emojiArea = new EmojiArea(this.events, this.i18n, this.options, this.emojiCategories, lazyLoader);
 
     this.wrapper = renderTemplate(template, {
       plugins: this.pluginContainer,
@@ -366,7 +394,7 @@ export class EmojiButton {
     });
 
     this.pickerEl = this.wrapper.firstElementChild as HTMLElement;
-    this.pickerEl.classList.add(applyTheme(this.options.theme));
+    this.pickerEl.classList.add(applyTheme(this.theme));
 
     this.setStyleProperties();
     this.initFocusTrap();
@@ -379,9 +407,10 @@ export class EmojiButton {
 
     this.buildPreview();
 
-    if (this.options.zIndex) {
-      this.wrapper.style.zIndex = this.options.zIndex + '';
-    }
+    // TODO bring back z-index later
+    // if (this.options.zIndex) {
+    //   this.wrapper.style.zIndex = this.options.zIndex + '';
+    // }
 
     lazyLoader.observe(this.emojiArea.emojis);
   }
@@ -437,11 +466,12 @@ export class EmojiButton {
     this.rootElement.removeChild(this.wrapper);
     this.popper?.destroy();
 
-    if (this.options.plugins) {
-      this.options.plugins.forEach(plugin => {
-        plugin.destroy && plugin.destroy();
-      });
-    }
+    // TODO plugins
+    // if (this.options.plugins) {
+    //   this.options.plugins.forEach(plugin => {
+    //     plugin.destroy && plugin.destroy();
+    //   });
+    // }
   }
 
   /**
@@ -551,7 +581,7 @@ export class EmojiButton {
     // if (window.matchMedia(`screen and (max-width: ${MOBILE_BREAKPOINT}px)`).matches) {
     //   this.showMobileView();
     // } else if (typeof this.options.position === 'string') {
-    if (typeof this.options.position === 'string') {
+    if (typeof this.position === 'string') {
       this.setRelativePosition();
     } else {
       this.setFixedPosition();
@@ -566,9 +596,7 @@ export class EmojiButton {
     // If the search field is visible and should be auto-focused, set the focus on
     // the search field. Otherwise, the initial focus will be on the first focusable emoji.
     const initialFocusElement = this.pickerEl.querySelector(
-      this.options.showSearch && this.options.autoFocusSearch
-        ? `.${classes.searchField}`
-        : `.${classes.emoji}[tabindex="0"]`
+      this.showSearch && this.autoFocusSearch ? `.${classes.searchField}` : `.${classes.emoji}[tabindex="0"]`
     ) as HTMLElement;
     initialFocusElement.focus();
   }
@@ -592,7 +620,7 @@ export class EmojiButton {
     }
 
     this.popper = createPopper(this.referenceElement, this.wrapper, {
-      placement: this.options.position as Placement,
+      placement: this.position as Placement,
       modifiers: [
         {
           name: 'offset',
@@ -608,10 +636,10 @@ export class EmojiButton {
    * Sets fixed positioning.
    */
   private setFixedPosition(): void {
-    if (this.options?.position) {
+    if (this.position) {
       this.wrapper.style.position = 'fixed';
 
-      const fixedPosition = this.options.position;
+      const fixedPosition = this.position;
 
       Object.keys(fixedPosition).forEach(key => {
         this.wrapper.style[key] = fixedPosition[key];

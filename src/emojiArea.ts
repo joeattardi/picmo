@@ -169,7 +169,7 @@ export class EmojiArea {
     return await new CategoryClass({
       category,
       showVariants: true,
-      emojis: this.emojis,
+      emojis: this.emojiCategories[category],
       events: this.events,
       lazyLoader: this.lazyLoader,
       i18n: this.i18n,

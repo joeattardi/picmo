@@ -1,5 +1,7 @@
 import { Placement } from '@popperjs/core';
+
 import Renderer from './renderers/renderer';
+import { Dictionary } from './i18n';
 
 export type CustomEmoji = {
   name: string;
@@ -28,20 +30,34 @@ export type EmojiCategory =
   | 'flags'
   | 'custom';
 
+export type Theme = {
+  theme: { [key: string]: string };
+};
+
 export type PickerOptions = {
   renderer?: Renderer;
+  theme?: Theme;
   rootElement?: HTMLElement;
 
   showRecents?: boolean;
   showCategoryButtons?: boolean;
   showSearch?: boolean;
   showVariants?: boolean;
+  showPreview?: boolean;
+
+  autoHide?: boolean;
+  autoFocusSearch?: boolean;
 
   position?: Position;
   referenceElement?: HTMLElement;
 
+  maxRecents?: number;
   emojisPerRow?: number;
+  emojiSize?: string;
+  visibleRows?: number;
 
   custom?: CustomEmoji[];
   emojiVersion?: string;
+
+  locale?: Dictionary;
 };

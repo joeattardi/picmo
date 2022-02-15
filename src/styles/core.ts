@@ -8,7 +8,7 @@ export const coreStyles = {
     '--emoji-size': '1.5em',
     '--emoji-size-multiplier': '1.5',
     '--category-button-height': '2em',
-    '--category-button-size': '1.25em',
+    '--category-button-size': '1.1em',
     '--category-border-bottom-size': '4px',
     '--search-height': '2em',
     '--overlay-background-color': 'rgba(0, 0, 0, 0.8)',
@@ -25,7 +25,7 @@ export const coreStyles = {
     fontSize: '16px',
     overflow: 'hidden',
     position: 'relative',
-    width: 'calc(var(--emojis-per-row) * var(--emoji-size) * var(--emoji-size-multiplier) + 1em + 1.5rem)',
+    width: 'calc(var(--emojis-per-row) * var(--emoji-size) * var(--emoji-size-multiplier) + 2.75rem)',
 
     '& > *': {
       fontFamily: 'var(--ui-font)',

@@ -70,11 +70,12 @@ export const categories = {
   activeIndicator: {
     position: 'absolute',
     content: '""',
-    bottom: 4,
+    bottom: -1,
     left: 0,
-    width: 'calc(1.5em + 4px)',
-    height: 5,
-    background: 'var(--category-button-active-color)'
+    width: 'calc((var(--category-button-size) * 1.5) + 2px)',
+    height: 4,
+    background: 'var(--category-button-active-color)',
+    borderRadius: 5
   },
 
   categoryButton: {
@@ -89,8 +90,8 @@ export const categories = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '1.5em',
-    width: '1.5em',
+    height: 'calc(var(--category-button-size) * 1.5)',
+    width: 'calc(var(--category-button-size) * 1.5)',
     transition: 'all 250ms',
 
     '& img': {

@@ -49,6 +49,8 @@ export class EmojiCategory {
     this.i18n = i18n;
     this.renderer = renderer;
     this.emojiVersion = emojiVersion;
+
+    this.initialize();
   }
 
   initialize(): void {
