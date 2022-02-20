@@ -14,44 +14,46 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
 
-.categoryName::after {
-  width: 100%;
-  height: 10px;
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  background-image: linear-gradient(
-                      180deg, 
-                      var(--fade-gradient-start) 30%, 
-                      var(--fade-gradient-end) 100%
-  );
-}
+  &::after {
+    width: 100%;
+    height: 10px;
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    background-image: 
+    linear-gradient(
+      180deg, 
+      var(--fade-gradient-start) 30%, 
+      var(--fade-gradient-end) 100%
+    );
+  }
 
-.categoryName img {
-  fill: var(--category-name-accent);
-  width: 2rem;
-}
+  // TODO remove this?
+  img {
+    fill: var(--category-name-accent);
+    width: 2rem;
+  }
 
-.categoryName button {
-  opacity: 0;
-  background: transparent;
-  border: none;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: opacity 0.2s ease-in-out;
-  color: var(--category-name-button-color);
-}
+  &:hover button {
+    opacity: 0.5;
+  }
 
-.categoryName button:hover {
-  opacity: 1;
-}
+  button {
+    opacity: 0;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+    color: var(--category-name-button-color);
 
-.categoryName:hover button {
-  opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 
 .noRecents {

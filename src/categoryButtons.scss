@@ -25,25 +25,25 @@
   height: calc(var(--category-button-size) * 1.5);
   width: calc(var(--category-button-size) * 1.5);
   transition: all 250ms;
-}
 
-.categoryButton img {
-  width: var(--category-button-size);
-  height: var(--category-button-size);
-}
+  &:hover {
+    color: var(--category-button-highlight-color);
+  }
 
-.categoryButton:hover {
-  color: var(--category-button-highlight-color);
+  img {
+    width: var(--category-button-size);
+    height: var(--category-button-size);
+  }
 }
 
 .categoryButtonActive {
   color: var(--category-button-active-color);
   border-color: var(--category-button-active-color);
   position: relative;
-}
 
-.categoryButtonActive:hover {
-  color: var(--category-button-active-color);
+  &:hover {
+    color: var(--category-button-active-color);
+  }
 }
 
 .activeIndicator {

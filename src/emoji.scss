@@ -13,16 +13,16 @@
   padding: 0;
   width: 1.5em;
   display: flex;
-}
 
-.emoji:hover {
-  background: var(--hover-color);
-}
+  &:hover {
+    background: var(--hover-color);
+  }
 
-.emoji:focus {
-  border-radius: 0;
-  background: var(--focus-indicator-background);
-  outline: 1px soldi var(--focus-indicator-color);
+  &:focus {
+    border-radius: 0;
+    background: var(--focus-indicator-background);
+    outline: 1px soldi var(--focus-indicator-color);
+  }
 }
 
 .customEmoji {
