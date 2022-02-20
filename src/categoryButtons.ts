@@ -1,7 +1,5 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-import classes from './styles';
-
 import emojiData from './data/emoji';
 
 import { CustomEmoji } from './types';
@@ -12,6 +10,8 @@ import { CATEGORY_CLICKED } from './events';
 import template from './templates/categoryButtons.ejs';
 import { renderTemplate } from './templates';
 import { queryByClass, queryAllByClass } from './util';
+
+import classes from './categoryButtons.module.css';
 
 export const categoryIcons = {
   recents: 'fa-clock-rotate-left',
@@ -64,7 +64,8 @@ export class CategoryButtons {
     const container = renderTemplate(template, {
       i18n: this.i18n,
       categories,
-      categoryIcons
+      categoryIcons,
+      classes
     });
 
     this.buttons = queryAllByClass(container, classes.categoryButton);

@@ -2,6 +2,7 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import { Emoji } from './emoji';
 
+import classes from './emojiContainer.module.css';
 import { renderTemplate } from './templates';
 import template from './templates/emojiContainer.ejs';
 import { LazyLoader } from './lazyLoad';
@@ -18,13 +19,14 @@ type EmojiContainerOptions = {
   renderer: Renderer;
 };
 export class EmojiContainer {
-  protected container: HTMLElement;
+  container: HTMLElement;
   protected emojis: Array<any>;
   protected showVariants: boolean;
   protected events: Emitter;
   private renderer: Renderer;
   protected lazyLoader?: LazyLoader;
   protected i18n;
+  emojiElements: HTMLElement[];
 
   constructor({ emojis, showVariants, events, lazyLoader, i18n, emojiVersion, renderer }: EmojiContainerOptions) {
     this.showVariants = showVariants;
@@ -37,7 +39,7 @@ export class EmojiContainer {
   }
 
   async render(): Promise<HTMLElement> {
-    const emojis = await Promise.all(
+    this.emojiElements = await Promise.all(
       this.emojis.map(emoji =>
         new Emoji({
           emoji,
@@ -50,7 +52,11 @@ export class EmojiContainer {
       )
     );
 
-    this.container = renderTemplate(template, { emojis, i18n: this.i18n });
+    this.container = renderTemplate(template, { classes, emojis: this.emojiElements, i18n: this.i18n });
     return this.container;
+  }
+
+  get emojiCount(): number {
+    return this.emojis.length;
   }
 }

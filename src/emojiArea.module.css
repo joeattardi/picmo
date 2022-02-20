@@ -1,0 +1,5 @@
+.emojis {
+  height: calc(var(--content-height) - var(--category-button-height) - 1em);
+  overflow-y: auto;
+  position: relative;
+}

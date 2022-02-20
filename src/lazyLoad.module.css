@@ -1,0 +1,14 @@
+@keyframes pulse {
+  0% { opacity: 0; }
+  50% { opacity: 0.2; }
+  100% { opacity: 0; }
+}
+
+.imagePlaceholder {
+  animation: pulse 1.75s ease-in-out infinite alternate;
+  opacity: 0.1;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--image-placeholder-color);
+}

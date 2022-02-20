@@ -17,8 +17,10 @@ module.exports = {
       fs: 'empty'
     };
 
-    const svgRule = config.module.rules.find(rule => rule.test.test('.svg'));
-    svgRule.exclude = /node_modules\/@mdi\/svg\/svg/;
+    // const cssRule = config.module.rules.find(rule => rule.test.toString() === '/\\.css$/');
+    // cssRule.use[1].options.modules = true;
+    // console.log(cssRule.use[2].options);
+    config.module.rules = config.module.rules.filter(x => x.test.test && !x.test.test('file.css'));
 
     config.module.rules.push({
       test: /\.ejs$/,
@@ -27,9 +29,20 @@ module.exports = {
     });
 
     config.module.rules.push({
-      test: /\.svg$/,
-      use: 'raw-loader',
-      include: /node_modules/
+      test: /\.css$/,
+      use: [
+        'style-loader', 
+        {
+          loader: 'css-loader',
+          options: {
+            modules: {
+              auto: /\.module\.css$/,
+              localIdentName: 'EmojiButton__[local]_[hash:base64:5]'
+            }
+          }
+        }
+      ]
+      // include: path.resolve(__dirname, '../src'),
     });
 
     config.devtool = 'source-map';

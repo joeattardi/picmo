@@ -1,0 +1,58 @@
+.categoryButtons {
+  display: flex;
+  flex-direction: row;
+  height: var(--category-button-height);
+  justify-content: space-between;
+  margin: 0;
+  margin-bottom: 8px;
+  padding: 0 8px 8px 8px;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+}
+
+.categoryButton {
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  color: var(--category-button-color);
+  cursor: pointer;
+  font-size: var(--category-button-size);
+  padding: 4px;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--category-button-size) * 1.5);
+  width: calc(var(--category-button-size) * 1.5);
+  transition: all 250ms;
+}
+
+.categoryButton img {
+  width: var(--category-button-size);
+  height: var(--category-button-size);
+}
+
+.categoryButton:hover {
+  color: var(--category-button-highlight-color);
+}
+
+.categoryButtonActive {
+  color: var(--category-button-active-color);
+  border-color: var(--category-button-active-color);
+  position: relative;
+}
+
+.categoryButtonActive:hover {
+  color: var(--category-button-active-color);
+}
+
+.activeIndicator {
+  position: absolute;
+  content: '';
+  bottom: -1px;
+  left: 0;
+  width: calc((var(--category-button-size) * 1.5) + 2px);
+  height: 4px;
+  background: var(--category-button-active-color);
+  border-radius: 5px;
+}

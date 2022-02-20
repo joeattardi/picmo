@@ -2,8 +2,6 @@ import { dom } from '@fortawesome/fontawesome-svg-core';
 
 import ejs, { Data } from 'ejs';
 
-import classes from './styles';
-
 type ElementTemplate = (data?: Data) => HTMLElement;
 
 // TODO: add i18n to helpers
@@ -12,16 +10,14 @@ type ElementTemplate = (data?: Data) => HTMLElement;
  * Takes the data passed to a template, and adds the common template
  * helpers.
  *
- * This prevents the need to add common things like class names, i18n, etc.
- * to each individual template.
+ * This prevents the need to add common things to each individual template.
  *
  * @param data the data supplied to the template
  * @returns a new data object containing the original data plus helpers
  */
 function addHelpers(data: Data = {}): Data {
   return {
-    ...data,
-    classes
+    ...data
   };
 }
 

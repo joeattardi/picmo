@@ -1,5 +1,4 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
-import classes from './styles';
 
 import { Emoji } from './emoji';
 import { queryByClass } from './util';
@@ -9,6 +8,8 @@ import { HIDE_VARIANT_POPUP } from './events';
 import { renderTemplate } from './templates';
 import template from './templates/variantPopup.ejs';
 import Renderer from './renderers/renderer';
+
+import classes from './variantPopup.module.css';
 
 type VariantPopupOptions = {
   emoji: any;
@@ -45,7 +46,7 @@ export class VariantPopup {
   }
 
   async render(): Promise<HTMLElement> {
-    const container = renderTemplate(template);
+    const container = renderTemplate(template, { classes });
     this.popup = queryByClass(container, classes.variantPopup);
 
     container.addEventListener('click', (event: MouseEvent) => {
@@ -56,33 +57,39 @@ export class VariantPopup {
       }
     });
 
-    this.popup.appendChild(
-      await new Emoji({
+    const emojis = [
+      new Emoji({
         emoji: this.emoji,
         showVariants: false,
         showPreview: false,
         events: this.events,
         renderer: this.renderer
-      }).render()
-    );
+      })
+    ];
 
-    (this.emoji.variations || []).forEach(async (variation, index) =>
-      this.popup.appendChild(
-        await new Emoji({
-          emoji: {
-            name: this.emoji.name,
-            emoji: variation,
-            key: this.emoji.name + index
-          },
-          showVariants: false,
-          showPreview: false,
-          events: this.events,
-          renderer: this.renderer
-        }).render()
-      )
-    );
+    if (this.emoji.variations) {
+      emojis.push(
+        ...this.emoji.variations.map(
+          (variation, index) =>
+            new Emoji({
+              emoji: {
+                name: this.emoji.name,
+                emoji: variation,
+                key: this.emoji.name + index
+              },
+              showVariants: false,
+              showPreview: false,
+              events: this.events,
+              renderer: this.renderer
+            })
+        )
+      );
+    }
 
-    const firstEmoji = this.popup.querySelector(`.${classes.emoji}`) as HTMLElement;
+    const renderedEmojis = await Promise.all(emojis.map(emoji => emoji.render()));
+    this.popup.append(...renderedEmojis);
+
+    const [firstEmoji] = renderedEmojis;
     this.focusedEmojiIndex = 0;
     firstEmoji.tabIndex = 0;
 

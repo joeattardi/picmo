@@ -1,7 +1,7 @@
 import fuzzysort from 'fuzzysort';
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-import classes from './styles';
+import classes from './search.module.css';
 
 import Bundle from './i18n';
 
@@ -40,12 +40,13 @@ export class Search {
   private renderer: Renderer;
 
   private searchContainer: HTMLElement;
-  private searchField: HTMLInputElement;
   private searchAccessory: HTMLElement;
   private searchIcon: HTMLElement;
   private clearSearchButton: HTMLButtonElement;
-  private resultsContainer: HTMLElement | null;
+  private resultsContainer: EmojiContainer | null;
   private notFoundMessage: HTMLElement;
+
+  searchField: HTMLInputElement;
 
   constructor({ events, i18n, emojiData, emojisPerRow, emojiVersion, customEmojis = [], renderer }: SearchOptions) {
     this.emojisPerRow = emojisPerRow;
@@ -68,14 +69,17 @@ export class Search {
   render(): HTMLElement {
     this.searchIcon = icon('magnifying-glass', { classes: 'fa-fw' });
     this.notFoundMessage = renderTemplate(notFoundTemplate, {
+      classes,
       i18n: this.i18n
     });
 
     this.searchContainer = renderTemplate(searchTemplate, {
+      classes,
       i18n: this.i18n
     });
 
     this.clearSearchButton = renderTemplate(clearSearchButtonTemplate, {
+      classes,
       i18n: this.i18n
     });
 
@@ -117,7 +121,7 @@ export class Search {
 
   setFocusedEmoji(index: number): void {
     if (this.resultsContainer) {
-      const emojis = this.resultsContainer.querySelectorAll<HTMLElement>(`.${classes.emoji}`);
+      const emojis = this.resultsContainer.emojiElements;
       const currentFocusedEmoji = emojis[this.focusedEmojiIndex];
       currentFocusedEmoji.tabIndex = -1;
 
@@ -130,22 +134,23 @@ export class Search {
 
   handleResultsKeydown(event: KeyboardEvent): void {
     if (this.resultsContainer) {
-      const emojis = this.resultsContainer.querySelectorAll(`.${classes.emoji}`);
-      if (event.key === 'ArrowRight') {
-        this.setFocusedEmoji(Math.min(this.focusedEmojiIndex + 1, emojis.length - 1));
-      } else if (event.key === 'ArrowLeft') {
-        this.setFocusedEmoji(Math.max(0, this.focusedEmojiIndex - 1));
-      } else if (event.key === 'ArrowDown') {
-        event.preventDefault();
-        if (this.focusedEmojiIndex < emojis.length - this.emojisPerRow) {
-          this.setFocusedEmoji(this.focusedEmojiIndex + this.emojisPerRow);
-        }
-      } else if (event.key === 'ArrowUp') {
-        event.preventDefault();
-        if (this.focusedEmojiIndex >= this.emojisPerRow) {
-          this.setFocusedEmoji(this.focusedEmojiIndex - this.emojisPerRow);
-        }
-      } else if (event.key === 'Escape') {
+      // const emojis = this.resultsContainer.querySelectorAll(`.${classes.emoji}`);
+      // if (event.key === 'ArrowRight') {
+      //   this.setFocusedEmoji(Math.min(this.focusedEmojiIndex + 1, emojis.length - 1));
+      // } else if (event.key === 'ArrowLeft') {
+      //   this.setFocusedEmoji(Math.max(0, this.focusedEmojiIndex - 1));
+      // } else if (event.key === 'ArrowDown') {
+      //   event.preventDefault();
+      //   if (this.focusedEmojiIndex < emojis.length - this.emojisPerRow) {
+      //     this.setFocusedEmoji(this.focusedEmojiIndex + this.emojisPerRow);
+      //   }
+      // } else if (event.key === 'ArrowUp') {
+      //   event.preventDefault();
+      //   if (this.focusedEmojiIndex >= this.emojisPerRow) {
+      //     this.setFocusedEmoji(this.focusedEmojiIndex - this.emojisPerRow);
+      //   }
+      // } else if (event.key === 'Escape') {
+      if (event.key === 'Escape') {
         this.onClearSearch(event);
       }
     }
@@ -178,26 +183,26 @@ export class Search {
 
       if (searchResults.length) {
         const lazyLoader = new LazyLoader();
-        this.resultsContainer = await new EmojiContainer({
+        this.resultsContainer = new EmojiContainer({
           emojis: searchResults,
           showVariants: true,
           events: this.events,
           i18n: this.i18n,
           emojiVersion: this.emojiVersion,
           renderer: this.renderer
-        }).render();
+        });
 
-        this.resultsContainer.classList.add(classes.searchResults);
-
-        lazyLoader.observe(this.resultsContainer);
+        await this.resultsContainer.render();
+        this.resultsContainer.container.classList.add(classes.searchResults);
+        lazyLoader.observe(this.resultsContainer.container);
 
         if (this.resultsContainer) {
-          (this.resultsContainer.querySelector(`.${classes.emoji}`) as HTMLElement).tabIndex = 0;
+          this.resultsContainer.emojiElements[0].tabIndex = 0;
           this.focusedEmojiIndex = 0;
 
-          this.resultsContainer.addEventListener('keydown', event => this.handleResultsKeydown(event));
+          this.resultsContainer.container.addEventListener('keydown', event => this.handleResultsKeydown(event));
 
-          this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer);
+          this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer.container);
         }
       } else {
         this.events.emit(SHOW_SEARCH_RESULTS, this.notFoundMessage);

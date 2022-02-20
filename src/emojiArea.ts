@@ -1,6 +1,6 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-import classes from './styles';
+import classes from './emojiArea.module.css';
 
 import emojiData from './data/emoji';
 
@@ -32,7 +32,7 @@ function getCategoryClass(category) {
 type EmojiAreaOptions = {
   events: Emitter;
   i18n: Bundle;
-  emojiCategories: any;
+  emojiCategoryData: any;
   lazyLoader?: LazyLoader;
   emojisPerRow: number;
   custom: CustomEmoji[];
@@ -52,10 +52,12 @@ export class EmojiArea {
 
   private events: Emitter;
   private i18n: Bundle;
-  private emojiCategories: any;
+  private emojiCategoryData: any;
   private lazyLoader?: LazyLoader;
 
   private renderer: Renderer;
+
+  emojiCategories: EmojiCategory[];
 
   private showCategoryButtons: boolean;
   private showRecents: boolean;
@@ -70,7 +72,7 @@ export class EmojiArea {
   constructor({
     events,
     i18n,
-    emojiCategories,
+    emojiCategoryData,
     lazyLoader,
     emojisPerRow,
     custom,
@@ -90,7 +92,7 @@ export class EmojiArea {
     this.renderer = renderer;
     this.lazyLoader = lazyLoader;
 
-    this.emojiCategories = emojiCategories;
+    this.emojiCategoryData = emojiCategoryData;
     this.emojiVersion = emojiVersion;
 
     if (showRecents) {
@@ -116,51 +118,58 @@ export class EmojiArea {
     }
 
     if (this.showRecents) {
-      this.emojiCategories.recents = load();
+      this.emojiCategoryData.recents = load();
     }
 
     if (this.custom) {
-      this.emojiCategories.custom = this.custom;
+      this.emojiCategoryData.custom = this.custom;
     }
 
-    const emojiContainers = await Promise.all(this.categories.map(category => this.renderEmojis(category)));
+    this.emojiCategories = this.categories.map(this.createCategory, this);
+
+    const emojiContainers = await Promise.all(this.emojiCategories.map(emojiCategory => emojiCategory.render()));
     const categoryEmojiElements = {};
     this.categories.forEach((category, index) => {
       categoryEmojiElements[`emojis-${category}`] = emojiContainers[index];
     });
 
     this.container = renderTemplate(template, {
+      classes,
       categoryButtons: this.showCategoryButtons ? this.categoryButtons?.render() : null,
       categories: this.categories,
       i18n: this.i18n,
       ...categoryEmojiElements
     });
 
-    // const recents = this.container.querySelector('h3[data-category="recents"]');
-    // if (recents) {
-    //   const clearButton = renderTemplate(
-    //     `<button title="<%= i18n.get('recents.clear') %>"><i class="fa-solid fa-lg fa-square-xmark"></i></button>`,
-    //     { i18n: this.i18n }
-    //   );
-    //   clearButton.addEventListener('click', () => {
-    //     recents.nextElementSibling.replaceChildren();
-    //     clear();
-    //   });
-    //   recents.appendChild(clearButton);
-    // }
-
     this.emojis = queryByClass(this.container, classes.emojis);
-
-    this.headers = [...queryAllByClass<HTMLHeadingElement>(this.container, classes.categoryName)];
+    this.headers = this.emojiCategories.map(category => category.categoryNameEl);
 
     this.emojis.addEventListener('scroll', this.highlightCategory);
     this.emojis.addEventListener('keydown', this.handleKeyDown);
 
     this.events.on(CATEGORY_CLICKED, this.selectCategory);
-    const firstEmoji = this.container.querySelectorAll<HTMLElement>(`.${classes.emoji}`)[0];
-    firstEmoji.tabIndex = 0;
+
+    const [firstEmoji] = this.emojiCategories[0].emojiContainer.emojiElements;
+    if (firstEmoji) {
+      firstEmoji.tabIndex = 0;
+    }
 
     return this.container;
+  }
+
+  private createCategory(category: string): EmojiCategory {
+    const Category = getCategoryClass(category);
+
+    return new Category({
+      category,
+      showVariants: true,
+      emojis: this.emojiCategoryData[category],
+      events: this.events,
+      lazyLoader: this.lazyLoader,
+      i18n: this.i18n,
+      renderer: this.renderer,
+      emojiVersion: this.emojiVersion
+    });
   }
 
   async renderEmojis(category: string): Promise<HTMLElement> {
@@ -169,7 +178,7 @@ export class EmojiArea {
     return await new CategoryClass({
       category,
       showVariants: true,
-      emojis: this.emojiCategories[category],
+      emojis: this.emojiCategoryData[category],
       events: this.events,
       lazyLoader: this.lazyLoader,
       i18n: this.i18n,
@@ -179,7 +188,7 @@ export class EmojiArea {
   }
 
   async reset(): Promise<void> {
-    this.headerOffsets = Array.prototype.map.call(this.headers, header => header.offsetTop) as number[];
+    this.headerOffsets = Array.prototype.map.call(this.headers, header => header.parentElement.offsetTop) as number[];
 
     this.selectCategory('smileys', false);
     this.currentCategory = this.categories.indexOf('smileys');
@@ -196,16 +205,12 @@ export class EmojiArea {
     // }
   }
 
-  private get currentCategoryEl(): HTMLElement {
-    return this.emojis.querySelectorAll<HTMLElement>(`.${classes.emojiContainer}`)[this.currentCategory];
-  }
-
   private get focusedEmoji(): HTMLElement {
-    return this.currentCategoryEl.querySelectorAll<HTMLElement>(`.${classes.emoji}`)[this.focusedIndex];
+    return this.emojiCategories[this.currentCategory].emojiContainer.emojiElements[this.focusedIndex];
   }
 
   private get currentEmojiCount(): number {
-    return this.currentCategoryEl.querySelectorAll<HTMLElement>(`.${classes.emoji}`).length;
+    return this.emojiCategories[this.currentCategory].emojiContainer.emojiCount;
   }
 
   private getEmojiCount(category: number): number {

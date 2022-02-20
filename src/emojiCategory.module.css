@@ -1,0 +1,72 @@
+.emojiCategory {
+  position: relative;
+}
+
+.categoryName {
+  font-size: 1em;
+  padding: 6px 12px;
+  margin: 0;
+  background: var(--category-name-background);
+  color: var(--category-name-text-color);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.categoryName::after {
+  width: 100%;
+  height: 10px;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  background-image: linear-gradient(
+                      180deg, 
+                      var(--fade-gradient-start) 30%, 
+                      var(--fade-gradient-end) 100%
+  );
+}
+
+.categoryName img {
+  fill: var(--category-name-accent);
+  width: 2rem;
+}
+
+.categoryName button {
+  opacity: 0;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in-out;
+  color: var(--category-name-button-color);
+}
+
+.categoryName button:hover {
+  opacity: 1;
+}
+
+.categoryName:hover button {
+  opacity: 0.5;
+}
+
+.noRecents {
+  color: var(--secondary-text-color);
+  grid-column: 1 / span var(--emojis-per-row);
+  font-size: 0.8em;
+  text-align: center;
+  display: block;
+  padding: 12px;
+}
+
+.recentEmojis[data-empty="true"] {
+  display: none;
+}
+
+.recentEmojis[data-empty="false"] + div {
+  display: none;
+}

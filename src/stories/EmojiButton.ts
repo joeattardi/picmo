@@ -23,9 +23,16 @@ export function createPicker(options = {}) {
       { once: true }
     );
 
-    picker.on('emoji', ({ content, emoji }) => {
+    picker.on('emoji', ({ emoji, url }) => {
       button.classList.remove('empty');
-      button.replaceChildren(content);
+
+      if (url) {
+        const img = document.createElement('img');
+        img.src = url;
+        button.replaceChildren(img);
+      } else {
+        button.replaceChildren(emoji);
+      }
     });
   });
 

@@ -1,0 +1,31 @@
+.emoji {
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: var(--emoji-font);
+  font-size: var(--emoji-size);
+  height: 1.5em;
+  justify-content: center;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 1.5em;
+  display: flex;
+}
+
+.emoji:hover {
+  background: var(--hover-color);
+}
+
+.emoji:focus {
+  border-radius: 0;
+  background: var(--focus-indicator-background);
+  outline: 1px soldi var(--focus-indicator-color);
+}
+
+.customEmoji {
+  width: 1em;
+  height: 1em;
+}

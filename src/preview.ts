@@ -1,6 +1,6 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-import classes from './styles';
+import classes from './preview.module.css';
 
 import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
 import { queryByClass } from './util';
@@ -27,7 +27,7 @@ export class EmojiPreview {
   }
 
   render(): HTMLElement {
-    const preview = renderTemplate(previewTemplate);
+    const preview = renderTemplate(previewTemplate, { classes });
 
     this.emoji = queryByClass(preview, classes.previewEmoji);
     this.name = queryByClass(preview, classes.previewName);

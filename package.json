@@ -2,7 +2,6 @@
   "name": "@joeattardi/emoji-button",
   "version": "5.0.0",
   "description": "Vanilla JavaScript emoji picker",
-  "type": "module",
   "keywords": [
     "emoji",
     "javascript"

@@ -9,6 +9,8 @@ import Bundle from './i18n';
 import { LazyLoader } from '.';
 import Renderer from './renderers/renderer';
 
+import classes from './emojiCategory.module.css';
+
 type EmojiCategoryOptions = {
   category: string;
   showVariants: boolean;
@@ -30,6 +32,8 @@ export class EmojiCategory {
   protected showVariants: boolean;
   protected template: string;
   protected emojiVersion: string;
+  emojiContainer: EmojiContainer;
+  categoryNameEl: HTMLElement;
 
   constructor({
     category,
@@ -58,7 +62,7 @@ export class EmojiCategory {
   }
 
   async render(): Promise<HTMLElement> {
-    const emojis = await new EmojiContainer({
+    this.emojiContainer = new EmojiContainer({
       emojis: this.emojis || [],
       showVariants: this.showVariants,
       events: this.events,
@@ -66,14 +70,17 @@ export class EmojiCategory {
       renderer: this.renderer,
       i18n: this.i18n,
       emojiVersion: this.emojiVersion
-    }).render();
+    });
 
     this.container = renderTemplate(this.template, {
+      classes,
       category: this.category,
-      emojis,
+      emojis: await this.emojiContainer.render(),
       emojiCount: this.emojis.length,
       i18n: this.i18n
     });
+
+    this.categoryNameEl = this.container.firstElementChild as HTMLElement;
 
     return this.container;
   }

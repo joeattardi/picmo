@@ -11,6 +11,8 @@ import Renderer from './renderers/renderer';
 const emojiCompiled = compileTemplate(emojiTemplate);
 const customCompiled = compileTemplate(customEmojiTemplate);
 
+import classes from './emoji.module.css';
+
 type EmojiOptions = {
   emoji: any;
   showVariants: boolean;
@@ -39,7 +41,7 @@ export class Emoji {
   }
 
   async render(): Promise<HTMLElement> {
-    this.emojiButton = emojiCompiled({ emoji: this.emoji });
+    this.emojiButton = emojiCompiled({ classes, emoji: this.emoji });
 
     // let content: Text | HTMLElement;
     // if (this.lazy || this.options.style === 'twemoji') {
@@ -48,7 +50,7 @@ export class Emoji {
     //   // content.classList.add(classes.imagePlaceholder);
     // } else if (this.emoji.custom) {
     //   // TODO make sure XSS fix still works without escaping
-    //   content = customCompiled({ emoji: this.emoji.emoji });
+    //   content = customCompiled({ classes, emoji: this.emoji.emoji });
     // } else {
     //   content = document.createTextNode(this.emoji.emoji);
     // }

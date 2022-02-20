@@ -1,9 +1,9 @@
-import classes, { applyTheme } from './styles';
+import { applyTheme } from './styles';
+import classes from './picker.module.css';
 
 import createFocusTrap, { FocusTrap } from 'focus-trap';
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 import { createPopper, Instance as Popper, Placement } from '@popperjs/core';
-import twemoji from 'twemoji';
 
 import emojiData from './data/emoji';
 
@@ -344,7 +344,6 @@ export class EmojiButton {
   private initPlugins(): void {
     // if (this.options.plugins) {
     //   this.pluginContainer = renderTemplate('<div class="<%= classes.pluginContainer %>"></div>');
-
     //   this.options.plugins.forEach(plugin => {
     //     if (!plugin.render) {
     //       throw new Error('Emoji Button plugins must have a "render" function.');
@@ -361,7 +360,9 @@ export class EmojiButton {
     this.focusTrap = createFocusTrap(this.pickerEl as HTMLElement, {
       clickOutsideDeactivates: true,
       initialFocus:
-        this.showSearch && this.autoFocusSearch ? `.${classes.searchField}` : `.${classes.emoji}[tabindex="0"]`
+        this.showSearch && this.autoFocusSearch
+          ? this.search.searchField
+          : this.emojiArea.emojiCategories[0].emojiContainer.emojiElements[0]
     });
   }
 
@@ -377,7 +378,7 @@ export class EmojiButton {
     this.emojiArea = new EmojiArea({
       events: this.events,
       i18n: this.i18n,
-      emojiCategories: this.emojiCategories,
+      emojiCategoryData: this.emojiCategories,
       lazyLoader: lazyLoader,
       emojisPerRow: this.emojisPerRow,
       custom: this.customEmojis,
@@ -388,6 +389,7 @@ export class EmojiButton {
     });
 
     this.wrapper = renderTemplate(template, {
+      classes,
       plugins: this.pluginContainer,
       search: this.search?.render(),
       emojiArea: await this.emojiArea.render()
@@ -595,9 +597,12 @@ export class EmojiButton {
   setInitialFocus(): void {
     // If the search field is visible and should be auto-focused, set the focus on
     // the search field. Otherwise, the initial focus will be on the first focusable emoji.
-    const initialFocusElement = this.pickerEl.querySelector(
-      this.showSearch && this.autoFocusSearch ? `.${classes.searchField}` : `.${classes.emoji}[tabindex="0"]`
-    ) as HTMLElement;
+
+    const initialFocusElement =
+      this.showSearch && this.autoFocusSearch
+        ? this.search.searchField
+        : this.emojiArea.emojiCategories[0].emojiContainer.emojiElements[0];
+
     initialFocusElement.focus();
   }
 

@@ -1,0 +1,25 @@
+.variantOverlay {
+  background: var(--overlay-background-color);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1
+}
+
+.variantPopup {
+  background: var(--popup-background-color);
+  border-radius: 5px;
+  margin: 0.5em;
+  padding: 0.5em;
+  text-align: center;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

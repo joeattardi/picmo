@@ -1,0 +1,10 @@
+.emojiContainer {
+  display: grid;
+  justify-content: space-between;
+  gap: 1px;
+  padding: 0 0.5em;
+  grid-template-columns: repeat(var(--emojis-per-row), calc(var(--emoji-size) * var(--emoji-size-multiplier)));
+  grid-auto-rows: calc(var(--emoji-size) * var(--emoji-size-multiplier));
+  margin-top: 8px;
+  margin-bottom: 8px;
+}

@@ -23,7 +23,13 @@ export function buildEmojiCategoryData(emojiData: any): { [key: string]: any[] }
 }
 
 export function queryByClass<E extends HTMLElement = HTMLElement>(container: HTMLElement, className: string): E {
-  return container.querySelector<E>(`.${className}`) as E;
+  const el = container.querySelector<E>(`.${className}`);
+
+  if (!el) {
+    throw new Error(`Could not find element with class ${className}`);
+  }
+
+  return el;
 }
 
 export function queryAllByClass<E extends HTMLElement = HTMLElement>(
