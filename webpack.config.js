@@ -1,9 +1,10 @@
-export default {
+module.exports = {
   entry: {
     index: './src/index.ts',
     'renderers/native': './src/renderers/native.ts',
     'renderers/twemoji': './src/renderers/twemoji.ts',
-    'i18n/en': './src/i18n/lang-en.js'
+    'i18n/en': './src/i18n/lang-en.js',
+    themes: './src/themes.ts'
   },
   output: {
     library: {
@@ -22,6 +23,21 @@ export default {
       {
         test: /\.ejs$/,
         use: 'raw-loader'
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: 'EmojiButton__[local]_[hash:base64:5]'
+              }
+            }
+          },
+          'sass-loader'
+        ]
       }
     ]
   },
@@ -40,7 +56,6 @@ export default {
     'escape-html': 'escape-html',
     'focus-trap': 'focus-trap',
     fuzzysort: 'fuzzysort',
-    jss: 'jss',
     'tiny-emitter': 'tiny-emitter',
     twemoji: 'twemoji'
   }

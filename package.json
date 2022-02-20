@@ -1,12 +1,12 @@
 {
-  "name": "@joeattardi/emoji-button",
+  "name": "emoji-button",
   "version": "5.0.0",
   "description": "Vanilla JavaScript emoji picker",
   "keywords": [
     "emoji",
     "javascript"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "webpack",
     "check": "tsc --noEmit",
@@ -19,6 +19,7 @@
     "prettify": "prettier src/*.ts --write",
     "serve": "parcel dev/index.html",
     "storybook": "start-storybook -p 6006",
+    "update-scss-types": "typed-scss-modules src",
     "build-storybook": "build-storybook"
   },
   "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.dev)",
@@ -62,6 +63,7 @@
     "sass-loader": "^12.6.0",
     "ts-jest": "^26.5.6",
     "ts-loader": "^9.2.6",
+    "typed-scss-modules": "^6.2.0",
     "typescript": "^4.5.4",
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2"

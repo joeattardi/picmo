@@ -1,4 +1,3 @@
-import jss from 'jss';
 import twemoji from 'twemoji';
 
 import classes from './twemoji.scss';

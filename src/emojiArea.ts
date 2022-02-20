@@ -214,8 +214,7 @@ export class EmojiArea {
   }
 
   private getEmojiCount(category: number): number {
-    const container = this.emojis.querySelectorAll<HTMLElement>(`.${classes.emojiContainer}`)[category];
-    return container.querySelectorAll<HTMLElement>(`.${classes.emoji}`).length;
+    return this.emojiCategories[category].emojiContainer.emojiCount;
   }
 
   private handleKeyDown = (event: KeyboardEvent): void => {
