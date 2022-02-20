@@ -36,7 +36,7 @@ export type Theme = {
 
 export type PickerOptions = {
   renderer?: Renderer;
-  theme?: Theme;
+  theme?: string;
   rootElement?: HTMLElement;
 
   showRecents?: boolean;

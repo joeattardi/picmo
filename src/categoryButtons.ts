@@ -11,7 +11,7 @@ import template from './templates/categoryButtons.ejs';
 import { renderTemplate } from './templates';
 import { queryByClass, queryAllByClass } from './util';
 
-import classes from './categoryButtons.module.css';
+import classes from './categoryButtons.scss';
 
 export const categoryIcons = {
   recents: 'fa-clock-rotate-left',

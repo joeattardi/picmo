@@ -1,6 +1,6 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-import classes from './emojiArea.module.css';
+import classes from './emojiArea.scss';
 
 import emojiData from './data/emoji';
 

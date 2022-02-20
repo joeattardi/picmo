@@ -1,7 +1,7 @@
 import fuzzysort from 'fuzzysort';
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-import classes from './search.module.css';
+import classes from './search.scss';
 
 import Bundle from './i18n';
 

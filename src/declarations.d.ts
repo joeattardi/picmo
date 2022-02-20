@@ -3,4 +3,5 @@ declare module '*.ejs' {
   export default content;
 }
 
-declare module '*.css'
+declare module '*.css';
+declare module '*.scss';

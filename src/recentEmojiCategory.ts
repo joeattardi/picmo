@@ -2,7 +2,7 @@ import { EmojiCategory } from './emojiCategory';
 import { Emoji } from './emoji';
 import { ADD_RECENT } from './events';
 import { clear } from './recent';
-import classes from './emojiCategory.module.css';
+import classes from './emojiCategory.scss';
 import { queryByClass } from './util';
 import template from './templates/recentEmojis.ejs';
 

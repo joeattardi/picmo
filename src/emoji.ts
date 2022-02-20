@@ -11,7 +11,7 @@ import Renderer from './renderers/renderer';
 const emojiCompiled = compileTemplate(emojiTemplate);
 const customCompiled = compileTemplate(customEmojiTemplate);
 
-import classes from './emoji.module.css';
+import classes from './emoji.scss';
 
 type EmojiOptions = {
   emoji: any;

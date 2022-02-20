@@ -5,6 +5,10 @@ module.exports = {
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   framework: '@storybook/html',
 
+  core: {
+    builder: 'webpack5'
+  },
+
   babel: async options => {
     return {
       ...options,
@@ -13,14 +17,17 @@ module.exports = {
   },
 
   webpackFinal: async (config, { configType }) => {
-    config.node = {
-      fs: 'empty'
-    };
+    config.resolve.fallback.fs = false;
+    // console.log(config.resolve)
+
+    // config.node = {
+    //   fs: 'empty'
+    // };
 
     // const cssRule = config.module.rules.find(rule => rule.test.toString() === '/\\.css$/');
     // cssRule.use[1].options.modules = true;
     // console.log(cssRule.use[2].options);
-    config.module.rules = config.module.rules.filter(x => x.test.test && !x.test.test('file.css'));
+    // config.module.rules = config.module.rules.filter(x => x.test.test && !x.test.test('file.css'));
 
     config.module.rules.push({
       test: /\.ejs$/,
@@ -29,20 +36,19 @@ module.exports = {
     });
 
     config.module.rules.push({
-      test: /\.css$/,
+      test: /\.scss$/,
       use: [
         'style-loader', 
         {
           loader: 'css-loader',
           options: {
             modules: {
-              auto: /\.module\.css$/,
               localIdentName: 'EmojiButton__[local]_[hash:base64:5]'
             }
           }
-        }
+        },
+        'sass-loader'
       ]
-      // include: path.resolve(__dirname, '../src'),
     });
 
     config.devtool = 'source-map';

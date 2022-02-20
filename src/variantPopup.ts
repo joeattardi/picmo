@@ -9,7 +9,7 @@ import { renderTemplate } from './templates';
 import template from './templates/variantPopup.ejs';
 import Renderer from './renderers/renderer';
 
-import classes from './variantPopup.module.css';
+import classes from './variantPopup.scss';
 
 type VariantPopupOptions = {
   emoji: any;

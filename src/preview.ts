@@ -1,6 +1,6 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
-import classes from './preview.module.css';
+import classes from './preview.scss';
 
 import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
 import { queryByClass } from './util';

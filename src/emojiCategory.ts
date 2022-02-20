@@ -9,7 +9,7 @@ import Bundle from './i18n';
 import { LazyLoader } from '.';
 import Renderer from './renderers/renderer';
 
-import classes from './emojiCategory.module.css';
+import classes from './emojiCategory.scss';
 
 type EmojiCategoryOptions = {
   category: string;

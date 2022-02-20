@@ -4,27 +4,19 @@ import { createPicker } from './EmojiButton';
 import TwemojiRenderer from '../renderers/twemoji';
 import NativeRenderer from '../renderers/native';
 
-import lightTheme from '../styles/theme/light';
-import darkTheme from '../styles/theme/dark';
-import autoTheme from '../styles/theme/auto';
-
-const themeOptions = {
-  lightTheme,
-  darkTheme,
-  autoTheme
-};
+import * as themes from '../themes';
 
 export default {
   title: 'Emoji Picker',
   argTypes: {
     theme: {
-      options: ['lightTheme', 'darkTheme', 'autoTheme'],
+      options: ['light', 'dark', 'auto'],
       control: {
         type: 'select',
         labels: {
-          lightTheme: 'Light',
-          darkTheme: 'Dark',
-          autoTheme: 'Auto'
+          light: 'Light',
+          dark: 'Dark',
+          auto: 'Auto'
         }
       }
     }
@@ -35,18 +27,18 @@ const Template = args => {
   return createPicker({
     position: 'right-start',
     ...args,
-    theme: themeOptions[args.theme || 'lightTheme']
+    theme: themes[args.theme || themes.light]
   });
 };
 
 export const Native = Template.bind({});
 Native.args = {
-  theme: 'lightTheme',
+  theme: 'light',
   renderer: new NativeRenderer()
 };
 
 export const Twemoji = Template.bind({});
 Twemoji.args = {
-  theme: 'lightTheme',
+  theme: 'light',
   renderer: new TwemojiRenderer()
 };

@@ -1,6 +1,8 @@
 import jss from 'jss';
 import twemoji from 'twemoji';
 
+import classes from './twemoji.scss';
+
 import Renderer from './renderer';
 import { LazyLoader } from '../lazyLoad';
 import preloadImage from '../preload';
@@ -15,19 +17,6 @@ const DEFAULT_OPTIONS: Partial<twemoji.ParseObject> = {
   ext: '.svg',
   folder: 'svg'
 };
-
-const styles = jss.createStyleSheet(
-  {
-    twemoji: {
-      height: '1em',
-      width: '1em',
-      margin: '0 0.05em 0 0.1em',
-      verticalAlign: '-0.1em'
-    }
-  },
-  { classNamePrefix: 'emoji-button-twemoji-' }
-);
-styles.attach();
 
 // TODO handle invalid emoji, reject promise?
 // TODO rename emoji.emoji property, confusing?
@@ -57,7 +46,7 @@ export default class TwemojiRenderer extends Renderer {
     const factory = async () => {
       const url = await getTwemojiUrl(emoji.emoji, this.options);
       const img = await preloadImage(url);
-      img.className = styles.classes.twemoji;
+      img.className = classes.twemoji;
       return img;
     };
 

@@ -1,11 +1,12 @@
-import { applyTheme } from './styles';
-import classes from './picker.module.css';
+import classes from './picker.scss';
 
 import createFocusTrap, { FocusTrap } from 'focus-trap';
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 import { createPopper, Instance as Popper, Placement } from '@popperjs/core';
 
 import emojiData from './data/emoji';
+
+import { light } from './themes';
 
 import {
   EventCallback,
@@ -33,7 +34,6 @@ import { save } from './recent';
 import { renderTemplate } from './templates';
 import template from './templates/index.ejs';
 
-import lightTheme from './styles/theme/light';
 import en from './i18n/lang-en';
 import NativeRenderer from './renderers/native';
 import Renderer from './renderers/renderer';
@@ -54,7 +54,7 @@ const DEFAULT_OPTIONS = {
   recentsCount: 50,
   emojiData,
   emojiVersion: '12.1',
-  theme: lightTheme,
+  // theme: lightTheme,
   categories: ['smileys', 'people', 'animals', 'food', 'travel', 'activities', 'objects', 'symbols', 'flags'],
   style: 'native',
   twemojiOptions: {
@@ -71,7 +71,7 @@ const DEFAULT_OPTIONS = {
 const defaultOptions = {
   rootElement: document.body,
   renderer: new NativeRenderer(),
-  theme: lightTheme,
+  theme: light,
 
   showSearch: true,
   showCategoryButtons: true,
@@ -114,7 +114,6 @@ export class EmojiButton {
 
   private events = new Emitter();
   private publicEvents = new Emitter();
-  private options: any;
   private i18n: Bundle;
 
   private pickerEl: HTMLElement;
@@ -152,7 +151,7 @@ export class EmojiButton {
   private autoHide: boolean;
   private autoFocusSearch: boolean;
 
-  private theme: Theme;
+  private theme: string;
 
   private emojiCategories: { [key: string]: any[] };
 
@@ -396,7 +395,7 @@ export class EmojiButton {
     });
 
     this.pickerEl = this.wrapper.firstElementChild as HTMLElement;
-    this.pickerEl.classList.add(applyTheme(this.theme));
+    this.pickerEl.classList.add(this.theme);
 
     this.setStyleProperties();
     this.initFocusTrap();

@@ -2,7 +2,7 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import { Emoji } from './emoji';
 
-import classes from './emojiContainer.module.css';
+import classes from './emojiContainer.scss';
 import { renderTemplate } from './templates';
 import template from './templates/emojiContainer.ejs';
 import { LazyLoader } from './lazyLoad';
