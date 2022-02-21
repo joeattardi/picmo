@@ -38,3 +38,14 @@ export function queryAllByClass<E extends HTMLElement = HTMLElement>(
 ): NodeListOf<E> {
   return container.querySelectorAll<E>(`.${className}`) as NodeListOf<E>;
 }
+
+export function getEmojiForEvent(event: Event, emojis: any[]): any | null {
+  const target = event.target as HTMLElement;
+  const emojiElement = target.closest('[data-emoji]') as HTMLElement;
+  if (emojiElement) {
+    const emoji = emojis.find(e => e.emoji === emojiElement.dataset.emoji);
+    if (emoji) {
+      return emoji;
+    }
+  }
+}

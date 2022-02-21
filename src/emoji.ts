@@ -8,6 +8,8 @@ import customEmojiTemplate from './templates/customEmojiContent.ejs';
 import { LazyLoader } from './lazyLoad';
 import Renderer from './renderers/renderer';
 
+import { View } from './view';
+
 const emojiCompiled = compileTemplate(emojiTemplate);
 const customCompiled = compileTemplate(customEmojiTemplate);
 
@@ -21,9 +23,7 @@ type EmojiOptions = {
   lazyLoader?: LazyLoader;
   renderer: Renderer;
 };
-export class Emoji {
-  private emojiButton: HTMLElement;
-
+export class Emoji extends View {
   private emoji: any;
   private showVariants: boolean;
   private showPreview: boolean;
@@ -32,6 +32,7 @@ export class Emoji {
   private renderer: Renderer;
 
   constructor({ emoji, showVariants, showPreview, events, lazyLoader, renderer }: EmojiOptions) {
+    super();
     this.emoji = emoji;
     this.showVariants = showVariants;
     this.showPreview = showPreview;
@@ -40,8 +41,8 @@ export class Emoji {
     this.renderer = renderer;
   }
 
-  async render(): Promise<HTMLElement> {
-    this.emojiButton = emojiCompiled({ classes, emoji: this.emoji });
+  async doRender(): Promise<HTMLElement> {
+    const el = emojiCompiled({ classes, emoji: this.emoji });
 
     // let content: Text | HTMLElement;
     // if (this.lazy || this.options.style === 'twemoji') {
@@ -56,34 +57,8 @@ export class Emoji {
     // }
 
     const content = await this.renderer.render(this.emoji, this.lazyLoader);
-    this.emojiButton.appendChild(content);
+    el.appendChild(content);
 
-    this.emojiButton.addEventListener('focus', () => this.onEmojiHover());
-    this.emojiButton.addEventListener('blur', () => this.onEmojiLeave());
-    this.emojiButton.addEventListener('click', () => this.onEmojiClick());
-    this.emojiButton.addEventListener('mouseover', () => this.onEmojiHover());
-    this.emojiButton.addEventListener('mouseout', () => this.onEmojiLeave());
-
-    return this.emojiButton;
-  }
-
-  onEmojiClick(): void {
-    this.events.emit(EMOJI, {
-      emoji: this.emoji,
-      showVariants: this.showVariants,
-      button: this.emojiButton
-    });
-  }
-
-  onEmojiHover(): void {
-    if (this.showPreview) {
-      this.events.emit(SHOW_PREVIEW, this.emoji);
-    }
-  }
-
-  onEmojiLeave(): void {
-    if (this.showPreview) {
-      this.events.emit(HIDE_PREVIEW);
-    }
+    return el;
   }
 }

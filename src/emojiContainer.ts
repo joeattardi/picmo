@@ -1,13 +1,14 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import { Emoji } from './emoji';
-
+import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
 import classes from './emojiContainer.scss';
 import { renderTemplate } from './templates';
 import template from './templates/emojiContainer.ejs';
 import { LazyLoader } from './lazyLoad';
 import Bundle from './i18n';
 import Renderer from './renderers/renderer';
+import { getEmojiForEvent } from './util';
 
 type EmojiContainerOptions = {
   emojis: any;
@@ -53,7 +54,38 @@ export class EmojiContainer {
     );
 
     this.container = renderTemplate(template, { classes, emojis: this.emojiElements, i18n: this.i18n });
+
+    this.container.addEventListener('mouseover', event => this.showPreview(event));
+    this.container.addEventListener('mouseout', event => this.hidePreview(event));
+    this.container.addEventListener('focus', event => this.showPreview(event), true);
+    this.container.addEventListener('blur', event => this.hidePreview(event), true);
+    this.container.addEventListener('click', event => this.selectEmoji(event));
+
     return this.container;
+  }
+
+  private selectEmoji(event: Event) {
+    const emoji = getEmojiForEvent(event, this.emojis);
+    if (emoji) {
+      this.events.emit(EMOJI, {
+        emoji,
+        showVariants: this.showVariants
+      });
+    }
+  }
+
+  private showPreview(event: Event) {
+    const emoji = getEmojiForEvent(event, this.emojis);
+    if (emoji) {
+      this.events.emit(SHOW_PREVIEW, emoji);
+    }
+  }
+
+  private hidePreview(event: Event) {
+    const emoji = getEmojiForEvent(event, this.emojis);
+    if (emoji) {
+      this.events.emit(HIDE_PREVIEW);
+    }
   }
 
   get emojiCount(): number {
