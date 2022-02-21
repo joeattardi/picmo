@@ -1,19 +1,17 @@
-export abstract class View implements IView {
+export abstract class View {
   el: HTMLElement;
   abstract doRender(): Promise<HTMLElement>;
   uiEvents = {};
 
   async render(): Promise<HTMLElement> {
     this.el = await this.doRender();
-    // this.bindListeners();
+    this.bindListeners();
     return this.el;
   }
 
   private bindListeners() {
-    const events = Object.keys(this.uiEvents);
-
-    Object.entries(this.uiEvents).forEach(([event, handler]): [Event, EventListenerOrEventListenerObject] => {
-      this.el.addEventListener(event, handler.bind(this));
+    Object.entries(this.uiEvents).forEach(([event, handler]: [string, any]) => {
+      this.el.addEventListener(event, handler);
     });
   }
 }

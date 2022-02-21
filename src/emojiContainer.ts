@@ -44,9 +44,6 @@ export class EmojiContainer {
       this.emojis.map(emoji =>
         new Emoji({
           emoji,
-          showVariants: this.showVariants,
-          showPreview: true,
-          events: this.events,
           lazyLoader: this.lazyLoader,
           renderer: this.renderer
         }).render()

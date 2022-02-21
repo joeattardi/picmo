@@ -68,9 +68,6 @@ export class VariantPopup {
     const emojis = [
       new Emoji({
         emoji: this.emoji,
-        showVariants: false,
-        showPreview: false,
-        events: this.events,
         renderer: this.renderer
       })
     ];
@@ -85,9 +82,6 @@ export class VariantPopup {
                 emoji: variation,
                 key: this.emoji.name + index
               },
-              showVariants: false,
-              showPreview: false,
-              events: this.events,
               renderer: this.renderer
             })
         )

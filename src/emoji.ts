@@ -17,26 +17,17 @@ import classes from './emoji.scss';
 
 type EmojiOptions = {
   emoji: any;
-  showVariants: boolean;
-  showPreview: boolean;
-  events: Emitter;
   lazyLoader?: LazyLoader;
   renderer: Renderer;
 };
 export class Emoji extends View {
   private emoji: any;
-  private showVariants: boolean;
-  private showPreview: boolean;
-  private events: Emitter;
   private lazyLoader?: LazyLoader;
   private renderer: Renderer;
 
-  constructor({ emoji, showVariants, showPreview, events, lazyLoader, renderer }: EmojiOptions) {
+  constructor({ emoji, lazyLoader, renderer }: EmojiOptions) {
     super();
     this.emoji = emoji;
-    this.showVariants = showVariants;
-    this.showPreview = showPreview;
-    this.events = events;
     this.lazyLoader = lazyLoader;
     this.renderer = renderer;
   }
@@ -44,6 +35,7 @@ export class Emoji extends View {
   async doRender(): Promise<HTMLElement> {
     const el = emojiCompiled({ classes, emoji: this.emoji });
 
+    // TODO fix custom emojis
     // let content: Text | HTMLElement;
     // if (this.lazy || this.options.style === 'twemoji') {
     //   // TODO fix lazy loading
