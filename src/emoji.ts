@@ -1,7 +1,3 @@
-import { TinyEmitter as Emitter } from 'tiny-emitter';
-
-import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
-
 import { compileTemplate } from './templates';
 import emojiTemplate from './templates/emoji.ejs';
 import customEmojiTemplate from './templates/customEmojiContent.ejs';

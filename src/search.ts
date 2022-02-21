@@ -202,7 +202,7 @@ export class Search {
 
           this.resultsContainer.container.addEventListener('keydown', event => this.handleResultsKeydown(event));
 
-          this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer.container);
+          this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer);
         }
       } else {
         this.events.emit(SHOW_SEARCH_RESULTS, this.notFoundMessage);

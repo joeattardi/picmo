@@ -10,6 +10,8 @@ import Bundle from './i18n';
 import Renderer from './renderers/renderer';
 import { getEmojiForEvent } from './util';
 
+import { View } from './view';
+
 type EmojiContainerOptions = {
   emojis: any;
   showVariants: boolean;
@@ -19,7 +21,7 @@ type EmojiContainerOptions = {
   emojiVersion: string;
   renderer: Renderer;
 };
-export class EmojiContainer {
+export class EmojiContainer extends View {
   container: HTMLElement;
   protected emojis: Array<any>;
   protected showVariants: boolean;
@@ -27,9 +29,11 @@ export class EmojiContainer {
   private renderer: Renderer;
   protected lazyLoader?: LazyLoader;
   protected i18n;
+  emojiViews: Emoji[];
   emojiElements: HTMLElement[];
 
   constructor({ emojis, showVariants, events, lazyLoader, i18n, emojiVersion, renderer }: EmojiContainerOptions) {
+    super();
     this.showVariants = showVariants;
     this.events = events;
     this.lazyLoader = lazyLoader;
@@ -39,26 +43,32 @@ export class EmojiContainer {
     this.emojis = emojis.filter(e => !e.version || parseFloat(e.version as string) <= parseFloat(emojiVersion));
   }
 
-  async render(): Promise<HTMLElement> {
-    this.emojiElements = await Promise.all(
-      this.emojis.map(emoji =>
+  uiEvents = [
+    View.listen('mouseover', this.showPreview),
+    View.listen('mouseout', this.hidePreview),
+    View.listen('focus', this.showPreview, { capture: true }),
+    View.listen('blur', this.hidePreview, { capture: true }),
+    View.listen('click', this.selectEmoji)
+  ];
+
+  async doRender(): Promise<HTMLElement> {
+    this.emojiViews = this.emojis.map(
+      emoji =>
         new Emoji({
           emoji,
           lazyLoader: this.lazyLoader,
           renderer: this.renderer
-        }).render()
-      )
+        })
     );
 
+    this.emojiElements = await Promise.all(this.emojiViews.map(view => view.render()));
     this.container = renderTemplate(template, { classes, emojis: this.emojiElements, i18n: this.i18n });
 
-    this.container.addEventListener('mouseover', event => this.showPreview(event));
-    this.container.addEventListener('mouseout', event => this.hidePreview(event));
-    this.container.addEventListener('focus', event => this.showPreview(event), true);
-    this.container.addEventListener('blur', event => this.hidePreview(event), true);
-    this.container.addEventListener('click', event => this.selectEmoji(event));
-
     return this.container;
+  }
+
+  destroy() {
+    this.emojiViews.forEach(view => view.destroy());
   }
 
   private selectEmoji(event: Event) {

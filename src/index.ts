@@ -38,6 +38,7 @@ import en from './i18n/lang-en';
 import NativeRenderer from './renderers/native';
 import Renderer from './renderers/renderer';
 import { Theme } from './types_OLD';
+import { EmojiContainer } from './emojiContainer';
 
 const MOBILE_BREAKPOINT = 450;
 
@@ -142,6 +143,8 @@ export class EmojiButton {
 
   private popper: Popper;
 
+  private searchResults: EmojiContainer;
+
   private showCategoryButtons: boolean;
   private showSearch: boolean;
   private showVariants: boolean;
@@ -238,8 +241,9 @@ export class EmojiButton {
    *
    * @param searchResults The element containing the search results.
    */
-  private showSearchResults(searchResults: HTMLElement): void {
-    this.pickerContent.replaceChildren(searchResults);
+  private showSearchResults(searchResults: EmojiContainer): void {
+    this.searchResults = searchResults;
+    this.pickerContent.replaceChildren(searchResults.el);
   }
 
   /**
@@ -247,6 +251,7 @@ export class EmojiButton {
    */
   private hideSearchResults(): void {
     if (this.pickerContent.firstChild !== this.emojiArea.container) {
+      this.searchResults.destroy();
       this.pickerContent.replaceChildren();
       this.pickerContent.appendChild(this.emojiArea.container);
     }
