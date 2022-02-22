@@ -30,7 +30,7 @@ export class Emoji extends View {
   }
 
   async render(): Promise<HTMLElement> {
-    const emojiContent = await this.renderer.render(this.emoji);
+    const emojiContent = await this.renderer.render(this.emoji, this.lazyLoader);
     return super.render({ emoji: this.emoji, emojiContent });
 
     // TODO fix custom emojis

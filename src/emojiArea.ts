@@ -1,5 +1,6 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
+import { View } from './view';
 import classes from './emojiArea.scss';
 
 import emojiData from './data/emoji';
@@ -9,11 +10,9 @@ import { EmojiCategory } from './emojiCategory';
 import { RecentEmojiCategory } from './recentEmojiCategory';
 
 import { CATEGORY_CLICKED } from './events';
-import { queryAllByClass, queryByClass } from './util';
 import { load } from './recent';
 
 import template from './templates/emojiArea.ejs';
-import { renderTemplate } from './templates';
 import { LazyLoader } from './lazyLoad';
 import Bundle from './i18n';
 import Renderer from './renderers/renderer';
@@ -41,7 +40,7 @@ type EmojiAreaOptions = {
   renderer: Renderer;
   emojiVersion: string;
 };
-export class EmojiArea {
+export class EmojiArea extends View {
   private headerOffsets: number[];
   private currentCategory = 0;
   private headers: HTMLElement[] = [];
@@ -66,8 +65,7 @@ export class EmojiArea {
 
   private focusedIndex = 0;
 
-  container: HTMLElement;
-  emojis: HTMLElement;
+  uiElements = [View.byClass(classes.emojis, 'emojis')];
 
   constructor({
     events,
@@ -81,6 +79,8 @@ export class EmojiArea {
     renderer,
     emojiVersion
   }: EmojiAreaOptions) {
+    super(template, classes);
+
     this.emojisPerRow = emojisPerRow;
     this.categories = emojiData.categories;
 
@@ -133,19 +133,18 @@ export class EmojiArea {
       categoryEmojiElements[`emojis-${category}`] = emojiContainers[index];
     });
 
-    this.container = renderTemplate(template, {
-      classes,
+    await super.render({
       categoryButtons: this.showCategoryButtons ? this.categoryButtons?.render() : null,
       categories: this.categories,
       i18n: this.i18n,
       ...categoryEmojiElements
     });
 
-    this.emojis = queryByClass(this.container, classes.emojis);
     this.headers = this.emojiCategories.map(category => category.categoryNameEl);
 
-    this.emojis.addEventListener('scroll', this.highlightCategory);
-    this.emojis.addEventListener('keydown', this.handleKeyDown);
+    // TODO address these when fixing scroll selection and keyboard navigation
+    this.ui.emojis.addEventListener('scroll', this.highlightCategory);
+    this.ui.emojis.addEventListener('keydown', this.handleKeyDown);
 
     this.events.on(CATEGORY_CLICKED, this.selectCategory);
 
@@ -154,7 +153,7 @@ export class EmojiArea {
       firstEmoji.tabIndex = 0;
     }
 
-    return this.container;
+    return this.el;
   }
 
   private createCategory(category: string): EmojiCategory {
@@ -218,7 +217,7 @@ export class EmojiArea {
   }
 
   private handleKeyDown = (event: KeyboardEvent): void => {
-    this.emojis.removeEventListener('scroll', this.highlightCategory);
+    this.ui.emojis.removeEventListener('scroll', this.highlightCategory);
     switch (event.key) {
       case 'ArrowRight':
         this.focusedEmoji.tabIndex = -1;
@@ -290,7 +289,7 @@ export class EmojiArea {
         }
         break;
     }
-    requestAnimationFrame(() => this.emojis.addEventListener('scroll', this.highlightCategory));
+    requestAnimationFrame(() => this.ui.emojis.addEventListener('scroll', this.highlightCategory));
   };
 
   private setFocusedEmoji(index: number, focus = true): void {
@@ -306,7 +305,7 @@ export class EmojiArea {
   }
 
   selectCategory = (category: string, focus = true, animate = true): void => {
-    this.emojis.removeEventListener('scroll', this.highlightCategory);
+    this.ui.emojis.removeEventListener('scroll', this.highlightCategory);
     if (this.focusedEmoji) {
       this.focusedEmoji.tabIndex = -1;
     }
@@ -319,8 +318,8 @@ export class EmojiArea {
     }
 
     const targetPosition = this.headerOffsets[categoryIndex];
-    this.emojis.scrollTop = targetPosition;
-    requestAnimationFrame(() => this.emojis.addEventListener('scroll', this.highlightCategory));
+    this.ui.emojis.scrollTop = targetPosition;
+    requestAnimationFrame(() => this.ui.emojis.addEventListener('scroll', this.highlightCategory));
   };
 
   highlightCategory = (): void => {
@@ -328,9 +327,9 @@ export class EmojiArea {
       return;
     }
 
-    let closestHeaderIndex = this.headerOffsets.findIndex(offset => offset >= Math.round(this.emojis.scrollTop));
+    let closestHeaderIndex = this.headerOffsets.findIndex(offset => offset >= Math.round(this.ui.emojis.scrollTop));
 
-    if (this.emojis.scrollTop + this.emojis.offsetHeight === this.emojis.scrollHeight) {
+    if (this.ui.emojis.scrollTop + this.ui.emojis.offsetHeight === this.ui.emojis.scrollHeight) {
       closestHeaderIndex = -1;
     }
 
@@ -340,7 +339,7 @@ export class EmojiArea {
       closestHeaderIndex = this.headerOffsets.length;
     }
 
-    if (this.headerOffsets[closestHeaderIndex] === this.emojis.scrollTop) {
+    if (this.headerOffsets[closestHeaderIndex] === this.ui.emojis.scrollTop) {
       closestHeaderIndex++;
     }
 

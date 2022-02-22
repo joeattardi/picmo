@@ -185,7 +185,6 @@ export class EmojiButton {
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
-
     this.i18n = new Bundle(getOption(options, 'locale'));
     this.emojiCategories = buildEmojiCategoryData(emojiData);
 
@@ -250,10 +249,10 @@ export class EmojiButton {
    * Hides the search results and resets the picker.
    */
   private hideSearchResults(): void {
-    if (this.pickerContent.firstChild !== this.emojiArea.container) {
+    if (this.pickerContent.firstChild === this.searchResults?.el) {
       this.searchResults.destroy();
       this.pickerContent.replaceChildren();
-      this.pickerContent.appendChild(this.emojiArea.container);
+      this.pickerContent.appendChild(this.emojiArea.el);
     }
 
     this.search.reset();
@@ -396,6 +395,7 @@ export class EmojiButton {
       classes,
       plugins: this.pluginContainer,
       search: this.search?.render(),
+      // emojiArea: document.createElement('div')
       emojiArea: await this.emojiArea.render()
     });
 
@@ -418,7 +418,7 @@ export class EmojiButton {
     //   this.wrapper.style.zIndex = this.options.zIndex + '';
     // }
 
-    lazyLoader.observe(this.emojiArea.emojis);
+    lazyLoader.observe(this.emojiArea.ui.emojis);
   }
 
   /**
@@ -494,7 +494,7 @@ export class EmojiButton {
 
     // In some browsers, the delayed hide was triggering the scroll event handler
     // and stealing the focus. Remove the scroll listener before doing the delayed hide.
-    this.emojiArea.emojis.removeEventListener('scroll', this.emojiArea.highlightCategory);
+    this.emojiArea.ui.emojis.removeEventListener('scroll', this.emojiArea.highlightCategory);
 
     const animation = this.pickerEl.animate(
       {
