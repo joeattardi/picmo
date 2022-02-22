@@ -140,7 +140,7 @@ export class EmojiArea extends View {
       ...categoryEmojiElements
     });
 
-    this.headers = this.emojiCategories.map(category => category.categoryNameEl);
+    this.headers = this.emojiCategories.map(category => category.ui.categoryName);
 
     // TODO address these when fixing scroll selection and keyboard navigation
     this.ui.emojis.addEventListener('scroll', this.highlightCategory);

@@ -1,8 +1,7 @@
 import { TinyEmitter as Emitter } from 'tiny-emitter';
+import { View } from './view';
 
-import { renderTemplate } from './templates';
-
-import template from './templates/emojiCategory.ejs';
+import baseTemplate from './templates/emojiCategory.ejs';
 
 import { EmojiContainer } from './emojiContainer';
 import Bundle from './i18n';
@@ -20,8 +19,9 @@ type EmojiCategoryOptions = {
   i18n: Bundle;
   renderer: Renderer;
   emojiVersion: string;
+  template: string;
 };
-export class EmojiCategory {
+export class EmojiCategory extends View {
   protected container: HTMLElement;
   private category: string;
   private emojis: any[];
@@ -30,10 +30,10 @@ export class EmojiCategory {
   protected renderer: Renderer;
   protected events: Emitter;
   protected showVariants: boolean;
-  protected template: string;
   protected emojiVersion: string;
   emojiContainer: EmojiContainer;
-  categoryNameEl: HTMLElement;
+
+  uiElements = [View.byClass(classes.categoryName, 'categoryName')];
 
   constructor({
     category,
@@ -43,8 +43,11 @@ export class EmojiCategory {
     lazyLoader,
     i18n,
     renderer,
-    emojiVersion
+    emojiVersion,
+    template = baseTemplate
   }: EmojiCategoryOptions) {
+    super(template, classes);
+
     this.category = category;
     this.showVariants = showVariants;
     this.emojis = emojis;
@@ -53,12 +56,6 @@ export class EmojiCategory {
     this.i18n = i18n;
     this.renderer = renderer;
     this.emojiVersion = emojiVersion;
-
-    this.initialize();
-  }
-
-  initialize(): void {
-    this.template = template;
   }
 
   async render(): Promise<HTMLElement> {
@@ -72,16 +69,11 @@ export class EmojiCategory {
       emojiVersion: this.emojiVersion
     });
 
-    this.container = renderTemplate(this.template, {
-      classes,
+    return super.render({
       category: this.category,
       emojis: await this.emojiContainer.render(),
       emojiCount: this.emojis.length,
       i18n: this.i18n
     });
-
-    this.categoryNameEl = this.container.firstElementChild as HTMLElement;
-
-    return this.container;
   }
 }
