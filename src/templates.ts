@@ -2,7 +2,7 @@ import { dom } from '@fortawesome/fontawesome-svg-core';
 
 import ejs, { Data } from 'ejs';
 
-type ElementTemplate = (data?: Data) => HTMLElement;
+export type ElementTemplate = (data?: Data) => HTMLElement;
 
 // TODO: add i18n to helpers
 
@@ -21,6 +21,27 @@ function addHelpers(data: Data = {}): Data {
   };
 }
 
+function bindPlaceholders(result: HTMLElement, data: Data) {
+  const placeholders = result.querySelectorAll<HTMLElement>('[data-placeholder]');
+  placeholders.forEach((placeholder: HTMLElement) => {
+    const key = placeholder.dataset.placeholder;
+    if (key) {
+      if (data[key]) {
+        const replacement = data[key];
+        if (Array.isArray(replacement)) {
+          placeholder.replaceWith(...replacement);
+        } else {
+          placeholder.replaceWith(replacement);
+        }
+      } else {
+        throw new Error(`Missing placeholder element for key "${key}"`);
+      }
+    }
+  });
+
+  return result;
+}
+
 /**
  * Compiles a template for later use.
  *
@@ -34,7 +55,8 @@ export function compileTemplate(template: string): ElementTemplate {
   // The returned function will add the helpers to the
   // supplied data.
   return (data: Data = {}) => {
-    return toElement(compiled(addHelpers(data)));
+    const result = toElement(compiled(addHelpers(data)));
+    return bindPlaceholders(result, data);
   };
 }
 
@@ -45,28 +67,9 @@ export function compileTemplate(template: string): ElementTemplate {
  * @param data data to supply to the template
  * @returns the rendered HTMLElement
  */
-export function renderTemplate<E extends HTMLElement = HTMLElement>(template: string, data: Data = {}): E {
-  const result = toElement<E>(ejs.render(template, addHelpers(data)));
-
-  const placeholders = result.querySelectorAll<E>('[data-placeholder]');
-  if (placeholders.length) {
-    placeholders.forEach((placeholder: HTMLElement) => {
-      const key = placeholder.dataset.placeholder;
-      if (key) {
-        if (data[key]) {
-          const replacement = data[key];
-          if (Array.isArray(replacement)) {
-            placeholder.replaceWith(...replacement);
-          } else {
-            placeholder.replaceWith(replacement);
-          }
-        } else {
-          throw new Error(`Missing placeholder element for key "${key}"`);
-        }
-      }
-    });
-  }
-
+export function renderTemplate(template: string, data: Data = {}): E {
+  let result = toElement(ejs.render(template, addHelpers(data)));
+  result = bindPlaceholders(result, data);
   dom.i2svg({ node: result });
 
   return result;

@@ -1,3 +1,7 @@
+import { Data } from 'ejs';
+
+import { renderTemplate, ElementTemplate } from './templates';
+
 type EventHandler = (event: Event) => void;
 
 type EventListenerBinding = {
@@ -5,6 +9,10 @@ type EventListenerBinding = {
   handler: EventHandler;
   options: AddEventListenerOptions;
 };
+
+type ClassMappings = { [key: string]: string };
+
+type Template = string | ElementTemplate;
 
 export function listen(
   event: string,
@@ -16,11 +24,26 @@ export function listen(
 
 export abstract class View {
   el: HTMLElement;
-  abstract doRender(): Promise<HTMLElement>;
+
+  private template: Template;
+  private classes: ClassMappings;
+
   uiEvents: EventListenerBinding[] = [];
 
-  async render(): Promise<HTMLElement> {
-    this.el = await this.doRender();
+  constructor(template: Template, classes: ClassMappings = {}) {
+    this.template = template;
+    this.classes = classes;
+  }
+
+  async render(templateData: Data = {}): Promise<HTMLElement> {
+    const templateFn =
+      typeof this.template === 'string' ? (data: Data) => renderTemplate(this.template as string, data) : this.template;
+
+    this.el = await templateFn({
+      classes: this.classes,
+      ...templateData
+    });
+
     this.bindListeners();
     return this.el;
   }

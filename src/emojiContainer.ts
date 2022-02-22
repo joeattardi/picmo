@@ -3,7 +3,6 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 import { Emoji } from './emoji';
 import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
 import classes from './emojiContainer.scss';
-import { renderTemplate } from './templates';
 import template from './templates/emojiContainer.ejs';
 import { LazyLoader } from './lazyLoad';
 import Bundle from './i18n';
@@ -22,8 +21,7 @@ type EmojiContainerOptions = {
   renderer: Renderer;
 };
 export class EmojiContainer extends View {
-  container: HTMLElement;
-  protected emojis: Array<any>;
+  protected emojis: Array<any>; // TODO use proper types after using emojibase
   protected showVariants: boolean;
   protected events: Emitter;
   private renderer: Renderer;
@@ -33,7 +31,8 @@ export class EmojiContainer extends View {
   emojiElements: HTMLElement[];
 
   constructor({ emojis, showVariants, events, lazyLoader, i18n, emojiVersion, renderer }: EmojiContainerOptions) {
-    super();
+    super(template, classes);
+
     this.showVariants = showVariants;
     this.events = events;
     this.lazyLoader = lazyLoader;
@@ -51,7 +50,7 @@ export class EmojiContainer extends View {
     View.listen('click', this.selectEmoji)
   ];
 
-  async doRender(): Promise<HTMLElement> {
+  async render(): Promise<HTMLElement> {
     this.emojiViews = this.emojis.map(
       emoji =>
         new Emoji({
@@ -62,12 +61,15 @@ export class EmojiContainer extends View {
     );
 
     this.emojiElements = await Promise.all(this.emojiViews.map(view => view.render()));
-    this.container = renderTemplate(template, { classes, emojis: this.emojiElements, i18n: this.i18n });
 
-    return this.container;
+    return super.render({
+      emojis: this.emojiElements,
+      i18n: this.i18n
+    });
   }
 
   destroy() {
+    super.destroy();
     this.emojiViews.forEach(view => view.destroy());
   }
 

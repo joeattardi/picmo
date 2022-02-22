@@ -22,14 +22,16 @@ export class Emoji extends View {
   private renderer: Renderer;
 
   constructor({ emoji, lazyLoader, renderer }: EmojiOptions) {
-    super();
+    super(emojiCompiled, classes);
+
     this.emoji = emoji;
     this.lazyLoader = lazyLoader;
     this.renderer = renderer;
   }
 
-  async doRender(): Promise<HTMLElement> {
-    const el = emojiCompiled({ classes, emoji: this.emoji });
+  async render(): Promise<HTMLElement> {
+    const emojiContent = await this.renderer.render(this.emoji);
+    return super.render({ emoji: this.emoji, emojiContent });
 
     // TODO fix custom emojis
     // let content: Text | HTMLElement;
@@ -44,9 +46,9 @@ export class Emoji extends View {
     //   content = document.createTextNode(this.emoji.emoji);
     // }
 
-    const content = await this.renderer.render(this.emoji, this.lazyLoader);
-    el.appendChild(content);
+    // const content = await this.renderer.render(this.emoji, this.lazyLoader);
+    // el.appendChild(content);
 
-    return el;
+    // return el;
   }
 }
