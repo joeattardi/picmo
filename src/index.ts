@@ -329,10 +329,10 @@ export class EmojiButton {
   /**
    * Builds the emoji preview area.
    */
-  private buildPreview(): void {
+  private async buildPreview() {
     if (this.showPreview) {
       this.pickerEl.appendChild(
-        new EmojiPreview({
+        await new EmojiPreview({
           events: this.events,
           renderer: this.renderer
         }).render()
