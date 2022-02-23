@@ -1,6 +1,7 @@
 import fuzzysort from 'fuzzysort';
 import { TinyEmitter as Emitter } from 'tiny-emitter';
 
+import { View } from './view';
 import classes from './search.scss';
 
 import Bundle from './i18n';
@@ -30,7 +31,7 @@ type SearchOptions = {
   renderer: Renderer;
 };
 
-export class Search {
+export class Search extends View {
   private emojiData: any[];
   private emojisPerRow: number;
   private focusedEmojiIndex = 0;
@@ -39,7 +40,6 @@ export class Search {
   private emojiVersion: string;
   private renderer: Renderer;
 
-  private searchContainer: HTMLElement;
   private searchAccessory: HTMLElement;
   private searchIcon: HTMLElement;
   private clearSearchButton: HTMLButtonElement;
@@ -49,6 +49,8 @@ export class Search {
   searchField: HTMLInputElement;
 
   constructor({ events, i18n, emojiData, emojisPerRow, emojiVersion, customEmojis = [], renderer }: SearchOptions) {
+    super(searchTemplate, classes);
+
     this.emojisPerRow = emojisPerRow;
     this.emojiData = emojiData.filter(e => e.version && parseFloat(e.version) <= parseFloat(emojiVersion));
     this.emojiData = [...this.emojiData, ...customEmojis];
@@ -66,14 +68,11 @@ export class Search {
     this.searchAccessory.replaceChildren(this.searchIcon);
   }
 
-  render(): HTMLElement {
+  async render(): Promise<HTMLElement> {
+    await super.render({ i18n: this.i18n });
+
     this.searchIcon = icon('magnifying-glass', { classes: 'fa-fw' });
     this.notFoundMessage = renderTemplate(notFoundTemplate, {
-      classes,
-      i18n: this.i18n
-    });
-
-    this.searchContainer = renderTemplate(searchTemplate, {
       classes,
       i18n: this.i18n
     });
@@ -83,8 +82,8 @@ export class Search {
       i18n: this.i18n
     });
 
-    this.searchField = queryByClass(this.searchContainer, classes.searchField);
-    this.searchAccessory = queryByClass(this.searchContainer, classes.searchAccessory);
+    this.searchField = queryByClass(this.el, classes.searchField);
+    this.searchAccessory = queryByClass(this.el, classes.searchAccessory);
 
     this.clearSearchButton.addEventListener('click', (event: MouseEvent) => this.onClearSearch(event));
     this.searchField.addEventListener('keydown', (event: KeyboardEvent) => this.onKeyDown(event));
@@ -92,7 +91,7 @@ export class Search {
 
     this.searchAccessory.replaceChildren(this.searchIcon);
 
-    return this.searchContainer;
+    return this.el;
   }
 
   clear(): void {
@@ -193,14 +192,14 @@ export class Search {
         });
 
         await this.resultsContainer.render();
-        this.resultsContainer.container.classList.add(classes.searchResults);
-        lazyLoader.observe(this.resultsContainer.container);
+        this.resultsContainer.el.classList.add(classes.searchResults);
+        lazyLoader.observe(this.resultsContainer.el);
 
         if (this.resultsContainer) {
           this.resultsContainer.emojiElements[0].tabIndex = 0;
           this.focusedEmojiIndex = 0;
 
-          this.resultsContainer.container.addEventListener('keydown', event => this.handleResultsKeydown(event));
+          this.resultsContainer.el.addEventListener('keydown', event => this.handleResultsKeydown(event));
 
           this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer);
         }

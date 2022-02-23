@@ -5,6 +5,6 @@
   padding: 0 0.5em;
   grid-template-columns: repeat(var(--emojis-per-row), calc(var(--emoji-size) * var(--emoji-size-multiplier)));
   grid-auto-rows: calc(var(--emoji-size) * var(--emoji-size-multiplier));
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: var(--content-margin);
+  margin-bottom: var(--content-margin);
 }

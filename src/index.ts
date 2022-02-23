@@ -394,7 +394,7 @@ export class EmojiButton {
     this.wrapper = renderTemplate(template, {
       classes,
       plugins: this.pluginContainer,
-      search: this.search?.render(),
+      search: await this.search?.render(),
       // emojiArea: document.createElement('div')
       emojiArea: await this.emojiArea.render()
     });

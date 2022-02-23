@@ -1,11 +1,11 @@
 .categoryButtons {
   display: flex;
   flex-direction: row;
-  height: var(--category-button-height);
   justify-content: space-between;
   margin: 0;
   margin-bottom: 8px;
-  padding: 0 8px 8px 8px;
+  padding: 0 8px 4px 8px;
+  
   border-bottom: 1px solid var(--border-color);
   position: relative;
 }
@@ -16,14 +16,14 @@
   border-radius: 5px;
   color: var(--category-button-color);
   cursor: pointer;
-  font-size: var(--category-button-size);
-  padding: 4px;
+  padding: 2px;
   vertical-align: middle;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(var(--category-button-size) * 1.5);
-  width: calc(var(--category-button-size) * 1.5);
+  font-size: var(--category-button-size);
+  width: var(--category-button-width);
+  height: var(--category-button-height);
   transition: all 250ms;
 
   &:hover {
@@ -50,9 +50,9 @@
   position: absolute;
   content: '';
   bottom: -1px;
-  left: 0;
-  width: calc((var(--category-button-size) * 1.5) + 2px);
+  left: -0.5px;
+  font-size: var(--category-button-size);
+  width: var(--category-button-width);
   height: 4px;
   background: var(--category-button-active-color);
-  border-radius: 5px;
 }
