@@ -189,7 +189,7 @@ export class EmojiArea extends View {
   async reset(): Promise<void> {
     this.headerOffsets = Array.prototype.map.call(this.headers, header => header.parentElement.offsetTop) as number[];
 
-    this.selectCategory('smileys', false);
+    this.selectCategory('smileys', false, false);
     this.currentCategory = this.categories.indexOf('smileys');
 
     if (this.showCategoryButtons) {
@@ -304,6 +304,39 @@ export class EmojiArea extends View {
     }
   }
 
+  // TODO: can this be cleaned up at all?
+  private scrollTo(targetPosition, animate = true) {
+    if (animate) {
+      const difference = targetPosition - this.ui.emojis.scrollTop;
+      const step = difference / 7;
+
+      let previous;
+      const scrollStep = time => {
+        if (!previous) {
+          previous = time;
+        }
+
+        if (time - previous >= (1000/60)) {
+          if (targetPosition !== this.ui.emojis.scrollTop) {
+            const currentDifference = targetPosition - this.ui.emojis.scrollTop;
+            const nextStep = Math.abs(currentDifference) > Math.abs(step) && Math.sign(currentDifference) === Math.sign(step) ? step : currentDifference;
+            this.ui.emojis.scrollTop += nextStep;
+            previous = time;
+            requestAnimationFrame(scrollStep);
+          } else {
+            this.ui.emojis.addEventListener('scroll', this.highlightCategory)
+          }
+        } else {
+          requestAnimationFrame(scrollStep);
+        }
+      };
+  
+      requestAnimationFrame(scrollStep);
+    } else {
+      this.ui.emojis.scrollTop = targetPosition;
+    }
+  }
+
   selectCategory = (category: string, focus = true, animate = true): void => {
     this.ui.emojis.removeEventListener('scroll', this.highlightCategory);
     if (this.focusedEmoji) {
@@ -317,9 +350,7 @@ export class EmojiArea extends View {
       this.categoryButtons.setActiveButton(this.currentCategory, focus, animate);
     }
 
-    const targetPosition = this.headerOffsets[categoryIndex];
-    this.ui.emojis.scrollTop = targetPosition;
-    requestAnimationFrame(() => this.ui.emojis.addEventListener('scroll', this.highlightCategory));
+    this.scrollTo(this.headerOffsets[categoryIndex], animate);
   };
 
   highlightCategory = (): void => {

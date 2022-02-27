@@ -9,7 +9,7 @@
   background: var(--category-name-background);
   color: var(--category-name-text-color);
   position: sticky;
-  top: 0;
+  top: -1px;
   z-index: 1;
   display: flex;
   align-items: center;
