@@ -33,7 +33,7 @@ export class EmojiCategory extends View {
   protected emojiVersion: string;
   emojiContainer: EmojiContainer;
 
-  uiElements = [View.byClass(classes.categoryName, 'categoryName')];
+  uiElements = { categoryName: View.byClass(classes.categoryName)}
 
   constructor({
     category,

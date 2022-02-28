@@ -12,10 +12,7 @@ type EventListenerBinding = {
 
 type ClassMappings = { [key: string]: string };
 
-type UIElementSelector = {
-  selector: string;
-  name: string;
-};
+type UIElementSelectors = { [key: string]: string };
 
 type UIElementMappings = { [key: string]: HTMLElement };
 type Template = string | ElementTemplate;
@@ -26,8 +23,9 @@ export abstract class View {
   private template: Template;
   private classes: ClassMappings;
 
-  uiEvents: EventListenerBinding[] = [];
-  uiElements: UIElementSelector[] = [];
+  protected uiEvents: EventListenerBinding[] = [];
+  protected uiElements: UIElementSelectors = {};
+
   ui: UIElementMappings = {};
 
   constructor(template: Template, classes: ClassMappings = {}) {
@@ -51,12 +49,10 @@ export abstract class View {
   }
 
   private bindUIElements() {
-    this.uiElements.forEach(({ selector, name }: UIElementSelector) => {
-      const element = this.el.querySelector<HTMLElement>(selector);
-      if (element) {
-        this.ui[name] = element;
-      }
-    });
+    this.ui = Object.keys(this.uiElements).reduce((result, key) => ({
+      ...result,
+      [key]: this.el.querySelector<HTMLElement>(this.uiElements[key])
+    }), {});
   }
 
   private bindListeners() {
@@ -77,7 +73,7 @@ export abstract class View {
     return { event, handler, options };
   }
 
-  static byClass(className: string, name: string) {
-    return { selector: `.${className}`, name };
+  static byClass(className: string): string {
+    return `.${className}`;
   }
 }

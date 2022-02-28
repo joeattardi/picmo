@@ -1,5 +1,7 @@
 // import { EmojiData, EmojiRecord } from './types';
 
+const matcher = window.matchMedia('(prefers-reduced-motion: reduce)');
+
 export function formatEmojiName(name: string): string {
   const words = name.split(/[-_]/);
   words[0] = words[0][0].toUpperCase() + words[0].slice(1);
@@ -48,4 +50,8 @@ export function getEmojiForEvent(event: Event, emojis: any[]): any | null {
       return emoji;
     }
   }
+}
+
+export function prefersReducedMotion() {
+  return matcher.matches;
 }

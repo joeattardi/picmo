@@ -11,6 +11,7 @@ import { RecentEmojiCategory } from './recentEmojiCategory';
 
 import { CATEGORY_CLICKED } from './events';
 import { load } from './recent';
+import { prefersReducedMotion } from './util';
 
 import template from './templates/emojiArea.ejs';
 import { LazyLoader } from './lazyLoad';
@@ -65,7 +66,11 @@ export class EmojiArea extends View {
 
   private focusedIndex = 0;
 
-  uiElements = [View.byClass(classes.emojis, 'emojis')];
+  private cancelScroll: () => void;
+
+  uiElements = {
+    emojis: View.byClass(classes.emojis)
+  };
 
   constructor({
     events,
@@ -105,6 +110,9 @@ export class EmojiArea extends View {
     }
 
     this.categories.sort((a, b) => categorySortOrder.indexOf(a) - categorySortOrder.indexOf(b));
+
+    this.highlightCategory = this.highlightCategory.bind(this);
+    this.selectCategory = this.selectCategory.bind(this);
   }
 
   async render(): Promise<HTMLElement> {
@@ -134,7 +142,7 @@ export class EmojiArea extends View {
     });
 
     await super.render({
-      categoryButtons: this.showCategoryButtons ? this.categoryButtons?.render() : null,
+      categoryButtons: this.showCategoryButtons ? await this.categoryButtons?.render() : null,
       categories: this.categories,
       i18n: this.i18n,
       ...categoryEmojiElements
@@ -195,13 +203,6 @@ export class EmojiArea extends View {
     if (this.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory, false, false);
     }
-
-    // const recents = this.container.querySelector(`h3[data-category="recents"] ~ .${classes.emojiContainer}`);
-    // if (recents) {
-    //   const recentsLoader = new LazyLoader();
-    //   recents.replaceWith(await new RecentsContainer(load(), true, this.events, this.options, recentsLoader, this.i18n).render());
-    //   recentsLoader.observe(this.emojis);
-    // }
   }
 
   private get focusedEmoji(): HTMLElement {
@@ -304,40 +305,51 @@ export class EmojiArea extends View {
     }
   }
 
-  // TODO: can this be cleaned up at all?
-  private scrollTo(targetPosition, animate = true) {
-    if (animate) {
-      const difference = targetPosition - this.ui.emojis.scrollTop;
-      const step = difference / 7;
+  private async scrollTo(targetPosition, animate = true) {
+    this.cancelScroll?.();
 
-      let previous;
-      const scrollStep = time => {
-        if (!previous) {
-          previous = time;
-        }
+    let isCancelled = false;
+    this.cancelScroll = () => isCancelled = true;
 
-        if (time - previous >= (1000/60)) {
-          if (targetPosition !== this.ui.emojis.scrollTop) {
-            const currentDifference = targetPosition - this.ui.emojis.scrollTop;
-            const nextStep = Math.abs(currentDifference) > Math.abs(step) && Math.sign(currentDifference) === Math.sign(step) ? step : currentDifference;
-            this.ui.emojis.scrollTop += nextStep;
+    return new Promise<void>(resolve => {
+      if (animate && !prefersReducedMotion()) {
+        const difference = targetPosition - this.ui.emojis.scrollTop;
+        const step = difference / 7;
+
+        let previous;
+        const scrollStep = time => {
+          if (!previous) {
             previous = time;
-            requestAnimationFrame(scrollStep);
-          } else {
-            this.ui.emojis.addEventListener('scroll', this.highlightCategory)
           }
-        } else {
-          requestAnimationFrame(scrollStep);
-        }
-      };
-  
-      requestAnimationFrame(scrollStep);
-    } else {
-      this.ui.emojis.scrollTop = targetPosition;
-    }
+
+          if (isCancelled) {
+            this.ui.emojis.scrollTop = targetPosition;
+          }
+
+          if (time - previous >= (1000/60)) {
+            if (targetPosition !== this.ui.emojis.scrollTop) {
+              const currentDifference = targetPosition - this.ui.emojis.scrollTop;
+              const nextStep = Math.abs(currentDifference) > Math.abs(step) && Math.sign(currentDifference) === Math.sign(step) ? step : currentDifference;
+              this.ui.emojis.scrollTop += nextStep;
+              previous = time;
+              requestAnimationFrame(scrollStep);
+            } else {
+              resolve();
+            }
+          } else {
+            requestAnimationFrame(scrollStep);
+          }
+        };
+    
+        requestAnimationFrame(scrollStep);
+      } else {
+        this.ui.emojis.scrollTop = targetPosition;
+        resolve();
+      }
+    });
   }
 
-  selectCategory = (category: string, focus = true, animate = true): void => {
+  async selectCategory(category: string, focus = true, animate = true): Promise<void> {
     this.ui.emojis.removeEventListener('scroll', this.highlightCategory);
     if (this.focusedEmoji) {
       this.focusedEmoji.tabIndex = -1;
@@ -350,10 +362,12 @@ export class EmojiArea extends View {
       this.categoryButtons.setActiveButton(this.currentCategory, focus, animate);
     }
 
-    this.scrollTo(this.headerOffsets[categoryIndex], animate);
-  };
 
-  highlightCategory = (): void => {
+    await this.scrollTo(this.headerOffsets[categoryIndex], animate);
+    this.ui.emojis.addEventListener('scroll', this.highlightCategory)
+  }
+
+  highlightCategory(): void {
     if (document.activeElement && document.activeElement.classList.contains('emoji-picker__emoji')) {
       return;
     }
@@ -378,5 +392,5 @@ export class EmojiArea extends View {
     if (this.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory);
     }
-  };
+  }
 }

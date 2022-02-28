@@ -2,14 +2,13 @@ import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import emojiData from './data/emoji';
 
+import { View } from './view';
 import { CustomEmoji } from './types';
 
 import Bundle from './i18n';
 import { CATEGORY_CLICKED } from './events';
 
 import template from './templates/categoryButtons.ejs';
-import { renderTemplate } from './templates';
-import { queryByClass, queryAllByClass } from './util';
 
 import classes from './categoryButtons.scss';
 
@@ -34,7 +33,7 @@ type CategoryButtonsOptions = {
   custom: CustomEmoji[];
 };
 
-export class CategoryButtons {
+export class CategoryButtons extends View {
   private events: Emitter;
   private i18n: Bundle;
   private showRecents: boolean;
@@ -43,16 +42,33 @@ export class CategoryButtons {
   activeButton = 0;
 
   buttons: NodeListOf<HTMLButtonElement>;
-  private activeIndicator: HTMLElement;
+
+  uiElements = {
+    activeIndicator: View.byClass(classes.activeIndicator)
+  }
+
+  uiEvents = [
+    View.listen('click', this.handleClickCategory)
+  ];
 
   constructor({ events, i18n, showRecents, custom }: CategoryButtonsOptions) {
+    super(template, classes);
+
     this.events = events;
     this.i18n = i18n;
     this.showRecents = showRecents;
     this.custom = custom;
   }
 
-  render(): HTMLElement {
+  handleClickCategory(event: MouseEvent) {
+    const targetElement = event.target as HTMLElement;
+    const button = targetElement.closest('button');
+    if (button) {
+      this.events.emit(CATEGORY_CLICKED, button.dataset.category);
+    }
+  }
+
+  async render(): Promise<HTMLElement> {
     const categoryData = emojiData.categories;
 
     let categories = this.showRecents ? ['recents', ...categoryData] : categoryData;
@@ -61,23 +77,15 @@ export class CategoryButtons {
       categories = [...categories, 'custom'];
     }
 
-    const container = renderTemplate(template, {
+    await super.render({
       i18n: this.i18n,
       categories,
-      categoryIcons,
-      classes
+      categoryIcons
     });
 
-    this.buttons = queryAllByClass(container, classes.categoryButton);
-    this.activeIndicator = queryByClass(container, classes.activeIndicator);
+    this.buttons = this.el.querySelectorAll('button');
 
-    this.buttons.forEach((button: HTMLButtonElement) => {
-      button.addEventListener('click', () => {
-        this.events.emit(CATEGORY_CLICKED, button.dataset.category);
-      });
-    });
-
-    container.addEventListener('keydown', event => {
+    this.el.addEventListener('keydown', event => {
       switch (event.key) {
         case 'ArrowRight':
           this.events.emit(CATEGORY_CLICKED, categories[(this.activeButton + 1) % this.buttons.length]);
@@ -95,7 +103,7 @@ export class CategoryButtons {
       }
     });
 
-    return container;
+    return this.el;
   }
 
   setActiveButton(activeButton: number, focus = true, animate = true): void {
@@ -110,8 +118,8 @@ export class CategoryButtons {
     activeButtonEl.tabIndex = 0;
 
     const left = activeButtonEl.offsetLeft;
-    this.activeIndicator.style.transition = animate ? 'transform 200ms' : 'none';
-    this.activeIndicator.style.transform = `translateX(${left}px)`;
+    this.ui.activeIndicator.style.transition = animate ? 'transform 200ms' : 'none';
+    this.ui.activeIndicator.style.transform = `translateX(${left}px)`;
 
     if (focus) {
       activeButtonEl.focus();

@@ -6,7 +6,10 @@ import { clear } from './recent';
 import classes from './emojiCategory.scss';
 import template from './templates/recentEmojis.ejs';
 export class RecentEmojiCategory extends EmojiCategory {
-  uiElements = [...this.uiElements, View.byClass(classes.recentEmojis, 'recents')];
+  uiElements = {
+    ...this.uiElements,
+    recents: View.byClass(classes.recentEmojis)
+  };
 
   constructor({ category, showVariants, emojis, events, lazyLoader, i18n, renderer, emojiVersion }) {
     super({

@@ -19,10 +19,10 @@ export class EmojiPreview extends View {
   private events: Emitter;
   private renderer: Renderer;
 
-  uiElements = [
-    View.byClass(classes.previewEmoji, 'emoji'), 
-    View.byClass(classes.previewName, 'name')
-  ];
+  uiElements = {
+    emoji: View.byClass(classes.previewEmoji), 
+    name: View.byClass(classes.previewName)
+  };
 
   constructor({ events, renderer }: EmojiPreviewOptions) {
     super(previewTemplate, classes);
