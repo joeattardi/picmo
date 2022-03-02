@@ -17,16 +17,8 @@ export class VariantPopup extends View {
   private emojiOptions: any[];
   private renderedEmojis: HTMLElement[];
 
-  uiElements = {
-    popup: View.byClass(classes.variantPopup)
-  };
-
-  uiEvents = [
-    View.listen('click', this.hide)
-  ];
-
   constructor({ emoji }: VariantPopupOptions) {
-    super(template, classes);
+    super({ template, classes });
 
     this.emoji = emoji;
     this.emojiOptions = [
@@ -35,6 +27,16 @@ export class VariantPopup extends View {
         emoji: variation
       }))
     ];
+  }
+
+  initialize() {
+      this.uiElements = {
+        popup: View.byClass(classes.variantPopup)
+      };
+
+      this.uiEvents = [
+        View.uiEvent('click', this.hide)
+      ]
   }
 
   hide(event): void {

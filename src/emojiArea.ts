@@ -56,14 +56,6 @@ export class EmojiArea extends View {
 
   private cancelScroll: () => void;
 
-  uiElements = {
-    emojis: View.byClass(classes.emojis)
-  };
-
-  appEvents = {
-    'category:select': this.selectCategory
-  }
-
   constructor({
     emojiCategoryData,
     lazyLoader,
@@ -73,7 +65,7 @@ export class EmojiArea extends View {
     showRecents,
     emojiVersion
   }: EmojiAreaOptions) {
-    super(template, classes);
+    super({ template, classes });
 
     this.emojisPerRow = emojisPerRow;
     this.categories = emojiData.categories;
@@ -98,9 +90,18 @@ export class EmojiArea extends View {
     this.categories.sort((a, b) => categorySortOrder.indexOf(a) - categorySortOrder.indexOf(b));
 
     this.highlightCategory = this.highlightCategory.bind(this);
-    this.selectCategory = this.selectCategory.bind(this);
   }
 
+  initialize() {
+    this.appEvents = {
+      'category:select': this.selectCategory
+    };
+
+    this.uiElements = {
+      emojis: View.byClass(classes.emojis)
+    };
+  }
+  
   async render(): Promise<HTMLElement> {
     if (this.showCategoryButtons) {
       this.categoryButtons = this.viewFactory.create(CategoryButtons, {

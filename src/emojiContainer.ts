@@ -20,7 +20,7 @@ export class EmojiContainer extends View {
   emojiElements: HTMLElement[];
 
   constructor({ emojis, showVariants, lazyLoader, emojiVersion }: EmojiContainerOptions) {
-    super(template, classes);
+    super({ template, classes });
 
     this.showVariants = showVariants;
     this.lazyLoader = lazyLoader;
@@ -28,13 +28,15 @@ export class EmojiContainer extends View {
     this.emojis = emojis.filter(e => !e.version || parseFloat(e.version as string) <= parseFloat(emojiVersion));
   }
 
-  uiEvents = [
-    View.listen('mouseover', this.showPreview),
-    View.listen('mouseout', this.hidePreview),
-    View.listen('focus', this.showPreview, { capture: true }),
-    View.listen('blur', this.hidePreview, { capture: true }),
-    View.listen('click', this.selectEmoji)
-  ];
+  initialize() {
+      this.uiEvents = [
+        View.uiEvent('mouseover', this.showPreview),
+        View.uiEvent('mouseout', this.hidePreview),
+        View.uiEvent('focus', this.showPreview, { capture: true }),
+        View.uiEvent('blur', this.hidePreview, { capture: true }),
+        View.uiEvent('click', this.selectEmoji)
+      ];
+  }
 
   async render(): Promise<HTMLElement> {
     this.emojiViews = this.emojis.map(

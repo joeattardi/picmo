@@ -24,8 +24,6 @@ export class EmojiCategory extends View {
   protected emojiVersion: string;
   emojiContainer: EmojiContainer;
 
-  uiElements = { categoryName: View.byClass(classes.categoryName)}
-
   constructor({
     category,
     showVariants,
@@ -34,13 +32,22 @@ export class EmojiCategory extends View {
     emojiVersion,
     template = baseTemplate
   }: EmojiCategoryOptions) {
-    super(template, classes);
+    super({
+      template,
+      classes
+    });
 
     this.category = category;
     this.showVariants = showVariants;
     this.emojis = emojis;
     this.lazyLoader = lazyLoader;
     this.emojiVersion = emojiVersion;
+  }
+
+  initialize() {
+    this.uiElements = {
+      categoryName: View.byClass(classes.categoryName)
+    };
   }
 
   async render(): Promise<HTMLElement> {

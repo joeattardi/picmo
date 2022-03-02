@@ -1,33 +1,37 @@
 import { Data } from 'ejs';
 
 import { renderTemplate, ElementTemplate } from './templates';
-import { AppEvent, Events, EventArgs } from './events';
+import { AppEvent, Events, EventArgs, EventCallback, AsyncEventCallback } from './events';
 import { ViewFactory } from './viewFactory';
 import { Bundle } from './i18n';
 import { Renderer } from './renderers/renderer';
 
-type EventHandler = (event: Event) => void;
-
 type EventListenerBinding = {
   event: string;
-  handler: EventHandler;
-  options: AddEventListenerOptions;
+  handler: EventCallback;
+  options?: AddEventListenerOptions;
+};
+
+type AppEvents = {
+  [key in AppEvent]?: EventCallback | AsyncEventCallback;
 };
 
 type ClassMappings = { [key: string]: string };
-
 type UIElementSelectors = { [key: string]: string };
-
 type UIElementMappings = { [key: string]: HTMLElement };
 type Template = string | ElementTemplate;
 
+type ViewOptions = {
+  template: Template;
+  classes?: ClassMappings;
+};
 export abstract class View {
   el: HTMLElement;
 
   private template: Template;
-  private classes: ClassMappings;
+  private classes?: ClassMappings;
 
-  protected appEvents = {};
+  protected appEvents: AppEvents = {};
   protected uiEvents: EventListenerBinding[] = [];
   protected uiElements: UIElementSelectors = {};
 
@@ -39,10 +43,15 @@ export abstract class View {
 
   ui: UIElementMappings = {};
 
-  constructor(template: Template, classes: ClassMappings = {}) {
+  constructor({ template, classes }: ViewOptions) {
     this.template = template;
     this.classes = classes;
+
+    this.initialize();
   }
+
+  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+  initialize() {}
 
   setEvents(events: Events) {
     this.events = events;
@@ -101,7 +110,7 @@ export abstract class View {
     });
   }
 
-  static listen(event, handler, options = {}) {
+  static uiEvent(event, handler, options = {}) {
     return { event, handler, options };
   }
 

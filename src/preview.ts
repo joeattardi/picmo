@@ -6,13 +6,20 @@ import customPreviewTemplate from './templates/customPreview.ejs';
 
 import { renderTemplate } from './templates';
 export class EmojiPreview extends View {
-  uiElements = {
-    emoji: View.byClass(classes.previewEmoji), 
-    name: View.byClass(classes.previewName)
-  };
-
   constructor() {
-    super(previewTemplate, classes);
+    super({ template: previewTemplate, classes });
+  }
+
+  initialize() {
+    this.uiElements = {
+      emoji: View.byClass(classes.previewEmoji), 
+      name: View.byClass(classes.previewName)
+    };
+
+    this.appEvents = {
+      'preview:show': this.showPreview,
+      'preview:hide': this.hidePreview
+    }
   }
 
   async render(): Promise<HTMLElement> {

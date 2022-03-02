@@ -5,15 +5,6 @@ import { clear } from './recent';
 import classes from './emojiCategory.scss';
 import template from './templates/recentEmojis.ejs';
 export class RecentEmojiCategory extends EmojiCategory {
-  uiElements = {
-    ...this.uiElements,
-    recents: View.byClass(classes.recentEmojis)
-  };
-
-  appEvents = {
-    'recents:add': this.addRecent
-  }
-
   constructor({ category, showVariants, emojis, lazyLoader, emojiVersion }) {
     super({
       category,
@@ -23,6 +14,19 @@ export class RecentEmojiCategory extends EmojiCategory {
       emojiVersion,
       template
     });
+  }
+
+  initialize() {
+    super.initialize();
+
+    this.uiElements = {
+      ...this.uiElements,
+      recents: View.byClass(classes.recentEmojis)
+    };
+
+    this.appEvents = {
+      'recent:add': this.addRecent
+    };
   }
 
   async addRecent(recent: any) {

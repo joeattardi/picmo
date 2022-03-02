@@ -37,17 +37,19 @@ export class Search extends View {
 
   searchField: HTMLInputElement;
 
-  appEvents = {
-    'variantPopup:hide': this.handleHidePopup
-  }
-
   constructor({ emojiData, emojisPerRow, emojiVersion, customEmojis = [] }: SearchOptions) {
-    super(searchTemplate, classes);
+    super({ template: searchTemplate, classes });
 
     this.emojisPerRow = emojisPerRow;
     this.emojiData = emojiData.filter(e => e.version && parseFloat(e.version) <= parseFloat(emojiVersion));
     this.emojiData = [...this.emojiData, ...customEmojis];
     this.emojiVersion = emojiVersion;
+  }
+
+  initialize() {
+      this.appEvents = {
+        'variantPopup:hide': this.handleHidePopup
+      }
   }
 
   handleHidePopup() {

@@ -2,7 +2,6 @@ import { compileTemplate } from './templates';
 import emojiTemplate from './templates/emoji.ejs';
 import customEmojiTemplate from './templates/customEmojiContent.ejs';
 import { LazyLoader } from './lazyLoad';
-import { Renderer } from './renderers/renderer';
 
 import { View } from './view';
 
@@ -20,7 +19,7 @@ export class Emoji extends View {
   private lazyLoader?: LazyLoader;
 
   constructor({ emoji, lazyLoader }: EmojiOptions) {
-    super(emojiCompiled, classes);
+    super({ template: emojiCompiled, classes });
 
     this.emoji = emoji;
     this.lazyLoader = lazyLoader;

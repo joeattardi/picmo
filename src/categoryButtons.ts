@@ -36,19 +36,21 @@ export class CategoryButtons extends View {
 
   buttons: NodeListOf<HTMLButtonElement>;
 
-  uiElements = {
-    activeIndicator: View.byClass(classes.activeIndicator)
-  }
-
-  uiEvents = [
-    View.listen('click', this.handleClickCategory)
-  ];
-
   constructor({ showRecents, custom }: CategoryButtonsOptions) {
-    super(template, classes);
+    super({ template, classes });
 
     this.showRecents = showRecents;
     this.custom = custom;
+  }
+
+  initialize() {
+    this.uiElements = {
+      activeIndicator: View.byClass(classes.activeIndicator)
+    };
+
+    this.uiEvents = [
+      View.uiEvent('click', this.handleClickCategory)
+    ];
   }
 
   handleClickCategory(event: MouseEvent) {

@@ -1,12 +1,12 @@
 import { TinyEmitter } from 'tiny-emitter';
 
-export type EventCallback = (...args: unknown[]) => void;
-export type EventHandler = (...args: unknown[]) => void;
-export type EventArgs = unknown[];
+export type AsyncEventCallback = (...args: any[]) => Promise<void>;
+export type EventCallback = (...args: any[]) => void;
+export type EventArgs = any[];
 
 type EventHandlerRecord = {
   event: AppEvent;
-  handler: EventHandler;
+  handler: EventCallback;
 }
 
 export type AppEvent = 
@@ -23,7 +23,7 @@ export class Events {
   private handlers: EventHandlerRecord[] = [];
   private emitter = new TinyEmitter();
 
-  on(event: AppEvent, handler: EventHandler) {
+  on(event: AppEvent, handler: EventCallback) {
     this.emitter.on(event, handler);
     this.handlers.push({ event, handler });
   }
