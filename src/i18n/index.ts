@@ -1,7 +1,7 @@
 export type Dictionary = {
   [key: string]: string;
 };
-export default class Bundle {
+export class Bundle {
   #dictionary: Map<string, string>;
 
   constructor(dictionary: Dictionary = {}) {

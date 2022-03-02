@@ -1,11 +1,11 @@
 import './EmojiButton.css';
-import { EmojiButton } from '../../src/index';
+import { EmojiPicker } from '../../src/index';
 
 export function createPicker(options = {}) {
   const button = document.createElement('button');
   button.className = 'emoji-button empty';
 
-  const picker = new EmojiButton({
+  const picker = new EmojiPicker({
     ...options,
     referenceElement: button
   });

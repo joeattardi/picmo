@@ -2,7 +2,7 @@ import twemoji from 'twemoji';
 
 import classes from './twemoji.scss';
 
-import Renderer from './renderer';
+import { Renderer } from './renderer';
 import { LazyLoader } from '../lazyLoad';
 import preloadImage from '../preload';
 

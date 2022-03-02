@@ -1,6 +1,6 @@
 import { Placement } from '@popperjs/core';
 
-import Renderer from './renderers/renderer';
+import { Renderer } from './renderers/renderer';
 import { Dictionary } from './i18n';
 
 export type CustomEmoji = {

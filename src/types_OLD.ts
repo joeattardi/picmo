@@ -1,7 +1,7 @@
 import { Placement } from '@popperjs/core';
 import { ParseObject } from 'twemoji';
-import { EmojiButton } from './index';
-import Renderer from './renderers/renderer';
+import { EmojiButton } from './picker';
+import { Renderer } from './renderers/renderer';
 
 export interface EmojiRecord {
   name: string;

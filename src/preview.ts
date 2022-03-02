@@ -1,41 +1,25 @@
-import { TinyEmitter as Emitter } from 'tiny-emitter';
-
 import { View } from './view';
 import classes from './preview.scss';
-
-import { SHOW_PREVIEW, HIDE_PREVIEW } from './events';
 
 import previewTemplate from './templates/preview.ejs';
 import customPreviewTemplate from './templates/customPreview.ejs';
 
 import { renderTemplate } from './templates';
-import Renderer from './renderers/renderer';
-
-type EmojiPreviewOptions = {
-  events: Emitter;
-  renderer: Renderer;
-};
 export class EmojiPreview extends View {
-  private events: Emitter;
-  private renderer: Renderer;
-
   uiElements = {
     emoji: View.byClass(classes.previewEmoji), 
     name: View.byClass(classes.previewName)
   };
 
-  constructor({ events, renderer }: EmojiPreviewOptions) {
+  constructor() {
     super(previewTemplate, classes);
-
-    this.events = events;
-    this.renderer = renderer;
   }
 
   async render(): Promise<HTMLElement> {
     await super.render();
 
-    this.events.on(SHOW_PREVIEW, emoji => this.showPreview(emoji));
-    this.events.on(HIDE_PREVIEW, () => this.hidePreview());
+    this.events.on('preview:show', emoji => this.showPreview(emoji));
+    this.events.on('preview:hide', () => this.hidePreview());
 
     return this.el;
   }

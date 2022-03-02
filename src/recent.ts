@@ -1,5 +1,3 @@
-import { Emitter, ADD_RECENT } from './events';
-
 const LOCAL_STORAGE_KEY = 'emojiPicker.recent';
 
 export function clear(): void {
@@ -13,7 +11,7 @@ export function load(): Array<any> {
 }
 
 // TODO make this an object that can be created in the main class
-export function save(emoji: any, recentsCount: number, events: Emitter): void {
+export function save(emoji: any, recentsCount: number, events: any): void {
   const recents = load();
 
   const recent = {
@@ -23,7 +21,7 @@ export function save(emoji: any, recentsCount: number, events: Emitter): void {
     custom: emoji.custom
   };
 
-  events.emit(ADD_RECENT, recent);
+  events.emit('recent:add', recent);
 
   localStorage.setItem(
     LOCAL_STORAGE_KEY,

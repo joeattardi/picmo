@@ -1,15 +1,11 @@
 import fuzzysort from 'fuzzysort';
-import { TinyEmitter as Emitter } from 'tiny-emitter';
 
 import { View } from './view';
 import classes from './search.scss';
 
-import Bundle from './i18n';
-
 import { icon } from './icons';
 
 import { EmojiContainer } from './emojiContainer';
-import { HIDE_PREVIEW, HIDE_VARIANT_POPUP, SHOW_SEARCH_RESULTS, HIDE_SEARCH_RESULTS } from './events';
 import { CustomEmoji } from './types';
 
 import { renderTemplate } from './templates';
@@ -19,26 +15,19 @@ import notFoundTemplate from './templates/search/notFound.ejs';
 
 import { LazyLoader } from './lazyLoad';
 import { queryByClass } from './util';
-import Renderer from './renderers/renderer';
 
 type SearchOptions = {
-  events: Emitter;
-  i18n: Bundle;
   emojiData: any;
   emojisPerRow: number;
   emojiVersion: string;
   customEmojis: CustomEmoji[];
-  renderer: Renderer;
 };
 
 export class Search extends View {
   private emojiData: any[];
   private emojisPerRow: number;
   private focusedEmojiIndex = 0;
-  private i18n: Bundle;
-  private events: Emitter;
   private emojiVersion: string;
-  private renderer: Renderer;
 
   private searchAccessory: HTMLElement;
   private searchIcon: HTMLElement;
@@ -48,20 +37,21 @@ export class Search extends View {
 
   searchField: HTMLInputElement;
 
-  constructor({ events, i18n, emojiData, emojisPerRow, emojiVersion, customEmojis = [], renderer }: SearchOptions) {
+  appEvents = {
+    'variantPopup:hide': this.handleHidePopup
+  }
+
+  constructor({ emojiData, emojisPerRow, emojiVersion, customEmojis = [] }: SearchOptions) {
     super(searchTemplate, classes);
 
     this.emojisPerRow = emojisPerRow;
     this.emojiData = emojiData.filter(e => e.version && parseFloat(e.version) <= parseFloat(emojiVersion));
     this.emojiData = [...this.emojiData, ...customEmojis];
-    this.i18n = i18n;
-    this.events = events;
     this.emojiVersion = emojiVersion;
-    this.renderer = renderer;
+  }
 
-    events.on(HIDE_VARIANT_POPUP, () => {
-      setTimeout(() => this.setFocusedEmoji(this.focusedEmojiIndex));
-    });
+  handleHidePopup() {
+    setTimeout(() => this.setFocusedEmoji(this.focusedEmojiIndex));
   }
 
   reset(): void {
@@ -69,7 +59,7 @@ export class Search extends View {
   }
 
   async render(): Promise<HTMLElement> {
-    await super.render({ i18n: this.i18n });
+    await super.render();
 
     this.searchIcon = icon('magnifying-glass', { classes: 'fa-fw' });
     this.notFoundMessage = renderTemplate(notFoundTemplate, {
@@ -111,7 +101,7 @@ export class Search extends View {
 
       this.searchAccessory.replaceChildren(this.searchIcon);
 
-      this.events.emit(HIDE_SEARCH_RESULTS);
+      this.events.emit('searchResults:hide');
 
       // TODO: Find out why button steals focus on Escape key
       setTimeout(() => this.searchField.focus());
@@ -166,7 +156,7 @@ export class Search extends View {
       return;
     } else if (!this.searchField.value) {
       this.searchAccessory.replaceChildren(this.searchIcon);
-      this.events.emit(HIDE_SEARCH_RESULTS);
+      this.events.emit('searchResults:hide');
     } else {
       this.searchAccessory.replaceChildren(this.clearSearchButton);
 
@@ -178,17 +168,14 @@ export class Search extends View {
         })
         .map(result => result.obj);
 
-      this.events.emit(HIDE_PREVIEW);
+      this.events.emit('preview:hide');
 
       if (searchResults.length) {
         const lazyLoader = new LazyLoader();
-        this.resultsContainer = new EmojiContainer({
+        this.resultsContainer = this.viewFactory.create(EmojiContainer, {
           emojis: searchResults,
           showVariants: true,
-          events: this.events,
-          i18n: this.i18n,
           emojiVersion: this.emojiVersion,
-          renderer: this.renderer
         });
 
         await this.resultsContainer.render();
@@ -201,10 +188,10 @@ export class Search extends View {
 
           this.resultsContainer.el.addEventListener('keydown', event => this.handleResultsKeydown(event));
 
-          this.events.emit(SHOW_SEARCH_RESULTS, this.resultsContainer);
+          this.events.emit('searchResults:show', this.resultsContainer);
         }
       } else {
-        this.events.emit(SHOW_SEARCH_RESULTS, this.notFoundMessage);
+        this.events.emit('searchResults:show', this.notFoundMessage);
       }
     }
   }

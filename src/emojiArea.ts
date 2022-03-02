@@ -1,5 +1,3 @@
-import { TinyEmitter as Emitter } from 'tiny-emitter';
-
 import { View } from './view';
 import classes from './emojiArea.scss';
 
@@ -9,14 +7,11 @@ import { CategoryButtons } from './categoryButtons';
 import { EmojiCategory } from './emojiCategory';
 import { RecentEmojiCategory } from './recentEmojiCategory';
 
-import { CATEGORY_CLICKED } from './events';
 import { load } from './recent';
 import { prefersReducedMotion } from './util';
 
 import template from './templates/emojiArea.ejs';
 import { LazyLoader } from './lazyLoad';
-import Bundle from './i18n';
-import Renderer from './renderers/renderer';
 import { CustomEmoji } from './types';
 
 const categorySortOrder = Object.values(EmojiCategory);
@@ -30,15 +25,12 @@ function getCategoryClass(category) {
 }
 
 type EmojiAreaOptions = {
-  events: Emitter;
-  i18n: Bundle;
   emojiCategoryData: any;
   lazyLoader?: LazyLoader;
   emojisPerRow: number;
   custom: CustomEmoji[];
   showCategoryButtons: boolean;
   showRecents: boolean;
-  renderer: Renderer;
   emojiVersion: string;
 };
 export class EmojiArea extends View {
@@ -50,12 +42,8 @@ export class EmojiArea extends View {
   private categories: string[];
   private custom: CustomEmoji[];
 
-  private events: Emitter;
-  private i18n: Bundle;
   private emojiCategoryData: any;
   private lazyLoader?: LazyLoader;
-
-  private renderer: Renderer;
 
   emojiCategories: EmojiCategory[];
 
@@ -72,16 +60,17 @@ export class EmojiArea extends View {
     emojis: View.byClass(classes.emojis)
   };
 
+  appEvents = {
+    'category:select': this.selectCategory
+  }
+
   constructor({
-    events,
-    i18n,
     emojiCategoryData,
     lazyLoader,
     emojisPerRow,
     custom,
     showCategoryButtons,
     showRecents,
-    renderer,
     emojiVersion
   }: EmojiAreaOptions) {
     super(template, classes);
@@ -92,9 +81,6 @@ export class EmojiArea extends View {
     this.showCategoryButtons = showCategoryButtons;
     this.showRecents = showRecents;
 
-    this.events = events;
-    this.i18n = i18n;
-    this.renderer = renderer;
     this.lazyLoader = lazyLoader;
 
     this.emojiCategoryData = emojiCategoryData;
@@ -117,9 +103,7 @@ export class EmojiArea extends View {
 
   async render(): Promise<HTMLElement> {
     if (this.showCategoryButtons) {
-      this.categoryButtons = new CategoryButtons({
-        events: this.events,
-        i18n: this.i18n,
+      this.categoryButtons = this.viewFactory.create(CategoryButtons, {
         showRecents: this.showRecents,
         custom: this.custom
       });
@@ -154,8 +138,6 @@ export class EmojiArea extends View {
     this.ui.emojis.addEventListener('scroll', this.highlightCategory);
     this.ui.emojis.addEventListener('keydown', this.handleKeyDown);
 
-    this.events.on(CATEGORY_CLICKED, this.selectCategory);
-
     const [firstEmoji] = this.emojiCategories[0].emojiContainer.emojiElements;
     if (firstEmoji) {
       firstEmoji.tabIndex = 0;
@@ -167,31 +149,13 @@ export class EmojiArea extends View {
   private createCategory(category: string): EmojiCategory {
     const Category = getCategoryClass(category);
 
-    return new Category({
+    return this.viewFactory.create(Category, {
       category,
       showVariants: true,
       emojis: this.emojiCategoryData[category],
-      events: this.events,
       lazyLoader: this.lazyLoader,
-      i18n: this.i18n,
-      renderer: this.renderer,
       emojiVersion: this.emojiVersion
     });
-  }
-
-  async renderEmojis(category: string): Promise<HTMLElement> {
-    const CategoryClass = getCategoryClass(category);
-
-    return await new CategoryClass({
-      category,
-      showVariants: true,
-      emojis: this.emojiCategoryData[category],
-      events: this.events,
-      lazyLoader: this.lazyLoader,
-      i18n: this.i18n,
-      renderer: this.renderer,
-      emojiVersion: this.emojiVersion
-    }).render();
   }
 
   async reset(): Promise<void> {

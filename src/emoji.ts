@@ -2,7 +2,7 @@ import { compileTemplate } from './templates';
 import emojiTemplate from './templates/emoji.ejs';
 import customEmojiTemplate from './templates/customEmojiContent.ejs';
 import { LazyLoader } from './lazyLoad';
-import Renderer from './renderers/renderer';
+import { Renderer } from './renderers/renderer';
 
 import { View } from './view';
 
@@ -14,19 +14,16 @@ import classes from './emoji.scss';
 type EmojiOptions = {
   emoji: any;
   lazyLoader?: LazyLoader;
-  renderer: Renderer;
 };
 export class Emoji extends View {
   private emoji: any;
   private lazyLoader?: LazyLoader;
-  private renderer: Renderer;
 
-  constructor({ emoji, lazyLoader, renderer }: EmojiOptions) {
+  constructor({ emoji, lazyLoader }: EmojiOptions) {
     super(emojiCompiled, classes);
 
     this.emoji = emoji;
     this.lazyLoader = lazyLoader;
-    this.renderer = renderer;
   }
 
   async render(): Promise<HTMLElement> {

@@ -1,6 +1,10 @@
 import { Data } from 'ejs';
 
 import { renderTemplate, ElementTemplate } from './templates';
+import { AppEvent, Events, EventArgs } from './events';
+import { ViewFactory } from './viewFactory';
+import { Bundle } from './i18n';
+import { Renderer } from './renderers/renderer';
 
 type EventHandler = (event: Event) => void;
 
@@ -23,8 +27,15 @@ export abstract class View {
   private template: Template;
   private classes: ClassMappings;
 
+  protected appEvents = {};
   protected uiEvents: EventListenerBinding[] = [];
   protected uiElements: UIElementSelectors = {};
+
+  protected events: Events;
+  protected i18n: Bundle;
+  protected renderer: Renderer;
+
+  viewFactory: ViewFactory;
 
   ui: UIElementMappings = {};
 
@@ -33,12 +44,33 @@ export abstract class View {
     this.classes = classes;
   }
 
+  setEvents(events: Events) {
+    this.events = events;
+
+    Object.keys(this.appEvents).forEach(event => {
+      this.events.on(event as AppEvent, this.appEvents[event].bind(this));
+    });
+  }
+
+  emit(event: AppEvent, ...args: EventArgs) {
+    this.events.emit(event, ...args);
+  }
+
+  setI18n(i18n: Bundle) {
+    this.i18n = i18n;
+  }
+
+  setRenderer(renderer: Renderer) {
+    this.renderer = renderer;
+  }
+
   async render(templateData: Data = {}): Promise<HTMLElement> {
     const templateFn =
       typeof this.template === 'string' ? (data: Data) => renderTemplate(this.template as string, data) : this.template;
 
     this.el = await templateFn({
       classes: this.classes,
+      i18n: this.i18n,
       ...templateData
     });
 

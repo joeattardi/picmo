@@ -1,4 +1,4 @@
-import Renderer from './renderer';
+import { Renderer } from './renderer';
 import { compileTemplate } from '../templates';
 
 const template = compileTemplate('<span><%= emoji %></span>');

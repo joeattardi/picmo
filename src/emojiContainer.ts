@@ -1,12 +1,7 @@
-import { TinyEmitter as Emitter } from 'tiny-emitter';
-
 import { Emoji } from './emoji';
-import { EMOJI, HIDE_PREVIEW, SHOW_PREVIEW } from './events';
 import classes from './emojiContainer.scss';
 import template from './templates/emojiContainer.ejs';
 import { LazyLoader } from './lazyLoad';
-import Bundle from './i18n';
-import Renderer from './renderers/renderer';
 import { getEmojiForEvent } from './util';
 
 import { View } from './view';
@@ -14,30 +9,21 @@ import { View } from './view';
 type EmojiContainerOptions = {
   emojis: any;
   showVariants: boolean;
-  events: Emitter;
   lazyLoader?: LazyLoader;
-  i18n: Bundle;
   emojiVersion: string;
-  renderer: Renderer;
 };
 export class EmojiContainer extends View {
   protected emojis: Array<any>; // TODO use proper types after using emojibase
   protected showVariants: boolean;
-  protected events: Emitter;
-  private renderer: Renderer;
   protected lazyLoader?: LazyLoader;
-  protected i18n;
   emojiViews: Emoji[];
   emojiElements: HTMLElement[];
 
-  constructor({ emojis, showVariants, events, lazyLoader, i18n, emojiVersion, renderer }: EmojiContainerOptions) {
+  constructor({ emojis, showVariants, lazyLoader, emojiVersion }: EmojiContainerOptions) {
     super(template, classes);
 
     this.showVariants = showVariants;
-    this.events = events;
     this.lazyLoader = lazyLoader;
-    this.i18n = i18n;
-    this.renderer = renderer;
 
     this.emojis = emojis.filter(e => !e.version || parseFloat(e.version as string) <= parseFloat(emojiVersion));
   }
@@ -53,7 +39,7 @@ export class EmojiContainer extends View {
   async render(): Promise<HTMLElement> {
     this.emojiViews = this.emojis.map(
       emoji =>
-        new Emoji({
+        this.viewFactory.create(Emoji, {
           emoji,
           lazyLoader: this.lazyLoader,
           renderer: this.renderer
@@ -76,7 +62,7 @@ export class EmojiContainer extends View {
   private selectEmoji(event: Event) {
     const emoji = getEmojiForEvent(event, this.emojis);
     if (emoji) {
-      this.events.emit(EMOJI, {
+      this.events.emit('emoji:select', {
         emoji,
         showVariants: this.showVariants
       });
@@ -86,14 +72,14 @@ export class EmojiContainer extends View {
   private showPreview(event: Event) {
     const emoji = getEmojiForEvent(event, this.emojis);
     if (emoji) {
-      this.events.emit(SHOW_PREVIEW, emoji);
+      this.events.emit('preview:show', emoji);
     }
   }
 
   private hidePreview(event: Event) {
     const emoji = getEmojiForEvent(event, this.emojis);
     if (emoji) {
-      this.events.emit(HIDE_PREVIEW);
+      this.events.emit('preview:hide');
     }
   }
 

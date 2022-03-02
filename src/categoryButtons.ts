@@ -1,12 +1,9 @@
-import { TinyEmitter as Emitter } from 'tiny-emitter';
-
 import emojiData from './data/emoji';
 
 import { View } from './view';
 import { CustomEmoji } from './types';
 
-import Bundle from './i18n';
-import { CATEGORY_CLICKED } from './events';
+import { Bundle } from './i18n';
 
 import template from './templates/categoryButtons.ejs';
 
@@ -27,15 +24,11 @@ export const categoryIcons = {
 };
 
 type CategoryButtonsOptions = {
-  events: Emitter;
-  i18n: Bundle;
   showRecents: boolean;
   custom: CustomEmoji[];
 };
 
 export class CategoryButtons extends View {
-  private events: Emitter;
-  private i18n: Bundle;
   private showRecents: boolean;
   private custom: CustomEmoji[];
 
@@ -51,11 +44,9 @@ export class CategoryButtons extends View {
     View.listen('click', this.handleClickCategory)
   ];
 
-  constructor({ events, i18n, showRecents, custom }: CategoryButtonsOptions) {
+  constructor({ showRecents, custom }: CategoryButtonsOptions) {
     super(template, classes);
 
-    this.events = events;
-    this.i18n = i18n;
     this.showRecents = showRecents;
     this.custom = custom;
   }
@@ -64,7 +55,7 @@ export class CategoryButtons extends View {
     const targetElement = event.target as HTMLElement;
     const button = targetElement.closest('button');
     if (button) {
-      this.events.emit(CATEGORY_CLICKED, button.dataset.category);
+      this.events.emit('category:select', button.dataset.category);
     }
   }
 
@@ -88,11 +79,11 @@ export class CategoryButtons extends View {
     this.el.addEventListener('keydown', event => {
       switch (event.key) {
         case 'ArrowRight':
-          this.events.emit(CATEGORY_CLICKED, categories[(this.activeButton + 1) % this.buttons.length]);
+          this.events.emit('category:select', categories[(this.activeButton + 1) % this.buttons.length]);
           break;
         case 'ArrowLeft':
           this.events.emit(
-            CATEGORY_CLICKED,
+            'category:select',
             categories[this.activeButton === 0 ? this.buttons.length - 1 : this.activeButton - 1]
           );
           break;

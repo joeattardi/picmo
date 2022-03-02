@@ -1,14 +1,42 @@
-import { TinyEmitter as Emitter } from 'tiny-emitter';
-
-export const EMOJI = 'emoji';
-export const SHOW_SEARCH_RESULTS = 'showSearchResults';
-export const HIDE_SEARCH_RESULTS = 'hideSearchResults';
-export const SHOW_PREVIEW = 'showPreview';
-export const HIDE_PREVIEW = 'hidePreview';
-export const HIDE_VARIANT_POPUP = 'hideVariantPopup';
-export const CATEGORY_CLICKED = 'categoryClicked';
-export const PICKER_HIDDEN = 'hidden';
-export const ADD_RECENT = 'addRecent';
+import { TinyEmitter } from 'tiny-emitter';
 
 export type EventCallback = (...args: unknown[]) => void;
-export { Emitter };
+export type EventHandler = (...args: unknown[]) => void;
+export type EventArgs = unknown[];
+
+type EventHandlerRecord = {
+  event: AppEvent;
+  handler: EventHandler;
+}
+
+export type AppEvent = 
+  'emoji:select' |
+  'searchResults:show' |
+  'searchResults:hide' |
+  'preview:show' |
+  'preview:hide' |
+  'variantPopup:hide' |
+  'category:select' |
+  'recent:add'
+
+export class Events {
+  private handlers: EventHandlerRecord[] = [];
+  private emitter = new TinyEmitter();
+
+  on(event: AppEvent, handler: EventHandler) {
+    this.emitter.on(event, handler);
+    this.handlers.push({ event, handler });
+  }
+
+  emit(event: AppEvent, ...args: EventArgs) {
+    this.emitter.emit(event, ...args);
+  }
+
+  removeAll() {
+    this.handlers.forEach(({ event, handler }) => {
+      this.emitter.off(event, handler);
+    });
+
+    this.handlers = [];
+  }
+}
