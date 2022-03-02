@@ -21,9 +21,9 @@ function addHelpers(data: Data = {}): Data {
   };
 }
 
-function bindPlaceholders(result: HTMLElement, data: Data) {
-  const placeholders = result.querySelectorAll<HTMLElement>('[data-placeholder]');
-  placeholders.forEach((placeholder: HTMLElement) => {
+function bindPlaceholders<E extends HTMLElement = HTMLElement>(result: E, data: Data): E {
+  const placeholders = result.querySelectorAll<E>('[data-placeholder]');
+  placeholders.forEach((placeholder: E) => {
     const key = placeholder.dataset.placeholder;
     if (key) {
       if (data[key]) {
@@ -67,12 +67,12 @@ export function compileTemplate(template: string): ElementTemplate {
  * @param data data to supply to the template
  * @returns the rendered HTMLElement
  */
-export function renderTemplate(template: string, data: Data = {}): E {
-  let result = toElement(ejs.render(template, addHelpers(data)));
-  result = bindPlaceholders(result, data);
+export function renderTemplate<E extends HTMLElement = HTMLElement>(template: string, data: Data = {}): E {
+  let result = toElement<E>(ejs.render(template, addHelpers(data)));
+  result = bindPlaceholders<E>(result, data);
   dom.i2svg({ node: result });
 
-  return result;
+  return result as E;
 }
 
 /**
