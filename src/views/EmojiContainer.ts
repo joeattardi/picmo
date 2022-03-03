@@ -1,7 +1,7 @@
 import { Emoji } from './Emoji';
 import classes from './EmojiContainer.scss';
 import template from 'templates/emojiContainer.ejs';
-import { LazyLoader } from '../lazyLoad';
+import { LazyLoader } from '../LazyLoader';
 import { getEmojiForEvent } from '../util';
 import ejs from 'ejs';
 import { View } from './view';

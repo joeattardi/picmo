@@ -11,7 +11,7 @@ import { load } from '../recent';
 import { prefersReducedMotion } from '../util';
 
 import template from 'templates/emojiArea.ejs';
-import { LazyLoader } from '../lazyLoad';
+import { LazyLoader } from '../LazyLoader';
 import { CustomEmoji } from '../types';
 
 const categorySortOrder = Object.values(EmojiCategory);

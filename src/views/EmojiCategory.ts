@@ -3,7 +3,7 @@ import { View } from './view';
 import baseTemplate from 'templates/emojiCategory.ejs';
 
 import { EmojiContainer } from './EmojiContainer';
-import { LazyLoader } from '../lazyLoad';
+import { LazyLoader } from '../LazyLoader';
 
 import classes from './EmojiCategory.scss';
 

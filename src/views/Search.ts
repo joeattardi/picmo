@@ -13,7 +13,7 @@ import searchTemplate from 'templates/search/search.ejs';
 import clearSearchButtonTemplate from 'templates/search/clearButton.ejs';
 import notFoundTemplate from 'templates/search/notFound.ejs';
 
-import { LazyLoader } from '../lazyLoad';
+import { LazyLoader } from '../LazyLoader';
 import { queryByClass } from '../util';
 
 type SearchOptions = {
@@ -181,10 +181,9 @@ export class Search extends View {
         });
 
         await this.resultsContainer.render();
-        this.resultsContainer.el.classList.add(classes.searchResults);
-        lazyLoader.observe(this.resultsContainer.el);
-
-        if (this.resultsContainer) {
+        if (this.resultsContainer?.el) {
+          this.resultsContainer.el.classList.add(classes.searchResults);
+          lazyLoader.observe(this.resultsContainer.el);
           this.resultsContainer.emojiElements[0].tabIndex = 0;
           this.focusedEmojiIndex = 0;
 

@@ -1,4 +1,4 @@
-import { LazyLoader } from '../lazyLoad';
+import { LazyLoader } from '../LazyLoader';
 
 export abstract class Renderer {
   abstract render(emoji: any, lazyLoader?: LazyLoader): HTMLElement | Promise<HTMLElement>;

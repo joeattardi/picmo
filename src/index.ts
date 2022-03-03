@@ -1,2 +1,2 @@
 export { EmojiPicker } from './picker';
-export { LazyLoader } from './lazyLoad';
+export { LazyLoader } from './LazyLoader';

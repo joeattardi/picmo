@@ -12,7 +12,7 @@ import {
   Events,
   EventCallback,
 } from './events';
-import { LazyLoader } from './lazyLoad';
+import { LazyLoader } from './LazyLoader';
 import { EmojiPreview } from './views/Preview';
 import { Search } from './views/Search';
 import { buildEmojiCategoryData, queryByClass } from './util';
