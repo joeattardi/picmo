@@ -1,9 +1,10 @@
-import { compileTemplate } from './templates';
+import ejs from 'ejs';
+import { toElement } from './templates';
 import placeholderTemplate from './templates/placeholder.ejs';
 
 import classes from './lazyLoad.scss';
 
-const placeholder = compileTemplate(placeholderTemplate);
+const placeholder = ejs.compile(placeholderTemplate);
 
 type LazyLoadFactory = () => HTMLElement | Promise<HTMLElement>;
 
@@ -12,7 +13,7 @@ export class LazyLoader {
   private elements: Map<Element, LazyLoadFactory> = new Map();
 
   lazyLoad(callback: LazyLoadFactory): HTMLElement {
-    const element = placeholder({ classes });
+    const element = toElement(placeholder({ classes }));
     this.elements.set(element, callback);
     return element;
   }
