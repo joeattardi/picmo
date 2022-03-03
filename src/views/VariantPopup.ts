@@ -1,10 +1,10 @@
 import { View } from './view';
-import { Emoji } from './emoji';
-import {  getEmojiForEvent } from './util';
+import { Emoji } from './Emoji';
+import {  getEmojiForEvent } from '../util';
 
-import template from './templates/variantPopup.ejs';
+import template from 'templates/variantPopup.ejs';
 
-import classes from './variantPopup.scss';
+import classes from './VariantPopup.scss';
 
 type VariantPopupOptions = {
   emoji: any;

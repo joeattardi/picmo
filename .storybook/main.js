@@ -18,16 +18,11 @@ module.exports = {
 
   webpackFinal: async (config, { configType }) => {
     config.resolve.fallback.fs = false;
-    // console.log(config.resolve)
+    config.resolve.alias.templates = path.resolve(__dirname, '../src/templates');
 
-    // config.node = {
-    //   fs: 'empty'
-    // };
-
-    // const cssRule = config.module.rules.find(rule => rule.test.toString() === '/\\.css$/');
-    // cssRule.use[1].options.modules = true;
-    // console.log(cssRule.use[2].options);
-    // config.module.rules = config.module.rules.filter(x => x.test.test && !x.test.test('file.css'));
+    // config.resolve.alias = {
+    //   templates: path.resolve(__dirname, '../src/templates')
+    // }
 
     config.module.rules.push({
       test: /\.ejs$/,

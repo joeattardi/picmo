@@ -1,13 +1,11 @@
-import emojiData from './data/emoji';
+import emojiData from '../data/emoji';
 
 import { View } from './view';
-import { CustomEmoji } from './types';
+import { CustomEmoji } from '../types';
 
-import { Bundle } from './i18n';
+import template from 'templates/categoryButtons.ejs';
 
-import template from './templates/categoryButtons.ejs';
-
-import classes from './categoryButtons.scss';
+import classes from './CategoryButtons.scss';
 
 export const categoryIcons = {
   recents: 'fa-clock-rotate-left',

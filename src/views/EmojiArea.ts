@@ -1,18 +1,18 @@
 import { View } from './view';
-import classes from './emojiArea.scss';
+import classes from './EmojiArea.scss';
 
-import emojiData from './data/emoji';
+import emojiData from '../data/emoji';
 
-import { CategoryButtons } from './categoryButtons';
-import { EmojiCategory } from './emojiCategory';
-import { RecentEmojiCategory } from './recentEmojiCategory';
+import { CategoryButtons } from './CategoryButtons';
+import { EmojiCategory } from './EmojiCategory';
+import { RecentEmojiCategory } from './RecentEmojiCategory';
 
-import { load } from './recent';
-import { prefersReducedMotion } from './util';
+import { load } from '../recent';
+import { prefersReducedMotion } from '../util';
 
-import template from './templates/emojiArea.ejs';
-import { LazyLoader } from './lazyLoad';
-import { CustomEmoji } from './types';
+import template from 'templates/emojiArea.ejs';
+import { LazyLoader } from '../lazyLoad';
+import { CustomEmoji } from '../types';
 
 const categorySortOrder = Object.values(EmojiCategory);
 

@@ -13,25 +13,25 @@ import {
   EventCallback,
 } from './events';
 import { LazyLoader } from './lazyLoad';
-import { EmojiPreview } from './preview';
-import { Search } from './search';
+import { EmojiPreview } from './views/Preview';
+import { Search } from './views/Search';
 import { buildEmojiCategoryData, queryByClass } from './util';
-import { VariantPopup } from './variantPopup';
+import { VariantPopup } from './views/VariantPopup';
 
 import { Bundle } from './i18n';
 
 import { PickerOptions, CustomEmoji, Position } from './types';
 
-import { EmojiArea } from './emojiArea';
+import { EmojiArea } from './views/EmojiArea';
 import { save } from './recent';
 
 import { renderTemplate } from './templates';
-import template from './templates/index.ejs';
+import template from 'templates/index.ejs';
 
 import en from './i18n/lang-en';
 import NativeRenderer from './renderers/native';
 import { Renderer } from './renderers/renderer';
-import { EmojiContainer } from './emojiContainer';
+import { EmojiContainer } from './views/EmojiContainer';
 import { ViewFactory } from './viewFactory';
 
 const defaultOptions = {

@@ -1,10 +1,10 @@
 import { Data } from 'ejs';
 
-import { renderTemplate, ElementTemplate } from './templates';
-import { AppEvent, Events, EventArgs, EventCallback, AsyncEventCallback } from './events';
-import { ViewFactory } from './viewFactory';
-import { Bundle } from './i18n';
-import { Renderer } from './renderers/renderer';
+import { renderTemplate, ElementTemplate } from '../templates';
+import { AppEvent, Events, EventArgs, EventCallback, AsyncEventCallback } from '../events';
+import { ViewFactory } from '../viewFactory';
+import { Bundle } from '../i18n';
+import { Renderer } from '../renderers/renderer';
 
 type EventListenerBinding = {
   event: string;

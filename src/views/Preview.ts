@@ -1,10 +1,10 @@
 import { View } from './view';
-import classes from './preview.scss';
+import classes from './Preview.scss';
 
-import previewTemplate from './templates/preview.ejs';
-import customPreviewTemplate from './templates/customPreview.ejs';
+import previewTemplate from 'templates/preview.ejs';
+import customPreviewTemplate from 'templates/customPreview.ejs';
 
-import { renderTemplate } from './templates';
+import { renderTemplate } from '../templates';
 export class EmojiPreview extends View {
   constructor() {
     super({ template: previewTemplate, classes });

@@ -1,9 +1,9 @@
 import { View } from './view';
-import { EmojiCategory } from './emojiCategory';
-import { Emoji } from './emoji';
-import { clear } from './recent';
-import classes from './emojiCategory.scss';
-import template from './templates/recentEmojis.ejs';
+import { EmojiCategory } from './EmojiCategory';
+import { Emoji } from './Emoji';
+import { clear } from '../recent';
+import classes from './EmojiCategory.scss';
+import template from 'templates/recentEmojis.ejs';
 export class RecentEmojiCategory extends EmojiCategory {
   constructor({ category, showVariants, emojis, lazyLoader, emojiVersion }) {
     super({

@@ -1,11 +1,11 @@
 import { View } from './view';
 
-import baseTemplate from './templates/emojiCategory.ejs';
+import baseTemplate from 'templates/emojiCategory.ejs';
 
-import { EmojiContainer } from './emojiContainer';
-import { LazyLoader } from './lazyLoad';
+import { EmojiContainer } from './EmojiContainer';
+import { LazyLoader } from '../lazyLoad';
 
-import classes from './emojiCategory.scss';
+import classes from './EmojiCategory.scss';
 
 type EmojiCategoryOptions = {
   category: string;

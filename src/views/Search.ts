@@ -1,20 +1,20 @@
 import fuzzysort from 'fuzzysort';
 
 import { View } from './view';
-import classes from './search.scss';
+import classes from './Search.scss';
 
-import { icon } from './icons';
+import { icon } from '../icons';
 
-import { EmojiContainer } from './emojiContainer';
-import { CustomEmoji } from './types';
+import { EmojiContainer } from './EmojiContainer';
+import { CustomEmoji } from '../types';
 
-import { renderTemplate } from './templates';
-import searchTemplate from './templates/search/search.ejs';
-import clearSearchButtonTemplate from './templates/search/clearButton.ejs';
-import notFoundTemplate from './templates/search/notFound.ejs';
+import { renderTemplate } from '../templates';
+import searchTemplate from 'templates/search/search.ejs';
+import clearSearchButtonTemplate from 'templates/search/clearButton.ejs';
+import notFoundTemplate from 'templates/search/notFound.ejs';
 
-import { LazyLoader } from './lazyLoad';
-import { queryByClass } from './util';
+import { LazyLoader } from '../lazyLoad';
+import { queryByClass } from '../util';
 
 type SearchOptions = {
   emojiData: any;

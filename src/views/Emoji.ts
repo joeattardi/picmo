@@ -1,14 +1,14 @@
-import { compileTemplate } from './templates';
-import emojiTemplate from './templates/emoji.ejs';
-import customEmojiTemplate from './templates/customEmojiContent.ejs';
-import { LazyLoader } from './lazyLoad';
+import { compileTemplate } from '../templates';
+import emojiTemplate from 'templates/emoji.ejs';
+import customEmojiTemplate from 'templates/customEmojiContent.ejs';
+import { LazyLoader } from '../lazyLoad';
 
 import { View } from './view';
 
 const emojiCompiled = compileTemplate(emojiTemplate);
 const customCompiled = compileTemplate(customEmojiTemplate);
 
-import classes from './emoji.scss';
+import classes from './Emoji.scss';
 
 type EmojiOptions = {
   emoji: any;
