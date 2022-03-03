@@ -1,7 +1,7 @@
 import { Events } from './events';
 import { Bundle } from './i18n';
 import { Renderer } from './renderers/renderer';
-import { View } from './view';
+import { View } from './views/view';
 
 type ConstructorFn<T> = new (...args: any[]) => T;
 
