@@ -26,7 +26,7 @@ import { EmojiArea } from './views/EmojiArea';
 import { save } from './recent';
 
 import { renderTemplate } from './templates';
-import template from 'templates/index.ejs';
+import template from 'templates/picker.ejs';
 
 import en from './i18n/lang-en';
 import NativeRenderer from './renderers/native';
@@ -358,12 +358,11 @@ export class EmojiPicker {
       emojiVersion: this.emojiVersion
     });
 
-    this.wrapper = renderTemplate(template, {
+    this.wrapper = await renderTemplate(template, {
       classes,
       plugins: this.pluginContainer,
-      search: await this.search?.render(),
-      // emojiArea: document.createElement('div')
-      emojiArea: await this.emojiArea.render()
+      search: this.search,
+      emojiArea: this.emojiArea
     });
 
     this.pickerEl = this.wrapper.firstElementChild as HTMLElement;

@@ -2,9 +2,11 @@ import { dom } from '@fortawesome/fontawesome-svg-core';
 
 import ejs, { Data } from 'ejs';
 
-export type ElementTemplate = (data?: Data) => HTMLElement;
+export type ElementTemplate = (data?: Data) => HTMLElement | Promise<HTMLElement>;
 
-function bindPlaceholders<E extends HTMLElement = HTMLElement>(result: E, data: Data): E {
+async function bindPlaceholders<E extends HTMLElement = HTMLElement>(result: E, data: Data): Promise<E> {
+  await renderChildViews(result, data);
+
   const placeholders = result.querySelectorAll<E>('[data-placeholder]');
   placeholders.forEach((placeholder: E) => {
     const key = placeholder.dataset.placeholder;
@@ -25,6 +27,23 @@ function bindPlaceholders<E extends HTMLElement = HTMLElement>(result: E, data: 
   return result;
 }
 
+async function renderChildViews<E extends HTMLElement = HTMLElement>(result: E, views: object = {}): Promise<E> {
+  const childViews = result.querySelectorAll<E>('[data-view]');
+ 
+  for (const childView of childViews) {
+    const key = childView.dataset.view;
+
+    if (key && views[key]) {
+      const view = views[key];
+      childView.replaceWith(await view.render());
+    } else {
+      throw new Error(`Missing view element for key "${key}"`);
+    }
+  }
+
+  return result;
+}
+
 /**
  * Compiles a template for later use.
  *
@@ -37,9 +56,9 @@ export function compileTemplate(template: string): ElementTemplate {
 
   // The returned function will add the helpers to the
   // supplied data.
-  return (data: Data = {}) => {
+  return async (data: Data = {}) => {
     const result = toElement(compiled(data));
-    return bindPlaceholders(result, data);
+    return await bindPlaceholders(result, data);
   };
 }
 
@@ -50,13 +69,13 @@ export function compileTemplate(template: string): ElementTemplate {
  * @param data data to supply to the template
  * @returns the rendered HTMLElement
  */
-export function renderTemplate<E extends HTMLElement = HTMLElement>(template: string, data: Data = {}): E {
-  const result = bindPlaceholders<E>(
+export async function renderTemplate<E extends HTMLElement = HTMLElement>(template: string, data: Data = {}): Promise<E> {
+  const result = await bindPlaceholders<E>(
     toElement<E>(ejs.render(template, data)),
     data
   );
 
-  dom.i2svg({ node: result });
+  await dom.i2svg({ node: result });
 
   return result as E;
 }

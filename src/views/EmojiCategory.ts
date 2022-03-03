@@ -60,7 +60,7 @@ export class EmojiCategory extends View {
 
     return super.render({
       category: this.category,
-      emojis: await this.emojiContainer.render(),
+      emojis: this.emojiContainer,
       emojiCount: this.emojis.length,
       i18n: this.i18n
     });

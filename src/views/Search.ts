@@ -64,12 +64,12 @@ export class Search extends View {
     await super.render();
 
     this.searchIcon = icon('magnifying-glass', { classes: 'fa-fw' });
-    this.notFoundMessage = renderTemplate(notFoundTemplate, {
+    this.notFoundMessage = await renderTemplate(notFoundTemplate, {
       classes,
       i18n: this.i18n
     });
 
-    this.clearSearchButton = renderTemplate(clearSearchButtonTemplate, {
+    this.clearSearchButton = await renderTemplate(clearSearchButtonTemplate, {
       classes,
       i18n: this.i18n
     });

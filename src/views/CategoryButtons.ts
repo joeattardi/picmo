@@ -76,24 +76,6 @@ export class CategoryButtons extends View {
 
     this.buttons = this.el.querySelectorAll('button');
 
-    this.el.addEventListener('keydown', event => {
-      switch (event.key) {
-        case 'ArrowRight':
-          this.events.emit('category:select', categories[(this.activeButton + 1) % this.buttons.length]);
-          break;
-        case 'ArrowLeft':
-          this.events.emit(
-            'category:select',
-            categories[this.activeButton === 0 ? this.buttons.length - 1 : this.activeButton - 1]
-          );
-          break;
-        case 'ArrowUp':
-        case 'ArrowDown':
-          event.stopPropagation();
-          event.preventDefault();
-      }
-    });
-
     return this.el;
   }
 

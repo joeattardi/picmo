@@ -75,7 +75,7 @@ export abstract class View {
 
   async render(templateData: Data = {}): Promise<HTMLElement> {
     const templateFn =
-      typeof this.template === 'string' ? (data: Data) => renderTemplate(this.template as string, data) : this.template;
+      typeof this.template === 'string' ? async (data: Data) => await renderTemplate(this.template as string, data) : this.template;
 
     this.el = await templateFn({
       classes: this.classes,

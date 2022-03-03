@@ -22,15 +22,6 @@ export class EmojiPreview extends View {
     }
   }
 
-  async render(): Promise<HTMLElement> {
-    await super.render();
-
-    this.events.on('preview:show', emoji => this.showPreview(emoji));
-    this.events.on('preview:hide', () => this.hidePreview());
-
-    return this.el;
-  }
-
   private async getContent(emoji): Promise<HTMLElement> {
     // TODO lazy load this too?
     if (emoji.custom) {
