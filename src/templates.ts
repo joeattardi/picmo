@@ -4,23 +4,6 @@ import ejs, { Data } from 'ejs';
 
 export type ElementTemplate = (data?: Data) => HTMLElement;
 
-// TODO: add i18n to helpers
-
-/**
- * Takes the data passed to a template, and adds the common template
- * helpers.
- *
- * This prevents the need to add common things to each individual template.
- *
- * @param data the data supplied to the template
- * @returns a new data object containing the original data plus helpers
- */
-function addHelpers(data: Data = {}): Data {
-  return {
-    ...data
-  };
-}
-
 function bindPlaceholders<E extends HTMLElement = HTMLElement>(result: E, data: Data): E {
   const placeholders = result.querySelectorAll<E>('[data-placeholder]');
   placeholders.forEach((placeholder: E) => {
@@ -55,7 +38,7 @@ export function compileTemplate(template: string): ElementTemplate {
   // The returned function will add the helpers to the
   // supplied data.
   return (data: Data = {}) => {
-    const result = toElement(compiled(addHelpers(data)));
+    const result = toElement(compiled(data));
     return bindPlaceholders(result, data);
   };
 }
@@ -68,8 +51,11 @@ export function compileTemplate(template: string): ElementTemplate {
  * @returns the rendered HTMLElement
  */
 export function renderTemplate<E extends HTMLElement = HTMLElement>(template: string, data: Data = {}): E {
-  let result = toElement<E>(ejs.render(template, addHelpers(data)));
-  result = bindPlaceholders<E>(result, data);
+  const result = bindPlaceholders<E>(
+    toElement<E>(ejs.render(template, data)),
+    data
+  );
+
   dom.i2svg({ node: result });
 
   return result as E;
