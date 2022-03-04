@@ -4,8 +4,8 @@ import { compileTemplate } from '../templates';
 const template = compileTemplate('<span><%= emoji %></span>');
 
 export default class NativeRenderer extends Renderer {
-  render(emoji: any): HTMLElement {
-    return template({ emoji: emoji.emoji });
+  async render(emoji: any): Promise<HTMLElement> {
+    return await template({ emoji: emoji.emoji });
   }
 
   emit({ emoji, name }: any): any {

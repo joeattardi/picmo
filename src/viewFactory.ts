@@ -1,3 +1,4 @@
+import { AppEvent } from './AppEvents';
 import { Events } from './events';
 import { Bundle } from './i18n';
 import { Renderer } from './renderers/renderer';
@@ -6,13 +7,13 @@ import { View } from './views/view';
 type ConstructorFn<T> = new (...args: any[]) => T;
 
 type DependencyMapping = {
-  events: Events;
+  events: Events<AppEvent>;
   i18n: Bundle;
   renderer: Renderer;
 };
 
 export class ViewFactory {
-  private events: Events;
+  private events: Events<AppEvent>;
   private i18n: Bundle;
   private renderer: Renderer;
 

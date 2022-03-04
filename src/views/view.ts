@@ -1,12 +1,13 @@
 import { Data } from 'ejs';
 
 import { renderTemplate, ElementTemplate } from '../templates';
-import { AppEvent, Events, EventArgs, EventCallback, AsyncEventCallback } from '../events';
+import { AppEvent, AppEventKey } from '../AppEvents';
+import { Events, EventArgs, EventCallback, AsyncEventCallback } from '../events';
 import { ViewFactory } from '../viewFactory';
 import { Bundle } from '../i18n';
 import { Renderer } from '../renderers/renderer';
 
-type EventListenerBinding = {
+type UIEventListenerBinding = {
   event: string;
   handler: EventCallback;
   options?: AddEventListenerOptions;
@@ -32,10 +33,10 @@ export abstract class View {
   private classes?: ClassMappings;
 
   protected appEvents: AppEvents = {};
-  protected uiEvents: EventListenerBinding[] = [];
+  protected uiEvents: UIEventListenerBinding[] = [];
   protected uiElements: UIElementSelectors = {};
 
-  protected events: Events;
+  protected events: Events<AppEvent>;
   protected i18n: Bundle;
   protected renderer: Renderer;
 
@@ -53,15 +54,15 @@ export abstract class View {
   /* eslint-disable-next-line @typescript-eslint/no-empty-function */
   initialize() {}
 
-  setEvents(events: Events) {
+  setEvents(events: Events<AppEvent>) {
     this.events = events;
 
     Object.keys(this.appEvents).forEach(event => {
-      this.events.on(event as AppEvent, this.appEvents[event].bind(this));
+      this.events.on(event as AppEventKey, this.appEvents[event].bind(this));
     });
   }
 
-  emit(event: AppEvent, ...args: EventArgs) {
+  emit(event: AppEventKey, ...args: EventArgs) {
     this.events.emit(event, ...args);
   }
 
@@ -97,7 +98,7 @@ export abstract class View {
   }
 
   private bindListeners() {
-    this.uiEvents.forEach((binding: EventListenerBinding) => {
+    this.uiEvents.forEach((binding: UIEventListenerBinding) => {
       binding.handler = binding.handler.bind(this);
 
       this.el.addEventListener(binding.event, binding.handler, binding.options);
@@ -105,7 +106,7 @@ export abstract class View {
   }
 
   destroy() {
-    this.uiEvents.forEach((binding: EventListenerBinding) => {
+    this.uiEvents.forEach((binding: UIEventListenerBinding) => {
       this.el.removeEventListener(binding.event, binding.handler, binding.options);
     });
   }

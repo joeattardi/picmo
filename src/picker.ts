@@ -8,10 +8,8 @@ import emojiData from './data/emoji';
 
 import { light } from './themes';
 
-import {
-  Events,
-  EventCallback,
-} from './events';
+import { AppEvents } from './AppEvents';
+import { EventCallback } from './events';
 import { LazyLoader } from './LazyLoader';
 import { EmojiPreview } from './views/Preview';
 import { Search } from './views/Search';
@@ -81,7 +79,7 @@ export class EmojiPicker {
 
   private currentView: View;
 
-  private events = new Events();
+  private events = new AppEvents();
   private publicEvents = new Emitter();
   private i18n: Bundle;
 
