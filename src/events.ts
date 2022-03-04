@@ -12,7 +12,6 @@ type EventHandlerRecord = {
 export type AppEvent = 
   'content:show' |
   'emoji:select' |
-  'searchResults:show' |
   'preview:show' |
   'preview:hide' |
   'variantPopup:hide' |

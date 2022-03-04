@@ -31,7 +31,7 @@ export class Search extends View {
   private searchIcon: HTMLElement;
   private clearSearchButton: HTMLButtonElement;
   private resultsContainer: EmojiContainer | null;
-  private notFoundMessage: HTMLElement;
+  private notFoundMessage: NotFoundMessage;
 
   searchField: HTMLInputElement;
 
@@ -54,18 +54,12 @@ export class Search extends View {
     setTimeout(() => this.setFocusedEmoji(this.focusedEmojiIndex));
   }
 
-  reset(): void {
-    this.searchAccessory.replaceChildren(this.searchIcon);
-  }
-
   async render(): Promise<HTMLElement> {
     await super.render();
 
     this.searchIcon = icon('magnifying-glass', { classes: 'fa-fw' });
-    this.notFoundMessage = await renderTemplate(notFoundTemplate, {
-      classes,
-      i18n: this.i18n
-    });
+    this.notFoundMessage = this.viewFactory.create(NotFoundMessage);
+    await this.notFoundMessage.render();
 
     this.clearSearchButton = await renderTemplate(clearSearchButtonTemplate, {
       classes,
@@ -79,13 +73,26 @@ export class Search extends View {
     this.searchField.addEventListener('keydown', (event: KeyboardEvent) => this.onKeyDown(event));
     this.searchField.addEventListener('keyup', event => this.onKeyUp(event));
 
-    this.searchAccessory.replaceChildren(this.searchIcon);
+    this.showSearchIcon();
 
     return this.el;
   }
 
+  private showSearchIcon() {
+    this.showSearchAccessory(this.searchIcon);
+  }
+
+  private showClearSearchButton() {
+    this.showSearchAccessory(this.clearSearchButton);
+  }
+
+  private showSearchAccessory(accessory: HTMLElement) {
+    this.searchAccessory.replaceChildren(accessory);
+  }
+
   clear(): void {
     this.searchField.value = '';
+    this.showSearchIcon();
   }
 
   focus(): void {
@@ -99,7 +106,7 @@ export class Search extends View {
       this.searchField.value = '';
       this.resultsContainer = null;
 
-      this.searchAccessory.replaceChildren(this.searchIcon);
+      this.showSearchIcon();
 
       this.events.emit('content:show');
 
@@ -139,10 +146,10 @@ export class Search extends View {
     if (event.key === 'Tab' || event.key === 'Shift') {
       return;
     } else if (!this.searchField.value) {
-      this.searchAccessory.replaceChildren(this.searchIcon);
+      this.showSearchIcon();
       this.events.emit('content:show');
     } else {
-      this.searchAccessory.replaceChildren(this.clearSearchButton);
+      this.showClearSearchButton();
 
       const searchResults = this.emojiData
         .filter(emoji => emoji.name.toLowerCase().includes(this.searchField.value.toLowerCase()));
@@ -166,11 +173,17 @@ export class Search extends View {
 
           this.resultsContainer.el.addEventListener('keydown', event => this.handleResultsKeydown(event));
 
-          this.events.emit('content:show', this.resultsContainer.el);
+          this.events.emit('content:show', this.resultsContainer);
         }
       } else {
         this.events.emit('content:show', this.notFoundMessage);
       }
     }
+  }
+}
+
+class NotFoundMessage extends View {
+  constructor() {
+    super({ template: notFoundTemplate, classes });
   }
 }

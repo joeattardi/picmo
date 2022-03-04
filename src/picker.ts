@@ -33,6 +33,7 @@ import NativeRenderer from './renderers/native';
 import { Renderer } from './renderers/renderer';
 import { EmojiContainer } from './views/EmojiContainer';
 import { ViewFactory } from './viewFactory';
+import { View } from './views/view';
 
 const defaultOptions = {
   rootElement: document.body,
@@ -78,6 +79,8 @@ const variableNames = {
 export class EmojiPicker {
   private pickerVisible = false;
 
+  private currentView: View;
+
   private events = new Events();
   private publicEvents = new Emitter();
   private i18n: Bundle;
@@ -108,7 +111,6 @@ export class EmojiPicker {
 
   private popper: Popper;
 
-  private searchResults: EmojiContainer;
   private preview: EmojiPreview;
   private variantPopup: VariantPopup;
 
@@ -208,30 +210,6 @@ export class EmojiPicker {
     //     }
     //   });
     // }
-  }
-
-  /**
-   * Shows the search results in the main emoji area.
-   *
-   * @param searchResults The element containing the search results.
-   */
-  private showSearchResults(searchResults: EmojiContainer): void {
-    this.searchResults = searchResults;
-    this.pickerContent.replaceChildren(searchResults.el);
-  }
-
-  /**
-   * Hides the search results and resets the picker.
-   */
-  private hideSearchResults(): void {
-    if (this.pickerContent.firstChild === this.searchResults?.el) {
-      this.searchResults.destroy();
-      this.pickerContent.replaceChildren();
-      this.pickerContent.appendChild(this.emojiArea.el);
-    }
-
-    this.search.reset();
-    // this.emojiArea.reset();
   }
 
   /**
@@ -358,6 +336,8 @@ export class EmojiPicker {
       emojiVersion: this.emojiVersion
     });
 
+    this.currentView = this.emojiArea;
+
     this.wrapper = await renderTemplate(template, {
       classes,
       plugins: this.pluginContainer,
@@ -374,7 +354,6 @@ export class EmojiPicker {
     this.pickerContent = queryByClass(this.pickerEl, classes.content);
 
     this.events.on('content:show', this.showContent.bind(this));
-    // this.events.on('searchResults:show', this.showSearchResults.bind(this));
     this.events.on('variantPopup:hide', this.hideVariantPopup.bind(this));
     this.events.on('emoji:select', this.emitEmoji.bind(this));
 
@@ -388,11 +367,27 @@ export class EmojiPicker {
     lazyLoader.observe(this.emojiArea.ui.emojis);
   }
 
-  private showContent(content?: HTMLElement) {
-    if (content) {
-      this.pickerContent.replaceChildren(content);
-    } else {
-      this.pickerContent.replaceChildren(this.emojiArea.el);
+  /**
+   * Shows content in the main picker content area.
+   * If no View is specified, the built-in emoji area will be shown.
+   * 
+   * The currently shown view will be removed from the DOM and destroyed.
+   * 
+   * @param content The View to show
+   */
+  private showContent(content?: View) {
+    // Destroy the current view being removed unless it's the built-in emoji area,
+    // we don't want (or need) to destroy and re-create that!
+    if (this.currentView !== this.emojiArea) {
+      this.currentView?.destroy();
+    }
+
+    // If no content specified, show the emoji area
+    this.currentView = content || this.emojiArea;
+    this.pickerContent.replaceChildren(this.currentView.el);
+
+    // Reset the emoji area to make sure the correct initial category is selected
+    if (this.currentView === this.emojiArea) {
       this.emojiArea.reset();
     }
   }
@@ -476,15 +471,9 @@ export class EmojiPicker {
 
     this.rootElement.removeChild(this.wrapper);
 
-    // TODO fix this, search is broken!
-    // if (this.pickerContent.firstChild !== this.emojiArea.container) {
-    //   empty(this.pickerContent);
-    //   this.pickerContent.appendChild(this.emojiArea.container);
-    // }
-
     if (this.search) {
       this.search.clear();
-      this.hideSearchResults();
+      this.showContent();
     }
 
     this.events.emit('variantPopup:hide');
