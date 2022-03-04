@@ -1,5 +1,3 @@
-import fuzzysort from 'fuzzysort';
-
 import { View } from './view';
 import classes from './Search.scss';
 
@@ -103,7 +101,7 @@ export class Search extends View {
 
       this.searchAccessory.replaceChildren(this.searchIcon);
 
-      this.events.emit('searchResults:hide');
+      this.events.emit('content:show');
 
       // TODO: Find out why button steals focus on Escape key
       setTimeout(() => this.searchField.focus());
@@ -125,22 +123,6 @@ export class Search extends View {
 
   handleResultsKeydown(event: KeyboardEvent): void {
     if (this.resultsContainer) {
-      // const emojis = this.resultsContainer.querySelectorAll(`.${classes.emoji}`);
-      // if (event.key === 'ArrowRight') {
-      //   this.setFocusedEmoji(Math.min(this.focusedEmojiIndex + 1, emojis.length - 1));
-      // } else if (event.key === 'ArrowLeft') {
-      //   this.setFocusedEmoji(Math.max(0, this.focusedEmojiIndex - 1));
-      // } else if (event.key === 'ArrowDown') {
-      //   event.preventDefault();
-      //   if (this.focusedEmojiIndex < emojis.length - this.emojisPerRow) {
-      //     this.setFocusedEmoji(this.focusedEmojiIndex + this.emojisPerRow);
-      //   }
-      // } else if (event.key === 'ArrowUp') {
-      //   event.preventDefault();
-      //   if (this.focusedEmojiIndex >= this.emojisPerRow) {
-      //     this.setFocusedEmoji(this.focusedEmojiIndex - this.emojisPerRow);
-      //   }
-      // } else if (event.key === 'Escape') {
       if (event.key === 'Escape') {
         this.onClearSearch(event);
       }
@@ -158,17 +140,12 @@ export class Search extends View {
       return;
     } else if (!this.searchField.value) {
       this.searchAccessory.replaceChildren(this.searchIcon);
-      this.events.emit('searchResults:hide');
+      this.events.emit('content:show');
     } else {
       this.searchAccessory.replaceChildren(this.clearSearchButton);
 
-      const searchResults = fuzzysort
-        .go(this.searchField.value, this.emojiData, {
-          allowTypo: true,
-          limit: 100,
-          key: 'name'
-        })
-        .map(result => result.obj);
+      const searchResults = this.emojiData
+        .filter(emoji => emoji.name.toLowerCase().includes(this.searchField.value.toLowerCase()));
 
       this.events.emit('preview:hide');
 
@@ -189,10 +166,10 @@ export class Search extends View {
 
           this.resultsContainer.el.addEventListener('keydown', event => this.handleResultsKeydown(event));
 
-          this.events.emit('searchResults:show', this.resultsContainer);
+          this.events.emit('content:show', this.resultsContainer.el);
         }
       } else {
-        this.events.emit('searchResults:show', this.notFoundMessage);
+        this.events.emit('content:show', this.notFoundMessage);
       }
     }
   }

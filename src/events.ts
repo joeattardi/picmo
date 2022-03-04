@@ -10,9 +10,9 @@ type EventHandlerRecord = {
 }
 
 export type AppEvent = 
+  'content:show' |
   'emoji:select' |
   'searchResults:show' |
-  'searchResults:hide' |
   'preview:show' |
   'preview:hide' |
   'variantPopup:hide' |

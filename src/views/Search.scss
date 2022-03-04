@@ -1,5 +1,4 @@
 .searchResults {
-  height: var(--content-height);
   overflow-y: auto;
 }
 
@@ -78,6 +77,10 @@
   div {
     color: var(--secondary-text-color);
   }
+}
+
+.searchNotFoundIcon {
+  margin: 2em;
 }
 
 .searchNotFoundMessage {

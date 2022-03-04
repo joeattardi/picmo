@@ -373,8 +373,8 @@ export class EmojiPicker {
 
     this.pickerContent = queryByClass(this.pickerEl, classes.content);
 
-    this.events.on('searchResults:show', this.showSearchResults.bind(this));
-    this.events.on('searchResults:hide', this.hideSearchResults.bind(this));
+    this.events.on('content:show', this.showContent.bind(this));
+    // this.events.on('searchResults:show', this.showSearchResults.bind(this));
     this.events.on('variantPopup:hide', this.hideVariantPopup.bind(this));
     this.events.on('emoji:select', this.emitEmoji.bind(this));
 
@@ -386,6 +386,15 @@ export class EmojiPicker {
     // }
 
     lazyLoader.observe(this.emojiArea.ui.emojis);
+  }
+
+  private showContent(content?: HTMLElement) {
+    if (content) {
+      this.pickerContent.replaceChildren(content);
+    } else {
+      this.pickerContent.replaceChildren(this.emojiArea.el);
+      this.emojiArea.reset();
+    }
   }
 
   private hideVariantPopup() {
@@ -523,6 +532,7 @@ export class EmojiPicker {
       }
     );
 
+    this.showContent();
     this.emojiArea.reset();
 
     setTimeout(() => {
