@@ -23,7 +23,7 @@ export function createPicker(options = {}) {
       { once: true }
     );
 
-    picker.on('emoji', ({ emoji, url }) => {
+    picker.on('emoji:select', ({ emoji, url }) => {
       button.classList.remove('empty');
 
       if (url) {

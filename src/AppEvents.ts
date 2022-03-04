@@ -2,7 +2,6 @@ import { Events, EventKey } from './events';
 
 export type AppEvent = 
   'content:show' |
-  'emoji:select' |
   'preview:show' |
   'preview:hide' |
   'variantPopup:hide' |

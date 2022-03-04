@@ -9,6 +9,7 @@ import emojiData from './data/emoji';
 import { light } from './themes';
 
 import { AppEvents } from './AppEvents';
+import { ExternalEvents, ExternalEventKey } from './ExternalEvents';
 import { EventCallback } from './events';
 import { LazyLoader } from './LazyLoader';
 import { EmojiPreview } from './views/Preview';
@@ -80,7 +81,7 @@ export class EmojiPicker {
   private currentView: View;
 
   private events = new AppEvents();
-  private publicEvents = new Emitter();
+  private externalEvents = new ExternalEvents();
   private i18n: Bundle;
 
   private pickerEl: HTMLElement;
@@ -172,8 +173,8 @@ export class EmojiPicker {
    * @param event The name of the event to listen for
    * @param callback The function to call when the event is fired
    */
-  on(event: string, callback: EventCallback): void {
-    this.publicEvents.on(event, callback);
+  on(event: ExternalEventKey, callback: EventCallback): void {
+    this.externalEvents.on(event, callback);
   }
 
   /**
@@ -182,8 +183,8 @@ export class EmojiPicker {
    * @param event The name of the event
    * @param callback The callback to remove
    */
-  off(event: string, callback: EventCallback): void {
-    this.publicEvents.off(event, callback);
+  off(event: ExternalEventKey, callback: EventCallback): void {
+    this.externalEvents.off(event, callback);
   }
 
   /**
@@ -225,7 +226,7 @@ export class EmojiPicker {
         eventData = await this.renderer.emit(emoji);
       }
 
-      this.publicEvents.emit('emoji:select', eventData);
+      this.externalEvents.emit('emoji:select', eventData);
 
       if (this.autoHide) {
         await this.hidePicker();
@@ -478,7 +479,7 @@ export class EmojiPicker {
 
     this.popper && this.popper?.destroy();
 
-    this.publicEvents.emit('picker:hide');
+    this.externalEvents.emit('picker:hide');
 
     setTimeout(() => {
       document.removeEventListener('click', this.onDocumentClick);

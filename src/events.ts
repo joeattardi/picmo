@@ -20,6 +20,14 @@ export class Events<T> {
     this.handlers.push({ event, handler });
   }
 
+  off(event: EventKey<T>, handler: EventCallback) {
+    this.emitter.off(event, handler);
+
+    this.handlers = this.handlers.filter(({ handler: h }: EventHandlerRecord<T>) => {
+      return (h !== handler);
+    });
+  }
+
   emit(event: EventKey<T>, ...args: EventArgs) {
     this.emitter.emit(event, ...args);
   }
