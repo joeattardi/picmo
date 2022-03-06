@@ -1,7 +1,6 @@
 import classes from './picker.scss';
-
+import { Locale } from 'emojibase';
 import createFocusTrap, { FocusTrap } from 'focus-trap';
-import { TinyEmitter as Emitter } from 'tiny-emitter';
 import { createPopper, Instance as Popper, Placement } from '@popperjs/core';
 
 import emojiData from './data/emoji';
@@ -14,7 +13,7 @@ import { EventCallback } from './events';
 import { LazyLoader } from './LazyLoader';
 import { EmojiPreview } from './views/Preview';
 import { Search } from './views/Search';
-import { buildEmojiCategoryData, queryByClass } from './util';
+import { queryByClass } from './util';
 import { VariantPopup } from './views/VariantPopup';
 
 import { Bundle } from './i18n';
@@ -30,11 +29,12 @@ import template from 'templates/picker.ejs';
 import en from './i18n/lang-en';
 import NativeRenderer from './renderers/native';
 import { Renderer } from './renderers/renderer';
-import { EmojiContainer } from './views/EmojiContainer';
 import { ViewFactory } from './viewFactory';
 import { View } from './views/view';
+import { Database } from './db';
+import { initDatabase } from './emojiData';
 
-const defaultOptions = {
+const defaultOptions: PickerOptions = {
   rootElement: document.body,
   renderer: new NativeRenderer(),
   theme: light,
@@ -42,7 +42,6 @@ const defaultOptions = {
   showSearch: true,
   showCategoryButtons: true,
   showVariants: true,
-  showBoolean: true,
   showRecents: true,
   showPreview: true,
 
@@ -54,20 +53,15 @@ const defaultOptions = {
 
   emojiVersion: '12.1',
   maxRecents: 50,
-  locale: en
+  i18n: en,
+  locale: 'en'
 };
-
-export { LazyLoader };
 
 const SHOW_HIDE_DURATION = 200;
 
-function getOption(options: PickerOptions, key: keyof PickerOptions) {
-  return options[key] ?? defaultOptions[key];
+function getOption<T extends PickerOptions[keyof PickerOptions]>(options: PickerOptions, key: keyof PickerOptions): T {
+  return (options[key] ?? defaultOptions[key]) as T;
 }
-
-//    if (this.emojisPerRow) {
-// this.pickerEl.style.setProperty('--emoji-per-row', this.emojisPerRow.toString());
-// }
 
 const variableNames = {
   emojisPerRow: '--emojis-per-row',
@@ -83,6 +77,8 @@ export class EmojiPicker {
   private events = new AppEvents();
   private externalEvents = new ExternalEvents();
   private i18n: Bundle;
+  private emojiData: Database;
+  private locale: Locale;
 
   private pickerEl: HTMLElement;
   private pickerContent: HTMLElement;
@@ -113,7 +109,6 @@ export class EmojiPicker {
   private preview: EmojiPreview;
   private variantPopup: VariantPopup;
 
-  private showCategoryButtons: boolean;
   private showSearch: boolean;
   private showVariants: boolean;
   private showRecents: boolean;
@@ -123,15 +118,15 @@ export class EmojiPicker {
   private autoFocusSearch: boolean;
 
   private viewFactory: ViewFactory;
+  private options: Required<PickerOptions>;
 
   private theme: string;
 
-  private emojiCategories: { [key: string]: any[] };
-
   constructor(options: PickerOptions = {}) {
+    this.options = { ...defaultOptions, ...options } as Required<PickerOptions>;
+
     this.showSearch = getOption(options, 'showSearch');
     this.showVariants = getOption(options, 'showVariants');
-    this.showCategoryButtons = getOption(options, 'showCategoryButtons');
     this.showRecents = getOption(options, 'showRecents');
     this.showPreview = getOption(options, 'showPreview');
 
@@ -155,14 +150,8 @@ export class EmojiPicker {
 
     this.onDocumentClick = this.onDocumentClick.bind(this);
     this.onDocumentKeydown = this.onDocumentKeydown.bind(this);
-    this.i18n = new Bundle(getOption(options, 'locale'));
-    this.emojiCategories = buildEmojiCategoryData(emojiData);
-
-    this.viewFactory = new ViewFactory({
-      events: this.events,
-      i18n: this.i18n,
-      renderer: this.renderer
-    });
+    this.i18n = new Bundle(getOption(options, 'i18n'));
+    this.locale = getOption(options, 'locale');
 
     this.buildPicker();
   }
@@ -267,11 +256,11 @@ export class EmojiPicker {
   private buildSearch(): void {
     if (this.showSearch) {
       this.search = this.viewFactory.create(Search, {
-          emojiData: emojiData.emoji,
-          emojisPerRow: this.emojisPerRow,
-          emojiVersion: this.emojiVersion,
-          customEmojis: this.customEmojis,
-          renderer: this.renderer
+        emojiData: emojiData.emoji,
+        emojisPerRow: this.emojisPerRow,
+        emojiVersion: this.emojiVersion,
+        customEmojis: this.customEmojis,
+        renderer: this.renderer
       });
     }
   }
@@ -319,18 +308,24 @@ export class EmojiPicker {
    * Builds the emoji picker.
    */
   private async buildPicker(): Promise<void> {
+    // TODO: Race condition when loading DB? Show loading indicator if DB is not done yet.
+    this.emojiData = await initDatabase(this.locale);
+    this.viewFactory = new ViewFactory({
+      events: this.events,
+      i18n: this.i18n,
+      renderer: this.renderer,
+      emojiData: this.emojiData,
+      options: this.options
+    });
+
     // this.initPlugins(); TODO plugins later
     this.buildSearch();
 
     const lazyLoader = new LazyLoader();
 
     this.emojiArea = this.viewFactory.create(EmojiArea, {
-      emojiCategoryData: this.emojiCategories,
       lazyLoader: lazyLoader,
-      emojisPerRow: this.emojisPerRow,
       custom: this.customEmojis,
-      showCategoryButtons: this.showCategoryButtons,
-      showRecents: this.showRecents,
       renderer: this.renderer,
       emojiVersion: this.emojiVersion
     });
@@ -369,9 +364,9 @@ export class EmojiPicker {
   /**
    * Shows content in the main picker content area.
    * If no View is specified, the built-in emoji area will be shown.
-   * 
+   *
    * The currently shown view will be removed from the DOM and destroyed.
-   * 
+   *
    * @param content The View to show
    */
   private showContent(content?: View) {
@@ -493,6 +488,10 @@ export class EmojiPicker {
    * @param referenceEl The element to position relative to if relative positioning is used.
    */
   async showPicker(): Promise<void> {
+    if (!this.pickerEl) {
+      return;
+    }
+
     // If triggered rapidly, make sure all pending animations finish before moving on
     await Promise.all(
       this.pickerEl

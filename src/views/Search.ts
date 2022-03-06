@@ -22,7 +22,7 @@ type SearchOptions = {
 };
 
 export class Search extends View {
-  private emojiData: any[];
+  private _emojiData: any[];
   private emojisPerRow: number;
   private focusedEmojiIndex = 0;
   private emojiVersion: string;
@@ -39,8 +39,8 @@ export class Search extends View {
     super({ template: searchTemplate, classes });
 
     this.emojisPerRow = emojisPerRow;
-    this.emojiData = emojiData.filter(e => e.version && parseFloat(e.version) <= parseFloat(emojiVersion));
-    this.emojiData = [...this.emojiData, ...customEmojis];
+    this._emojiData = emojiData.filter(e => e.version && parseFloat(e.version) <= parseFloat(emojiVersion));
+    this._emojiData = [...this._emojiData, ...customEmojis];
     this.emojiVersion = emojiVersion;
   }
 
@@ -151,7 +151,7 @@ export class Search extends View {
     } else {
       this.showClearSearchButton();
 
-      const searchResults = this.emojiData
+      const searchResults = this._emojiData
         .filter(emoji => emoji.name.toLowerCase().includes(this.searchField.value.toLowerCase()));
 
       this.events.emit('preview:hide');

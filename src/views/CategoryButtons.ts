@@ -1,20 +1,20 @@
 import emojiData from '../data/emoji';
 
 import { View } from './view';
-import { CustomEmoji } from '../types';
+import { Category, CategoryKey, CustomEmoji } from '../types';
 
 import template from 'templates/categoryButtons.ejs';
 
 import classes from './CategoryButtons.scss';
 
-export const categoryIcons = {
+export const categoryIcons: { [key in CategoryKey]?: string } = {
   recents: 'fa-clock-rotate-left',
-  smileys: 'fa-face-smile',
-  people: 'fa-user',
-  animals: 'fa-cat',
-  food: 'fa-mug-saucer',
+  'smileys-emotion': 'fa-face-smile',
+  'people-body': 'fa-user',
+  'animals-nature': 'fa-cat',
+  'food-drink': 'fa-mug-saucer',
   activities: 'fa-futbol',
-  travel: 'fa-car',
+  'travel-places': 'fa-car',
   objects: 'fa-lightbulb',
   symbols: 'fa-icons',
   flags: 'fa-flag',
@@ -22,23 +22,20 @@ export const categoryIcons = {
 };
 
 type CategoryButtonsOptions = {
-  showRecents: boolean;
-  custom: CustomEmoji[];
+  categories: Category[];
 };
 
 export class CategoryButtons extends View {
-  private showRecents: boolean;
-  private custom: CustomEmoji[];
+  private categories: Category[];
 
   activeButton = 0;
 
   buttons: NodeListOf<HTMLButtonElement>;
 
-  constructor({ showRecents, custom }: CategoryButtonsOptions) {
+  constructor({ categories }: CategoryButtonsOptions) {
     super({ template, classes });
 
-    this.showRecents = showRecents;
-    this.custom = custom;
+    this.categories = categories;
   }
 
   initialize() {
@@ -60,17 +57,8 @@ export class CategoryButtons extends View {
   }
 
   async render(): Promise<HTMLElement> {
-    const categoryData = emojiData.categories;
-
-    let categories = this.showRecents ? ['recents', ...categoryData] : categoryData;
-
-    if (this.custom) {
-      categories = [...categories, 'custom'];
-    }
-
     await super.render({
-      i18n: this.i18n,
-      categories,
+      categories: this.categories,
       categoryIcons
     });
 

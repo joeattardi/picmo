@@ -3,11 +3,11 @@
     <button 
       class="fa-fw <%= classes.categoryButton %>"
       tabindex="-1"
-      title="<%= i18n.get(`categories.${category}`) %>"
+      title="<%= i18n.get(`categories.${category.key}`, category.message || category.key) %>"
       type="button"
-      data-category="<%= category %>"
+      data-category="<%= category.key %>"
     >
-      <i class="fa-solid fa-fw <%= categoryIcons[category] %>"></i>
+      <i class="fa-solid fa-fw <%= categoryIcons[category.key] %>"></i>
     </button>
   <% }); %>
   <div class="<%= classes.activeIndicator %>"></div>

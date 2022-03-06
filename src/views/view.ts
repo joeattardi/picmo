@@ -6,6 +6,8 @@ import { Events, EventArgs, EventCallback, AsyncEventCallback } from '../events'
 import { ViewFactory } from '../viewFactory';
 import { Bundle } from '../i18n';
 import { Renderer } from '../renderers/renderer';
+import { Database } from '../db';
+import { PickerOptions } from '../types';
 
 type UIEventListenerBinding = {
   event: string;
@@ -35,6 +37,8 @@ export abstract class View {
   protected appEvents: AppEvents = {};
   protected uiEvents: UIEventListenerBinding[] = [];
   protected uiElements: UIElementSelectors = {};
+  protected emojiData: Database;
+  protected options: PickerOptions;
 
   protected events: Events<AppEvent>;
   protected i18n: Bundle;
@@ -47,8 +51,6 @@ export abstract class View {
   constructor({ template, classes }: ViewOptions) {
     this.template = template;
     this.classes = classes;
-
-    this.initialize();
   }
 
   /* eslint-disable-next-line @typescript-eslint/no-empty-function */
@@ -72,6 +74,14 @@ export abstract class View {
 
   setRenderer(renderer: Renderer) {
     this.renderer = renderer;
+  }
+
+  setEmojiData(emojiData: Database) {
+    this.emojiData = emojiData;
+  }
+
+  setOptions(options: PickerOptions) {
+    this.options = options;
   }
 
   async render(templateData: Data = {}): Promise<HTMLElement> {

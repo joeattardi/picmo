@@ -8,7 +8,7 @@ export class Bundle {
     this.#dictionary = new Map(Object.entries(dictionary));
   }
 
-  get(key: string): string {
-    return this.#dictionary.get(key) || key;
+  get(key: string, fallback = key): string {
+    return this.#dictionary.get(key) || fallback;
   }
 }

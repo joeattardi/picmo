@@ -1,6 +1,6 @@
 <div class="<%= classes.emojiCategory %>">
   <h3 data-category="<%= category %>" class="<%= classes.categoryName %>">
-    <%= i18n.get(`categories.${category}`) %>
+    <%= i18n.get(`categories.${category.key}`, category.message || category.key) %>
   </h3>
   <div data-view="emojis"></div>
 </div>

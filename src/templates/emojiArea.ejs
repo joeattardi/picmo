@@ -2,7 +2,7 @@
   <div data-view="categoryButtons"></div>
   <div class="<%= classes.emojis %>">
     <% categories.forEach(category => { %>
-      <div data-view="emojis-<%= category %>"></div>
+      <div data-view="emojis-<%= category.key %>"></div>
     <% }) %>
   </div>
 </div>

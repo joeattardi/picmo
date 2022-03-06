@@ -1,8 +1,6 @@
 import { View } from './view';
 import classes from './EmojiArea.scss';
 
-import emojiData from '../data/emoji';
-
 import { CategoryButtons } from './CategoryButtons';
 import { EmojiCategory } from './EmojiCategory';
 import { RecentEmojiCategory } from './RecentEmojiCategory';
@@ -12,9 +10,7 @@ import { prefersReducedMotion } from '../util';
 
 import template from 'templates/emojiArea.ejs';
 import { LazyLoader } from '../LazyLoader';
-import { CustomEmoji } from '../types';
-
-const categorySortOrder = Object.values(EmojiCategory);
+import { Category, CategoryKey, CustomEmoji } from '../types';
 
 const categoryClasses = {
   recents: RecentEmojiCategory
@@ -25,12 +21,8 @@ function getCategoryClass(category) {
 }
 
 type EmojiAreaOptions = {
-  emojiCategoryData: any;
   lazyLoader?: LazyLoader;
-  emojisPerRow: number;
   custom: CustomEmoji[];
-  showCategoryButtons: boolean;
-  showRecents: boolean;
   emojiVersion: string;
 };
 export class EmojiArea extends View {
@@ -38,17 +30,12 @@ export class EmojiArea extends View {
   private currentCategory = 0;
   private headers: HTMLElement[] = [];
   private categoryButtons: CategoryButtons;
-  private emojisPerRow: number;
-  private categories: string[];
+  private categories: Category[];
   private custom: CustomEmoji[];
 
-  private emojiCategoryData: any;
   private lazyLoader?: LazyLoader;
 
   emojiCategories: EmojiCategory[];
-
-  private showCategoryButtons: boolean;
-  private showRecents: boolean;
 
   private emojiVersion: string;
 
@@ -57,37 +44,15 @@ export class EmojiArea extends View {
   private cancelScroll: () => void;
 
   constructor({
-    emojiCategoryData,
     lazyLoader,
-    emojisPerRow,
     custom,
-    showCategoryButtons,
-    showRecents,
     emojiVersion
   }: EmojiAreaOptions) {
     super({ template, classes });
 
-    this.emojisPerRow = emojisPerRow;
-    this.categories = emojiData.categories;
-
-    this.showCategoryButtons = showCategoryButtons;
-    this.showRecents = showRecents;
-
     this.lazyLoader = lazyLoader;
 
-    this.emojiCategoryData = emojiCategoryData;
     this.emojiVersion = emojiVersion;
-
-    if (showRecents) {
-      this.categories = ['recents', ...this.categories];
-    }
-
-    if (custom) {
-      this.custom = custom;
-      this.categories = [...this.categories, 'custom'];
-    }
-
-    this.categories.sort((a, b) => categorySortOrder.indexOf(a) - categorySortOrder.indexOf(b));
 
     this.highlightCategory = this.highlightCategory.bind(this);
   }
@@ -103,31 +68,44 @@ export class EmojiArea extends View {
   }
   
   async render(): Promise<HTMLElement> {
-    if (this.showCategoryButtons) {
+    this.categories = await this.emojiData.getCategories();
+    if (this.options.showRecents) {
+      this.categories.unshift({
+        key: 'recents',
+        message: this.i18n.get('categories.recents'),
+        order: -1
+      });
+    }
+
+    if (this.options.custom) {
+      this.categories.unshift({
+        key: 'custom',
+        message: this.i18n.get('categories.custom'),
+        order: 10
+      });
+    }
+
+    if (this.options.showCategoryButtons) {
       this.categoryButtons = this.viewFactory.create(CategoryButtons, {
-        showRecents: this.showRecents,
+        categories: this.categories,
+        showRecents: this.options.showRecents,
         custom: this.custom
       });
     }
 
-    if (this.showRecents) {
-      this.emojiCategoryData.recents = load();
-    }
-
-    if (this.custom) {
-      this.emojiCategoryData.custom = this.custom;
-    }
+    // TODO get custom working again
+    // TODO get recent working again
 
     this.emojiCategories = this.categories.map(this.createCategory, this);
 
     // const emojiContainers = await Promise.all(this.emojiCategories.map(emojiCategory => emojiCategory.render()));
     const categoryEmojiElements = {};
     this.categories.forEach((category, index) => {
-      categoryEmojiElements[`emojis-${category}`] = this.emojiCategories[index];
+      categoryEmojiElements[`emojis-${category.key}`] = this.emojiCategories[index];
     });
 
     await super.render({
-      categoryButtons: this.showCategoryButtons ? this.categoryButtons : null,
+      categoryButtons: this.options.showCategoryButtons ? this.categoryButtons : null,
       categories: this.categories,
       i18n: this.i18n,
       ...categoryEmojiElements
@@ -138,21 +116,20 @@ export class EmojiArea extends View {
     // TODO address these when fixing scroll selection and keyboard navigation
     this.ui.emojis.addEventListener('scroll', this.highlightCategory);
 
-    const [firstEmoji] = this.emojiCategories[0].emojiContainer.emojiElements;
-    if (firstEmoji) {
-      firstEmoji.tabIndex = 0;
-    }
+    // const [firstEmoji] = this.emojiCategories[0].emojiContainer.emojiElements;
+    // if (firstEmoji) {
+    //   firstEmoji.tabIndex = 0;
+    // }
 
     return this.el;
   }
 
-  private createCategory(category: string): EmojiCategory {
+  private createCategory(category: Category): EmojiCategory {
     const Category = getCategoryClass(category);
 
     return this.viewFactory.create(Category, {
       category,
       showVariants: true,
-      emojis: this.emojiCategoryData[category],
       lazyLoader: this.lazyLoader,
       emojiVersion: this.emojiVersion
     });
@@ -161,10 +138,10 @@ export class EmojiArea extends View {
   async reset(): Promise<void> {
     this.headerOffsets = Array.prototype.map.call(this.headers, header => header.parentElement.offsetTop) as number[];
 
-    this.selectCategory('smileys', false, false);
-    this.currentCategory = this.categories.indexOf('smileys');
+    this.selectCategory('smileys-emotion', false, false);
+    this.currentCategory = this.categories.findIndex(category => category.key === 'smileys-emotion');
 
-    if (this.showCategoryButtons) {
+    if (this.options.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory, false, false);
     }
   }
@@ -213,12 +190,12 @@ export class EmojiArea extends View {
     });
   }
 
-  async selectCategory(category: string, focus = true, animate = true): Promise<void> {
+  async selectCategory(category: CategoryKey, focus = true, animate = true): Promise<void> {
     this.ui.emojis.removeEventListener('scroll', this.highlightCategory);
 
-    const categoryIndex = this.categories.indexOf(category);
+    const categoryIndex = this.categories.findIndex(c => c.key === category);
     this.currentCategory = categoryIndex;
-    if (this.showCategoryButtons) {
+    if (this.options.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory, focus, animate);
     }
 
@@ -248,7 +225,7 @@ export class EmojiArea extends View {
     }
 
     this.currentCategory = closestHeaderIndex - 1;
-    if (this.showCategoryButtons) {
+    if (this.options.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory);
     }
   }

@@ -1,5 +1,5 @@
 import { Placement } from '@popperjs/core';
-
+import { Locale, GroupKey } from 'emojibase';
 import { Renderer } from './renderers/renderer';
 import { Dictionary } from './i18n';
 
@@ -17,18 +17,26 @@ type FixedPosition = {
 
 export type Position = FixedPosition | Placement;
 
-export type EmojiCategory =
-  | 'recents'
-  | 'smileys'
-  | 'people'
-  | 'animals'
-  | 'food'
-  | 'activities'
-  | 'travel'
-  | 'objects'
-  | 'symbols'
-  | 'flags'
-  | 'custom';
+export type CategoryKey = GroupKey | 'recents' | 'custom';
+
+export type Category = {
+  key: CategoryKey;
+  message: string;
+  order: number;
+}
+
+// export type EmojiCategory =
+//   | 'recents'
+//   | 'smileys'
+//   | 'people'
+//   | 'animals'
+//   | 'food'
+//   | 'activities'
+//   | 'travel'
+//   | 'objects'
+//   | 'symbols'
+//   | 'flags'
+//   | 'custom';
 
 export type Theme = {
   theme: { [key: string]: string };
@@ -59,5 +67,6 @@ export type PickerOptions = {
   custom?: CustomEmoji[];
   emojiVersion?: string;
 
-  locale?: Dictionary;
+  i18n?: Dictionary;
+  locale?: Locale;
 };
