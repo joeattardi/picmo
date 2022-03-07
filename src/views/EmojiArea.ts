@@ -23,7 +23,6 @@ function getCategoryClass(category) {
 type EmojiAreaOptions = {
   lazyLoader?: LazyLoader;
   custom: CustomEmoji[];
-  emojiVersion: string;
 };
 export class EmojiArea extends View {
   private headerOffsets: number[];
@@ -37,8 +36,6 @@ export class EmojiArea extends View {
 
   emojiCategories: EmojiCategory[];
 
-  private emojiVersion: string;
-
   private focusedIndex = 0;
 
   private cancelScroll: () => void;
@@ -46,21 +43,18 @@ export class EmojiArea extends View {
   constructor({
     lazyLoader,
     custom,
-    emojiVersion
   }: EmojiAreaOptions) {
     super({ template, classes });
 
     this.lazyLoader = lazyLoader;
 
-    this.emojiVersion = emojiVersion;
-
     this.highlightCategory = this.highlightCategory.bind(this);
   }
 
   initialize() {
-    this.appEvents = {
+    this.bindAppEvents({
       'category:select': this.selectCategory
-    };
+    });
 
     this.uiElements = {
       emojis: View.byClass(classes.emojis)
@@ -130,8 +124,7 @@ export class EmojiArea extends View {
     return this.viewFactory.create(Category, {
       category,
       showVariants: true,
-      lazyLoader: this.lazyLoader,
-      emojiVersion: this.emojiVersion
+      lazyLoader: this.lazyLoader
     });
   }
 

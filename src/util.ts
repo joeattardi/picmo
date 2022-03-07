@@ -55,3 +55,7 @@ export function getEmojiForEvent(event: Event, emojis: any[]): any | null {
 export function prefersReducedMotion() {
   return matcher.matches;
 }
+
+export function caseInsensitiveIncludes(str: string, search: string) {
+  return str.toLowerCase().includes(search.toLowerCase());
+}

@@ -9,6 +9,10 @@ import * as themes from '../themes';
 export default {
   title: 'Emoji Picker',
   argTypes: {
+    emojiVersion: {
+      type: 'number',
+      defaultValue: 13
+    },
     theme: {
       options: ['light', 'dark', 'auto'],
       control: {

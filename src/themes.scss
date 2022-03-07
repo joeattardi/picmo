@@ -25,6 +25,8 @@
   --popup-background-color: #ffffff;
   --fade-gradient-start: rgba(255, 255, 255, 1);
   --fade-gradient-end: rgba(255, 255, 255, 0);
+  --tag-background: rgba(162, 190, 245, 0.3);
+  --tag-icon-color: rgba(162, 190, 245, 1);
 }
 
 @mixin darkTheme {

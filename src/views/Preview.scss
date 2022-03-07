@@ -1,12 +1,30 @@
 .preview {
-  align-items: center;
   border-top: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  align-items: center;
+  gap: 6px;
+  grid-template-columns: auto auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "emoji name name"
+                       "emoji icon tags";
   height: var(--emoji-preview-size);
   padding: 0.5em;
   position: relative;
   margin-top: 4px;
+
+  &::before {
+    width: 75px;
+    height: 100%;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-image: linear-gradient(
+                        270deg, 
+                        var(--fade-gradient-start) 40%, 
+                        var(--fade-gradient-end) 100%
+    );
+  }
 
   &::after {
     width: 100%;
@@ -14,22 +32,49 @@
     content: '';
     position: absolute;
     left: 0;
-    top: -11px;
+    top: -30px;
     background-image: linear-gradient(0deg, var(--fade-gradient-start) 30%, var(--fade-gradient-end) 100%);
   }
 }
 
 .previewEmoji {
+  grid-area: emoji;
   font-size: var(--emoji-preview-size);
-  margin-right: 0.25em;
   font-family: var(--emoji-font);
-  display: flex;
-  align-items: center;
 }
 
 .previewName {
+  grid-area: name;
   color: var(--text-color);
-  font-size: 1em;
+  font-size: 0.8em;
   overflow-wrap: break-word;
   word-break: break-all;
+}
+
+.tagIcon {
+  grid-area: icon;
+  color: var(--tag-icon-color);
+}
+
+.tagList {
+  grid-area: tags;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  margin: 0;
+  font-size: 0.8em;
+  overflow: hidden;
+}
+
+.tag {
+  border-radius: 3px;
+  background: var(--tag-background);
+  padding: 2px 8px;
+  margin-right: 0.25em;
+  white-space: nowrap;
+
+  &:last-child {
+    margin-right: 0;
+  }
 }

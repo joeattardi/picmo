@@ -4,5 +4,6 @@ export const searchAccessory: string;
 export const searchContainer: string;
 export const searchField: string;
 export const searchNotFound: string;
+export const searchNotFoundIcon: string;
 export const searchNotFoundMessage: string;
 export const searchResults: string;

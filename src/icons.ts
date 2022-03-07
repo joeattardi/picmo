@@ -13,6 +13,7 @@ import {
   faMagnifyingGlass,
   faMugSaucer,
   faSquareXmark,
+  faTags,
   faUser,
   faXmark
 } from '@fortawesome/free-solid-svg-icons';
@@ -30,6 +31,7 @@ library.add(
   faMagnifyingGlass,
   faMugSaucer,
   faSquareXmark,
+  faTags,
   faUser,
   faXmark
 );

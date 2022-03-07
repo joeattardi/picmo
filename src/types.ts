@@ -25,19 +25,6 @@ export type Category = {
   order: number;
 }
 
-// export type EmojiCategory =
-//   | 'recents'
-//   | 'smileys'
-//   | 'people'
-//   | 'animals'
-//   | 'food'
-//   | 'activities'
-//   | 'travel'
-//   | 'objects'
-//   | 'symbols'
-//   | 'flags'
-//   | 'custom';
-
 export type Theme = {
   theme: { [key: string]: string };
 };
@@ -65,7 +52,7 @@ export type PickerOptions = {
   visibleRows?: number;
 
   custom?: CustomEmoji[];
-  emojiVersion?: string;
+  emojiVersion?: number;
 
   i18n?: Dictionary;
   locale?: Locale;

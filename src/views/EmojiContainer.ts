@@ -3,14 +3,12 @@ import classes from './EmojiContainer.scss';
 import template from 'templates/emojiContainer.ejs';
 import { LazyLoader } from '../LazyLoader';
 import { getEmojiForEvent } from '../util';
-import ejs from 'ejs';
 import { View } from './view';
 
 type EmojiContainerOptions = {
   emojis: any;
   showVariants: boolean;
   lazyLoader?: LazyLoader;
-  emojiVersion: string;
 };
 export class EmojiContainer extends View {
   protected emojis: Array<any>; // TODO use proper types after using emojibase
@@ -19,13 +17,13 @@ export class EmojiContainer extends View {
   emojiViews: Emoji[];
   emojiElements: HTMLElement[];
 
-  constructor({ emojis, showVariants, lazyLoader, emojiVersion }: EmojiContainerOptions) {
+  constructor({ emojis, showVariants, lazyLoader }: EmojiContainerOptions) {
     super({ template, classes });
 
     this.showVariants = showVariants;
     this.lazyLoader = lazyLoader;
 
-    this.emojis = emojis.filter(e => !e.version || parseFloat(e.version as string) <= parseFloat(emojiVersion));
+    this.emojis = emojis;
   }
 
   initialize() {

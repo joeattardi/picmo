@@ -1,4 +1,4 @@
-import { Locale, fetchMessages, fetchEmojis } from 'emojibase';
+import { Locale, MessagesDataset, fetchMessages, fetchEmojis, Emoji } from 'emojibase';
 import { Database } from './db';
 
 export async function initDatabase(locale: Locale) {
@@ -6,7 +6,7 @@ export async function initDatabase(locale: Locale) {
   await db.open();
   
   if (!(await db.isPopulated())) {
-    const [messages, emojis] = await Promise.all([
+    const [messages, emojis]: [MessagesDataset, Emoji[]] = await Promise.all([
       fetchMessages(locale),
       fetchEmojis(locale)
     ]);

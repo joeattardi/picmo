@@ -38,7 +38,7 @@ export abstract class View {
   protected uiEvents: UIEventListenerBinding[] = [];
   protected uiElements: UIElementSelectors = {};
   protected emojiData: Database;
-  protected options: PickerOptions;
+  protected options: Required<PickerOptions>;
 
   protected events: Events<AppEvent>;
   protected i18n: Bundle;
@@ -58,9 +58,11 @@ export abstract class View {
 
   setEvents(events: Events<AppEvent>) {
     this.events = events;
+  }
 
-    Object.keys(this.appEvents).forEach(event => {
-      this.events.on(event as AppEventKey, this.appEvents[event].bind(this));
+  bindAppEvents(appEvents: AppEvents) {
+    Object.keys(appEvents).forEach(event => {
+      this.events.on(event as AppEventKey, appEvents[event].bind(this));
     });
   }
 
@@ -80,7 +82,7 @@ export abstract class View {
     this.emojiData = emojiData;
   }
 
-  setOptions(options: PickerOptions) {
+  setOptions(options: Required<PickerOptions>) {
     this.options = options;
   }
 

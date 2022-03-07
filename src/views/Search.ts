@@ -15,17 +15,13 @@ import { LazyLoader } from '../LazyLoader';
 import { queryByClass } from '../util';
 
 type SearchOptions = {
-  emojiData: any;
   emojisPerRow: number;
-  emojiVersion: string;
   customEmojis: CustomEmoji[];
 };
 
 export class Search extends View {
-  private _emojiData: any[];
   private emojisPerRow: number;
   private focusedEmojiIndex = 0;
-  private emojiVersion: string;
 
   private searchAccessory: HTMLElement;
   private searchIcon: HTMLElement;
@@ -35,19 +31,16 @@ export class Search extends View {
 
   searchField: HTMLInputElement;
 
-  constructor({ emojiData, emojisPerRow, emojiVersion, customEmojis = [] }: SearchOptions) {
+  constructor({ emojisPerRow, customEmojis = [] }: SearchOptions) {
     super({ template: searchTemplate, classes });
 
     this.emojisPerRow = emojisPerRow;
-    this._emojiData = emojiData.filter(e => e.version && parseFloat(e.version) <= parseFloat(emojiVersion));
-    this._emojiData = [...this._emojiData, ...customEmojis];
-    this.emojiVersion = emojiVersion;
   }
 
   initialize() {
-      this.appEvents = {
+      this.bindAppEvents({
         'variantPopup:hide': this.handleHidePopup
-      }
+      });
   }
 
   handleHidePopup() {
@@ -151,8 +144,7 @@ export class Search extends View {
     } else {
       this.showClearSearchButton();
 
-      const searchResults = this._emojiData
-        .filter(emoji => emoji.name.toLowerCase().includes(this.searchField.value.toLowerCase()));
+      const searchResults = await this.emojiData.searchEmojis(this.searchField.value, this.options.emojiVersion);
 
       this.events.emit('preview:hide');
 
@@ -160,8 +152,7 @@ export class Search extends View {
         const lazyLoader = new LazyLoader();
         this.resultsContainer = this.viewFactory.create(EmojiContainer, {
           emojis: searchResults,
-          showVariants: true,
-          emojiVersion: this.emojiVersion,
+          showVariants: true
         });
 
         await this.resultsContainer.render();

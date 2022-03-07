@@ -1,5 +1,7 @@
-import { GroupMessage, Emoji } from 'emojibase';
+import { ShortcodesDataset, GroupMessage, Emoji } from 'emojibase';
 import { Category } from './types';
+
+import { caseInsensitiveIncludes } from './util';
 
 const DATABASE_NAME = 'EmojiButton';
 
@@ -49,18 +51,51 @@ export class Database {
     return categories.filter(category => category.key !== 'component');
   }
 
-  async getEmojis(category: Category): Emoji[] {
+  async getEmojis(category: Category, emojiVersion: number): Promise<Emoji[]> {
     const transaction = this.db.transaction('emoji', 'readonly');
     const emojiStore = transaction.objectStore('emoji');
     const groupsIndex = emojiStore.index('category');
     const result = await this.waitForRequest(groupsIndex.getAll(category.order));
     const emojis = result.target.result as Emoji[];
-    return emojis.sort((a: Emoji, b: Emoji) => {
-      if (a.order != null && b.order != null) {
-        return a.order - b.order;
-      }
+    return emojis
+      .filter((e: Emoji) => e.version <= emojiVersion)
+      .sort((a: Emoji, b: Emoji) => {
+        if (a.order != null && b.order != null) {
+          return a.order - b.order;
+        }
 
-      return 0;
+       return 0;
+    });
+  }
+
+  private queryMatches(emoji: Emoji, query: string) {
+    return (
+      caseInsensitiveIncludes(emoji.label, query) ||
+      emoji.tags?.some(tag => caseInsensitiveIncludes(tag, query))
+    );
+  }
+
+  async searchEmojis(query: string, emojiVersion: number): Promise<Emoji[]> {
+    const results: Emoji[] = [];
+
+    return new Promise((resolve, reject) => {
+      const transaction = this.db.transaction('emoji', 'readonly');
+      const emojiStore = transaction.objectStore('emoji');
+      const request = emojiStore.openCursor();
+
+      request.onsuccess = (event: any) => {
+        const cursor: IDBCursorWithValue = event.target?.result;
+        if (!cursor) {
+          return resolve(results);
+        }
+
+        const emoji = cursor.value as Emoji;
+        if (this.queryMatches(emoji, query) && emoji.version <= emojiVersion) {
+          results.push(emoji);
+        }
+
+        cursor.continue();
+      };
     });
   }
 

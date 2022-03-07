@@ -13,7 +13,7 @@ type DependencyMapping = {
   i18n: Bundle;
   renderer: Renderer;
   emojiData: Database;
-  options: PickerOptions;
+  options: Required<PickerOptions>;
 };
 
 export class ViewFactory {
@@ -21,7 +21,7 @@ export class ViewFactory {
   private i18n: Bundle;
   private renderer: Renderer;
   private emojiData: Database;
-  private options: PickerOptions;
+  private options: Required<PickerOptions>;
 
   constructor({ events, i18n, renderer, emojiData, options }: DependencyMapping) {
     this.events = events;

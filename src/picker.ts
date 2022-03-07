@@ -1,9 +1,7 @@
 import classes from './picker.scss';
-import { Locale } from 'emojibase';
+import { Locale, LATEST_EMOJI_VERSION } from 'emojibase';
 import createFocusTrap, { FocusTrap } from 'focus-trap';
 import { createPopper, Instance as Popper, Placement } from '@popperjs/core';
-
-import emojiData from './data/emoji';
 
 import { light } from './themes';
 
@@ -51,7 +49,7 @@ const defaultOptions: PickerOptions = {
   position: 'auto',
   emojisPerRow: 8,
 
-  emojiVersion: '12.1',
+  emojiVersion: parseFloat(LATEST_EMOJI_VERSION),
   maxRecents: 50,
   i18n: en,
   locale: 'en'
@@ -101,7 +99,6 @@ export class EmojiPicker {
   private emojisPerRow: number;
   private visibleRows: number;
   private emojiSize: string;
-  private emojiVersion: string;
   private maxRecents: number;
 
   private popper: Popper;
@@ -143,7 +140,6 @@ export class EmojiPicker {
     this.visibleRows = getOption(options, 'visibleRows');
     this.emojiSize = getOption(options, 'emojiSize');
 
-    this.emojiVersion = getOption(options, 'emojiVersion');
     this.maxRecents = getOption(options, 'maxRecents');
 
     this.customEmojis = getOption(options, 'custom');
@@ -256,9 +252,7 @@ export class EmojiPicker {
   private buildSearch(): void {
     if (this.showSearch) {
       this.search = this.viewFactory.create(Search, {
-        emojiData: emojiData.emoji,
         emojisPerRow: this.emojisPerRow,
-        emojiVersion: this.emojiVersion,
         customEmojis: this.customEmojis,
         renderer: this.renderer
       });
@@ -327,7 +321,6 @@ export class EmojiPicker {
       lazyLoader: lazyLoader,
       custom: this.customEmojis,
       renderer: this.renderer,
-      emojiVersion: this.emojiVersion
     });
 
     this.currentView = this.emojiArea;

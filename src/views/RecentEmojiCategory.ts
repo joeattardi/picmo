@@ -5,13 +5,11 @@ import { clear } from '../recent';
 import classes from './EmojiCategory.scss';
 import template from 'templates/recentEmojis.ejs';
 export class RecentEmojiCategory extends EmojiCategory {
-  constructor({ category, showVariants, emojis, lazyLoader, emojiVersion }) {
+  constructor({ category, showVariants, lazyLoader }) {
     super({
       category,
       showVariants,
-      emojis,
       lazyLoader,
-      emojiVersion,
       template
     });
   }
@@ -24,9 +22,9 @@ export class RecentEmojiCategory extends EmojiCategory {
       recents: View.byClass(classes.recentEmojis)
     };
 
-    this.appEvents = {
+    this.bindAppEvents({
       'recent:add': this.addRecent
-    };
+    });
   }
 
   async addRecent(recent: any) {

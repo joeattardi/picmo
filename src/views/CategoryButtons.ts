@@ -1,5 +1,3 @@
-import emojiData from '../data/emoji';
-
 import { View } from './view';
 import { Category, CategoryKey, CustomEmoji } from '../types';
 
