@@ -18,7 +18,6 @@ export class EmojiPreview extends View {
     this.uiElements = {
       emoji: View.byClass(classes.previewEmoji), 
       name: View.byClass(classes.previewName),
-      tagIcon: View.byClass(classes.tagIcon),
       tagList: View.byClass(classes.tagList)
     };
 
@@ -47,7 +46,6 @@ export class EmojiPreview extends View {
       this.ui.emoji.replaceChildren(content);
       this.ui.name.textContent = emoji.label;
       if (emoji.tags) {
-        this.ui.tagIcon.style.display = 'block';
         this.ui.tagList.style.display = 'flex';
         const tags = await Promise.all(emoji.tags.map(tag => renderTag({ tag, classes })));
         this.ui.tagList.replaceChildren(...tags);
@@ -55,8 +53,7 @@ export class EmojiPreview extends View {
     } else {
       this.ui.emoji.replaceChildren();
       this.ui.name.textContent = '';
-      this.ui.tagIcon.style.display = 'none';
-      this.ui.tagList.style.display = 'none';
+      this.ui.tagList.replaceChildren();
     }
   }
 }

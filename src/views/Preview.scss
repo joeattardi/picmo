@@ -5,8 +5,8 @@
   gap: 6px;
   grid-template-columns: auto auto 1fr;
   grid-template-rows: auto 1fr;
-  grid-template-areas: "emoji name name"
-                       "emoji icon tags";
+  grid-template-areas: "emoji name"
+                       "emoji tags";
   height: var(--emoji-preview-size);
   padding: 0.5em;
   position: relative;
@@ -51,11 +51,6 @@
   word-break: break-all;
 }
 
-.tagIcon {
-  grid-area: icon;
-  color: var(--tag-icon-color);
-}
-
 .tagList {
   grid-area: tags;
   list-style-type: none;
@@ -63,7 +58,7 @@
   flex-direction: row;
   padding: 0;
   margin: 0;
-  font-size: 0.8em;
+  font-size: 0.75em;
   overflow: hidden;
 }
 
