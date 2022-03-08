@@ -1,3 +1,20 @@
+@keyframes loader {
+  0% {
+    opacity: 0.25;
+    transform: scale(0.8) rotate(-20deg);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1) rotate(0);
+  }
+
+  100% {
+    opacity: 0.25;
+    transform: scale(0.8) rotate(20deg);
+  }
+}
+
 .wrapper {
   --blue-color: #4f81e5;
   --border-radius: 5px;
@@ -18,10 +35,10 @@
   --emoji-font: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI', 'Apple Color Emoji', 'Twemoji Mozilla',
     'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji';
   --ui-font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --picker-width: calc(var(--emojis-per-row) * var(--emoji-size) * var(--emoji-size-multiplier) + 2.75rem);
 }
 
 .picker {
-  background: red;
   background: var(--background-color);
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
@@ -29,11 +46,28 @@
   font-size: 16px;
   overflow: hidden;
   position: relative;
-  width: calc(var(--emojis-per-row) * var(--emoji-size) * var(--emoji-size-multiplier) + 2.75rem);
+  width: var(--picker-width);
 
   & > * {
     font-family: var(--ui-font);
     box-sizing: content-box;
+  }
+}
+
+.skeleton {
+  height: calc(var(--content-height) + var(--search-height) + var(--emoji-preview-size) + 2em);
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  font-family: var(--ui-font);
+  width: var(--picker-width);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--secondary-text-color);
+
+  svg {
+    animation: loader 1s infinite linear alternate;
   }
 }
 

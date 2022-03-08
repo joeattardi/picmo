@@ -22,7 +22,9 @@ import { EmojiArea } from './views/EmojiArea';
 import { save } from './recent';
 
 import { renderTemplate } from './templates';
-import template from 'templates/picker.ejs';
+import wrapperTemplate from 'templates/wrapper.ejs';
+import pickerTemplate from 'templates/picker.ejs';
+import skeletonTemplate from 'templates/skeleton.ejs';
 
 import en from './i18n/lang-en';
 import NativeRenderer from './renderers/native';
@@ -117,6 +119,8 @@ export class EmojiPicker {
   private viewFactory: ViewFactory;
   private options: Required<PickerOptions>;
 
+  private buildPromise: Promise<void>;
+
   private theme: string;
 
   constructor(options: PickerOptions = {}) {
@@ -149,7 +153,8 @@ export class EmojiPicker {
     this.i18n = new Bundle(getOption(options, 'i18n'));
     this.locale = getOption(options, 'locale');
 
-    this.buildPicker();
+    this.buildWrapper();
+    this.buildPromise = this.buildPicker();
   }
 
   /**
@@ -299,10 +304,20 @@ export class EmojiPicker {
   }
 
   /**
+   * Builds the wrapper and skeleton UI. This allows the picker to be opened with a loading
+   * skeleton before the data is ready.
+   */
+  private async buildWrapper() {
+    this.wrapper = await renderTemplate(wrapperTemplate, { classes });
+    const skeleton = await renderTemplate(skeletonTemplate, { classes });
+    skeleton.classList.add(this.theme);
+    this.wrapper.replaceChildren(skeleton);
+  }
+
+  /**
    * Builds the emoji picker.
    */
   private async buildPicker(): Promise<void> {
-    // TODO: Race condition when loading DB? Show loading indicator if DB is not done yet.
     this.emojiData = await initDatabase(this.locale);
     this.viewFactory = new ViewFactory({
       events: this.events,
@@ -325,15 +340,16 @@ export class EmojiPicker {
 
     this.currentView = this.emojiArea;
 
-    this.wrapper = await renderTemplate(template, {
+    this.pickerEl = await renderTemplate(pickerTemplate, {
       classes,
       plugins: this.pluginContainer,
       search: this.search,
       emojiArea: this.emojiArea
     });
 
-    this.pickerEl = this.wrapper.firstElementChild as HTMLElement;
+    // this.pickerEl = this.wrapper.firstElementChild as HTMLElement;
     this.pickerEl.classList.add(this.theme);
+    this.wrapper.replaceChildren(this.pickerEl);
 
     this.setStyleProperties();
     this.initFocusTrap();
@@ -481,9 +497,13 @@ export class EmojiPicker {
    * @param referenceEl The element to position relative to if relative positioning is used.
    */
   async showPicker(): Promise<void> {
-    if (!this.pickerEl) {
-      return;
-    }
+    this.rootElement.appendChild(this.wrapper);
+    this.determineDisplay();
+    this.pickerVisible = true;
+
+    // If the DB initialization hasn't completed yet, the picker element won't exist yet.
+    // Once this promise is resolved we are good to go.
+    await this.buildPromise;
 
     // If triggered rapidly, make sure all pending animations finish before moving on
     await Promise.all(
@@ -492,13 +512,8 @@ export class EmojiPicker {
         .filter(animation => animation.playState === 'running')
         .map(animation => animation.finished)
     );
-
-    this.pickerVisible = true;
-
-    this.rootElement.appendChild(this.wrapper);
+    
     this.focusTrap.activate();
-
-    this.determineDisplay();
 
     this.pickerEl.animate(
       {
