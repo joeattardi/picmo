@@ -8,42 +8,46 @@ import { View } from './view';
 type EmojiContainerOptions = {
   emojis: any;
   showVariants: boolean;
+  preview: boolean;
   lazyLoader?: LazyLoader;
 };
 export class EmojiContainer extends View {
   protected emojis: Array<any>; // TODO use proper types after using emojibase
   protected showVariants: boolean;
+  protected preview: boolean;
   protected lazyLoader?: LazyLoader;
   emojiViews: Emoji[];
   emojiElements: HTMLElement[];
 
-  constructor({ emojis, showVariants, lazyLoader }: EmojiContainerOptions) {
+  constructor({ emojis, showVariants, preview = true, lazyLoader }: EmojiContainerOptions) {
     super({ template, classes });
 
     this.showVariants = showVariants;
     this.lazyLoader = lazyLoader;
+    this.preview = preview;
 
     this.emojis = emojis;
   }
 
   initialize() {
-      this.uiEvents = [
+    this.uiEvents = [View.uiEvent('click', this.selectEmoji)];
+    if (this.preview) {
+      this.uiEvents.push(
         View.uiEvent('mouseover', this.showPreview),
         View.uiEvent('mouseout', this.hidePreview),
         View.uiEvent('focus', this.showPreview, { capture: true }),
-        View.uiEvent('blur', this.hidePreview, { capture: true }),
-        View.uiEvent('click', this.selectEmoji)
-      ];
+        View.uiEvent('blur', this.hidePreview, { capture: true })
+      );
+    }
   }
 
   async render(): Promise<HTMLElement> {
-    this.emojiViews = this.emojis.map(
-      emoji =>
-        this.viewFactory.create(Emoji, {
-          emoji,
-          lazyLoader: this.lazyLoader,
-          renderer: this.renderer
-        })
+    this.emojiViews = this.emojis.map(emoji =>
+      this.viewFactory.create(Emoji, {
+        emoji,
+        lazyLoader: this.lazyLoader,
+        renderer: this.renderer
+      })
     );
 
     this.emojiElements = await Promise.all(this.emojiViews.map(view => view.render()));

@@ -1,32 +1,36 @@
+import { Emoji } from 'emojibase';
 import { View } from './view';
-import { Emoji } from './Emoji';
+import { Emoji as EmojiView } from './Emoji';
 import {  getEmojiForEvent } from '../util';
 
 import template from 'templates/variantPopup.ejs';
 
 import classes from './VariantPopup.scss';
+import { EmojiContainer } from './EmojiContainer';
 
 type VariantPopupOptions = {
-  emoji: any;
+  emoji: Emoji;
 };
 
 export class VariantPopup extends View {
   private focusedEmojiIndex = 0;
 
-  private emoji: any;
+  private emoji: Emoji;
   private emojiOptions: any[];
   private renderedEmojis: HTMLElement[];
+
+  private emojiContainer: EmojiContainer;
 
   constructor({ emoji }: VariantPopupOptions) {
     super({ template, classes });
 
     this.emoji = emoji;
-    this.emojiOptions = [
-      this.emoji,
-      ...this.emoji.variations.map(variation => ({
-        emoji: variation
-      }))
-    ];
+    // this.emojiOptions = [
+    //   this.emoji,
+    //   ...this.emoji.variations.map(variation => ({
+    //     emoji: variation
+    //   }))
+    // ];
   }
 
   initialize() {
@@ -35,13 +39,11 @@ export class VariantPopup extends View {
       };
 
       this.uiEvents = [
-        View.uiEvent('click', this.hide)
+        View.uiEvent('click', this.handleClick)
       ]
   }
 
-  hide(event): void {
-    event.stopPropagation();
-
+  handleClick(event): void {
     if (!this.ui.popup.contains(event.target as Node)) {
       this.events.emit('variantPopup:hide');
     }
@@ -61,53 +63,69 @@ export class VariantPopup extends View {
     newFocusedEmoji.focus();
   }
 
-
   async render(): Promise<HTMLElement> {
-    await super.render();
+    const variants = this.emoji.skins || [];
+    const emojis = [this.emoji, ...variants];
+    this.emojiContainer = this.viewFactory.create(EmojiContainer, {
+      emojis,
+      preview: false
+    })
 
-    const emojis = [
-      this.viewFactory.create(Emoji, { emoji: this.emoji })
-    ];
+    await super.render({ emojis: this.emojiContainer });
 
-    if (this.emoji.variations) {
-      emojis.push(
-        ...this.emoji.variations.map(
-          (variation, index) =>
-            this.viewFactory.create(Emoji, {
-              emoji: {
-                name: this.emoji.name,
-                emoji: variation,
-                key: this.emoji.name + index
-              }
-            })
-        )
-      );
+    if (emojis.length < this.options.emojisPerRow) {
+      this.el.style.setProperty('--emojis-per-row', emojis.length.toString());
     }
-
-    this.renderedEmojis = await Promise.all(emojis.map(emoji => emoji.render()));
-    this.ui.popup.append(...this.renderedEmojis);
-
-    const [firstEmoji] = this.renderedEmojis;
-    this.focusedEmojiIndex = 0;
-    firstEmoji.tabIndex = 0;
-
-    this.ui.popup.addEventListener('click', event => this.selectEmoji(event));
-
-    setTimeout(() => firstEmoji.focus());
-
-    this.ui.popup.addEventListener('keydown', event => {
-      if (event.key === 'ArrowRight') {
-        this.setFocusedEmoji(Math.min(this.focusedEmojiIndex + 1, this.renderedEmojis.length - 1));
-      } else if (event.key === 'ArrowLeft') {
-        this.setFocusedEmoji(Math.max(this.focusedEmojiIndex - 1, 0));
-      } else if (event.key === 'Escape') {
-        event.stopPropagation();
-        this.events.emit('variantPopup:hide');
-      }
-    });
 
     return this.el;
   }
+
+  // async render(): Promise<HTMLElement> {
+  //   await super.render();
+
+  //   const emojis = [
+  //     this.viewFactory.create(Emoji, { emoji: this.emoji })
+  //   ];
+
+  //   if (this.emoji.variations) {
+  //     emojis.push(
+  //       ...this.emoji.variations.map(
+  //         (variation, index) =>
+  //           this.viewFactory.create(Emoji, {
+  //             emoji: {
+  //               name: this.emoji.name,
+  //               emoji: variation,
+  //               key: this.emoji.name + index
+  //             }
+  //           })
+  //       )
+  //     );
+  //   }
+
+  //   this.renderedEmojis = await Promise.all(emojis.map(emoji => emoji.render()));
+  //   this.ui.popup.append(...this.renderedEmojis);
+
+  //   const [firstEmoji] = this.renderedEmojis;
+  //   this.focusedEmojiIndex = 0;
+  //   firstEmoji.tabIndex = 0;
+
+  //   this.ui.popup.addEventListener('click', event => this.selectEmoji(event));
+
+  //   setTimeout(() => firstEmoji.focus());
+
+  //   this.ui.popup.addEventListener('keydown', event => {
+  //     if (event.key === 'ArrowRight') {
+  //       this.setFocusedEmoji(Math.min(this.focusedEmojiIndex + 1, this.renderedEmojis.length - 1));
+  //     } else if (event.key === 'ArrowLeft') {
+  //       this.setFocusedEmoji(Math.max(this.focusedEmojiIndex - 1, 0));
+  //     } else if (event.key === 'Escape') {
+  //       event.stopPropagation();
+  //       this.events.emit('variantPopup:hide');
+  //     }
+  //   });
+
+  //   return this.el;
+  // }
 
   private selectEmoji(event: Event) {
     const emoji = getEmojiForEvent(event, this.emojiOptions);

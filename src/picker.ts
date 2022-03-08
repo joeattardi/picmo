@@ -1,5 +1,5 @@
 import classes from './picker.scss';
-import { Locale, LATEST_EMOJI_VERSION } from 'emojibase';
+import { Emoji, Locale, LATEST_EMOJI_VERSION } from 'emojibase';
 import createFocusTrap, { FocusTrap } from 'focus-trap';
 import { createPopper, Instance as Popper, Placement } from '@popperjs/core';
 
@@ -106,7 +106,7 @@ export class EmojiPicker {
   private popper: Popper;
 
   private preview: EmojiPreview;
-  private variantPopup: VariantPopup;
+  private variantPopup: VariantPopup | null;
 
   private showSearch: boolean;
   private showVariants: boolean;
@@ -201,11 +201,30 @@ export class EmojiPicker {
     // }
   }
 
+  private async selectEmoji({ emoji }: { emoji: Emoji }): Promise<void> {
+    // Show the variant popup if the emoji has variants
+    if (emoji.skins && this.options.showVariants && !this.variantPopup) {
+      this.showVariantPopup(emoji);
+    } else {
+      this.hideVariantPopup();
+      await this.emitEmoji(emoji);
+    }
+  }
+
+  private async emitEmoji(emoji: Emoji): Promise<void> {
+    this.externalEvents.emit('emoji:select', await this.renderer.emit(emoji));
+    if (this.options.autoHide) {
+      await this.hidePicker();
+    }
+
+    // TODO save recent
+  }
+
   /**
    * Emits a selected emoji event.
    * @param param0 The selected emoji and show variants flag
    */
-  private async emitEmoji({ emoji, showVariants }: { emoji: any; showVariants: boolean }): Promise<void> {
+  private async ZemitEmoji({ emoji, showVariants }: { emoji: any; showVariants: boolean }): Promise<void> {
     if (emoji.variations && showVariants && this.showVariants) {
       this.showVariantPopup(emoji);
     } else {
@@ -358,7 +377,8 @@ export class EmojiPicker {
 
     this.events.on('content:show', this.showContent.bind(this));
     this.events.on('variantPopup:hide', this.hideVariantPopup.bind(this));
-    this.events.on('emoji:select', this.emitEmoji.bind(this));
+    // this.events.on('emoji:select', this.emitEmoji.bind(this));
+    this.events.on('emoji:select', this.selectEmoji.bind(this));
 
     this.buildPreview();
 
@@ -396,8 +416,18 @@ export class EmojiPicker {
   }
 
   private hideVariantPopup() {
-    if (this.variantPopup) {
-      this.pickerEl.removeChild(this.variantPopup.el);
+    if (this.variantPopup?.el?.isConnected) {
+
+      // Don't hide the popup right away, otherwise 
+      // the check in onDocumentClick will register a click outside
+      // of the picker and close the picker (which we may not want).
+      setTimeout(() => {
+        if (this.variantPopup?.el) {
+          this.pickerEl.removeChild(this.variantPopup.el);
+          this.variantPopup.destroy();
+          this.variantPopup = null;
+        }
+      });
     }
   }
 
@@ -418,6 +448,16 @@ export class EmojiPicker {
    * @param event The MouseEvent that was dispatched.
    */
   private onDocumentClick(event: MouseEvent): void {
+    const clickedNode = event.target as Node;
+
+    // // Don't auto-close if the picker itself is clicked
+    // if (this.pickerEl.contains(clickedNode)) {
+    //   return;
+    // }
+
+    // // Don't auto-close if we just
+
+
     if (!this.pickerEl.contains(event.target as Node) && this.pickerVisible) {
       this.hidePicker();
     }
