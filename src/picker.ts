@@ -221,56 +221,6 @@ export class EmojiPicker {
   }
 
   /**
-   * Emits a selected emoji event.
-   * @param param0 The selected emoji and show variants flag
-   */
-  private async ZemitEmoji({ emoji, showVariants }: { emoji: any; showVariants: boolean }): Promise<void> {
-    if (emoji.variations && showVariants && this.showVariants) {
-      this.showVariantPopup(emoji);
-    } else {
-      let eventData;
-      if (emoji.custom) {
-        eventData = this.emitCustomEmoji(emoji);
-      } else {
-        eventData = await this.renderer.emit(emoji);
-      }
-
-      this.externalEvents.emit('emoji:select', eventData);
-
-      if (this.autoHide) {
-        await this.hidePicker();
-      }
-
-      if ((!emoji.variations || !showVariants || !this.showVariants) && this.showRecents) {
-        save(emoji, this.maxRecents, this.events);
-      }
-    }
-  }
-
-  /**
-   * Emits a native emoji record.
-   * @param emoji The selected emoji
-   */
-  private emitNativeEmoji(emoji: any) {
-    return {
-      emoji: emoji.emoji,
-      name: emoji.name
-    };
-  }
-
-  /**
-   * Emits a custom emoji record.
-   * @param emoji The selected emoji
-   */
-  private emitCustomEmoji(emoji: any) {
-    return {
-      url: emoji.emoji,
-      name: emoji.name,
-      custom: true
-    };
-  }
-
-  /**
    * Builds the search UI.
    */
   private buildSearch(): void {
