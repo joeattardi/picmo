@@ -211,15 +211,13 @@ export class EmojiPicker {
     }
   }
 
-  // TODO RECENTS:
-  // - Remove old recents when max count is exceeded
   private async emitEmoji(emoji: Emoji): Promise<void> {
     this.externalEvents.emit('emoji:select', await this.renderer.emit(emoji));
     if (this.options.autoHide) {
       await this.hidePicker();
     }
 
-    addOrUpdateRecent(emoji, 5);
+    addOrUpdateRecent(emoji, this.options.maxRecents);
     this.events.emit('recent:add', emoji);
   }
 

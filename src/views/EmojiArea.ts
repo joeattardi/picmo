@@ -5,7 +5,6 @@ import { CategoryButtons } from './CategoryButtons';
 import { EmojiCategory } from './EmojiCategory';
 import { RecentEmojiCategory } from './RecentEmojiCategory';
 
-import { load } from '../recent';
 import { prefersReducedMotion } from '../util';
 
 import template from 'templates/emojiArea.ejs';

@@ -1,7 +1,7 @@
 import { Emoji } from 'emojibase';
 import { View } from './view';
 import { BaseEmojiCategory } from './BaseEmojiCategory';
-import { EmojiContainer } from './EmojiContainer';
+import { RecentEmojiContainer } from './RecentEmojiContainer';
 import { Emoji as EmojiView } from './Emoji';
 import { Category } from '../types';
 import { LazyLoader } from '../LazyLoader';
@@ -15,6 +15,8 @@ type RecentEmojiCategoryOptions = {
   lazyLoader?: LazyLoader;
 };
 export class RecentEmojiCategory extends BaseEmojiCategory {
+  emojiContainer: RecentEmojiContainer;
+
   constructor({ category, lazyLoader }: RecentEmojiCategoryOptions) {
     super({ category, showVariants: false, lazyLoader, template });
   }
@@ -44,24 +46,14 @@ export class RecentEmojiCategory extends BaseEmojiCategory {
   }
 
   async addRecent(recent: Emoji) {
-    const existing = this.emojiContainer.el.querySelector(`[data-emoji="${recent.emoji}"]`);
-    if (existing) {
-      this.emojiContainer.el.removeChild(existing);
-    }
-
-    const emojiGrid = this.emojiContainer.el;
-    emojiGrid?.insertBefore(
-      await this.viewFactory.create(EmojiView, { emoji: recent, }).render(),
-      emojiGrid.firstChild
-    );
-
+    await this.emojiContainer.addOrUpdate(recent);
     this.ui.recents.dataset.empty = 'false';
   }
 
   async render(): Promise<HTMLElement> {
     const recents = getRecents();
 
-    this.emojiContainer = this.viewFactory.create(EmojiContainer, {
+    this.emojiContainer = this.viewFactory.create(RecentEmojiContainer, {
       emojis: recents,
       showVariants: false,
       lazyLoader: this.lazyLoader

@@ -1,4 +1,5 @@
-import { Emoji } from './Emoji';
+import { Emoji } from 'emojibase';
+import { Emoji as EmojiView } from './Emoji';
 import classes from './EmojiContainer.scss';
 import template from 'templates/emojiContainer.ejs';
 import { LazyLoader } from '../LazyLoader';
@@ -6,17 +7,17 @@ import { getEmojiForEvent } from '../util';
 import { View } from './view';
 
 type EmojiContainerOptions = {
-  emojis: any;
+  emojis: Emoji[];
   showVariants: boolean;
   preview: boolean;
   lazyLoader?: LazyLoader;
 };
 export class EmojiContainer extends View {
-  protected emojis: Array<any>; // TODO use proper types after using emojibase
+  protected emojis: Emoji[];
   protected showVariants: boolean;
   protected preview: boolean;
   protected lazyLoader?: LazyLoader;
-  emojiViews: Emoji[];
+  emojiViews: EmojiView[];
   emojiElements: HTMLElement[];
 
   constructor({ emojis, showVariants, preview = true, lazyLoader }: EmojiContainerOptions) {
@@ -43,7 +44,7 @@ export class EmojiContainer extends View {
 
   async render(): Promise<HTMLElement> {
     this.emojiViews = this.emojis.map(emoji =>
-      this.viewFactory.create(Emoji, {
+      this.viewFactory.create(EmojiView, {
         emoji,
         lazyLoader: this.lazyLoader,
         renderer: this.renderer

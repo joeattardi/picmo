@@ -24,6 +24,14 @@ export class RecentEmojiContainer extends EmojiContainer {
     ];
 
     // Prune the list to the maximum length
-    
+    if (this.emojis.length > this.options.maxRecents) {
+      this.emojis = this.emojis.slice(0, this.options.maxRecents);
+      const excess = this.el.childElementCount - this.options.maxRecents;
+      for (let i = 0; i < excess; i++) {
+        if (this.el.lastElementChild) {
+          this.el.removeChild(this.el.lastElementChild);
+        }
+      }
+    }
   }
 }
