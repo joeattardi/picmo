@@ -1,4 +1,4 @@
-import { ShortcodesDataset, GroupMessage, Emoji } from 'emojibase';
+import { GroupMessage, Emoji } from 'emojibase';
 import { Category } from './types';
 
 import { caseInsensitiveIncludes } from './util';
@@ -21,13 +21,10 @@ export class Database {
       request.onupgradeneeded = async (event: any) => {
         this.db = event.target?.result;
 
-
         this.db.createObjectStore('category', { keyPath: 'order' });
 
         const emojiStore = this.db.createObjectStore('emoji', { keyPath: 'emoji' });
         emojiStore.createIndex('category', 'group');
-
-        this.db.createObjectStore('recents');
       };
     });
   }

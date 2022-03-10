@@ -1,17 +1,22 @@
+import { Emoji } from 'emojibase';
 import { View } from './view';
-import { EmojiCategory } from './EmojiCategory';
-import { Emoji } from './Emoji';
-import { clear } from '../recent';
+import { BaseEmojiCategory } from './BaseEmojiCategory';
+import { EmojiContainer } from './EmojiContainer';
+import { Emoji as EmojiView } from './Emoji';
+import { Category } from '../types';
+import { LazyLoader } from '../LazyLoader';
+
 import classes from './EmojiCategory.scss';
 import template from 'templates/recentEmojis.ejs';
-export class RecentEmojiCategory extends EmojiCategory {
-  constructor({ category, showVariants, lazyLoader }) {
-    super({
-      category,
-      showVariants,
-      lazyLoader,
-      template
-    });
+import { getRecents, clear } from '../recents';
+
+type RecentEmojiCategoryOptions = {
+  category: Category;
+  lazyLoader?: LazyLoader;
+};
+export class RecentEmojiCategory extends BaseEmojiCategory {
+  constructor({ category, lazyLoader }: RecentEmojiCategoryOptions) {
+    super({ category, showVariants: false, lazyLoader, template });
   }
 
   initialize() {
@@ -19,15 +24,26 @@ export class RecentEmojiCategory extends EmojiCategory {
 
     this.uiElements = {
       ...this.uiElements,
-      recents: View.byClass(classes.recentEmojis)
+      recents: View.byClass(classes.recentEmojis),
+      clearButton: 'button'
     };
 
     this.bindAppEvents({
       'recent:add': this.addRecent
     });
+
+    this.uiEvents = [
+      View.childEvent('clearButton', 'click', this.clearRecents)
+    ]
   }
 
-  async addRecent(recent: any) {
+  clearRecents() {
+    clear();
+    this.emojiContainer.el.replaceChildren();
+    this.ui.recents.dataset.empty = 'true';
+  }
+
+  async addRecent(recent: Emoji) {
     const existing = this.emojiContainer.el.querySelector(`[data-emoji="${recent.emoji}"]`);
     if (existing) {
       this.emojiContainer.el.removeChild(existing);
@@ -35,7 +51,7 @@ export class RecentEmojiCategory extends EmojiCategory {
 
     const emojiGrid = this.emojiContainer.el;
     emojiGrid?.insertBefore(
-      await this.viewFactory.create(Emoji, { emoji: recent, }).render(),
+      await this.viewFactory.create(EmojiView, { emoji: recent, }).render(),
       emojiGrid.firstChild
     );
 
@@ -43,15 +59,18 @@ export class RecentEmojiCategory extends EmojiCategory {
   }
 
   async render(): Promise<HTMLElement> {
-    const container = await super.render();
+    const recents = getRecents();
 
-    const clearButton = container.querySelector('button');
-    clearButton?.addEventListener('click', () => {
-      clear();
-      this.emojiContainer.el.replaceChildren();
-      this.ui.recents.dataset.empty = 'true';
+    this.emojiContainer = this.viewFactory.create(EmojiContainer, {
+      emojis: recents,
+      showVariants: false,
+      lazyLoader: this.lazyLoader
     });
 
-    return container;
+    return super.render({
+      category: this.category,
+      emojis: this.emojiContainer,
+      emojiCount: recents.length
+    });
   }
 }

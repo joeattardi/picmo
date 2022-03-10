@@ -10,6 +10,7 @@ import { Database } from '../db';
 import { PickerOptions } from '../types';
 
 type UIEventListenerBinding = {
+  target?: string;
   event: string;
   handler: EventCallback;
   options?: AddEventListenerOptions;
@@ -96,8 +97,8 @@ export abstract class View {
       ...templateData
     });
 
-    this.bindListeners();
     this.bindUIElements();
+    this.bindListeners();
 
     return this.el;
   }
@@ -113,7 +114,8 @@ export abstract class View {
     this.uiEvents.forEach((binding: UIEventListenerBinding) => {
       binding.handler = binding.handler.bind(this);
 
-      this.el.addEventListener(binding.event, binding.handler, binding.options);
+      const target = binding.target ? this.ui[binding.target] : this.el;
+      target.addEventListener(binding.event, binding.handler, binding.options);
     });
   }
 
@@ -123,7 +125,11 @@ export abstract class View {
     });
   }
 
-  static uiEvent(event, handler, options = {}) {
+  static childEvent(target: string, event: string, handler: EventCallback, options: AddEventListenerOptions = {}): UIEventListenerBinding {
+    return { target, event, handler, options };
+  }
+
+  static uiEvent(event: string, handler: EventCallback, options: AddEventListenerOptions = {}): UIEventListenerBinding {
     return { event, handler, options };
   }
 

@@ -16,8 +16,8 @@ const categoryClasses = {
   recents: RecentEmojiCategory
 };
 
-function getCategoryClass(category) {
-  return categoryClasses[category] || EmojiCategory;
+function getCategoryClass(category: Category) {
+  return categoryClasses[category.key] || EmojiCategory;
 }
 
 type EmojiAreaOptions = {

@@ -64,8 +64,18 @@ export class VariantPopup extends View {
   }
 
   async render(): Promise<HTMLElement> {
-    const variants = this.emoji.skins || [];
-    const emojis = [this.emoji, ...variants];
+    const baseEmoji = {
+      ...this.emoji,
+      skins: null
+    };
+
+    const variants = (this.emoji.skins || []).map(variant => ({
+      ...variant,
+      label: this.emoji.label,
+      tags: this.emoji.tags
+    }));
+
+    const emojis = [baseEmoji, ...variants];
     this.emojiContainer = this.viewFactory.create(EmojiContainer, {
       emojis,
       preview: false

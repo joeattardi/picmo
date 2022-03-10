@@ -1,6 +1,6 @@
 <div class="<%= classes.emojiCategory %>">
   <h3 data-category="<%= category %>" class="<%= classes.categoryName %>">
-    <%= i18n.get(`categories.${category}`) %>
+    <%= i18n.get(`categories.${category.key}`, category.message || category.key) %>
     <button title="<%= i18n.get('recents.clear') %>"><i class="fa-solid fa-lg fa-square-xmark"></i></button>
   </h3>
   <div data-empty="<%= emojiCount === 0 %>" class="<%= classes.recentEmojis %>">

@@ -1,53 +1,32 @@
-import { View } from './view';
+import template from 'templates/emojiCategory.ejs';
 
-import baseTemplate from 'templates/emojiCategory.ejs';
-
+import { BaseEmojiCategory } from './BaseEmojiCategory';
 import { EmojiContainer } from './EmojiContainer';
 import { LazyLoader } from '../LazyLoader';
 
-import classes from './EmojiCategory.scss';
 import { Category } from '../types';
 
 type EmojiCategoryOptions = {
   category: Category;
   showVariants: boolean;
   lazyLoader?: LazyLoader;
-  template: string;
 };
-export class EmojiCategory extends View {
-  protected container: HTMLElement;
-  private category: Category;
-  private lazyLoader?: LazyLoader;
-  protected showVariants: boolean;
+export class EmojiCategory extends BaseEmojiCategory {
   emojiContainer: EmojiContainer;
 
-  constructor({
-    category,
-    showVariants,
-    lazyLoader,
-    template = baseTemplate
-  }: EmojiCategoryOptions) {
-    super({
-      template,
-      classes
-    });
+  constructor({ category, showVariants, lazyLoader }: EmojiCategoryOptions) {
+    super({ category, showVariants, lazyLoader, template });
 
     this.category = category;
     this.showVariants = showVariants;
     this.lazyLoader = lazyLoader;
   }
 
-  initialize() {
-    this.uiElements = {
-      categoryName: View.byClass(classes.categoryName)
-    };
-  }
-
   async render(): Promise<HTMLElement> {
     const emojis = await this.emojiData.getEmojis(this.category, this.options.emojiVersion);
 
     this.emojiContainer = this.viewFactory.create(EmojiContainer, {
-      emojis: emojis || [],
+      emojis,
       showVariants: this.showVariants,
       lazyLoader: this.lazyLoader
     });
@@ -55,8 +34,7 @@ export class EmojiCategory extends View {
     return super.render({
       category: this.category,
       emojis: this.emojiContainer,
-      emojiCount: emojis.length,
-      i18n: this.i18n
+      emojiCount: emojis.length
     });
   }
 }

@@ -19,7 +19,7 @@ import { Bundle } from './i18n';
 import { PickerOptions, CustomEmoji, Position } from './types';
 
 import { EmojiArea } from './views/EmojiArea';
-import { save } from './recent';
+import { addOrUpdateRecent } from './recents';
 
 import { renderTemplate } from './templates';
 import wrapperTemplate from 'templates/wrapper.ejs';
@@ -211,13 +211,16 @@ export class EmojiPicker {
     }
   }
 
+  // TODO RECENTS:
+  // - Remove old recents when max count is exceeded
   private async emitEmoji(emoji: Emoji): Promise<void> {
     this.externalEvents.emit('emoji:select', await this.renderer.emit(emoji));
     if (this.options.autoHide) {
       await this.hidePicker();
     }
 
-    // TODO save recent
+    addOrUpdateRecent(emoji, 5);
+    this.events.emit('recent:add', emoji);
   }
 
   /**
