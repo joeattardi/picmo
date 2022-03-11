@@ -20,9 +20,9 @@ type AppEvents = {
   [key in AppEvent]?: EventCallback | AsyncEventCallback;
 };
 
-type ClassMappings = { [key: string]: string };
-type UIElementSelectors = { [key: string]: string };
-type UIElementMappings = { [key: string]: HTMLElement };
+type ClassMappings = Record<string, string>;
+type UIElementSelectors = Record<string, string>;
+type UIElementMappings = Record<string, HTMLElement>;
 type Template = string | ElementTemplate;
 
 type ViewOptions = {

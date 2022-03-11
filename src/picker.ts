@@ -32,7 +32,7 @@ import { Renderer } from './renderers/renderer';
 import { ViewFactory } from './viewFactory';
 import { View } from './views/view';
 import { Database } from './db';
-import { initDatabase } from './emojiData';
+import { initDatabase, initDatabaseFromCdn, initDatabaseWithStaticData } from './emojiData';
 
 const defaultOptions: PickerOptions = {
   rootElement: document.body,
@@ -288,7 +288,12 @@ export class EmojiPicker {
    * Builds the emoji picker.
    */
   private async buildPicker(): Promise<void> {
-    this.emojiData = await initDatabase(this.locale);
+    if (this.options.emojiData && this.options.messages) {
+      this.emojiData = await initDatabaseWithStaticData(this.options.messages, this.options.emojiData);
+    } else {
+      this.emojiData = await initDatabaseFromCdn(this.locale);
+    }
+
     this.viewFactory = new ViewFactory({
       events: this.events,
       i18n: this.i18n,

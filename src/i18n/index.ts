@@ -1,6 +1,5 @@
-export type Dictionary = {
-  [key: string]: string;
-};
+export type Dictionary = Record<string, string>;
+
 export class Bundle {
   #dictionary: Map<string, string>;
 

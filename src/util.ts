@@ -1,28 +1,4 @@
-// import { EmojiData, EmojiRecord } from './types';
-
 const matcher = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-export function formatEmojiName(name: string): string {
-  const words = name.split(/[-_]/);
-  words[0] = words[0][0].toUpperCase() + words[0].slice(1);
-
-  return words.join(' ');
-}
-
-export function buildEmojiCategoryData(emojiData: any): { [key: string]: any[] } {
-  const emojiCategories = {};
-
-  emojiData.emoji.forEach(emoji => {
-    let categoryList = emojiCategories[emojiData.categories[emoji.category || 0]];
-    if (!categoryList) {
-      categoryList = emojiCategories[emojiData.categories[emoji.category || 0]] = [];
-    }
-
-    categoryList.push(emoji);
-  });
-
-  return emojiCategories;
-}
 
 export function queryByClass<E extends HTMLElement = HTMLElement>(container: HTMLElement, className: string): E {
   const el = container.querySelector<E>(`.${className}`);
@@ -32,13 +8,6 @@ export function queryByClass<E extends HTMLElement = HTMLElement>(container: HTM
   }
 
   return el;
-}
-
-export function queryAllByClass<E extends HTMLElement = HTMLElement>(
-  container: HTMLElement,
-  className: string
-): NodeListOf<E> {
-  return container.querySelectorAll<E>(`.${className}`) as NodeListOf<E>;
 }
 
 export function getEmojiForEvent(event: Event, emojis: any[]): any | null {

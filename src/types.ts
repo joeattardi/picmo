@@ -1,5 +1,5 @@
 import { Placement } from '@popperjs/core';
-import { Locale, GroupKey } from 'emojibase';
+import { Locale, GroupKey, MessagesDataset, Emoji } from 'emojibase';
 import { Renderer } from './renderers/renderer';
 import { Dictionary } from './i18n';
 
@@ -24,10 +24,6 @@ export type Category = {
   message: string;
   order: number;
 }
-
-export type Theme = {
-  theme: { [key: string]: string };
-};
 
 export type PickerOptions = {
   renderer?: Renderer;
@@ -56,4 +52,7 @@ export type PickerOptions = {
 
   i18n?: Dictionary;
   locale?: Locale;
+
+  emojiData?: Emoji[];
+  messages?: MessagesDataset;
 };

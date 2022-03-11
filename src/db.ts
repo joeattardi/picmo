@@ -37,8 +37,8 @@ export class Database {
       return categoryCount > 0;
   }
 
-  populate(groups: GroupMessage[], emojis: Emoji[]) {
-    return Promise.all([
+  async populate(groups: GroupMessage[], emojis: Emoji[]) {
+    await Promise.all([
       this.addObjects('category', groups),
       this.addObjects('emoji', emojis)
     ]);
