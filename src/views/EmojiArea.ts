@@ -51,9 +51,9 @@ export class EmojiArea extends View {
   }
 
   initialize() {
-    this.bindAppEvents({
+    this.appEvents = {
       'category:select': this.selectCategory
-    });
+    };
 
     this.uiElements = {
       emojis: View.byClass(classes.emojis)

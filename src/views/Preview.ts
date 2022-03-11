@@ -21,10 +21,10 @@ export class EmojiPreview extends View {
       tagList: View.byClass(classes.tagList)
     };
 
-    this.bindAppEvents({
+    this.appEvents = {
       'preview:show': this.showPreview,
       'preview:hide': this.showPreview
-    });
+    };
   }
 
   private async getContent(emoji: Emoji): Promise<HTMLElement> {

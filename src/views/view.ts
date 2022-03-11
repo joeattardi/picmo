@@ -61,12 +61,6 @@ export abstract class View {
     this.events = events;
   }
 
-  bindAppEvents(appEvents: AppEvents) {
-    Object.keys(appEvents).forEach(event => {
-      this.events.on(event as AppEventKey, appEvents[event].bind(this));
-    });
-  }
-
   emit(event: AppEventKey, ...args: EventArgs) {
     this.events.emit(event, ...args);
   }
@@ -99,8 +93,15 @@ export abstract class View {
 
     this.bindUIElements();
     this.bindListeners();
+    this.bindAppEvents();
 
     return this.el;
+  }
+
+  private bindAppEvents() {
+    Object.keys(this.appEvents).forEach(event => {
+      this.events.on(event as AppEventKey, this.appEvents[event].bind(this));
+    });
   }
 
   private bindUIElements() {

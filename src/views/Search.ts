@@ -12,7 +12,6 @@ import clearSearchButtonTemplate from 'templates/search/clearButton.ejs';
 import notFoundTemplate from 'templates/search/notFound.ejs';
 
 import { LazyLoader } from '../LazyLoader';
-import { queryByClass } from '../util';
 
 type SearchOptions = {
   emojisPerRow: number;
@@ -23,7 +22,7 @@ export class Search extends View {
   private emojisPerRow: number;
   private focusedEmojiIndex = 0;
 
-  private searchAccessory: HTMLElement;
+  private searchField: HTMLInputElement;
   private searchIcon: HTMLElement;
   private clearSearchButton: HTMLButtonElement;
   private resultsContainer: EmojiContainer | null;
@@ -38,9 +37,14 @@ export class Search extends View {
   }
 
   initialize() {
-      this.bindAppEvents({
-        'variantPopup:hide': this.handleHidePopup
-      });
+    this.appEvents = {
+      'variantPopup:hide': this.handleHidePopup
+    }
+
+    this.uiElements = {
+      searchField: View.byClass(classes.searchField),
+      searchAccessory: View.byClass(classes.searchAccessory)
+    };
   }
 
   handleHidePopup() {
@@ -59,10 +63,9 @@ export class Search extends View {
       i18n: this.i18n
     });
 
-    this.searchField = queryByClass(this.el, classes.searchField);
-    this.searchAccessory = queryByClass(this.el, classes.searchAccessory);
-
     this.clearSearchButton.addEventListener('click', (event: MouseEvent) => this.onClearSearch(event));
+
+    this.searchField = this.searchField as HTMLInputElement;
     this.searchField.addEventListener('keydown', (event: KeyboardEvent) => this.onKeyDown(event));
     this.searchField.addEventListener('keyup', event => this.onKeyUp(event));
 
@@ -80,11 +83,11 @@ export class Search extends View {
   }
 
   private showSearchAccessory(accessory: HTMLElement) {
-    this.searchAccessory.replaceChildren(accessory);
+    this.ui.searchAccessory.replaceChildren(accessory);
   }
 
   clear(): void {
-    this.searchField.value = '';
+    (this.searchField as HTMLInputElement).value = '';
     this.showSearchIcon();
   }
 

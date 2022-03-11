@@ -30,9 +30,9 @@ export class RecentEmojiCategory extends BaseEmojiCategory {
       clearButton: 'button'
     };
 
-    this.bindAppEvents({
+    this.appEvents = {
       'recent:add': this.addRecent
-    });
+    };
 
     this.uiEvents = [
       View.childEvent('clearButton', 'click', this.clearRecents)

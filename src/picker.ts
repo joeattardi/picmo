@@ -322,7 +322,6 @@ export class EmojiPicker {
       emojiArea: this.emojiArea
     });
 
-    // this.pickerEl = this.wrapper.firstElementChild as HTMLElement;
     this.pickerEl.classList.add(this.theme);
     this.wrapper.replaceChildren(this.pickerEl);
 
