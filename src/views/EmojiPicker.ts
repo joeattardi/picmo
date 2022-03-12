@@ -9,7 +9,6 @@ import { EmojiArea } from './EmojiArea';
 import { Search } from './Search';
 import { VariantPopup } from './VariantPopup';
 
-import { Database } from '../db';
 import { addOrUpdateRecent } from '../recents';
 
 import template from 'templates/emojiPicker.ejs';
@@ -26,7 +25,7 @@ const variableNames = {
 };
 
 export class EmojiPicker extends View {
-  private isOpen = false;
+  isOpen = false;
 
   private search: Search;
   private emojiArea: EmojiArea;
@@ -53,6 +52,10 @@ export class EmojiPicker extends View {
       pickerContent: View.byClass(classes.content)
     };
 
+    this.uiEvents = [
+      View.uiEvent('keydown', this.handlePickerKeydown)
+    ];
+
     this.appEvents = {
       'data:ready': this.onDataReady,
       'content:show': this.showContent,
@@ -63,110 +66,22 @@ export class EmojiPicker extends View {
     super.initialize();
   }
 
+  async destroy() {
+    if (this.isOpen) {
+      await this.close();
+    }
+
+    super.destroy();
+
+    this.events.removeAll();
+  }
+
   on(event: ExternalEvent, callback: EventCallback) {
     this.externalEvents.on(event, callback);
   }
 
   off(event: ExternalEvent, callback: EventCallback) {
     this.externalEvents.off(event, callback);
-  }
-
-  /**
-   * Builds the emoji preview area.
-   */
-  private buildPreview() {
-    if (this.options.showPreview) {
-      this.preview = this.viewFactory.create(EmojiPreview);
-    }
-
-    return this.preview;
-  }
-
-  private buildSearch() {
-    if (this.options.showSearch) {
-      this.search = this.viewFactory.create(Search, {
-        emojisPerRow: this.options.emojisPerRow,
-        customEmojis: this.options.custom,
-        renderer: this.options.renderer
-      });
-    }
-
-    return this.search;
-  }
-
-  private buildEmojiArea() {
-    this.currentView = this.emojiArea = this.viewFactory.create(EmojiArea, {
-      custom: this.options.custom,
-      renderer: this.renderer
-    });
-
-    return this.emojiArea;
-  }
-
-  private setStyleProperties(): void {
-    Object.keys(variableNames).forEach(key => {
-      if (this.options[key]) {
-        this.el.style.setProperty(variableNames[key], this.options[key].toString());
-      }
-    });
-  }
-
-  /**
-   * Initializes the emoji picker's focus trap.
-   */
-  private initFocusTrap(): void {
-    this.focusTrap = createFocusTrap(this.el, {
-      clickOutsideDeactivates: true,
-      initialFocus:
-        this.options.showSearch && this.options.autoFocusSearch
-          ? this.search.searchField
-          : this.emojiArea.emojiCategories[0].emojiContainer.emojiElements[0]
-    });
-  }
-
-  private async onDataReady() {
-    const currentView = this.el;
-
-    await super.render({
-      isLoaded: true,
-      search: this.buildSearch(),
-      emojiArea: this.buildEmojiArea(),
-      preview: this.buildPreview(),
-      theme: this.options.theme
-    });
-
-    this.setStyleProperties();
-    this.initFocusTrap();
-
-    this.pickerReady = true;
-
-    if (this.isOpen) {
-      currentView.replaceWith(this.el);
-      this.setPositioning();
-
-      this.focusTrap.activate();
-
-      this.showContent();
-      this.emojiArea.reset();
-    }
-  }
-
-  /**
-   * Handles a click on the document, so that the picker is hidden
-   * if the mouse is clicked outside of it.
-   *
-   * @param event The MouseEvent that was dispatched.
-   */
-   private onDocumentClick(event: MouseEvent): void {
-    const clickedNode = event.target as Node;
-
-    if (!this.el.contains(clickedNode) && this.isOpen) {
-      this.close();
-    }
-  }
-
-  async render(): Promise<HTMLElement> {
-    return super.render({ isLoaded: false, theme: this.options.theme });
   }
 
   async open(): Promise<void> {
@@ -238,6 +153,115 @@ export class EmojiPicker extends View {
     this.externalEvents.emit('picker:close');
 
     document.removeEventListener('click', this.onDocumentClick);
+  }
+
+  private handlePickerKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.close();
+    }
+  }
+
+  /**
+   * Builds the emoji preview area.
+   */
+  private buildPreview() {
+    if (this.options.showPreview) {
+      this.preview = this.viewFactory.create(EmojiPreview);
+    }
+
+    return this.preview;
+  }
+
+  private buildSearch() {
+    if (this.options.showSearch) {
+      this.search = this.viewFactory.create(Search, {
+        emojisPerRow: this.options.emojisPerRow,
+        customEmojis: this.options.custom,
+        renderer: this.options.renderer
+      });
+    }
+
+    return this.search;
+  }
+
+  private buildEmojiArea() {
+    this.currentView = this.emojiArea = this.viewFactory.create(EmojiArea, {
+      custom: this.options.custom,
+      renderer: this.renderer
+    });
+
+    return this.emojiArea;
+  }
+
+  private setStyleProperties(): void {
+    Object.keys(variableNames).forEach(key => {
+      if (this.options[key]) {
+        this.el.style.setProperty(variableNames[key], this.options[key].toString());
+      }
+    });
+  }
+
+  /**
+   * Initializes the emoji picker's focus trap.
+   */
+  private initFocusTrap(): void {
+    this.focusTrap = createFocusTrap(this.el, {
+      clickOutsideDeactivates: true,
+      initialFocus:
+        this.options.showSearch && this.options.autoFocusSearch
+          ? this.search.searchField
+          : this.emojiArea.emojiCategories[0].emojiContainer.emojiElements[0]
+    });
+  }
+
+  private async onDataReady() {
+    // Save the current el so we can replace it in the DOM after
+    // the new render.
+    const currentView = this.el;
+
+    await super.render({
+      isLoaded: true,
+      search: this.buildSearch(),
+      emojiArea: this.buildEmojiArea(),
+      preview: this.buildPreview(),
+      theme: this.options.theme
+    });
+
+    this.setStyleProperties();
+    this.initFocusTrap();
+
+    this.pickerReady = true;
+
+    // If the data becomes ready when the picker is open,
+    // finish setting up the picker UI. Otherwise this will be done
+    // next time it is opened.
+    if (this.isOpen) {
+      currentView.replaceWith(this.el);
+      this.setPositioning();
+
+      this.focusTrap.activate();
+
+      this.showContent();
+      this.emojiArea.reset();
+    }
+  }
+
+  /**
+   * Handles a click on the document, so that the picker is hidden
+   * if the mouse is clicked outside of it.
+   *
+   * @param event The MouseEvent that was dispatched.
+   */
+   private onDocumentClick(event: MouseEvent): void {
+    const clickedNode = event.target as Node;
+
+    if (!this.el.contains(clickedNode) && this.isOpen) {
+      this.close();
+    }
+  }
+
+  async render(): Promise<HTMLElement> {
+    return super.render({ isLoaded: false, theme: this.options.theme });
   }
 
   private setInitialFocus() {
