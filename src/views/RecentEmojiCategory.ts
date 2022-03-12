@@ -22,10 +22,8 @@ export class RecentEmojiCategory extends BaseEmojiCategory {
   }
 
   initialize() {
-    super.initialize();
-
     this.uiElements = {
-      ...this.uiElements,
+      ...this.baseUIElements,
       recents: View.byClass(classes.recentEmojis),
       clearButton: 'button'
     };
@@ -37,6 +35,8 @@ export class RecentEmojiCategory extends BaseEmojiCategory {
     this.uiEvents = [
       View.childEvent('clearButton', 'click', this.clearRecents)
     ]
+
+    super.initialize();
   }
 
   clearRecents() {

@@ -18,17 +18,15 @@ export abstract class BaseEmojiCategory extends View {
   protected lazyLoader?: LazyLoader;
   protected emojiContainer: EmojiContainer;
 
+  protected baseUIElements = {
+    categoryName: View.byClass(classes.categoryName)
+  }
+
   constructor({ template, category, showVariants, lazyLoader }: BaseEmojiCategoryOptions) {
     super({ template, classes });
 
     this.category = category;
     this.showVariants = showVariants;
     this.lazyLoader = lazyLoader;
-  }
-
-  initialize() {
-    this.uiElements = {
-      categoryName: View.byClass(classes.categoryName)
-    };
   }
 }

@@ -32,7 +32,7 @@ import { Renderer } from './renderers/renderer';
 import { ViewFactory } from './viewFactory';
 import { View } from './views/view';
 import { Database } from './db';
-import { initDatabase, initDatabaseFromCdn, initDatabaseWithStaticData } from './emojiData';
+import { initDatabaseFromCdn, initDatabaseWithStaticData } from './emojiData';
 
 const defaultOptions: PickerOptions = {
   rootElement: document.body,
@@ -538,9 +538,6 @@ export class EmojiPicker {
    * @param referenceEl The element to position relative to if relative positioning is used.
    */
   determineDisplay(): void {
-    // if (window.matchMedia(`screen and (max-width: ${MOBILE_BREAKPOINT}px)`).matches) {
-    //   this.showMobileView();
-    // } else if (typeof this.options.position === 'string') {
     if (typeof this.position === 'string') {
       this.setRelativePosition();
     } else {

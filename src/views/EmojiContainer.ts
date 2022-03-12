@@ -40,6 +40,8 @@ export class EmojiContainer extends View {
         View.uiEvent('blur', this.hidePreview, { capture: true })
       );
     }
+
+    super.initialize();
   }
 
   async render(): Promise<HTMLElement> {

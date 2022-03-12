@@ -22,7 +22,6 @@ export class Search extends View {
   private emojisPerRow: number;
   private focusedEmojiIndex = 0;
 
-  private searchField: HTMLInputElement;
   private searchIcon: HTMLElement;
   private clearSearchButton: HTMLButtonElement;
   private resultsContainer: EmojiContainer | null;
@@ -45,6 +44,8 @@ export class Search extends View {
       searchField: View.byClass(classes.searchField),
       searchAccessory: View.byClass(classes.searchAccessory)
     };
+
+    super.initialize();
   }
 
   handleHidePopup() {
@@ -65,7 +66,7 @@ export class Search extends View {
 
     this.clearSearchButton.addEventListener('click', (event: MouseEvent) => this.onClearSearch(event));
 
-    this.searchField = this.searchField as HTMLInputElement;
+    this.searchField = this.ui.searchField as HTMLInputElement;
     this.searchField.addEventListener('keydown', (event: KeyboardEvent) => this.onKeyDown(event));
     this.searchField.addEventListener('keyup', event => this.onKeyUp(event));
 

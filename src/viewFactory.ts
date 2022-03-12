@@ -6,21 +6,22 @@ import { Renderer } from './renderers/renderer';
 import { PickerOptions } from './types';
 import { View } from './views/view';
 
-type ConstructorFn<T> = new (...args: any[]) => T;
-
 type DependencyMapping = {
   events: Events<AppEvent>;
   i18n: Bundle;
   renderer: Renderer;
-  emojiData: Database;
+  emojiData: Promise<Database>;
   options: Required<PickerOptions>;
 };
+
+type ViewConstructor<T extends View> = new (...args: any[]) => T;
+type ViewConstructorParameters<T extends View> = ConstructorParameters<ViewConstructor<T>>;
 
 export class ViewFactory {
   private events: Events<AppEvent>;
   private i18n: Bundle;
   private renderer: Renderer;
-  private emojiData: Database;
+  private emojiData: Promise<Database>;
   private options: Required<PickerOptions>;
 
   constructor({ events, i18n, renderer, emojiData, options }: DependencyMapping) {
@@ -31,7 +32,7 @@ export class ViewFactory {
     this.options = options;
   }
 
-  create<T extends View>(constructor: ConstructorFn<T>, ...args: any[]): T {
+  create<T extends View>(constructor: ViewConstructor<T>, ...args: ViewConstructorParameters<T>): T {
     const view = new constructor(...args);
     
     view.setEvents(this.events);

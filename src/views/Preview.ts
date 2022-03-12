@@ -25,6 +25,8 @@ export class EmojiPreview extends View {
       'preview:show': this.showPreview,
       'preview:hide': this.showPreview
     };
+
+    super.initialize();
   }
 
   private async getContent(emoji: Emoji): Promise<HTMLElement> {

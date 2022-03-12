@@ -22,6 +22,11 @@ export class EmojiCategory extends BaseEmojiCategory {
     this.lazyLoader = lazyLoader;
   }
 
+  initialize() {
+    this.uiElements = { ...this.baseUIElements };
+    super.initialize();
+  }
+
   async render(): Promise<HTMLElement> {
     const emojis = await this.emojiData.getEmojis(this.category, this.options.emojiVersion);
 

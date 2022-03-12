@@ -44,6 +44,8 @@ export class CategoryButtons extends View {
     this.uiEvents = [
       View.uiEvent('click', this.handleClickCategory)
     ];
+
+    super.initialize();
   }
 
   handleClickCategory(event: MouseEvent) {

@@ -55,7 +55,9 @@ export abstract class View {
   }
 
   /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-  initialize() {}
+  initialize() {
+    this.bindAppEvents();
+  }
 
   setEvents(events: Events<AppEvent>) {
     this.events = events;
@@ -73,8 +75,10 @@ export abstract class View {
     this.renderer = renderer;
   }
 
-  setEmojiData(emojiData: Database) {
-    this.emojiData = emojiData;
+  setEmojiData(emojiDataPromise: Promise<Database>) {
+    emojiDataPromise.then(emojiData => {
+      this.emojiData = emojiData;
+    });
   }
 
   setOptions(options: Required<PickerOptions>) {
@@ -93,7 +97,6 @@ export abstract class View {
 
     this.bindUIElements();
     this.bindListeners();
-    this.bindAppEvents();
 
     return this.el;
   }

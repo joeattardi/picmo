@@ -1,7 +1,6 @@
 import { Emoji } from 'emojibase';
 import { View } from './view';
-import { Emoji as EmojiView } from './Emoji';
-import {  getEmojiForEvent } from '../util';
+import { getEmojiForEvent } from '../util';
 
 import template from 'templates/variantPopup.ejs';
 
@@ -25,12 +24,6 @@ export class VariantPopup extends View {
     super({ template, classes });
 
     this.emoji = emoji;
-    // this.emojiOptions = [
-    //   this.emoji,
-    //   ...this.emoji.variations.map(variation => ({
-    //     emoji: variation
-    //   }))
-    // ];
   }
 
   initialize() {
@@ -41,6 +34,8 @@ export class VariantPopup extends View {
       this.uiEvents = [
         View.uiEvent('click', this.handleClick)
       ]
+
+      super.initialize();
   }
 
   handleClick(event): void {

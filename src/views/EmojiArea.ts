@@ -20,7 +20,6 @@ function getCategoryClass(category: Category) {
 }
 
 type EmojiAreaOptions = {
-  lazyLoader?: LazyLoader;
   custom: CustomEmoji[];
 };
 export class EmojiArea extends View {
@@ -31,7 +30,7 @@ export class EmojiArea extends View {
   private categories: Category[];
   private custom: CustomEmoji[];
 
-  private lazyLoader?: LazyLoader;
+  private lazyLoader = new LazyLoader();
 
   emojiCategories: EmojiCategory[];
 
@@ -39,13 +38,11 @@ export class EmojiArea extends View {
 
   private cancelScroll: () => void;
 
+  
   constructor({
-    lazyLoader,
     custom,
   }: EmojiAreaOptions) {
     super({ template, classes });
-
-    this.lazyLoader = lazyLoader;
 
     this.highlightCategory = this.highlightCategory.bind(this);
   }
@@ -58,10 +55,13 @@ export class EmojiArea extends View {
     this.uiElements = {
       emojis: View.byClass(classes.emojis)
     };
+
+    super.initialize();
   }
   
   async render(): Promise<HTMLElement> {
     this.categories = await this.emojiData.getCategories();
+    
     if (this.options.showRecents) {
       this.categories.unshift({
         key: 'recents',
@@ -87,7 +87,6 @@ export class EmojiArea extends View {
     }
 
     // TODO get custom working again
-    // TODO get recent working again
 
     this.emojiCategories = this.categories.map(this.createCategory, this);
 
@@ -113,6 +112,8 @@ export class EmojiArea extends View {
     // if (firstEmoji) {
     //   firstEmoji.tabIndex = 0;
     // }
+
+    this.lazyLoader.observe(this.ui.emojis);
 
     return this.el;
   }

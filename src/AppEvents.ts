@@ -1,6 +1,7 @@
 import { Events, EventKey } from './events';
 
 export type AppEvent =
+  | 'data:ready'
   | 'emoji:select'
   | 'content:show'
   | 'preview:show'

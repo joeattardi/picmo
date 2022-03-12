@@ -1,0 +1,22 @@
+<div class="<%= classes.wrapper %>">
+  <% if (isLoaded) { %>
+    <div class="<%= classes.picker %> <%= theme %>">
+      <% if (locals.plugins) { %>
+        <div data-placeholder="plugins"></div>
+      <% } %>
+      <% if (locals.search) { %>
+        <div data-view="search"></div>
+      <% } %>
+      <div class="<%= classes.content %>">
+        <div data-view="emojiArea"></div>
+      </div>
+      <% if (locals.preview) { %>
+        <div data-view="preview"></div>
+      <% } %>
+    </div>
+  <% } else { %>
+    <div class="<%= classes.skeleton %> <%= classes.picker %> <%= theme %>">
+      <i class="fa-solid fa-fw fa-10x fa-face-smile"></i>
+    </div>
+  <% } %>
+</div>
