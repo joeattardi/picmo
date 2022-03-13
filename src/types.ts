@@ -8,7 +8,7 @@ export type CustomEmoji = {
   url: string;
 };
 
-type FixedPosition = {
+export type FixedPosition = {
   top?: string;
   bottom?: string;
   left?: string;

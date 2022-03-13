@@ -1,6 +1,6 @@
 import { Emoji } from 'emojibase';
 import createFocusTrap, { FocusTrap } from 'focus-trap';
-import { createPopper, Instance as Popper, Placement } from '@popperjs/core';
+import { Instance as Popper } from '@popperjs/core';
 
 import { View } from './view';
 
@@ -15,6 +15,8 @@ import template from 'templates/emojiPicker.ejs';
 import classes from './EmojiPicker.scss';
 import { EmojiPreview } from './Preview';
 import { EventCallback } from '../events';
+
+import { PositionCleanup, setPosition } from '../positioning';
 
 const SHOW_HIDE_DURATION = 200;
 
@@ -35,6 +37,7 @@ export class EmojiPicker extends View {
   private currentView: View;
   private focusTrap: FocusTrap;
   private popper: Popper;
+  private positionCleanup: PositionCleanup;
 
   private pickerReady = false;
 
@@ -87,8 +90,8 @@ export class EmojiPicker extends View {
   async open(): Promise<void> {
     this.options.rootElement.appendChild(this.el);
 
-    this.setPositioning();
-
+    this.setPosition();
+    
     this.isOpen = true;
 
     // If triggered rapidly, make sure all pending animations finish before moving on
@@ -148,11 +151,16 @@ export class EmojiPicker extends View {
     this.showContent();
 
     this.hideVariantPopup();
-    this.popper?.destroy();
+    this.positionCleanup();
 
     this.externalEvents.emit('picker:close');
 
     document.removeEventListener('click', this.onDocumentClick);
+  }
+
+  private setPosition() {
+    this.positionCleanup?.();
+    this.positionCleanup = setPosition(this.el, this.options.referenceElement, this.options.position);
   }
 
   private handlePickerKeydown(event: KeyboardEvent) {
@@ -237,7 +245,7 @@ export class EmojiPicker extends View {
     // next time it is opened.
     if (this.isOpen) {
       currentView.replaceWith(this.el);
-      this.setPositioning();
+      this.setPosition();
 
       this.focusTrap.activate();
 
@@ -270,56 +278,6 @@ export class EmojiPicker extends View {
     } else {
       this.emojiArea.emojiCategories[0].emojiContainer.emojiElements[0].focus();
     }
-  }
-
-  private setPositioning() {
-    if (typeof this.options.position === 'string') {
-      this.setRelativePosition();
-    } else {
-      this.setFixedPosition();
-    }
-  }
-
-  /**
-   * Sets fixed positioning.
-   */
-  private setFixedPosition(): void {
-    if (this.options.position) {
-      this.el.style.position = 'fixed';
-
-      const fixedPosition = this.options.position;
-
-      Object.keys(fixedPosition).forEach(key => {
-        this.el.style[key] = fixedPosition[key];
-      });
-    }
-  }
-
-  /**
-   * Sets relative positioning with Popper.js.
-   *
-   * @param referenceEl The element to position relative to.
-   */
-  private setRelativePosition(): void {
-    if (!this.options.referenceElement) {
-      throw new Error('Reference element is required for relative positioning');
-    }
-
-    if (this.popper) {
-      this.popper.destroy();
-    }
-
-    this.popper = createPopper(this.options.referenceElement, this.el, {
-      placement: this.options.position as Placement,
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [0, 5]
-          }
-        }
-      ]
-    });
   }
 
   /**

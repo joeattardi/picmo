@@ -1,4 +1,4 @@
-import { Emoji, Locale, LATEST_EMOJI_VERSION } from 'emojibase';
+import { LATEST_EMOJI_VERSION } from 'emojibase';
 
 import en from './i18n/lang-en';
 import { light } from './themes';
@@ -43,6 +43,11 @@ function initData(options: Required<PickerOptions>): Promise<Database> {
   }
 }
 
+/**
+ * Creates a new emoji picker.
+ * @param options The options for the emoji picker.
+ * @returns a Promise that resolves to the picker when it is ready.
+ */
 export async function createEmojiPicker(options: PickerOptions): Promise<EmojiPicker> {
   const finalOptions = { ...defaultOptions, ...options } as Required<PickerOptions>
   
