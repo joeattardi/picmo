@@ -31,7 +31,7 @@ export function createPicker(options = {}) {
           button.replaceChildren(emoji);
         }
       });
-      picker.open();
+      picker.toggle();
     });
   });
 
