@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   entry: {
     index: './src/index.ts',
@@ -46,6 +48,9 @@ module.exports = {
     fallback: {
       path: false,
       fs: false
+    },
+    alias: {
+      templates: path.resolve(__dirname, 'src/templates')
     }
   },
   externals: {

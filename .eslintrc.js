@@ -22,5 +22,6 @@ module.exports = {
   rules: {
     'no-console': 'error'
   },
-  plugins: ['@typescript-eslint']
+  plugins: ['@typescript-eslint'],
+  ignorePatterns: ['webpack.config.js']
 };

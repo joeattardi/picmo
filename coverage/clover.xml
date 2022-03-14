@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1647233185530" clover="3.2.0">
+  <project timestamp="1647233185530" name="All files">
+    <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2" elements="11" coveredelements="10" complexity="0" loc="5" ncloc="5" packages="1" files="2" classes="2"/>
+    <file name="bundle.ts" path="/Users/joeattardi/code/emoji-button/src/i18n/bundle.ts">
+      <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="4" count="2" type="stmt"/>
+      <line num="7" count="2" type="stmt"/>
+      <line num="11" count="2" type="cond" truecount="2" falsecount="0"/>
+    </file>
+    <file name="index.ts" path="/Users/joeattardi/code/emoji-button/src/i18n/index.ts">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <line num="1" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
