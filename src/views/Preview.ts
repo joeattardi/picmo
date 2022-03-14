@@ -3,8 +3,8 @@ import { Emoji } from 'emojibase';
 import { View } from './view';
 import classes from './Preview.scss';
 
-import previewTemplate from 'templates/preview.ejs';
-import customPreviewTemplate from 'templates/customPreview.ejs';
+import previewTemplate from '../templates/preview.ejs';
+import customPreviewTemplate from '../templates/customPreview.ejs';
 import { compileTemplate } from '../templates';
 
 const renderTag = compileTemplate('<li class="<%= classes.tag %>"><%= tag %></li>');

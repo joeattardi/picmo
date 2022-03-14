@@ -1,6 +1,6 @@
 import { compileTemplate } from '../templates';
-import emojiTemplate from 'templates/emoji.ejs';
-import customEmojiTemplate from 'templates/customEmojiContent.ejs';
+import emojiTemplate from '../templates/emoji.ejs';
+import customEmojiTemplate from '../templates/customEmojiContent.ejs';
 import { LazyLoader } from '../LazyLoader';
 
 import { View } from './view';

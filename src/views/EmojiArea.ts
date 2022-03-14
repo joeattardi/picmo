@@ -7,7 +7,7 @@ import { RecentEmojiCategory } from './RecentEmojiCategory';
 
 import { prefersReducedMotion } from '../util';
 
-import template from 'templates/emojiArea.ejs';
+import template from '../templates/emojiArea.ejs';
 import { LazyLoader } from '../LazyLoader';
 import { Category, CategoryKey, CustomEmoji } from '../types';
 

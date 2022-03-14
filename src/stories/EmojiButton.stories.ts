@@ -14,7 +14,7 @@ export default {
       defaultValue: 13
     },
     theme: {
-      options: ['light', 'dark', 'auto'],
+      options: ['lightTheme', 'darkTheme', 'autoTheme'],
       control: {
         type: 'select',
         labels: {
@@ -31,18 +31,18 @@ const Template = args => {
   return createPicker({
     position: 'right-start',
     ...args,
-    theme: themes[args.theme || themes.light]
+    theme: themes[args.theme || themes.lightTheme]
   });
 };
 
 export const Native = Template.bind({});
 Native.args = {
-  theme: 'light',
+  theme: 'lightTheme',
   renderer: new NativeRenderer()
 };
 
 export const Twemoji = Template.bind({});
 Twemoji.args = {
-  theme: 'light',
+  theme: 'lightTheme',
   renderer: new TwemojiRenderer()
 };

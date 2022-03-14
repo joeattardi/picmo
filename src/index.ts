@@ -1,7 +1,7 @@
 import { LATEST_EMOJI_VERSION } from 'emojibase';
 
 import en from './i18n/lang-en';
-import { light } from './themes';
+import { lightTheme } from './themes';
 import { AppEvents } from './AppEvents';
 import { EmojiPicker } from './views/EmojiPicker';
 import { PickerOptions } from './types';
@@ -15,7 +15,7 @@ import { Bundle } from './i18n';
 const defaultOptions: PickerOptions = {
   rootElement: document.body,
   renderer: new NativeRenderer(),
-  theme: light,
+  theme: lightTheme,
 
   showSearch: true,
   showCategoryButtons: true,

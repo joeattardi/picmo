@@ -1,4 +1,4 @@
-import template from 'templates/emojiCategory.ejs';
+import template from '../templates/emojiCategory.ejs';
 
 import { BaseEmojiCategory } from './BaseEmojiCategory';
 import { EmojiContainer } from './EmojiContainer';

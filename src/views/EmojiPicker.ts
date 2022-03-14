@@ -14,7 +14,7 @@ import { EventCallback } from '../events';
 import { PositionCleanup, setPosition } from '../positioning';
 import { prefersReducedMotion } from '../util';
 
-import template from 'templates/emojiPicker.ejs';
+import template from '../templates/emojiPicker.ejs';
 import classes from './EmojiPicker.scss';
 
 const SHOW_HIDE_DURATION = 150;
@@ -323,6 +323,7 @@ export class EmojiPicker extends View {
     const currentView = this.el;
 
     const [preview, search, emojiArea] = this.buildChildViews();
+
     await super.render({
       isLoaded: true,
       search,

@@ -7,9 +7,9 @@ import { EmojiContainer } from './EmojiContainer';
 import { CustomEmoji } from '../types';
 
 import { renderTemplate } from '../templates';
-import searchTemplate from 'templates/search/search.ejs';
-import clearSearchButtonTemplate from 'templates/search/clearButton.ejs';
-import notFoundTemplate from 'templates/search/notFound.ejs';
+import searchTemplate from '../templates/search/search.ejs';
+import clearSearchButtonTemplate from '../templates/search/clearButton.ejs';
+import notFoundTemplate from '../templates/search/notFound.ejs';
 
 import { LazyLoader } from '../LazyLoader';
 

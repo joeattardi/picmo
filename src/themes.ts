@@ -1,3 +1,4 @@
-import { autoTheme, lightTheme, darkTheme } from './themes.scss';
+import themes from './themes.scss';
 
-export { autoTheme as auto, lightTheme as light, darkTheme as dark };
+const { autoTheme, lightTheme, darkTheme } = themes;
+export { autoTheme, lightTheme, darkTheme };

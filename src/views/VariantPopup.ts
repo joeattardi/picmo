@@ -2,7 +2,7 @@ import { Emoji } from 'emojibase';
 import { View } from './view';
 import { getEmojiForEvent } from '../util';
 
-import template from 'templates/variantPopup.ejs';
+import template from '../templates/variantPopup.ejs';
 
 import classes from './VariantPopup.scss';
 import { EmojiContainer } from './EmojiContainer';
