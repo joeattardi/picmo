@@ -7,7 +7,8 @@ export function createPicker(options = {}) {
 
   createEmojiPicker({
     ...options,
-    referenceElement: button
+    referenceElement: button,
+    triggerElement: button
   }).then(picker => {
     window.parent.addEventListener(
       'click',

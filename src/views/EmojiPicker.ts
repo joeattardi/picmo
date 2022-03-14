@@ -195,16 +195,12 @@ export class EmojiPicker extends View {
    * @param openState The desired open state of the picker
    * @returns The Animation object that is running
    */
-  private animateOpenStateChange(openState: boolean): Promise<Animation | void> {
-    if (prefersReducedMotion() || !this.ui.picker.animate) {
-      return Promise.resolve();
-    }
-
-    return this.ui.picker.animate({
+  private async animateOpenStateChange(openState: boolean): Promise<Animation | void> {
+    return this.ui.picker.animate?.({
       opacity: [0, 1],
       transform: ['scale(0.9)', 'scale(1)']
     }, {
-      duration: SHOW_HIDE_DURATION,
+      duration: prefersReducedMotion() ? 0 : SHOW_HIDE_DURATION,
       id: openState ? 'show-picker' : 'hide-picker',
       fill: 'both',
       easing: 'ease-in-out',
@@ -356,7 +352,7 @@ export class EmojiPicker extends View {
    * 
    * The picker will only be closed if:
    * - The picker is currently open
-   * - The picker has no pending animations (to prevent it from closing while it's animating)
+   * - The click target is not the trigger element or any of its children
    * - The click target is not the picker or any of its children
    *
    * @param event The MouseEvent that was dispatched.
@@ -364,10 +360,10 @@ export class EmojiPicker extends View {
    private onDocumentClick(event: MouseEvent) {
     const clickedNode = event.target as Node;
 
-    const hasPendingAnimations = this.getRunningAnimations().length;
     const isClickInsidePicker = this.el.contains(clickedNode);
+    const isClickOnTrigger = this.options.triggerElement?.contains(clickedNode);
 
-    if (this.isOpen && !hasPendingAnimations && !isClickInsidePicker) {
+    if (this.isOpen && !isClickOnTrigger && !isClickInsidePicker) {
       this.close();
     }
   }

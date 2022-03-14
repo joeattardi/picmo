@@ -41,6 +41,7 @@ export type PickerOptions = {
 
   position?: Position;
   referenceElement?: HTMLElement;
+  triggerElement?: HTMLElement;
 
   maxRecents?: number;
   emojisPerRow?: number;
