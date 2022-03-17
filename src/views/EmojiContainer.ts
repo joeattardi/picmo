@@ -1,24 +1,27 @@
-import { Emoji } from 'emojibase';
-import { Emoji as EmojiView } from './Emoji';
+import { Emoji } from './Emoji';
 import classes from './EmojiContainer.scss';
 import template from '../templates/emojiContainer.ejs';
 import { LazyLoader } from '../LazyLoader';
 import { getEmojiForEvent } from '../util';
 import { View } from './view';
-import { CustomEmoji } from '../types';
+import { EmojiRecord } from '../types';
 
 type EmojiContainerOptions = {
-  emojis: Emoji[] | CustomEmoji[];
+  emojis: EmojiRecord[];
   showVariants: boolean;
   preview: boolean;
   lazyLoader?: LazyLoader;
 };
+
+/**
+ * An EmojiContainer contains all the emojis in a given category.
+ */
 export class EmojiContainer extends View {
-  protected emojis: Emoji[] | CustomEmoji[];
+  protected emojis: EmojiRecord[];
   protected showVariants: boolean;
   protected preview: boolean;
   protected lazyLoader?: LazyLoader;
-  emojiViews: EmojiView[];
+  emojiViews: Emoji[];
   emojiElements: HTMLElement[];
 
   constructor({ emojis, showVariants, preview = true, lazyLoader }: EmojiContainerOptions) {
@@ -27,7 +30,6 @@ export class EmojiContainer extends View {
     this.showVariants = showVariants;
     this.lazyLoader = lazyLoader;
     this.preview = preview;
-
     this.emojis = emojis;
   }
 
@@ -47,7 +49,7 @@ export class EmojiContainer extends View {
 
   async render(): Promise<HTMLElement> {
     this.emojiViews = this.emojis.map(emoji =>
-      this.viewFactory.create(EmojiView, {
+      this.viewFactory.create(Emoji, {
         emoji,
         lazyLoader: this.lazyLoader,
         renderer: this.renderer

@@ -3,7 +3,7 @@ import { Database } from './db';
 import { Events } from './events';
 import { Bundle } from './i18n';
 import { Renderer } from './renderers/renderer';
-import { PickerOptions } from './types';
+import { PickerOptions, EmojiRecord } from './types';
 import { View } from './views/view';
 
 type DependencyMapping = {
@@ -12,6 +12,7 @@ type DependencyMapping = {
   renderer: Renderer;
   emojiData: Promise<Database>;
   options: Required<PickerOptions>;
+  customEmojis: EmojiRecord[];
 };
 
 type ViewConstructor<T extends View> = new (...args: any[]) => T;
@@ -23,13 +24,15 @@ export class ViewFactory {
   private renderer: Renderer;
   private emojiData: Promise<Database>;
   private options: Required<PickerOptions>;
+  private customEmojis: EmojiRecord[];
 
-  constructor({ events, i18n, renderer, emojiData, options }: DependencyMapping) {
+  constructor({ events, i18n, renderer, emojiData, options, customEmojis = [] }: DependencyMapping) {
     this.events = events;
     this.i18n = i18n;
     this.renderer = renderer;
     this.emojiData = emojiData;
     this.options = options;
+    this.customEmojis = customEmojis;
   }
 
   create<T extends View>(constructor: ViewConstructor<T>, ...args: ViewConstructorParameters<T>): T {
@@ -40,6 +43,7 @@ export class ViewFactory {
     view.setRenderer(this.renderer);
     view.setEmojiData(this.emojiData);
     view.setOptions(this.options);
+    view.setCustomEmojis(this.customEmojis);
 
     view.viewFactory = this;
 

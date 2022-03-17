@@ -21,9 +21,9 @@ function getCategoryClass(category: Category) {
   return categoryClasses[category.key] || EmojiCategory;
 }
 
-type EmojiAreaOptions = {
-  custom: CustomEmoji[];
-};
+/**
+ * The EmojiArea is the main view of the picker, it contains all the categories and their emojis.
+ */
 export class EmojiArea extends View {
   private headerOffsets: number[];
   private currentCategory = 0;
@@ -39,13 +39,9 @@ export class EmojiArea extends View {
   private focusedIndex = 0;
 
   private cancelScroll: () => void;
-
   
-  constructor({
-    custom,
-  }: EmojiAreaOptions) {
+  constructor() {
     super({ template, classes });
-
     this.highlightCategory = this.highlightCategory.bind(this);
   }
 

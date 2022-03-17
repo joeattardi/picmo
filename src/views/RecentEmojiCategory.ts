@@ -1,8 +1,7 @@
-import { Emoji } from 'emojibase';
 import { View } from './view';
 import { BaseEmojiCategory } from './BaseEmojiCategory';
 import { RecentEmojiContainer } from './RecentEmojiContainer';
-import { Category } from '../types';
+import { Category, EmojiRecord } from '../types';
 import { LazyLoader } from '../LazyLoader';
 
 import classes from './EmojiCategory.scss';
@@ -44,7 +43,7 @@ export class RecentEmojiCategory extends BaseEmojiCategory {
     this.ui.recents.dataset.empty = 'true';
   }
 
-  async addRecent(recent: Emoji) {
+  async addRecent(recent: EmojiRecord) {
     await this.emojiContainer.addOrUpdate(recent);
     this.ui.recents.dataset.empty = 'false';
   }

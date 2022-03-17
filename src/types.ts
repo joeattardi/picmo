@@ -3,6 +3,17 @@ import { Locale, GroupKey, MessagesDataset, Emoji } from 'emojibase';
 import { Renderer } from './renderers/renderer';
 import { Dictionary } from './i18n';
 
+export type EmojiRecord = {
+  emoji: string;
+  tags?: string[];
+  label: string;
+  url?: string;
+  skins?: EmojiRecord[];
+  order?: number;
+  custom: boolean;
+  hexcode?: string;
+}
+
 export type EmojiSelection = {
   url?: string;
   emoji: string;
@@ -13,6 +24,7 @@ export type CustomEmoji = {
   emoji: string;
   label: string;
   url: string;
+  tags?: string[];
 };
 
 export type FixedPosition = {

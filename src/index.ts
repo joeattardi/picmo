@@ -4,7 +4,7 @@ import en from './i18n/lang-en';
 import { lightTheme } from './themes';
 import { AppEvents } from './AppEvents';
 import { EmojiPicker } from './views/EmojiPicker';
-import { PickerOptions } from './types';
+import { PickerOptions, CustomEmoji, EmojiRecord } from './types';
 import { ViewFactory } from './viewFactory';
 export { LazyLoader } from './LazyLoader';
 import NativeRenderer from './renderers/native';
@@ -50,6 +50,14 @@ function initData(options: Required<PickerOptions>): Promise<Database> {
  */
 export async function createEmojiPicker(options: PickerOptions): Promise<EmojiPicker> {
   const finalOptions = { ...defaultOptions, ...options } as Required<PickerOptions>
+  
+  const customEmojis: EmojiRecord[] = (finalOptions?.custom || []).map((custom: CustomEmoji) => ({
+    custom: true,
+    url: custom.url,
+    label: custom.label,
+    emoji: custom.emoji,
+    tags: ['custom', ...(custom.tags || [])]
+  }));
 
   const events = new AppEvents();
   const emojiDataPromise = initData(finalOptions);
@@ -62,6 +70,7 @@ export async function createEmojiPicker(options: PickerOptions): Promise<EmojiPi
   const viewFactory = new ViewFactory({
     events,
     i18n,
+    customEmojis,
     renderer: finalOptions.renderer,
     options: finalOptions,
     emojiData: emojiDataPromise

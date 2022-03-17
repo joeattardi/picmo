@@ -1,11 +1,9 @@
-import { Emoji } from 'emojibase';
-
 import { View } from './view';
-import classes from './Preview.scss';
+import { EmojiRecord } from '../types';
+import { compileTemplate } from '../templates';
 
 import previewTemplate from '../templates/preview.ejs';
-import customPreviewTemplate from '../templates/customPreview.ejs';
-import { compileTemplate } from '../templates';
+import classes from './Preview.scss';
 
 const renderTag = compileTemplate('<li class="<%= classes.tag %>"><%= tag %></li>');
 
@@ -29,20 +27,14 @@ export class EmojiPreview extends View {
     super.initialize();
   }
 
-  private async getContent(emoji: Emoji): Promise<HTMLElement> {
+  private async getContent(emoji: EmojiRecord): Promise<HTMLElement> {
     // TODO lazy load this too?
-    // TODO fix custom emojis
-    // if (emoji.custom) {
-    //   return renderTemplate(customPreviewTemplate, {
-    //     emoji: emoji.emoji
-    //   });
-    // }
 
     // TODO cache preview images to prevent refetching
     return this.renderer.doRender(emoji);
   }
 
-  async showPreview(emoji: Emoji) {
+  async showPreview(emoji: EmojiRecord) {
     if (emoji) {
       const content = await this.getContent(emoji);
       this.ui.emoji.replaceChildren(content);

@@ -7,7 +7,7 @@ import { ViewFactory } from '../viewFactory';
 import { Bundle } from '../i18n';
 import { Renderer } from '../renderers/renderer';
 import { Database } from '../db';
-import { PickerOptions } from '../types';
+import { EmojiRecord, PickerOptions } from '../types';
 
 type UIEventListenerBinding = {
   target?: string;
@@ -40,6 +40,7 @@ export abstract class View {
   protected uiElements: UIElementSelectors = {};
   protected emojiData: Database;
   protected options: Required<PickerOptions>;
+  protected customEmojis: EmojiRecord[];
 
   protected events: Events<AppEvent>;
   protected i18n: Bundle;
@@ -57,6 +58,10 @@ export abstract class View {
   /* eslint-disable-next-line @typescript-eslint/no-empty-function */
   initialize() {
     this.bindAppEvents();
+  }
+
+  setCustomEmojis(customEmojis: EmojiRecord[]) {
+    this.customEmojis = customEmojis;
   }
 
   setEvents(events: Events<AppEvent>) {

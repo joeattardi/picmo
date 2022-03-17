@@ -1,4 +1,3 @@
-import { Emoji } from 'emojibase';
 import createFocusTrap, { FocusTrap } from 'focus-trap';
 
 import { ExternalEvent, ExternalEvents } from '../ExternalEvents';
@@ -16,6 +15,7 @@ import { prefersReducedMotion } from '../util';
 
 import template from '../templates/emojiPicker.ejs';
 import classes from './EmojiPicker.scss';
+import { EmojiRecord } from '../types';
 
 const SHOW_HIDE_DURATION = 150;
 
@@ -275,15 +275,11 @@ export class EmojiPicker extends View {
     if (this.options.showSearch) {
       this.search = this.viewFactory.create(Search, {
         emojisPerRow: this.options.emojisPerRow,
-        customEmojis: this.options.custom,
         renderer: this.options.renderer
       });
     }
 
-    this.currentView = this.emojiArea = this.viewFactory.create(EmojiArea, {
-      custom: this.options.custom,
-      renderer: this.renderer
-    });
+    this.currentView = this.emojiArea = this.viewFactory.create(EmojiArea);
 
     return [this.preview, this.search, this.emojiArea];
   }
@@ -437,7 +433,7 @@ export class EmojiPicker extends View {
    * @param emoji The emoji that was clicked
    * @returns a Promise that resolves when either the variant popup is shown or the emoji is rendered and emitted
    */
-  private async selectEmoji({ emoji }: { emoji: Emoji }): Promise<void> {
+  private async selectEmoji({ emoji }: { emoji: EmojiRecord }): Promise<void> {
     // Show the variant popup if the emoji has variants
     if (emoji.skins && this.options.showVariants && !this.variantPopup) {
       this.showVariantPopup(emoji);
@@ -453,7 +449,7 @@ export class EmojiPicker extends View {
    * @param emoji The emoji whose variants are to be shown.
    * @returns a Promise that resolves when the popup is shown
    */
-  private async showVariantPopup(emoji: Emoji): Promise<void> {
+  private async showVariantPopup(emoji: EmojiRecord): Promise<void> {
     this.variantPopup = this.viewFactory.create(VariantPopup, { emoji });
     this.ui.picker.appendChild(await this.variantPopup.render());
   }
@@ -462,7 +458,7 @@ export class EmojiPicker extends View {
    * Renders an emoji, and emits a public emoji:select event with the rendered result.
    * @param emoji the emoji that was selected.
    */
-  private async emitEmoji(emoji: Emoji): Promise<void> {
+  private async emitEmoji(emoji: EmojiRecord): Promise<void> {
     this.externalEvents.emit('emoji:select', await this.renderer.doEmit(emoji));
     if (this.options.autoHide) {
       await this.close();

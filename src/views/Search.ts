@@ -4,7 +4,6 @@ import classes from './Search.scss';
 import { icon } from '../icons';
 
 import { EmojiContainer } from './EmojiContainer';
-import { CustomEmoji } from '../types';
 
 import { renderTemplate } from '../templates';
 import searchTemplate from '../templates/search/search.ejs';
@@ -15,7 +14,6 @@ import { LazyLoader } from '../LazyLoader';
 
 type SearchOptions = {
   emojisPerRow: number;
-  customEmojis: CustomEmoji[];
 };
 
 export class Search extends View {
@@ -29,7 +27,7 @@ export class Search extends View {
 
   searchField: HTMLInputElement;
 
-  constructor({ emojisPerRow, customEmojis = [] }: SearchOptions) {
+  constructor({ emojisPerRow }: SearchOptions) {
     super({ template: searchTemplate, classes });
 
     this.emojisPerRow = emojisPerRow;
@@ -147,32 +145,35 @@ export class Search extends View {
       this.events.emit('content:show');
     } else {
       this.showClearSearchButton();
+      await this.search(this.searchField.value);
+    }
+  }
 
-      const searchResults = await this.emojiData.searchEmojis(this.searchField.value, this.options.emojiVersion);
+  async search(query: string) {
+    const searchResults = await this.emojiData.searchEmojis(query, this.customEmojis, this.options.emojiVersion);
 
-      this.events.emit('preview:hide');
+    this.events.emit('preview:hide');
 
-      if (searchResults.length) {
-        const lazyLoader = new LazyLoader();
-        this.resultsContainer = this.viewFactory.create(EmojiContainer, {
-          emojis: searchResults,
-          showVariants: true
-        });
+    if (searchResults.length) {
+      const lazyLoader = new LazyLoader();
+      this.resultsContainer = this.viewFactory.create(EmojiContainer, {
+        emojis: searchResults,
+        showVariants: true
+      });
 
-        await this.resultsContainer.render();
-        if (this.resultsContainer?.el) {
-          this.resultsContainer.el.classList.add(classes.searchResults);
-          lazyLoader.observe(this.resultsContainer.el);
-          this.resultsContainer.emojiElements[0].tabIndex = 0;
-          this.focusedEmojiIndex = 0;
+      await this.resultsContainer.render();
+      if (this.resultsContainer?.el) {
+        this.resultsContainer.el.classList.add(classes.searchResults);
+        lazyLoader.observe(this.resultsContainer.el);
+        this.resultsContainer.emojiElements[0].tabIndex = 0;
+        this.focusedEmojiIndex = 0;
 
-          this.resultsContainer.el.addEventListener('keydown', event => this.handleResultsKeydown(event));
+        this.resultsContainer.el.addEventListener('keydown', event => this.handleResultsKeydown(event));
 
-          this.events.emit('content:show', this.resultsContainer);
-        }
-      } else {
-        this.events.emit('content:show', this.notFoundMessage);
+        this.events.emit('content:show', this.resultsContainer);
       }
+    } else {
+      this.events.emit('content:show', this.notFoundMessage);
     }
   }
 }

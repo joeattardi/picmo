@@ -1,4 +1,4 @@
-import { Emoji } from 'emojibase';
+import { EmojiRecord } from './types';
 
 const LOCAL_STORAGE_KEY = 'EmojiButton.recents';
 
@@ -6,12 +6,12 @@ export function clear(): void {
   localStorage.removeItem(LOCAL_STORAGE_KEY);
 }
 
-export function getRecents(): Array<Emoji> {
+export function getRecents(): Array<EmojiRecord> {
   const recentJson = localStorage.getItem(LOCAL_STORAGE_KEY);
   return recentJson ? JSON.parse(recentJson) : [];
 }
 
-export function addOrUpdateRecent(emoji: Emoji, maxCount: number) {
+export function addOrUpdateRecent(emoji: EmojiRecord, maxCount: number) {
   // Add the new recent to the beginning of the list, removing it if it exists already
   const recents = [
     emoji,

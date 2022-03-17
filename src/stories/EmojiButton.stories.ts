@@ -75,6 +75,6 @@ export const Custom = Template.bind({});
 Custom.storyName = 'Custom emojis';
 Custom.args = {
   custom: [
-    { emoji: 'kitty1', label: 'Cute kitty', url: 'https://placekitten.com/200/200'}
+    { emoji: 'kitty1', label: 'Cute kitty', url: 'https://placekitten.com/200/200', tags: ['cute', 'cat', 'kitty'] }
   ]
 }

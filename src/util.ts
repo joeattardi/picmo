@@ -1,5 +1,4 @@
-import { Emoji } from 'emojibase';
-import { CustomEmoji } from './types';
+import { EmojiRecord } from './types';
 
 const matcher = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -13,11 +12,11 @@ export function queryByClass<E extends HTMLElement = HTMLElement>(container: HTM
   return el;
 }
 
-export function getEmojiForEvent(event: Event, emojis: Emoji[] | CustomEmoji[]): Emoji | CustomEmoji | null {
+export function getEmojiForEvent(event: Event, emojis: EmojiRecord[]): EmojiRecord | null {
   const target = event.target as HTMLElement;
   const emojiElement = target.closest('[data-emoji]') as HTMLElement;
   if (emojiElement) {
-    const emoji = (emojis as Emoji[]).find(e => e.emoji === emojiElement.dataset.emoji);
+    const emoji = emojis.find(e => e.emoji === emojiElement.dataset.emoji);
     if (emoji) {
       return emoji;
     }

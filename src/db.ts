@@ -1,9 +1,32 @@
 import { GroupMessage, Emoji } from 'emojibase';
-import { Category } from './types';
+import { EmojiRecord, Category } from './types';
 
 import { caseInsensitiveIncludes } from './util';
 
 const DATABASE_NAME = 'EmojiButton';
+
+type SearchableEmoji = {
+  label: string;
+  tags?: string[];
+}
+
+/**
+ * Transforms an Emoji from emojibase into an EmojiRecord.
+ * 
+ * @param emoji the Emoji from the database
+ * @returns the equivalent EmojiRecord
+ */
+function getEmojiRecord(emoji: Emoji): EmojiRecord {
+  return {
+    emoji: emoji.emoji,
+    label: emoji.label,
+    tags: emoji.tags,
+    skins: emoji.skins?.map(skin => getEmojiRecord(skin)),
+    order: emoji.order,
+    custom: false,
+    hexcode: emoji.hexcode
+  };
+}
 
 export class Database {
   private db: IDBDatabase;
@@ -52,7 +75,7 @@ export class Database {
     return categories.filter(category => category.key !== 'component');
   }
 
-  async getEmojis(category: Category, emojiVersion: number): Promise<Emoji[]> {
+  async getEmojis(category: Category, emojiVersion: number): Promise<EmojiRecord[]> {
     const transaction = this.db.transaction('emoji', 'readonly');
     const emojiStore = transaction.objectStore('emoji');
     const groupsIndex = emojiStore.index('category');
@@ -66,18 +89,20 @@ export class Database {
         }
 
        return 0;
-    });
+    })
+    .map(getEmojiRecord);
   }
 
-  private queryMatches(emoji: Emoji, query: string) {
+  private queryMatches(emoji: SearchableEmoji, query: string) {
     return (
       caseInsensitiveIncludes(emoji.label, query) ||
       emoji.tags?.some(tag => caseInsensitiveIncludes(tag, query))
     );
   }
 
-  async searchEmojis(query: string, emojiVersion: number): Promise<Emoji[]> {
-    const results: Emoji[] = [];
+  // TODO handle errors
+  async searchEmojis(query: string, customEmojis: EmojiRecord[], emojiVersion: number): Promise<EmojiRecord[]> {
+    const results: EmojiRecord[] = [];
 
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction('emoji', 'readonly');
@@ -87,12 +112,18 @@ export class Database {
       request.onsuccess = (event: any) => {
         const cursor: IDBCursorWithValue = event.target?.result;
         if (!cursor) {
-          return resolve(results);
+          return resolve([
+            // matching emojis from the database
+            ...results,
+
+            // matching custom emojis
+            ...customEmojis.filter(emoji => this.queryMatches(emoji, query))
+          ]);
         }
 
         const emoji = cursor.value as Emoji;
         if (this.queryMatches(emoji, query) && emoji.version <= emojiVersion) {
-          results.push(emoji);
+          results.push(getEmojiRecord(emoji));
         }
 
         cursor.continue();
