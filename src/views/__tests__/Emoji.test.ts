@@ -9,7 +9,7 @@ describe('Emoji', () => {
   test('renders an emoji', async () => {
     const emojiData = {
       emoji: '😎',
-      name: 'smile'
+      label: 'smile'
     };
 
     const emoji = new Emoji({ emoji: emojiData });

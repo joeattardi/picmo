@@ -5,12 +5,12 @@ import { Dictionary } from './i18n';
 
 export type EmojiRecord = {
   emoji: string;
-  tags?: string[];
   label: string;
+  tags?: string[];
   url?: string;
   skins?: EmojiRecord[];
   order?: number;
-  custom: boolean;
+  custom?: boolean;
   hexcode?: string;
 }
 
