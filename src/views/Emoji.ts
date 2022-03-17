@@ -1,21 +1,23 @@
+import { Emoji as EmojiType } from 'emojibase';
 import { compileTemplate } from '../templates';
 import emojiTemplate from '../templates/emoji.ejs';
-import customEmojiTemplate from '../templates/customEmojiContent.ejs';
 import { LazyLoader } from '../LazyLoader';
 
 import { View } from './view';
 
+import { CustomEmoji } from '../types';
+
 const emojiCompiled = compileTemplate(emojiTemplate);
-const customCompiled = compileTemplate(customEmojiTemplate);
 
 import classes from './Emoji.scss';
 
 type EmojiOptions = {
-  emoji: any;
+  emoji: EmojiType | CustomEmoji;
   lazyLoader?: LazyLoader;
 };
+
 export class Emoji extends View {
-  private emoji: any;
+  private emoji: EmojiType | CustomEmoji;
   private lazyLoader?: LazyLoader;
 
   constructor({ emoji, lazyLoader }: EmojiOptions) {
@@ -26,8 +28,11 @@ export class Emoji extends View {
   }
 
   async render(): Promise<HTMLElement> {
-    const emojiContent = await this.renderer.render(this.emoji, this.lazyLoader);
-    return super.render({ emoji: this.emoji, emojiContent });
+    const emojiContent = await this.renderer.doRender(this.emoji, this.lazyLoader);
+    return super.render({ 
+      emoji: this.emoji,
+      emojiContent
+    });
 
     // TODO fix custom emojis
     // let content: Text | HTMLElement;

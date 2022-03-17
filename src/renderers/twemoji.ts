@@ -1,10 +1,12 @@
+import { Emoji } from 'emojibase';
 import twemoji from 'twemoji';
 
-import classes from './twemoji.scss';
-
+import { EmojiSelection } from '../types';
 import { Renderer } from './renderer';
 import { LazyLoader } from '../LazyLoader';
 import preloadImage from '../preload';
+
+import classes from './twemoji.scss';
 
 type TwemojiCallbackOptions = {
   base: string;
@@ -12,14 +14,19 @@ type TwemojiCallbackOptions = {
   ext: string;
 };
 
-const DEFAULT_OPTIONS: Partial<twemoji.ParseObject> = {
+type TwemojiOptions = {
+  ext: string;
+  folder: string;
+}
+
+const DEFAULT_OPTIONS: TwemojiOptions = {
   ext: '.svg',
   folder: 'svg'
 };
 
 // TODO handle invalid emoji, reject promise?
 // TODO rename emoji.emoji property, confusing?
-function getTwemojiUrl(emoji: string, options: Partial<twemoji.ParseObject>): Promise<string> {
+function getTwemojiUrl(emoji: string, options: TwemojiOptions): Promise<string> {
   return new Promise(resolve => {
     twemoji.parse(emoji, {
       ...options,
@@ -41,7 +48,7 @@ export default class TwemojiRenderer extends Renderer {
     super();
   }
 
-  render(emoji: any, lazyLoader?: LazyLoader): HTMLElement | Promise<HTMLElement> {
+  render(emoji: Emoji, lazyLoader?: LazyLoader): HTMLElement | Promise<HTMLElement> {
     const factory = async () => {
       const url = await getTwemojiUrl(emoji.emoji, this.options);
       const img = await preloadImage(url);
@@ -56,8 +63,8 @@ export default class TwemojiRenderer extends Renderer {
     return factory();
   }
 
-  async emit({ emoji, name }: any): Promise<any> {
+  async emit({ emoji, label }: Emoji): Promise<EmojiSelection> {
     const url = await getTwemojiUrl(emoji, this.options);
-    return { url, emoji, name };
+    return { url, emoji, label };
   }
 }

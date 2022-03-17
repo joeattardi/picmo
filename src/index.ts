@@ -50,7 +50,7 @@ function initData(options: Required<PickerOptions>): Promise<Database> {
  */
 export async function createEmojiPicker(options: PickerOptions): Promise<EmojiPicker> {
   const finalOptions = { ...defaultOptions, ...options } as Required<PickerOptions>
-  
+
   const events = new AppEvents();
   const emojiDataPromise = initData(finalOptions);
   const i18n = new Bundle(finalOptions.i18n);

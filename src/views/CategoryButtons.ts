@@ -1,5 +1,5 @@
 import { View } from './view';
-import { Category, CategoryKey, CustomEmoji } from '../types';
+import { Category, CategoryKey } from '../types';
 
 import template from '../templates/categoryButtons.ejs';
 

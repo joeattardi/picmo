@@ -308,7 +308,7 @@ export class EmojiPicker extends View {
       initialFocus:
         this.options.showSearch && this.options.autoFocusSearch
           ? this.search.searchField
-          : this.emojiArea.emojiCategories[0].emojiContainer.emojiElements[0]
+          : this.emojiArea.focusableEmoji
     });
   }
 
@@ -385,7 +385,7 @@ export class EmojiPicker extends View {
     if (this.search && this.options.autoFocusSearch) {
       this.search.focus();
     } else {
-      this.emojiArea.emojiCategories[0].emojiContainer.emojiElements[0].focus();
+      this.emojiArea.focusableEmoji.focus();
     }
   }
 
@@ -463,7 +463,7 @@ export class EmojiPicker extends View {
    * @param emoji the emoji that was selected.
    */
   private async emitEmoji(emoji: Emoji): Promise<void> {
-    this.externalEvents.emit('emoji:select', await this.renderer.emit(emoji));
+    this.externalEvents.emit('emoji:select', await this.renderer.doEmit(emoji));
     if (this.options.autoHide) {
       await this.close();
     }

@@ -12,7 +12,7 @@ export class RecentEmojiContainer extends EmojiContainer {
     const existing = this.el.querySelector(`[data-emoji="${emoji.emoji}"]`);
     if (existing) {
       this.el.removeChild(existing);
-      this.emojis = this.emojis.filter(e => e !== emoji);
+      this.emojis = (this.emojis as Emoji[]).filter(e => e !== emoji);
     }
     
     // Add the new emoji to the beginning of the list
@@ -20,7 +20,7 @@ export class RecentEmojiContainer extends EmojiContainer {
     this.el.insertBefore(await newView.render(), this.el.firstChild);
     this.emojis = [
       emoji,
-      ...this.emojis.filter(e => e !== emoji)
+      ...(this.emojis as Emoji[]).filter(e => e !== emoji)
     ];
 
     // Prune the list to the maximum length

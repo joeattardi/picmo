@@ -3,8 +3,15 @@ import { Locale, GroupKey, MessagesDataset, Emoji } from 'emojibase';
 import { Renderer } from './renderers/renderer';
 import { Dictionary } from './i18n';
 
+export type EmojiSelection = {
+  url?: string;
+  emoji: string;
+  label: string;
+}
+
 export type CustomEmoji = {
-  name: string;
+  emoji: string;
+  label: string;
   url: string;
 };
 

@@ -4,6 +4,7 @@ import classes from './EmojiArea.scss';
 import { CategoryButtons } from './CategoryButtons';
 import { EmojiCategory } from './EmojiCategory';
 import { RecentEmojiCategory } from './RecentEmojiCategory';
+import { CustomEmojiCategory } from './CustomEmojiCategory';
 
 import { prefersReducedMotion } from '../util';
 
@@ -12,7 +13,8 @@ import { LazyLoader } from '../LazyLoader';
 import { Category, CategoryKey, CustomEmoji } from '../types';
 
 const categoryClasses = {
-  recents: RecentEmojiCategory
+  recents: RecentEmojiCategory,
+  custom: CustomEmojiCategory
 };
 
 function getCategoryClass(category: Category) {
@@ -59,6 +61,10 @@ export class EmojiArea extends View {
     super.initialize();
   }
   
+  get focusableEmoji(): HTMLElement {
+    return this.el.querySelector<HTMLElement>('[tabindex="0"]') as HTMLElement;
+  }
+
   async render(): Promise<HTMLElement> {
     this.categories = await this.emojiData.getCategories();
     
@@ -71,7 +77,7 @@ export class EmojiArea extends View {
     }
 
     if (this.options.custom) {
-      this.categories.unshift({
+      this.categories.push({
         key: 'custom',
         message: this.i18n.get('categories.custom'),
         order: 10

@@ -39,7 +39,7 @@ export class EmojiPreview extends View {
     // }
 
     // TODO cache preview images to prevent refetching
-    return this.renderer.render(emoji);
+    return this.renderer.doRender(emoji);
   }
 
   async showPreview(emoji: Emoji) {

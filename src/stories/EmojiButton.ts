@@ -21,7 +21,8 @@ export function createPicker(options = {}) {
     );
 
     button.addEventListener('click', () => {
-      picker.on('emoji:select', ({ emoji, url }) => {
+      picker.on('emoji:select', (selection) => {
+        const { emoji, url } = selection;
         button.classList.remove('empty');
 
         if (url) {

@@ -3,7 +3,6 @@ import { View } from './view';
 import classes from './EmojiCategory.scss';
 import { Category } from '../types';
 import { LazyLoader } from '../LazyLoader';
-import { EmojiContainer } from './EmojiContainer';
 
 type BaseEmojiCategoryOptions = {
   category: Category;
@@ -16,7 +15,6 @@ export abstract class BaseEmojiCategory extends View {
   protected category: Category;
   protected showVariants: boolean;
   protected lazyLoader?: LazyLoader;
-  protected emojiContainer: EmojiContainer;
 
   protected baseUIElements = {
     categoryName: View.byClass(classes.categoryName)

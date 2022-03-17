@@ -41,6 +41,8 @@
   grid-area: emoji;
   font-size: var(--emoji-preview-size);
   font-family: var(--emoji-font);
+  width: 1em;
+  height: 1em;
 }
 
 .previewName {

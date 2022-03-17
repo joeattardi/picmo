@@ -1,22 +1,18 @@
 import template from '../templates/emojiCategory.ejs';
 
-import { BaseEmojiCategory } from './BaseEmojiCategory';
 import { EmojiContainer } from './EmojiContainer';
+import { BaseEmojiCategory } from './BaseEmojiCategory';
 import { LazyLoader } from '../LazyLoader';
-
 import { Category } from '../types';
 
-type EmojiCategoryOptions = {
+type CustomEmojiCategoryOptions = {
   category: Category;
-  showVariants: boolean;
   lazyLoader?: LazyLoader;
-};
-export class EmojiCategory extends BaseEmojiCategory {
-  constructor({ category, showVariants, lazyLoader }: EmojiCategoryOptions) {
-    super({ category, showVariants, lazyLoader, template });
+}
 
-    this.showVariants = showVariants;
-    this.lazyLoader = lazyLoader;
+export class CustomEmojiCategory extends BaseEmojiCategory {
+  constructor({ category, lazyLoader }: CustomEmojiCategoryOptions) {
+    super({ template, showVariants: false, lazyLoader, category})
   }
 
   initialize() {
@@ -25,7 +21,7 @@ export class EmojiCategory extends BaseEmojiCategory {
   }
 
   async render(): Promise<HTMLElement> {
-    const emojis = await this.emojiData.getEmojis(this.category, this.options.emojiVersion);
+    const emojis = this.options.custom;
 
     const emojiContainer = this.viewFactory.create(EmojiContainer, {
       emojis,

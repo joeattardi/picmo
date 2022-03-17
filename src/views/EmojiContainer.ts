@@ -5,15 +5,16 @@ import template from '../templates/emojiContainer.ejs';
 import { LazyLoader } from '../LazyLoader';
 import { getEmojiForEvent } from '../util';
 import { View } from './view';
+import { CustomEmoji } from '../types';
 
 type EmojiContainerOptions = {
-  emojis: Emoji[];
+  emojis: Emoji[] | CustomEmoji[];
   showVariants: boolean;
   preview: boolean;
   lazyLoader?: LazyLoader;
 };
 export class EmojiContainer extends View {
-  protected emojis: Emoji[];
+  protected emojis: Emoji[] | CustomEmoji[];
   protected showVariants: boolean;
   protected preview: boolean;
   protected lazyLoader?: LazyLoader;
