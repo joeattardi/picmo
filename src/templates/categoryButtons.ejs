@@ -1,6 +1,7 @@
 <div class="<%= classes.categoryButtons %>">
   <% categories.forEach(category => { %>
     <button 
+      aria-selected="false"
       class="fa-fw <%= classes.categoryButton %>"
       tabindex="-1"
       title="<%= i18n.get(`categories.${category.key}`, category.message || category.key) %>"

@@ -73,6 +73,11 @@ Twemoji.args = {
 
 export const Custom = Template.bind({});
 Custom.storyName = 'Custom emojis';
+Custom.argTypes = {
+  custom: {
+    table: { disable: true }
+  }
+}
 Custom.args = {
   custom: [
     { emoji: 'kitty1', label: 'Cute kitty', url: 'https://placekitten.com/200/200', tags: ['cute', 'cat', 'kitty'] },

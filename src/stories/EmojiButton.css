@@ -1,3 +1,7 @@
+.custom-theme {
+  --background-color: red;
+}
+
 .emoji-button {
   font-size: 2.5rem;
   background: transparent;

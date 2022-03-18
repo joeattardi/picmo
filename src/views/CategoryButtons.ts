@@ -71,10 +71,12 @@ export class CategoryButtons extends View {
     let activeButtonEl = this.buttons[this.activeButton];
     activeButtonEl.classList.remove(classes.categoryButtonActive);
     activeButtonEl.tabIndex = -1;
+    activeButtonEl.ariaSelected = 'false';
 
     this.activeButton = activeButton;
 
     activeButtonEl = this.buttons[this.activeButton];
+    activeButtonEl.ariaSelected = 'true';
     activeButtonEl.classList.add(classes.categoryButtonActive);
     activeButtonEl.tabIndex = 0;
 
