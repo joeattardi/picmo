@@ -141,15 +141,26 @@ export class EmojiArea extends View {
     }
   }
 
-  private async scrollTo(targetPosition, animate = true) {
+  /**
+   * Scrolls the emoji area to a target position, optionally animating it.
+   * 
+   * @param targetPosition The final target position.
+   * @param animate Whether or not the scroll should be animated.
+   * @returns a Promise that is resolved when the scroll is complete.
+   */
+  private async scrollTo(targetPosition, animate = true): Promise<void> {
+    // If a scroll animation is already in progress, cancel it and jump to the end
+    // before starting this one.
     this.cancelScroll?.();
 
     let isCancelled = false;
     this.cancelScroll = () => isCancelled = true;
 
+    const { emojis } = this.ui;
+
     return new Promise<void>(resolve => {
       if (animate && !prefersReducedMotion()) {
-        const difference = targetPosition - this.ui.emojis.scrollTop;
+        const difference = targetPosition - emojis.scrollTop;
         const step = difference / 7;
 
         let previous;
@@ -158,28 +169,38 @@ export class EmojiArea extends View {
             previous = time;
           }
 
+          // If the scroll operation was cancelled, immediately jump to the target position.
           if (isCancelled) {
-            this.ui.emojis.scrollTop = targetPosition;
+            emojis.scrollTop = targetPosition;
           }
 
+          // If we are scrolling down, check to see if there is still scrollable area below the current position.
+          // If we have hit the end, we can't scroll any further and should bail out to prevent an infinite loop.
+          const canScroll = emojis.scrollHeight - emojis.scrollTop > emojis.offsetHeight || difference < 0;
+          
+          // Aim for 60fps.
           if (time - previous >= (1000/60)) {
-            if (targetPosition !== this.ui.emojis.scrollTop) {
-              const currentDifference = targetPosition - this.ui.emojis.scrollTop;
+            if (targetPosition !== emojis.scrollTop && canScroll) {
+              // If we haven't reached the target position yet - and we can still scroll - continue the scroll animation.
+              const currentDifference = targetPosition - emojis.scrollTop;
               const nextStep = Math.abs(currentDifference) > Math.abs(step) && Math.sign(currentDifference) === Math.sign(step) ? step : currentDifference;
-              this.ui.emojis.scrollTop += nextStep;
+              emojis.scrollTop += nextStep;
               previous = time;
               requestAnimationFrame(scrollStep);
             } else {
+              // Otherwse we either have reached the target position or can't scroll down any further.
               resolve();
             }
           } else {
+            // Not enough time has passed yet, request a new frame.
             requestAnimationFrame(scrollStep);
           }
         };
     
+        // Start the scroll animation.
         requestAnimationFrame(scrollStep);
       } else {
-        this.ui.emojis.scrollTop = targetPosition;
+        emojis.scrollTop = targetPosition;
         resolve();
       }
     });
