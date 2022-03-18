@@ -131,6 +131,7 @@ export class EmojiArea extends View {
   }
 
   async reset(): Promise<void> {
+    this.events.emit('preview:hide');
     this.headerOffsets = Array.prototype.map.call(this.headers, header => header.parentElement.offsetTop) as number[];
 
     this.selectCategory('smileys-emotion', false, false);
