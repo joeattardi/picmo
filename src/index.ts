@@ -1,4 +1,5 @@
 import { LATEST_EMOJI_VERSION } from 'emojibase';
+import { nanoid } from 'nanoid';
 
 import en from './i18n/lang-en';
 import { lightTheme } from './themes';
@@ -73,7 +74,8 @@ export async function createEmojiPicker(options: PickerOptions): Promise<EmojiPi
     customEmojis,
     renderer: finalOptions.renderer,
     options: finalOptions,
-    emojiData: emojiDataPromise
+    emojiData: emojiDataPromise,
+    pickerId: `EmojiPicker-${nanoid()}`
   });
 
   const picker = viewFactory.create(EmojiPicker);

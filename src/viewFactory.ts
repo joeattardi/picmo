@@ -13,6 +13,7 @@ type DependencyMapping = {
   emojiData: Promise<Database>;
   options: Required<PickerOptions>;
   customEmojis: EmojiRecord[];
+  pickerId: string;
 };
 
 type ViewConstructor<T extends View> = new (...args: any[]) => T;
@@ -25,19 +26,22 @@ export class ViewFactory {
   private emojiData: Promise<Database>;
   private options: Required<PickerOptions>;
   private customEmojis: EmojiRecord[];
+  private pickerId: string;
 
-  constructor({ events, i18n, renderer, emojiData, options, customEmojis = [] }: DependencyMapping) {
+  constructor({ events, i18n, renderer, emojiData, options, customEmojis = [], pickerId }: DependencyMapping) {
     this.events = events;
     this.i18n = i18n;
     this.renderer = renderer;
     this.emojiData = emojiData;
     this.options = options;
     this.customEmojis = customEmojis;
+    this.pickerId = pickerId;
   }
 
   create<T extends View>(constructor: ViewConstructor<T>, ...args: ViewConstructorParameters<T>): T {
     const view = new constructor(...args);
     
+    view.setPickerId(this.pickerId);
     view.setEvents(this.events);
     view.setI18n(this.i18n);
     view.setRenderer(this.renderer);

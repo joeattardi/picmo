@@ -48,6 +48,7 @@ export abstract class View {
   protected events: Events<AppEvent>;
   protected i18n: Bundle;
   protected renderer: Renderer;
+  protected pickerId: string;
 
   viewFactory: ViewFactory;
 
@@ -69,6 +70,10 @@ export abstract class View {
 
   setEvents(events: Events<AppEvent>) {
     this.events = events;
+  }
+
+  setPickerId(pickerId: string) {
+    this.pickerId = pickerId;
   }
 
   emit(event: AppEventKey, ...args: EventArgs) {
@@ -100,6 +105,7 @@ export abstract class View {
     this.el = await templateFn({
       classes: this.classes,
       i18n: this.i18n,
+      pickerId: this.pickerId,
       ...templateData
     });
 

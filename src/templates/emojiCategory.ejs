@@ -1,4 +1,4 @@
-<div class="<%= classes.emojiCategory %>">
+<div class="<%= classes.emojiCategory %>" role="tabpanel" aria-labelledby="<%= pickerId %>-category-<%= category.key %>">
   <h3 data-category="<%= category %>" class="<%= classes.categoryName %>">
     <%= i18n.get(`categories.${category.key}`, category.message || category.key) %>
   </h3>
