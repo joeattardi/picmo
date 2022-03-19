@@ -11,6 +11,7 @@ import { prefersReducedMotion } from '../util';
 import template from '../templates/emojiArea.ejs';
 import { LazyLoader } from '../LazyLoader';
 import { Category, CategoryKey, CustomEmoji } from '../types';
+import { Bundle } from '../i18n';
 
 const categoryClasses = {
   recents: RecentEmojiCategory,
@@ -21,38 +22,52 @@ function getCategoryClass(category: Category) {
   return categoryClasses[category.key] || EmojiCategory;
 }
 
+// TODO: put these two extra categories in the database and just grab them that way?
+function createCategory(key: CategoryKey, i18n: Bundle, order: number): Category {
+  return {
+    key,
+    order,
+    message: i18n.get(`categories.${key}`)
+  };
+}
+
+type CategoryLink = {
+  category: Category;
+  offset: number;
+}
+
+type CategoryLinks = {
+  previous: CategoryLink | null;
+  current: CategoryLink;
+  next: CategoryLink | null;
+  last: CategoryLink;
+}
+
 /**
  * The EmojiArea is the main view of the picker, it contains all the categories and their emojis.
  */
 export class EmojiArea extends View {
-  private headerOffsets: number[];
   private currentCategory = 0;
-  private headers: HTMLElement[] = [];
   private categoryButtons: CategoryButtons;
   private categories: Category[];
   private custom: CustomEmoji[];
 
+  private listenForScroll = true;
   private lazyLoader = new LazyLoader();
 
   emojiCategories: EmojiCategory[];
 
-  private focusedIndex = 0;
-
   private cancelScroll: () => void;
-  
+
   constructor() {
     super({ template, classes });
-    this.highlightCategory = this.highlightCategory.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   initialize() {
-    this.appEvents = {
-      'category:select': this.selectCategory
-    };
-
-    this.uiElements = {
-      emojis: View.byClass(classes.emojis)
-    };
+    this.appEvents = { 'category:select': this.selectCategory };
+    this.uiElements = { emojis: View.byClass(classes.emojis) };
+    this.uiEvents = [ View.childEvent('emojis', 'scroll', this.handleScroll) ]
 
     super.initialize();
   }
@@ -65,19 +80,11 @@ export class EmojiArea extends View {
     this.categories = await this.emojiData.getCategories();
     
     if (this.options.showRecents) {
-      this.categories.unshift({
-        key: 'recents',
-        message: this.i18n.get('categories.recents'),
-        order: -1
-      });
+      this.categories.unshift(createCategory('recents', this.i18n, -1));
     }
 
     if (this.options.custom) {
-      this.categories.push({
-        key: 'custom',
-        message: this.i18n.get('categories.custom'),
-        order: 10
-      });
+      this.categories.push(createCategory('custom', this.i18n, 10));
     }
 
     if (this.options.showCategoryButtons) {
@@ -88,11 +95,8 @@ export class EmojiArea extends View {
       });
     }
 
-    // TODO get custom working again
-
     this.emojiCategories = this.categories.map(this.createCategory, this);
 
-    // const emojiContainers = await Promise.all(this.emojiCategories.map(emojiCategory => emojiCategory.render()));
     const categoryEmojiElements = {};
     this.categories.forEach((category, index) => {
       categoryEmojiElements[`emojis-${category.key}`] = this.emojiCategories[index];
@@ -104,16 +108,6 @@ export class EmojiArea extends View {
       i18n: this.i18n,
       ...categoryEmojiElements
     });
-
-    this.headers = this.emojiCategories.map(category => category.ui.categoryName);
-
-    // TODO address these when fixing scroll selection and keyboard navigation
-    this.ui.emojis.addEventListener('scroll', this.highlightCategory);
-
-    // const [firstEmoji] = this.emojiCategories[0].emojiContainer.emojiElements;
-    // if (firstEmoji) {
-    //   firstEmoji.tabIndex = 0;
-    // }
 
     this.lazyLoader.observe(this.ui.emojis);
 
@@ -132,7 +126,6 @@ export class EmojiArea extends View {
 
   async reset(): Promise<void> {
     this.events.emit('preview:hide');
-    this.headerOffsets = Array.prototype.map.call(this.headers, header => header.parentElement.offsetTop) as number[];
 
     this.selectCategory('smileys-emotion', false, false);
     this.currentCategory = this.categories.findIndex(category => category.key === 'smileys-emotion');
@@ -150,6 +143,9 @@ export class EmojiArea extends View {
    * @returns a Promise that is resolved when the scroll is complete.
    */
   private async scrollTo(targetPosition, animate = true): Promise<void> {
+    // We don't want to trigger the auto selection, so pause scroll listening here.
+    this.listenForScroll = false;
+
     // If a scroll animation is already in progress, cancel it and jump to the end
     // before starting this one.
     this.cancelScroll?.();
@@ -207,43 +203,82 @@ export class EmojiArea extends View {
     });
   }
 
-  async selectCategory(category: CategoryKey, focus = true, animate = true): Promise<void> {
-    this.ui.emojis.removeEventListener('scroll', this.highlightCategory);
+  /**
+   * Creates a CategoryLink for the category at the given offset from the current index.
+   * @param offset The offset from the current index.
+   * @returns a CategoryLink for the desired category, or null if the given offset does not to a valid category
+   */
+  private getCategoryLink(offset = 0): CategoryLink | null {
+    const index = this.currentCategory + offset;
+    if (index < 0 || index > this.categories.length - 1) {
+      return null;
+    }
 
+    return {
+      category: this.categories[index],
+      offset: this.emojiCategories[index].el.offsetTop
+    }
+  }
+
+  /**
+   * Calculates the set of category links from the current category
+   * @returns the CategoryLinks for the current category
+   */
+  private getCategoryLinks(): CategoryLinks {
+    return {
+      previous: this.getCategoryLink(-1),
+      current: this.getCategoryLink(0) as CategoryLink,
+      next: this.getCategoryLink(1),
+      last: this.getCategoryLink(this.categories.length - 1 - this.currentCategory) as CategoryLink
+    };
+  }
+
+  async selectCategory(category: CategoryKey, focus = true, animate = true): Promise<void> {
     const categoryIndex = this.categories.findIndex(c => c.key === category);
     this.currentCategory = categoryIndex;
     if (this.options.showCategoryButtons) {
       this.categoryButtons.setActiveButton(this.currentCategory, focus, animate);
     }
 
-    await this.scrollTo(this.headerOffsets[categoryIndex], animate);
-    this.ui.emojis.addEventListener('scroll', this.highlightCategory)
+    const targetPosition = this.emojiCategories[categoryIndex].el.offsetTop;
+    await this.scrollTo(targetPosition, animate);
+
+    // Scroll is complete, so we can resume listening for scroll events.
+    this.listenForScroll = true;
   }
 
-  highlightCategory(): void {
-    if (document.activeElement && document.activeElement.classList.contains('emoji-picker__emoji')) {
+  /**
+   * Changes the highlighted category to the one pointed to by the given link.
+   * @param link the target link to be highlighted
+   */
+  highlightCategory(link: CategoryLink | null): void {
+    if (link) {
+      const { category } = link;
+      this.currentCategory = this.categories.indexOf(category);
+      if (this.options.showCategoryButtons) {
+        this.categoryButtons.setActiveButton(this.currentCategory, false, true);
+      }
+    }
+  }
+
+  /**
+   * On scroll, checks the new scroll position and highlights a new category if necessary.
+   */
+  handleScroll(): void {
+    if (!this.listenForScroll) {
       return;
     }
 
-    let closestHeaderIndex = this.headerOffsets.findIndex(offset => offset >= Math.round(this.ui.emojis.scrollTop));
+    const currentPosition = this.ui.emojis.scrollTop;
+    const maxScroll = this.ui.emojis.scrollHeight - this.ui.emojis.offsetHeight;    
+    const { previous, current, next, last } = this.getCategoryLinks();
 
-    if (this.ui.emojis.scrollTop + this.ui.emojis.offsetHeight === this.ui.emojis.scrollHeight) {
-      closestHeaderIndex = -1;
-    }
-
-    if (closestHeaderIndex === 0) {
-      closestHeaderIndex = 1;
-    } else if (closestHeaderIndex < 0) {
-      closestHeaderIndex = this.headerOffsets.length;
-    }
-
-    if (this.headerOffsets[closestHeaderIndex] === this.ui.emojis.scrollTop) {
-      closestHeaderIndex++;
-    }
-
-    this.currentCategory = closestHeaderIndex - 1;
-    if (this.options.showCategoryButtons) {
-      this.categoryButtons.setActiveButton(this.currentCategory);
+    if (currentPosition < current.offset) {
+      this.highlightCategory(previous);
+    } else if (next && currentPosition >= next.offset) {
+      this.highlightCategory(next);
+    } else if (currentPosition === maxScroll) {
+      this.highlightCategory(last);
     }
   }
 }
