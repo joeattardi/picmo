@@ -10,12 +10,15 @@ const defaults = {
   i18n: new Bundle()
 };
 
-export async function renderView(view: View): Promise<void> {
+export async function renderView(view: View, options = {}): Promise<void> {
   const {
     events,
     renderer,
     i18n
-  } = defaults;
+  } = {
+    ...defaults,
+    ...options
+  };
 
   view.setEvents(events);
   view.setRenderer(renderer);

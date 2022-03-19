@@ -5,6 +5,8 @@ import { Category } from '../../types';
 import { CategoryButtons } from '../CategoryButtons';
 
 import { renderView } from '../../test-helpers/renderView';
+import { Events } from '../../events';
+import { AppEvent } from '../../AppEvents';
 
 describe('CategoryButtons', () => {
   const categories: Category[] = [
@@ -28,6 +30,18 @@ describe('CategoryButtons', () => {
 
     expect(buttons[2]).toHaveAccessibleName('Animals & Nature');
     expect(buttons[2]).toHaveAttribute('data-category', 'animals-nature');
+  });
+
+  test('emits the category:select event when clicked', async () => {
+    const events = new Events<AppEvent>();
+    jest.spyOn(events, 'emit');
+
+    const view = new CategoryButtons({ categories });
+    await renderView(view, { events });
+
+    const buttons = screen.getAllByRole('button');
+    userEvent.click(buttons[0]);
+    expect(events.emit).toHaveBeenCalledWith('category:select', 'smileys-emotion');
   });
 
   test('marks a button as active', async () => {
