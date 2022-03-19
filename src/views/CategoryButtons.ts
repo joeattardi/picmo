@@ -44,8 +44,23 @@ export class CategoryButtons extends View {
     this.uiEvents = [
       View.uiEvent('click', this.handleClickCategory)
     ];
+    
+    this.keyBindings = {
+      ArrowRight: this.selectNextCategory,
+      ArrowLeft: this.selectPreviousCategory
+    };
 
     super.initialize();
+  }
+
+  selectNextCategory() {
+    const nextIndex = this.activeButton === this.buttons.length - 1 ? 0 : this.activeButton + 1;
+    this.events.emit('category:select', this.buttons[nextIndex].dataset.category);
+  }
+
+  selectPreviousCategory() {
+    const previousIndex = this.activeButton === 0 ? this.buttons.length - 1 : this.activeButton - 1;
+    this.events.emit('category:select', this.buttons[previousIndex].dataset.category);
   }
 
   handleClickCategory(event: MouseEvent) {

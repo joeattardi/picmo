@@ -16,6 +16,8 @@ type UIEventListenerBinding = {
   options?: AddEventListenerOptions;
 };
 
+type KeyBindings = Record<string, (KeyboardEvent?) => void>;
+
 type AppEvents = {
   [key in AppEvent]?: EventCallback | AsyncEventCallback;
 };
@@ -37,6 +39,7 @@ export abstract class View {
 
   protected appEvents: AppEvents = {};
   protected uiEvents: UIEventListenerBinding[] = [];
+  protected keyBindings: KeyBindings;
   protected uiElements: UIElementSelectors = {};
   protected emojiData: Database;
   protected options: Required<PickerOptions>;
@@ -101,6 +104,7 @@ export abstract class View {
     });
 
     this.bindUIElements();
+    this.bindKeyBindings();
     this.bindListeners();
 
     return this.el;
@@ -110,6 +114,17 @@ export abstract class View {
     Object.keys(this.appEvents).forEach(event => {
       this.events.on(event as AppEventKey, this.appEvents[event].bind(this));
     });
+  }
+
+  private bindKeyBindings() {
+    if (this.keyBindings) {
+      this.el.addEventListener('keydown', (event: KeyboardEvent) => {
+        const handler = this.keyBindings[event.key];
+        if (handler) {
+          handler.call(this, event);
+        }
+      });
+    }
   }
 
   private bindUIElements() {
