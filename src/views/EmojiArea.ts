@@ -234,6 +234,8 @@ export class EmojiArea extends View {
   }
 
   async selectCategory(category: CategoryKey, focus = true, animate = true): Promise<void> {
+    this.emojiCategories[this.currentCategory].setActive(false);
+
     const categoryIndex = this.categories.findIndex(c => c.key === category);
     this.currentCategory = categoryIndex;
     if (this.options.showCategoryButtons) {
@@ -245,6 +247,11 @@ export class EmojiArea extends View {
 
     // Scroll is complete, so we can resume listening for scroll events.
     this.listenForScroll = true;
+
+    this.emojiCategories[this.currentCategory].setActive(true, focus);
+    // if (focus) {
+    //   this.emojiCategories[categoryIndex].activateFocus();
+    // }
   }
 
   /**

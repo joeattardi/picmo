@@ -5,6 +5,7 @@ import { LazyLoader } from '../LazyLoader';
 import { getEmojiForEvent } from '../util';
 import { View } from './view';
 import { EmojiRecord } from '../types';
+import { FocusGrid, FocusChangeEvent } from '../focusGrid';
 
 type EmojiContainerOptions = {
   emojis: EmojiRecord[];
@@ -24,6 +25,8 @@ export class EmojiContainer extends View {
   emojiViews: Emoji[];
   emojiElements: HTMLElement[];
 
+  private grid: FocusGrid;
+
   constructor({ emojis, showVariants, preview = true, lazyLoader }: EmojiContainerOptions) {
     super({ template, classes });
 
@@ -31,10 +34,19 @@ export class EmojiContainer extends View {
     this.lazyLoader = lazyLoader;
     this.preview = preview;
     this.emojis = emojis;
+
+    this.setFocus = this.setFocus.bind(this);
   }
 
   initialize() {
-    this.uiEvents = [View.uiEvent('click', this.selectEmoji)];
+    this.grid = new FocusGrid(this.options.emojisPerRow, this.emojiCount);
+    this.grid.on('focus:change', this.setFocus);
+
+    this.uiEvents = [
+      View.uiEvent('click', this.selectEmoji),
+      View.uiEvent('keydown', this.grid.handleKeyDown)
+    ];
+
     if (this.preview) {
       this.uiEvents.push(
         View.uiEvent('mouseover', this.showPreview),
@@ -45,6 +57,15 @@ export class EmojiContainer extends View {
     }
 
     super.initialize();
+  }
+
+  setActive(active: boolean, focus: boolean) {
+    const focusedIndex = this.grid.getIndex();
+    if (active) {
+      this.emojiViews[focusedIndex].activateFocus(focus);
+    } else {
+      this.emojiViews[focusedIndex].deactivateFocus();
+    }
   }
 
   async render(): Promise<HTMLElement> {
@@ -67,6 +88,11 @@ export class EmojiContainer extends View {
   destroy() {
     super.destroy();
     this.emojiViews.forEach(view => view.destroy());
+  }
+
+  private setFocus({ from, to }: FocusChangeEvent) {
+    this.emojiViews[from].deactivateFocus();
+    this.emojiViews[to].activateFocus(true);
   }
 
   private selectEmoji(event: Event) {

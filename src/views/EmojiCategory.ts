@@ -27,7 +27,7 @@ export class EmojiCategory extends BaseEmojiCategory {
   async render(): Promise<HTMLElement> {
     const emojis = await this.emojiData.getEmojis(this.category, this.options.emojiVersion);
 
-    const emojiContainer = this.viewFactory.create(EmojiContainer, {
+    this.emojiContainer = this.viewFactory.create(EmojiContainer, {
       emojis,
       showVariants: this.showVariants,
       lazyLoader: this.lazyLoader
@@ -35,7 +35,7 @@ export class EmojiCategory extends BaseEmojiCategory {
 
     return super.render({
       category: this.category,
-      emojis: emojiContainer,
+      emojis: this.emojiContainer,
       emojiCount: emojis.length
     });
   }

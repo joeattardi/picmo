@@ -19,7 +19,7 @@ describe('CategoryButtons', () => {
     const view = new CategoryButtons({ categories });
     await renderView(view);
 
-    const buttons = screen.getAllByRole('button');
+    const buttons = screen.getAllByRole('tab');
     expect(buttons).toHaveLength(3);
 
     expect(buttons[0]).toHaveAccessibleName('Smileys & Emotion');
@@ -39,7 +39,7 @@ describe('CategoryButtons', () => {
     const view = new CategoryButtons({ categories });
     await renderView(view, { events });
 
-    const buttons = screen.getAllByRole('button');
+    const buttons = screen.getAllByRole('tab');
     userEvent.click(buttons[0]);
     expect(events.emit).toHaveBeenCalledWith('category:select', 'smileys-emotion');
   });
@@ -48,7 +48,7 @@ describe('CategoryButtons', () => {
     const view = new CategoryButtons({ categories });
     await renderView(view);
 
-    const buttons = screen.getAllByRole('button');
+    const buttons = screen.getAllByRole('tab');
     view.setActiveButton(0);
     expect(buttons[0].ariaSelected).toBe('true');
 

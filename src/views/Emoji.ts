@@ -26,6 +26,17 @@ export class Emoji extends View {
     this.lazyLoader = lazyLoader;
   }
 
+  activateFocus(performFocus: boolean) {
+    this.el.tabIndex = 0;
+    if (performFocus) {
+      this.el.focus();
+    }
+  }
+
+  deactivateFocus() {
+    this.el.tabIndex = -1;
+  }
+
   async render(): Promise<HTMLElement> {
     return super.render({
       emoji: this.emoji,
