@@ -301,6 +301,7 @@ export class EmojiPicker extends View {
   private createFocusTrap() {
     this.focusTrap = createFocusTrap(this.el, {
       clickOutsideDeactivates: true,
+      escapeDeactivates: false,
       initialFocus:
         this.options.showSearch && this.options.autoFocusSearch
           ? this.search.searchField

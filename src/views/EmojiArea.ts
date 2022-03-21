@@ -10,7 +10,7 @@ import { prefersReducedMotion } from '../util';
 
 import template from '../templates/emojiArea.ejs';
 import { LazyLoader } from '../LazyLoader';
-import { Category, CategoryKey, CustomEmoji } from '../types';
+import { Category, CategoryKey, CustomEmoji, EmojiFocusTarget } from '../types';
 import { Bundle } from '../i18n';
 
 const categoryClasses = {
@@ -43,6 +43,25 @@ type CategoryLinks = {
   last: CategoryLink;
 }
 
+type CategoryFocusTarget = 'button' | EmojiFocusTarget;
+type SelectCategoryOptions = {
+  focus?: CategoryFocusTarget;
+  scroll?: 'animate' | 'jump';
+  animate?: boolean;
+  performFocus?: boolean;
+};
+
+function getFocusTarget(focus: CategoryFocusTarget | undefined): EmojiFocusTarget | undefined {
+  if (!focus || focus === 'button') {
+    return {
+      row: 'first',
+      offset: 0
+    };
+  }
+
+  return focus;
+}
+
 /**
  * The EmojiArea is the main view of the picker, it contains all the categories and their emojis.
  */
@@ -61,11 +80,14 @@ export class EmojiArea extends View {
 
   constructor() {
     super({ template, classes });
-    this.handleScroll = this.handleScroll.bind(this);
   }
 
   initialize() {
-    this.appEvents = { 'category:select': this.selectCategory };
+    this.appEvents = { 
+      'category:select': (category: CategoryKey) => this.selectCategory(category, { scroll: 'animate', focus: 'button', performFocus: true }),
+      'category:previous': this.focusPreviousCategory,
+      'category:next': this.focusNextCategory
+    };
     this.uiElements = { emojis: View.byClass(classes.emojis) };
     this.uiEvents = [ View.childEvent('emojis', 'scroll', this.handleScroll) ]
 
@@ -124,15 +146,13 @@ export class EmojiArea extends View {
     });
   }
 
-  async reset(): Promise<void> {
+  reset(): void {
     this.events.emit('preview:hide');
 
-    this.selectCategory('smileys-emotion', false, false);
-    this.currentCategory = this.categories.findIndex(category => category.key === 'smileys-emotion');
+    this.selectCategory('smileys-emotion', { focus: 'button', performFocus: true, scroll: 'jump' });
+    this.currentCategory = this.getCategoryIndexByKey('smileys-emotion');
 
-    if (this.options.showCategoryButtons) {
-      this.categoryButtons.setActiveButton(this.currentCategory, false, false);
-    }
+    this.setActiveButton();
   }
 
   /**
@@ -233,39 +253,69 @@ export class EmojiArea extends View {
     };
   }
 
-  async selectCategory(category: CategoryKey, focus = true, animate = true): Promise<void> {
+  private getCategoryIndexByKey(key: string): number {
+    return this.categories.findIndex(category => category.key === key);
+  }
+
+  private focusPreviousCategory(column: number) {
+    if (this.currentCategory > 0) {
+      this.selectCategory(
+        this.currentCategory - 1, 
+        {
+          focus: { row: 'last', offset: column ?? this.options.emojisPerRow },
+          performFocus: true 
+        }
+      );
+    }
+  }
+
+  private focusNextCategory(column: number) {
+    if (this.currentCategory < this.categories.length - 1) {
+      this.selectCategory(
+        this.currentCategory + 1, 
+        { 
+          focus: { row: 'first', offset: column ?? 0 },
+          performFocus: true
+        }
+      );
+    }
+  }
+
+  private async selectCategory(category: CategoryKey | number, options: SelectCategoryOptions = {}): Promise<void> {
+    const { focus, performFocus, scroll, animate } = {
+      performFocus: false,
+      animate: false,
+      ...options
+    };
+
     this.emojiCategories[this.currentCategory].setActive(false);
 
-    const categoryIndex = this.categories.findIndex(c => c.key === category);
-    this.currentCategory = categoryIndex;
-    if (this.options.showCategoryButtons) {
-      this.categoryButtons.setActiveButton(this.currentCategory, focus, animate);
-    }
+    const categoryIndex = this.currentCategory = typeof category === 'number' ? category : this.getCategoryIndexByKey(category);
+    this.setActiveButton(focus === 'button' && performFocus, animate);
 
     const targetPosition = this.emojiCategories[categoryIndex].el.offsetTop;
-    await this.scrollTo(targetPosition, animate);
-
-    // Scroll is complete, so we can resume listening for scroll events.
-    this.listenForScroll = true;
-
-    this.emojiCategories[this.currentCategory].setActive(true, focus);
-    // if (focus) {
-    //   this.emojiCategories[categoryIndex].activateFocus();
-    // }
+    if (scroll) {
+      await this.scrollTo(targetPosition, scroll === 'animate');
+      this.listenForScroll = true;
+    }
+    
+    this.emojiCategories[categoryIndex].setActive(true, getFocusTarget(focus), focus !== 'button' && performFocus);
   }
 
   /**
    * Changes the highlighted category to the one pointed to by the given link.
    * @param link the target link to be highlighted
    */
-  highlightCategory(link: CategoryLink | null): void {
+  highlightCategoryByLink(link: CategoryLink | null): void {
     if (link) {
       const { category } = link;
       this.currentCategory = this.categories.indexOf(category);
-      if (this.options.showCategoryButtons) {
-        this.categoryButtons.setActiveButton(this.currentCategory, false, true);
-      }
+      this.setActiveButton(false, true);
     }
+  }
+
+  setActiveButton(focus = false, animate = false) {
+    this.categoryButtons?.setActiveButton(this.currentCategory, focus, animate);
   }
 
   /**
@@ -281,11 +331,11 @@ export class EmojiArea extends View {
     const { previous, current, next, last } = this.getCategoryLinks();
 
     if (currentPosition < current.offset) {
-      this.highlightCategory(previous);
+      this.highlightCategoryByLink(previous);
     } else if (next && currentPosition >= next.offset) {
-      this.highlightCategory(next);
-    } else if (currentPosition === maxScroll) {
-      this.highlightCategory(last);
+      this.highlightCategoryByLink(next);
+    } else if (Math.floor(currentPosition) === Math.floor(maxScroll)) {
+      this.highlightCategoryByLink(last);
     }
   }
 }

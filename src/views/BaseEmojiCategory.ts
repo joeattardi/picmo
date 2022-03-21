@@ -2,7 +2,7 @@ import { View } from './view';
 
 import classes from './EmojiCategory.scss';
 import { EmojiContainer } from './EmojiContainer';
-import { Category } from '../types';
+import { Category, EmojiFocusTarget } from '../types';
 import { LazyLoader } from '../LazyLoader';
 
 type BaseEmojiCategoryOptions = {
@@ -22,8 +22,8 @@ export abstract class BaseEmojiCategory extends View {
     categoryName: View.byClass(classes.categoryName)
   }
 
-  setActive(active: boolean, focus = false) {
-    this.emojiContainer.setActive(active, focus);
+  setActive(active: boolean, focusTarget?: EmojiFocusTarget, performFocus?: boolean) {
+    this.emojiContainer.setActive(active, focusTarget, performFocus);
   }
 
   constructor({ template, category, showVariants, lazyLoader }: BaseEmojiCategoryOptions) {

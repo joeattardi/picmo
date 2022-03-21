@@ -3,6 +3,11 @@ import { Locale, GroupKey, MessagesDataset, Emoji } from 'emojibase';
 import { Renderer } from './renderers/renderer';
 import { Dictionary } from './i18n';
 
+export type EmojiFocusTarget = {
+  row: 'first' | 'last' | number;
+  offset: number;
+};
+
 export type EmojiRecord = {
   emoji: string;
   label: string;

@@ -111,7 +111,7 @@ export abstract class View {
 
     this.bindUIElements();
     this.bindKeyBindings();
-    this.bindListeners();
+    this.bindUIEvents();
 
     return this.el;
   }
@@ -140,7 +140,7 @@ export abstract class View {
     }), {});
   }
 
-  private bindListeners() {
+  private bindUIEvents() {
     this.uiEvents.forEach((binding: UIEventListenerBinding) => {
       binding.handler = binding.handler.bind(this);
 

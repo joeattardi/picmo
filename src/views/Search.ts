@@ -66,7 +66,7 @@ export class Search extends View {
 
     this.searchField = this.ui.searchField as HTMLInputElement;
     this.searchField.addEventListener('keydown', (event: KeyboardEvent) => this.onKeyDown(event));
-    this.searchField.addEventListener('keyup', event => this.onKeyUp(event));
+    this.searchField.addEventListener('input', event => this.onSearchInput(event));
 
     this.showSearchIcon();
 
@@ -97,17 +97,14 @@ export class Search extends View {
   onClearSearch(event: Event): void {
     event.stopPropagation();
 
-    if (this.searchField.value) {
-      this.searchField.value = '';
-      this.resultsContainer = null;
+    this.searchField.value = '';
+    this.resultsContainer?.destroy();
+    this.resultsContainer = null;
 
-      this.showSearchIcon();
+    this.showSearchIcon();
 
-      this.events.emit('content:show');
-
-      // TODO: Find out why button steals focus on Escape key
-      setTimeout(() => this.searchField.focus());
-    }
+    this.events.emit('content:show');
+    this.searchField.focus();
   }
 
   setFocusedEmoji(index: number): void {
@@ -137,15 +134,12 @@ export class Search extends View {
     }
   }
 
-  async onKeyUp(event: KeyboardEvent): Promise<void> {
-    if (event.key === 'Tab' || event.key === 'Shift') {
-      return;
-    } else if (!this.searchField.value) {
-      this.showSearchIcon();
-      this.events.emit('content:show');
-    } else {
+  async onSearchInput(event: Event): Promise<void> {
+    if (this.searchField.value) {
       this.showClearSearchButton();
       await this.search(this.searchField.value);
+    } else {
+      this.onClearSearch(event);
     }
   }
 

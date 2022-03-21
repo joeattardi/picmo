@@ -8,6 +8,8 @@ export type AppEvent =
   | 'preview:hide'
   | 'variantPopup:hide'
   | 'category:select'
+  | 'category:next'
+  | 'category:previous'
   | 'recent:add';
 
 export type AppEventKey = EventKey<AppEvent>;

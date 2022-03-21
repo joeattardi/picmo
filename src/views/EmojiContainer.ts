@@ -4,7 +4,7 @@ import template from '../templates/emojiContainer.ejs';
 import { LazyLoader } from '../LazyLoader';
 import { getEmojiForEvent } from '../util';
 import { View } from './view';
-import { EmojiRecord } from '../types';
+import { EmojiFocusTarget, EmojiRecord } from '../types';
 import { FocusGrid, FocusChangeEvent } from '../focusGrid';
 
 type EmojiContainerOptions = {
@@ -36,11 +36,15 @@ export class EmojiContainer extends View {
     this.emojis = emojis;
 
     this.setFocus = this.setFocus.bind(this);
+    this.triggerNextCategory = this.triggerNextCategory.bind(this);
+    this.triggerPreviousCategory = this.triggerPreviousCategory.bind(this);
   }
 
   initialize() {
     this.grid = new FocusGrid(this.options.emojisPerRow, this.emojiCount);
     this.grid.on('focus:change', this.setFocus);
+    this.grid.on('focus:overflow', this.triggerNextCategory);
+    this.grid.on('focus:underflow', this.triggerPreviousCategory);
 
     this.uiEvents = [
       View.uiEvent('click', this.selectEmoji),
@@ -59,12 +63,23 @@ export class EmojiContainer extends View {
     super.initialize();
   }
 
-  setActive(active: boolean, focus: boolean) {
-    const focusedIndex = this.grid.getIndex();
+  private setFocusedView(focusTarget: EmojiFocusTarget | undefined, performFocus?: boolean): void {
+    if (!focusTarget) {
+      return;
+    }
+
+    if (focusTarget.row === 'first') {
+      this.grid.focusTo(0, focusTarget.offset, performFocus);
+    } else if (focusTarget.row === 'last') {
+      this.grid.focusTo(this.grid.getRowCount() - 1, focusTarget.offset, performFocus);
+    }
+  }
+
+  setActive(active: boolean, focusTarget?: EmojiFocusTarget, performFocus?: boolean) {
     if (active) {
-      this.emojiViews[focusedIndex].activateFocus(focus);
+      this.setFocusedView(focusTarget, performFocus);
     } else {
-      this.emojiViews[focusedIndex].deactivateFocus();
+      this.emojiViews[this.grid.getIndex()].deactivateFocus();
     }
   }
 
@@ -88,11 +103,21 @@ export class EmojiContainer extends View {
   destroy() {
     super.destroy();
     this.emojiViews.forEach(view => view.destroy());
+    this.grid.destroy();
   }
 
-  private setFocus({ from, to }: FocusChangeEvent) {
+  private triggerPreviousCategory(column: number) {
+    // const { column } = this.grid.getCell();
+    this.events.emit('category:previous', column);
+  }
+
+  private triggerNextCategory(column: number) {
+    this.events.emit('category:next', column);
+  }
+
+  private setFocus({ from, to, performFocus }: FocusChangeEvent) {
     this.emojiViews[from].deactivateFocus();
-    this.emojiViews[to].activateFocus(true);
+    this.emojiViews[to].activateFocus(performFocus);
   }
 
   private selectEmoji(event: Event) {

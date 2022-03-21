@@ -5,6 +5,7 @@ type FocusGridEvent = 'focus:change' | 'focus:underflow' | 'focus:overflow';
 export type FocusChangeEvent = {
   from: number;
   to: number;
+  performFocus: boolean;
 };
 
 export class FocusGrid {
@@ -33,6 +34,10 @@ export class FocusGrid {
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
+  destroy() {
+    this.events.removeAll();
+  }
+
   on(event: FocusGridEvent, handler: (...args: any[]) => void) {
     this.events.on(event, handler);
   }
@@ -44,11 +49,21 @@ export class FocusGrid {
     }
   }
 
-  setCell(row: number, column: number) {
+  setCell(row: number, column?: number, performFocus = true) {
     const previousIndex = this.getIndex();
     this.focusedRow = row;
-    this.focusedColumn = column;
-    this.events.emit('focus:change', { from: previousIndex, to: this.getIndex() });
+
+    if (column !== undefined) {
+      this.focusedColumn = Math.min(this.columnCount, column);
+    }
+
+    // If the given cell is out of bounds, focus to the last cell.
+    if (this.focusedRow >= this.rowCount || this.getIndex() >= this.emojiCount) {
+      this.focusedRow = this.rowCount - 1;
+      this.focusedColumn = (this.emojiCount % this.columnCount) - 1;
+    }
+
+    this.events.emit('focus:change', { from: previousIndex, to: this.getIndex(), performFocus });
   }
 
   focusNext() {
@@ -57,7 +72,7 @@ export class FocusGrid {
     } else if (this.focusedRow < this.rowCount - 1) {
       this.setCell(this.focusedRow + 1, 0);
     } else {
-      this.events.emit('focus:overflow');
+      this.events.emit('focus:overflow', 0);
     }
   }
 
@@ -67,7 +82,7 @@ export class FocusGrid {
     } else if (this.focusedRow > 0) {
       this.setCell(this.focusedRow - 1, this.columnCount - 1);
     } else {
-      this.events.emit('focus:underflow');
+      this.events.emit('focus:underflow', this.columnCount - 1);
     }
   }
 
@@ -75,7 +90,7 @@ export class FocusGrid {
     if (this.focusedRow > 0) {
       this.setCell(this.focusedRow - 1, this.focusedColumn);
     } else {
-      this.events.emit('focus:underflow');
+      this.events.emit('focus:underflow', this.focusedColumn);
     }
   }
 
@@ -83,8 +98,16 @@ export class FocusGrid {
     if (this.focusedRow < this.rowCount - 1) {
       this.setCell(this.focusedRow + 1, this.focusedColumn);
     } else {
-      this.events.emit('focus:overflow');
+      this.events.emit('focus:overflow', this.focusedColumn);
     }
+  }
+
+  focusTo(row: number, column?: number, performFocus?: boolean) {
+    this.setCell(row, column, performFocus);
+  }
+
+  focusToIndex(index: number) {
+    this.setCell(Math.floor(index / this.columnCount), index % this.columnCount);
   }
 
   getIndex() {
@@ -93,5 +116,9 @@ export class FocusGrid {
 
   getCell() {
     return { row: this.focusedRow, column: this.focusedColumn };
+  }
+
+  getRowCount() {
+    return this.rowCount;
   }
 }
