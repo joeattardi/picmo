@@ -1,5 +1,3 @@
-import debounce from 'debounce';
-
 import { View } from './view';
 import classes from './EmojiArea.scss';
 
@@ -83,7 +81,7 @@ export class EmojiArea extends View {
   constructor() {
     super({ template, classes });
 
-    this.resumeScrollListener = debounce(this.resumeScrollListener, 500);
+    // this.resumeScrollListener = debounce(this.resumeScrollListener, 500);
   }
 
   initialize() {
@@ -322,12 +320,11 @@ export class EmojiArea extends View {
 
   private suspendScrollListener() {
     this.listenForScroll = false;
-    setTimeout(() => { this.resumeScrollListener(); });
   }
 
-  private resumeScrollListener() {
-    this.listenForScroll = true;
-  }
+  // private resumeScrollListener() {
+  //   this.listenForScroll = true;
+  // }
 
   /**
    * Changes the highlighted category to the one pointed to by the given link.
@@ -352,6 +349,7 @@ export class EmojiArea extends View {
    */
   handleScroll(): void {
     if (!this.listenForScroll) {
+      this.listenForScroll = true;
       return;
     }
 

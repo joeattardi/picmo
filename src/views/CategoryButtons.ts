@@ -72,7 +72,7 @@ export class CategoryButtons extends View {
   }
 
   private emitSelectEvent(category: CategoryKey) {
-    this.events.emit('category:select', category, { scroll: 'animate', focus: 'button', performFocus: true });
+    this.events.emit('category:select', category, { scroll: 'animate', focus: 'button', performFocus: true, animate: true });
   }
 
   async render(): Promise<HTMLElement> {
