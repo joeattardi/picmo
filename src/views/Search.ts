@@ -43,6 +43,11 @@ export class Search extends View {
       searchAccessory: View.byClass(classes.searchAccessory)
     };
 
+    this.uiEvents = [
+      View.childEvent('searchField', 'keydown', this.onKeyDown),
+      View.childEvent('searchField', 'input', this.onSearchInput)
+    ];
+
     super.initialize();
   }
 
@@ -65,8 +70,6 @@ export class Search extends View {
     this.clearSearchButton.addEventListener('click', (event: MouseEvent) => this.onClearSearch(event));
 
     this.searchField = this.ui.searchField as HTMLInputElement;
-    this.searchField.addEventListener('keydown', (event: KeyboardEvent) => this.onKeyDown(event));
-    this.searchField.addEventListener('input', event => this.onSearchInput(event));
 
     this.showSearchIcon();
 
