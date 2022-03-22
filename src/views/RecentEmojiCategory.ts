@@ -55,7 +55,8 @@ export class RecentEmojiCategory extends BaseEmojiCategory {
     this.emojiContainer = this.viewFactory.create(RecentEmojiContainer, {
       emojis: recents,
       showVariants: false,
-      lazyLoader: this.lazyLoader
+      lazyLoader: this.lazyLoader,
+      category: this.category.key
     });
 
     return super.render({

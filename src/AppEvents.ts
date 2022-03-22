@@ -10,7 +10,8 @@ export type AppEvent =
   | 'category:select'
   | 'category:next'
   | 'category:previous'
-  | 'recent:add';
+  | 'recent:add'
+  | 'focus:change';
 
 export type AppEventKey = EventKey<AppEvent>;
 

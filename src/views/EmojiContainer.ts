@@ -4,7 +4,7 @@ import template from '../templates/emojiContainer.ejs';
 import { LazyLoader } from '../LazyLoader';
 import { getEmojiForEvent } from '../util';
 import { View } from './view';
-import { EmojiFocusTarget, EmojiRecord } from '../types';
+import { CategoryKey, EmojiFocusTarget, EmojiRecord } from '../types';
 import { FocusGrid, FocusChangeEvent } from '../focusGrid';
 
 type EmojiContainerOptions = {
@@ -12,6 +12,7 @@ type EmojiContainerOptions = {
   showVariants: boolean;
   preview: boolean;
   lazyLoader?: LazyLoader;
+  category?: CategoryKey;
 };
 
 /**
@@ -22,18 +23,19 @@ export class EmojiContainer extends View {
   protected showVariants: boolean;
   protected preview: boolean;
   protected lazyLoader?: LazyLoader;
+  private category?: CategoryKey;
+  private grid: FocusGrid;
   emojiViews: Emoji[];
   emojiElements: HTMLElement[];
 
-  private grid: FocusGrid;
-
-  constructor({ emojis, showVariants, preview = true, lazyLoader }: EmojiContainerOptions) {
+  constructor({ emojis, showVariants, preview = true, lazyLoader, category }: EmojiContainerOptions) {
     super({ template, classes });
 
     this.showVariants = showVariants;
     this.lazyLoader = lazyLoader;
     this.preview = preview;
     this.emojis = emojis;
+    this.category = category;
 
     this.setFocus = this.setFocus.bind(this);
     this.triggerNextCategory = this.triggerNextCategory.bind(this);
@@ -107,7 +109,6 @@ export class EmojiContainer extends View {
   }
 
   private triggerPreviousCategory(column: number) {
-    // const { column } = this.grid.getCell();
     this.events.emit('category:previous', column);
   }
 
@@ -118,6 +119,7 @@ export class EmojiContainer extends View {
   private setFocus({ from, to, performFocus }: FocusChangeEvent) {
     this.emojiViews[from].deactivateFocus();
     this.emojiViews[to].activateFocus(performFocus);
+    this.events.emit('focus:change', this.category);
   }
 
   private selectEmoji(event: Event) {

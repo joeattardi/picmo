@@ -30,7 +30,8 @@ export class EmojiCategory extends BaseEmojiCategory {
     this.emojiContainer = this.viewFactory.create(EmojiContainer, {
       emojis,
       showVariants: this.showVariants,
-      lazyLoader: this.lazyLoader
+      lazyLoader: this.lazyLoader,
+      category: this.category.key
     });
 
     return super.render({

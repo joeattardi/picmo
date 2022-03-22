@@ -24,7 +24,8 @@ export class CustomEmojiCategory extends BaseEmojiCategory {
     this.emojiContainer = this.viewFactory.create(EmojiContainer, {
       emojis: this.customEmojis,
       showVariants: this.showVariants,
-      lazyLoader: this.lazyLoader
+      lazyLoader: this.lazyLoader,
+      category: this.category.key
     });
 
     return super.render({

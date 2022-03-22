@@ -1,3 +1,5 @@
+import debounce from 'debounce';
+
 import { View } from './view';
 import classes from './EmojiArea.scss';
 
@@ -80,13 +82,16 @@ export class EmojiArea extends View {
 
   constructor() {
     super({ template, classes });
+
+    this.resumeScrollListener = debounce(this.resumeScrollListener, 500);
   }
 
   initialize() {
     this.appEvents = { 
-      'category:select': (category: CategoryKey) => this.selectCategory(category, { scroll: 'animate', focus: 'button', performFocus: true }),
+      'category:select': this.handleCategorySelect,
       'category:previous': this.focusPreviousCategory,
-      'category:next': this.focusNextCategory
+      'category:next': this.focusNextCategory,
+      'focus:change': this.updateFocusedCategory
     };
     this.uiElements = { emojis: View.byClass(classes.emojis) };
     this.uiEvents = [ View.childEvent('emojis', 'scroll', this.handleScroll) ]
@@ -136,6 +141,10 @@ export class EmojiArea extends View {
     return this.el;
   }
 
+  private handleCategorySelect(category: CategoryKey, options?: SelectCategoryOptions) {
+    this.selectCategory(category, options);
+  }
+
   private createCategory(category: Category): EmojiCategory {
     const Category = getCategoryClass(category);
 
@@ -164,7 +173,7 @@ export class EmojiArea extends View {
    */
   private async scrollTo(targetPosition, animate = true): Promise<void> {
     // We don't want to trigger the auto selection, so pause scroll listening here.
-    this.listenForScroll = false;
+    this.suspendScrollListener();
 
     // If a scroll animation is already in progress, cancel it and jump to the end
     // before starting this one.
@@ -262,6 +271,7 @@ export class EmojiArea extends View {
       this.selectCategory(
         this.currentCategory - 1, 
         {
+          animate: true,
           focus: { row: 'last', offset: column ?? this.options.emojisPerRow },
           performFocus: true 
         }
@@ -274,6 +284,7 @@ export class EmojiArea extends View {
       this.selectCategory(
         this.currentCategory + 1, 
         { 
+          animate: true,
           focus: { row: 'first', offset: column ?? 0 },
           performFocus: true
         }
@@ -295,11 +306,27 @@ export class EmojiArea extends View {
 
     const targetPosition = this.emojiCategories[categoryIndex].el.offsetTop;
     if (scroll) {
-      await this.scrollTo(targetPosition, scroll === 'animate');
-      this.listenForScroll = true;
+      await this.scrollTo(targetPosition, false);
+      // await this.scrollTo(targetPosition, scroll === 'animate');
+      // this.listenForScroll = true;
     }
     
     this.emojiCategories[categoryIndex].setActive(true, getFocusTarget(focus), focus !== 'button' && performFocus);
+  }
+
+  private updateFocusedCategory(category: CategoryKey) {
+    this.suspendScrollListener();
+    this.currentCategory = this.getCategoryIndexByKey(category);
+    this.setActiveButton(false, true);
+  }
+
+  private suspendScrollListener() {
+    this.listenForScroll = false;
+    setTimeout(() => { this.resumeScrollListener(); });
+  }
+
+  private resumeScrollListener() {
+    this.listenForScroll = true;
   }
 
   /**
@@ -318,6 +345,8 @@ export class EmojiArea extends View {
     this.categoryButtons?.setActiveButton(this.currentCategory, focus, animate);
   }
 
+  // TODO: Still doesn't quite work in all cases. Select a category via keyboard focus, then scroll up, then press a key. The category is not updated.
+  // TODO: Focusing fast doesn't work either.
   /**
    * On scroll, checks the new scroll position and highlights a new category if necessary.
    */

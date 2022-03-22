@@ -55,20 +55,24 @@ export class CategoryButtons extends View {
 
   selectNextCategory() {
     const nextIndex = this.activeButton === this.buttons.length - 1 ? 0 : this.activeButton + 1;
-    this.events.emit('category:select', this.buttons[nextIndex].dataset.category);
+    this.emitSelectEvent(this.buttons[nextIndex].dataset.category as CategoryKey);
   }
 
   selectPreviousCategory() {
     const previousIndex = this.activeButton === 0 ? this.buttons.length - 1 : this.activeButton - 1;
-    this.events.emit('category:select', this.buttons[previousIndex].dataset.category);
+    this.emitSelectEvent(this.buttons[previousIndex].dataset.category as CategoryKey);
   }
 
   handleClickCategory(event: MouseEvent) {
     const targetElement = event.target as HTMLElement;
     const button = targetElement.closest('button');
     if (button) {
-      this.events.emit('category:select', button.dataset.category);
+      this.emitSelectEvent(button.dataset.category as CategoryKey);
     }
+  }
+
+  private emitSelectEvent(category: CategoryKey) {
+    this.events.emit('category:select', category, { scroll: 'animate', focus: 'button', performFocus: true });
   }
 
   async render(): Promise<HTMLElement> {
