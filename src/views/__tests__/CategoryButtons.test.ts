@@ -41,7 +41,7 @@ describe('CategoryButtons', () => {
 
     const buttons = screen.getAllByRole('tab');
     userEvent.click(buttons[0]);
-    expect(events.emit).toHaveBeenCalledWith('category:select', 'smileys-emotion');
+    expect(events.emit).toHaveBeenCalledWith('category:select', 'smileys-emotion', expect.anything());
   });
 
   test('marks a button as active', async () => {

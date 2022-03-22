@@ -16,7 +16,7 @@ describe('FocusGrid', () => {
 
       expect(grid.getCell()).toEqual({ row: 0, column: 1 });
       expect(grid.getIndex()).toEqual(1);
-      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 0, to: 1 });
+      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 0, to: 1, performFocus: true });
     });
 
     test('focuses the next column in the second row', () => {
@@ -27,7 +27,7 @@ describe('FocusGrid', () => {
       grid.focusNext();
       expect(grid.getCell()).toEqual({ row: 1, column: 2 });
       expect(grid.getIndex()).toEqual(5);
-      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 4, to: 5 });
+      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 4, to: 5, performFocus: true });
     });
 
     test('wraps to the next row when on the last column', () => {
@@ -36,7 +36,7 @@ describe('FocusGrid', () => {
 
       grid.focusNext();
       expect(grid.getCell()).toEqual({ row: 2, column: 0 });
-      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 5, to: 6 });
+      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 5, to: 6, performFocus: true });
     });
 
     test('emits the overflow event when on the last element', () => {
@@ -45,7 +45,7 @@ describe('FocusGrid', () => {
 
       grid.focusNext();
       expect(grid.getCell()).toEqual({ row: 2, column: 2 });
-      expect(emitSpy).toHaveBeenCalledWith('focus:overflow');
+      expect(emitSpy).toHaveBeenCalledWith('focus:overflow', 0);
     });
   });
 
@@ -54,7 +54,7 @@ describe('FocusGrid', () => {
       const grid = new FocusGrid(3, 9);
       grid.focusPrevious();
       expect(grid.getCell()).toEqual({ row: 0, column: 0 });
-      expect(emitSpy).toHaveBeenCalledWith('focus:underflow');
+      expect(emitSpy).toHaveBeenCalledWith('focus:underflow', 2);
     });
 
     test('focuses the previous element on the first row', () => {
@@ -62,7 +62,7 @@ describe('FocusGrid', () => {
       grid.focusPrevious();
       expect(grid.getCell()).toEqual({ row: 0, column: 1 });
       expect(grid.getIndex()).toEqual(1);
-      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 2, to: 1 });
+      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 2, to: 1, performFocus: true });
     });
 
     test('focuses the previous element on the second row', () => {
@@ -70,7 +70,7 @@ describe('FocusGrid', () => {
       grid.focusPrevious();
       expect(grid.getCell()).toEqual({ row: 1, column: 0 });
       expect(grid.getIndex()).toEqual(3);
-      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 4, to: 3 });
+      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 4, to: 3, performFocus: true });
     });
 
     test('wraps to the previous row', () => {
@@ -78,7 +78,7 @@ describe('FocusGrid', () => {
       grid.focusPrevious();
       expect(grid.getCell()).toEqual({ row: 0, column: 2 });
       expect(grid.getIndex()).toEqual(2);
-      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 3, to: 2 });
+      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 3, to: 2, performFocus: true });
     });
   });
 
@@ -88,7 +88,7 @@ describe('FocusGrid', () => {
       grid.focusUp();
 
       expect(grid.getCell()).toEqual({ row: 0, column: 0 });
-      expect(emitSpy).toHaveBeenCalledWith('focus:underflow');
+      expect(emitSpy).toHaveBeenCalledWith('focus:underflow', 0);
     });
 
     test('focuses the previous row', () => {
@@ -96,7 +96,7 @@ describe('FocusGrid', () => {
       grid.focusUp();
       expect(grid.getCell()).toEqual({ row: 0, column: 0});
       expect(grid.getIndex()).toEqual(0);
-      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 3, to: 0 });
+      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 3, to: 0, performFocus: true });
     });
   });
 
@@ -105,7 +105,7 @@ describe('FocusGrid', () => {
       const grid = new FocusGrid(3, 9, 2, 0);
       grid.focusDown();
       expect(grid.getCell()).toEqual({ row: 2, column: 0 });
-      expect(emitSpy).toHaveBeenCalledWith('focus:overflow');
+      expect(emitSpy).toHaveBeenCalledWith('focus:overflow', 0);
     });
 
     test('focuses the next row', () => {
@@ -113,7 +113,7 @@ describe('FocusGrid', () => {
       grid.focusDown();
       expect(grid.getCell()).toEqual({ row: 1, column: 0 });
       expect(grid.getIndex()).toEqual(3);
-      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 0, to: 3 });
+      expect(emitSpy).toHaveBeenCalledWith('focus:change', { from: 0, to: 3, performFocus: true });
     });
   });
 });
