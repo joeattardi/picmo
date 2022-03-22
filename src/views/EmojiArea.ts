@@ -63,7 +63,8 @@ function getFocusTarget(focus: CategoryFocusTarget | undefined): EmojiFocusTarge
 }
 
 /**
- * The EmojiArea is the main view of the picker, it contains all the categories and their emojis.
+ * The EmojiArea is the main view of the picker, it contains all the categories and their emojis inside
+ * a main scrollable area.
  */
 export class EmojiArea extends View {
   private currentCategory = 0;
@@ -80,8 +81,6 @@ export class EmojiArea extends View {
 
   constructor() {
     super({ template, classes });
-
-    // this.resumeScrollListener = debounce(this.resumeScrollListener, 500);
   }
 
   initialize() {
@@ -157,7 +156,7 @@ export class EmojiArea extends View {
     this.events.emit('preview:hide');
 
     this.selectCategory('smileys-emotion', { focus: 'button', performFocus: true, scroll: 'jump' });
-    this.currentCategory = this.getCategoryIndexByKey('smileys-emotion');
+    this.currentCategory = this.getCategoryIndex('smileys-emotion');
 
     this.setActiveButton();
   }
@@ -232,6 +231,8 @@ export class EmojiArea extends View {
 
   /**
    * Creates a CategoryLink for the category at the given offset from the current index.
+   * A CategoryLink contains the category data and the scroll offset of the category.
+   * 
    * @param offset The offset from the current index.
    * @returns a CategoryLink for the desired category, or null if the given offset does not to a valid category
    */
@@ -260,36 +261,53 @@ export class EmojiArea extends View {
     };
   }
 
-  private getCategoryIndexByKey(key: string): number {
+  /**
+   * Given a category key, returns the index of the category in the categories array.
+   * @param key 
+   * @returns 
+   */
+  private getCategoryIndex(key: CategoryKey): number {
     return this.categories.findIndex(category => category.key === key);
   }
 
   private focusPreviousCategory(column: number) {
     if (this.currentCategory > 0) {
-      this.selectCategory(
-        this.currentCategory - 1, 
-        {
-          animate: true,
-          focus: { row: 'last', offset: column ?? this.options.emojisPerRow },
-          performFocus: true 
-        }
-      );
+      this.focusCategory(this.currentCategory - 1, { row: 'last', offset: column ?? this.options.emojisPerRow});
     }
   }
 
   private focusNextCategory(column: number) {
     if (this.currentCategory < this.categories.length - 1) {
-      this.selectCategory(
-        this.currentCategory + 1, 
-        { 
-          animate: true,
-          focus: { row: 'first', offset: column ?? 0 },
-          performFocus: true
-        }
-      );
+      this.focusCategory(this.currentCategory + 1, { row: 'first', offset: column ?? 0 });
     }
   }
 
+  /**
+   * Changes the focused category.
+   * 
+   * @param category the index of the category
+   * @param focusTarget the desired focus target in the new category
+   */
+  private focusCategory(category: number, focusTarget: CategoryFocusTarget) {
+    this.selectCategory(category, {
+      animate: true,
+      focus: focusTarget,
+      performFocus: true
+    });
+  }
+
+  /**
+   * Changes the current category, optionally animating, scrolling, and changing the focus.
+   * 
+   * Supported options are:
+   * - focus: The target element that should become focusable
+   * - performFocus: Whether or not to actually focus the new focusable element
+   * - scroll: Whether the scrolling should be immediate (jump), animated (animate), or none (undefined).
+   * - animate: Whether or not to animate active indicator under the button.
+   * 
+   * @param category The key or index of the category to select.
+   * @param options The options for the category selection.
+   */
   private async selectCategory(category: CategoryKey | number, options: SelectCategoryOptions = {}): Promise<void> {
     const { focus, performFocus, scroll, animate } = {
       performFocus: false,
@@ -299,7 +317,7 @@ export class EmojiArea extends View {
 
     this.emojiCategories[this.currentCategory].setActive(false);
 
-    const categoryIndex = this.currentCategory = typeof category === 'number' ? category : this.getCategoryIndexByKey(category);
+    const categoryIndex = this.currentCategory = typeof category === 'number' ? category : this.getCategoryIndex(category);
     this.setActiveButton(focus === 'button' && performFocus, animate);
 
     const targetPosition = this.emojiCategories[categoryIndex].el.offsetTop;
@@ -312,19 +330,22 @@ export class EmojiArea extends View {
     this.emojiCategories[categoryIndex].setActive(true, getFocusTarget(focus), focus !== 'button' && performFocus);
   }
 
+  /**
+   * Updates the category tabs to reflect the currently focused category.
+   * @param category the key of the currently focused category
+   */
   private updateFocusedCategory(category: CategoryKey) {
     this.suspendScrollListener();
-    this.currentCategory = this.getCategoryIndexByKey(category);
+    this.currentCategory = this.getCategoryIndex(category);
     this.setActiveButton(false, true);
   }
 
+  /**
+   * Sets a flag that will skip the next scroll event. The flag will be reset on the following scroll event.
+   */
   private suspendScrollListener() {
     this.listenForScroll = false;
   }
-
-  // private resumeScrollListener() {
-  //   this.listenForScroll = true;
-  // }
 
   /**
    * Changes the highlighted category to the one pointed to by the given link.
@@ -338,16 +359,21 @@ export class EmojiArea extends View {
     }
   }
 
+  /**
+   * Marks the tab corresponding to the currently active category index as active.
+   * 
+   * @param focus Whether or not to move the focus to the new tab
+   * @param animate Whether or not to animate the active tab indicator
+   */
   setActiveButton(focus = false, animate = false) {
     this.categoryButtons?.setActiveButton(this.currentCategory, focus, animate);
   }
 
-  // TODO: Still doesn't quite work in all cases. Select a category via keyboard focus, then scroll up, then press a key. The category is not updated.
-  // TODO: Focusing fast doesn't work either.
   /**
    * On scroll, checks the new scroll position and highlights a new category if necessary.
    */
   handleScroll(): void {
+    // If we paused the listener, re-enable the flag but then skip this event.
     if (!this.listenForScroll) {
       this.listenForScroll = true;
       return;
