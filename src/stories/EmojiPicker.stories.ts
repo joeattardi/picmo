@@ -1,13 +1,13 @@
 import { Meta } from '@storybook/html';
 
-import { createPopupPicker } from './EmojiButton';
+import { createPicker } from './EmojiButton';
 import TwemojiRenderer from '../renderers/twemoji';
 import NativeRenderer from '../renderers/native';
 
 import { lightTheme, darkTheme, autoTheme } from '../themes';
 
 export default {
-  title: 'Popup Emoji Picker',
+  title: 'Emoji Picker',
   args: {
     emojiVersion: 13,
     theme: 'lightTheme',
@@ -55,7 +55,7 @@ export default {
 } as Meta;
 
 const Template = args => {
-  return createPopupPicker({
+  return createPicker({
     position: 'right-start',
     ...args
   });

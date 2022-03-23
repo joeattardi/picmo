@@ -49,7 +49,7 @@ function initData(options: Required<PickerOptions>): Promise<Database> {
  * @param options The options for the emoji picker.
  * @returns a Promise that resolves to the picker when it is ready.
  */
-export async function createEmojiPicker(options: PickerOptions): Promise<EmojiPicker> {
+export function createEmojiPicker(options: PickerOptions): EmojiPicker {
   const finalOptions = { ...defaultOptions, ...options } as Required<PickerOptions>
   
   const customEmojis: EmojiRecord[] = (finalOptions?.custom || []).map((custom: CustomEmoji) => ({
@@ -79,6 +79,6 @@ export async function createEmojiPicker(options: PickerOptions): Promise<EmojiPi
   });
 
   const picker = viewFactory.create(EmojiPicker);
-  await picker.render();
+  picker.renderSync();
   return picker;
 }

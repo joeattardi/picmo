@@ -3,8 +3,8 @@ import { Emoji as EmojiView } from './Emoji';
 import { EmojiRecord } from '../types';
 
 export class RecentEmojiContainer extends EmojiContainer {
-  constructor({ emojis, preview = true, lazyLoader }) {
-    super({ emojis, showVariants: false, preview, lazyLoader });
+  constructor({ category, emojis, preview = true, lazyLoader }) {
+    super({ category, emojis, showVariants: false, preview, lazyLoader });
   }
 
   async addOrUpdate(emoji: EmojiRecord): Promise<void> {

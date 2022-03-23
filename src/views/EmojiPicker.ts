@@ -184,7 +184,6 @@ export class EmojiPicker extends View {
    */
   private initializePickerView() {
     this.focusTrap.activate();
-    this.emojiArea.reset();
     this.showContent();
   }
 
@@ -337,11 +336,9 @@ export class EmojiPicker extends View {
     // If the data becomes ready when the picker is open,
     // finish setting up the picker UI. Otherwise this will be done
     // next time it is opened.
-    if (this.isOpen) {
-      currentView.replaceWith(this.el);
-      this.setPosition();
-      this.initializePickerView();
-    }
+    currentView.replaceWith(this.el);
+    // this.setPosition();
+    this.initializePickerView();
   }
 
   /**
@@ -371,8 +368,16 @@ export class EmojiPicker extends View {
    * 
    * @returns the root element of the picker
    */
-  async render(): Promise<HTMLElement> {
-    return super.render({ isLoaded: false, theme: this.options.theme });
+  renderSync(): HTMLElement {
+    super.renderSync({ isLoaded: false, theme: this.options.theme });
+
+    this.options.rootElement.appendChild(this.el);
+
+    if (this.pickerReady) {
+      this.initializePickerView();
+    }
+
+    return this.el;
   }
 
   /**

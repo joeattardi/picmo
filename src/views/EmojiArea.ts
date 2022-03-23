@@ -157,8 +157,6 @@ export class EmojiArea extends View {
 
     this.selectCategory('smileys-emotion', { focus: 'button', performFocus: true, scroll: 'jump' });
     this.currentCategory = this.getCategoryIndex('smileys-emotion');
-
-    this.setActiveButton();
   }
 
   /**

@@ -87,6 +87,11 @@ export class CategoryButtons extends View {
   }
 
   setActiveButton(activeButton: number, focus = true, animate = true): void {
+    // Don't do anything if it's the same button
+    if (activeButton === this.activeButton) {
+      return;
+    }
+    
     let activeButtonEl = this.buttons[this.activeButton];
     activeButtonEl.classList.remove(classes.categoryButtonActive);
     activeButtonEl.tabIndex = -1;

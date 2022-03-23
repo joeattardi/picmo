@@ -1,6 +1,6 @@
 import { Data } from 'ejs';
 
-import { renderTemplate, ElementTemplate } from '../templates';
+import { renderTemplateSync, renderTemplate, ElementTemplate } from '../templates';
 import { AppEvent, AppEventKey } from '../AppEvents';
 import { Events, EventArgs, EventCallback, AsyncEventCallback } from '../events';
 import { ViewFactory } from '../viewFactory';
@@ -96,6 +96,24 @@ export abstract class View {
 
   setOptions(options: Required<PickerOptions>) {
     this.options = options;
+  }
+
+  renderSync(templateData: Data = {}): HTMLElement {
+    const templateFn =
+      typeof this.template === 'string' ? (data: Data) => renderTemplateSync(this.template as string, data) : this.template;
+
+    this.el = templateFn({
+      classes: this.classes,
+      i18n: this.i18n,
+      pickerId: this.pickerId,
+      ...templateData
+    }) as HTMLElement;
+
+    this.bindUIElements();
+    this.bindKeyBindings();
+    this.bindUIEvents();
+
+    return this.el;
   }
 
   async render(templateData: Data = {}): Promise<HTMLElement> {

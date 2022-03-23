@@ -62,6 +62,11 @@ export function compileTemplate(template: string): ElementTemplate {
   };
 }
 
+export function compileTemplateSync(template: string): ElementTemplate {
+  const compiled = ejs.compile(template);
+  return data => toElement(compiled(data));
+}
+
 /**
  * Renders a template to an HTML element.
  *
@@ -77,6 +82,13 @@ export async function renderTemplate<E extends HTMLElement = HTMLElement>(templa
 
   await dom.i2svg({ node: result });
 
+  return result as E;
+}
+
+export function renderTemplateSync<E extends HTMLElement = HTMLElement>(template: string, data: Data = {}): E {
+  const result = toElement<E>(ejs.render(template, data));
+  
+  dom.i2svg({ node: result });
   return result as E;
 }
 
