@@ -1,3 +1,5 @@
+import scrollSmooth from 'scroll-smooth';
+
 import { View } from './view';
 import classes from './EmojiArea.scss';
 
@@ -10,7 +12,7 @@ import { prefersReducedMotion } from '../util';
 
 import template from '../templates/emojiArea.ejs';
 import { LazyLoader } from '../LazyLoader';
-import { Category, CategoryKey, CustomEmoji, EmojiFocusTarget } from '../types';
+import { Category, CategoryKey, CustomEmoji, EmojiRecord, EmojiFocusTarget } from '../types';
 import { Bundle } from '../i18n';
 
 const categoryClasses = {
@@ -29,18 +31,6 @@ function createCategory(key: CategoryKey, i18n: Bundle, order: number): Category
     order,
     message: i18n.get(`categories.${key}`)
   };
-}
-
-type CategoryLink = {
-  category: Category;
-  offset: number;
-}
-
-type CategoryLinks = {
-  previous: CategoryLink | null;
-  current: CategoryLink;
-  next: CategoryLink | null;
-  last: CategoryLink;
 }
 
 type CategoryFocusTarget = 'button' | EmojiFocusTarget;
@@ -67,7 +57,7 @@ function getFocusTarget(focus: CategoryFocusTarget | undefined): EmojiFocusTarge
  * a main scrollable area.
  */
 export class EmojiArea extends View {
-  private currentCategory = 0;
+  private selectedCategory = 0;
   private categoryButtons: CategoryButtons;
   private categories: Category[];
   private custom: CustomEmoji[];
@@ -156,7 +146,7 @@ export class EmojiArea extends View {
     this.events.emit('preview:hide');
 
     this.selectCategory('smileys-emotion', { focus: 'button', performFocus: true, scroll: 'jump' });
-    this.currentCategory = this.getCategoryIndex('smileys-emotion');
+    this.selectedCategory = this.getCategoryIndex('smileys-emotion');
   }
 
   /**
@@ -166,7 +156,7 @@ export class EmojiArea extends View {
    * @param animate Whether or not the scroll should be animated.
    * @returns a Promise that is resolved when the scroll is complete.
    */
-  private async scrollTo(targetPosition, animate = true): Promise<void> {
+  private async scrollTZo(targetPosition, animate = true): Promise<void> {
     // We don't want to trigger the auto selection, so pause scroll listening here.
     this.suspendScrollListener();
 
@@ -228,38 +218,6 @@ export class EmojiArea extends View {
   }
 
   /**
-   * Creates a CategoryLink for the category at the given offset from the current index.
-   * A CategoryLink contains the category data and the scroll offset of the category.
-   * 
-   * @param offset The offset from the current index.
-   * @returns a CategoryLink for the desired category, or null if the given offset does not to a valid category
-   */
-  private getCategoryLink(offset = 0): CategoryLink | null {
-    const index = this.currentCategory + offset;
-    if (index < 0 || index > this.categories.length - 1) {
-      return null;
-    }
-
-    return {
-      category: this.categories[index],
-      offset: this.emojiCategories[index].el.offsetTop
-    }
-  }
-
-  /**
-   * Calculates the set of category links from the current category
-   * @returns the CategoryLinks for the current category
-   */
-  private getCategoryLinks(): CategoryLinks {
-    return {
-      previous: this.getCategoryLink(-1),
-      current: this.getCategoryLink(0) as CategoryLink,
-      next: this.getCategoryLink(1),
-      last: this.getCategoryLink(this.categories.length - 1 - this.currentCategory) as CategoryLink
-    };
-  }
-
-  /**
    * Given a category key, returns the index of the category in the categories array.
    * @param key 
    * @returns 
@@ -269,14 +227,14 @@ export class EmojiArea extends View {
   }
 
   private focusPreviousCategory(column: number) {
-    if (this.currentCategory > 0) {
-      this.focusCategory(this.currentCategory - 1, { row: 'last', offset: column ?? this.options.emojisPerRow});
+    if (this.selectedCategory > 0) {
+      this.focusCategory(this.selectedCategory - 1, { row: 'last', offset: column ?? this.options.emojisPerRow});
     }
   }
 
   private focusNextCategory(column: number) {
-    if (this.currentCategory < this.categories.length - 1) {
-      this.focusCategory(this.currentCategory + 1, { row: 'first', offset: column ?? 0 });
+    if (this.selectedCategory < this.categories.length - 1) {
+      this.focusCategory(this.selectedCategory + 1, { row: 'first', offset: column ?? 0 });
     }
   }
 
@@ -313,58 +271,35 @@ export class EmojiArea extends View {
       ...options
     };
 
-    this.emojiCategories[this.currentCategory].setActive(false);
+    this.emojiCategories[this.selectedCategory].setActive(false);
 
-    const categoryIndex = this.currentCategory = typeof category === 'number' ? category : this.getCategoryIndex(category);
-    this.setActiveButton(focus === 'button' && performFocus, animate);
-
+    const categoryIndex = this.selectedCategory = typeof category === 'number' ? category : this.getCategoryIndex(category);
+    this.categoryButtons?.setActiveButton(this.selectedCategory, focus === 'button' && performFocus, animate);
     const targetPosition = this.emojiCategories[categoryIndex].el.offsetTop;
-    if (scroll) {
-      await this.scrollTo(targetPosition, false);
-      // await this.scrollTo(targetPosition, scroll === 'animate');
-      // this.listenForScroll = true;
-    }
-    
     this.emojiCategories[categoryIndex].setActive(true, getFocusTarget(focus), focus !== 'button' && performFocus);
+
+    if (scroll) {
+      this.suspendScrollListener();
+      this.ui.emojis.scrollTop = targetPosition;
+    }
   }
 
   /**
    * Updates the category tabs to reflect the currently focused category.
    * @param category the key of the currently focused category
    */
-  private updateFocusedCategory(category: CategoryKey) {
+  private updateFocusedCategory(emoji: EmojiRecord, category: CategoryKey) {
     this.suspendScrollListener();
-    this.currentCategory = this.getCategoryIndex(category);
-    this.setActiveButton(false, true);
+    this.selectedCategory = this.getCategoryIndex(category);
+    this.categoryButtons?.setActiveButton(this.selectedCategory, false, true);
   }
 
   /**
-   * Sets a flag that will skip the next scroll event. The flag will be reset on the following scroll event.
+   * Sets a flag that will stop listening for scroll events. The listener will remain suspended
+   * until resumed.
    */
   private suspendScrollListener() {
     this.listenForScroll = false;
-  }
-
-  /**
-   * Changes the highlighted category to the one pointed to by the given link.
-   * @param link the target link to be highlighted
-   */
-  highlightCategoryByLink(link: CategoryLink | null): void {
-    if (link) {
-      const { category } = link;
-      this.currentCategory = this.categories.indexOf(category);
-      this.setActiveButton(false, true);
-    }
-  }
-
-  /**
-   * Marks the tab corresponding to the currently active category index as active.
-   * 
-   * @param focus Whether or not to move the focus to the new tab
-   * @param animate Whether or not to animate the active tab indicator
-   */
-  setActiveButton(focus = false, animate = false) {
-    this.categoryButtons?.setActiveButton(this.currentCategory, focus, animate);
   }
 
   /**
@@ -379,14 +314,19 @@ export class EmojiArea extends View {
 
     const currentPosition = this.ui.emojis.scrollTop;
     const maxScroll = this.ui.emojis.scrollHeight - this.ui.emojis.offsetHeight;    
-    const { previous, current, next, last } = this.getCategoryLinks();
 
-    if (currentPosition < current.offset) {
-      this.highlightCategoryByLink(previous);
-    } else if (next && currentPosition >= next.offset) {
-      this.highlightCategoryByLink(next);
-    } else if (Math.floor(currentPosition) === Math.floor(maxScroll)) {
-      this.highlightCategoryByLink(last);
+    const targetCategory = this.emojiCategories.findIndex((category: EmojiCategory) => {
+      return category.el.offsetTop >= currentPosition;
+    });
+
+    // TODO: Almost there! Need to fix syncing the focused to highlight
+    // TODO: Emoji button view can emit event to make sure focus stays in sync.
+    if (currentPosition === 0) {
+      this.categoryButtons.setActiveButton(0, false);
+    } else if (Math.floor(currentPosition) === Math.floor(maxScroll) || targetCategory < 0) {
+      this.categoryButtons.setActiveButton(this.categories.length - 1, false);
+    } else {
+      this.categoryButtons.setActiveButton(targetCategory - 1, false);
     }
   }
 }

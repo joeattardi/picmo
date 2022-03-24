@@ -105,6 +105,7 @@ export class EmojiContainer extends View {
     this.emojiViews = this.emojis.map(emoji =>
       this.viewFactory.create(Emoji, {
         emoji,
+        category: this.category,
         lazyLoader: this.lazyLoader,
         renderer: this.renderer
       })
@@ -152,7 +153,6 @@ export class EmojiContainer extends View {
   private setFocus({ from, to, performFocus }: FocusChangeEvent) {
     this.emojiViews[from].deactivateFocus();
     this.emojiViews[to].activateFocus(performFocus);
-    this.events.emit('focus:change', this.category);
   }
 
   private selectEmoji(event: Event) {

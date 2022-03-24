@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 
 import en from './i18n/lang-en';
 import { lightTheme } from './themes';
-import { AppEvents } from './AppEvents';
+import { AppEvent, AppEvents } from './AppEvents';
 import { EmojiPicker } from './views/EmojiPicker';
 import { PickerOptions, CustomEmoji, EmojiRecord } from './types';
 import { ViewFactory } from './viewFactory';

@@ -4,7 +4,7 @@ import { LazyLoader } from '../LazyLoader';
 
 import { View } from './view';
 
-import { EmojiRecord } from '../types';
+import { CategoryKey, EmojiRecord } from '../types';
 
 const emojiCompiled = compileTemplate(emojiTemplate);
 
@@ -13,17 +13,32 @@ import classes from './Emoji.scss';
 type EmojiOptions = {
   emoji: EmojiRecord
   lazyLoader?: LazyLoader;
+  category?: CategoryKey;
 };
 
 export class Emoji extends View {
   private emoji: EmojiRecord
   private lazyLoader?: LazyLoader;
+  private category?: CategoryKey;
 
-  constructor({ emoji, lazyLoader }: EmojiOptions) {
+  constructor({ emoji, lazyLoader, category }: EmojiOptions) {
     super({ template: emojiCompiled, classes });
 
     this.emoji = emoji;
     this.lazyLoader = lazyLoader;
+    this.category = category;
+  }
+
+  initialize() {
+    this.uiEvents = [
+      View.uiEvent('focus', this.handleFocus)
+    ];
+    
+    super.initialize();
+  }
+
+  private handleFocus() {
+    this.events.emit('focus:change', this.emoji, this.category);
   }
 
   activateFocus(performFocus?: boolean) {
