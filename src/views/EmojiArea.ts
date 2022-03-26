@@ -33,7 +33,13 @@ function createCategory(key: CategoryKey, i18n: Bundle, order: number): Category
   };
 }
 
+type ScrollListenerState = 
+  'active' | // handle scroll events
+  'suspend' | // don't handle scroll events
+  'resume'; // skip current scroll event then re-enable for the next one
+
 type CategoryFocusTarget = 'button' | EmojiFocusTarget;
+
 type SelectCategoryOptions = {
   focus?: CategoryFocusTarget;
   scroll?: 'animate' | 'jump';
@@ -62,7 +68,7 @@ export class EmojiArea extends View {
   private categories: Category[];
   private custom: CustomEmoji[];
 
-  private listenForScroll = true;
+  private scrollListenerState: ScrollListenerState = 'active';
   private lazyLoader = new LazyLoader();
 
   emojiCategories: EmojiCategory[];
@@ -159,7 +165,7 @@ export class EmojiArea extends View {
   private async scrollTo(targetPosition, animate = true): Promise<void> {
     // debugger;
     // We don't want to trigger the auto selection, so pause scroll listening here.
-    this.listenForScroll = false;
+    this.scrollListenerState = 'suspend';
 
     // If a scroll animation is already in progress, cancel it and jump to the end
     // before starting this one.
@@ -171,8 +177,8 @@ export class EmojiArea extends View {
     const { emojis } = this.ui;
 
     if (!animate && !prefersReducedMotion()) {
+      this.scrollListenerState = 'resume';
       emojis.scrollTop = targetPosition;
-      setTimeout(() => { this.listenForScroll = true });
       return;
     }
 
@@ -208,7 +214,7 @@ export class EmojiArea extends View {
             } else {
               // Otherwse we either have reached the target position or can't scroll down any further.
               // Only start listening for scroll events once the scroll animation is complete.
-              this.listenForScroll = true;
+              this.scrollListenerState = 'resume';
               resolve();
             }
           } else {
@@ -293,19 +299,25 @@ export class EmojiArea extends View {
    * @param category the key of the currently focused category
    */
   private updateFocusedCategory(emoji: EmojiRecord, category: CategoryKey) {
-    this.listenForScroll = false;
+    this.scrollListenerState = 'suspend';
     this.selectedCategory = this.getCategoryIndex(category);
     this.categoryButtons?.setActiveButton(this.selectedCategory, false, true);
-    this.listenForScroll = true;
+    this.scrollListenerState = 'resume';
   }
 
   /**
    * On scroll, checks the new scroll position and highlights a new category if necessary.
    */
   handleScroll(): void {
-    console.log({ scroll: this.listenForScroll });
-    
-    if (!this.listenForScroll) {
+    // Do nothing if we are in the 'suspend' state.
+    if (this.scrollListenerState === 'suspend') {
+      return;
+    }
+
+    // If we are in the 'resume' state, don't handle the scroll but re-enable the listener for the
+    // next scroll event.
+    if (this.scrollListenerState === 'resume') {
+      this.scrollListenerState = 'active';
       return;
     }
 

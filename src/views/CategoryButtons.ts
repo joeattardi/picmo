@@ -91,7 +91,6 @@ export class CategoryButtons extends View {
   }
 
   setActiveButton(activeButton: number, focus = true, animate = true): void {
-    console.log({ activeButton });
     // Don't do anything if it's the same button
     if (activeButton === this.activeButton) {
       return;
