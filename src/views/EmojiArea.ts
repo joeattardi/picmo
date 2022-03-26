@@ -1,5 +1,3 @@
-import scrollSmooth from 'scroll-smooth';
-
 import { View } from './view';
 import classes from './EmojiArea.scss';
 
@@ -12,7 +10,7 @@ import { prefersReducedMotion } from '../util';
 
 import template from '../templates/emojiArea.ejs';
 import { LazyLoader } from '../LazyLoader';
-import { Category, CategoryKey, CustomEmoji, EmojiRecord, EmojiFocusTarget } from '../types';
+import { Category, CategoryKey, CustomEmoji, EmojiFocusTarget } from '../types';
 import { Bundle } from '../i18n';
 
 const categoryClasses = {
@@ -298,7 +296,7 @@ export class EmojiArea extends View {
    * Updates the category tabs to reflect the currently focused category.
    * @param category the key of the currently focused category
    */
-  private updateFocusedCategory(emoji: EmojiRecord, category: CategoryKey) {
+  private updateFocusedCategory(category: CategoryKey) {
     this.scrollListenerState = 'suspend';
     this.selectedCategory = this.getCategoryIndex(category);
     this.categoryButtons?.setActiveButton(this.selectedCategory, false, true);

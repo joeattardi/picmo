@@ -38,7 +38,7 @@ export class Emoji extends View {
   }
 
   private handleFocus() {
-    this.events.emit('focus:change', this.emoji, this.category);
+    this.events.emit('focus:change', this.category);
   }
 
   activateFocus(performFocus?: boolean) {

@@ -83,6 +83,12 @@ export class CategoryButtons extends View {
 
     this.buttons = this.el.querySelectorAll('button');
 
+    this.buttons.forEach((button: HTMLElement) => {
+      button.addEventListener('focus', () => {
+        this.events.emit('category:select', button.dataset.category as CategoryKey, { scroll: 'animate', focus: 'button', performFocus: true, animate: true });
+      });
+    });
+
     return this.el;
   }
 
@@ -96,24 +102,29 @@ export class CategoryButtons extends View {
       return;
     }
 
+    const currentButton = this.buttons[this.activeButton];
+    const newButton = this.buttons[activeButton];
+
+    // Change the focused button and aria-selected state if the focus option is true.
+    if (focus) {
+      currentButton.tabIndex = -1;
+      currentButton.ariaSelected = 'false';
+
+      newButton.tabIndex = 0;
+      newButton.ariaSelected = 'true';
+      newButton.focus();
+    }
+
     let activeButtonEl = this.buttons[this.activeButton];
     activeButtonEl.classList.remove(classes.categoryButtonActive);
-    activeButtonEl.tabIndex = -1;
-    activeButtonEl.ariaSelected = 'false';
 
     this.activeButton = activeButton;
 
     activeButtonEl = this.buttons[this.activeButton];
-    activeButtonEl.ariaSelected = 'true';
     activeButtonEl.classList.add(classes.categoryButtonActive);
-    activeButtonEl.tabIndex = 0;
 
     const left = activeButtonEl.offsetLeft;
     this.ui.activeIndicator.style.transition = animate ? 'transform 200ms' : 'none';
     this.ui.activeIndicator.style.transform = `translateX(${left}px)`;
-
-    if (focus) {
-      activeButtonEl.focus();
-    }
   }
 }
