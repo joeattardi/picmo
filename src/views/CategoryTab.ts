@@ -3,7 +3,9 @@ import { View } from './view';
 import { Category } from '../types';
 
 import template from '../templates/categoryTab.ejs';
-import classes from './CategoryButtons.scss';
+import classes from './CategoryTabs.scss';
+
+console.log(classes);
 
 type CategoryTabOptions = {
   category: Category;

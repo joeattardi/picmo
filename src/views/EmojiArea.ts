@@ -186,9 +186,8 @@ export class EmojiArea extends View {
             previous = time;
           }
 
-          // If the scroll operation was cancelled, immediately jump to the target position.
+          // If the scroll operation was cancelled, stop scrolling and let the next scroll take over.
           if (isCancelled) {
-            emojis.scrollTop = targetPosition;
             return resolve();
           }
 

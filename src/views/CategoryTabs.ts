@@ -5,7 +5,7 @@ import { CategoryTab } from './CategoryTab';
 import { Category, CategoryKey } from '../types';
 
 import template from '../templates/categoryTabs.ejs';
-import classes from './CategoryButtons.scss';
+import classes from './CategoryTabs.scss';
 
 type CategoryTabsOptions = {
   categories: Category[];
