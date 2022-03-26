@@ -1,7 +1,7 @@
 import { View } from './view';
 import classes from './EmojiArea.scss';
 
-import { CategoryButtons } from './CategoryButtons';
+import { CategoryTabs } from './CategoryTabs';
 import { EmojiCategory } from './EmojiCategory';
 import { RecentEmojiCategory } from './RecentEmojiCategory';
 import { CustomEmojiCategory } from './CustomEmojiCategory';
@@ -41,7 +41,6 @@ type CategoryFocusTarget = 'button' | EmojiFocusTarget;
 type SelectCategoryOptions = {
   focus?: CategoryFocusTarget;
   scroll?: 'animate' | 'jump';
-  animate?: boolean;
   performFocus?: boolean;
 };
 
@@ -62,7 +61,7 @@ function getFocusTarget(focus: CategoryFocusTarget | undefined): EmojiFocusTarge
  */
 export class EmojiArea extends View {
   private selectedCategory = 0;
-  private categoryButtons: CategoryButtons;
+  private categoryTabs: CategoryTabs;
   private categories: Category[];
   private custom: CustomEmoji[];
 
@@ -106,10 +105,8 @@ export class EmojiArea extends View {
     }
 
     if (this.options.showCategoryButtons) {
-      this.categoryButtons = this.viewFactory.create(CategoryButtons, {
-        categories: this.categories,
-        showRecents: this.options.showRecents,
-        custom: this.custom
+      this.categoryTabs = this.viewFactory.create(CategoryTabs, {
+        categories: this.categories
       });
     }
 
@@ -121,7 +118,7 @@ export class EmojiArea extends View {
     });
 
     await super.render({
-      categoryButtons: this.options.showCategoryButtons ? this.categoryButtons : null,
+      categoryTabs: this.options.showCategoryButtons ? this.categoryTabs : null,
       categories: this.categories,
       i18n: this.i18n,
       ...categoryEmojiElements
@@ -161,7 +158,6 @@ export class EmojiArea extends View {
    * @returns a Promise that is resolved when the scroll is complete.
    */
   private async scrollTo(targetPosition, animate = true): Promise<void> {
-    // debugger;
     // We don't want to trigger the auto selection, so pause scroll listening here.
     this.scrollListenerState = 'suspend';
 
@@ -274,16 +270,15 @@ export class EmojiArea extends View {
    * @param options The options for the category selection.
    */
   private async selectCategory(category: CategoryKey | number, options: SelectCategoryOptions = {}): Promise<void> {
-    const { focus, performFocus, scroll, animate } = {
+    const { focus, performFocus, scroll } = {
       performFocus: false,
-      animate: false,
       ...options
     };
 
     this.emojiCategories[this.selectedCategory].setActive(false);
 
     const categoryIndex = this.selectedCategory = typeof category === 'number' ? category : this.getCategoryIndex(category);
-    this.categoryButtons?.setActiveButton(this.selectedCategory, focus === 'button' && performFocus, animate);
+    this.categoryTabs.setActiveTab(this.selectedCategory, focus === 'button' && performFocus);
     const targetPosition = this.emojiCategories[categoryIndex].el.offsetTop;
     this.emojiCategories[categoryIndex].setActive(true, getFocusTarget(focus), focus !== 'button' && performFocus);
 
@@ -299,7 +294,7 @@ export class EmojiArea extends View {
   private updateFocusedCategory(category: CategoryKey) {
     this.scrollListenerState = 'suspend';
     this.selectedCategory = this.getCategoryIndex(category);
-    this.categoryButtons?.setActiveButton(this.selectedCategory, false, true);
+    this.categoryTabs.setActiveTab(this.selectedCategory, false);
     this.scrollListenerState = 'resume';
   }
 
@@ -327,11 +322,11 @@ export class EmojiArea extends View {
     });
 
     if (currentPosition === 0) {
-      this.categoryButtons.setActiveButton(0, false);
+      this.categoryTabs.setActiveTab(0, false);
     } else if (Math.floor(currentPosition) === Math.floor(maxScroll) || targetCategory < 0) {
-      this.categoryButtons.setActiveButton(this.categories.length - 1, false);
+      this.categoryTabs.setActiveTab(this.categories.length - 1, false);
     } else {
-      this.categoryButtons.setActiveButton(targetCategory - 1, false);
+      this.categoryTabs.setActiveTab(targetCategory - 1, false);
     }
   }
 }

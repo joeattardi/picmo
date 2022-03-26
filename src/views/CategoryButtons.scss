@@ -38,6 +38,14 @@
   }
 }
 
+.categoryTab {
+  border-bottom: 4px solid transparent;
+
+  &.active {
+    border-bottom-color: var(--category-button-active-color);
+  }
+}
+
 .categoryButtonActive {
   color: var(--category-button-active-color);
   border-color: var(--category-button-active-color);
@@ -46,15 +54,4 @@
   &:hover {
     color: var(--category-button-active-color);
   }
-}
-
-.activeIndicator {
-  position: absolute;
-  content: '';
-  bottom: -1px;
-  left: -0.5px;
-  font-size: var(--category-button-size);
-  width: var(--category-button-width);
-  height: 4px;
-  background: var(--category-button-active-color);
 }
