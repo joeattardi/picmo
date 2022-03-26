@@ -9,7 +9,7 @@ import { renderTemplate } from '../templates';
 import searchTemplate from '../templates/search/search.ejs';
 import clearSearchButtonTemplate from '../templates/search/clearButton.ejs';
 import notFoundTemplate from '../templates/search/notFound.ejs';
-
+import { debounce } from '../util';
 import { LazyLoader } from '../LazyLoader';
 
 type SearchOptions = {
@@ -31,6 +31,7 @@ export class Search extends View {
     super({ template: searchTemplate, classes });
 
     this.emojisPerRow = emojisPerRow;
+    this.search = debounce(this.search.bind(this), 200);
   }
 
   initialize() {
@@ -137,10 +138,10 @@ export class Search extends View {
     }
   }
 
-  async onSearchInput(event: Event): Promise<void> {
+  onSearchInput(event: Event): void {
     if (this.searchField.value) {
       this.showClearSearchButton();
-      await this.search(this.searchField.value);
+      this.search(this.searchField.value);
     } else {
       this.onClearSearch(event);
     }

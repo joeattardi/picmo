@@ -6,7 +6,7 @@ import { EmojiCategory } from './EmojiCategory';
 import { RecentEmojiCategory } from './RecentEmojiCategory';
 import { CustomEmojiCategory } from './CustomEmojiCategory';
 
-import { prefersReducedMotion } from '../util';
+import { prefersReducedMotion, throttle } from '../util';
 
 import template from '../templates/emojiArea.ejs';
 import { LazyLoader } from '../LazyLoader';
@@ -74,6 +74,7 @@ export class EmojiArea extends View {
 
   constructor() {
     super({ template, classes });
+    this.handleScroll = throttle(this.handleScroll.bind(this), 200);
   }
 
   initialize() {
@@ -250,7 +251,6 @@ export class EmojiArea extends View {
    */
   private focusCategory(category: number, focusTarget: CategoryFocusTarget) {
     this.selectCategory(category, {
-      animate: true,
       focus: focusTarget,
       performFocus: true
     });
