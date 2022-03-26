@@ -156,9 +156,10 @@ export class EmojiArea extends View {
    * @param animate Whether or not the scroll should be animated.
    * @returns a Promise that is resolved when the scroll is complete.
    */
-  private async scrollTZo(targetPosition, animate = true): Promise<void> {
+  private async scrollTo(targetPosition, animate = true): Promise<void> {
+    // debugger;
     // We don't want to trigger the auto selection, so pause scroll listening here.
-    this.suspendScrollListener();
+    this.listenForScroll = false;
 
     // If a scroll animation is already in progress, cancel it and jump to the end
     // before starting this one.
@@ -169,8 +170,13 @@ export class EmojiArea extends View {
 
     const { emojis } = this.ui;
 
+    if (!animate && !prefersReducedMotion()) {
+      emojis.scrollTop = targetPosition;
+      setTimeout(() => { this.listenForScroll = true });
+      return;
+    }
+
     return new Promise<void>(resolve => {
-      if (animate && !prefersReducedMotion()) {
         const difference = targetPosition - emojis.scrollTop;
         const step = difference / 7;
 
@@ -183,6 +189,7 @@ export class EmojiArea extends View {
           // If the scroll operation was cancelled, immediately jump to the target position.
           if (isCancelled) {
             emojis.scrollTop = targetPosition;
+            return resolve();
           }
 
           // If we are scrolling down, check to see if there is still scrollable area below the current position.
@@ -200,6 +207,8 @@ export class EmojiArea extends View {
               requestAnimationFrame(scrollStep);
             } else {
               // Otherwse we either have reached the target position or can't scroll down any further.
+              // Only start listening for scroll events once the scroll animation is complete.
+              this.listenForScroll = true;
               resolve();
             }
           } else {
@@ -210,10 +219,6 @@ export class EmojiArea extends View {
     
         // Start the scroll animation.
         requestAnimationFrame(scrollStep);
-      } else {
-        emojis.scrollTop = targetPosition;
-        resolve();
-      }
     });
   }
 
@@ -279,8 +284,7 @@ export class EmojiArea extends View {
     this.emojiCategories[categoryIndex].setActive(true, getFocusTarget(focus), focus !== 'button' && performFocus);
 
     if (scroll) {
-      this.suspendScrollListener();
-      this.ui.emojis.scrollTop = targetPosition;
+      await this.scrollTo(targetPosition, scroll === 'animate');
     }
   }
 
@@ -289,26 +293,19 @@ export class EmojiArea extends View {
    * @param category the key of the currently focused category
    */
   private updateFocusedCategory(emoji: EmojiRecord, category: CategoryKey) {
-    this.suspendScrollListener();
+    this.listenForScroll = false;
     this.selectedCategory = this.getCategoryIndex(category);
     this.categoryButtons?.setActiveButton(this.selectedCategory, false, true);
-  }
-
-  /**
-   * Sets a flag that will stop listening for scroll events. The listener will remain suspended
-   * until resumed.
-   */
-  private suspendScrollListener() {
-    this.listenForScroll = false;
+    this.listenForScroll = true;
   }
 
   /**
    * On scroll, checks the new scroll position and highlights a new category if necessary.
    */
   handleScroll(): void {
-    // If we paused the listener, re-enable the flag but then skip this event.
+    console.log({ scroll: this.listenForScroll });
+    
     if (!this.listenForScroll) {
-      this.listenForScroll = true;
       return;
     }
 
@@ -319,8 +316,6 @@ export class EmojiArea extends View {
       return category.el.offsetTop >= currentPosition;
     });
 
-    // TODO: Almost there! Need to fix syncing the focused to highlight
-    // TODO: Emoji button view can emit event to make sure focus stays in sync.
     if (currentPosition === 0) {
       this.categoryButtons.setActiveButton(0, false);
     } else if (Math.floor(currentPosition) === Math.floor(maxScroll) || targetCategory < 0) {
