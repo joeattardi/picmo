@@ -97,7 +97,7 @@ export class EmojiContainer extends View {
     if (active) {
       this.setFocusedView(focusTarget, performFocus);
     } else {
-      this.emojiViews[this.grid.getIndex()].deactivateFocus();
+      this.emojiViews[this.grid.getIndex()]?.deactivateFocus();
     }
   }
 
@@ -151,8 +151,8 @@ export class EmojiContainer extends View {
    * @param event The focus:change event.
    */
   private setFocus({ from, to, performFocus }: FocusChangeEvent) {
-    this.emojiViews[from].deactivateFocus();
-    this.emojiViews[to].activateFocus(performFocus);
+    this.emojiViews[from]?.deactivateFocus();
+    this.emojiViews[to]?.activateFocus(performFocus);
   }
 
   private selectEmoji(event: Event) {
