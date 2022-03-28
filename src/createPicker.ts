@@ -1,42 +1,16 @@
-import { LATEST_EMOJI_VERSION } from 'emojibase';
 import { nanoid } from 'nanoid';
 
-import en from './i18n/lang-en';
-import { lightTheme } from './themes';
 import { AppEvents } from './AppEvents';
 import { EmojiPicker } from './views/EmojiPicker';
 import { PickerOptions, CustomEmoji, EmojiRecord } from './types';
 import { ViewFactory } from './viewFactory';
 export { LazyLoader } from './LazyLoader';
-import NativeRenderer from './renderers/native';
 import { Database } from './db';
 import { initDatabaseFromCdn, initDatabaseWithStaticData } from './emojiData';
 import { Bundle } from './i18n';
+import { getOptions } from './options';
 
-const defaultOptions: PickerOptions = {
-  rootElement: document.body,
-  renderer: new NativeRenderer(),
-  theme: lightTheme,
-
-  showSearch: true,
-  showCategoryButtons: true,
-  showVariants: true,
-  showRecents: true,
-  showPreview: true,
-
-  autoHide: true,
-  autoFocusSearch: true,
-
-  position: 'auto',
-  emojisPerRow: 8,
-
-  emojiVersion: parseFloat(LATEST_EMOJI_VERSION),
-  maxRecents: 50,
-  i18n: en,
-  locale: 'en'
-};
-
-function initData(options: Required<PickerOptions>): Promise<Database> {
+function initData(options: PickerOptions): Promise<Database> {
   if (options.emojiData && options.messages) {
     return initDatabaseWithStaticData(options.messages, options.emojiData);
   } else {
@@ -51,7 +25,7 @@ function initData(options: Required<PickerOptions>): Promise<Database> {
  * @returns a Promise that resolves to the picker when it is ready.
  */
 export function createEmojiPicker(options: PickerOptions): EmojiPicker {
-  const finalOptions = { ...defaultOptions, ...options } as Required<PickerOptions>
+  const finalOptions = getOptions(options);
   
   const customEmojis: EmojiRecord[] = (finalOptions?.custom || []).map((custom: CustomEmoji) => ({
     custom: true,

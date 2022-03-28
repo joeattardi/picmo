@@ -50,34 +50,36 @@ export type Category = {
 }
 
 export type PickerOptions = {
-  renderer?: Renderer;
-  theme?: string;
-  rootElement?: HTMLElement;
+  renderer: Renderer;
+  theme: string;
+  rootElement: HTMLElement;
 
-  showRecents?: boolean;
-  showCategoryButtons?: boolean;
-  showSearch?: boolean;
-  showVariants?: boolean;
-  showPreview?: boolean;
+  showRecents: boolean;
+  showCategoryButtons: boolean;
+  showSearch: boolean;
+  showVariants: boolean;
+  showPreview: boolean;
 
-  autoHide?: boolean;
-  autoFocusSearch?: boolean;
+  hideOnClickOutside: boolean;
+  hideOnEmojiSelect: boolean;
+  hideOnEscape: boolean;
+  autoFocusSearch: boolean;
 
-  position?: Position;
+  position: Position;
   referenceElement?: HTMLElement;
   triggerElement?: HTMLElement;
 
-  maxRecents?: number;
-  emojisPerRow?: number;
-  emojiSize?: string;
-  visibleRows?: number;
+  maxRecents: number;
+  emojisPerRow: number;
+  emojiSize: string;
+  visibleRows: number;
 
   custom?: CustomEmoji[];
-  emojiVersion?: number;
+  emojiVersion: number;
 
-  i18n?: Dictionary;
-  locale?: Locale;
+  i18n: Dictionary;
+  locale: Locale;
 
-  emojiData?: Emoji[];
-  messages?: MessagesDataset;
+  emojiData: Emoji[];
+  messages: MessagesDataset;
 };

@@ -7,43 +7,39 @@ import { createEmojiPicker } from './createPicker';
 import { setPosition, PositionCleanup } from './positioning';
 import { prefersReducedMotion } from './util';
 
+import { getOptions } from './options';
+
 const SHOW_HIDE_DURATION = 150;
 
 export class PopupPickerController {
   picker: EmojiPicker;
   isOpen = false;
 
-  private autoHide: boolean;
-  private rootElement: HTMLElement;
   private popupEl: HTMLElement;
   private positionCleanup: PositionCleanup;
-  private options: Required<PickerOptions>;
+  private options: PickerOptions;
   private externalEvents = new ExternalEvents();
 
-  constructor(options: Required<PickerOptions>) {
+  constructor(options: PickerOptions) {
     this.popupEl = document.createElement('div');
-    this.rootElement = options.rootElement || document.body;
+    this.options = getOptions(options);
+    this.picker = createEmojiPicker({ ...this.options, rootElement: this.popupEl });
 
-    this.autoHide = options.autoHide ?? true;
-
-    this.options = {
-      ...options,
-      rootElement: this.popupEl
-    };
-
-    this.picker = createEmojiPicker(this.options);
-
-    if (this.autoHide) {
+    if (this.options.hideOnEmojiSelect) {
       this.picker.on('emoji:select', () => {
         this.close();
       });
     }
 
-    this.onDocumentClick = this.onDocumentClick.bind(this);
-    document.addEventListener('click', this.onDocumentClick);
+    if (this.options.hideOnClickOutside) {
+      this.onDocumentClick = this.onDocumentClick.bind(this);
+      document.addEventListener('click', this.onDocumentClick);
+    }
 
-    this.handleKeydown = this.handleKeydown.bind(this);
-    this.popupEl.addEventListener('keydown', this.handleKeydown);
+    if (this.options.hideOnEscape) {
+      this.handleKeydown = this.handleKeydown.bind(this);
+      this.popupEl.addEventListener('keydown', this.handleKeydown);
+    }
   }
 
   /**
@@ -97,7 +93,7 @@ export class PopupPickerController {
     }
 
     await this.initiateOpenStateChange(true);
-    this.rootElement.appendChild(this.popupEl);
+    this.options.rootElement.appendChild(this.popupEl);
     this.setPosition();
     this.picker.initializePickerView();
 
@@ -166,7 +162,9 @@ export class PopupPickerController {
    */
   private setPosition() {
     this.positionCleanup?.();
-    this.positionCleanup = setPosition(this.popupEl, this.options.referenceElement, this.options.position);
+    if (this.options.referenceElement) {
+      this.positionCleanup = setPosition(this.popupEl, this.options.referenceElement, this.options.position);
+    }
   }
 
   /**

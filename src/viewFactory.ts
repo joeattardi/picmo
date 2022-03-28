@@ -11,7 +11,7 @@ type DependencyMapping = {
   i18n: Bundle;
   renderer: Renderer;
   emojiData: Promise<Database>;
-  options: Required<PickerOptions>;
+  options: PickerOptions;
   customEmojis: EmojiRecord[];
   pickerId: string;
 };
@@ -24,7 +24,7 @@ export class ViewFactory {
   private i18n: Bundle;
   private renderer: Renderer;
   private emojiData: Promise<Database>;
-  private options: Required<PickerOptions>;
+  private options: PickerOptions;
   private customEmojis: EmojiRecord[];
   private pickerId: string;
 

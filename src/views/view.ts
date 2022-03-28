@@ -43,7 +43,7 @@ export abstract class View {
   protected keyBindings: KeyBindings;
   protected uiElements: UIElementSelectors = {};
   protected emojiData: Database;
-  protected options: Required<PickerOptions>;
+  protected options: PickerOptions;
   protected customEmojis: EmojiRecord[];
 
   protected events: Events<AppEvent>;
@@ -95,7 +95,7 @@ export abstract class View {
     });
   }
 
-  setOptions(options: Required<PickerOptions>) {
+  setOptions(options: PickerOptions) {
     this.options = options;
   }
 

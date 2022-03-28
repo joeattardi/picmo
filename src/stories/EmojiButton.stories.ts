@@ -11,7 +11,10 @@ export default {
   args: {
     emojiVersion: 13,
     theme: 'lightTheme',
-    renderer: 'native'
+    renderer: 'native',
+    hideOnEmojiSelect: true,
+    hideOnClickOutside: true,
+    hideOnEscape: true
   },
   argTypes: {
     emojiVersion: {
@@ -49,6 +52,24 @@ export default {
           twemoji: 'Twemoji'
         },
         
+      }
+    },
+    hideOnEmojiSelect: {
+      name: 'Hide on emoji select',
+      control: {
+        type: 'boolean'
+      }
+    },
+    hideOnClickOutside: {
+      name: 'Hide on click outside',
+      control: {
+        type: 'boolean'
+      }
+    },
+    hideOnEscape: {
+      name: 'Hide on Escape',
+      control: {
+        type: 'boolean'
       }
     }
   }
