@@ -56,6 +56,11 @@ export class VariantPopup extends View {
     newFocusedEmoji.focus();
   }
 
+  destroy() {
+    this.emojiContainer.destroy();
+    super.destroy();
+  }
+
   async render(): Promise<HTMLElement> {
     const baseEmoji = {
       ...this.emoji,

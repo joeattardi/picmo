@@ -15,7 +15,7 @@
   }
 }
 
-.wrapper {
+.picker {
   --blue-color: #4f81e5;
   --border-radius: 5px;
   --content-height: 21rem;
@@ -36,9 +36,7 @@
     'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji';
   --ui-font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
   --picker-width: calc(var(--emojis-per-row) * var(--emoji-size) * var(--emoji-size-multiplier) + 2.75rem);
-}
 
-.picker {
   background: var(--background-color);
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);

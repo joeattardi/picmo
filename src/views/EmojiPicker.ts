@@ -10,14 +10,10 @@ import { VariantPopup } from './VariantPopup';
 
 import { addOrUpdateRecent } from '../recents';
 import { EventCallback } from '../events';
-import { PositionCleanup, setPosition } from '../positioning';
-import { prefersReducedMotion } from '../util';
 
 import template from '../templates/emojiPicker.ejs';
 import classes from './EmojiPicker.scss';
 import { EmojiRecord } from '../types';
-
-const SHOW_HIDE_DURATION = 150;
 
 const variableNames = {
   emojisPerRow: '--emojis-per-row',
@@ -30,7 +26,7 @@ const variableNames = {
  * emoji selection events.
  */
 export class EmojiPicker extends View {
-  isOpen = false;
+  pickerReady = false;
 
   private search: Search;
   private emojiArea: EmojiArea;
@@ -39,27 +35,17 @@ export class EmojiPicker extends View {
 
   private currentView: View;
   private focusTrap: FocusTrap;
-  private positionCleanup: PositionCleanup;
-
-  private pickerReady = false;
 
   private externalEvents = new ExternalEvents();
 
   constructor() {
     super({ template, classes });
-
-    this.onDocumentClick = this.onDocumentClick.bind(this);
   }
 
   initialize() {
     this.uiElements = {
-      picker: View.byClass(classes.picker),
       pickerContent: View.byClass(classes.content)
     };
-
-    this.uiEvents = [
-      View.uiEvent('keydown', this.handlePickerKeydown)
-    ];
 
     this.appEvents = {
       'data:ready': this.onDataReady,
@@ -68,8 +54,6 @@ export class EmojiPicker extends View {
       'emoji:select': this.selectEmoji
     };
 
-    document.addEventListener('click', this.onDocumentClick);
-
     super.initialize();
   }
 
@@ -77,19 +61,12 @@ export class EmojiPicker extends View {
    * Destroys the picker when it is no longer needed.
    * After calling this method, the picker will no longer be usable.
    * 
-   * If this is called while the picker is open, it will be closed first.
-   * 
    * @returns a Promise that resolves when the close/destroy is complete.
    */
   async destroy(): Promise<void> {
-    document.removeEventListener('click', this.onDocumentClick);
-    if (this.isOpen) {
-      await this.close();
-    }
-
     super.destroy();
-
     this.events.removeAll();
+    this.externalEvents.removeAll();
   }
 
   /**
@@ -113,146 +90,16 @@ export class EmojiPicker extends View {
   }
 
   /**
-   * Toggles the visible state of the picker
-   * If the picker is currently open, it will be closed, and if it si currently closed, it will be opened.
-   * 
-   * @returns a Promise that resolves when the visibility state change is complete
-   */
-  toggle(): Promise<void> {
-    return this.isOpen ? this.close() : this.open();
-  }
-
-  /**
-   * Opens the picker.
-   * 
-   * @returns a Promise that resolves when the picker is finished opening
-   */
-  async open(): Promise<void> {
-    if (this.isOpen) {
-      return;
-    }
-
-    await this.initiateOpenStateChange(true);
-
-    this.options.rootElement.appendChild(this.el);
-    this.setPosition();
-
-    if (this.pickerReady) {
-      this.initializePickerView();
-    }
-
-    await this.animateOpenStateChange(true);
-
-    this.setInitialFocus();
-    this.externalEvents.emit('picker:open');
-  }
-
-  /**
-   * Closes the picker
-   * 
-   * @returns a Promise that resolves when the picker is finished closing
-   */
-  async close(): Promise<void> {
-    if (!this.isOpen) {
-      return;
-    }
-
-    await this.initiateOpenStateChange(false);
-
-    this.focusTrap?.deactivate();
-
-    // TODO scroll listener
-
-    await this.animateOpenStateChange(false);
-
-    this.el.remove();
-    this.search?.clear();
-    this.showContent();
-
-    this.hideVariantPopup();
-    this.positionCleanup();
-
-    this.externalEvents.emit('picker:close');
-  }
-
-  /**
    * Finishes setting up the picker view once the data is ready.
    * This will only be called if the emoji data is available and all
    * emoji picker views have been rendered.
    * 
    * This is the last thing to happen before the emoji picker UI becomes visible.
    */
-  private initializePickerView() {
-    this.focusTrap.activate();
-    this.showContent();
-  }
-
-  /**
-   * Initiates an animation either for opening or closing the picker using the Web Animations API.
-   * If animations are not enabled or supported, the picker will be immediately opened or closed.
-   * 
-   * @param openState The desired open state of the picker
-   * @returns The Animation object that is running
-   */
-  private async animateOpenStateChange(openState: boolean): Promise<Animation | void> {
-    return this.ui.picker.animate?.({
-      opacity: [0, 1],
-      transform: ['scale(0.9)', 'scale(1)']
-    }, {
-      duration: prefersReducedMotion() ? 0 : SHOW_HIDE_DURATION,
-      id: openState ? 'show-picker' : 'hide-picker',
-      fill: 'both',
-      easing: 'ease-in-out',
-      direction: openState ? 'normal' : 'reverse'
-    }).finished;
-  }
-
-  /**
-   * Prepares for an animation either for opening or closing the picker.
-   * If other animations are still running (this will happen when toggled rapidly), this will wait for them to finish.
-   * 
-   * It will mark the new open state immediately then wait for pending animations to finish.
-   * 
-   * @param openState The desired open state
-   */
-  private async initiateOpenStateChange(openState: boolean) {
-    this.isOpen = openState;
-    await this.awaitPendingAnimations();
-  }
-
-  /**
-   * Finds any pending (running) animations on the picker element.
-   * 
-   * @returns an array of Animation objects that are in the 'running' state.
-   */
-  private getRunningAnimations(): Animation[] {
-    return this.ui.picker.getAnimations().filter(animation => animation.playState === 'running');
-  }
-
-  /**
-   * Waits for all pending animations on the picker element to finish.
-   * 
-   * @returns a Promise that resolves when all animations have finished
-   */
-  private awaitPendingAnimations(): Promise<Animation[]> {
-    return Promise.all(this.getRunningAnimations().map(animation => animation.finished));
-  }
-
-  /**
-   * Sets up the picker positioning.
-   */
-  private setPosition() {
-    this.positionCleanup?.();
-    this.positionCleanup = setPosition(this.el, this.options.referenceElement, this.options.position);
-  }
-
-  /**
-   * Top-level keyboard event handler for the picker.
-   * @param event the keydown event
-   */
-  private handlePickerKeydown(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      this.close();
+  initializePickerView() {
+    if (this.pickerReady) {
+      this.focusTrap.activate();
+      this.showContent();
     }
   }
 
@@ -331,36 +178,11 @@ export class EmojiPicker extends View {
     this.setStyleProperties();
     this.createFocusTrap();
 
-    this.pickerReady = true;
-
-    // If the data becomes ready when the picker is open,
-    // finish setting up the picker UI. Otherwise this will be done
-    // next time it is opened.
     currentView.replaceWith(this.el);
-    // this.setPosition();
     this.initializePickerView();
-  }
 
-  /**
-   * Handles a click on the document, so that the picker is closed
-   * if the mouse is clicked outside of it.
-   * 
-   * The picker will only be closed if:
-   * - The picker is currently open
-   * - The click target is not the trigger element or any of its children
-   * - The click target is not the picker or any of its children
-   *
-   * @param event The MouseEvent that was dispatched.
-   */
-   private onDocumentClick(event: MouseEvent) {
-    const clickedNode = event.target as Node;
-
-    const isClickInsidePicker = this.el.contains(clickedNode);
-    const isClickOnTrigger = this.options.triggerElement?.contains(clickedNode);
-
-    if (this.isOpen && !isClickOnTrigger && !isClickInsidePicker) {
-      this.close();
-    }
+    this.pickerReady = true;
+    this.externalEvents.emit('data:ready');
   }
 
   /**
@@ -383,12 +205,20 @@ export class EmojiPicker extends View {
   /**
    * Sets the initial autofocus, depending on options.
    */
-  private setInitialFocus() {
+  setInitialFocus() {
     if (this.search && this.options.autoFocusSearch) {
       this.search.focus();
     } else {
       this.emojiArea.focusableEmoji.focus();
     }
+  }
+
+  /**
+   * Resets the picker to its default, "inactive" state.
+   */
+  reset() {
+    this.focusTrap?.deactivate();
+    this.emojiArea.reset();
   }
 
   /**
@@ -420,18 +250,22 @@ export class EmojiPicker extends View {
    * Closes and destroys the variant popup.
    */
   private hideVariantPopup() {
-    if (this.variantPopup?.el?.isConnected) {
-      // Don't hide the popup right away, otherwise
-      // the check in onDocumentClick will register a click outside
-      // of the picker and close the picker (which we may not want).
-      setTimeout(() => {
-        if (this.variantPopup?.el) {
-          this.ui.picker.removeChild(this.variantPopup.el);
-          this.variantPopup.destroy();
-          this.variantPopup = null;
-        }
-      });
-    }
+    this.variantPopup?.destroy();
+  }
+
+  /**
+   * Given a mouse event, determines if the event occurred on the picker or one of its components.
+   * 
+   * @param event The mouse event
+   * @returns true if the click should be treated as on the picker, false otherwise
+   */
+  isPickerClick(event: MouseEvent) {
+    const clickedNode = event.target as Node;
+
+    const isClickInsidePicker = this.el.contains(clickedNode);
+    const isClickOnVariantPopup = this.variantPopup?.el?.contains(clickedNode);
+
+    return isClickInsidePicker || isClickOnVariantPopup;
   }
 
   /**
@@ -441,12 +275,16 @@ export class EmojiPicker extends View {
    */
   private async selectEmoji({ emoji }: { emoji: EmojiRecord }): Promise<void> {
     // Show the variant popup if the emoji has variants
-    if (emoji.skins && this.options.showVariants && !this.variantPopup) {
+    if (emoji.skins && this.options.showVariants && !this.isVariantPopupOpen) {
       this.showVariantPopup(emoji);
     } else {
       this.hideVariantPopup();
       await this.emitEmoji(emoji);
     }
+  }
+
+  private get isVariantPopupOpen() {
+    return this.variantPopup && !this.variantPopup.isDestroyed;
   }
 
   /**
@@ -457,7 +295,7 @@ export class EmojiPicker extends View {
    */
   private async showVariantPopup(emoji: EmojiRecord): Promise<void> {
     this.variantPopup = this.viewFactory.create(VariantPopup, { emoji });
-    this.ui.picker.appendChild(await this.variantPopup.render());
+    this.el.appendChild(await this.variantPopup.render());
   }
 
   /**
@@ -466,10 +304,6 @@ export class EmojiPicker extends View {
    */
   private async emitEmoji(emoji: EmojiRecord): Promise<void> {
     this.externalEvents.emit('emoji:select', await this.renderer.doEmit(emoji));
-    if (this.options.autoHide) {
-      await this.close();
-    }
-
     addOrUpdateRecent(emoji, this.options.maxRecents);
     this.events.emit('recent:add', emoji);
   }

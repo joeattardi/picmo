@@ -1,5 +1,5 @@
 import './EmojiButton.css';
-import { createEmojiPicker } from '../../src/index';
+import { createEmojiPicker, createPopup } from '../../src/index';
 
 export function createPicker(options = {}) {
   const rootElement = document.createElement('div');
@@ -36,36 +36,31 @@ export function createPopupPicker(options = {}) {
   const button = document.createElement('button');
   button.className = 'emoji-button empty';
 
-  createEmojiPicker({
+  const picker = createPopup({
     ...options,
+    triggerElement: button,
     referenceElement: button,
-    triggerElement: button
-  }).then(picker => {
-    window.parent.addEventListener(
-      'click',
-      () => {
-        if (picker.isOpen) {
-          picker.close();
-        }
-      },
-      { once: true }
-    );
+  });
 
-    button.addEventListener('click', () => {
-      picker.on('emoji:select', (selection) => {
-        const { emoji, url } = selection;
-        button.classList.remove('empty');
+  window.parent.addEventListener('click', () => {
+    if (picker.isOpen) {
+      picker.close();
+    }
+  }, { once: true });
 
-        if (url) {
-          const img = document.createElement('img');
-          img.src = url;
-          button.replaceChildren(img);
-        } else {
-          button.replaceChildren(emoji);
-        }
-      });
-      picker.toggle();
-    });
+  button.addEventListener('click', () => { picker.toggle() });
+
+  picker.on('emoji:select', selection => {
+    const { emoji, url } = selection;
+    button.classList.remove('empty');
+
+    if (url) {
+      const img = document.createElement('img');
+      img.src = url;
+      button.replaceChildren(img);
+    } else {
+      button.replaceChildren(emoji);
+    }
   });
 
   return button;

@@ -33,6 +33,7 @@ type ViewOptions = {
 };
 export abstract class View {
   el: HTMLElement;
+  isDestroyed = false;
 
   private template: Template;
   private classes?: ClassMappings;
@@ -171,6 +172,9 @@ export abstract class View {
     this.uiEvents.forEach((binding: UIEventListenerBinding) => {
       this.el.removeEventListener(binding.event, binding.handler, binding.options);
     });
+
+    this.el.remove();
+    this.isDestroyed = true;
   }
 
   static childEvent(target: string, event: string, handler: EventCallback, options: AddEventListenerOptions = {}): UIEventListenerBinding {
