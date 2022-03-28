@@ -19,28 +19,36 @@ export class LazyLoader {
   }
 
   observe(root: HTMLElement): void {
-    const observer = new IntersectionObserver(
-      entries => {
-        entries
-          .filter(entry => entry.intersectionRatio > 0)
-          .map(entry => entry.target)
-          .forEach(element => {
-            const factory = this.elements.get(element);
-            if (factory) {
-              Promise.resolve(factory()).then(img => {
-                observer.unobserve(element);
-                element.replaceWith(img);
-              });
-            }
-          });
-      },
-      {
-        root
-      }
-    );
+    if (window.IntersectionObserver) {
+      const observer = new IntersectionObserver(
+        entries => {
+          entries
+            .filter(entry => entry.intersectionRatio > 0)
+            .map(entry => entry.target)
+            .forEach(element => {
+              const factory = this.elements.get(element);
+              if (factory) {
+                Promise.resolve(factory()).then(img => {
+                  observer.unobserve(element);
+                  element.replaceWith(img);
+                });
+              }
+            });
+        },
+        {
+          root
+        }
+      );
 
-    this.elements.forEach((callback, element) => {
-      observer.observe(element);
-    });
+      this.elements.forEach((callback, element) => {
+        observer.observe(element);
+      });
+    } else {
+      this.elements.forEach((callback, element) => {
+        Promise.resolve(callback()).then(img => {
+          element.replaceWith(img);
+        });
+      });
+    }
   }
 }

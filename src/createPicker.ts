@@ -24,14 +24,12 @@ function initData(options: PickerOptions): Promise<Database> {
  * @param options The options for the emoji picker.
  * @returns a Promise that resolves to the picker when it is ready.
  */
-export function createEmojiPicker(options: PickerOptions): EmojiPicker {
+export function createEmojiPicker(options: Partial<PickerOptions>): EmojiPicker {
   const finalOptions = getOptions(options);
   
   const customEmojis: EmojiRecord[] = (finalOptions?.custom || []).map((custom: CustomEmoji) => ({
+    ...custom,
     custom: true,
-    url: custom.url,
-    label: custom.label,
-    emoji: custom.emoji,
     tags: ['custom', ...(custom.tags || [])]
   }));
 

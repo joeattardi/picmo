@@ -17,12 +17,14 @@ export type EmojiRecord = {
   order?: number;
   custom?: boolean;
   hexcode?: string;
+  data?: any;
 }
 
 export type EmojiSelection = {
   url?: string;
   emoji: string;
   label: string;
+  data?: any;
 }
 
 export type CustomEmoji = {
@@ -30,6 +32,7 @@ export type CustomEmoji = {
   label: string;
   url: string;
   tags?: string[];
+  data?: any;
 };
 
 export type FixedPosition = {

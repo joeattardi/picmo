@@ -38,3 +38,14 @@
   width: 32px;
   height: 32px;
 }
+
+.event-area h2 {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.event-area pre {
+  background: #eee;
+  padding: 0.5rem;
+}

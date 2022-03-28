@@ -24,8 +24,8 @@ export abstract class Renderer {
     return this.emit(emoji);
   }
 
-  emitCustom({ url, label, emoji }: CustomEmoji): EmojiSelection {
-    return { url, label, emoji }
+  emitCustom({ url, label, emoji, data }: CustomEmoji): EmojiSelection {
+    return { url, label, emoji, data };
   }
 
   renderCustom(emoji: CustomEmoji, lazyLoader?: LazyLoader): HTMLElement | Promise<HTMLElement> {

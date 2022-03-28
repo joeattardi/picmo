@@ -20,7 +20,7 @@ export class PopupPickerController {
   private options: PickerOptions;
   private externalEvents = new ExternalEvents();
 
-  constructor(options: PickerOptions) {
+  constructor(options: Partial<PickerOptions>) {
     this.popupEl = document.createElement('div');
     this.options = getOptions(options);
     this.picker = createEmojiPicker({ ...this.options, rootElement: this.popupEl });

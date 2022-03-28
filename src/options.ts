@@ -32,6 +32,6 @@ const defaultOptions: Partial<PickerOptions> = {
   custom: []
 };
 
-export function getOptions(options: PickerOptions): PickerOptions {
-  return { ...defaultOptions, ...options };
+export function getOptions(options: Partial<PickerOptions>): PickerOptions {
+  return { ...defaultOptions, ...options } as PickerOptions;
 }

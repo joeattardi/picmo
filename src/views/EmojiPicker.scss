@@ -35,13 +35,14 @@
   --emoji-font: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI', 'Apple Color Emoji', 'Twemoji Mozilla',
     'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji';
   --ui-font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --ui-font-size: 16px;
   --picker-width: calc(var(--emojis-per-row) * var(--emoji-size) * var(--emoji-size-multiplier) + 2.75rem);
 
   background: var(--background-color);
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
   font-family: var(--ui-font);
-  font-size: 16px;
+  font-size: var(--ui-font-size);
   overflow: hidden;
   position: relative;
   width: var(--picker-width);
