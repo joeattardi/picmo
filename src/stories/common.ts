@@ -14,6 +14,7 @@ export function getArgs(extraArgs): Meta {
       ...extraArgs.args
     },
     argTypes: {
+      emojiSelect: { action: 'emoji:select' },
       emojiVersion: {
         name: 'Emoji version',
         type: 'number'
@@ -51,7 +52,7 @@ export function getArgs(extraArgs): Meta {
           
         }
       },
-      ...extraArgs.extraArgTypes
+      ...extraArgs.argTypes
     }
   };
 }

@@ -119,6 +119,8 @@ export class PopupPickerController {
     this.popupEl.remove();
     this.picker.reset();
     this.positionCleanup();
+
+    this.externalEvents.emit('picker:close');
   }
 
   private handleKeydown(event: KeyboardEvent) {
