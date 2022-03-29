@@ -3,9 +3,15 @@ import { createEmojiPicker, createPopup } from '../../src/index';
 
 import { renderTemplateSync } from '../templates';
 
-function handleEmojiSelection(button, eventData) {
+function handleEvent(event: string, button: HTMLButtonElement, eventArea: HTMLElement) {
   return selection => {
+    const title = eventArea.querySelector('h2');
+    const eventData = eventArea.querySelector('.event-data');
+
+    eventArea.style.display = 'block';
     eventData.textContent = JSON.stringify(selection, null, 2);
+    title.innerHTML = `Received event: <code>${event}</code>`;
+
     const { emoji, url } = selection;
     button.classList.remove('empty');
 
@@ -24,8 +30,8 @@ export function createPicker(options = {}) {
     <div>
       <button class="emoji-button empty"></button>
       <div class="picker"></div>
-      <div class="event-area">
-        <h2>Last event</h2>
+      <div class="event-area" style="display: none;">
+        <h2>Received event:</h2>
         <pre class="event-data">No events yet</pre>
       </div>
     </div>
@@ -33,14 +39,14 @@ export function createPicker(options = {}) {
 
   const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button');
   const pickerElement = rootElement.querySelector<HTMLElement>('.picker');
-  const eventData = rootElement.querySelector('.event-data');
+  const eventArea = rootElement.querySelector<HTMLElement>('.event-area');
 
   const picker = createEmojiPicker({
     ...options,
     rootElement: pickerElement
   });
 
-  picker.on('emoji:select', handleEmojiSelection(button, eventData));
+  picker.on('emoji:select', handleEvent('emoji:select', button, eventArea));
   return rootElement;
 }
 
@@ -48,15 +54,15 @@ export function createPopupPicker(options = {}) {
   const rootElement = renderTemplateSync(`
     <div>
       <button class="emoji-button empty"></button>
-      <div class="event-area">
-        <h2>Last event</h2>
+      <div class="event-area" style="display: none;">
+        <h2>Received event:</h2>
         <pre class="event-data">No events yet</pre>
       </div>
     </div>
   `);
 
   const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button');
-  const eventData = rootElement.querySelector('.event-data');
+  const eventArea = rootElement.querySelector<HTMLElement>('.event-area');
 
   const picker = createPopup({
     ...options,
@@ -77,6 +83,6 @@ export function createPopupPicker(options = {}) {
   button.addEventListener('click', () => {
     picker.toggle();
   });
-  picker.on('emoji:select', handleEmojiSelection(button, eventData));
+  picker.on('emoji:select', handleEvent('emoji:select', button, eventArea));
   return rootElement;
 }
