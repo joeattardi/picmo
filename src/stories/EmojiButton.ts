@@ -50,9 +50,6 @@ export function createPicker(options: any = {}) {
   const picker = createEmojiPicker({
     ...options,
     ...getUIFlags(options),
-    // showSearch: false,
-    // showCategoryTabs: false,
-    // showPreview: false,
     rootElement: pickerElement
   });
 

@@ -6,7 +6,7 @@
   display: flex;
   height: var(--search-height);
   box-sizing: border-box;
-  padding: 8px 8px 0;
+  padding: 0 8px;
   position: relative;
 }
 
@@ -40,10 +40,10 @@
 
 .searchAccessory {
   color: var(--search-icon-color);
-  height: calc(100% - 8px);
+  height: 100%;
   position: absolute;
   right: 0.75em;
-  top: 8px;
+  top: 0;
   width: 1.25rem;
   display: flex;
   align-items: center;

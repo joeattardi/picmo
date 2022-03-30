@@ -37,13 +37,13 @@
   --emoji-size: 1.8em;
   --emoji-size-multiplier: 1.5;
   --content-margin: 8px;
-  --category-tabs-height: calc(1.5em + 8px + 4px + 1px);
+  --category-tabs-height: calc(1.5em + 4px + 4px + 1px);
   --category-button-height: 1.5em;
   --category-button-width: 1.5em;
   --category-button-size: 1.2rem;
   --category-name-height: 2rem;
   --category-name-padding-y: 6px;
-  --search-height: 2.25em;
+  --search-height: 1.75em;
   --search-margin: 0.5em;
   --search-margin-bottom: 4px;
   --search-height-full: calc(var(--search-height) + var(--search-margin) + var(--search-margin-bottom));
@@ -62,18 +62,17 @@
   overflow: hidden;
   position: relative;
   width: var(--picker-width);
+  padding-top: 8px;
 
   display: grid;
   gap: 8px;
 
   & > * {
     font-family: var(--ui-font);
-    // box-sizing: content-box;
   }
 }
 
 .skeleton {
-  // height: calc(var(--content-height) + var(--search-height-full) + var(--emoji-preview-height-full));
   background: var(--background-color);
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
@@ -106,7 +105,7 @@
 
   .searchSkeleton {
     height: var(--search-height);
-    padding: 8px 8px 0;
+    padding: 0 8px;
 
     .searchInput {
       width: 100%;
@@ -123,8 +122,8 @@
     justify-content: space-around;
 
     .categoryTab {
-      width: calc(var(--category-button-size) * 1.5);
-      height: calc(var(--category-button-size) * 1.5);
+      width: 25px;
+      height: 25px;
       padding: 2px;
       border-radius: 5px;
     }
