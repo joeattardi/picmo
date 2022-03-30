@@ -11,10 +11,28 @@ export function getArgs(extraArgs): Meta {
       emojiVersion: 13,
       theme: 'lightTheme',
       renderer: 'native',
+      uiElements: ['showRecents', 'showCategoryTabs', 'showSearch', 'showVariants', 'showPreview'],
       ...extraArgs.args
     },
     argTypes: {
-      emojiSelect: { action: 'emoji:select' },
+      emojiSelect: { 
+        action: 'emoji:select',
+        table: { disable: true }
+      },
+      uiElements: {
+        name: 'UI elements',
+        control: {
+          type: 'inline-check',
+          labels: {
+            showRecents: 'Recents',
+            showCategoryTabs: 'Category tabs',
+            showSearch: 'Search',
+            showPreview: 'Preview',
+            showVariants: 'Variants'
+          }
+        },
+        options: ['showRecents', 'showCategoryTabs', 'showSearch', 'showVariants', 'showPreview']  
+      },
       emojiVersion: {
         name: 'Emoji version',
         type: 'number'

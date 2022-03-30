@@ -58,7 +58,7 @@ export type PickerOptions = {
   rootElement: HTMLElement;
 
   showRecents: boolean;
-  showCategoryButtons: boolean;
+  showCategoryTabs: boolean;
   showSearch: boolean;
   showVariants: boolean;
   showPreview: boolean;

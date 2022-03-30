@@ -5,9 +5,9 @@
 .searchContainer {
   display: flex;
   height: var(--search-height);
-  margin: 0.5em;
+  box-sizing: border-box;
+  padding: 8px 8px 0;
   position: relative;
-  margin-bottom: 4px;
 }
 
 .searchField {
@@ -40,10 +40,10 @@
 
 .searchAccessory {
   color: var(--search-icon-color);
-  height: 1.25rem;
+  height: calc(100% - 8px);
   position: absolute;
   right: 0.75em;
-  top: calc(50% - 0.625rem);
+  top: 8px;
   width: 1.25rem;
   display: flex;
   align-items: center;

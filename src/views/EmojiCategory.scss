@@ -3,18 +3,20 @@
 }
 
 .categoryName {
-  font-size: var(--category-name-size);
-  padding: var(--category-name-padding-y) 12px;
+  font-size: 1em;
+  padding: 0.5rem;
   margin: 0;
   background: var(--category-name-background);
   color: var(--category-name-text-color);
   position: sticky;
-  top: -1px;
+  top: -8px;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
   line-height: 1;
+  box-sizing: border-box;
+  height: var(--category-name-height);
 
   &::after {
     width: 100%;
@@ -29,12 +31,6 @@
       var(--fade-gradient-start) 30%, 
       var(--fade-gradient-end) 100%
     );
-  }
-
-  // TODO remove this?
-  img {
-    fill: var(--category-name-accent);
-    width: 2rem;
   }
 
   &:hover button {

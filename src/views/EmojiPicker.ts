@@ -7,19 +7,29 @@ import { EmojiArea } from './EmojiArea';
 import { EmojiPreview } from './Preview';
 import { Search } from './Search';
 import { VariantPopup } from './VariantPopup';
-
+import { CategoryTabs } from './CategoryTabs';
 import { addOrUpdateRecent } from '../recents';
 import { EventCallback } from '../events';
+import { Bundle } from '../i18n';
 
 import template from '../templates/emojiPicker.ejs';
 import classes from './EmojiPicker.scss';
-import { EmojiRecord } from '../types';
+import { Category, CategoryKey, EmojiRecord } from '../types';
 
 const variableNames = {
   emojisPerRow: '--emojis-per-row',
   visibleRows: '--row-count',
   emojiSize: '--emoji-size'
 };
+
+// TODO: put these two extra categories in the database and just grab them that way?
+function createCategory(key: CategoryKey, i18n: Bundle, order: number): Category {
+  return {
+    key,
+    order,
+    message: i18n.get(`categories.${key}`)
+  };
+}
 
 /**
  * The main emoji picker view. Contains the full picker UI and an event emitter to react to
@@ -28,6 +38,9 @@ const variableNames = {
 export class EmojiPicker extends View {
   pickerReady = false;
 
+  private categories: Category[];
+
+  private categoryTabs: CategoryTabs;
   private search: Search;
   private emojiArea: EmojiArea;
   private preview: EmojiPreview;
@@ -98,8 +111,8 @@ export class EmojiPicker extends View {
    */
   initializePickerView() {
     if (this.pickerReady) {
-      this.focusTrap.activate();
       this.showContent();
+      this.focusTrap.activate();
     }
   }
 
@@ -113,7 +126,7 @@ export class EmojiPicker extends View {
    * @returns an array containing the three child views. The preview and search
    *          views are optional, and will be undefined if they are not enabled.
    */
-  private buildChildViews(): [EmojiPreview, Search, EmojiArea] {
+  private buildChildViews(): [EmojiPreview, Search, EmojiArea, CategoryTabs] {
     if (this.options.showPreview) {
       this.preview = this.viewFactory.create(EmojiPreview);
     }
@@ -125,15 +138,36 @@ export class EmojiPicker extends View {
       });
     }
 
-    this.currentView = this.emojiArea = this.viewFactory.create(EmojiArea);
+    if (this.options.showCategoryTabs) {
+      this.categoryTabs = this.viewFactory.create(CategoryTabs, {
+        categories: this.categories
+      });
+    }
 
-    return [this.preview, this.search, this.emojiArea];
+    this.currentView = this.emojiArea = this.viewFactory.create(EmojiArea, {
+      categoryTabs: this.categoryTabs,
+      categories: this.categories
+    });
+
+    return [this.preview, this.search, this.emojiArea, this.categoryTabs];
   }
 
   /**
    * Sets any CSS variables corresponding to options that were set.
    */
   private setStyleProperties() {
+    if (!this.options.showSearch) {
+      this.el.style.setProperty('--search-height-full', '0px');
+    }
+
+    if (!this.options.showCategoryTabs) {
+      this.el.style.setProperty('--category-tabs-height', '0px');
+    }
+
+    if (!this.options.showPreview) {
+      this.el.style.setProperty('--emoji-preview-height-full', '0px');
+    }
+
     Object.keys(variableNames).forEach(key => {
       if (this.options[key]) {
         this.el.style.setProperty(variableNames[key], this.options[key].toString());
@@ -148,11 +182,11 @@ export class EmojiPicker extends View {
     this.focusTrap = createFocusTrap(this.el, {
       clickOutsideDeactivates: true,
       escapeDeactivates: false,
-      initialFocus:
-        this.options.showSearch && this.options.autoFocusSearch
+      initialFocus: () => {
+        return this.options.showSearch && this.options.autoFocusSearch
           ? this.search.searchField
           : this.emojiArea.focusableEmoji
-    });
+    }});
   }
 
   /**
@@ -165,23 +199,36 @@ export class EmojiPicker extends View {
     // the new render.
     const currentView = this.el;
 
-    const [preview, search, emojiArea] = this.buildChildViews();
+    await this.emojiDataPromise;
+    this.categories = await this.emojiData.getCategories();
+
+    if (this.options.showRecents) {
+      this.categories.unshift(createCategory('recents', this.i18n, -1));
+    }
+
+    if (this.options.custom?.length) {
+      this.categories.push(createCategory('custom', this.i18n, 10));
+    }
+
+    const [preview, search, emojiArea, categoryTabs] = this.buildChildViews();
 
     await super.render({
       isLoaded: true,
       search,
+      categoryTabs,
       emojiArea,
       preview,
       theme: this.options.theme
     });
 
-    this.setStyleProperties();
     this.createFocusTrap();
 
+    this.pickerReady = true;
+
     currentView.replaceWith(this.el);
+    this.setStyleProperties();
     this.initializePickerView();
 
-    this.pickerReady = true;
     this.externalEvents.emit('data:ready');
   }
 
@@ -191,10 +238,18 @@ export class EmojiPicker extends View {
    * @returns the root element of the picker
    */
   renderSync(): HTMLElement {
-    super.renderSync({ isLoaded: false, theme: this.options.theme });
+    super.renderSync({ 
+      isLoaded: false, 
+      theme: this.options.theme,
+      showSearch: this.options.showSearch,
+      showPreview: this.options.showPreview,
+      showCategoryTabs: this.options.showCategoryTabs,
+      emojiCount: this.options.emojisPerRow * this.options.visibleRows
+    });
 
     this.options.rootElement.appendChild(this.el);
-
+    this.setStyleProperties();
+    
     if (this.pickerReady) {
       this.initializePickerView();
     }

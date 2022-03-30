@@ -11,7 +11,7 @@ const defaultOptions: Partial<PickerOptions> = {
   theme: lightTheme,
 
   showSearch: true,
-  showCategoryButtons: true,
+  showCategoryTabs: true,
   showVariants: true,
   showRecents: true,
   showPreview: true,
@@ -23,6 +23,7 @@ const defaultOptions: Partial<PickerOptions> = {
 
   position: 'auto',
   emojisPerRow: 8,
+  visibleRows: 6,
 
   emojiVersion: parseFloat(LATEST_EMOJI_VERSION),
   maxRecents: 50,

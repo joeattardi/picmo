@@ -43,6 +43,7 @@ export abstract class View {
   protected keyBindings: KeyBindings;
   protected uiElements: UIElementSelectors = {};
   protected emojiData: Database;
+  protected emojiDataPromise: Promise<Database>;
   protected options: PickerOptions;
   protected customEmojis: EmojiRecord[];
 
@@ -90,6 +91,7 @@ export abstract class View {
   }
 
   setEmojiData(emojiDataPromise: Promise<Database>) {
+    this.emojiDataPromise = emojiDataPromise;
     emojiDataPromise.then(emojiData => {
       this.emojiData = emojiData;
     });
@@ -118,6 +120,8 @@ export abstract class View {
   }
 
   async render(templateData: Data = {}): Promise<HTMLElement> {
+    await this.emojiDataPromise;
+
     const templateFn =
       typeof this.template === 'string' ? async (data: Data) => await renderTemplate(this.template as string, data) : this.template;
 

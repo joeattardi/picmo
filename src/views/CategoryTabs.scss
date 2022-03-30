@@ -3,8 +3,10 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 0;
-  margin-bottom: 8px;
-  padding: 0 8px 4px 8px;
+  padding: 0 0.5em;
+  align-items: center;
+  height: var(--category-tabs-height);
+  box-sizing: border-box;
   
   border-bottom: 1px solid var(--border-color);
   position: relative;
@@ -40,6 +42,8 @@
 
 .categoryTab {
   border-bottom: 4px solid transparent;
+  display: flex;
+  align-items: center;
 
   &.active {
     border-bottom-color: var(--category-button-active-color);

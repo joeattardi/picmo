@@ -1,8 +1,5 @@
 .emojis {
-  height: calc(
-    (var(--row-count) * var(--emoji-size) * var(--emoji-size-multiplier)) +
-    (var(--category-name-size) + (var(--category-name-padding-y) * 2)) + var(--content-margin)
-  );
+  height: var(--emoji-area-height);
   overflow-y: auto;
   position: relative;
 }

@@ -6,6 +6,9 @@
       <% if (locals.search) { %>
         <div data-view="search"></div>
       <% } %>
+      <% if (locals.categoryTabs) { %>
+        <div data-view="categoryTabs"></div>
+      <% } %>
       <div class="<%= classes.content %>">
         <div data-view="emojiArea"></div>
       </div>
@@ -15,6 +18,37 @@
     </div>
   <% } else { %>
     <div class="<%= classes.skeleton %> <%= classes.picker %> <%= theme %>">
-      <i class="fa-solid fa-fw fa-10x fa-face-smile"></i>
+      <!-- <i class="fa-solid fa-fw fa-10x fa-face-smile"></i> -->
+      <% if (locals.showSearch) { %>
+        <div class="<%= classes.searchSkeleton %>">
+          <div class="<%= classes.searchInput %> <%= classes.placeholder %>"></div>
+        </div>
+      <% } %>
+      <% if (locals.showCategoryTabs) { %>
+        <div class="<%= classes.categoryTabsSkeleton %>">
+          <% for (let i = 0; i < 10; i++) { %>
+            <div class="<%= classes.placeholder %> <%= classes.categoryTab %>"></div>
+          <% } %>
+        </div>
+      <% } %>
+      <div class="<%= classes.contentSkeleton %>">
+        <div class="<%= classes.placeholder %> <%= classes.categoryName %>"></div>
+        <div class="<%= classes.emojiGrid %>">
+          <% for (let i = 0; i < emojiCount; i++) { %>
+            <div class="<%= classes.placeholder %> <%= classes.emoji %>"></div>
+          <% } %>
+        </div>
+      </div>
+      <% if (locals.showPreview) { %>
+        <div class="<%= classes.previewSkeleton %>">
+          <div class="<%= classes.placeholder %> <%= classes.previewEmoji %>"></div>
+          <div class="<%= classes.placeholder %> <%= classes.previewName %>"></div>
+          <ul class="<%= classes.tagList %>">
+            <li class="<%= classes.placeholder %> <%= classes.tag %>"></li>
+            <li class="<%= classes.placeholder %> <%= classes.tag %>"></li>
+            <li class="<%= classes.placeholder %> <%= classes.tag %>"></li>
+          </ul>
+        </div>
+      <% } %>
     </div>
   <% } %>

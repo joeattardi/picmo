@@ -3,6 +3,24 @@ import { createEmojiPicker, createPopup } from '../../src/index';
 
 import { renderTemplateSync } from '../templates';
 
+function getUIFlags(options: any) {
+  const flags = {
+    showRecents: false,
+    showCategoryTabs: false,
+    showSearch: false,
+    showVariants: false,
+    showPreview: false
+  };
+
+  if (options.uiElements) {
+    options.uiElements.forEach(element => {
+      flags[element] = true;
+    })
+  }
+
+  return flags;
+}
+
 function handleEmojiSelection(button: HTMLButtonElement) {
   return selection => {
     const { emoji, url } = selection;
@@ -31,6 +49,10 @@ export function createPicker(options: any = {}) {
 
   const picker = createEmojiPicker({
     ...options,
+    ...getUIFlags(options),
+    // showSearch: false,
+    // showCategoryTabs: false,
+    // showPreview: false,
     rootElement: pickerElement
   });
 
@@ -50,6 +72,7 @@ export function createPopupPicker(options: any = {}) {
 
   const picker = createPopup({
     ...options,
+    ...getUIFlags(options),
     triggerElement: button,
     referenceElement: button
   });

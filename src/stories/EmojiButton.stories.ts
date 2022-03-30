@@ -10,8 +10,14 @@ export default getArgs({
     hideOnEscape: true
   },
   argTypes: {
-    pickerOpen: { action: 'picker:open' },
-    pickerClose: { action: 'picker:close' },
+    pickerOpen: { 
+      action: 'picker:open',
+      table: { disable: true }
+    },
+    pickerClose: { 
+      action: 'picker:close',
+      table: { disable: true }
+    },
     hideOnEmojiSelect: {
       name: 'Hide on emoji select',
       control: {

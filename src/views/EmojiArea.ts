@@ -5,7 +5,7 @@ import { CategoryTabs } from './CategoryTabs';
 import { EmojiCategory } from './EmojiCategory';
 import { RecentEmojiCategory } from './RecentEmojiCategory';
 import { CustomEmojiCategory } from './CustomEmojiCategory';
-
+import { Database } from '../db';
 import { prefersReducedMotion, throttle } from '../util';
 
 import template from '../templates/emojiArea.ejs';
@@ -20,15 +20,6 @@ const categoryClasses = {
 
 function getCategoryClass(category: Category) {
   return categoryClasses[category.key] || EmojiCategory;
-}
-
-// TODO: put these two extra categories in the database and just grab them that way?
-function createCategory(key: CategoryKey, i18n: Bundle, order: number): Category {
-  return {
-    key,
-    order,
-    message: i18n.get(`categories.${key}`)
-  };
 }
 
 type ScrollListenerState = 
@@ -55,13 +46,18 @@ function getFocusTarget(focus: CategoryFocusTarget | undefined): EmojiFocusTarge
   return focus;
 }
 
+type EmojiAreaOptions = {
+  categoryTabs?: CategoryTabs;
+  categories: Category[];
+}
+
 /**
  * The EmojiArea is the main view of the picker, it contains all the categories and their emojis inside
  * a main scrollable area.
  */
 export class EmojiArea extends View {
   private selectedCategory = 0;
-  private categoryTabs: CategoryTabs;
+  private categoryTabs?: CategoryTabs;
   private categories: Category[];
   private custom: CustomEmoji[];
 
@@ -72,8 +68,11 @@ export class EmojiArea extends View {
 
   private cancelScroll: () => void;
 
-  constructor() {
+  constructor({ categoryTabs, categories }: EmojiAreaOptions) {
     super({ template, classes });
+
+    this.categoryTabs = categoryTabs;
+    this.categories = categories;
     this.handleScroll = throttle(this.handleScroll.bind(this), 200);
   }
 
@@ -85,7 +84,7 @@ export class EmojiArea extends View {
       'focus:change': this.updateFocusedCategory
     };
     this.uiElements = { emojis: View.byClass(classes.emojis) };
-    this.uiEvents = [ View.childEvent('emojis', 'scroll', this.handleScroll) ]
+    this.uiEvents = [ View.uiEvent('scroll', this.handleScroll) ]
 
     super.initialize();
   }
@@ -95,22 +94,6 @@ export class EmojiArea extends View {
   }
 
   async render(): Promise<HTMLElement> {
-    this.categories = await this.emojiData.getCategories();
-    
-    if (this.options.showRecents) {
-      this.categories.unshift(createCategory('recents', this.i18n, -1));
-    }
-
-    if (this.options.custom) {
-      this.categories.push(createCategory('custom', this.i18n, 10));
-    }
-
-    if (this.options.showCategoryButtons) {
-      this.categoryTabs = this.viewFactory.create(CategoryTabs, {
-        categories: this.categories
-      });
-    }
-
     this.emojiCategories = this.categories.map(this.createCategory, this);
 
     const categoryEmojiElements = {};
@@ -119,13 +102,13 @@ export class EmojiArea extends View {
     });
 
     await super.render({
-      categoryTabs: this.options.showCategoryButtons ? this.categoryTabs : null,
+      categoryTabs: this.options.showCategoryTabs ? this.categoryTabs : null,
       categories: this.categories,
       i18n: this.i18n,
       ...categoryEmojiElements
     });
 
-    this.lazyLoader.observe(this.ui.emojis);
+    this.lazyLoader.observe(this.el);
 
     return this.el;
   }
@@ -169,16 +152,14 @@ export class EmojiArea extends View {
     let isCancelled = false;
     this.cancelScroll = () => isCancelled = true;
 
-    const { emojis } = this.ui;
-
     if (!animate && !prefersReducedMotion()) {
       this.scrollListenerState = 'resume';
-      emojis.scrollTop = targetPosition;
+      this.el.scrollTop = targetPosition;
       return;
     }
 
     return new Promise<void>(resolve => {
-        const difference = targetPosition - emojis.scrollTop;
+        const difference = targetPosition - this.el.scrollTop;
         const step = difference / 7;
 
         let previous;
@@ -194,15 +175,15 @@ export class EmojiArea extends View {
 
           // If we are scrolling down, check to see if there is still scrollable area below the current position.
           // If we have hit the end, we can't scroll any further and should bail out to prevent an infinite loop.
-          const canScroll = emojis.scrollHeight - emojis.scrollTop > emojis.offsetHeight || difference < 0;
+          const canScroll = this.el.scrollHeight - this.el.scrollTop > this.el.offsetHeight || difference < 0;
           
           // Aim for 60fps.
           if (time - previous >= (1000/60)) {
-            if (targetPosition !== emojis.scrollTop && canScroll) {
+            if (targetPosition !== this.el.scrollTop && canScroll) {
               // If we haven't reached the target position yet - and we can still scroll - continue the scroll animation.
-              const currentDifference = targetPosition - emojis.scrollTop;
+              const currentDifference = targetPosition - this.el.scrollTop;
               const nextStep = Math.abs(currentDifference) > Math.abs(step) && Math.sign(currentDifference) === Math.sign(step) ? step : currentDifference;
-              emojis.scrollTop += nextStep;
+              this.el.scrollTop += nextStep;
               previous = time;
               requestAnimationFrame(scrollStep);
             } else {
@@ -277,7 +258,7 @@ export class EmojiArea extends View {
     this.emojiCategories[this.selectedCategory].setActive(false);
 
     const categoryIndex = this.selectedCategory = typeof category === 'number' ? category : this.getCategoryIndex(category);
-    this.categoryTabs.setActiveTab(this.selectedCategory, focus === 'button' && performFocus);
+    this.categoryTabs?.setActiveTab(this.selectedCategory, focus === 'button' && performFocus);
     const targetPosition = this.emojiCategories[categoryIndex].el.offsetTop;
     this.emojiCategories[categoryIndex].setActive(true, getFocusTarget(focus), focus !== 'button' && performFocus);
 
@@ -293,7 +274,7 @@ export class EmojiArea extends View {
   private updateFocusedCategory(category: CategoryKey) {
     this.scrollListenerState = 'suspend';
     this.selectedCategory = this.getCategoryIndex(category);
-    this.categoryTabs.setActiveTab(this.selectedCategory, false);
+    this.categoryTabs?.setActiveTab(this.selectedCategory, false);
     this.scrollListenerState = 'resume';
   }
 
@@ -301,8 +282,8 @@ export class EmojiArea extends View {
    * On scroll, checks the new scroll position and highlights a new category if necessary.
    */
   handleScroll(): void {
-    // Do nothing if we are in the 'suspend' state.
-    if (this.scrollListenerState === 'suspend') {
+    // Do nothing if we are in the 'suspend' state or if category tabs are disabled.
+    if (this.scrollListenerState === 'suspend' || !this.categoryTabs) {
       return;
     }
 
@@ -313,8 +294,8 @@ export class EmojiArea extends View {
       return;
     }
 
-    const currentPosition = this.ui.emojis.scrollTop;
-    const maxScroll = this.ui.emojis.scrollHeight - this.ui.emojis.offsetHeight;    
+    const currentPosition = this.el.scrollTop;
+    const maxScroll = this.el.scrollHeight - this.el.offsetHeight;    
 
     const targetCategory = this.emojiCategories.findIndex((category: EmojiCategory) => {
       return category.el.offsetTop >= currentPosition;
