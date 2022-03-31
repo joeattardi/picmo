@@ -6,6 +6,7 @@ import { EventCallback } from './events';
 import { createEmojiPicker } from './createPicker';
 import { setPosition, PositionCleanup } from './positioning';
 import { prefersReducedMotion } from './util';
+import { FocusTrap } from './focusTrap';
 
 import { getOptions } from './options';
 
@@ -16,6 +17,7 @@ export class PopupPickerController {
   isOpen = false;
 
   private popupEl: HTMLElement;
+  private focusTrap: FocusTrap;
   private positionCleanup: PositionCleanup;
   private options: PickerOptions;
   private externalEvents = new ExternalEvents();
@@ -24,6 +26,12 @@ export class PopupPickerController {
     this.popupEl = document.createElement('div');
     this.options = getOptions(options);
     this.picker = createEmojiPicker({ ...this.options, rootElement: this.popupEl });
+    this.focusTrap = new FocusTrap();
+
+    this.picker.on('data:ready', () => {
+      this.focusTrap.activate(this.picker.el);
+      this.picker.setInitialFocus();
+    });
 
     if (this.options.hideOnEmojiSelect) {
       this.picker.on('emoji:select', () => {
@@ -95,10 +103,9 @@ export class PopupPickerController {
     await this.initiateOpenStateChange(true);
     this.options.rootElement.appendChild(this.popupEl);
     this.setPosition();
-    this.picker.initializePickerView();
+    this.picker.reset();
 
     await this.animateOpenStateChange(true);
-    this.picker.initializePickerView();
     this.picker.setInitialFocus();
     this.externalEvents.emit('picker:open');
   }
@@ -119,7 +126,9 @@ export class PopupPickerController {
     this.popupEl.remove();
     this.picker.reset();
     this.positionCleanup();
-
+    
+    this.focusTrap.deactivate();
+    this.options.triggerElement?.focus();
     this.externalEvents.emit('picker:close');
   }
 

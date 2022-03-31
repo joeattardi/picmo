@@ -1,5 +1,3 @@
-import createFocusTrap, { FocusTrap } from 'focus-trap';
-
 import { ExternalEvent, ExternalEvents } from '../ExternalEvents';
 
 import { View } from './view';
@@ -47,7 +45,6 @@ export class EmojiPicker extends View {
   private variantPopup: VariantPopup | null;
 
   private currentView: View;
-  private focusTrap: FocusTrap;
 
   private externalEvents = new ExternalEvents();
 
@@ -112,7 +109,7 @@ export class EmojiPicker extends View {
   initializePickerView() {
     if (this.pickerReady) {
       this.showContent();
-      this.focusTrap.activate();
+      this.emojiArea.reset();
     }
   }
 
@@ -177,20 +174,6 @@ export class EmojiPicker extends View {
   }
 
   /**
-   * Initializes the emoji picker's focus trap.
-   */
-  private createFocusTrap() {
-    this.focusTrap = createFocusTrap(this.el, {
-      clickOutsideDeactivates: true,
-      escapeDeactivates: false,
-      initialFocus: () => {
-        return this.options.showSearch && this.options.autoFocusSearch
-          ? this.search.searchField
-          : this.emojiArea.focusableEmoji
-    }});
-  }
-
-  /**
    * Called when the emoji database is ready to be used.
    * 
    * This will replace the loader placeholder with the full picker UI.
@@ -222,13 +205,13 @@ export class EmojiPicker extends View {
       theme: this.options.theme
     });
 
-    this.createFocusTrap();
-
     this.pickerReady = true;
 
     currentView.replaceWith(this.el);
     this.setStyleProperties();
     this.initializePickerView();
+
+    this.setInitialFocus();
 
     this.externalEvents.emit('data:ready');
   }
@@ -262,6 +245,10 @@ export class EmojiPicker extends View {
    * Sets the initial autofocus, depending on options.
    */
   setInitialFocus() {
+    if (!this.pickerReady) {
+      return;
+    }
+
     if (this.search && this.options.autoFocusSearch) {
       this.search.focus();
     } else {
@@ -273,8 +260,9 @@ export class EmojiPicker extends View {
    * Resets the picker to its default, "inactive" state.
    */
   reset() {
-    this.focusTrap?.deactivate();
-    this.emojiArea.reset();
+    if (this.pickerReady) {
+      this.emojiArea.reset();
+    }
   }
 
   /**
@@ -286,6 +274,10 @@ export class EmojiPicker extends View {
    * @param content The View to show
    */
   private showContent(content = this.emojiArea) {
+    if (content === this.currentView) {
+      return;
+    }
+
     if (this.currentView !== this.emojiArea) {
       this.currentView?.destroy();
     }

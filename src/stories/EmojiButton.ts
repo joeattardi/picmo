@@ -70,6 +70,8 @@ export function createPopupPicker(options: any = {}) {
   const picker = createPopup({
     ...options,
     ...getUIFlags(options),
+    // showSearch: false,
+    // autoFocusSearch: false,
     triggerElement: button,
     referenceElement: button
   });
