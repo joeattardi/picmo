@@ -162,6 +162,7 @@ export class EmojiPicker extends View {
 
     if (!this.options.showCategoryTabs) {
       this.el.style.setProperty('--category-tabs-height', '0px');
+      this.el.style.setProperty('--category-tabs-offset', '0px');
     }
 
     if (!this.options.showPreview) {
@@ -284,21 +285,23 @@ export class EmojiPicker extends View {
    *
    * @param content The View to show
    */
-  private showContent(content?: View) {
-    // Destroy the current view being removed unless it's the built-in emoji area,
-    // we don't want (or need) to destroy and re-create that!
+  private showContent(content = this.emojiArea) {
     if (this.currentView !== this.emojiArea) {
       this.currentView?.destroy();
     }
 
-    // If no content specified, show the emoji area
-    this.currentView = content || this.emojiArea;
-    this.ui.pickerContent.replaceChildren(this.currentView.el);
-
-    // Reset the emoji area to make sure the correct initial category is selected
-    if (this.currentView === this.emojiArea) {
+    if (content === this.emojiArea) {
       this.emojiArea.reset();
+      if (this.categoryTabs) {
+        this.el.insertBefore(this.categoryTabs.el, this.ui.pickerContent);
+      }
+    } else {
+      this.categoryTabs?.el.remove();
     }
+
+    this.ui.pickerContent.classList.toggle(classes.fullHeight, content !== this.emojiArea);
+    this.ui.pickerContent.replaceChildren(content.el);
+    this.currentView = content;
   }
 
   /**

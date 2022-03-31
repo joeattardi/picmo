@@ -31,7 +31,7 @@ export class Search extends View {
     super({ template: searchTemplate, classes });
 
     this.emojisPerRow = emojisPerRow;
-    this.search = debounce(this.search.bind(this), 200);
+    this.search = debounce(this.search.bind(this), 100);
   }
 
   initialize() {
@@ -141,14 +141,22 @@ export class Search extends View {
   onSearchInput(event: Event): void {
     if (this.searchField.value) {
       this.showClearSearchButton();
-      this.search(this.searchField.value);
+      this.search();
     } else {
       this.onClearSearch(event);
     }
   }
 
-  async search(query: string) {
-    const searchResults = await this.emojiData.searchEmojis(query, this.customEmojis, this.options.emojiVersion);
+  async search() {
+    if (!this.searchField.value) {
+      return;
+    }
+
+    const searchResults = await this.emojiData.searchEmojis(
+      this.searchField.value,
+      this.customEmojis, 
+      this.options.emojiVersion
+    );
 
     this.events.emit('preview:hide');
 
@@ -156,6 +164,7 @@ export class Search extends View {
       const lazyLoader = new LazyLoader();
       this.resultsContainer = this.viewFactory.create(EmojiContainer, {
         emojis: searchResults,
+        fullHeight: true,
         showVariants: true
       });
 

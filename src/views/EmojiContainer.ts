@@ -13,6 +13,7 @@ type EmojiContainerOptions = {
   preview: boolean;
   lazyLoader?: LazyLoader;
   category?: CategoryKey;
+  fullHeight?: boolean;
 };
 
 /**
@@ -29,8 +30,9 @@ export class EmojiContainer extends View {
   private grid: FocusGrid;
   emojiViews: Emoji[];
   emojiElements: HTMLElement[];
+  fullHeight = false;
 
-  constructor({ emojis, showVariants, preview = true, lazyLoader, category }: EmojiContainerOptions) {
+  constructor({ emojis, showVariants, preview = true, lazyLoader, category, fullHeight = false }: EmojiContainerOptions) {
     super({ template, classes });
 
     this.showVariants = showVariants;
@@ -38,6 +40,7 @@ export class EmojiContainer extends View {
     this.preview = preview;
     this.emojis = emojis;
     this.category = category;
+    this.fullHeight = fullHeight;
 
     this.setFocus = this.setFocus.bind(this);
     this.triggerNextCategory = this.triggerNextCategory.bind(this);
@@ -113,10 +116,12 @@ export class EmojiContainer extends View {
 
     this.emojiElements = await Promise.all(this.emojiViews.map(view => view.render()));
 
-    return super.render({
+    await super.render({
       emojis: this.emojiElements,
       i18n: this.i18n
     });
+
+    return this.el;
   }
 
   destroy() {

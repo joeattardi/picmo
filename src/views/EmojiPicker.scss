@@ -17,7 +17,7 @@
 
 @keyframes shine {
   to {
-    background-position: 150% 0, 0 0;
+    transform: translateX(100%);
   }
 }
 
@@ -38,6 +38,7 @@
   --emoji-size-multiplier: 1.5;
   --content-margin: 8px;
   --category-tabs-height: calc(1.5em + 4px + 4px + 1px);
+  --category-tabs-offset: 8px;
   --category-button-height: 1.5em;
   --category-button-width: 1.5em;
   --category-button-size: 1.2rem;
@@ -89,18 +90,26 @@
   }
 
   .placeholder {
-    background: lightgray;
-    background: linear-gradient(
-        to right,
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 0.5) 50%,
-        rgba(255, 255, 255, 0) 80%
-      ),
-      lightgray;
-    background-repeat: repeat-y;
-    background-size: 55% 200px;
-    background-position: 0 0;
-    animation: shine 1s infinite;
+    background: #DDDBDD;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translateX(-100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(#fff, 0) 0,
+        rgba(#fff, 0.2) 20%,
+        rgba(#fff, 0.5) 60%,
+        rgba(#fff, 0)
+      );
+      animation: shine 2s infinite;
+      content: '';
+    }
   }
 
   .searchSkeleton {
@@ -218,6 +227,11 @@
   position: relative;
   overflow: hidden;
   height: var(--content-height);
+
+  &.fullHeight {
+    height: calc(var(--content-height) + var(--category-tabs-height) + var(--category-tabs-offset));
+    overflow-y: auto;
+  }
 
   &::after {
     width: 100%;
