@@ -11,14 +11,15 @@ import clearSearchButtonTemplate from '../templates/search/clearButton.ejs';
 import notFoundTemplate from '../templates/search/notFound.ejs';
 import { debounce } from '../util';
 import { LazyLoader } from '../LazyLoader';
+import { Category } from '../types';
 
 type SearchOptions = {
-  emojisPerRow: number;
+  categories: Category[];
 };
 
 export class Search extends View {
-  private emojisPerRow: number;
   private focusedEmojiIndex = 0;
+  private categories: Category[];
 
   private searchIcon: HTMLElement;
   private clearSearchButton: HTMLButtonElement;
@@ -27,10 +28,10 @@ export class Search extends View {
 
   searchField: HTMLInputElement;
 
-  constructor({ emojisPerRow }: SearchOptions) {
+  constructor({ categories }: SearchOptions) {
     super({ template: searchTemplate, classes });
 
-    this.emojisPerRow = emojisPerRow;
+    this.categories = categories.filter((category: Category) => category.key !== 'recents');
     this.search = debounce(this.search.bind(this), 100);
   }
 
@@ -155,7 +156,8 @@ export class Search extends View {
     const searchResults = await this.emojiData.searchEmojis(
       this.searchField.value,
       this.customEmojis, 
-      this.options.emojiVersion
+      this.options.emojiVersion,
+      this.categories
     );
 
     this.events.emit('preview:hide');

@@ -36,7 +36,7 @@ Custom.args = {
 
 export const CustomCategoryList = Template.bind({});
 CustomCategoryList.storyName = 'Custom category list';
-const customCategories: GroupKey[] = ['smileys-emotion', 'people-body', 'animals-nature'];
+const customCategories: GroupKey[] = ['people-body', 'animals-nature', 'smileys-emotion'];
 CustomCategoryList.args = {
   categories: customCategories
 }

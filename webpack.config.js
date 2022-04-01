@@ -59,7 +59,6 @@ module.exports = {
     '@popperjs/core': '@popperjs/core',
     ejs: 'ejs',
     'escape-html': 'escape-html',
-    fuzzysort: 'fuzzysort',
     'tiny-emitter': 'tiny-emitter',
     twemoji: 'twemoji'
   }

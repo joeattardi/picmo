@@ -1,5 +1,5 @@
 import { GroupMessage, Emoji, GroupKey } from 'emojibase';
-import { EmojiRecord, Category } from './types';
+import { EmojiRecord, Category, CategoryKey } from './types';
 
 import { caseInsensitiveIncludes } from './util';
 
@@ -67,13 +67,20 @@ export class Database {
     ]);
   }
 
-  async getCategories(include?: GroupKey[]): Promise<Category[]> {
+  async getCategories(include?: CategoryKey[]): Promise<Category[]> {
     const transaction = this.db.transaction('category', 'readonly');
     const categoryStore = transaction.objectStore('category');
     const result = await this.waitForRequest(categoryStore.getAll());
-    const categories = result.target.result.filter(category => category.key !== 'component');
+    let categories = result.target.result.filter(category => category.key !== 'component');
 
-    return include ? categories.filter(category => include.includes(category.key)) : categories;
+    if (include) {
+      categories = categories.filter(category => include.includes(category.key));
+      categories.sort((a: Category, b: Category) => include.indexOf(a.key) - include.indexOf(b.key));
+    } else {
+      categories.sort((a: Category, b: Category) => a.order - b.order);
+    }
+
+    return categories;
   }
 
   async getEmojis(category: Category, emojiVersion: number): Promise<EmojiRecord[]> {
@@ -94,7 +101,11 @@ export class Database {
     .map(getEmojiRecord);
   }
 
-  private queryMatches(emoji: SearchableEmoji, query: string) {
+  private queryMatches(emoji: SearchableEmoji, query: string, categories?: Category[]) {
+    if (categories && !categories.some(category => category.order === (emoji as Emoji).group)) {
+      return false;
+    }
+
     return (
       caseInsensitiveIncludes(emoji.label, query) ||
       emoji.tags?.some(tag => caseInsensitiveIncludes(tag, query))
@@ -102,7 +113,7 @@ export class Database {
   }
 
   // TODO handle errors
-  async searchEmojis(query: string, customEmojis: EmojiRecord[], emojiVersion: number): Promise<EmojiRecord[]> {
+  async searchEmojis(query: string, customEmojis: EmojiRecord[], emojiVersion: number, categories: Category[]): Promise<EmojiRecord[]> {
     const results: EmojiRecord[] = [];
 
     return new Promise((resolve, reject) => {
@@ -123,7 +134,7 @@ export class Database {
         }
 
         const emoji = cursor.value as Emoji;
-        if (this.queryMatches(emoji, query) && emoji.version <= emojiVersion) {
+        if (this.queryMatches(emoji, query, categories) && emoji.version <= emojiVersion) {
           results.push(getEmojiRecord(emoji));
         }
 

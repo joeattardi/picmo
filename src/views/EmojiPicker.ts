@@ -130,8 +130,7 @@ export class EmojiPicker extends View {
 
     if (this.options.showSearch) {
       this.search = this.viewFactory.create(Search, {
-        emojisPerRow: this.options.emojisPerRow,
-        renderer: this.options.renderer
+        categories: this.categories
       });
     }
 
@@ -184,7 +183,6 @@ export class EmojiPicker extends View {
     const currentView = this.el;
 
     await this.emojiDataPromise;
-    // TODO: honor the order of categories in the given option
     this.categories = await this.emojiData.getCategories(this.options.categories);
 
     if (this.options.showRecents) {

@@ -5,13 +5,11 @@ import { CategoryTabs } from './CategoryTabs';
 import { EmojiCategory } from './EmojiCategory';
 import { RecentEmojiCategory } from './RecentEmojiCategory';
 import { CustomEmojiCategory } from './CustomEmojiCategory';
-import { Database } from '../db';
 import { prefersReducedMotion, throttle } from '../util';
 
 import template from '../templates/emojiArea.ejs';
 import { LazyLoader } from '../LazyLoader';
 import { Category, CategoryKey, CustomEmoji, EmojiFocusTarget } from '../types';
-import { Bundle } from '../i18n';
 
 const categoryClasses = {
   recents: RecentEmojiCategory,
@@ -130,8 +128,12 @@ export class EmojiArea extends View {
   reset(): void {
     this.events.emit('preview:hide');
 
-    this.selectCategory('smileys-emotion', { focus: 'button', performFocus: true, scroll: 'jump' });
-    this.selectedCategory = this.getCategoryIndex('smileys-emotion');
+    const category = this.categories.find((category: Category) => category.key !== 'recents');
+
+    if (category) {
+      this.selectCategory(category.key, { focus: 'button', performFocus: true, scroll: 'jump' });
+      this.selectedCategory = this.getCategoryIndex(category.key);
+    }
   }
 
   /**
