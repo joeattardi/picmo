@@ -184,7 +184,8 @@ export class EmojiPicker extends View {
     const currentView = this.el;
 
     await this.emojiDataPromise;
-    this.categories = await this.emojiData.getCategories();
+    // TODO: honor the order of categories in the given option
+    this.categories = await this.emojiData.getCategories(this.options.categories);
 
     if (this.options.showRecents) {
       this.categories.unshift(createCategory('recents', this.i18n, -1));
@@ -204,6 +205,8 @@ export class EmojiPicker extends View {
       preview,
       theme: this.options.theme
     });
+
+    this.el.style.setProperty('--category-count', this.categories.length.toString());
 
     this.pickerReady = true;
 

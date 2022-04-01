@@ -1,4 +1,4 @@
-import { GroupMessage, Emoji } from 'emojibase';
+import { GroupMessage, Emoji, GroupKey } from 'emojibase';
 import { EmojiRecord, Category } from './types';
 
 import { caseInsensitiveIncludes } from './util';
@@ -67,12 +67,13 @@ export class Database {
     ]);
   }
 
-  async getCategories(): Promise<Category[]> {
+  async getCategories(include?: GroupKey[]): Promise<Category[]> {
     const transaction = this.db.transaction('category', 'readonly');
     const categoryStore = transaction.objectStore('category');
     const result = await this.waitForRequest(categoryStore.getAll());
-    const categories = result.target.result;
-    return categories.filter(category => category.key !== 'component');
+    const categories = result.target.result.filter(category => category.key !== 'component');
+
+    return include ? categories.filter(category => include.includes(category.key)) : categories;
   }
 
   async getEmojis(category: Category, emojiVersion: number): Promise<EmojiRecord[]> {

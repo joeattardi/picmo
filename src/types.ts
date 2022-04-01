@@ -77,6 +77,7 @@ export type PickerOptions = {
   emojiSize: string;
   visibleRows: number;
 
+  categories?: GroupKey[];
   custom?: CustomEmoji[];
   emojiVersion: number;
 

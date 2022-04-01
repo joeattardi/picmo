@@ -49,9 +49,11 @@ export class CategoryTabs extends View {
     this.tabViews = this.categories.map(category => 
       this.viewFactory.create(CategoryTab, { category, icon: categoryIcons[category.key] }));
     
-    return super.render({
+    await super.render({
       tabs: await Promise.all(this.tabViews.map(view => view.render()))
     });
+
+    return this.el;
   }
 
   get currentTabView(): CategoryTab {

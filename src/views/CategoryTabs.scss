@@ -1,9 +1,19 @@
 .categoryButtons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  --tab-size-ratio: 1.55; 
+  --tab-gap: 8px;
+  --tab-padding: 0.5em;
+  --gap-count: calc(var(--category-count) - 1);
+  --gap-offset: calc(var(--tab-gap) * var(--gap-count));
+  --tab-area-width: calc(var(--picker-width) - var(--gap-offset) - (var(--tab-padding) * 2));
+  --tab-size: calc((var(--tab-area-width) / var(--category-count))) / var(--tab-size-ratio);
+
+  display: grid;
+  grid-auto-columns: auto;
+  grid-auto-flow: column;
+  gap: var(--tab-gap);
+  justify-content: center;
   margin: 0;
-  padding: 0 0.5em;
+  padding: 0 var(--tab-padding);
   align-items: center;
   height: var(--category-tabs-height);
   box-sizing: border-box;
@@ -17,7 +27,7 @@
 .categoryButton {
   background: transparent;
   border: none;
-  border-radius: 5px;
+  border-bottom: 4px solid transparent;
   color: var(--category-button-color);
   cursor: pointer;
   padding: 2px;
@@ -25,10 +35,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--category-button-size);
-  width: var(--category-button-width);
-  height: var(--category-button-height);
-  transition: all 250ms;
+  font-size: min(var(--tab-size), 1.2rem);
+  width: 1.5em;
+  height: 1.5em;
 
   &:hover {
     color: var(--category-button-highlight-color);
@@ -45,10 +54,6 @@
   margin-bottom: 4px;
   display: flex;
   align-items: center;
-
-  &.active {
-    border-bottom-color: var(--category-button-active-color);
-  }
 }
 
 .categoryButtonActive {
