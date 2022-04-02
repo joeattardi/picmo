@@ -81,7 +81,7 @@ export class EmojiContainer extends View {
       return;
     }
 
-    if (focusTarget.row === 'first') {
+    if (focusTarget.row === 'first' || focusTarget.row === 0) {
       this.grid.setCell(0, focusTarget.offset, performFocus);
     } else if (focusTarget.row === 'last') {
       this.grid.setCell(this.grid.getRowCount() - 1, focusTarget.offset, performFocus);

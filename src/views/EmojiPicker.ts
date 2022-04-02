@@ -283,6 +283,10 @@ export class EmojiPicker extends View {
       this.currentView?.destroy();
     }
 
+    this.ui.pickerContent.classList.toggle(classes.fullHeight, content !== this.emojiArea);
+    this.ui.pickerContent.replaceChildren(content.el);
+    this.currentView = content;
+
     if (content === this.emojiArea) {
       this.emojiArea.reset();
       if (this.categoryTabs) {
@@ -291,10 +295,6 @@ export class EmojiPicker extends View {
     } else {
       this.categoryTabs?.el.remove();
     }
-
-    this.ui.pickerContent.classList.toggle(classes.fullHeight, content !== this.emojiArea);
-    this.ui.pickerContent.replaceChildren(content.el);
-    this.currentView = content;
   }
 
   /**

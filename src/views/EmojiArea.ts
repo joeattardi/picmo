@@ -129,7 +129,6 @@ export class EmojiArea extends View {
     this.events.emit('preview:hide');
 
     const category = this.categories.find((category: Category) => category.key !== 'recents');
-
     if (category) {
       this.selectCategory(category.key, { focus: 'button', performFocus: true, scroll: 'jump' });
       this.selectedCategory = this.getCategoryIndex(category.key);

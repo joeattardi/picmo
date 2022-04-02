@@ -18,7 +18,6 @@ type SearchOptions = {
 };
 
 export class Search extends View {
-  private focusedEmojiIndex = 0;
   private categories: Category[];
 
   private searchIcon: HTMLElement;
@@ -36,10 +35,6 @@ export class Search extends View {
   }
 
   initialize() {
-    this.appEvents = {
-      'variantPopup:hide': this.handleHidePopup
-    }
-
     this.uiElements = {
       searchField: View.byClass(classes.searchField),
       searchAccessory: View.byClass(classes.searchAccessory)
@@ -53,9 +48,8 @@ export class Search extends View {
     super.initialize();
   }
 
-  handleHidePopup() {
-    setTimeout(() => this.setFocusedEmoji(this.focusedEmojiIndex));
-  }
+  // TODO make popup focusable
+  // New focus trap inside popup
 
   async render(): Promise<HTMLElement> {
     await super.render();
@@ -112,19 +106,6 @@ export class Search extends View {
     this.searchField.focus();
   }
 
-  setFocusedEmoji(index: number): void {
-    if (this.resultsContainer) {
-      const emojis = this.resultsContainer.emojiElements;
-      const currentFocusedEmoji = emojis[this.focusedEmojiIndex];
-      currentFocusedEmoji.tabIndex = -1;
-
-      this.focusedEmojiIndex = index;
-      const newFocusedEmoji = emojis[this.focusedEmojiIndex];
-      newFocusedEmoji.tabIndex = 0;
-      newFocusedEmoji.focus();
-    }
-  }
-
   handleResultsKeydown(event: KeyboardEvent): void {
     if (this.resultsContainer) {
       if (event.key === 'Escape') {
@@ -167,15 +148,17 @@ export class Search extends View {
       this.resultsContainer = this.viewFactory.create(EmojiContainer, {
         emojis: searchResults,
         fullHeight: true,
-        showVariants: true
+        showVariants: true,
+        lazyLoader
       });
 
       await this.resultsContainer.render();
       if (this.resultsContainer?.el) {
         this.resultsContainer.el.classList.add(classes.searchResults);
-        lazyLoader.observe(this.resultsContainer.el);
-        this.resultsContainer.emojiElements[0].tabIndex = 0;
-        this.focusedEmojiIndex = 0;
+        lazyLoader.observe(this.el.parentElement as HTMLElement);
+        this.resultsContainer.setActive(true, { row: 0, offset: 0}, false);
+        // this.resultsContainer.emojiElements[0].tabIndex = 0;
+        // this.focusedEmojiIndex = 0;
 
         this.resultsContainer.el.addEventListener('keydown', event => this.handleResultsKeydown(event));
 

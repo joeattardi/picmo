@@ -17,7 +17,7 @@ export class RecentEmojiContainer extends EmojiContainer {
     
     // Add the new emoji to the beginning of the list
     const newView = this.viewFactory.create(EmojiView, { emoji });
-    this.el.insertBefore(await newView.render(), this.el.firstChild);
+    this.el.insertBefore(newView.renderSync(), this.el.firstChild);
     this.emojis = [
       emoji,
       ...this.emojis.filter(e => e !== emoji)
