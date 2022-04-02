@@ -28,6 +28,11 @@ export class Events<T> {
     });
   }
 
+  once(event: EventKey<T>, handler: EventCallback) {
+    this.emitter.once(event, handler);
+    this.handlers.push({ event, handler })
+  }
+
   emit(event: EventKey<T>, ...args: EventArgs) {
     this.emitter.emit(event, ...args);
   }

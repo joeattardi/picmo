@@ -6,6 +6,8 @@ import classes from './VariantPopup.scss';
 import { EmojiContainer } from './EmojiContainer';
 import { EmojiRecord } from '../types';
 
+import { FocusTrap } from '../focusTrap';
+
 type VariantPopupOptions = {
   emoji: EmojiRecord;
 };
@@ -17,6 +19,7 @@ export class VariantPopup extends View {
   private renderedEmojis: HTMLElement[];
 
   private emojiContainer: EmojiContainer;
+  private focusTrap = new FocusTrap();
 
   constructor({ emoji }: VariantPopupOptions) {
     super({ template, classes });
@@ -30,13 +33,21 @@ export class VariantPopup extends View {
       };
 
       this.uiEvents = [
-        View.uiEvent('click', this.handleClick)
+        View.uiEvent('click', this.handleClick),
+        View.uiEvent('keydown', this.handleKeydown)
       ]
 
       super.initialize();
   }
 
-  handleClick(event): void {
+  private handleKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.events.emit('variantPopup:hide');
+      event.stopPropagation();
+    }
+  }
+
+  private handleClick(event): void {
     if (!this.ui.popup.contains(event.target as Node)) {
       this.events.emit('variantPopup:hide');
     }
@@ -58,6 +69,7 @@ export class VariantPopup extends View {
 
   destroy() {
     this.emojiContainer.destroy();
+    this.focusTrap.deactivate();
     super.destroy();
   }
 
@@ -86,5 +98,10 @@ export class VariantPopup extends View {
     }
 
     return this.el;
+  }
+
+  activate() {
+    this.emojiContainer.setActive(true, { row: 0, offset: 0}, true);
+    this.focusTrap.activate(this.el);
   }
 }

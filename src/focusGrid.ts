@@ -39,6 +39,7 @@ type Cell = {
   private rowCount: number;
   private columnCount: number;
   private emojiCount: number;
+  private wrap: boolean;
 
   private events = new Events<FocusGridEvent>();
 
@@ -58,12 +59,13 @@ type Cell = {
    * @param initialRow The initial focused row.
    * @param initialColumn The initial focused column.
    */
-  constructor(columnCount: number, emojiCount: number, initialRow = 0, initialColumn = 0) {
+  constructor(columnCount: number, emojiCount: number, initialRow = 0, initialColumn = 0, wrap = false) {
     this.rowCount = Math.ceil(emojiCount / columnCount);
     this.columnCount = columnCount;
     this.focusedRow = initialRow;
     this.focusedColumn = initialColumn;
     this.emojiCount = emojiCount;
+    this.wrap = wrap;
 
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
@@ -132,6 +134,8 @@ type Cell = {
       this.setCell(this.focusedRow, this.focusedColumn + 1);
     } else if (this.focusedRow < this.rowCount - 1) {
       this.setCell(this.focusedRow + 1, 0);
+    } else if (this.wrap) {
+      this.setCell(0, 0);
     } else {
       this.events.emit('focus:overflow', 0);
     }
@@ -146,6 +150,8 @@ type Cell = {
       this.setCell(this.focusedRow, this.focusedColumn - 1);
     } else if (this.focusedRow > 0) {
       this.setCell(this.focusedRow - 1, this.columnCount - 1);
+    } else if (this.wrap) {
+      this.setCell(this.rowCount - 1, this.columnCount - 1);
     } else {
       this.events.emit('focus:underflow', this.columnCount - 1);
     }

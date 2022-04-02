@@ -48,9 +48,6 @@ export class Search extends View {
     super.initialize();
   }
 
-  // TODO make popup focusable
-  // New focus trap inside popup
-
   async render(): Promise<HTMLElement> {
     await super.render();
 

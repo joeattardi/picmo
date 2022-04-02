@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/dom';
 
 import { Emoji } from '../Emoji';
-import { renderToBody } from '../view';
+import { renderSyncToBody } from '../view';
 
 import NativeRenderer from '../../renderers/native';
 
@@ -15,7 +15,7 @@ describe('Emoji', () => {
     const emoji = new Emoji({ emoji: emojiData });
     emoji.setRenderer(new NativeRenderer());
 
-    await renderToBody(emoji);
+    renderSyncToBody(emoji);
 
     const button = screen.getByRole('button');
     expect(button).toHaveTextContent('😎');

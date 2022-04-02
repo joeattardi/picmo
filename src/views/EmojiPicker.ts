@@ -329,7 +329,7 @@ export class EmojiPicker extends View {
     if (emoji.skins && this.options.showVariants && !this.isVariantPopupOpen) {
       this.showVariantPopup(emoji);
     } else {
-      this.hideVariantPopup();
+      this.events.emit('variantPopup:hide');
       await this.emitEmoji(emoji);
     }
   }
@@ -345,8 +345,14 @@ export class EmojiPicker extends View {
    * @returns a Promise that resolves when the popup is shown
    */
   private async showVariantPopup(emoji: EmojiRecord): Promise<void> {
+    const currentFocus = document.activeElement as HTMLElement;
+    this.events.once('variantPopup:hide', () => {
+      currentFocus?.focus();
+    });
+
     this.variantPopup = this.viewFactory.create(VariantPopup, { emoji });
     this.el.appendChild(await this.variantPopup.render());
+    this.variantPopup.activate();
   }
 
   /**

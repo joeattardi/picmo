@@ -194,6 +194,10 @@ export abstract class View {
   }
 }
 
+export function renderSyncToBody(view: View) {
+  document.body.appendChild(view.renderSync());
+}
+
 export async function renderToBody(view: View) {
   document.body.appendChild(await view.render());
 }

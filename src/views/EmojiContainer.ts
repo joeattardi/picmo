@@ -48,7 +48,7 @@ export class EmojiContainer extends View {
   }
 
   initialize() {
-    this.grid = new FocusGrid(this.options.emojisPerRow, this.emojiCount);
+    this.grid = new FocusGrid(this.options.emojisPerRow, this.emojiCount, 0, 0, !this.category);
     this.grid.on('focus:change', this.setFocus);
     this.grid.on('focus:overflow', this.triggerNextCategory);
     this.grid.on('focus:underflow', this.triggerPreviousCategory);
@@ -135,7 +135,9 @@ export class EmojiContainer extends View {
    * @param column the currently focused column
    */
   private triggerPreviousCategory(column: number) {
-    this.events.emit('category:previous', column);
+    if (this.category) {
+      this.events.emit('category:previous', column);
+    }
   }
 
   /**
@@ -143,7 +145,9 @@ export class EmojiContainer extends View {
    * @param column the currently focused column
    */
   private triggerNextCategory(column: number) {
-    this.events.emit('category:next', column);
+    if (this.category) {
+      this.events.emit('category:next', column);
+    }
   }
 
   /**
