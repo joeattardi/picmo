@@ -1,4 +1,4 @@
-import { compileTemplate } from '../templates';
+import { compileTemplateSync } from '../templates';
 import emojiTemplate from '../templates/emoji.ejs';
 import { LazyLoader } from '../LazyLoader';
 
@@ -6,7 +6,7 @@ import { View } from './view';
 
 import { CategoryKey, EmojiRecord } from '../types';
 
-const emojiCompiled = compileTemplate(emojiTemplate);
+const emojiCompiled = compileTemplateSync(emojiTemplate);
 
 import classes from './Emoji.scss';
 
@@ -54,10 +54,10 @@ export class Emoji extends View {
     this.el.tabIndex = -1;
   }
 
-  async render(): Promise<HTMLElement> {
-    return super.render({
+  renderSync(): HTMLElement {
+    return super.renderSync({
       emoji: this.emoji,
-      emojiContent: await this.renderer.doRender(this.emoji, this.lazyLoader)
+      emojiContent: this.renderer.doRender(this.emoji, this.lazyLoader)
     });
   }
 }

@@ -3,10 +3,9 @@ import { dom } from '@fortawesome/fontawesome-svg-core';
 import ejs, { Data } from 'ejs';
 
 export type ElementTemplate = (data?: Data) => HTMLElement | Promise<HTMLElement>;
+export type ElementTemplateSync = (data?: Data) => HTMLElement;
 
-async function bindPlaceholders<E extends HTMLElement = HTMLElement>(result: E, data: Data): Promise<E> {
-  await renderChildViews(result, data);
-
+function bindPlaceholders<E extends HTMLElement = HTMLElement>(template: string, result: E, data: Data): E {
   const placeholders = result.querySelectorAll<E>('[data-placeholder]');
   placeholders.forEach((placeholder: E) => {
     const key = placeholder.dataset.placeholder;
@@ -58,13 +57,18 @@ export function compileTemplate(template: string): ElementTemplate {
   // supplied data.
   return async (data: Data = {}) => {
     const result = toElement(compiled(data));
-    return await bindPlaceholders(result, data);
+    bindPlaceholders(template ,result, data);
+    return renderChildViews(result, data);
   };
 }
 
-export function compileTemplateSync(template: string): ElementTemplate {
+export function compileTemplateSync(template: string): ElementTemplateSync {
   const compiled = ejs.compile(template);
-  return data => toElement(compiled(data));
+
+  return (data: Data = {}) => {
+    const result = toElement(compiled(data));
+    return bindPlaceholders(template, result, data);
+  };
 }
 
 /**
@@ -75,18 +79,24 @@ export function compileTemplateSync(template: string): ElementTemplate {
  * @returns the rendered HTMLElement
  */
 export async function renderTemplate<E extends HTMLElement = HTMLElement>(template: string, data: Data = {}): Promise<E> {
-  const result = await bindPlaceholders<E>(
+  const result = bindPlaceholders<E>(
+    template,
     toElement<E>(ejs.render(template, data)),
     data
   );
 
+  await renderChildViews<E>(result, data);
   await dom.i2svg({ node: result });
 
   return result as E;
 }
 
 export function renderTemplateSync<E extends HTMLElement = HTMLElement>(template: string, data: Data = {}): E {
-  const result = toElement<E>(ejs.render(template, data));
+  const result = bindPlaceholders<E>(
+    template,
+    toElement<E>(ejs.render(template, data)),
+    data
+  );
   
   dom.i2svg({ node: result });
   return result as E;

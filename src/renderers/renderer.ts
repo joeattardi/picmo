@@ -1,19 +1,19 @@
 import { LazyLoader } from '../LazyLoader';
 import { CustomEmoji, EmojiRecord, EmojiSelection } from '../types';
+import { Image } from '../views/Image';
 
 import classes from './custom.scss';
 
-import preloadImage from '../preload';
 export abstract class Renderer {
-  abstract render(emoji: EmojiRecord, lazyLoader?: LazyLoader): HTMLElement | Promise<HTMLElement>;
+  abstract render(emoji: EmojiRecord, lazyLoader?: LazyLoader, classNames?: string): HTMLElement;
   abstract emit(emoji: EmojiRecord): EmojiSelection | Promise<EmojiSelection>;
 
-  doRender(emoji: EmojiRecord, lazyLoader?: LazyLoader): HTMLElement | Promise<HTMLElement> {
+  doRender(emoji: EmojiRecord, lazyLoader?: LazyLoader, classNames?: string): HTMLElement {
     if (emoji.custom) {
-      return this.renderCustom(emoji as CustomEmoji, lazyLoader);
+      return this.renderCustom(emoji as CustomEmoji, lazyLoader, classNames);
     }
 
-    return this.render(emoji, lazyLoader);
+    return this.render(emoji, lazyLoader, classNames);
   }
 
   doEmit(emoji: EmojiRecord): EmojiSelection | Promise<EmojiSelection> {
@@ -28,17 +28,20 @@ export abstract class Renderer {
     return { url, label, emoji, data };
   }
 
-  renderCustom(emoji: CustomEmoji, lazyLoader?: LazyLoader): HTMLElement | Promise<HTMLElement> {
-    const factory = async () => {
-      const img = await preloadImage(emoji.url);
-      img.className = classes.customEmoji;
-      return img;
+  renderCustom(emoji: CustomEmoji, lazyLoader?: LazyLoader, additionalClasses = ''): HTMLElement {
+    const classNames = [classes.customEmoji, additionalClasses].join(' ').trim();
+    const img = new Image({ classNames });
+    img.renderSync();
+
+    const factory = () => {
+      img.load(emoji.url);
     };
 
     if (lazyLoader) {
-      return lazyLoader.lazyLoad(factory);
+      return lazyLoader.lazyLoad(img, factory);
     }
 
-    return factory();
+    factory();
+    return img.el;
   }
 }

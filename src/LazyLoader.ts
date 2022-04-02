@@ -1,21 +1,13 @@
-import ejs from 'ejs';
-import { toElement } from './templates';
-import placeholderTemplate from './templates/placeholder.ejs';
+import { Image } from './views/Image';
 
-import classes from './lazyLoad.scss';
+type Callback = () => void;
 
-const placeholder = ejs.compile(placeholderTemplate);
-
-type LazyLoadFactory = () => HTMLElement | Promise<HTMLElement>;
-
-// TODO lazy load custom emojis too
 export class LazyLoader {
-  private elements: Map<Element, LazyLoadFactory> = new Map();
+  private elements: Map<Element, Callback> = new Map();
 
-  lazyLoad(callback: LazyLoadFactory): HTMLElement {
-    const element = toElement(placeholder({ classes }));
-    this.elements.set(element, callback);
-    return element;
+  lazyLoad(img: Image, callback: Callback): HTMLElement {
+    this.elements.set(img.el, callback);
+    return img.el;
   }
 
   observe(root: HTMLElement): void {
@@ -26,13 +18,9 @@ export class LazyLoader {
             .filter(entry => entry.intersectionRatio > 0)
             .map(entry => entry.target)
             .forEach(element => {
-              const factory = this.elements.get(element);
-              if (factory) {
-                Promise.resolve(factory()).then(img => {
-                  observer.unobserve(element);
-                  element.replaceWith(img);
-                });
-              }
+              const callback = this.elements.get(element);
+              callback?.();
+              observer.unobserve(element);
             });
         },
         {
@@ -44,10 +32,8 @@ export class LazyLoader {
         observer.observe(element);
       });
     } else {
-      this.elements.forEach((callback, element) => {
-        Promise.resolve(callback()).then(img => {
-          element.replaceWith(img);
-        });
+      this.elements.forEach(callback => {
+        callback();
       });
     }
   }

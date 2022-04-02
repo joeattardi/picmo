@@ -114,7 +114,7 @@ export class EmojiContainer extends View {
       })
     );
 
-    this.emojiElements = await Promise.all(this.emojiViews.map(view => view.render()));
+    this.emojiElements = this.emojiViews.map(view => view.renderSync());
 
     await super.render({
       emojis: this.emojiElements,

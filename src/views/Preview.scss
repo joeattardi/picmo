@@ -31,6 +31,10 @@
   grid-area: emoji;
   font-size: var(--emoji-preview-size);
   font-family: var(--emoji-font);
+  width: 1.25em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .previewName {

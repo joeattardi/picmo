@@ -1,13 +1,17 @@
 import { View } from './view';
 import { EmojiRecord } from '../types';
-import { compileTemplate } from '../templates';
+import { compileTemplateSync } from '../templates';
+
+import { Image } from './Image';
 
 import previewTemplate from '../templates/preview.ejs';
 import classes from './Preview.scss';
 
-const renderTag = compileTemplate('<li class="<%= classes.tag %>"><%= tag %></li>');
+const renderTag = compileTemplateSync('<li class="<%= classes.tag %>"><%= tag %></li>');
 
 export class EmojiPreview extends View {
+  private emoji?: EmojiRecord;
+
   constructor() {
     super({ template: previewTemplate, classes });
   }
@@ -20,34 +24,48 @@ export class EmojiPreview extends View {
     };
 
     this.appEvents = {
-      'preview:show': this.showPreview,
-      'preview:hide': this.showPreview
+      'preview:show': this.handlePreview,
+      'preview:hide': this.handlePreview
     };
 
     super.initialize();
   }
 
-  private async getContent(emoji: EmojiRecord): Promise<HTMLElement> {
+  private getContent(emoji: EmojiRecord): HTMLElement {
     // TODO lazy load this too?
 
     // TODO cache preview images to prevent refetching
-    return this.renderer.doRender(emoji);
+    const element = this.renderer.doRender(emoji);
+
+    return element;
   }
 
-  async showPreview(emoji: EmojiRecord) {
+  // TODO lazy load to prevent delay in showing content
+  handlePreview(emoji?: EmojiRecord) {
+    this.emoji = emoji;
     if (emoji) {
-      const content = await this.getContent(emoji);
-      this.ui.emoji.replaceChildren(content);
-      this.ui.name.textContent = emoji.label;
-      if (emoji.tags) {
-        this.ui.tagList.style.display = 'flex';
-        const tags = await Promise.all(emoji.tags.map(tag => renderTag({ tag, classes })));
-        this.ui.tagList.replaceChildren(...tags);
+      const content = this.getContent(emoji);
+      if (this.emoji === emoji) {
+        this.showPreview(emoji, content);
       }
     } else {
-      this.ui.emoji.replaceChildren();
-      this.ui.name.textContent = '';
-      this.ui.tagList.replaceChildren();
+      this.hidePreview();
     }
+  }
+
+  private showPreview(emoji: EmojiRecord, content: HTMLElement) {
+    this.ui.emoji.replaceChildren(content);
+    this.ui.name.textContent = emoji.label;
+    if (emoji.tags) {
+      this.ui.tagList.style.display = 'flex';
+      const tags = emoji.tags.map(tag => renderTag({ tag, classes }) as HTMLElement);
+      this.ui.tagList.replaceChildren(...tags);
+    }
+  }
+
+  private hidePreview() {
+    // this.ui.emoji.replaceChildren();
+    // this.ui.name.textContent = '';
+    // this.ui.tagList.replaceChildren();
   }
 }

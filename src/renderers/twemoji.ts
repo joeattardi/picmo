@@ -2,8 +2,8 @@ import twemoji from 'twemoji';
 
 import { EmojiRecord, EmojiSelection } from '../types';
 import { Renderer } from './renderer';
+import { Image } from '../views/Image';
 import { LazyLoader } from '../LazyLoader';
-import preloadImage from '../preload';
 
 import classes from './twemoji.scss';
 
@@ -47,19 +47,20 @@ export default class TwemojiRenderer extends Renderer {
     super();
   }
 
-  render(emoji: EmojiRecord, lazyLoader?: LazyLoader): HTMLElement | Promise<HTMLElement> {
+  render(emoji: EmojiRecord, lazyLoader?: LazyLoader, classNames?: string): HTMLElement {
+    const img = new Image({ classNames: classNames || classes.twemoji });
+    img.renderSync();
     const factory = async () => {
       const url = await getTwemojiUrl(emoji.emoji, this.options);
-      const img = await preloadImage(url);
-      img.className = classes.twemoji;
-      return img;
+      img.load(url);
     };
 
     if (lazyLoader) {
-      return lazyLoader.lazyLoad(factory);
+      return lazyLoader.lazyLoad(img, factory);
     }
 
-    return factory();
+    factory();
+    return img.el;
   }
 
   async emit({ emoji, label }: EmojiRecord): Promise<EmojiSelection> {
