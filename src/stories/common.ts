@@ -8,7 +8,6 @@ export function getArgs(extraArgs): Meta {
   return {
     title: extraArgs.title,
     args: {
-      emojiVersion: 13,
       theme: 'lightTheme',
       renderer: 'native',
       uiElements: ['showRecents', 'showCategoryTabs', 'showSearch', 'showVariants', 'showPreview'],
@@ -32,10 +31,6 @@ export function getArgs(extraArgs): Meta {
           }
         },
         options: ['showRecents', 'showCategoryTabs', 'showSearch', 'showVariants', 'showPreview']  
-      },
-      emojiVersion: {
-        name: 'Emoji version',
-        type: 'number'
       },
       theme: {
         name: 'Color theme',

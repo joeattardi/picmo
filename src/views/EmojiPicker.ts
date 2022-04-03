@@ -10,9 +10,12 @@ import { addOrUpdateRecent } from '../recents';
 import { EventCallback } from '../events';
 import { Bundle } from '../i18n';
 
+import { determineEmojiVersion } from '../emojiSupport';
+
 import template from '../templates/emojiPicker.ejs';
 import classes from './EmojiPicker.scss';
 import { Category, CategoryKey, EmojiRecord } from '../types';
+import { LATEST_EMOJI_VERSION } from 'emojibase';
 
 const variableNames = {
   emojisPerRow: '--emojis-per-row',
@@ -43,6 +46,7 @@ export class EmojiPicker extends View {
   private emojiArea: EmojiArea;
   private preview: EmojiPreview;
   private variantPopup: VariantPopup | null;
+  private emojiVersion: number;
 
   private currentView: View;
 
@@ -130,7 +134,8 @@ export class EmojiPicker extends View {
 
     if (this.options.showSearch) {
       this.search = this.viewFactory.create(Search, {
-        categories: this.categories
+        categories: this.categories,
+        emojiVersion: this.emojiVersion
       });
     }
 
@@ -142,7 +147,8 @@ export class EmojiPicker extends View {
 
     this.currentView = this.emojiArea = this.viewFactory.create(EmojiArea, {
       categoryTabs: this.categoryTabs,
-      categories: this.categories
+      categories: this.categories,
+      emojiVersion: this.emojiVersion
     });
 
     return [this.preview, this.search, this.emojiArea, this.categoryTabs];
@@ -178,11 +184,17 @@ export class EmojiPicker extends View {
    * This will replace the loader placeholder with the full picker UI.
    */
   private async onDataReady() {
-    // Save the current el so we can replace it in the DOM after
-    // the new render.
+    // Save the current el so we can replace it in the DOM after the new render.
     const currentView = this.el;
 
     await this.emojiDataPromise;
+
+    if (this.options.emojiVersion === 'auto') {
+      this.emojiVersion = (await determineEmojiVersion(this.emojiData)) || parseFloat(LATEST_EMOJI_VERSION);
+    } else {
+      this.emojiVersion = this.options.emojiVersion;
+    }
+
     this.categories = await this.emojiData.getCategories(this.options.categories);
 
     if (this.options.showRecents) {

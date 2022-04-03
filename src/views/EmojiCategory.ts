@@ -10,13 +10,17 @@ type EmojiCategoryOptions = {
   category: Category;
   showVariants: boolean;
   lazyLoader?: LazyLoader;
+  emojiVersion: number;
 };
 export class EmojiCategory extends BaseEmojiCategory {
-  constructor({ category, showVariants, lazyLoader }: EmojiCategoryOptions) {
+  private emojiVersion: number;
+
+  constructor({ category, showVariants, lazyLoader, emojiVersion }: EmojiCategoryOptions) {
     super({ category, showVariants, lazyLoader, template });
 
     this.showVariants = showVariants;
     this.lazyLoader = lazyLoader;
+    this.emojiVersion = emojiVersion;
   }
 
   initialize() {
@@ -25,7 +29,7 @@ export class EmojiCategory extends BaseEmojiCategory {
   }
 
 async render(): Promise<HTMLElement> {
-    const emojis = await this.emojiData.getEmojis(this.category, this.options.emojiVersion);
+    const emojis = await this.emojiData.getEmojis(this.category, this.emojiVersion);
 
     this.emojiContainer = this.viewFactory.create(EmojiContainer, {
       emojis,

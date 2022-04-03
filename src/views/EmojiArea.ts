@@ -47,6 +47,7 @@ function getFocusTarget(focus: CategoryFocusTarget | undefined): EmojiFocusTarge
 type EmojiAreaOptions = {
   categoryTabs?: CategoryTabs;
   categories: Category[];
+  emojiVersion: number;
 }
 
 /**
@@ -58,6 +59,7 @@ export class EmojiArea extends View {
   private categoryTabs?: CategoryTabs;
   private categories: Category[];
   private custom: CustomEmoji[];
+  private emojiVersion: number;
 
   private scrollListenerState: ScrollListenerState = 'active';
   private lazyLoader = new LazyLoader();
@@ -66,11 +68,13 @@ export class EmojiArea extends View {
 
   private cancelScroll: () => void;
 
-  constructor({ categoryTabs, categories }: EmojiAreaOptions) {
+  constructor({ categoryTabs, categories, emojiVersion }: EmojiAreaOptions) {
     super({ template, classes });
 
     this.categoryTabs = categoryTabs;
     this.categories = categories;
+    this.emojiVersion = emojiVersion;
+
     this.handleScroll = throttle(this.handleScroll.bind(this), 200);
   }
 
@@ -121,7 +125,8 @@ export class EmojiArea extends View {
     return this.viewFactory.create(Category, {
       category,
       showVariants: true,
-      lazyLoader: this.lazyLoader
+      lazyLoader: this.lazyLoader,
+      emojiVersion: this.emojiVersion
     });
   }
 

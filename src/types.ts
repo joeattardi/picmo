@@ -79,7 +79,7 @@ export type PickerOptions = {
 
   categories?: GroupKey[];
   custom?: CustomEmoji[];
-  emojiVersion: number;
+  emojiVersion: number | 'auto';
 
   i18n: Dictionary;
   locale: Locale;

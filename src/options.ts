@@ -1,4 +1,3 @@
-import { LATEST_EMOJI_VERSION } from 'emojibase';
 import { PickerOptions } from './types';
 
 import NativeRenderer from './renderers/native';
@@ -25,7 +24,7 @@ const defaultOptions: Partial<PickerOptions> = {
   emojisPerRow: 8,
   visibleRows: 6,
 
-  emojiVersion: parseFloat(LATEST_EMOJI_VERSION),
+  emojiVersion: 'auto',
   maxRecents: 50,
   i18n: en,
   locale: 'en',

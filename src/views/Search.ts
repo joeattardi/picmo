@@ -15,10 +15,12 @@ import { Category } from '../types';
 
 type SearchOptions = {
   categories: Category[];
+  emojiVersion: number;
 };
 
 export class Search extends View {
   private categories: Category[];
+  private emojiVersion: number;
 
   private searchIcon: HTMLElement;
   private clearSearchButton: HTMLButtonElement;
@@ -27,10 +29,12 @@ export class Search extends View {
 
   searchField: HTMLInputElement;
 
-  constructor({ categories }: SearchOptions) {
+  constructor({ categories, emojiVersion }: SearchOptions) {
     super({ template: searchTemplate, classes });
 
     this.categories = categories.filter((category: Category) => category.key !== 'recents');
+    this.emojiVersion = emojiVersion;
+
     this.search = debounce(this.search.bind(this), 100);
   }
 
@@ -134,7 +138,7 @@ export class Search extends View {
     const searchResults = await this.emojiData.searchEmojis(
       this.searchField.value,
       this.customEmojis, 
-      this.options.emojiVersion,
+      this.emojiVersion,
       this.categories
     );
 

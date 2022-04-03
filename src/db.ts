@@ -48,6 +48,7 @@ export class Database {
 
         const emojiStore = this.db.createObjectStore('emoji', { keyPath: 'emoji' });
         emojiStore.createIndex('category', 'group');
+        emojiStore.createIndex('version', 'version');
       };
     });
   }
@@ -81,6 +82,14 @@ export class Database {
     }
 
     return categories;
+  }
+
+  async getEmojiForVersion(emojiVersion: number): Promise<Emoji> {
+    const transaction = this.db.transaction('emoji', 'readonly');
+    const emojiStore = transaction.objectStore('emoji');
+    const index = emojiStore.index('version');
+    const result = await this.waitForRequest(index.get(emojiVersion));
+    return result.target.result as Emoji;
   }
 
   async getEmojis(category: Category, emojiVersion: number): Promise<EmojiRecord[]> {
