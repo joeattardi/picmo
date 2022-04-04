@@ -34,6 +34,33 @@ Custom.args = {
   custom: customEmojis
 };
 
+export const CustomDimensions = Template.bind({});
+CustomDimensions.args = {
+  emojisPerRow: 8,
+  visibleRows: 6,
+  emojiSize: '1.8em'
+};
+CustomDimensions.argTypes = {
+  emojisPerRow: {
+    name: 'Emoji columns',
+    control: {
+      type: 'number'
+    }
+  },
+  visibleRows: {
+    name: 'Emoji rows',
+    control: {
+      type: 'number'
+    }
+  },
+  emojiSize: {
+    name: 'Emoji size',
+    control: {
+      type: 'text'
+    }
+  }
+}
+
 export const CustomCategoryList = Template.bind({});
 CustomCategoryList.storyName = 'Custom category list';
 const customCategories: GroupKey[] = ['people-body', 'animals-nature', 'smileys-emotion'];
