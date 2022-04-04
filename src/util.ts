@@ -1,6 +1,6 @@
 import { EmojiRecord } from './types';
 
-const matcher = window.matchMedia('(prefers-reduced-motion: reduce)');
+const matcher = window.matchMedia?.('(prefers-reduced-motion: reduce)');
 
 export function getEmojiForEvent(event: Event, emojis: EmojiRecord[]): EmojiRecord | null {
   const target = event.target as HTMLElement;
@@ -16,7 +16,7 @@ export function getEmojiForEvent(event: Event, emojis: EmojiRecord[]): EmojiReco
 }
 
 export function prefersReducedMotion() {
-  return matcher.matches;
+  return matcher?.matches ?? false;
 }
 
 export function caseInsensitiveIncludes(str: string, search: string) {
