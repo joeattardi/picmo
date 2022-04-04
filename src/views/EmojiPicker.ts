@@ -363,7 +363,7 @@ export class EmojiPicker extends View {
       currentFocus?.focus();
     });
 
-    this.variantPopup = this.viewFactory.create(VariantPopup, { emoji });
+    this.variantPopup = this.viewFactory.create(VariantPopup, { emoji, parent: this.el });
     this.el.appendChild(await this.variantPopup.render());
     this.variantPopup.activate();
   }

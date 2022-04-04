@@ -9,7 +9,7 @@ import { prefersReducedMotion, throttle } from '../util';
 
 import template from '../templates/emojiArea.ejs';
 import { LazyLoader } from '../LazyLoader';
-import { Category, CategoryKey, CustomEmoji, EmojiFocusTarget } from '../types';
+import { Category, CategoryKey, EmojiFocusTarget } from '../types';
 
 const categoryClasses = {
   recents: RecentEmojiCategory,
@@ -58,7 +58,6 @@ export class EmojiArea extends View {
   private selectedCategory = 0;
   private categoryTabs?: CategoryTabs;
   private categories: Category[];
-  private custom: CustomEmoji[];
   private emojiVersion: number;
 
   private scrollListenerState: ScrollListenerState = 'active';
@@ -158,7 +157,7 @@ export class EmojiArea extends View {
     let isCancelled = false;
     this.cancelScroll = () => isCancelled = true;
 
-    if (!animate && !prefersReducedMotion()) {
+    if (!animate || prefersReducedMotion()) {
       this.scrollListenerState = 'resume';
       this.el.scrollTop = targetPosition;
       return;

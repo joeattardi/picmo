@@ -31,6 +31,7 @@ type Template = string | ElementTemplate;
 type ViewOptions = {
   template: Template;
   classes?: ClassMappings;
+  parent?: HTMLElement;
 };
 export abstract class View {
   el: HTMLElement;
@@ -53,16 +54,18 @@ export abstract class View {
   protected renderer: Renderer;
   protected pickerId: string;
 
+  protected parent?: HTMLElement;
+
   viewFactory: ViewFactory;
 
   ui: UIElementMappings = {};
 
-  constructor({ template, classes }: ViewOptions) {
+  constructor({ template, classes, parent }: ViewOptions) {
     this.template = template;
     this.classes = classes;
+    this.parent = parent;
   }
 
-  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
   initialize() {
     this.bindAppEvents();
   }
@@ -102,6 +105,14 @@ export abstract class View {
     this.options = options;
   }
 
+  // TODO: add a class property for show and hide animations (array of animations?),
+  // this function checks for that and calls it to avoid unnecessary mutation observers
+  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+  animateShow() {}
+
+  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+  animateHide() {}
+
   renderSync(templateData: Data = {}): HTMLElement {
     const templateFn =
       typeof this.template === 'string' ? (data: Data) => renderTemplateSync(this.template as string, data) : this.template;
@@ -113,10 +124,7 @@ export abstract class View {
       ...templateData
     }) as HTMLElement;
 
-    this.bindUIElements();
-    this.bindKeyBindings();
-    this.bindUIEvents();
-
+    this.postRender();
     return this.el;
   }
 
@@ -133,11 +141,15 @@ export abstract class View {
       ...templateData
     });
 
+    this.postRender();
+    return this.el;
+  }
+
+  private postRender() {
     this.bindUIElements();
     this.bindKeyBindings();
     this.bindUIEvents();
-
-    return this.el;
+    this.scheduleShowAnimation();
   }
 
   private bindAppEvents() {
@@ -182,10 +194,19 @@ export abstract class View {
     this.isDestroyed = true;
   }
 
-  scheduleAnimation(callback: () => void) {
-    // TODO use mutationobserver to detect when added to dom
-    if (!prefersReducedMotion()) {
-      setTimeout(callback);
+  private scheduleShowAnimation() {
+    if (this.parent) {
+      const observer = new MutationObserver(list => {
+        const [record] = list;
+        if (record.type === 'childList' && record.addedNodes[0] === this.el) {
+          if (!prefersReducedMotion()) {
+            this.animateShow();
+          }
+          observer.disconnect
+        }
+      });
+
+      observer.observe(this.parent as Node, { childList: true });
     }
   }
 

@@ -12,6 +12,7 @@ import { FocusTrap } from '../focusTrap';
 
 type VariantPopupOptions = {
   emoji: EmojiRecord;
+  parent: HTMLElement;
 };
 
 const animationOptions = {
@@ -38,8 +39,8 @@ export class VariantPopup extends View {
   private emojiContainer: EmojiContainer;
   private focusTrap = new FocusTrap();
 
-  constructor({ emoji }: VariantPopupOptions) {
-    super({ template, classes });
+  constructor({ emoji, parent }: VariantPopupOptions) {
+    super({ template, classes, parent });
 
     this.emoji = emoji;
   }
@@ -55,6 +56,13 @@ export class VariantPopup extends View {
       ]
 
       super.initialize();
+  }
+
+  animateShow() {
+    return Promise.all([
+      this.el.animate(overlayAnimation, animationOptions).finished,
+      this.ui.popup.animate(popupAnimation, animationOptions).finished
+    ]);
   }
 
   animateHide() {
@@ -135,11 +143,6 @@ export class VariantPopup extends View {
     if (emojis.length < this.options.emojisPerRow) {
       this.el.style.setProperty('--emojis-per-row', emojis.length.toString());
     }
-
-    this.scheduleAnimation(() => {
-      this.el.animate(overlayAnimation, animationOptions);
-      this.ui.popup.animate(popupAnimation, animationOptions);
-    });
 
     return this.el;
   }

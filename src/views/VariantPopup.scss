@@ -1,22 +1,5 @@
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes grow {
-  0% {
-    opacity: 0;
-    transform: scale3d(0.8, 0.8, 0.8); 
-  }
-
-  100% { 
-    opacity: 1;
-    transform: scale3d(1, 1, 1); 
-  }
-}
-
 .variantOverlay {
-  opacity: 0;
+  // opacity: 0;
   background: var(--overlay-background-color);
   border-radius: 5px;
   display: flex;
@@ -31,7 +14,7 @@
 }
 
 .variantPopup {
-  opacity: 0;
+  // opacity: 0;
   background: var(--popup-background-color);
   border-radius: 5px;
   margin: 0.5em;
