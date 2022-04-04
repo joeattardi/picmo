@@ -5,7 +5,7 @@ import { CategoryTabs } from './CategoryTabs';
 import { EmojiCategory } from './EmojiCategory';
 import { RecentEmojiCategory } from './RecentEmojiCategory';
 import { CustomEmojiCategory } from './CustomEmojiCategory';
-import { prefersReducedMotion, throttle } from '../util';
+import { shouldAnimate, throttle } from '../util';
 
 import template from '../templates/emojiArea.ejs';
 import { LazyLoader } from '../LazyLoader';
@@ -157,7 +157,7 @@ export class EmojiArea extends View {
     let isCancelled = false;
     this.cancelScroll = () => isCancelled = true;
 
-    if (!animate || prefersReducedMotion()) {
+    if (!animate || !shouldAnimate(this.options)) {
       this.scrollListenerState = 'resume';
       this.el.scrollTop = targetPosition;
       return;

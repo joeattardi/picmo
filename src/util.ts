@@ -1,4 +1,4 @@
-import { EmojiRecord } from './types';
+import { EmojiRecord, PickerOptions } from './types';
 
 const matcher = window.matchMedia?.('(prefers-reduced-motion: reduce)');
 
@@ -15,8 +15,8 @@ export function getEmojiForEvent(event: Event, emojis: EmojiRecord[]): EmojiReco
   return null;
 }
 
-export function prefersReducedMotion() {
-  return matcher?.matches ?? false;
+export function shouldAnimate(options: PickerOptions) {
+  return options.animate && !matcher?.matches;
 }
 
 export function caseInsensitiveIncludes(str: string, search: string) {
@@ -65,4 +65,12 @@ export function debounce(fn: (...args: any[]) => any, wait: number) {
       timeout = null;
     }, wait);
   };
+}
+
+export function animate(element: HTMLElement, keyframes: Keyframe[] | PropertyIndexedKeyframes, options: KeyframeAnimationOptions, pickerOptions: PickerOptions): Promise<Animation | void> {
+  if (shouldAnimate(pickerOptions) && element.animate) {
+    return element.animate(keyframes, options).finished;
+  }
+
+  return Promise.resolve();
 }

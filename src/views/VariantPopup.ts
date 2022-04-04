@@ -6,7 +6,7 @@ import classes from './VariantPopup.scss';
 import { EmojiContainer } from './EmojiContainer';
 import { EmojiRecord } from '../types';
 
-import { prefersReducedMotion } from '../util';
+import { animate } from '../util';
 
 import { FocusTrap } from '../focusTrap';
 
@@ -58,27 +58,18 @@ export class VariantPopup extends View {
       super.initialize();
   }
 
-  animateShow() {
-    return Promise.all([
-      this.el.animate(overlayAnimation, animationOptions).finished,
-      this.ui.popup.animate(popupAnimation, animationOptions).finished
+  animateShow = () => 
+    Promise.all([
+      animate(this.el, overlayAnimation, animationOptions, this.options),
+      animate(this.ui.popup, popupAnimation, animationOptions, this.options)
     ]);
-  }
 
   animateHide() {
-    if (prefersReducedMotion()) {
-      return;
-    }
+    const hideOptions: KeyframeAnimationOptions = { ...animationOptions, direction: 'reverse' };
 
     return Promise.all([
-      this.el.animate(overlayAnimation, {
-        ...animationOptions,
-        direction: 'reverse'
-      }).finished,
-      this.ui.popup.animate(popupAnimation, {
-        ...animationOptions,
-        direction: 'reverse'
-      }).finished
+      animate(this.el, overlayAnimation, hideOptions, this.options),
+      animate(this.ui.popup, popupAnimation, hideOptions, this.options),
     ]);
   }
 

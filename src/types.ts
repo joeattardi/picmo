@@ -57,6 +57,8 @@ export type PickerOptions = {
   theme: string;
   rootElement: HTMLElement;
 
+  animate?: boolean;
+
   showRecents: boolean;
   showCategoryTabs: boolean;
   showSearch: boolean;

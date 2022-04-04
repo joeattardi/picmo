@@ -9,6 +9,8 @@ const defaultOptions: Partial<PickerOptions> = {
   renderer: new NativeRenderer(),
   theme: lightTheme,
 
+  animate: true,
+
   showSearch: true,
   showCategoryTabs: true,
   showVariants: true,

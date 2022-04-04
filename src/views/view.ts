@@ -8,7 +8,7 @@ import { Bundle } from '../i18n';
 import { Renderer } from '../renderers/renderer';
 import { Database } from '../db';
 import { EmojiRecord, PickerOptions } from '../types';
-import { prefersReducedMotion } from '../util';
+import { shouldAnimate } from '../util';
 
 type UIEventListenerBinding = {
   target?: string;
@@ -105,13 +105,7 @@ export abstract class View {
     this.options = options;
   }
 
-  // TODO: add a class property for show and hide animations (array of animations?),
-  // this function checks for that and calls it to avoid unnecessary mutation observers
-  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-  animateShow() {}
-
-  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
-  animateHide() {}
+  animateShow?: () => Promise<Animation | void | Animation[] | (Animation | void)[] >;
 
   renderSync(templateData: Data = {}): HTMLElement {
     const templateFn =
@@ -199,7 +193,7 @@ export abstract class View {
       const observer = new MutationObserver(list => {
         const [record] = list;
         if (record.type === 'childList' && record.addedNodes[0] === this.el) {
-          if (!prefersReducedMotion()) {
+          if (shouldAnimate(this.options) && this.animateShow) {
             this.animateShow();
           }
           observer.disconnect

@@ -5,7 +5,7 @@ import { ExternalEvent, ExternalEvents } from './ExternalEvents';
 import { EventCallback } from './events';
 import { createEmojiPicker } from './createPicker';
 import { setPosition, PositionCleanup } from './positioning';
-import { prefersReducedMotion } from './util';
+import { shouldAnimate, animate } from './util';
 import { FocusTrap } from './focusTrap';
 
 import { getOptions } from './options';
@@ -194,20 +194,16 @@ export class PopupPickerController {
    * @param openState The desired open state of the picker
    * @returns The Animation object that is running
    */
-  private async animateOpenStateChange(openState: boolean): Promise<Animation | void> {
-    return this.picker.el.animate?.(
-      {
-        opacity: [0, 1],
-        transform: ['scale(0.9)', 'scale(1)']
-      },
-      {
-        duration: prefersReducedMotion() ? 0 : SHOW_HIDE_DURATION,
-        id: openState ? 'show-picker' : 'hide-picker',
-        fill: 'both',
-        easing: 'ease-in-out',
-        direction: openState ? 'normal' : 'reverse'
-      }
-    ).finished;
+  private animateOpenStateChange(openState: boolean): Promise<Animation | void> {
+    return animate(this.picker.el, {
+      opacity: [0, 1],
+      transform: ['scale(0.9)', 'scale(1)']
+    }, {
+      duration: SHOW_HIDE_DURATION,
+      id: openState ? 'show-picker' : 'hide-picker',
+      easing: 'ease-in-out',
+      direction: openState ? 'normal' : 'reverse'
+    }, this.options);
   }
 
   /**
