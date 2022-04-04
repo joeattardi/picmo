@@ -8,6 +8,7 @@ import { Bundle } from '../i18n';
 import { Renderer } from '../renderers/renderer';
 import { Database } from '../db';
 import { EmojiRecord, PickerOptions } from '../types';
+import { prefersReducedMotion } from '../util';
 
 type UIEventListenerBinding = {
   target?: string;
@@ -179,6 +180,13 @@ export abstract class View {
 
     this.el.remove();
     this.isDestroyed = true;
+  }
+
+  scheduleAnimation(callback: () => void) {
+    // TODO use mutationobserver to detect when added to dom
+    if (!prefersReducedMotion()) {
+      setTimeout(callback);
+    }
   }
 
   static childEvent(target: string, event: string, handler: EventCallback, options: AddEventListenerOptions = {}): UIEventListenerBinding {

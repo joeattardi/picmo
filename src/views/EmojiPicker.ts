@@ -341,6 +341,7 @@ export class EmojiPicker extends View {
     if (emoji.skins && this.options.showVariants && !this.isVariantPopupOpen) {
       this.showVariantPopup(emoji);
     } else {
+      await this.variantPopup?.animateHide();
       this.events.emit('variantPopup:hide');
       await this.emitEmoji(emoji);
     }

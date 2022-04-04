@@ -6,10 +6,27 @@ import classes from './VariantPopup.scss';
 import { EmojiContainer } from './EmojiContainer';
 import { EmojiRecord } from '../types';
 
+import { prefersReducedMotion } from '../util';
+
 import { FocusTrap } from '../focusTrap';
 
 type VariantPopupOptions = {
   emoji: EmojiRecord;
+};
+
+const animationOptions = {
+  easing: 'ease-in-out',
+  duration: 250,
+  fill: 'both' as FillMode
+};
+
+const overlayAnimation = {
+  opacity: [0, 1]
+};
+
+const popupAnimation = {
+  opacity: [0, 1],
+  transform: ['scale3d(0.8, 0.8, 0.8)', 'scale3d(1, 1, 1)']
 };
 
 export class VariantPopup extends View {
@@ -40,16 +57,38 @@ export class VariantPopup extends View {
       super.initialize();
   }
 
+  animateHide() {
+    if (prefersReducedMotion()) {
+      return;
+    }
+
+    return Promise.all([
+      this.el.animate(overlayAnimation, {
+        ...animationOptions,
+        direction: 'reverse'
+      }).finished,
+      this.ui.popup.animate(popupAnimation, {
+        ...animationOptions,
+        direction: 'reverse'
+      }).finished
+    ]);
+  }
+
+  private async hide() {
+    await this.animateHide();
+    this.events.emit('variantPopup:hide');
+  }
+
   private handleKeydown(event: KeyboardEvent) {
     if (event.key === 'Escape') {
-      this.events.emit('variantPopup:hide');
+      this.hide();
       event.stopPropagation();
     }
   }
 
   private handleClick(event): void {
     if (!this.ui.popup.contains(event.target as Node)) {
-      this.events.emit('variantPopup:hide');
+      this.hide();
     }
   }
 
@@ -96,6 +135,11 @@ export class VariantPopup extends View {
     if (emojis.length < this.options.emojisPerRow) {
       this.el.style.setProperty('--emojis-per-row', emojis.length.toString());
     }
+
+    this.scheduleAnimation(() => {
+      this.el.animate(overlayAnimation, animationOptions);
+      this.ui.popup.animate(popupAnimation, animationOptions);
+    });
 
     return this.el;
   }
