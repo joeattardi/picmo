@@ -2,16 +2,12 @@ import { View } from './view';
 import { EmojiRecord } from '../types';
 import { compileTemplateSync } from '../templates';
 
-import { Image } from './Image';
-
 import previewTemplate from '../templates/preview.ejs';
 import classes from './Preview.scss';
 
 const renderTag = compileTemplateSync('<li class="<%= classes.tag %>"><%= tag %></li>');
 
 export class EmojiPreview extends View {
-  private emoji?: EmojiRecord;
-
   constructor() {
     super({ template: previewTemplate, classes });
   }
@@ -24,36 +20,14 @@ export class EmojiPreview extends View {
     };
 
     this.appEvents = {
-      'preview:show': this.handlePreview,
-      'preview:hide': this.handlePreview
+      'preview:show': this.showPreview,
+      'preview:hide': this.hidePreview
     };
 
     super.initialize();
   }
 
-  private getContent(emoji: EmojiRecord): HTMLElement {
-    // TODO lazy load this too?
-
-    // TODO cache preview images to prevent refetching
-    const element = this.renderer.doRender(emoji);
-
-    return element;
-  }
-
-  // TODO lazy load to prevent delay in showing content
-  handlePreview(emoji?: EmojiRecord) {
-    this.emoji = emoji;
-    if (emoji) {
-      const content = this.getContent(emoji);
-      if (this.emoji === emoji) {
-        this.showPreview(emoji, content);
-      }
-    } else {
-      this.hidePreview();
-    }
-  }
-
-  private showPreview(emoji: EmojiRecord, content: HTMLElement) {
+  private showPreview(emoji: EmojiRecord, content: Element) {
     this.ui.emoji.replaceChildren(content);
     this.ui.name.textContent = emoji.label;
     if (emoji.tags) {
@@ -64,8 +38,8 @@ export class EmojiPreview extends View {
   }
 
   private hidePreview() {
-    // this.ui.emoji.replaceChildren();
-    // this.ui.name.textContent = '';
-    // this.ui.tagList.replaceChildren();
+    this.ui.emoji.replaceChildren();
+    this.ui.name.textContent = '';
+    this.ui.tagList.replaceChildren();
   }
 }

@@ -175,9 +175,13 @@ export class EmojiContainer extends View {
   }
 
   private showPreview(event: Event) {
+    const target = event.target as HTMLElement;
+    const button = target.closest('button');
+    const content = button?.firstElementChild;
+    
     const emoji = getEmojiForEvent(event, this.emojis);
     if (emoji) {
-      this.events.emit('preview:show', emoji);
+      this.events.emit('preview:show', emoji, content?.cloneNode(true));
     }
   }
 
