@@ -53,7 +53,13 @@ export class CategoryTabs extends View {
       tabs: this.tabViews.map(view => view.renderSync())
     });
 
+    this.currentTabView.setActive(true);
+
     return this.el;
+  }
+
+  get currentCategory(): Category {
+    return this.categories[this.activeCategoryIndex];
   }
 
   get currentTabView(): CategoryTab {

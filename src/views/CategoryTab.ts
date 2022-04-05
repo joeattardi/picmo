@@ -13,7 +13,7 @@ type CategoryTabOptions = {
 const focusEventOptions = { scroll: 'animate', focus: 'button', performFocus: true };
 
 export class CategoryTab extends View {
-  private category: Category;
+  category: Category;
   private icon: string;
   
   isActive = false;
