@@ -1,4 +1,4 @@
-import { GroupMessage, Emoji, GroupKey } from 'emojibase';
+import { GroupMessage, Emoji } from 'emojibase';
 import { EmojiRecord, Category, CategoryKey } from './types';
 
 import { caseInsensitiveIncludes } from './util';

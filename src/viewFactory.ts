@@ -16,8 +16,8 @@ type DependencyMapping = {
   pickerId: string;
 };
 
-type ViewConstructor<T extends View> = new (...args: any[]) => T;
-type ViewConstructorParameters<T extends View> = ConstructorParameters<ViewConstructor<T>>;
+export type ViewConstructor<T extends View> = new (...args: any[]) => T;
+export type ViewConstructorParameters<T extends View> = ConstructorParameters<ViewConstructor<T>>;
 
 export class ViewFactory {
   private events: Events<AppEvent>;
