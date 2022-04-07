@@ -66,7 +66,7 @@
   padding: 0;
 }
 
-.searchNotFound {
+.searchNotFound, .searchError {
   color: var(--secondary-text-color);
   display: flex;
   flex-direction: column;
@@ -77,14 +77,14 @@
   div {
     color: var(--secondary-text-color);
   }
-}
 
-.searchNotFoundIcon {
-  margin: 2em;
-}
+  .icon {
+    margin: 2em;  
+  }
 
-.searchNotFoundMessage {
-  color: var(--secondary-text-color);
-  font-size: 1em;
-  margin: 0.5em 0;
+  .message {
+    color: var(--secondary-text-color);
+    font-size: 1em;
+    margin: 0.5em 0;
+  }
 }

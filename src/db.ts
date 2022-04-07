@@ -104,6 +104,11 @@ export class Database {
     ]);
   }
 
+  /**
+   * Determines whether or not the database is populated.
+   * 
+   * @returns a Promise that resolves to a boolean indicating the populated state
+   */
   async isPopulated(): Promise<boolean> {
       const transaction = this.db.transaction('category', 'readonly');
       const store = transaction.objectStore('category');
@@ -114,11 +119,11 @@ export class Database {
 
   /**
    * Removes any current data and re-populates the data stores with the given data.
+   * 
    * @param groups the group message data
    * @param emojis the emoji data
    * @param emojisEtag the emoji data ETag
    * @param messagesEtag the message data ETag
-   * 
    * @returns a Promise that resolves when all data has been written
    */
   async populate(groups: GroupMessage[], emojis: Emoji[], emojisEtag?: string | null, messagesEtag?: string | null) {
@@ -198,6 +203,17 @@ export class Database {
     .map(getEmojiRecord);
   }
 
+  /**
+   * Given an emoji, determine if the query matches.
+   * 
+   * The emoji matches if the text query matches the name or one of its tags, and if it is in the array of
+   * categories (if given).
+   * 
+   * @param emoji The emoji to check
+   * @param query The text query
+   * @param categories The categories to check
+   * @returns a boolean indicating whether or not the emoji matches the query
+   */
   private queryMatches(emoji: SearchableEmoji, query: string, categories?: Category[]) {
     if (categories && !categories.some(category => category.order === (emoji as Emoji).group)) {
       return false;
@@ -209,7 +225,15 @@ export class Database {
     );
   }
 
-  // TODO handle errors
+  /**
+   * Searches the database for emojis.
+   * 
+   * @param query the text query
+   * @param customEmojis the custom emojis
+   * @param emojiVersion the maximum emoji version for search results
+   * @param categories the categories to search
+   * @returns a Promise that resolves to the matching EmojiRecords
+   */
   async searchEmojis(query: string, customEmojis: EmojiRecord[], emojiVersion: number, categories: Category[]): Promise<EmojiRecord[]> {
     const results: EmojiRecord[] = [];
 
@@ -218,7 +242,7 @@ export class Database {
       const emojiStore = transaction.objectStore('emoji');
       const request = emojiStore.openCursor();
 
-      request.onsuccess = (event: any) => {
+      request.addEventListener('success', (event: any) => {
         const cursor: IDBCursorWithValue = event.target?.result;
         if (!cursor) {
           return resolve([
@@ -236,10 +260,20 @@ export class Database {
         }
 
         cursor.continue();
-      };
+      });
+
+      request.addEventListener('error', (error: Event) => {
+        reject(error);
+      });
     });
   }
 
+  /**
+   * Waits for a request to complete.
+   * 
+   * @param request the request
+   * @returns a Promise that resolves when the request succeeds, or rejects if it fails
+   */
   async waitForRequest(request: IDBRequest): Promise<any> {
     return new Promise((resolve, reject) => {
       request.onsuccess = resolve;
@@ -247,6 +281,14 @@ export class Database {
     });
   }
 
+  /**
+   * Wraps an operation in an IndexedDB transaction.
+   * 
+   * @param storeName the data store(s) to use
+   * @param mode the transaction mode
+   * @param callback a callback containing the work to do in the transaction
+   * @returns a Promise that resolves when the transaction completes, or rejects if it fails
+   */
   protected withTransaction(storeName: string | string[], mode: IDBTransactionMode = 'readwrite', callback: (transaction: IDBTransaction) => void) {
     return new Promise((resolve, reject) => {
       const transaction = this.db.transaction(storeName, mode);
@@ -257,12 +299,24 @@ export class Database {
     });
   }
 
+  /**
+   * Removes all entries from one or more stores.
+   * @param storeNames the stores to clear
+   * @return a Promise that resolves when the clear is complete
+   */
   protected async removeAllObjects(...storeNames: string[]) {
     const transaction = this.db.transaction(storeNames, 'readwrite');
     const stores = storeNames.map(storeName => transaction.objectStore(storeName));
     await Promise.all(stores.map(store => this.waitForRequest(store.clear())));
   }
 
+  /**
+   * Adds a collection of objects to a data store.
+   * 
+   * @param storeName the store to populate
+   * @param objects the objects to add
+   * @returns a Promise that resolves when the add is complete, or rejects if it fails
+   */
   protected async addObjects(storeName: string, objects: any[]) {
     return this.withTransaction(storeName, 'readwrite', transaction => {
       const store = transaction.objectStore(storeName);

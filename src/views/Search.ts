@@ -6,12 +6,14 @@ import { icon } from '../icons';
 import { EmojiContainer } from './EmojiContainer';
 
 import { renderTemplate } from '../templates';
-import searchTemplate from '../templates/search/search.ejs';
-import clearSearchButtonTemplate from '../templates/search/clearButton.ejs';
-import notFoundTemplate from '../templates/search/notFound.ejs';
 import { debounce } from '../util';
 import { LazyLoader } from '../LazyLoader';
 import { Category } from '../types';
+
+import searchTemplate from '../templates/search/search.ejs';
+import clearSearchButtonTemplate from '../templates/search/clearButton.ejs';
+import notFoundTemplate from '../templates/search/notFound.ejs';
+import errorTemplate from '../templates/search/error.ejs';
 
 type SearchOptions = {
   categories: Category[];
@@ -26,6 +28,7 @@ export class Search extends View {
   private clearSearchButton: HTMLButtonElement;
   private resultsContainer: EmojiContainer | null;
   private notFoundMessage: NotFoundMessage;
+  private errorMessage: ErrorMessage;
 
   searchField: HTMLInputElement;
 
@@ -57,7 +60,10 @@ export class Search extends View {
 
     this.searchIcon = icon('magnifying-glass', { classes: 'fa-fw' });
     this.notFoundMessage = this.viewFactory.create(NotFoundMessage);
-    await this.notFoundMessage.render();
+    this.notFoundMessage.renderSync();
+
+    this.errorMessage = this.viewFactory.create(ErrorMessage);
+    this.errorMessage.renderSync();
 
     this.clearSearchButton = await renderTemplate(clearSearchButtonTemplate, {
       classes,
@@ -135,38 +141,42 @@ export class Search extends View {
       return;
     }
 
-    const searchResults = await this.emojiData.searchEmojis(
-      this.searchField.value,
-      this.customEmojis, 
-      this.emojiVersion,
-      this.categories
-    );
+    try {
+      const searchResults = await this.emojiData.searchEmojis(
+        this.searchField.value,
+        this.customEmojis, 
+        this.emojiVersion,
+        this.categories
+      );
 
-    this.events.emit('preview:hide');
+      this.events.emit('preview:hide');
 
-    if (searchResults.length) {
-      const lazyLoader = new LazyLoader();
-      this.resultsContainer = this.viewFactory.create(EmojiContainer, {
-        emojis: searchResults,
-        fullHeight: true,
-        showVariants: true,
-        lazyLoader
-      });
+      if (searchResults.length) {
+        const lazyLoader = new LazyLoader();
+        this.resultsContainer = this.viewFactory.create(EmojiContainer, {
+          emojis: searchResults,
+          fullHeight: true,
+          showVariants: true,
+          lazyLoader
+        });
 
-      await this.resultsContainer.render();
-      if (this.resultsContainer?.el) {
-        this.resultsContainer.el.classList.add(classes.searchResults);
-        lazyLoader.observe(this.el.parentElement as HTMLElement);
-        this.resultsContainer.setActive(true, { row: 0, offset: 0}, false);
-        // this.resultsContainer.emojiElements[0].tabIndex = 0;
-        // this.focusedEmojiIndex = 0;
+        await this.resultsContainer.render();
+        if (this.resultsContainer?.el) {
+          this.resultsContainer.el.classList.add(classes.searchResults);
+          lazyLoader.observe(this.el.parentElement as HTMLElement);
+          this.resultsContainer.setActive(true, { row: 0, offset: 0}, false);
+          // this.resultsContainer.emojiElements[0].tabIndex = 0;
+          // this.focusedEmojiIndex = 0;
 
-        this.resultsContainer.el.addEventListener('keydown', event => this.handleResultsKeydown(event));
+          this.resultsContainer.el.addEventListener('keydown', event => this.handleResultsKeydown(event));
 
-        this.events.emit('content:show', this.resultsContainer);
+          this.events.emit('content:show', this.resultsContainer);
+        }
+      } else {
+        this.events.emit('content:show', this.notFoundMessage);
       }
-    } else {
-      this.events.emit('content:show', this.notFoundMessage);
+    } catch (error) {
+      this.events.emit('content:show', this.errorMessage);
     }
   }
 }
@@ -174,5 +184,11 @@ export class Search extends View {
 class NotFoundMessage extends View {
   constructor() {
     super({ template: notFoundTemplate, classes });
+  }
+}
+
+class ErrorMessage extends View {
+  constructor() {
+    super({ template: errorTemplate, classes });
   }
 }

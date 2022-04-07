@@ -13,6 +13,7 @@ export default {
   'recents.clear': 'Clear recent emojis',
   'recents.none': "You haven't selected any emojis yet.",
   'search.clear': 'Clear search',
+  'search.error': 'An error occurred while searching for emojis.',
   'search.notFound': 'No matching emojis found.',
   search: 'Search emojis...'
 };
