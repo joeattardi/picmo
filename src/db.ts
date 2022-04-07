@@ -1,9 +1,10 @@
-import { GroupMessage, Emoji } from 'emojibase';
+import { GroupMessage, Emoji, Locale } from 'emojibase';
 import { EmojiRecord, Category, CategoryKey } from './types';
 
 import { caseInsensitiveIncludes } from './util';
 
-const DATABASE_NAME = 'EmojiButton';
+// Base database name. It will have the locale appended to it.
+const DATABASE_NAME = 'PicMo';
 
 type SearchableEmoji = {
   label: string;
@@ -30,14 +31,30 @@ function getEmojiRecord(emoji: Emoji): EmojiRecord {
 
 export class Database {
   private db: IDBDatabase;
+  locale: Locale;
 
-  async open(): Promise<IDBDatabase> {
-    const request = indexedDB.open(DATABASE_NAME);
+  constructor(locale: Locale) {
+    this.locale = locale;
+  }
+
+  /**
+   * Creates/opens the database.
+   * 
+   * There are three data stores:
+   * 
+   * - category: stores the categories
+   * - emoji: stores the emoji data itself
+   * - meta: stores metadata such as the ETags
+   * 
+   * @returns a Promise that resolves when the database is ready
+   */
+  async open(): Promise<void> {
+    const request = indexedDB.open(`${DATABASE_NAME}-${this.locale}`);
 
     return new Promise((resolve, reject) => {
       request.onsuccess = (event: any) => {
         this.db = event.target?.result;
-        resolve(this.db);
+        resolve();
       };
 
       request.onerror = reject;
@@ -49,8 +66,42 @@ export class Database {
         const emojiStore = this.db.createObjectStore('emoji', { keyPath: 'emoji' });
         emojiStore.createIndex('category', 'group');
         emojiStore.createIndex('version', 'version');
+
+        this.db.createObjectStore('meta');
       };
     });
+  }
+
+  /**
+   * Gets the ETags stored in the meta datastore.
+   * @returns a Promise that resolves to the ETag data
+   */
+  async getEtags(): Promise<Record<string, string | undefined>> {
+    const transaction = this.db.transaction('meta', 'readonly');
+    const store = transaction.objectStore('meta');
+    const [emojisEtag, messagesEtag] = await Promise.all([
+      this.waitForRequest(store.get('emojisEtag')),
+      this.waitForRequest(store.get('messagesEtag'))
+    ]);
+
+    return {
+      storedEmojisEtag: emojisEtag.target.result,
+      storedMessagesEtag: messagesEtag.target.result
+    };
+  }
+
+  /**
+   * Stores ETag values for the emoji and message data.
+   * @param emojisEtag the ETag for the emoji data
+   * @param messagesEtag the ETag for the message data
+   */
+  async setEtags(emojisEtag, messagesEtag) {
+    const transaction = this.db.transaction('meta', 'readwrite');
+    const store = transaction.objectStore('meta');
+    await Promise.all([
+      this.waitForRequest(store.put(emojisEtag, 'emojisEtag')),
+      this.waitForRequest(store.put(messagesEtag, 'messagesEtag'))
+    ]);
   }
 
   async isPopulated(): Promise<boolean> {
@@ -61,13 +112,37 @@ export class Database {
       return categoryCount > 0;
   }
 
-  async populate(groups: GroupMessage[], emojis: Emoji[]) {
-    await Promise.all([
+  /**
+   * Removes any current data and re-populates the data stores with the given data.
+   * @param groups the group message data
+   * @param emojis the emoji data
+   * @param emojisEtag the emoji data ETag
+   * @param messagesEtag the message data ETag
+   * 
+   * @returns a Promise that resolves when all data has been written
+   */
+  async populate(groups: GroupMessage[], emojis: Emoji[], emojisEtag?: string | null, messagesEtag?: string | null) {
+    // Wipe out any old data first
+    await this.removeAllObjects('category', 'emoji');
+
+    const tasks = [
       this.addObjects('category', groups),
-      this.addObjects('emoji', emojis)
-    ]);
+      this.addObjects('emoji', emojis),
+      this.setEtags(emojisEtag, messagesEtag)
+    ];
+
+    await Promise.all(tasks);
   }
 
+  /**
+   * Gets the emoji categories.
+   * 
+   * If an include list is specified, only those categories will be returned - and will be in the same sort order.
+   * Otherwise, all categories (except 'component') are returned.
+   * 
+   * @param include an array of CategoryKeys to include
+   * @returns an arrya of all categories, or only the ones specified if include is given
+   */
   async getCategories(include?: CategoryKey[]): Promise<Category[]> {
     const transaction = this.db.transaction('category', 'readonly');
     const categoryStore = transaction.objectStore('category');
@@ -84,6 +159,12 @@ export class Database {
     return categories;
   }
 
+  /**
+   * Finds the first emoji for a particular emoji version.
+   * 
+   * @param emojiVersion the emoji version to check
+   * @returns a Promise that resolves to the first emoji for that version
+   */
   async getEmojiForVersion(emojiVersion: number): Promise<Emoji> {
     const transaction = this.db.transaction('emoji', 'readonly');
     const emojiStore = transaction.objectStore('emoji');
@@ -92,6 +173,13 @@ export class Database {
     return result.target.result as Emoji;
   }
 
+  /**
+   * Gets all emojis for a particular category and emoji version.
+   * 
+   * @param category the category to get emojis for
+   * @param emojiVersion the maximum version for returned emojis
+   * @returns a Promise that resolves to an array of the EmojiRecord data
+   */
   async getEmojis(category: Category, emojiVersion: number): Promise<EmojiRecord[]> {
     const transaction = this.db.transaction('emoji', 'readonly');
     const emojiStore = transaction.objectStore('emoji');
@@ -169,13 +257,16 @@ export class Database {
     });
   }
 
+  protected async removeAllObjects(...storeNames: string[]) {
+    const transaction = this.db.transaction(storeNames, 'readwrite');
+    const stores = storeNames.map(storeName => transaction.objectStore(storeName));
+    await Promise.all(stores.map(store => this.waitForRequest(store.clear())));
+  }
+
   protected async addObjects(storeName: string, objects: any[]) {
     return this.withTransaction(storeName, 'readwrite', transaction => {
       const store = transaction.objectStore(storeName);
-
-      objects.forEach(object => {
-        store.add(object);
-      });
+      objects.forEach(object => { store.add(object); });
     });
   }
 }
