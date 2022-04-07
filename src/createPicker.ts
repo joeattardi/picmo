@@ -10,7 +10,7 @@ import { getOptions } from './options';
 
 function initData(options: PickerOptions): Promise<Database> {
   if (options.emojiData && options.messages) {
-    return initDatabaseWithStaticData(options.messages, options.emojiData);
+    return initDatabaseWithStaticData(options.locale, options.messages, options.emojiData);
   } else {
     return initDatabaseFromCdn(options.locale);
   }

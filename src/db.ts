@@ -33,7 +33,7 @@ export class Database {
   private db: IDBDatabase;
   locale: Locale;
 
-  constructor(locale: Locale) {
+  constructor(locale: Locale = 'en') {
     this.locale = locale;
   }
 
