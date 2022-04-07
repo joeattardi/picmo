@@ -1,5 +1,3 @@
-import { nanoid } from 'nanoid';
-
 import { AppEvents } from './AppEvents';
 import { EmojiPicker } from './views/EmojiPicker';
 import { PickerOptions, CustomEmoji, EmojiRecord } from './types';
@@ -18,7 +16,12 @@ function initData(options: PickerOptions): Promise<Database> {
   }
 }
 
-// TODO: Allow passing in a custom external events.
+let pickerIndex = 0;
+
+function getPickerId() {
+  return `picmo-${Date.now()}-${pickerIndex++}`;
+}
+
 /**
  * Creates a new emoji picker.
  * @param options The options for the emoji picker.
@@ -48,7 +51,7 @@ export function createEmojiPicker(options: Partial<PickerOptions>): EmojiPicker 
     renderer: finalOptions.renderer,
     options: finalOptions,
     emojiData: emojiDataPromise,
-    pickerId: `EmojiPicker-${nanoid()}`
+    pickerId: getPickerId()
   });
 
   const picker = viewFactory.create(EmojiPicker);

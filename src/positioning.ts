@@ -1,4 +1,5 @@
-import { createPopper, Placement } from '@popperjs/core';
+import { Placement } from '@popperjs/core';
+import { createPopper } from '@popperjs/core/lib/popper-lite.js';
 
 import { Position, FixedPosition } from './types';
 

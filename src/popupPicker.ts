@@ -5,7 +5,7 @@ import { ExternalEvent, ExternalEvents } from './ExternalEvents';
 import { EventCallback } from './events';
 import { createEmojiPicker } from './createPicker';
 import { setPosition, PositionCleanup } from './positioning';
-import { shouldAnimate, animate } from './util';
+import { animate } from './util';
 import { FocusTrap } from './focusTrap';
 
 import { getOptions } from './options';
