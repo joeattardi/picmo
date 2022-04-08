@@ -15,8 +15,8 @@ export class Events<T> {
   private handlers: EventHandlerRecord<T>[] = [];
   private emitter = new TinyEmitter();
 
-  on(event: EventKey<T>, handler: EventCallback) {
-    this.emitter.on(event, handler);
+  on(event: EventKey<T>, handler: EventCallback, context?: any) {
+    this.emitter.on(event, handler, context);
     this.handlers.push({ event, handler });
   }
 

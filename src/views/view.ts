@@ -64,6 +64,8 @@ export abstract class View {
     this.template = template;
     this.classes = classes;
     this.parent = parent;
+
+    this.keyBindingHandler = this.keyBindingHandler.bind(this);
   }
 
   initialize() {
@@ -153,22 +155,36 @@ export abstract class View {
 
   private bindAppEvents() {
     Object.keys(this.appEvents).forEach(event => {
-      this.events.on(event as AppEventKey, this.appEvents[event].bind(this));
+      this.events.on(event as AppEventKey, this.appEvents[event], this);
     });
 
-    this.events.on('data:ready', this.updateEmojiData.bind(this));
+    this.events.on('data:ready', this.updateEmojiData, this);
   }
 
-  // TODO: unbindAPpEvents
+  private unbindAppEvents() {
+    Object.keys(this.appEvents).forEach(event => {
+      this.events.off(event as AppEventKey, this.appEvents[event]);
+    });
+
+    this.events.off('data:ready', this.updateEmojiData);
+  }
+
+  private keyBindingHandler(event: KeyboardEvent) {
+    const handler = this.keyBindings[event.key];
+    if (handler) {
+      handler.call(this, event);
+    }
+  }
 
   private bindKeyBindings() {
     if (this.keyBindings) {
-      this.el.addEventListener('keydown', (event: KeyboardEvent) => {
-        const handler = this.keyBindings[event.key];
-        if (handler) {
-          handler.call(this, event);
-        }
-      });
+      this.el.addEventListener('keydown', this.keyBindingHandler);
+    }
+  }
+
+  private unbindKeyBindings() {
+    if (this.keyBindings) {
+      this.el.removeEventListener('keydown', this.keyBindingHandler);
     }
   }
 
@@ -188,10 +204,17 @@ export abstract class View {
     });
   }
 
-  destroy() {
+  private unbindUIEvents() {
     this.uiEvents.forEach((binding: UIEventListenerBinding) => {
-      this.el.removeEventListener(binding.event, binding.handler, binding.options);
+      const target = binding.target ? this.ui[binding.target] : this.el;
+      target.removeEventListener(binding.event, binding.handler);
     });
+  }
+
+  destroy() {
+    this.unbindAppEvents();
+    this.unbindUIEvents();
+    this.unbindKeyBindings();
 
     this.el.remove();
     this.isDestroyed = true;
