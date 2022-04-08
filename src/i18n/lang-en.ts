@@ -10,10 +10,11 @@ export default {
   'categories.smileys-emotion': 'Smileys & Emotion',
   'categories.symbols': 'Symbols',
   'categories.travel-places': 'Travel & Places',
+  'error.load': 'Failed to load emojis',
   'recents.clear': 'Clear recent emojis',
   'recents.none': "You haven't selected any emojis yet.",
   'search.clear': 'Clear search',
-  'search.error': 'An error occurred while searching for emojis.',
-  'search.notFound': 'No matching emojis found.',
+  'search.error': 'Failed to search emojis',
+  'search.notFound': 'No results found',
   search: 'Search emojis...'
 };

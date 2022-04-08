@@ -4,6 +4,7 @@ import classes from './Search.scss';
 import { icon } from '../icons';
 
 import { EmojiContainer } from './EmojiContainer';
+import { ErrorMessage } from './ErrorMessage';
 
 import { renderTemplate } from '../templates';
 import { debounce } from '../util';
@@ -12,8 +13,6 @@ import { Category } from '../types';
 
 import searchTemplate from '../templates/search/search.ejs';
 import clearSearchButtonTemplate from '../templates/search/clearButton.ejs';
-import notFoundTemplate from '../templates/search/notFound.ejs';
-import errorTemplate from '../templates/search/error.ejs';
 
 type SearchOptions = {
   categories: Category[];
@@ -27,7 +26,7 @@ export class Search extends View {
   private searchIcon: HTMLElement;
   private clearSearchButton: HTMLButtonElement;
   private resultsContainer: EmojiContainer | null;
-  private notFoundMessage: NotFoundMessage;
+  private notFoundMessage: ErrorMessage;
   private errorMessage: ErrorMessage;
 
   searchField: HTMLInputElement;
@@ -59,10 +58,11 @@ export class Search extends View {
     await super.render();
 
     this.searchIcon = icon('magnifying-glass', { classes: 'fa-fw' });
-    this.notFoundMessage = this.viewFactory.create(NotFoundMessage);
+
+    this.notFoundMessage = this.viewFactory.create(ErrorMessage, { message: this.i18n.get('search.notFound'), icon: 'fa-face-sad-tear' });
     this.notFoundMessage.renderSync();
 
-    this.errorMessage = this.viewFactory.create(ErrorMessage);
+    this.errorMessage = this.viewFactory.create(ErrorMessage, { message: this.i18n.get('search.error') });
     this.errorMessage.renderSync();
 
     this.clearSearchButton = await renderTemplate(clearSearchButtonTemplate, {
@@ -178,17 +178,5 @@ export class Search extends View {
     } catch (error) {
       this.events.emit('content:show', this.errorMessage);
     }
-  }
-}
-
-class NotFoundMessage extends View {
-  constructor() {
-    super({ template: notFoundTemplate, classes });
-  }
-}
-
-class ErrorMessage extends View {
-  constructor() {
-    super({ template: errorTemplate, classes });
   }
 }

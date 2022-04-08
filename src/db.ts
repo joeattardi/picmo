@@ -52,13 +52,14 @@ export class Database {
     const request = indexedDB.open(`${DATABASE_NAME}-${this.locale}`);
 
     return new Promise((resolve, reject) => {
-      request.onsuccess = (event: any) => {
+      request.addEventListener('success', (event: any) => {
         this.db = event.target?.result;
         resolve();
-      };
+      });
 
-      request.onerror = reject;
-      request.onupgradeneeded = async (event: any) => {
+      request.addEventListener('error', reject);
+
+      request.addEventListener('upgradeneeded', async (event: any) => {
         this.db = event.target?.result;
 
         this.db.createObjectStore('category', { keyPath: 'order' });
@@ -66,10 +67,16 @@ export class Database {
         const emojiStore = this.db.createObjectStore('emoji', { keyPath: 'emoji' });
         emojiStore.createIndex('category', 'group');
         emojiStore.createIndex('version', 'version');
-
+ 
         this.db.createObjectStore('meta');
-      };
+      });
     });
+  }
+
+  async delete() {
+    this.db.close();
+    const request = indexedDB.deleteDatabase(`${DATABASE_NAME}-${this.locale}`);
+    await this.waitForRequest(request);
   }
 
   /**
@@ -321,6 +328,14 @@ export class Database {
     return this.withTransaction(storeName, 'readwrite', transaction => {
       const store = transaction.objectStore(storeName);
       objects.forEach(object => { store.add(object); });
+    });
+  }
+
+  static async deleteDatabase(locale: Locale) {
+    return new Promise((resolve, reject) => {
+      const request = indexedDB.deleteDatabase(`${DATABASE_NAME}-${locale}`);
+      request.addEventListener('success', resolve);
+      request.addEventListener('error', reject);
     });
   }
 }

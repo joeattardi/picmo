@@ -1,20 +1,3 @@
-@keyframes loader {
-  0% {
-    opacity: 0.25;
-    transform: scale(0.8) rotate(-20deg);
-  }
-
-  50% {
-    opacity: 0.5;
-    transform: scale(1) rotate(0);
-  }
-
-  100% {
-    opacity: 0.25;
-    transform: scale(0.8) rotate(20deg);
-  }
-}
-
 @keyframes shine {
   to {
     transform: translateX(100%);
@@ -78,10 +61,6 @@
   font-family: var(--ui-font);
   width: var(--picker-width);
   color: var(--secondary-text-color);
-
-  svg {
-    animation: loader 1s infinite linear alternate;
-  }
 
   & * {
     box-sizing: border-box;

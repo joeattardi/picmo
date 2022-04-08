@@ -38,6 +38,10 @@ export class ViewFactory {
     this.pickerId = pickerId;
   }
 
+  setEmojiData(emojiData: Database) {
+    this.emojiData = Promise.resolve(emojiData);
+  }
+
   create<T extends View>(constructor: ViewConstructor<T>, ...args: ViewConstructorParameters<T>): T {
     const view = new constructor(...args);
     

@@ -2,11 +2,13 @@ import { ExternalEvent, ExternalEvents } from '../ExternalEvents';
 
 import { View } from './view';
 import { EmojiArea } from './EmojiArea';
+import { DataError } from './DataError';
 import { EmojiPreview } from './Preview';
 import { Search } from './Search';
 import { VariantPopup } from './VariantPopup';
 import { CategoryTabs } from './CategoryTabs';
 import { addOrUpdateRecent } from '../recents';
+import { Database } from '../db';
 import { EventCallback } from '../events';
 import { Bundle } from '../i18n';
 
@@ -36,6 +38,8 @@ function createCategory(key: CategoryKey, i18n: Bundle, order: number): Category
  * The main emoji picker view. Contains the full picker UI and an event emitter to react to
  * emoji selection events.
  */
+
+// TODO: Fix graphical weirdness with skeletong - emoji preview, and also with dark mode!
 export class EmojiPicker extends View {
   pickerReady = false;
 
@@ -62,6 +66,8 @@ export class EmojiPicker extends View {
     };
 
     this.appEvents = {
+      error: this.onError,
+      reinitialize: this.reinitialize,
       'data:ready': this.onDataReady,
       'content:show': this.showContent,
       'variantPopup:hide': this.hideVariantPopup,
@@ -74,7 +80,7 @@ export class EmojiPicker extends View {
   /**
    * Destroys the picker when it is no longer needed.
    * After calling this method, the picker will no longer be usable.
-   * 
+   *
    * @returns a Promise that resolves when the close/destroy is complete.
    */
   async destroy(): Promise<void> {
@@ -85,7 +91,7 @@ export class EmojiPicker extends View {
 
   /**
    * Listens for a picker event.
-   * 
+   *
    * @param event The event to listen for
    * @param callback The callback to call when the event is triggered
    */
@@ -95,7 +101,7 @@ export class EmojiPicker extends View {
 
   /**
    * Removes a recent emoji from the picker.
-   * 
+   *
    * @param event The event to stop listening for
    * @param callback The previously bound event listener
    */
@@ -107,7 +113,7 @@ export class EmojiPicker extends View {
    * Finishes setting up the picker view once the data is ready.
    * This will only be called if the emoji data is available and all
    * emoji picker views have been rendered.
-   * 
+   *
    * This is the last thing to happen before the emoji picker UI becomes visible.
    */
   initializePickerView() {
@@ -119,11 +125,11 @@ export class EmojiPicker extends View {
 
   /**
    * Builds the three sections of the picker:
-   * 
+   *
    * - preview area (if enabled in options)
    * - search area (if enabled in options)
    * - emoji area (always shown)
-   * 
+   *
    * @returns an array containing the three child views. The preview and search
    *          views are optional, and will be undefined if they are not enabled.
    */
@@ -178,65 +184,86 @@ export class EmojiPicker extends View {
     });
   }
 
+  private reinitialize() {
+    this.renderSync();
+  }
+
+  private onError(error: Error) {
+    const errorView = this.viewFactory.create(DataError, { message: this.i18n.get('error.load') });
+    const { offsetHeight } = this.el;
+    this.el.style.height = offsetHeight ? `${this.el.offsetHeight}px` : '4rem';
+    this.el.replaceChildren(errorView.renderSync());
+    throw error;
+  }
+
   /**
    * Called when the emoji database is ready to be used.
-   * 
+   *
    * This will replace the loader placeholder with the full picker UI.
    */
-  private async onDataReady() {
+  private async onDataReady(db: Database) {
     // Save the current el so we can replace it in the DOM after the new render.
     const currentView = this.el;
 
-    await this.emojiDataPromise;
+    try {
+      if (db) {
+        this.emojiData = db;
+      } else {
+        await this.emojiDataPromise;
+      }
 
-    if (this.options.emojiVersion === 'auto') {
-      this.emojiVersion = (await determineEmojiVersion(this.emojiData)) || parseFloat(LATEST_EMOJI_VERSION);
-    } else {
-      this.emojiVersion = this.options.emojiVersion;
+      if (this.options.emojiVersion === 'auto') {
+        this.emojiVersion = (await determineEmojiVersion(this.emojiData)) || parseFloat(LATEST_EMOJI_VERSION);
+      } else {
+        this.emojiVersion = this.options.emojiVersion;
+      }
+
+      this.categories = await this.emojiData.getCategories(this.options.categories);
+
+      if (this.options.showRecents) {
+        this.categories.unshift(createCategory('recents', this.i18n, -1));
+      }
+
+      if (this.options.custom?.length) {
+        this.categories.push(createCategory('custom', this.i18n, 10));
+      }
+
+      const [preview, search, emojiArea, categoryTabs] = this.buildChildViews();
+
+      await super.render({
+        isLoaded: true,
+        search,
+        categoryTabs,
+        emojiArea,
+        preview,
+        theme: this.options.theme
+      });
+
+      this.el.style.setProperty('--category-count', this.categories.length.toString());
+
+      this.pickerReady = true;
+
+      // debugger;
+      currentView.replaceWith(this.el);
+      this.setStyleProperties();
+      this.initializePickerView();
+
+      this.setInitialFocus();
+
+      this.externalEvents.emit('data:ready');
+    } catch (error) {
+      this.events.emit('error', error);
     }
-
-    this.categories = await this.emojiData.getCategories(this.options.categories);
-
-    if (this.options.showRecents) {
-      this.categories.unshift(createCategory('recents', this.i18n, -1));
-    }
-
-    if (this.options.custom?.length) {
-      this.categories.push(createCategory('custom', this.i18n, 10));
-    }
-
-    const [preview, search, emojiArea, categoryTabs] = this.buildChildViews();
-
-    await super.render({
-      isLoaded: true,
-      search,
-      categoryTabs,
-      emojiArea,
-      preview,
-      theme: this.options.theme
-    });
-
-    this.el.style.setProperty('--category-count', this.categories.length.toString());
-
-    this.pickerReady = true;
-
-    currentView.replaceWith(this.el);
-    this.setStyleProperties();
-    this.initializePickerView();
-
-    this.setInitialFocus();
-
-    this.externalEvents.emit('data:ready');
   }
 
   /**
    * Renders the picker.
-   * 
+   *
    * @returns the root element of the picker
    */
   renderSync(): HTMLElement {
-    super.renderSync({ 
-      isLoaded: false, 
+    super.renderSync({
+      isLoaded: false,
       theme: this.options.theme,
       showSearch: this.options.showSearch,
       showPreview: this.options.showPreview,
@@ -244,9 +271,9 @@ export class EmojiPicker extends View {
       emojiCount: this.options.emojisPerRow * this.options.visibleRows
     });
 
-    this.options.rootElement.appendChild(this.el);
+    this.options.rootElement.replaceChildren(this.el);
     this.setStyleProperties();
-    
+
     if (this.pickerReady) {
       this.initializePickerView();
     }
@@ -286,7 +313,7 @@ export class EmojiPicker extends View {
    *
    * @param content The View to show
    */
-  private showContent(content = this.emojiArea) {
+  private showContent(content: View = this.emojiArea) {
     if (content === this.currentView) {
       return;
     }
@@ -318,7 +345,7 @@ export class EmojiPicker extends View {
 
   /**
    * Given a mouse event, determines if the event occurred on the picker or one of its components.
-   * 
+   *
    * @param event The mouse event
    * @returns true if the click should be treated as on the picker, false otherwise
    */

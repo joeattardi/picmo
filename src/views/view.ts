@@ -101,6 +101,11 @@ export abstract class View {
     });
   }
 
+  updateEmojiData(emojiData: Database) {
+    this.emojiData = emojiData;
+    this.emojiDataPromise = Promise.resolve(emojiData);
+  }
+
   setOptions(options: PickerOptions) {
     this.options = options;
   }
@@ -150,7 +155,11 @@ export abstract class View {
     Object.keys(this.appEvents).forEach(event => {
       this.events.on(event as AppEventKey, this.appEvents[event].bind(this));
     });
+
+    this.events.on('data:ready', this.updateEmojiData.bind(this));
   }
+
+  // TODO: unbindAPpEvents
 
   private bindKeyBindings() {
     if (this.keyBindings) {

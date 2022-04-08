@@ -6,7 +6,6 @@ export const contentSkeleton: string;
 export const emoji: string;
 export const emojiGrid: string;
 export const fullHeight: string;
-export const loader: string;
 export const overlay: string;
 export const picker: string;
 export const placeholder: string;

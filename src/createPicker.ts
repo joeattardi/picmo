@@ -4,16 +4,12 @@ import { PickerOptions, CustomEmoji, EmojiRecord } from './types';
 import { ViewFactory } from './viewFactory';
 export { LazyLoader } from './LazyLoader';
 import { Database } from './db';
-import { initDatabaseFromCdn, initDatabaseWithStaticData } from './emojiData';
+import { initDatabase } from './emojiData';
 import { Bundle } from './i18n';
 import { getOptions } from './options';
 
 function initData(options: PickerOptions): Promise<Database> {
-  if (options.emojiData && options.messages) {
-    return initDatabaseWithStaticData(options.locale, options.messages, options.emojiData);
-  } else {
-    return initDatabaseFromCdn(options.locale);
-  }
+  return initDatabase(options.locale, options.messages, options.emojiData);
 }
 
 let pickerIndex = 0;
@@ -42,6 +38,8 @@ export function createEmojiPicker(options: Partial<PickerOptions>): EmojiPicker 
 
   emojiDataPromise.then(emojiData => {
     events.emit('data:ready', emojiData);
+  }).catch(error => {
+    events.emit('error', error);
   });
 
   const viewFactory = new ViewFactory({

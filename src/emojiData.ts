@@ -66,57 +66,25 @@ async function checkUpdates(db: Database, emojisEtag: string | null, messagesEta
   }
 }
 
-/**
- * Opens the database and prepares it for use.
- * 
- * If the database does not exist, it will be created and populated (via the populate callback).
- * If the database exists but the data is out of date (etags do not match), the data will be repopulated.
- * 
- * @param locale the locale for the database
- * @param populateCallback A function that will be called if the database needs to be populated with data.
- * 
- * @returns a Promise that resolves to the database once it's ready and populated with data
- */
-async function initDatabase(locale: Locale, populateCallback: (db: Database, emojisEtag: string | null, messagesEtag: string | null) => Promise<void>) {
-  const db = new Database(locale);
+export async function initDatabase(locale: Locale, staticMessages?: MessagesDataset, staticEmojis?: Emoji[], existingDb?: Database) {
+  const db = existingDb || new Database(locale);
   await db.open();
 
   const { emojisUrl, messagesUrl } = getCdnUrls('latest', locale);
   const [emojisEtag, messagesEtag] = await getEtags(emojisUrl, messagesUrl);
 
   if (!(await db.isPopulated())) {
-    await populateCallback(db, emojisEtag, messagesEtag);
+    let messages = staticMessages;
+    let emojis = staticEmojis;
+
+    if (!messages || !emojis) {
+      [messages, emojis] = await Promise.all([fetchMessages(locale), fetchEmojis(locale)]);
+    }
+
+    await db.populate(messages.groups, emojis, emojisEtag, messagesEtag);
   } else if (emojisEtag || messagesEtag) {
     await checkUpdates(db, emojisEtag, messagesEtag);
   }
 
   return db;
-}
-
-/**
- * Initializes the database with statically provided data.
- * 
- * @param locale the locale for the database
- * @param messages the static message data
- * @param emojis the static emoji data
- * @returns a Promise that resolves when the database is ready
- */
-export async function initDatabaseWithStaticData(locale: Locale, messages: MessagesDataset, emojis: Emoji[]) {
-  return initDatabase(locale, db => db.populate(messages.groups, emojis));
-}
-
-/**
- * Initializes the database, using data from a CDN.
- * @param locale the locale for the database
- * @returns a Promise that resolves when the database is ready
- */
-export async function initDatabaseFromCdn(locale: Locale) {
-  return initDatabase(locale, async (db, emojisEtag, messagesEtag) => {
-    const [messages, emojis]: [MessagesDataset, Emoji[]] = await Promise.all([
-      fetchMessages(locale),
-      fetchEmojis(locale)
-    ]);
-
-    return db.populate(messages.groups, emojis, emojisEtag, messagesEtag);
-  });
 }
