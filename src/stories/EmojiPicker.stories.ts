@@ -1,6 +1,6 @@
 import { createPicker } from './EmojiButton';
 import { getArgs, customEmojis } from './common';
-import { GroupKey } from 'emojibase';
+import { CategoryKey } from '../types';
 
 export default getArgs({
   title: 'Emoji Picker'
@@ -63,7 +63,7 @@ CustomDimensions.argTypes = {
 
 export const CustomCategoryList = Template.bind({});
 CustomCategoryList.storyName = 'Custom category list';
-const customCategories: GroupKey[] = ['people-body', 'animals-nature', 'smileys-emotion'];
+const customCategories: CategoryKey[] = ['people-body', 'animals-nature', 'smileys-emotion'];
 CustomCategoryList.args = {
   categories: customCategories
 }

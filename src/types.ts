@@ -79,7 +79,7 @@ export type PickerOptions = {
   emojiSize: string;
   visibleRows: number;
 
-  categories?: GroupKey[];
+  categories?: CategoryKey[];
   custom?: CustomEmoji[];
   emojiVersion: number | 'auto';
 

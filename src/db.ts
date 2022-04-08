@@ -1,5 +1,5 @@
 import { GroupMessage, Emoji, Locale } from 'emojibase';
-import { EmojiRecord, Category, CategoryKey } from './types';
+import { PickerOptions, EmojiRecord, Category, CategoryKey } from './types';
 
 import { caseInsensitiveIncludes } from './util';
 
@@ -155,15 +155,24 @@ export class Database {
    * @param include an array of CategoryKeys to include
    * @returns an arrya of all categories, or only the ones specified if include is given
    */
-  async getCategories(include?: CategoryKey[]): Promise<Category[]> {
+  async getCategories(options: PickerOptions): Promise<Category[]> {
     const transaction = this.db.transaction('category', 'readonly');
     const categoryStore = transaction.objectStore('category');
     const result = await this.waitForRequest(categoryStore.getAll());
     let categories = result.target.result.filter(category => category.key !== 'component');
 
-    if (include) {
-      categories = categories.filter(category => include.includes(category.key));
-      categories.sort((a: Category, b: Category) => include.indexOf(a.key) - include.indexOf(b.key));
+    if (options.showRecents) {
+      categories.unshift({ key: 'recents', order: -1 });
+    }
+
+    if (options.custom) {
+      categories.push({ key: 'custom', order: 10 });
+    }
+
+    if (options.categories) {
+      const includeList = options.categories as CategoryKey[];
+      categories = categories.filter(category => includeList.includes(category.key));
+      categories.sort((a: Category, b: Category) => includeList.indexOf(a.key) - includeList.indexOf(b.key));
     } else {
       categories.sort((a: Category, b: Category) => a.order - b.order);
     }

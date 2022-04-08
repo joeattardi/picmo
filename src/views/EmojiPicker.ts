@@ -10,13 +10,12 @@ import { CategoryTabs } from './CategoryTabs';
 import { addOrUpdateRecent } from '../recents';
 import { Database } from '../db';
 import { EventCallback } from '../events';
-import { Bundle } from '../i18n';
 
 import { determineEmojiVersion } from '../emojiSupport';
 
 import template from '../templates/emojiPicker.ejs';
 import classes from './EmojiPicker.scss';
-import { Category, CategoryKey, EmojiRecord } from '../types';
+import { Category, EmojiRecord } from '../types';
 import { LATEST_EMOJI_VERSION } from 'emojibase';
 
 const variableNames = {
@@ -24,15 +23,6 @@ const variableNames = {
   visibleRows: '--row-count',
   emojiSize: '--emoji-size'
 };
-
-// TODO: put these two extra categories in the database and just grab them that way?
-function createCategory(key: CategoryKey, i18n: Bundle, order: number): Category {
-  return {
-    key,
-    order,
-    message: i18n.get(`categories.${key}`)
-  };
-}
 
 /**
  * The main emoji picker view. Contains the full picker UI and an event emitter to react to
@@ -216,15 +206,7 @@ export class EmojiPicker extends View {
         this.emojiVersion = this.options.emojiVersion;
       }
 
-      this.categories = await this.emojiData.getCategories(this.options.categories);
-
-      if (this.options.showRecents) {
-        this.categories.unshift(createCategory('recents', this.i18n, -1));
-      }
-
-      if (this.options.custom?.length) {
-        this.categories.push(createCategory('custom', this.i18n, 10));
-      }
+      this.categories = await this.emojiData.getCategories(this.options);
 
       const [preview, search, emojiArea, categoryTabs] = this.buildChildViews();
 
