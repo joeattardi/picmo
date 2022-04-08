@@ -38,8 +38,6 @@ function createCategory(key: CategoryKey, i18n: Bundle, order: number): Category
  * The main emoji picker view. Contains the full picker UI and an event emitter to react to
  * emoji selection events.
  */
-
-// TODO: Fix graphical weirdness with skeletong - emoji preview, and also with dark mode!
 export class EmojiPicker extends View {
   pickerReady = false;
 

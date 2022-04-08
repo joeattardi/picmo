@@ -67,8 +67,9 @@
   }
 
   .placeholder {
-    background: #DDDBDD;
+    background: var(--placeholder-background);
     position: relative;
+    overflow: hidden;
 
     &::after {
       position: absolute;
@@ -225,4 +226,16 @@
   margin: 0.5em;
   display: flex;
   flex-direction: row;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .placeholder {
+    background: var(--placeholder-background);
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      display: none;
+    }
+  }
 }
