@@ -23,11 +23,9 @@ const DEFAULT_OPTIONS: TwemojiOptions = {
   folder: 'svg'
 };
 
-// TODO handle invalid emoji, reject promise?
-// TODO rename emoji.emoji property, confusing?
-function getTwemojiUrl(emoji: string, options: TwemojiOptions): Promise<string> {
+function getTwemojiUrl(record: EmojiRecord, options: TwemojiOptions): Promise<string> {
   return new Promise(resolve => {
-    twemoji.parse(emoji, {
+    twemoji.parse(record.emoji, {
       ...options,
       callback: (icon, options) => {
         const { base, size, ext } = options as TwemojiCallbackOptions;
@@ -47,11 +45,11 @@ export default class TwemojiRenderer extends Renderer {
     super();
   }
 
-  render(emoji: EmojiRecord, lazyLoader?: LazyLoader, classNames?: string): HTMLElement {
+  render(record: EmojiRecord, lazyLoader?: LazyLoader, classNames?: string): HTMLElement {
     const img = new Image({ classNames: classNames || classes.twemoji });
     img.renderSync();
     const factory = async () => {
-      const url = await getTwemojiUrl(emoji.emoji, this.options);
+      const url = await getTwemojiUrl(record, this.options);
       img.load(url);
     };
 
@@ -63,8 +61,8 @@ export default class TwemojiRenderer extends Renderer {
     return img.el;
   }
 
-  async emit({ emoji, label }: EmojiRecord): Promise<EmojiSelection> {
-    const url = await getTwemojiUrl(emoji, this.options);
-    return { url, emoji, label };
+  async emit(record: EmojiRecord): Promise<EmojiSelection> {
+    const url = await getTwemojiUrl(record, this.options);
+    return { url, emoji: record.emoji, label: record.label };
   }
 }
