@@ -190,8 +190,8 @@ export class EmojiPicker extends View {
 
   private onError(error: Error) {
     const errorView = this.viewFactory.create(DataError, { message: this.i18n.get('error.load') });
-    const { offsetHeight } = this.el;
-    this.el.style.height = offsetHeight ? `${this.el.offsetHeight}px` : '4rem';
+    const height = this.el.offsetHeight || 375;
+    this.el.style.height = `${height}px`;
     this.el.replaceChildren(errorView.renderSync());
     throw error;
   }

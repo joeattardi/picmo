@@ -12,9 +12,10 @@ export default {
   'categories.travel-places': 'Travel & Places',
   'error.load': 'Failed to load emojis',
   'recents.clear': 'Clear recent emojis',
-  'recents.none': "You haven't selected any emojis yet.",
+  'recents.none': 'You haven\'t selected any emojis yet.',
+  'retry': 'Try again',
   'search.clear': 'Clear search',
   'search.error': 'Failed to search emojis',
   'search.notFound': 'No results found',
-  search: 'Search emojis...'
+  'search': 'Search emojis...'
 };

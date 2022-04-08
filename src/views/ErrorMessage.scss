@@ -10,4 +10,18 @@
   .icon {
     opacity: 0.25;
   }
+
+  button {
+    padding: 8px 16px;
+    cursor: pointer;
+    background: var(--background-color);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    color: var(--text-color);
+
+    &:hover {
+      background: var(--text-color);
+      color: var(--background-color);
+    }
+  }
 }
