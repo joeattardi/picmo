@@ -17,6 +17,7 @@
   line-height: 1;
   box-sizing: border-box;
   height: var(--category-name-height);
+  justify-content: flex-start;
 
   // TODO: Need to fix the fade here, maybe make category background fade as well?
   &::after {
