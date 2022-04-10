@@ -1,4 +1,4 @@
-import { createPicker } from './EmojiButton';
+import { renderPicker } from './EmojiButton';
 import { getArgs, customEmojis } from './common';
 import { CategoryKey } from '../types';
 
@@ -7,7 +7,7 @@ export default getArgs({
 });
 
 const Template = args => {
-  return createPicker({
+  return renderPicker({
     position: 'right-start',
     ...args
   });

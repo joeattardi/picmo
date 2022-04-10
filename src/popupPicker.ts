@@ -3,7 +3,7 @@ import { PickerOptions } from './types';
 import { ExternalEvent, ExternalEvents } from './ExternalEvents';
 
 import { EventCallback } from './events';
-import { createEmojiPicker } from './createPicker';
+import { createPicker } from './createPicker';
 import { setPosition, PositionCleanup } from './positioning';
 import { animate } from './util';
 import { FocusTrap } from './focusTrap';
@@ -25,7 +25,7 @@ export class PopupPickerController {
   constructor(options: Partial<PickerOptions>) {
     this.popupEl = document.createElement('div');
     this.options = getOptions(options);
-    this.picker = createEmojiPicker({ ...this.options, rootElement: this.popupEl });
+    this.picker = createPicker({ ...this.options, rootElement: this.popupEl });
     this.focusTrap = new FocusTrap();
 
     this.picker.on('data:ready', () => {

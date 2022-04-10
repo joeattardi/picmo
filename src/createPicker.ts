@@ -23,7 +23,7 @@ function getPickerId() {
  * @param options The options for the emoji picker.
  * @returns a Promise that resolves to the picker when it is ready.
  */
-export function createEmojiPicker(options: Partial<PickerOptions>): EmojiPicker {
+export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
   const finalOptions = getOptions(options);
   
   const customEmojis: EmojiRecord[] = (finalOptions?.custom || []).map((custom: CustomEmoji) => ({
