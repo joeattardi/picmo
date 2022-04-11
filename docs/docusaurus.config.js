@@ -8,13 +8,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'PicMo',
   tagline: 'Plain JavaScript emoji picker. Any app, any framework.',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://picmo.netlify.app',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'joeattardi', // Usually your GitHub org/user name.
-  projectName: 'emoji-button', // Usually your repo name.
+  projectName: 'picmo', // Usually your repo name.
 
   presets: [
     [
@@ -63,7 +63,7 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'right'},
           {
-            href: 'https://github.com/joeattardi/emoji-button',
+            href: 'https://github.com/joeattardi/picmo',
             label: 'GitHub',
             position: 'right',
           },

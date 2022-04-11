@@ -14,11 +14,29 @@
   width: 4rem;
 }
 
+.heroRow {
+  align-items: center;
+}
+
 .heroBanner {
   padding: 4rem 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+.screenshot {
+  border-radius: 10px;
+  background-image: url('@site/static/img/screenshots/picmo-hero-light.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 250px;
+}
+
+[data-theme='dark'] .screenshot {
+  background-image: url('@site/static/img/screenshots/picmo-hero-dark.png');
 }
 
 @media screen and (max-width: 996px) {

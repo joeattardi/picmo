@@ -17,17 +17,23 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className={clsx('hero__title', styles.heroTitle)}>
-          <img className={styles.heroLogo} src={logo} />
-          {siteConfig.title}
-        </h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/getting-started/overview">
-           Get Started
-          </Link>
+        <div className={clsx('row', styles.heroRow)}>
+          <div className="col col-6">
+            <h1 className={clsx('hero__title', styles.heroTitle)}>
+              <img className={styles.heroLogo} src={logo} />
+              {siteConfig.title}
+            </h1>
+            <p className="hero__subtitle">{siteConfig.tagline}</p>
+            <div className={styles.buttons}>
+              <Link
+                className="button button--secondary button--lg"
+                to="/docs/getting-started/overview">
+              Get Started
+              </Link>
+            </div>
+          </div>
+          <div className={clsx('col col-6', styles.screenshot)}>
+          </div>
         </div>
       </div>
     </header>
