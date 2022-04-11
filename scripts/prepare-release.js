@@ -29,13 +29,14 @@ const newPkg = {
   dependencies,
   main: 'index.js',
   files: [
-    'index.js',
-    'themes.js',
+    '*.js',
     'renderers',
-    'i18n'
+    'i18n',
+    'umd'
   ]
 };
 
+const rootPath = path.resolve(__dirname, '..');
 const releasePath = path.resolve(__dirname, '..', 'release');
 const distPath = path.resolve(__dirname, '..', 'dist');
 
@@ -55,13 +56,21 @@ async function start() {
     JSON.stringify(newPkg, null, 2)
   );
 
+  console.log('Copying release files');
+  await copy(rootPath, releasePath, {
+    filter: [
+      'README.md',
+      'LICENSE'
+    ]
+  });
+
   console.log('Copying build output');
   await copy(distPath, releasePath, {
     filter: [
       '*.js',
       'i18n/*',
       'renderers/*',
-      'umd/*'
+      'umd/*',
     ]
   });
 }

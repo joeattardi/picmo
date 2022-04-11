@@ -6,6 +6,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import builtins from 'rollup-plugin-node-builtins';
 import replace from '@rollup/plugin-replace';
+import { terser } from 'rollup-plugin-terser';
 
 const bundles = [
   {
@@ -54,6 +55,7 @@ export default bundles.map(bundle => ({
     typescript(),
     postcss({
       modules: true
-    })
+    }),
+    terser()
   ]
 }));
