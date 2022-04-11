@@ -1,9 +1,10 @@
 {
-  "name": "picmo",
+  "name": "pickemoji",
   "version": "5.0.0",
-  "description": "Vanilla JavaScript emoji picker",
+  "description": "JavaScript emoji picker - any app, any framework.",
   "keywords": [
     "emoji",
+    "emoji picker",
     "javascript"
   ],
   "main": "dist/index.js",
