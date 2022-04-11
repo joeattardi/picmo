@@ -90,7 +90,7 @@ const config = {
             items: [
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/JoeAttardi',
+                href: 'https://twitter.com/PicMoJS',
               },
             ],
           },
@@ -99,11 +99,11 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/joeattardi/emoji-button',
+                href: 'https://github.com/joeattardi/picmo',
               },
               {
                 label: 'npm',
-                href: 'https://npmjs.com/package/@joeattardi/emoji-button'
+                href: 'https://npmjs.com/package/picmo'
               }
             ],
           },

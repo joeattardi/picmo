@@ -1,3 +1,8 @@
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
+config.autoAddCss = false;
+
 import React from 'react';
 import clsx from 'clsx';
 import Layout from '@theme/Layout';
