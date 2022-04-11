@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGear, faIcons, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { IconDefinition, faJs } from '@fortawesome/free-brands-svg-icons';
 
-
 import styles from './styles.module.css';
 
 type FeatureItem = {

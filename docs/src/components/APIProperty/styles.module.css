@@ -1,0 +1,14 @@
+.property {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 16px;
+}
+
+.property dd {
+  margin: 0;
+}
+
+.property dt {
+  justify-self: end;
+  font-weight: bold;
+}
