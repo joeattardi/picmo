@@ -12,28 +12,32 @@ import styles from './index.module.css';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import logo from '@site/static/img/logo-white.png';
 
+// TODO show random emojis in grid?
+
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <div className={clsx('row', styles.heroRow)}>
-          <div className="col col-6">
-            <h1 className={clsx('hero__title', styles.heroTitle)}>
-              <img className={styles.heroLogo} src={logo} />
-              {siteConfig.title}
-            </h1>
-            <p className="hero__subtitle">{siteConfig.tagline}</p>
-            <div className={styles.buttons}>
-              <Link
-                className="button button--secondary button--lg"
-                to="/docs/getting-started/overview">
-              Get Started
-              </Link>
-            </div>
-          </div>
-          <div className={clsx('col col-6', styles.screenshot)}>
-          </div>
+      <div className={styles.heroGrid}>
+        <h1 className={clsx('hero__title', styles.heroTitle)}>
+          <img className={styles.heroLogo} src={logo} />
+          {siteConfig.title}
+        </h1>
+        <p className={clsx('hero__subtitle', styles.heroSubtitle)}>{siteConfig.tagline}</p>
+        <div className={styles.buttons}>
+          <Link
+            className="button button--secondary button--lg"
+            to="/docs/getting-started/overview">
+          Get Started
+          </Link>
+        </div>
+        <div className={styles.heroEmojis}>
+          <div>😎</div>
+          <div>😀</div>
+          <div>🎉</div>
+          <div>👍</div>
+          <div>⚡️</div>
+          <div>💯</div>
         </div>
       </div>
     </header>

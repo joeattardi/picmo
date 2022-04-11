@@ -7,6 +7,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  grid-area: title;
+ }
+
+ .heroSubtitle {
+   grid-area: subtitle;
  }
 
 .heroLogo {
@@ -23,29 +28,53 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  justify-content: center;
 }
 
-.screenshot {
+.heroEmojis {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 16px;
   border-radius: 10px;
-  background-image: url('@site/static/img/screenshots/picmo-hero-light.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  width: 100%;
-  height: 250px;
+  grid-area: emoji;
+  display: grid;
+  grid-template-columns: repeat(3, 1em);
+  grid-template-rows: repeat(2, 1em);
+  gap: 24px;
+  justify-self: center;
+  transform: rotate(-10deg);
+  font-size: 5vw;
+  align-self: center;
 }
 
-[data-theme='dark'] .screenshot {
-  background-image: url('@site/static/img/screenshots/picmo-hero-dark.png');
+.heroEmojis > div {
+  font-size: 1em;
+  line-height: 1em;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+.heroGrid {
+  display: grid;
+  grid-template-areas: "title emoji"
+                       "subtitle emoji"
+                       "buttons emoji";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+}
+
+@media screen and (max-width: 1000px) {
+  .heroGrid {
+    grid-template-areas: "title"
+                         "subtitle"
+                         "buttons";
+    grid-template-columns: 1fr;
+  }
+  
+  .heroEmojis {
+    display: none;
   }
 }
 
 .buttons {
+  grid-area: buttons;
   display: flex;
   align-items: center;
   justify-content: center;
