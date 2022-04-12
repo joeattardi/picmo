@@ -63,7 +63,9 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'right'},
           {
-            to: 'storybook/',
+            target: '_blank',
+            position: 'right',
+            href: '/storybook/',
             label: 'Demos'
           },
           {
