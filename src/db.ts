@@ -165,7 +165,7 @@ export class Database {
       categories.unshift({ key: 'recents', order: -1 });
     }
 
-    if (options.custom) {
+    if (options.custom?.length) {
       categories.push({ key: 'custom', order: 10 });
     }
 

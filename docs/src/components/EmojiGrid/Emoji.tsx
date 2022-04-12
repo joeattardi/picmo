@@ -14,24 +14,31 @@ const options: KeyframeAnimationOptions = {
 }
 
 function animate(el: HTMLDivElement, overrides: KeyframeAnimationOptions = {}) {
-  return el.animate(keyframes, { ...options, ...overrides }).finished;
+  if (el) {
+    return el.animate(keyframes, { ...options, ...overrides }).finished;
+  }
 }
 
 export default function Emoji({ emoji, index, total }) {
   const ref = useRef<HTMLDivElement>();
+  const isMounted = useRef(true);
 
   const [currentEmoji, setCurrentEmoji] = useState(null);
 
   useEffect(() => {
     async function changeEmoji() {
       await animate(ref.current, { direction: 'normal', delay: index * 50 });
-      setCurrentEmoji(emoji);
+      if (isMounted.current) {
+        setCurrentEmoji(emoji);
+      }
       await animate(ref.current, { direction: 'reverse', delay: (total - 1) * 50 });
     }
     
     if (ref.current.animate) {
       changeEmoji();
-    } 
+    }
+
+    return () => { isMounted.current = false };
   }, [emoji]);
 
   return <div ref={ref} className={styles.emoji}>{currentEmoji}</div>;

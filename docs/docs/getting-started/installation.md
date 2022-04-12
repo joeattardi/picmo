@@ -2,17 +2,30 @@
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Installation
 
 ## From NPM
 
-```bash
-# npm
-npm install picmo
+<Tabs>
+  <TabItem value="npm" label="NPM" default>
 
-# Yarn
+```bash
+npm install picmo
+```
+
+  </TabItem>
+
+  <TabItem value="yarn" label="Yarn">
+
+```bash
 yarn add picmo
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Use UMD build from CDN
 
