@@ -1,0 +1,19 @@
+.emoji {
+  font-size: 1em;
+  line-height: 1em;
+}
+
+.emojiList {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 16px;
+  border-radius: 10px;
+  grid-area: emoji;
+  display: grid;
+  grid-template-columns: repeat(3, 1em);
+  grid-template-rows: repeat(2, 1em);
+  gap: 24px;
+  justify-self: center;
+  transform: rotate(-10deg);
+  font-size: 5vw;
+  align-self: center;
+}

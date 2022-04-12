@@ -11,11 +11,11 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import logo from '@site/static/img/logo-white.png';
-
-// TODO show random emojis in grid?
+import EmojiList from '../components/EmojiList';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
+
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className={styles.heroGrid}>
@@ -31,14 +31,7 @@ function HomepageHeader() {
           Get Started
           </Link>
         </div>
-        <div className={styles.heroEmojis}>
-          <div>😎</div>
-          <div>😀</div>
-          <div>🎉</div>
-          <div>👍</div>
-          <div>⚡️</div>
-          <div>💯</div>
-        </div>
+        <EmojiList />
       </div>
     </header>
   );
