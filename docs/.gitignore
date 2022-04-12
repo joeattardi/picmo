@@ -4,6 +4,8 @@
 # Production
 /build
 
+static/storybook
+
 # Generated files
 .docusaurus
 .cache-loader
