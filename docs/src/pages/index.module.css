@@ -33,18 +33,13 @@
 
 .heroGrid {
   display: grid;
-  grid-template-areas: "title emoji"
-                       "subtitle emoji"
-                       "buttons emoji";
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 24px;
 }
 
 @media screen and (max-width: 1000px) {
   .heroGrid {
-    grid-template-areas: "title"
-                         "subtitle"
-                         "buttons";
     grid-template-columns: 1fr;
   }
   

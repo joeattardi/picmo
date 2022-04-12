@@ -4,28 +4,29 @@ import styles from './styles.module.css';
 
 const keyframes = {
   opacity: [1, 0],
-  transform: ['rotateY(0deg)', 'rotateY(90deg)']
+  transform: ['scale(1)', 'scale(0.8)']
 };
 
-const options = {
+const options: KeyframeAnimationOptions = {
   duration: 200,
   easing: 'ease-in-out',
+  fill: 'both'
 }
 
-function animate(el: HTMLDivElement, direction: 'normal' | 'reverse' = 'normal') {
-  return el.animate(keyframes, { ...options, direction }).finished;
+function animate(el: HTMLDivElement, overrides: KeyframeAnimationOptions = {}) {
+  return el.animate(keyframes, { ...options, ...overrides }).finished;
 }
 
-export default function Emoji({ emoji }) {
+export default function Emoji({ emoji, index, total }) {
   const ref = useRef<HTMLDivElement>();
 
   const [currentEmoji, setCurrentEmoji] = useState(null);
 
   useEffect(() => {
     async function changeEmoji() {
-      await animate(ref.current, 'normal');
+      await animate(ref.current, { direction: 'normal', delay: index * 50 });
       setCurrentEmoji(emoji);
-      await animate(ref.current, 'reverse');
+      await animate(ref.current, { direction: 'reverse', delay: (total - 1) * 50 });
     }
     
     if (ref.current.animate) {

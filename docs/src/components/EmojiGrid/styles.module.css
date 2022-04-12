@@ -4,16 +4,20 @@
 }
 
 .emojiList {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.25);
   padding: 16px;
   border-radius: 10px;
-  grid-area: emoji;
   display: grid;
   grid-template-columns: repeat(3, 1em);
-  grid-template-rows: repeat(2, 1em);
+  grid-auto-rows: 1em;
   gap: 24px;
   justify-self: center;
-  transform: rotate(-10deg);
-  font-size: 5vw;
+  font-size: clamp(1rem, 5vw, 6rem);
   align-self: center;
+}
+
+@media screen and (max-width: 1000px) {
+  .emojiList {
+    grid-template-columns: repeat(4, 1em);
+  }
 }

@@ -11,7 +11,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import logo from '@site/static/img/logo-white.png';
-import EmojiList from '../components/EmojiList';
+import EmojiGrid from '../components/EmojiGrid';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -19,19 +19,21 @@ function HomepageHeader() {
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className={styles.heroGrid}>
-        <h1 className={clsx('hero__title', styles.heroTitle)}>
-          <img className={styles.heroLogo} src={logo} />
-          {siteConfig.title}
-        </h1>
-        <p className={clsx('hero__subtitle', styles.heroSubtitle)}>{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/getting-started/overview">
-          Get Started
-          </Link>
+        <div>
+          <h1 className={clsx('hero__title', styles.heroTitle)}>
+            <img className={styles.heroLogo} src={logo} />
+            {siteConfig.title}
+          </h1>
+          <p className={clsx('hero__subtitle', styles.heroSubtitle)}>{siteConfig.tagline}</p>
+          <div className={styles.buttons}>
+            <Link
+              className="button button--secondary button--lg"
+              to="/docs/getting-started/overview">
+            Get Started
+            </Link>
+          </div>
         </div>
-        <EmojiList />
+        <EmojiGrid />
       </div>
     </header>
   );
