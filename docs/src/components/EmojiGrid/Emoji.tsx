@@ -28,6 +28,7 @@ export default function Emoji({ emoji, index, total }) {
   useEffect(() => {
     async function changeEmoji() {
       await animate(ref.current, { direction: 'normal', delay: index * 50 });
+
       if (isMounted.current) {
         setCurrentEmoji(emoji);
       }
@@ -37,9 +38,13 @@ export default function Emoji({ emoji, index, total }) {
     if (ref.current.animate) {
       changeEmoji();
     }
-
-    return () => { isMounted.current = false };
   }, [emoji]);
+
+  useEffect(() => {
+    return () => { 
+      isMounted.current = false 
+    };
+  }, []);
 
   return <div ref={ref} className={styles.emoji}>{currentEmoji}</div>;
 }

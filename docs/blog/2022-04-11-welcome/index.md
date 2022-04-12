@@ -2,7 +2,7 @@
 slug: welcome
 title: Welcome to PicMo!
 authors: [joeattardi]
-tags: [picmo]
+tags: [announcements]
 ---
 
 I am excited to launch this new website for PicMo, which will have a final release very soon.

@@ -74,9 +74,13 @@ export class Database {
   }
 
   async delete() {
-    this.db.close();
+    this.close();
     const request = indexedDB.deleteDatabase(`${DATABASE_NAME}-${this.locale}`);
     await this.waitForRequest(request);
+  }
+
+  close() {
+    this.db.close();
   }
 
   /**

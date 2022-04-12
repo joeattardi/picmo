@@ -1,0 +1,44 @@
+# `createDatabase`
+
+```javascript
+import { createDatabase } from 'picmo';
+```
+
+```javascript
+createDatabase(
+  locale: Locale, 
+  staticMessages?: MessagesDataset | undefined, 
+  staticEmojis?: Emoji[] | undefined): Promise<void>
+```
+
+Initializes an emoji database before creating a picker. The database can be populated with bundled data, or downloaded from a CDN.
+
+A separate database is maintained for each desired locale.
+
+To use static data, `staticMessages` and `staticEmojis` must *both* be provided. If either one of them is `undefined`, the full data will be downloaded from the CDN.
+
+:::note
+
+This function is provided for convenience and troubleshooting purposes. It is *not* required to use. If no database exists, it will be created and populated the first time a picker is shown.
+
+:::
+
+The name of the created database in the browser will be `PicMo-<locale>`, e.g. `PicMo-en` for English.
+
+## Arguments
+
+### `locale`: [`Locale`](https://emojibase.dev/api/emojibase#Locale)
+
+The locale to use for the emoji database.
+
+### `staticMessages`: [`MessagesDataset`](https://emojibase.dev/api/emojibase/interface/MessagesDataset) | `undefined`
+
+An optional set of static message data from the [emojibase-data](https://www.npmjs.com/package/emojibase-data) package.
+
+### `staticEmojis`: [`Emoji[]`](https://emojibase.dev/api/emojibase/interface/Emoji) | `undefined`
+
+An optional array of static `Emoji` records from the [emojibase-data](https://www.npmjs.com/package/emojibase-data) package.
+
+## Return value
+
+A `Promise` that is resolved when the database is ready.

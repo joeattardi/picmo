@@ -1,6 +1,6 @@
 import { EmojiRecord } from './types';
 
-const LOCAL_STORAGE_KEY = 'EmojiButton.recents';
+const LOCAL_STORAGE_KEY = 'PicMo:recents';
 
 export function clear(): void {
   localStorage.removeItem(LOCAL_STORAGE_KEY);

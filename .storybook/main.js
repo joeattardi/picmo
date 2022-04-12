@@ -34,7 +34,7 @@ module.exports = {
           loader: 'css-loader',
           options: {
             modules: {
-              localIdentName: 'EmojiButton__[path][name]__[local]'
+              localIdentName: 'PicMo__[path][name]__[local]'
               // localIdentName: 'EmojiButton__[local]_[hash:base64:5]'
             }
           }

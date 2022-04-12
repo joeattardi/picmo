@@ -88,3 +88,7 @@ export async function initDatabase(locale: Locale, staticMessages?: MessagesData
 
   return db;
 }
+
+export function deleteDatabase(locale: Locale) {
+  Database.deleteDatabase(locale);
+}
