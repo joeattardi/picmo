@@ -12,6 +12,7 @@
     "build": "npm run check && rollup -c",
     "release": "npm run build && node scripts/prepare-release.js",
     "precommit": "npm run lint && npm run test && npm run check",
+    "postinstall": "npm install --prefix docs",
     "check": "tsc --noEmit",
     "check:watch": "tsc --noEmit --watch",
     "clean": "rimraf dist",
