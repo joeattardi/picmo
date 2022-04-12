@@ -21,6 +21,7 @@
     "lint": "eslint src/*.ts",
     "prettify": "prettier src/*.ts --write",
     "storybook": "start-storybook -p 6006",
+    "start": "npm run storybook",
     "update-scss-types": "typed-scss-modules src",
     "build-storybook": "build-storybook"
   },
