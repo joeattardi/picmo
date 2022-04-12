@@ -16,7 +16,18 @@ module.exports = {
     };
   },
 
+  managerWebpack: async (config) => {
+    if (process.env.NODE_ENV === 'production') {
+      config.output.publicPath = '/storybook/';
+    }
+    return config;
+  },
+
   webpackFinal: async (config, { configType }) => {
+    if (process.env.NODE_ENV === 'production') {
+      config.output.publicPath = '/storybook/';
+    }
+
     config.resolve.fallback.fs = false;
     config.resolve.alias.templates = path.resolve(__dirname, '../src/templates');
 

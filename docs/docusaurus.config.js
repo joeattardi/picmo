@@ -63,6 +63,10 @@ const config = {
           },
           {to: '/blog', label: 'Blog', position: 'right'},
           {
+            to: 'storybook/',
+            label: 'Demos'
+          },
+          {
             href: 'https://github.com/joeattardi/picmo',
             label: 'GitHub',
             position: 'right',
