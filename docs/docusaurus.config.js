@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'PicMo',
   tagline: 'Plain JavaScript emoji picker. Any app, any framework.',
-  url: 'https://picmo.netlify.app',
+  url: 'https://picmojs.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -43,10 +43,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'PicMo',
         logo: {
           alt: 'PicMo Logo',
-          src: 'img/logo.png',
+          src: 'img/logo-with-name.png',
         },
         items: [
           {

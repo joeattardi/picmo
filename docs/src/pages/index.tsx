@@ -10,7 +10,7 @@ import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import logo from '@site/static/img/logo-white.png';
+import logo from '@site/static/img/logo-white-with-name.png';
 import EmojiGrid from '../components/EmojiGrid';
 
 function HomepageHeader() {
@@ -22,7 +22,6 @@ function HomepageHeader() {
         <div>
           <h1 className={clsx('hero__title', styles.heroTitle)}>
             <img className={styles.heroLogo} src={logo} />
-            {siteConfig.title}
           </h1>
           <p className={clsx('hero__subtitle', styles.heroSubtitle)}>{siteConfig.tagline}</p>
           <div className={styles.buttons}>
