@@ -22,8 +22,9 @@ export default function EmojiList() {
   useEffect(() => {
     if (isBrowser) {
       queryRef.current = window.matchMedia('(max-width: 1000px)');
+      setEmojiList(selectEmojis());
     }
-  }, [])
+  }, [isBrowser])
 
   useEffect(() => {
     function handler() {
