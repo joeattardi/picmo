@@ -23,7 +23,8 @@
     "storybook": "start-storybook -p 6006",
     "start": "npm run storybook",
     "update-scss-types": "typed-scss-modules src",
-    "build-storybook": "build-storybook -o docs/static/storybook"
+    "build-storybook": "build-storybook -o docs/static/storybook",
+    "build-docs": "npm run build-storybook && npm run --prefix docs build"
   },
   "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.dev)",
   "repository": "joeattardi/picmo",
