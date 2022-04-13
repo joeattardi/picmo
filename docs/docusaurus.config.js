@@ -62,6 +62,7 @@ const config = {
             href: '/storybook/',
             label: 'Demos'
           },
+          { href: 'https://github.com/sponsors/joeattardi', label: 'Sponsor', position: 'right' },
           {
             href: 'https://github.com/joeattardi/picmo',
             label: 'GitHub',

@@ -19,3 +19,11 @@ npm start
 ```
 
 More docs to come soon
+
+## Contributors
+
+Thank you so much to everyone who has contributed code to PicMo!
+
+<a href="https://github.com/joeattardi/picmo/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=joeattardi/picmo" />
+</a>
