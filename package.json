@@ -32,6 +32,7 @@
   "repository": "joeattardi/picmo",
   "homepage": "https://picmojs.com",
   "bugs": "https://github.com/joeattardi/picmo/issues",
+  "funding": "https://github.com/sponsors/joeattardi",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.16.7",
