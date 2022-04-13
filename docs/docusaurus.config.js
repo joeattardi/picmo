@@ -105,6 +105,10 @@ const config = {
               {
                 label: 'npm',
                 href: 'https://npmjs.com/package/picmo'
+              },
+              {
+                label: 'Sponsor',
+                href: 'https://github.com/sponsors/joeattardi'
               }
             ],
           },
