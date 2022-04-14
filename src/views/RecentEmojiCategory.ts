@@ -50,7 +50,7 @@ export class RecentEmojiCategory extends BaseEmojiCategory {
   }
 
   async render(): Promise<HTMLElement> {
-    const recents = getRecents();
+    const recents = getRecents(this.options.maxRecents);
 
     this.emojiContainer = this.viewFactory.create(RecentEmojiContainer, {
       emojis: recents,

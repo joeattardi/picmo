@@ -6,18 +6,17 @@ export function clear(): void {
   localStorage.removeItem(LOCAL_STORAGE_KEY);
 }
 
-export function getRecents(): Array<EmojiRecord> {
-  const recentJson = localStorage.getItem(LOCAL_STORAGE_KEY);
-  return recentJson ? JSON.parse(recentJson) : [];
+export function getRecents(maxCount: number): Array<EmojiRecord> {
+  const recents = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) ?? '[]');
+  return recents.slice(0, maxCount);
 }
 
 export function addOrUpdateRecent(emoji: EmojiRecord, maxCount: number) {
   // Add the new recent to the beginning of the list, removing it if it exists already
   const recents = [
     emoji,
-    ...getRecents().filter(recent => recent.hexcode !== emoji.hexcode)
+    ...getRecents(maxCount).filter(recent => recent.hexcode !== emoji.hexcode)
   ].slice(0, maxCount);
   
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recents));
 }
-
