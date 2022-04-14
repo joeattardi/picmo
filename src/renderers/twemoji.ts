@@ -2,8 +2,6 @@ import twemoji from 'twemoji';
 
 import { EmojiRecord, EmojiSelection } from '../types';
 import { Renderer } from './renderer';
-import { Image } from '../views/Image';
-import { LazyLoader } from '../LazyLoader';
 
 import classes from './twemoji.scss';
 
@@ -45,22 +43,8 @@ export default class TwemojiRenderer extends Renderer {
     super();
   }
 
-  // TODO: Remove the Image logic, the renderer should only implement the "factory".
-  // TODO: Add the class names to the HTMLElement in doRender
-  render(record: EmojiRecord, lazyLoader?: LazyLoader, classNames?: string): HTMLElement {
-    const img = new Image({ classNames: classNames || classes.twemoji });
-    img.renderSync();
-    const factory = async () => {
-      const url = await getTwemojiUrl(record, this.options);
-      img.load(url);
-    };
-
-    if (lazyLoader) {
-      return lazyLoader.lazyLoad(img, factory);
-    }
-
-    factory();
-    return img.el;
+  render(record: EmojiRecord, classNames = classes.twemoji) {
+    return this.renderImage(classNames, () => getTwemojiUrl(record, this.options));
   }
 
   async emit(record: EmojiRecord): Promise<EmojiSelection> {

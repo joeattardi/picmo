@@ -1,19 +1,53 @@
 import { LazyLoader } from '../LazyLoader';
 import { CustomEmoji, EmojiRecord, EmojiSelection } from '../types';
+import { View } from '../views/view';
 import { Image } from '../views/Image';
 
 import classes from './custom.scss';
 
+type RenderTask = {
+  content: View | HTMLElement;
+  resolver?: () => HTMLElement;
+}
+
 export abstract class Renderer {
-  abstract render(emoji: EmojiRecord, lazyLoader?: LazyLoader, classNames?: string): HTMLElement;
+  abstract render(emoji: EmojiRecord, classNames?: string): RenderTask;
   abstract emit(emoji: EmojiRecord): EmojiSelection | Promise<EmojiSelection>;
 
+  renderElement(content: HTMLElement) {
+    return { content, resolver: () => content };
+  }
+
+  renderImage(classNames = '', urlResolver) {
+    const image = new Image({ classNames });
+    image.renderSync();
+
+    const resolver = () => {
+      image.load(urlResolver());
+      return image.el;
+    }
+
+    return { content: image, resolver };
+  }
+
+  // TODO document this design
   doRender(emoji: EmojiRecord, lazyLoader?: LazyLoader, classNames?: string): HTMLElement {
     if (emoji.custom) {
       return this.renderCustom(emoji as CustomEmoji, lazyLoader, classNames);
     }
 
-    return this.render(emoji, lazyLoader, classNames);
+    const { content, resolver } = this.render(emoji, classNames);
+
+    const contentElement = content instanceof HTMLElement ? content : content.el;
+
+    if (lazyLoader && resolver) {
+      return lazyLoader.lazyLoad(contentElement, resolver)
+    }
+
+    if (resolver) {
+      resolver();
+    }
+    return contentElement;
   }
 
   doEmit(emoji: EmojiRecord): EmojiSelection | Promise<EmojiSelection> {
@@ -30,18 +64,9 @@ export abstract class Renderer {
 
   renderCustom(emoji: CustomEmoji, lazyLoader?: LazyLoader, additionalClasses = ''): HTMLElement {
     const classNames = [classes.customEmoji, additionalClasses].join(' ').trim();
-    const img = new Image({ classNames });
-    img.renderSync();
+    const { content, resolver } = this.renderImage(classNames, () => emoji.url);
 
-    const factory = () => {
-      img.load(emoji.url);
-    };
-
-    if (lazyLoader) {
-      return lazyLoader.lazyLoad(img, factory);
-    }
-
-    factory();
-    return img.el;
+    resolver();
+    return content.el;
   }
 }

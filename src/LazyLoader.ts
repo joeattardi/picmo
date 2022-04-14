@@ -1,13 +1,14 @@
 import { Image } from './views/Image';
+import { View } from './views/view';
 
 type Callback = () => void;
 
 export class LazyLoader {
   private elements: Map<Element, Callback> = new Map();
 
-  lazyLoad(img: Image, callback: Callback): HTMLElement {
-    this.elements.set(img.el, callback);
-    return img.el;
+  lazyLoad(placeholder: HTMLElement, callback: Callback): HTMLElement {
+    this.elements.set(placeholder, callback);
+    return placeholder;
   }
 
   observe(root: HTMLElement): void {

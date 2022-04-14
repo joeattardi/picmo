@@ -16,7 +16,7 @@ export class Image extends View {
     this.classNames = classNames;
   }
 
-  load(src: string) {
+  load(src: string | Promise<string>) {
     const img = document.createElement('img');
     if (this.classNames) {
       img.className = this.classNames;
@@ -26,7 +26,8 @@ export class Image extends View {
       this.el.replaceWith(img);
     }, { once: true });
 
-    img.src = src;
+    Promise.resolve(src).then(src => img.src = src);
+    // img.src = src;
   }
 
   renderSync() {
