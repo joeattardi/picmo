@@ -1,5 +1,5 @@
 import { Placement } from '@popperjs/core';
-import { Locale, GroupKey, MessagesDataset, Emoji } from 'emojibase';
+import { Locale, MessagesDataset, Emoji } from 'emojibase';
 import { Renderer } from './renderers/renderer';
 import { Dictionary } from './i18n';
 
@@ -44,7 +44,7 @@ export type FixedPosition = {
 
 export type Position = FixedPosition | Placement;
 
-export type CategoryKey = GroupKey | 'recents' | 'custom';
+export type CategoryKey = 'activities' | 'animals-nature' | 'custom' | 'flags' | 'food-drink' | 'objects' | 'people-body' | 'recents' | 'smileys-emotion' | 'symbols' | 'travel-places';
 
 export type Category = {
   key: CategoryKey;
@@ -82,7 +82,7 @@ export type PickerOptions = {
   animate?: boolean;
 
   /**
-   * Whether or not to remember and show recently used emojis.
+   * Whether or not to show recently used emojis.
    * @default `true`
    */
   showRecents: boolean;
@@ -145,7 +145,7 @@ export type PickerOptions = {
    * Only applies to popup pickers.
    * @default 'auto'
    */
-  position: Position;
+  position?: Position;
 
   /**
    * The element which the picker will be positioned relative to.

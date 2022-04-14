@@ -69,9 +69,9 @@ export class EmojiPicker extends View {
    * Destroys the picker when it is no longer needed.
    * After calling this method, the picker will no longer be usable.
    *
-   * @returns a Promise that resolves when the close/destroy is complete.
+   * @returns a Promise that resolves when the destroy is complete.
    */
-  async destroy(): Promise<void> {
+  destroy(): void {
     super.destroy();
     this.events.removeAll();
     this.externalEvents.removeAll();
@@ -83,7 +83,7 @@ export class EmojiPicker extends View {
    * @param event The event to listen for
    * @param callback The callback to call when the event is triggered
    */
-  on(event: ExternalEvent, callback: EventCallback) {
+   addEventListener(event: ExternalEvent, callback: EventCallback) {
     this.externalEvents.on(event, callback);
   }
 
@@ -93,7 +93,7 @@ export class EmojiPicker extends View {
    * @param event The event to stop listening for
    * @param callback The previously bound event listener
    */
-  off(event: ExternalEvent, callback: EventCallback) {
+  removeEventListener(event: ExternalEvent, callback: EventCallback) {
     this.externalEvents.off(event, callback);
   }
 
@@ -223,7 +223,6 @@ export class EmojiPicker extends View {
 
       this.pickerReady = true;
 
-      // debugger;
       currentView.replaceWith(this.el);
       this.setStyleProperties();
       this.initializePickerView();

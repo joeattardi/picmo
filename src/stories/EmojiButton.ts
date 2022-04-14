@@ -53,8 +53,8 @@ export function renderPicker(options: any = {}) {
     rootElement: pickerElement
   });
 
-  picker.on('emoji:select', handleEmojiSelection(button));
-  picker.on('emoji:select', options.emojiSelect);
+  picker.addEventListener('emoji:select', handleEmojiSelection(button));
+  picker.addEventListener('emoji:select', options.emojiSelect);
   return rootElement;
 }
 
@@ -90,10 +90,10 @@ export function createPopupPicker(options: any = {}) {
     picker.toggle();
   });
 
-  picker.on('emoji:select', handleEmojiSelection(button));
-  picker.on('emoji:select', options.emojiSelect);
-  picker.on('picker:open', options.pickerOpen);
-  picker.on('picker:close', options.pickerClose);
+  picker.addEventListener('emoji:select', handleEmojiSelection(button));
+  picker.addEventListener('emoji:select', options.emojiSelect);
+  picker.addEventListener('picker:open', options.pickerOpen);
+  picker.addEventListener('picker:close', options.pickerClose);
   
   return rootElement;
 }

@@ -72,6 +72,10 @@ PicMo 5 provides a popup picker triggered by a button as before, but now also su
 
 The plugin system was very limited and was not really being widely used. I have some further ideas for plugins, but this will need to wait for a future release.
 
+### Automatic emoji version detection
+
+PicMo can automatically determine the supported Emoji version to use based on the emojis supported by the user's operating system.
+
 ## More to come soon
 
 It has been a long road to get to this point and I am in the home stretch now, focusing on testing and documentation. The documentation is still a work in progress but the latest can be seen [on this site](/docs/getting-started/overview).

@@ -1,5 +1,5 @@
 import { EmojiPicker } from './views/EmojiPicker';
-import { PickerOptions } from './types';
+import { PickerOptions, Position } from './types';
 import { ExternalEvent, ExternalEvents } from './ExternalEvents';
 
 import { EventCallback } from './events';
@@ -28,13 +28,13 @@ export class PopupPickerController {
     this.picker = createPicker({ ...this.options, rootElement: this.popupEl });
     this.focusTrap = new FocusTrap();
 
-    this.picker.on('data:ready', () => {
+    this.picker.addEventListener('data:ready', () => {
       this.focusTrap.activate(this.picker.el);
       this.picker.setInitialFocus();
     });
 
     if (this.options.hideOnEmojiSelect) {
-      this.picker.on('emoji:select', () => {
+      this.picker.removeEventListener('emoji:select', () => {
         this.close();
       });
     }
@@ -56,9 +56,14 @@ export class PopupPickerController {
    * @param event The event to listen for
    * @param callback The callback to call when the event is triggered
    */
-  on(event: ExternalEvent, callback: EventCallback) {
+  addEventListener(event: ExternalEvent, callback: EventCallback) {
     this.externalEvents.on(event, callback);
-    this.picker.on(event, callback);
+    this.picker.addEventListener(event, callback);
+  }
+
+  removeEventListener(event: ExternalEvent, callback: EventCallback) {
+    this.externalEvents.off(event, callback);
+    this.picker.removeEventListener(event, callback);
   }
 
   /**
@@ -174,7 +179,7 @@ export class PopupPickerController {
   private setPosition() {
     this.positionCleanup?.();
     if (this.options.referenceElement) {
-      this.positionCleanup = setPosition(this.popupEl, this.options.referenceElement, this.options.position);
+      this.positionCleanup = setPosition(this.popupEl, this.options.referenceElement, this.options.position as Position);
     }
   }
 
