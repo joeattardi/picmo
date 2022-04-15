@@ -4,9 +4,9 @@
 import { deleteDatabase } from 'picmo';
 ```
 
-```javascript
-deleteDatabase(locale: Locale): Promise<void>
-```
+<pre>
+deleteDatabase(locale: <a href="https://emojibase.dev/api/emojibase#Locale">Locale</a>): Promise&lt;void&gt;>
+</pre>
 
 Deletes an emoji database.
 

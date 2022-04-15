@@ -4,12 +4,15 @@
 import { createDatabase } from 'picmo';
 ```
 
-```javascript
+<pre>
 createDatabase(
-  locale: Locale, 
-  staticMessages?: MessagesDataset | undefined, 
-  staticEmojis?: Emoji[] | undefined): Promise<void>
-```
+<br/>
+&nbsp;&nbsp;locale: <a href="https://emojibase.dev/api/emojibase#Locale">Locale</a>,
+<br/>
+&nbsp;&nbsp;staticMessages?: <a href="https://emojibase.dev/api/emojibase/interface/MessagesDataset">MessagesDataset</a> | undefined,
+<br />
+&nbsp;&nbsp;staticEmojis?: <a href="https://emojibase.dev/api/emojibase/interface/Emoji">Emoji</a>[] | undefined): Promise&lt;void&gt;
+</pre>
 
 Initializes an emoji database before creating a picker. The database can be populated with bundled data, or downloaded from a CDN.
 

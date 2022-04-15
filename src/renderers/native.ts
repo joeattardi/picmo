@@ -9,7 +9,7 @@ export default class NativeRenderer extends Renderer {
     return this.renderElement(template({ emoji: emoji.emoji }));
   }
 
-  emit({ emoji, label }: EmojiRecord): EmojiSelection {
-    return { emoji, label };
+  emit({ emoji, hexcode, label }: EmojiRecord): EmojiSelection {
+    return { emoji, hexcode, label };
   }
 }

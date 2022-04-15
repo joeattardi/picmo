@@ -49,6 +49,6 @@ export default class TwemojiRenderer extends Renderer {
 
   async emit(record: EmojiRecord): Promise<EmojiSelection> {
     const url = await getTwemojiUrl(record, this.options);
-    return { url, emoji: record.emoji, label: record.label };
+    return { url, hexcode: record.hexcode,emoji: record.emoji, label: record.label };
   }
 }

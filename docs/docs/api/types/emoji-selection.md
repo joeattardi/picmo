@@ -12,8 +12,12 @@ For custom emojis, this will be any arbitrary data included in the [`CustomEmoji
 
 The emoji character being emitted. 
 
-- For native emojis, this will be the actual emoji character.
+- For Unicode emojis, this will be the actual emoji character.
 - For custom emojis, this will be the unique identifier specified in the [`CustomEmoji`](./custom-emoji) definition.
+
+### `hexcode`: string | `undefined`
+
+The hex code for the selected emoji. This will be `undefined` for custom emojis.
 
 ### `url`: `string` | `undefined`
 

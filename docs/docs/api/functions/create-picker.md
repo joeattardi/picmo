@@ -4,9 +4,9 @@
 import { createPicker } from 'picmo';
 ```
 
-```javascript
-createPicker(options: PickerOptions): EmojiPicker
-```
+<pre>
+  createPicker(options: <a href="../types/picker-options">PickerOptions</a>): <a href="../classes/emoji-picker">EmojiPicker</a>
+</pre>
 
 Creates an emoji picker that is displayed inline on a page.
 
@@ -17,8 +17,6 @@ After it is created, the picker will be automatically inserted into the root ele
 ### `options`: [`PickerOptions`](./picker-options)
 
 The options to use when creating the picker.
-
-`createPicker` supports the following options:
 
 ## Return value
 

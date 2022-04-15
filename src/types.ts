@@ -22,6 +22,7 @@ export type EmojiRecord = {
 
 export type EmojiSelection = {
   url?: string;
+  hexcode?: string;
   emoji: string;
   label: string;
   data?: any;

@@ -5,7 +5,7 @@ import { Image } from '../views/Image';
 
 import classes from './custom.scss';
 
-type RenderTask = {
+export type RenderTask = {
   content: View | HTMLElement;
   resolver?: () => HTMLElement;
 }
@@ -14,11 +14,11 @@ export abstract class Renderer {
   abstract render(emoji: EmojiRecord, classNames?: string): RenderTask;
   abstract emit(emoji: EmojiRecord): EmojiSelection | Promise<EmojiSelection>;
 
-  renderElement(content: HTMLElement) {
-    return { content, resolver: () => content };
+  renderElement(content: HTMLElement): RenderTask {
+    return { content };
   }
 
-  renderImage(classNames = '', urlResolver) {
+  renderImage(classNames = '', urlResolver: () => string | Promise<string>): RenderTask {
     const image = new Image({ classNames });
     image.renderSync();
 
@@ -30,14 +30,12 @@ export abstract class Renderer {
     return { content: image, resolver };
   }
 
-  // TODO document this design
   doRender(emoji: EmojiRecord, lazyLoader?: LazyLoader, classNames?: string): HTMLElement {
     if (emoji.custom) {
       return this.renderCustom(emoji as CustomEmoji, lazyLoader, classNames);
     }
 
     const { content, resolver } = this.render(emoji, classNames);
-
     const contentElement = content instanceof HTMLElement ? content : content.el;
 
     if (lazyLoader && resolver) {
@@ -64,9 +62,14 @@ export abstract class Renderer {
 
   renderCustom(emoji: CustomEmoji, lazyLoader?: LazyLoader, additionalClasses = ''): HTMLElement {
     const classNames = [classes.customEmoji, additionalClasses].join(' ').trim();
-    const { content, resolver } = this.renderImage(classNames, () => emoji.url);
 
-    resolver();
-    return content.el;
+    const { content, resolver } = this.renderImage(classNames, () => emoji.url);
+    const contentElement = content instanceof HTMLElement ? content : content.el;
+
+    if (resolver) {
+      resolver();
+    }
+
+    return contentElement;
   }
 }
