@@ -22,7 +22,7 @@ const bundles = [
     output: {
       file: 'dist/umd/picmo.twemoji.js',
       format: 'umd',
-      name: 'picmo'
+      name: 'TwemojiRenderer'
     }
   },
   {

@@ -4,7 +4,7 @@ import { View } from '../src/views/view';
 import { Events } from '../src/events';
 import { AppEvent } from '../src/AppEvents';
 import { Bundle } from '../src/i18n';
-import NativeRenderer from '../src/renderers/native';
+import { NativeRenderer } from '../src/renderers/native';
 import { Database } from '../src/db';
 
 import { getOptions } from '../src/options';
@@ -22,7 +22,7 @@ const defaultDependencies = {
 };
 
 function createTestView<T extends View>(
-  constructor: ViewConstructor<T>, 
+  constructor: ViewConstructor<T>,
   args: ViewConstructorParameters<T>,
   dependencies = {}
 ) {

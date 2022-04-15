@@ -38,7 +38,7 @@ function getTwemojiUrl(record: EmojiRecord, options: TwemojiOptions): Promise<st
 /**
  * Renders emojis using Twemoji images.
  */
-export default class TwemojiRenderer extends Renderer {
+export class TwemojiRenderer extends Renderer {
   constructor(private options = DEFAULT_OPTIONS) {
     super();
   }

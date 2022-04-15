@@ -1,5 +1,5 @@
-import TwemojiRenderer from '../renderers/twemoji';
-import NativeRenderer from '../renderers/native';
+import { TwemojiRenderer } from '../renderers/twemoji';
+import { NativeRenderer } from '../renderers/native';
 
 import { lightTheme, darkTheme, autoTheme } from '../themes';
 import { Meta } from '@storybook/html';

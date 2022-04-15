@@ -1,6 +1,6 @@
 import { PickerOptions } from './types';
 
-import NativeRenderer from './renderers/native';
+import { NativeRenderer } from './renderers/native';
 import { lightTheme } from './themes';
 import en from './i18n/lang-en';
 

@@ -1,2 +1,2 @@
-export * from './picmo';
-export { default as TwemojiRenderer } from '../renderers/twemoji';
+import { TwemojiRenderer } from '../renderers/twemoji';
+export default TwemojiRenderer;
