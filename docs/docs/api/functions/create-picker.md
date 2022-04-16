@@ -10,11 +10,11 @@ import { createPicker } from 'picmo';
 
 Creates an emoji picker that is displayed inline on a page.
 
-After it is created, the picker will be automatically inserted into the root element specified in the [`PickerOptions`](./picker-options) object.
+After it is created, the picker will be automatically inserted into the root element specified in the [`PickerOptions`](../types/picker-options) object.
 
 ## Arguments
 
-### `options`: [`PickerOptions`](./picker-options)
+### `options`: [`PickerOptions`](../types/picker-options)
 
 The options to use when creating the picker.
 

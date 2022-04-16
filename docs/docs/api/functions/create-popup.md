@@ -12,7 +12,7 @@ Creates a popup emoji picker to be triggered by another element, usually a butto
 
 ## Arguments
 
-### `options`: [`PickerOptions`](./picker-options)
+### `options`: [`PickerOptions`](../types/picker-options)
 
 The options to use when creating the popup picker.
 
