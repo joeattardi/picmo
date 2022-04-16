@@ -343,7 +343,6 @@ export class EmojiPicker extends View {
    * @returns a Promise that resolves when either the variant popup is shown or the emoji is rendered and emitted
    */
   private async selectEmoji({ emoji }: { emoji: EmojiRecord }): Promise<void> {
-    console.log(emoji);
     // Show the variant popup if the emoji has variants
     if (emoji.skins?.length && this.options.showVariants && !this.isVariantPopupOpen) {
       this.showVariantPopup(emoji);

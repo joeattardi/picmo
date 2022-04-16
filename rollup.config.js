@@ -12,6 +12,7 @@ const bundles = [
   {
     input: 'src/umd/picmo.ts',
     output: {
+      sourcemap: true,
       file: 'dist/umd/picmo.js',
       format: 'umd',
       name: 'picmo'
@@ -20,6 +21,7 @@ const bundles = [
   {
     input: 'src/umd/picmo.twemoji.ts',
     output: {
+      sourcemap: true,
       file: 'dist/umd/picmo.twemoji.js',
       format: 'umd',
       name: 'TwemojiRenderer'

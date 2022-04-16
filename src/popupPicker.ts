@@ -34,7 +34,7 @@ export class PopupPickerController {
     });
 
     if (this.options.hideOnEmojiSelect) {
-      this.picker.removeEventListener('emoji:select', () => {
+      this.picker.addEventListener('emoji:select', () => {
         this.close();
       });
     }

@@ -5,7 +5,6 @@ import { lightTheme } from './themes';
 import en from './i18n/lang-en';
 
 const defaultOptions: Partial<PickerOptions> = {
-  rootElement: document.body,
   renderer: new NativeRenderer(),
   theme: lightTheme,
 
@@ -35,5 +34,9 @@ const defaultOptions: Partial<PickerOptions> = {
 };
 
 export function getOptions(options: Partial<PickerOptions> = {}): PickerOptions {
-  return { ...defaultOptions, ...options } as PickerOptions;
+  return { 
+    ...defaultOptions,
+    rootElement: document.body,
+    ...options 
+  } as PickerOptions;
 }

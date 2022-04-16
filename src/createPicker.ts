@@ -25,7 +25,6 @@ function getPickerId() {
  */
 export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
   const finalOptions = getOptions(options);
-  
   const customEmojis: EmojiRecord[] = (finalOptions?.custom || []).map((custom: CustomEmoji) => ({
     ...custom,
     custom: true,

@@ -1,4 +1,4 @@
-# `clearRecents`
+# `deleteRecents`
 
 ```javascript
 import { deleteRecents } from 'picmo';
