@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "parcel serve index.html",
+    "start:esm": "parcel serve esm.html",
     "start:umd": "parcel serve umd.html"
   },
   "keywords": [],
@@ -14,6 +15,6 @@
     "parcel": "^2.4.1"
   },
   "dependencies": {
-    "@joeattardi/emoji-button": "^4.6.4"
+    "picmo": "^5.0.0-beta.3"
   }
 }

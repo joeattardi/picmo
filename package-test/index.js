@@ -1,19 +1,20 @@
-const { createPopup } = window.picmo;
+// const { createPopup } = window.picmo;
 
 // import { createPopup } from 'picmo/dist/index';
 
 // import TwemojiRenderer from 'picmo/dist/twemoji';
 // import { createPopup } from 'picmo';
-// import TwemojiRenderer from 'picmo/renderers/twemoji';
-// import NativeRenderer from 'picmo/renderers/native';
+import { TwemojiRenderer } from 'picmo/renderers/twemoji';
+import { NativeRenderer } from 'picmo/renderers/native';
+import { createPopup } from 'picmo';
 
-// TODO: doesnt work unless rootElement explicitly defined?
 const button = document.querySelector('#native .emoji-button');
 // const picker = createPopup({ referenceElement: button, triggerElement: button, renderer: new TwemojiRenderer() });
 const picker = createPopup({
   referenceElement: button,
   triggerElement: button,
-  rootElement: document.body  
+  renderer: new NativeRenderer(),
+  position: 'right-start'
 });
 
 button.addEventListener('click', () => {
@@ -24,8 +25,8 @@ const twemoji = document.querySelector('#twemoji .emoji-button');
 const twemojiPicker = createPopup({
   referenceElement: twemoji,
   triggerElement: twemoji,
-  rootElement: document.body,
-  renderer: new window.TwemojiRenderer()
+  renderer: new TwemojiRenderer(),
+  position: 'right-start'
 });
 
 twemoji.addEventListener('click', () => {

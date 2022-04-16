@@ -33,10 +33,9 @@ PicMo is also available as a UMD module to use outside of a bundler. This distri
 
 ### Main picker code
 
-<pre>
-&lt;script src="<a href="https://unpkg.com/picmo@5.0.0-beta.3/umd/picmo.js">https://unpkg.com/picmo@5.0.0-beta.3/umd/picmo.js</a>"&gt;&lt;/script&gt;
-</pre>
-
+```html
+<script src="https://unpkg.com/picmo@5.0.0-beta.3/umd/picmo.js"></script>
+```
 
 This will expose a `picmo` object in the global window scope with the following exports:
 
@@ -55,12 +54,24 @@ This will expose a `picmo` object in the global window scope with the following 
 
 If you want to use the Twemoji renderer, it is a separate UMD module:
 
-<pre>
-&lt;script src="<a href="https://unpkg.com/picmo@5.0.0-beta.3/umd/picmo.twemoji.js">https://unpkg.com/picmo@5.0.0-beta.3/umd/picmo.twemoji.js</a>"&gt;&lt;/script&gt;
-</pre>
+```html
+<script src="https://unpkg.com/picmo@5.0.0-beta.3/umd/picmo.twemoji.js"></script>
+```
 
 This will expose the [`TwemojiRenderer`](../api/classes/twemoji-renderer) class in the global window scope.
 
 ## Use ESM from CDN
 
-TBD
+You can also import the ESM version of PicMo directly. You will first to create an ES module that imports PicMo:
+
+```javascript title="index.js"
+import { createPicker } from 'https://unpkg.com/picmo@5.0.0-beta.3/index.js';
+
+createPicker(...);
+```
+
+Then you can import the local module from a `script` tag:
+
+```html
+<script type="module" src="esm.js"></script>
+```

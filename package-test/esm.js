@@ -1,4 +1,5 @@
-const { createPopup } = window.picmo;
+import { createPopup } from 'https://unpkg.com/picmo@5.0.0-beta.3/index.js';
+import { TwemojiRenderer } from 'https://unpkg.com/picmo@5.0.0-beta.3/renderers/twemoji.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const nativeButton = document.querySelector('#native .emoji-button');
@@ -19,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const twemojiButton = document.querySelector('#twemoji .emoji-button');
   const twemojiPicker = createPopup({
-    renderer: new window.TwemojiRenderer(),
+    renderer: new TwemojiRenderer(),
     referenceElement: twemojiButton,
     triggerElement: twemojiButton,
     position: 'right-start'
