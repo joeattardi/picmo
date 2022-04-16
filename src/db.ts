@@ -1,6 +1,6 @@
 import { GroupMessage, Emoji, Locale } from 'emojibase';
 import { PickerOptions, EmojiRecord, Category, CategoryKey } from './types';
-
+import { applyRules } from './rules';
 import { caseInsensitiveIncludes } from './util';
 
 // Base database name. It will have the locale appended to it.
@@ -211,7 +211,7 @@ export class Database {
     const groupsIndex = emojiStore.index('category');
     const result = await this.waitForRequest(groupsIndex.getAll(category.order));
     const emojis = result.target.result as Emoji[];
-    return emojis
+    const records = emojis
       .filter((e: Emoji) => e.version <= emojiVersion)
       .sort((a: Emoji, b: Emoji) => {
         if (a.order != null && b.order != null) {
@@ -221,6 +221,8 @@ export class Database {
        return 0;
     })
     .map(getEmojiRecord);
+
+    return applyRules(records, emojiVersion);
   }
 
   /**
@@ -267,7 +269,7 @@ export class Database {
         if (!cursor) {
           return resolve([
             // matching emojis from the database
-            ...results,
+            ...applyRules(results, emojiVersion),
 
             // matching custom emojis
             ...customEmojis.filter(emoji => this.queryMatches(emoji, query))
