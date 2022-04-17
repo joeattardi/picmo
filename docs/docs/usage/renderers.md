@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # Renderers
@@ -24,7 +24,7 @@ const picker = createPicker({
 
 ## Twemoji
 
-[Twemoji](https://twemoji.twitter.com/) is a free emoji library from Twitter. It contains images for each emoji. The `TwemojiRenderer` will render the emojis using the images from Twemoji. By default, these are rendered as SVGs.
+[Twemoji](https://twemoji.twitter.com/) is a free emoji library from Twitter. It contains images for each emoji. The [`TwemojiRenderer`](../api/classes/twemoji-renderer) will render the emojis using the images from Twemoji. By default, these are rendered as SVGs. PNGs can be used instead by passing `png` as the `format` option to the renderer constructor.
 
 ```javascript
 import { TwemojiRenderer } from 'picmo/renderers/twemoji';
@@ -33,6 +33,16 @@ const picker = createPicker({
   renderer: new TwemojiRenderer()
 });
 ```
+
+For more information on Twemoji, see [the project page](https://twemoji.twitter.com/).
+
+## Renderer trade-offs
+
+The built-in renderers (native and Twemoji) both have pros and cons.
+
+- The [`NativeRenderer`](../api/classes/native-renderer) renders quickly because all the emojis are text nodes. However, because new emojis must be added via an operating system update, this may limit the available emojis. Also, the emojis will appear differently depending on the operating system.
+
+- The [`TwemojiRenderer`](../api/classes/twemoji-renderer) has a consistent cross-platform look for emojis. It generally will get support for new emojis before operating systems do. However, there is a performance cost because each emoji is an individual image file (Twemoji does not use a sprite sheet).
 
 ## Creating a custom renderer
 

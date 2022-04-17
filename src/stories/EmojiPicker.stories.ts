@@ -20,7 +20,7 @@ Native.args = {
 
 export const Twemoji = Template.bind({});
 Twemoji.args = {
-  renderer: 'twemoji'
+  renderer: 'twemoji-svg'
 };
 
 export const Custom = Template.bind({});

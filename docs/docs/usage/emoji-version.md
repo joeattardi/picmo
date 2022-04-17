@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Emoji Versions
+# Emoji versions
 
 PicMo supports all sets of emojis up to the [Emoji 14.0](http://unicode.org/versions/Unicode14.0.0/) standard. However, not all browsers or operating systems will support this version of the Emoji standard.
 

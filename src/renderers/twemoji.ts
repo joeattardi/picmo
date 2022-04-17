@@ -16,10 +16,18 @@ type TwemojiOptions = {
   folder: string;
 }
 
-const DEFAULT_OPTIONS: TwemojiOptions = {
-  ext: '.svg',
-  folder: 'svg'
-};
+type TwemojiImageFormat = 'svg' | 'png';
+
+const formatOptions: Record<TwemojiImageFormat, TwemojiOptions> = {
+  png: {
+    ext: '.png',
+    folder: '72x72'
+  },
+  svg: {
+    ext: '.svg',
+    folder: 'svg'
+  }
+}
 
 function getTwemojiUrl(record: EmojiRecord, options: TwemojiOptions): Promise<string> {
   return new Promise(resolve => {
@@ -39,8 +47,11 @@ function getTwemojiUrl(record: EmojiRecord, options: TwemojiOptions): Promise<st
  * Renders emojis using Twemoji images.
  */
 export class TwemojiRenderer extends Renderer {
-  constructor(private options = DEFAULT_OPTIONS) {
+  private options: TwemojiOptions;
+
+  constructor(format: TwemojiImageFormat = 'svg') {
     super();
+    this.options = formatOptions[format];
   }
 
   render(record: EmojiRecord, classNames = classes.twemoji) {

@@ -51,16 +51,18 @@ export function getArgs(extraArgs): Meta {
       },
       renderer: {
         name: 'Emoji renderer',
-        options: ['native', 'twemoji'],
+        options: ['native', 'twemoji-svg', 'twemoji-png'],
         mapping: {
           native: new NativeRenderer(),
-          twemoji: new TwemojiRenderer()
+          'twemoji-svg': new TwemojiRenderer('svg'),
+          'twemoji-png': new TwemojiRenderer('png')
         },
         control: {
           type: 'select',
           labels: {
             native: 'Native',
-            twemoji: 'Twemoji'
+            'twemoji-svg': 'Twemoji (SVG)',
+            'twemoji-png': 'Twemoji (PNG)'
           },
           
         }

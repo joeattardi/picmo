@@ -9,7 +9,7 @@ import { NativeRenderer } from 'picmo/renderers/native';
 import { createPopup } from 'picmo';
 
 const button = document.querySelector('#native .emoji-button');
-// const picker = createPopup({ referenceElement: button, triggerElement: button, renderer: new TwemojiRenderer() });
+
 const picker = createPopup({
   referenceElement: button,
   triggerElement: button,
