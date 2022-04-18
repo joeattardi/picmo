@@ -1,5 +1,3 @@
-import APIProperty from '@site/src/components/APIProperty';
-
 # `PickerOptions`
 
 A `PickerOptions` object is passed to the `createPicker` and `createPopup` functions.

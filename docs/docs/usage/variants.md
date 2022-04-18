@@ -10,6 +10,10 @@ If an emoji that has variants is selected in the picker, the available variants 
 
 When a variant is selected, the popup will close and the selected variant will be emitted.
 
+## Variant data
+
+Some variants are associated with a particular Emoji version. For any such variants that are not supported by the current version of Emoji, the variant will not be shown.
+
 ## Disabling variants
 
 If you do not want to show variants in the picker, specify the `showVariants: false` option.

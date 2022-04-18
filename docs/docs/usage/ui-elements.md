@@ -16,3 +16,9 @@ By default, all of these elements are shown. The [`PickerOptions`](../api/types/
 - `showRecents`
 - `showPreview`
 - `showVariants`
+
+:::tip
+If you only enable a few categories for the picker, you may want to [adjust the number of rows and columns](size-layout) to make the overall picker smaller, otherwise the picker may not look great:
+
+![few categories with wide picker](@site/static/img/usage/few-categories.png)
+:::

@@ -41,6 +41,7 @@ const config = {
         logo: {
           alt: 'PicMo Logo',
           src: 'img/logo-with-name.png',
+          srcDark: 'img/logo-white-with-name.png'
         },
         items: [
           {

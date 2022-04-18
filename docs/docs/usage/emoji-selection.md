@@ -18,6 +18,20 @@ When selecting a native emoji, this object will have these properties:
 }
 ```
 
+:::note
+
+If you are displaying the native emoji somewhere else on the page, like in a text field or button, make sure the system emoji font is used, otherwise some emojis will not render correctly. Different platforms have different emoji fonts.
+
+You can usually take care of this with a single line of CSS specifying all of the platforms' emoji fonts:
+
+```css
+  font-family: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI',
+    'Apple Color Emoji', 'Twemoji Mozilla', 'Noto Color Emoji', 'EmojiOne Color',
+    'Android Emoji';
+```
+
+:::
+
 ## Twemoji emojis
 
 Along with the native emoji data, a Twemoji emit will also include the URL to the Twemoji image:

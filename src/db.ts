@@ -25,7 +25,8 @@ function getEmojiRecord(emoji: Emoji): EmojiRecord {
     skins: emoji.skins?.map(skin => getEmojiRecord(skin)),
     order: emoji.order,
     custom: false,
-    hexcode: emoji.hexcode
+    hexcode: emoji.hexcode,
+    version: emoji.version
   };
 }
 

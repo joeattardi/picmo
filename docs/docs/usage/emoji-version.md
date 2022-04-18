@@ -6,6 +6,8 @@ sidebar_position: 2
 
 PicMo supports all sets of emojis up to the [Emoji 14.0](http://unicode.org/versions/Unicode14.0.0/) standard. However, not all browsers or operating systems will support this version of the Emoji standard.
 
+Any emoji with a version greater than the current version will not be shown. This applies to top-level emojis as well as any variants tagged with a version.
+
 The set of emojis available to select in PicMo can be set in two ways:
 
 ## Automatic selection (default behavior)
