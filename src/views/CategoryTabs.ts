@@ -72,9 +72,12 @@ export class CategoryTabs extends View {
       return;
     }
 
-    this.currentTabView.setActive(false, focus);
+    const oldCategory = this.currentTabView;
+    const newCategory = this.tabViews[index];
+
+    oldCategory.setActive(false, focus);
+    newCategory.setActive(true, focus);
     this.activeCategoryIndex = index;
-    this.currentTabView.setActive(true, focus);
   }
 
   private getTargetCategory(index: number): number {

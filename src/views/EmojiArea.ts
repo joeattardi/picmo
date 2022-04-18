@@ -219,7 +219,7 @@ export class EmojiArea extends View {
 
   private focusPreviousCategory(column: number) {
     if (this.selectedCategory > 0) {
-      this.focusCategory(this.selectedCategory - 1, { row: 'last', offset: column ?? this.options.emojisPerRow});
+      this.focusCategory(this.selectedCategory - 1, { row: 'last', offset: column ?? this.options.emojisPerRow });
     }
   }
 
@@ -263,7 +263,7 @@ export class EmojiArea extends View {
     this.emojiCategories[this.selectedCategory].setActive(false);
 
     const categoryIndex = this.selectedCategory = typeof category === 'number' ? category : this.getCategoryIndex(category);
-    this.categoryTabs?.setActiveTab(this.selectedCategory, focus === 'button' && performFocus);
+    this.categoryTabs?.setActiveTab(this.selectedCategory, performFocus);
     const targetPosition = this.emojiCategories[categoryIndex].el.offsetTop;
     this.emojiCategories[categoryIndex].setActive(true, getFocusTarget(focus), focus !== 'button' && performFocus);
 

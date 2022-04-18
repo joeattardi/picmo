@@ -18,6 +18,13 @@ An emoji can be selected by pressing `Enter` or `Space`. This will cause the emo
 
 When the variant popup is shown, the arrow keys are used to navigate the available variants.
 
+## Selected category/focus behavior
+
+- Only one emoji in the grid is ever focusable at a given time. Pressing the arrow keys changes which emoji is focusable and then focuses the new emoji.
+- When a category tab is selected by clicking or using the arrow keys, that category will be the new active category and its first emoji becomes focused.
+- When navigating the emoji grid with the arrow keys, crossing into a different category will make that category become the new active category.
+- When a category is automatically highlighted while scrolling, this is a highlight only and does _not_ change the active category. The focused emoji in the actual active category remains focusable.
+
 ## Variant popup
 
 The variant popup can be closed without selecting an emoji by pressing the `Escape` key.
