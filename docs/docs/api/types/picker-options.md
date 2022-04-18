@@ -16,7 +16,7 @@ Whether or not to show animated transitions in the picker.
 
 ### `categories`: [`CategoryKey[]`](./category-key) | `undefined`
 
-If specified, only the categories in this array will be shown in the picker. The filteres categories will be shown in the order they in which they appear in the array.
+If specified, only the categories in this array will be shown in the picker. The filtered categories will be shown in the order they in which they appear in the array.
 
 ### `custom`: [`CustomEmoji[]`](./custom-emoji) | `undefined`
 
