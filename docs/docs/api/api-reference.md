@@ -30,6 +30,6 @@ The following are exported directly from the `picmo` package as named exports:
 - [`CustomEmoji`](./types/custom-emoji): Defines a custom image.
 - [`Dictionary`](./types/dictionary): A dictionary of i18n strings.
 - [`EmojiSelection`](./types/emoji-selection): Data about a selected emoji.
-- [`ExternalEmoji`](./types/external-emoji): Events emitted by the emoji picker.
+- [`ExternalEvent`](./types/external-event): Events emitted by the emoji picker.
 - [`PickerOptions`](./types/picker-options): Options for creating a picker.
 - [`Position`](./types/position): Defines positioning for a popup picker.

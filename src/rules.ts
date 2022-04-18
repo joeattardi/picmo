@@ -17,7 +17,6 @@ export const rules: EmojiProcessingRule[] = [
   // If a variant doesn't specify a version, it will be included. Only variants that
   // specify a version that is greater than the current version will be filtered out.
   (emoji: EmojiRecord, emojiVersion: number) => {
-    console.log(emojiVersion);
     if (emoji.skins) {
       emoji.skins = emoji.skins.filter((skin: EmojiRecord) => !skin.version || skin.version <= emojiVersion);
     }
