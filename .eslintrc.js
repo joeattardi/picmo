@@ -20,7 +20,7 @@ module.exports = {
     sourceType: 'module'
   },
   rules: {
-    'no-console': 'error'
+    'no-console': ['error', { allow: ['warn', 'error'] }]
   },
   plugins: ['@typescript-eslint'],
   ignorePatterns: ['webpack.*.js', 'scripts/prepare-release.js']

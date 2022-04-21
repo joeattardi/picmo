@@ -43,7 +43,7 @@ const icons = {
   tree,
   users, 
   warning, 
-  xmark
+  xmark 
 };
 
 Object.keys(icons).forEach(iconName => {
@@ -52,7 +52,12 @@ Object.keys(icons).forEach(iconName => {
 
 export { icons };
 
-export function icon(name: string, size?: IconSize): SVGElement {
+export function icon(name: string, size?: IconSize): Element {
+  if (!(name in icons)) {
+    console.warn(`Unknown icon: "${name}"`);
+    return document.createElement('div');
+  }
+
   const icon = icons[name].cloneNode(true);
   if (size) {
     icon.classList.add(classes[`icon-${size}`]);
