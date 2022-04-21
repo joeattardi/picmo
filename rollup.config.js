@@ -52,7 +52,7 @@ export default bundles.map(bundle => ({
     }),
     nodeResolve(),
     commonjs({ browser: true }),
-    string({ include: '**/*.ejs'}),
+    string({ include: ['**/*.ejs', '**/*.svg']}),
     json(),
     typescript(),
     postcss({
