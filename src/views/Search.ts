@@ -23,7 +23,7 @@ export class Search extends View {
   private categories: Category[];
   private emojiVersion: number;
 
-  private searchIcon: SVGElement;
+  private searchIcon: Element;
   private clearSearchButton: HTMLButtonElement;
   private resultsContainer: EmojiContainer | null;
   private notFoundMessage: ErrorMessage;

@@ -281,6 +281,11 @@ export class EmojiPicker extends View {
   reset() {
     if (this.pickerReady) {
       this.emojiArea.reset();
+      this.showContent(this.emojiArea);
+    }
+
+    if (this.search) {
+      this.search.clear();
     }
   }
 
