@@ -38,6 +38,12 @@ module.exports = {
     });
 
     config.module.rules.push({
+      test: /\.svg$/i,
+      include: path.resolve(__dirname, '../src/icons'),
+      type: 'asset/source'
+    })
+
+    config.module.rules.push({
       test: /\.scss$/,
       use: [
         'style-loader', 

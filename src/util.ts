@@ -74,3 +74,16 @@ export function animate(element: HTMLElement, keyframes: Keyframe[] | PropertyIn
 
   return Promise.resolve();
 }
+
+/**
+ * Takes a rendered HTML string and renders a DOM node from it.
+ *
+ * @param html the HTML text
+ * @returns the generated HTMLElement
+ */
+ export function toElement<E extends Element = HTMLElement>(html: string): E {
+  const template = document.createElement('template');
+  template.innerHTML = html;
+
+  return template.content?.firstElementChild as E;
+}

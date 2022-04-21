@@ -23,7 +23,7 @@ export class Search extends View {
   private categories: Category[];
   private emojiVersion: number;
 
-  private searchIcon: HTMLElement;
+  private searchIcon: SVGElement;
   private clearSearchButton: HTMLButtonElement;
   private resultsContainer: EmojiContainer | null;
   private notFoundMessage: ErrorMessage;
@@ -57,9 +57,13 @@ export class Search extends View {
   async render(): Promise<HTMLElement> {
     await super.render();
 
-    this.searchIcon = icon('magnifying-glass', { classes: 'fa-fw' });
+    this.searchIcon = icon('search');
 
-    this.notFoundMessage = this.viewFactory.create(ErrorMessage, { message: this.i18n.get('search.notFound'), icon: 'fa-face-sad-tear' });
+    this.notFoundMessage = this.viewFactory.create(ErrorMessage, { 
+      message: this.i18n.get('search.notFound'),
+      className: classes.notFound,
+      icon: 'sad' 
+    });
     this.notFoundMessage.renderSync();
 
     this.errorMessage = this.viewFactory.create(ErrorMessage, { message: this.i18n.get('search.error') });
@@ -87,7 +91,7 @@ export class Search extends View {
     this.showSearchAccessory(this.clearSearchButton);
   }
 
-  private showSearchAccessory(accessory: HTMLElement) {
+  private showSearchAccessory(accessory: Element) {
     this.ui.searchAccessory.replaceChildren(accessory);
   }
 

@@ -66,25 +66,8 @@
   padding: 0;
 }
 
-.searchNotFound, .searchError {
-  color: var(--secondary-text-color);
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-  text-align: center;
-
-  div {
-    color: var(--secondary-text-color);
-  }
-
-  .icon {
-    margin: 2em;  
-    opacity: 0.3;
-  }
-
-  .message {
-    color: var(--secondary-text-color);
-    margin: 0;
+.notFound {
+  [data-icon] {
+    fill: #f3e265;
   }
 }

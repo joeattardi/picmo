@@ -7,6 +7,7 @@
   --tab-area-width: calc(var(--picker-width) - var(--gap-offset) - (var(--tab-padding) * 2));
   --tab-size: calc((var(--tab-area-width) / var(--category-count))) / var(--tab-size-ratio);
 
+  // background: var(--secondary-background-color);
   display: grid;
   grid-auto-columns: auto;
   grid-auto-flow: column;
@@ -27,8 +28,7 @@
 .categoryButton {
   background: transparent;
   border: none;
-  border-bottom: 4px solid transparent;
-  color: var(--category-button-color);
+  fill: var(--category-button-color);
   cursor: pointer;
   padding: 2px;
   vertical-align: middle;
@@ -50,18 +50,16 @@
 }
 
 .categoryTab {
-  border-bottom: 4px solid transparent;
   margin-bottom: 4px;
   display: flex;
   align-items: center;
 }
 
 .categoryButtonActive {
-  color: var(--category-button-active-color);
-  border-color: var(--category-button-active-color);
+  fill: var(--category-button-active-color);
   position: relative;
 
   &:hover {
-    color: var(--category-button-active-color);
+    fill: var(--category-button-active-color);
   }
 }

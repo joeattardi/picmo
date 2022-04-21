@@ -7,14 +7,14 @@ import classes from './CategoryTabs.scss';
 
 type CategoryTabOptions = {
   category: Category;
-  icon: string;
+  icon: Element;
 }
 
 const focusEventOptions = { scroll: 'animate', focus: 'button', performFocus: true };
 
 export class CategoryTab extends View {
   category: Category;
-  private icon: string;
+  private icon: Element;
   
   isActive = false;
 

@@ -18,7 +18,7 @@ describe('CategoryTab', () => {
   const events = new Events<AppEvent>();
   const emitSpy = jest.spyOn(events, 'emit');
 
-  const icon = 'fa-face-smile';
+  const icon = 'smiley';
 
   afterEach(() => {
     emitSpy.mockReset();

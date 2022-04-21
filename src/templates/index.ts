@@ -1,6 +1,7 @@
-import { dom } from '@fortawesome/fontawesome-svg-core';
-
+import { icon, IconSize } from '../icons';
 import ejs, { Data } from 'ejs';
+
+import { toElement } from '../util';
 
 export type ElementTemplate = (data?: Data) => HTMLElement | Promise<HTMLElement>;
 export type ElementTemplateSync = (data?: Data) => HTMLElement;
@@ -20,6 +21,20 @@ function bindPlaceholders<E extends HTMLElement = HTMLElement>(template: string,
       } else {
         throw new Error(`Missing placeholder element for key "${key}"`);
       }
+    }
+  });
+
+  return result;
+}
+
+function replaceIcons<E extends HTMLElement = HTMLElement>(result: E): E {
+  const icons = result.querySelectorAll<E>('[data-icon]');
+  icons.forEach((iconEl: E) => {
+    const key = iconEl.dataset.icon;
+    const size = iconEl.dataset.size as IconSize;
+
+    if (key) {
+      iconEl.replaceWith(icon(key, size));
     }
   });
 
@@ -84,9 +99,9 @@ export async function renderTemplate<E extends HTMLElement = HTMLElement>(templa
     toElement<E>(ejs.render(template, data)),
     data
   );
-
+  
+  replaceIcons(result);
   await renderChildViews<E>(result, data);
-  await dom.i2svg({ node: result });
 
   return result as E;
 }
@@ -98,19 +113,6 @@ export function renderTemplateSync<E extends HTMLElement = HTMLElement>(template
     data
   );
   
-  dom.i2svg({ node: result });
+  replaceIcons(result);
   return result as E;
-}
-
-/**
- * Takes a rendered HTML string and renders a DOM node from it.
- *
- * @param html the HTML text
- * @returns the generated HTMLElement
- */
-export function toElement<E extends HTMLElement = HTMLElement>(html: string): E {
-  const template = document.createElement('template');
-  template.innerHTML = html;
-
-  return template.content?.firstElementChild as E;
 }

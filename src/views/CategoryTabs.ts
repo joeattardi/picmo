@@ -11,18 +11,18 @@ type CategoryTabsOptions = {
   categories: Category[];
 }
 
-export const categoryIcons: { [key in CategoryKey]?: string } = {
-  recents: 'fa-clock-rotate-left',
-  'smileys-emotion': 'fa-face-smile',
-  'people-body': 'fa-user',
-  'animals-nature': 'fa-cat',
-  'food-drink': 'fa-mug-saucer',
-  activities: 'fa-futbol',
-  'travel-places': 'fa-car',
-  objects: 'fa-lightbulb',
-  symbols: 'fa-icons',
-  flags: 'fa-flag',
-  custom: 'fa-image'
+const categoryIcons: Record<CategoryKey, string> = {
+  'recents': 'clock',
+  'smileys-emotion': 'smiley',
+  'people-body': 'users',
+  'animals-nature': 'tree',
+  'food-drink': 'mug',
+  'activities': 'gamepad',
+  'travel-places': 'plane',
+  'objects': 'lightbulb',
+  'symbols': 'symbols',
+  'flags': 'flag',
+  'custom': 'robot'
 };
 
 export class CategoryTabs extends View {

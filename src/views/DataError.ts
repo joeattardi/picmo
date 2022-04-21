@@ -1,9 +1,10 @@
 import { View } from './view';
 import { ErrorMessage } from './ErrorMessage';
 import { initDatabase } from '../emojiData';
+import { Database } from '../db';
 
 import template from '../templates/dataError.ejs';
-import { Database } from '../db';
+import classes from './DataError.scss';
 
 type DataErrorOptions = {
   message: string;
@@ -11,7 +12,7 @@ type DataErrorOptions = {
 
 export class DataError extends ErrorMessage {
   constructor({ message }: DataErrorOptions) {
-    super({ message, template });
+    super({ message, template, className: classes.dataError });
   }
 
   initialize() {
