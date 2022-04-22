@@ -216,6 +216,7 @@ export class EmojiPicker extends View {
         categoryTabs,
         emojiArea,
         preview,
+        showHeader: Boolean(this.search || this.categoryTabs),
         theme: this.options.theme
       });
 
@@ -247,6 +248,7 @@ export class EmojiPicker extends View {
       showSearch: this.options.showSearch,
       showPreview: this.options.showPreview,
       showCategoryTabs: this.options.showCategoryTabs,
+      showHeader: this.options.showSearch || this.options.showCategoryTabs,
       emojiCount: this.options.emojisPerRow * this.options.visibleRows
     });
 

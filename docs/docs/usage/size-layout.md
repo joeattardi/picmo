@@ -6,4 +6,4 @@ The emojis in the picker are laid out in a grid. By default, the visible grid is
 
 ## Emoji size
 
-The size of the individual emojis in the grid can also be changed. The default size is `1.8em`. This can be changed by specifying the [`emojiSize`](../api/types/picker-options#emojisize-string) property in [`PickerOptions`](../api/types/picker-options). This can be any valid CSS size value.
+The size of the individual emojis in the grid can also be changed. The default size is `2em`. This can be changed by specifying the [`emojiSize`](../api/types/picker-options#emojisize-string) property in [`PickerOptions`](../api/types/picker-options). This can be any valid CSS size value.

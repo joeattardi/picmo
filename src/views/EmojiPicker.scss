@@ -17,8 +17,8 @@
   --emoji-preview-height: calc(var(--emoji-preview-size) + 1em + 1px);
   --emoji-preview-height-full: calc(var(--emoji-preview-height) + var(--emoji-preview-margin));
   --emoji-preview-size: 2.75em;
-  --emoji-size: 1.8em;
-  --emoji-size-multiplier: 1.5;
+  --emoji-size: 2em;
+  --emoji-size-multiplier: 1.3;
   --content-margin: 8px;
   --category-tabs-height: calc(1.5em + 4px + 4px + 1px);
   --category-tabs-offset: 8px;
@@ -44,7 +44,6 @@
   overflow: hidden;
   position: relative;
   width: var(--picker-width);
-  padding-top: 8px;
 
   display: grid;
   gap: 8px;
@@ -91,7 +90,6 @@
   }
 
   .searchSkeleton {
-    height: var(--search-height);
     padding: 0 8px;
 
     .searchInput {
@@ -102,11 +100,11 @@
   }
 
   .categoryTabsSkeleton {
-    border-bottom: 1px solid var(--border-color);
     height: var(--category-tabs-height);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
 
     .categoryTab {
       width: 25px;
@@ -226,6 +224,19 @@
   margin: 0.5em;
   display: flex;
   flex-direction: row;
+}
+
+.header {
+  background-color: var(--secondary-background-color);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: grid;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-color);
+
+  &:empty {
+    background: red;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

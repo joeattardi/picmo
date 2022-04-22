@@ -3,11 +3,15 @@
       <% if (locals.plugins) { %>
         <div data-placeholder="plugins"></div>
       <% } %>
-      <% if (locals.search) { %>
-        <div data-view="search"></div>
-      <% } %>
-      <% if (locals.categoryTabs) { %>
-        <div data-view="categoryTabs"></div>
+      <% if (showHeader) { %>
+        <header class="<%= classes.header %>">
+          <% if (locals.search) { %>
+            <div data-view="search"></div>
+          <% } %>
+          <% if (locals.categoryTabs) { %>
+            <div data-view="categoryTabs"></div>
+          <% } %>
+        </header>
       <% } %>
       <div class="<%= classes.content %>">
         <div data-view="emojiArea"></div>
@@ -18,17 +22,21 @@
     </div>
   <% } else { %>
     <div class="<%= classes.skeleton %> <%= classes.picker %> <%= theme %>">
-      <% if (locals.showSearch) { %>
-        <div class="<%= classes.searchSkeleton %>">
-          <div class="<%= classes.searchInput %> <%= classes.placeholder %>"></div>
-        </div>
-      <% } %>
-      <% if (locals.showCategoryTabs) { %>
-        <div class="<%= classes.categoryTabsSkeleton %>">
-          <% for (let i = 0; i < 10; i++) { %>
-            <div class="<%= classes.placeholder %> <%= classes.categoryTab %>"></div>
+      <% if (showHeader) { %>
+        <header class="<%= classes.header %>">
+          <% if (locals.showSearch) { %>
+            <div class="<%= classes.searchSkeleton %>">
+              <div class="<%= classes.searchInput %> <%= classes.placeholder %>"></div>
+            </div>
           <% } %>
-        </div>
+          <% if (locals.showCategoryTabs) { %>
+            <div class="<%= classes.categoryTabsSkeleton %>">
+              <% for (let i = 0; i < 10; i++) { %>
+                <div class="<%= classes.placeholder %> <%= classes.categoryTab %>"></div>
+              <% } %>
+            </div>
+          <% } %>
+        </header>
       <% } %>
       <div class="<%= classes.contentSkeleton %>">
         <div class="<%= classes.placeholder %> <%= classes.categoryName %>"></div>

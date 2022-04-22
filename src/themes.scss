@@ -1,5 +1,6 @@
 @mixin lightTheme {
-  --background-color: #ffffff;
+  color-scheme: light;
+  --background-color: #f9fafb;
   --secondary-background-color: #eeeeee;
   --border-color: #cccccc;
   --secondary-text-color: #666666;
@@ -7,12 +8,14 @@
   --hover-shadow-color: rgba(0, 0, 0, 0.2);
   --hover-color: hsla(198, 59%, 94%, 0.85);
   --category-name-shadow: rgba(0, 0, 0, 0.5);
-  --category-name-background: #ffffff;
+  --category-name-background: #f9fafb;
   --category-name-text-color: hsl(214, 30%, 50%);
   --category-name-button-color: #999999;
   --category-name-accent: hsl(214, 30%, 50%);
-  --category-button-active-background: rgba(251, 184, 41, 0.2);
-  --category-button-active-color: #1580e4;
+  --category-button-active-color: #4f46e5;
+  --category-button-active-background: #fff;
+  --category-button-active-shadow: rgba(79,70,229,0.65);
+  --category-button-highlight-background: #ccc;
   --category-button-highlight-color: #000000;
   --category-button-color: #666;
   --focus-indicator-color: #333333;
@@ -24,8 +27,8 @@
   --search-icon-color: #aaaaaa;
   --search-placeholder-color: #999999;
   --popup-background-color: #ffffff;
-  --fade-gradient-start: rgba(255, 255, 255, 1);
-  --fade-gradient-end: rgba(255, 255, 255, 0);
+  --fade-gradient-start: rgba(249, 250, 251, 1);
+  --fade-gradient-end: rgba(249, 250, 251, 0);
   --tag-background: rgba(162, 190, 245, 0.3);
   --tag-icon-color: rgba(162, 190, 245, 1);
   --placeholder-background: #cccccc;
@@ -34,7 +37,9 @@
 }
 
 @mixin darkTheme {
+  color-scheme: dark;
   --background-color: #333333;
+  --secondary-background-color: #000000 ;
   --border-color: #666666;
   --secondary-text-color: #999999;
   --text-color: #ffffff;
@@ -44,10 +49,12 @@
   --category-name-background: #333333;
   --category-name-text-color: #ffffff;
   --category-name-button-color: #eeeeee;
-  --category-button-active-background: var(--blue-color);
-  --category-button-active-color: #f7fbff;
+  --category-button-active-color: #A580F9;
+  --category-button-active-background: #000000;
+  --category-button-active-shadow: rgba(165,128,249,0.65);
+  --category-button-highlight-background: #4A4A4A;
   --category-button-highlight-color: #ffffff;
-  --category-button-color: #999999;
+  --category-button-color: #cccccc;
   --focus-indicator-color: #999999;
   --focus-indicator-background: hsl(0, 0%, 50%);
   --image-placeholder-color: #ffffff;

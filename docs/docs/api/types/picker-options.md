@@ -28,7 +28,7 @@ The emoji data to use for the picker. If not specified, the data will be downloa
 
 ### `emojiSize`: `string`
 
-Default: `'1.8em'`
+Default: `'2em'`
 
 The size of emojis in the picker grid. This can be any valid CSS size value.
 
