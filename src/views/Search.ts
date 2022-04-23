@@ -57,7 +57,7 @@ export class Search extends View {
   async render(): Promise<HTMLElement> {
     await super.render();
 
-    this.searchIcon = icon('search');
+    this.searchIcon = icon('search', 'large');
 
     this.notFoundMessage = this.viewFactory.create(ErrorMessage, { 
       message: this.i18n.get('search.notFound'),

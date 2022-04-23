@@ -25,7 +25,7 @@
   --category-button-size: 1.2rem;
   --category-name-height: 2rem;
   --category-name-padding-y: 6px;
-  --search-height: 1.75em;
+  --search-height: 2em;
   --search-margin: 0.5em;
   --search-margin-bottom: 4px;
   --search-height-full: calc(var(--search-height) + var(--search-margin) + var(--search-margin-bottom));
@@ -91,6 +91,7 @@
 
   .searchSkeleton {
     padding: 0 8px;
+    height: var(--search-height);
 
     .searchInput {
       width: 100%;

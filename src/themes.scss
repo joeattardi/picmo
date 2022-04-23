@@ -1,7 +1,7 @@
 @mixin lightTheme {
   color-scheme: light;
   --background-color: #f9fafb;
-  --secondary-background-color: #eeeeee;
+  --secondary-background-color: #e2e8f0;
   --border-color: #cccccc;
   --secondary-text-color: #666666;
   --text-color: #000000;
@@ -13,19 +13,20 @@
   --category-name-button-color: #999999;
   --category-name-accent: hsl(214, 30%, 50%);
   --category-button-active-color: #4f46e5;
-  --category-button-active-background: #fff;
-  --category-button-active-shadow: rgba(79,70,229,0.65);
-  --category-button-highlight-background: #ccc;
+  --category-button-active-background: rgba(255, 255, 255, 0.6);
+  --category-button-active-shadow: rgba(79,70,229,0.5);
+  --category-button-highlight-background: rgba(0, 0, 0, 0.15);
   --category-button-highlight-color: #000000;
   --category-button-color: #666;
   --focus-indicator-color: #333333;
   --focus-indicator-background: hsl(198, 65%, 85%);
   --image-placeholder-color: #666666;
-  --search-background-color: #ffffff;
+  --search-background-color: #f9fafb;
+  --search-focus-background-color: #ffffff;
   --search-border-color: #cccccc;
   --search-focus-border-color: var(--blue-color);
-  --search-icon-color: #aaaaaa;
-  --search-placeholder-color: #999999;
+  --search-icon-color: #999999;
+  --search-placeholder-color: #71717a;
   --popup-background-color: #ffffff;
   --fade-gradient-start: rgba(249, 250, 251, 1);
   --fade-gradient-end: rgba(249, 250, 251, 0);
@@ -34,6 +35,7 @@
   --placeholder-background: #cccccc;
   --error-color: hsl(0, 100%, 40%);
   --error-color-dark: hsl(0, 100%, 45%);
+  --preview-background: #f1f5f9;
 }
 
 @mixin darkTheme {
@@ -51,18 +53,19 @@
   --category-name-button-color: #eeeeee;
   --category-button-active-color: #A580F9;
   --category-button-active-background: #000000;
-  --category-button-active-shadow: rgba(165,128,249,0.65);
+  --category-button-active-shadow: rgba(165,128,249,0.5);
   --category-button-highlight-background: #4A4A4A;
   --category-button-highlight-color: #ffffff;
   --category-button-color: #cccccc;
   --focus-indicator-color: #999999;
   --focus-indicator-background: hsl(0, 0%, 50%);
   --image-placeholder-color: #ffffff;
-  --search-background-color: #666666;
+  --search-background-color: #71717a;
+  --search-focus-background-color: #52525b;
   --search-border-color: #999999;
   --search-focus-border-color: #dbe5f9;
   --search-icon-color: #cccccc;
-  --search-placeholder-color: #999999;
+  --search-placeholder-color: #d4d4d8;
   --popup-background-color: #333333;
   --fade-gradient-start: rgba(51, 51, 51, 1);
   --fade-gradient-end: rgba(51, 51, 51, 0);

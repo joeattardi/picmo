@@ -13,17 +13,17 @@
 .searchField {
   background: var(--search-background-color);
   border-radius: 3px;
-  border: 1px solid var(--border-color);
+  border: none;
   box-sizing: border-box;
   color: var(--text-color);
-  font-size: 0.85em;
+  font-size: 0.9em;
   outline: none;
   padding-right: 2em;
   padding: 0.5em 2.25em 0.5em 0.5em;
   width: 100%;
 
   &:focus {
-    border: 1px solid var(--search-focus-border-color);
+    background: var(--search-focus-background-color);
   }
 
   &::placeholder {
