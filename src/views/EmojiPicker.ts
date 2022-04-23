@@ -50,7 +50,8 @@ export class EmojiPicker extends View {
 
   initialize() {
     this.uiElements = {
-      pickerContent: View.byClass(classes.content)
+      pickerContent: View.byClass(classes.content),
+      header: View.byClass(classes.header)
     };
 
     this.appEvents = {
@@ -315,7 +316,7 @@ export class EmojiPicker extends View {
     if (content === this.emojiArea) {
       this.emojiArea.reset();
       if (this.categoryTabs) {
-        this.el.insertBefore(this.categoryTabs.el, this.ui.pickerContent);
+        this.ui.header.appendChild(this.categoryTabs.el);
       }
     } else {
       this.categoryTabs?.el.remove();

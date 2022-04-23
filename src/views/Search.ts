@@ -169,8 +169,6 @@ export class Search extends View {
           this.resultsContainer.el.classList.add(classes.searchResults);
           lazyLoader.observe(this.el.parentElement as HTMLElement);
           this.resultsContainer.setActive(true, { row: 0, offset: 0}, false);
-          // this.resultsContainer.emojiElements[0].tabIndex = 0;
-          // this.focusedEmojiIndex = 0;
 
           this.resultsContainer.el.addEventListener('keydown', event => this.handleResultsKeydown(event));
 

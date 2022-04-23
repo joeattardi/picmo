@@ -74,7 +74,7 @@ export class EmojiArea extends View {
     this.categories = categories;
     this.emojiVersion = emojiVersion;
 
-    this.handleScroll = throttle(this.handleScroll.bind(this), 200);
+    this.handleScroll = throttle(this.handleScroll.bind(this), 100);
   }
 
   initialize() {
