@@ -1,4 +1,5 @@
 import { toElement } from '../util';
+import { CategoryKey } from '../types';
 import classes from './icons.scss';
 
 import clock from './clock-solid.svg';
@@ -51,6 +52,20 @@ Object.keys(icons).forEach(iconName => {
 });
 
 export { icons };
+
+export const categoryIcons: Record<CategoryKey, string> = {
+  'recents': 'clock',
+  'smileys-emotion': 'smiley',
+  'people-body': 'users',
+  'animals-nature': 'tree',
+  'food-drink': 'mug',
+  'activities': 'gamepad',
+  'travel-places': 'plane',
+  'objects': 'lightbulb',
+  'symbols': 'symbols',
+  'flags': 'flag',
+  'custom': 'robot'
+};
 
 export function icon(name: string, size?: IconSize): Element {
   if (!(name in icons)) {

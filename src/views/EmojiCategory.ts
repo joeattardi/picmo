@@ -3,7 +3,7 @@ import template from '../templates/emojiCategory.ejs';
 import { BaseEmojiCategory } from './BaseEmojiCategory';
 import { EmojiContainer } from './EmojiContainer';
 import { LazyLoader } from '../LazyLoader';
-
+import { categoryIcons } from '../icons';
 import { Category } from '../types';
 
 type EmojiCategoryOptions = {
@@ -41,7 +41,8 @@ export class EmojiCategory extends BaseEmojiCategory {
     return super.render({
       category: this.category,
       emojis: this.emojiContainer,
-      emojiCount: emojis.length
+      emojiCount: emojis.length,
+      icon: categoryIcons[this.category.key]
     });
   }
 }

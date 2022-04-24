@@ -3,7 +3,7 @@ import { BaseEmojiCategory } from './BaseEmojiCategory';
 import { RecentEmojiContainer } from './RecentEmojiContainer';
 import { Category, EmojiRecord } from '../types';
 import { LazyLoader } from '../LazyLoader';
-
+import { categoryIcons } from '../icons';
 import classes from './EmojiCategory.scss';
 import template from '../templates/recentEmojis.ejs';
 import { getRecents, clear } from '../recents';
@@ -62,7 +62,8 @@ export class RecentEmojiCategory extends BaseEmojiCategory {
     return super.render({
       category: this.category,
       emojis: this.emojiContainer,
-      emojiCount: recents.length
+      emojiCount: recents.length,
+      icon: categoryIcons[this.category.key]
     });
   }
 }

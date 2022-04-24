@@ -1,8 +1,8 @@
 import { View } from './view';
 
 import { CategoryTab } from './CategoryTab';
-
-import { Category, CategoryKey } from '../types';
+import { categoryIcons } from '../icons';
+import { Category } from '../types';
 
 import template from '../templates/categoryTabs.ejs';
 import classes from './CategoryTabs.scss';
@@ -10,20 +10,6 @@ import classes from './CategoryTabs.scss';
 type CategoryTabsOptions = {
   categories: Category[];
 }
-
-const categoryIcons: Record<CategoryKey, string> = {
-  'recents': 'clock',
-  'smileys-emotion': 'smiley',
-  'people-body': 'users',
-  'animals-nature': 'tree',
-  'food-drink': 'mug',
-  'activities': 'gamepad',
-  'travel-places': 'plane',
-  'objects': 'lightbulb',
-  'symbols': 'symbols',
-  'flags': 'flag',
-  'custom': 'robot'
-};
 
 export class CategoryTabs extends View {
   private categories: Category[];
