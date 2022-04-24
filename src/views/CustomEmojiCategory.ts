@@ -4,6 +4,7 @@ import { EmojiContainer } from './EmojiContainer';
 import { BaseEmojiCategory } from './BaseEmojiCategory';
 import { LazyLoader } from '../LazyLoader';
 import { Category } from '../types';
+import { categoryIcons } from '../icons';
 
 type CustomEmojiCategoryOptions = {
   category: Category;
@@ -31,7 +32,8 @@ export class CustomEmojiCategory extends BaseEmojiCategory {
     return super.render({
       category: this.category,
       emojis: this.emojiContainer,
-      emojiCount: this.customEmojis.length
+      emojiCount: this.customEmojis.length,
+      icon: categoryIcons[this.category.key]
     });
   }
 }
