@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 
 import { CategoryTabs } from '../CategoryTabs';
 
-import { testView } from '../../../testHelpers/testView';
+import { testViewSync } from '../../../testHelpers/testView';
 import { Category, CategoryKey } from '../../types';
 
 describe('CategoryTabs', () => {
@@ -18,7 +18,7 @@ describe('CategoryTabs', () => {
       createCategory('animals-nature', 2)
     ];
 
-    return testView(CategoryTabs, [{ categories }]);
+    return testViewSync(CategoryTabs, [{ categories }]);
   }
 
   test('renders category tabs', async () => {

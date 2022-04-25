@@ -53,7 +53,7 @@ function renderPlaceholder(data) {
       <div class="${classes.placeholder} ${classes.previewEmoji}"></div>
       <div class="${classes.placeholder} ${classes.previewName}"></div>
       <ul class="${classes.tagList}">
-        ${repeat(3,)}
+        ${repeat(3, /* html */`<li class="${classes.placeholder} ${classes.tag}"></li>`)}
       </ul>
     </div>
   ` : '';

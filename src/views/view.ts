@@ -123,7 +123,7 @@ export abstract class View {
     return this.el;
   }
 
-  async render(templateData: Data = {}): Promise<HTMLElement> {
+  async render(templateData: TemplateData = {}): Promise<HTMLElement> {
     await this.emojiDataPromise;
 
     this.el = await this.template.renderAsync({
