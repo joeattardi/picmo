@@ -6,6 +6,7 @@ export { createPopup } from './createPopup';
 export { Renderer } from './renderers/renderer';
 export { deleteDatabase } from './emojiData';
 export { clear as deleteRecents } from './recents';
+export * from './types';
 
 export async function createDatabase(locale: Locale, staticMessages?: MessagesDataset, staticEmojis?: Emoji[]): Promise<void> {
   const database = await initDatabaseInternal(locale, staticMessages, staticEmojis);
