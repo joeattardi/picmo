@@ -1,20 +1,12 @@
 import { View } from './view';
 
-import { Template } from '../Template';
 import { EmojiContainer } from './EmojiContainer';
 import { EmojiRecord } from '../types';
 import { animate } from '../util';
 import { FocusTrap } from '../focusTrap';
 
+import template from './VariantPopup.template';
 import classes from './VariantPopup.scss';
-
-const template = new Template(({ classes }) => /* html */`
-  <div class="${classes.variantOverlay}">
-    <div class="${classes.variantPopup}">
-      <div data-view="emojis" data-render="sync"></div>
-    </div>
-  </div>
-`);
 
 type VariantPopupOptions = {
   emoji: EmojiRecord;

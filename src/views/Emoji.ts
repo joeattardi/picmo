@@ -3,8 +3,8 @@ import { LazyLoader } from '../LazyLoader';
 import { View } from './view';
 
 import { CategoryKey, EmojiRecord } from '../types';
-import { Template } from '../Template';
 
+import template from './Emoji.template';
 import classes from './Emoji.scss';
 
 type EmojiOptions = {
@@ -12,17 +12,6 @@ type EmojiOptions = {
   lazyLoader?: LazyLoader;
   category?: CategoryKey;
 };
-
-const template = new Template(({ classes, emoji }) => /* html */`
-  <button
-    class="${classes.emoji}
-    title="${emoji.label}
-    data-emoji="${emoji.emoji}"
-    tabindex="-1">
-    <div data-placeholder="emojiContent"></div>
-  </button>
-`);
-
 
 export class Emoji extends View {
   private emoji: EmojiRecord

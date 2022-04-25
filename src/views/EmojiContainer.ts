@@ -4,8 +4,8 @@ import { getEmojiForEvent } from '../util';
 import { View } from './view';
 import { CategoryKey, EmojiFocusTarget, EmojiRecord } from '../types';
 import { FocusGrid, FocusChangeEvent } from '../focusGrid';
-import { Template } from '../Template';
 
+import template from './EmojiContainer.template';
 import classes from './EmojiContainer.scss';
 
 type EmojiContainerOptions = {
@@ -16,12 +16,6 @@ type EmojiContainerOptions = {
   category?: CategoryKey;
   fullHeight?: boolean;
 };
-
-const template = new Template(({ classes }) => /* html */`
-  <div class="${classes.emojiContainer}">
-    <div data-placeholder="emojis"></div>
-  </div>
-`);
 
 /**
  * An EmojiContainer contains all the emojis in a given category.
