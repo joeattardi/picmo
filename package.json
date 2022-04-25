@@ -87,7 +87,6 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.4.0",
-    "ejs": "^3.1.6",
     "emojibase": "^6.1.0",
     "tiny-emitter": "^2.1.0",
     "tslib": "^2.0.0",

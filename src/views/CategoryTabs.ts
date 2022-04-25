@@ -3,9 +3,14 @@ import { View } from './view';
 import { CategoryTab } from './CategoryTab';
 import { categoryIcons } from '../icons';
 import { Category } from '../types';
-
-import template from '../templates/categoryTabs.ejs';
+import { Template } from '../Template';
 import classes from './CategoryTabs.scss';
+
+const template = new Template(({ classes }) => /* html */`
+  <ul role="tablist" class="${classes.categoryButtons}">
+    <div data-placeholder="tabs"></div>
+  </ul>
+`);
 
 type CategoryTabsOptions = {
   categories: Category[];
@@ -31,11 +36,11 @@ export class CategoryTabs extends View {
     super.initialize();
   }
 
-  async render(): Promise<HTMLElement> {
+  renderSync(): HTMLElement {
     this.tabViews = this.categories.map(category => 
       this.viewFactory.create(CategoryTab, { category, icon: categoryIcons[category.key] }));
     
-    await super.render({
+    super.renderSync({
       tabs: this.tabViews.map(view => view.renderSync())
     });
 

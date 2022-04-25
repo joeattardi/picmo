@@ -1,8 +1,10 @@
 import { View } from './view';
-import { compileTemplateSync } from '../templates';
-import placeholderTemplate from '../templates/placeholder.ejs';
-const template = compileTemplateSync(placeholderTemplate);
+import { Template } from '../Template';
 import classes from '../common.scss';
+
+const template = new Template(({ classes }) => /* html */`
+  <div class="${classes.placeholder} ${classes.imagePlaceholder}"></div>
+`);
 
 type ImageOptions = {
   classNames?: string;
@@ -27,7 +29,6 @@ export class Image extends View {
     }, { once: true });
 
     Promise.resolve(src).then(src => img.src = src);
-    // img.src = src;
   }
 
   renderSync() {

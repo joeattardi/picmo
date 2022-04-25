@@ -6,7 +6,6 @@ module.exports = {
   },
   transform: {
     '\\.{jt}s$': 'ts-jest',
-    '\\.ejs$': 'jest-raw-loader',
     '\\.svg$': 'jest-raw-loader'
   },
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts']

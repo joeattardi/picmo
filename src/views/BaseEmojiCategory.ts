@@ -1,15 +1,15 @@
 import { View } from './view';
-
-import classes from './EmojiCategory.scss';
+import { Template } from '../Template';
 import { EmojiContainer } from './EmojiContainer';
 import { Category, EmojiFocusTarget } from '../types';
 import { LazyLoader } from '../LazyLoader';
+import classes from './EmojiCategory.scss';
 
 type BaseEmojiCategoryOptions = {
   category: Category;
   showVariants: boolean;
   lazyLoader?: LazyLoader;
-  template: string;
+  template: Template;
 }
 
 export abstract class BaseEmojiCategory extends View {

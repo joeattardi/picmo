@@ -1,11 +1,12 @@
 import { Emoji } from './Emoji';
-import classes from './EmojiContainer.scss';
-import template from '../templates/emojiContainer.ejs';
 import { LazyLoader } from '../LazyLoader';
 import { getEmojiForEvent } from '../util';
 import { View } from './view';
 import { CategoryKey, EmojiFocusTarget, EmojiRecord } from '../types';
 import { FocusGrid, FocusChangeEvent } from '../focusGrid';
+import { Template } from '../Template';
+
+import classes from './EmojiContainer.scss';
 
 type EmojiContainerOptions = {
   emojis: EmojiRecord[];
@@ -15,6 +16,12 @@ type EmojiContainerOptions = {
   category?: CategoryKey;
   fullHeight?: boolean;
 };
+
+const template = new Template(({ classes }) => /* html */`
+  <div class="${classes.emojiContainer}">
+    <div data-placeholder="emojis"></div>
+  </div>
+`);
 
 /**
  * An EmojiContainer contains all the emojis in a given category.
@@ -104,7 +111,7 @@ export class EmojiContainer extends View {
     }
   }
 
-  async render(): Promise<HTMLElement> {
+  renderSync(): HTMLElement {
     this.emojiViews = this.emojis.map(emoji =>
       this.viewFactory.create(Emoji, {
         emoji,
@@ -116,12 +123,10 @@ export class EmojiContainer extends View {
 
     this.emojiElements = this.emojiViews.map(view => view.renderSync());
 
-    await super.render({
+    return super.renderSync({
       emojis: this.emojiElements,
       i18n: this.i18n
     });
-
-    return this.el;
   }
 
   destroy() {

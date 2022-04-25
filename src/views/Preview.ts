@@ -1,15 +1,25 @@
 import { View } from './view';
 import { EmojiRecord } from '../types';
-import { compileTemplateSync } from '../templates';
 
-import previewTemplate from '../templates/preview.ejs';
+import { Template } from '../Template';
+
 import classes from './Preview.scss';
 
-const renderTag = compileTemplateSync('<li class="<%= classes.tag %>"><%= tag %></li>');
+const tagTemplate = new Template(({ classes, tag }) => /* html */`
+  <li class="${classes.tag}">${tag}</li>
+`);
+
+const template = new Template(({ classes }) => /* html */`
+  <div class="${classes.preview}">
+    <div class="${classes.previewEmoji}"></div>
+    <div class="${classes.previewName}"></div>
+    <ul class="${classes.tagList}"></ul>
+  </div>
+`);
 
 export class EmojiPreview extends View {
   constructor() {
-    super({ template: previewTemplate, classes });
+    super({ template, classes });
   }
 
   initialize() {
@@ -32,7 +42,7 @@ export class EmojiPreview extends View {
     this.ui.name.textContent = emoji.label;
     if (emoji.tags) {
       this.ui.tagList.style.display = 'flex';
-      const tags = emoji.tags.map(tag => renderTag({ tag, classes }) as HTMLElement);
+      const tags = emoji.tags.map(tag => tagTemplate.renderSync({ tag, classes }) as HTMLElement);
       this.ui.tagList.replaceChildren(...tags);
     }
   }

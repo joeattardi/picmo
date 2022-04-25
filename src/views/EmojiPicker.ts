@@ -13,10 +13,12 @@ import { EventCallback } from '../events';
 
 import { determineEmojiVersion } from '../emojiSupport';
 
-import template from '../templates/emojiPicker.ejs';
-import classes from './EmojiPicker.scss';
 import { Category, EmojiRecord } from '../types';
 import { LATEST_EMOJI_VERSION } from 'emojibase';
+
+import template from './EmojiPicker.template';
+
+import classes from './EmojiPicker.scss';
 
 const variableNames = {
   emojisPerRow: '--emojis-per-row',
@@ -378,7 +380,7 @@ export class EmojiPicker extends View {
     });
 
     this.variantPopup = this.viewFactory.create(VariantPopup, { emoji, parent: this.el });
-    this.el.appendChild(await this.variantPopup.render());
+    this.el.appendChild(this.variantPopup.renderSync());
     this.variantPopup.activate();
   }
 

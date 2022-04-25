@@ -6,13 +6,23 @@ import { icon } from '../icons';
 import { EmojiContainer } from './EmojiContainer';
 import { ErrorMessage } from './ErrorMessage';
 
-import { renderTemplate } from '../templates';
+import { Template } from '../Template';
 import { debounce } from '../util';
 import { LazyLoader } from '../LazyLoader';
 import { Category } from '../types';
 
-import searchTemplate from '../templates/search/search.ejs';
-import clearSearchButtonTemplate from '../templates/search/clearButton.ejs';
+const clearSearchButtonTemplate = new Template<HTMLButtonElement>(({ classes, i18n }) => /* html */`
+  <button title="${i18n.get('search.clear')}" class="${classes.clearSearchButton}">
+    <i data-icon="xmark" data-size="large"></i>
+  </button>
+`);
+
+const searchTemplate = new Template(({ classes, i18n }) => /* html */`
+<div class="${classes.searchContainer}">
+  <input class="${classes.searchField}" placeholder="${i18n.get('search')}">
+  <span class="${classes.searchAccessory}"></span>
+</div>
+`, { mode: 'async' });
 
 type SearchOptions = {
   categories: Category[];
@@ -69,10 +79,10 @@ export class Search extends View {
     this.errorMessage = this.viewFactory.create(ErrorMessage, { message: this.i18n.get('search.error') });
     this.errorMessage.renderSync();
 
-    this.clearSearchButton = await renderTemplate(clearSearchButtonTemplate, {
+    this.clearSearchButton = clearSearchButtonTemplate.render({
       classes,
       i18n: this.i18n
-    });
+    }) as HTMLButtonElement;
 
     this.clearSearchButton.addEventListener('click', (event: MouseEvent) => this.onClearSearch(event));
 
@@ -164,7 +174,7 @@ export class Search extends View {
           lazyLoader
         });
 
-        await this.resultsContainer.render();
+        this.resultsContainer.renderSync();
         if (this.resultsContainer?.el) {
           this.resultsContainer.el.classList.add(classes.searchResults);
           lazyLoader.observe(this.el.parentElement as HTMLElement);

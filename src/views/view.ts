@@ -1,6 +1,4 @@
-import { Data } from 'ejs';
-
-import { renderTemplateSync, renderTemplate, ElementTemplate } from '../templates';
+import { Template, TemplateData } from '../Template';
 import { AppEvent, AppEventKey } from '../AppEvents';
 import { Events, EventArgs, EventCallback, AsyncEventCallback } from '../events';
 import { ViewFactory } from '../viewFactory';
@@ -26,7 +24,6 @@ type AppEvents = {
 type ClassMappings = Record<string, string>;
 type UIElementSelectors = Record<string, string>;
 type UIElementMappings = Record<string, HTMLElement>;
-type Template = string | ElementTemplate;
 
 type ViewOptions = {
   template: Template;
@@ -114,11 +111,8 @@ export abstract class View {
 
   animateShow?: () => Promise<Animation | void | Animation[] | (Animation | void)[] >;
 
-  renderSync(templateData: Data = {}): HTMLElement {
-    const templateFn =
-      typeof this.template === 'string' ? (data: Data) => renderTemplateSync(this.template as string, data) : this.template;
-
-    this.el = templateFn({
+  renderSync(templateData: TemplateData = {}): HTMLElement {
+    this.el = this.template.renderSync({
       classes: this.classes,
       i18n: this.i18n,
       pickerId: this.pickerId,
@@ -132,16 +126,12 @@ export abstract class View {
   async render(templateData: Data = {}): Promise<HTMLElement> {
     await this.emojiDataPromise;
 
-    const templateFn =
-      typeof this.template === 'string' ? async (data: Data) => await renderTemplate(this.template as string, data) : this.template;
-
-    this.el = await templateFn({
+    this.el = await this.template.renderAsync({
       classes: this.classes,
       i18n: this.i18n,
       pickerId: this.pickerId,
       ...templateData
     });
-
     this.postRender();
     return this.el;
   }

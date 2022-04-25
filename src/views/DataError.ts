@@ -2,9 +2,17 @@ import { View } from './view';
 import { ErrorMessage } from './ErrorMessage';
 import { initDatabase } from '../emojiData';
 import { Database } from '../db';
+import { Template } from '../Template';
 
-import template from '../templates/dataError.ejs';
 import classes from './DataError.scss';
+
+const template = new Template(({ classList, classes, icon, i18n, message }) => /* html */`
+  <div class="${classList}">
+    <div class="${classes.icon}"><i data-size="10x" data-icon="${icon}"></i></div>
+    <h3 class="${classes.title}">${message}</h3>
+    <button>${i18n.get('retry')}</button>
+  </div>
+`);
 
 type DataErrorOptions = {
   message: string;

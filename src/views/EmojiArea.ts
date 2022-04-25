@@ -1,15 +1,20 @@
 import { View } from './view';
-import classes from './EmojiArea.scss';
-
 import { CategoryTabs } from './CategoryTabs';
 import { EmojiCategory } from './EmojiCategory';
 import { RecentEmojiCategory } from './RecentEmojiCategory';
 import { CustomEmojiCategory } from './CustomEmojiCategory';
 import { shouldAnimate, throttle } from '../util';
-
-import template from '../templates/emojiArea.ejs';
 import { LazyLoader } from '../LazyLoader';
 import { Category, CategoryKey, EmojiFocusTarget } from '../types';
+import { Template } from '../Template';
+
+import classes from './EmojiArea.scss';
+
+const template = new Template(({ classes }) => /* html */`
+  <div class="${classes.emojis}">
+    <div data-placeholder="emojis"></div>
+  </div>
+`, { mode: 'async' });
 
 const categoryClasses = {
   recents: RecentEmojiCategory,
@@ -103,10 +108,7 @@ export class EmojiArea extends View {
     });
 
     await super.render({
-      categoryTabs: this.options.showCategoryTabs ? this.categoryTabs : null,
-      categories: this.categories,
-      i18n: this.i18n,
-      ...categoryEmojiElements
+      emojis: await Promise.all(this.emojiCategories.map(category => category.render()))
     });
 
     this.lazyLoader.observe(this.el);

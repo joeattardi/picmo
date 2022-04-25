@@ -1,12 +1,9 @@
-import { compileTemplateSync } from '../templates';
-import emojiTemplate from '../templates/emoji.ejs';
 import { LazyLoader } from '../LazyLoader';
 
 import { View } from './view';
 
 import { CategoryKey, EmojiRecord } from '../types';
-
-const emojiCompiled = compileTemplateSync(emojiTemplate);
+import { Template } from '../Template';
 
 import classes from './Emoji.scss';
 
@@ -16,13 +13,24 @@ type EmojiOptions = {
   category?: CategoryKey;
 };
 
+const template = new Template(({ classes, emoji }) => /* html */`
+  <button
+    class="${classes.emoji}
+    title="${emoji.label}
+    data-emoji="${emoji.emoji}"
+    tabindex="-1">
+    <div data-placeholder="emojiContent"></div>
+  </button>
+`);
+
+
 export class Emoji extends View {
   private emoji: EmojiRecord
   private lazyLoader?: LazyLoader;
   private category?: CategoryKey;
 
   constructor({ emoji, lazyLoader, category }: EmojiOptions) {
-    super({ template: emojiCompiled, classes });
+    super({ template, classes });
 
     this.emoji = emoji;
     this.lazyLoader = lazyLoader;

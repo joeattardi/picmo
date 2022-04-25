@@ -1,5 +1,4 @@
-import template from '../templates/emojiCategory.ejs';
-
+import { Template } from '../Template';
 import { EmojiContainer } from './EmojiContainer';
 import { BaseEmojiCategory } from './BaseEmojiCategory';
 import { LazyLoader } from '../LazyLoader';
@@ -10,6 +9,16 @@ type CustomEmojiCategoryOptions = {
   category: Category;
   lazyLoader?: LazyLoader;
 }
+
+const template = new Template(({ classes, category, pickerId, icon, i18n }) => /* html */`
+  <div class="${classes.emojiCategory}" role="tabpanel" aria-labelledby="${pickerId}-category-${category.key}">
+    <h3 data-category="${category.key}" class="${classes.categoryName}">
+      <i data-icon="${icon}"></i>
+      ${i18n.get(`categories.${category.key}`, category.message || category.key)}
+    </h3>
+    <div data-view="emojis" data-render="sync"></div>
+  </div>
+`, { mode: 'async' });
 
 export class CustomEmojiCategory extends BaseEmojiCategory {
   constructor({ category, lazyLoader }: CustomEmojiCategoryOptions) {

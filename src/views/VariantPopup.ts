@@ -1,14 +1,20 @@
 import { View } from './view';
 
-import template from '../templates/variantPopup.ejs';
-
-import classes from './VariantPopup.scss';
+import { Template } from '../Template';
 import { EmojiContainer } from './EmojiContainer';
 import { EmojiRecord } from '../types';
-
 import { animate } from '../util';
-
 import { FocusTrap } from '../focusTrap';
+
+import classes from './VariantPopup.scss';
+
+const template = new Template(({ classes }) => /* html */`
+  <div class="${classes.variantOverlay}">
+    <div class="${classes.variantPopup}">
+      <div data-view="emojis" data-render="sync"></div>
+    </div>
+  </div>
+`);
 
 type VariantPopupOptions = {
   emoji: EmojiRecord;
@@ -111,7 +117,7 @@ export class VariantPopup extends View {
     super.destroy();
   }
 
-  async render(): Promise<HTMLElement> {
+  renderSync(): HTMLElement {
     const baseEmoji = {
       ...this.emoji,
       skins: null
@@ -129,7 +135,7 @@ export class VariantPopup extends View {
       preview: false
     })
 
-    await super.render({ emojis: this.emojiContainer });
+    super.renderSync({ emojis: this.emojiContainer });
 
     if (emojis.length < this.options.emojisPerRow) {
       this.el.style.setProperty('--emojis-per-row', emojis.length.toString());

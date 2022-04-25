@@ -1,7 +1,7 @@
 import './EmojiButton.css';
 import { createPicker, createPopup } from '../../src/index';
 
-import { renderTemplateSync } from '../templates';
+import { Template } from '../Template';
 
 function getUIFlags(options: any) {
   const flags = {
@@ -37,12 +37,12 @@ function handleEmojiSelection(button: HTMLButtonElement) {
 }
 
 export function renderPicker(options: any = {}) {
-  const rootElement = renderTemplateSync(`
+  const rootElement = new Template(() => /* html */`
     <div>
       <button class="emoji-button empty"></button>
       <div class="picker"></div>
     </div>
-  `);
+  `).renderSync();
 
   const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button');
   const pickerElement = rootElement.querySelector<HTMLElement>('.picker');
@@ -59,11 +59,11 @@ export function renderPicker(options: any = {}) {
 }
 
 export function createPopupPicker(options: any = {}) {
-  const rootElement = renderTemplateSync(`
+  const rootElement = new Template(() => /* html */`
     <div>
       <button class="emoji-button empty"></button>
     </div>
-  `);
+  `).renderSync();
 
   const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button');
 

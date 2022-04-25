@@ -29,13 +29,6 @@ module.exports = {
     }
 
     config.resolve.fallback.fs = false;
-    config.resolve.alias.templates = path.resolve(__dirname, '../src/templates');
-
-    config.module.rules.push({
-      test: /\.ejs$/,
-      use: 'raw-loader',
-      include: path.resolve(__dirname, '../src/templates')
-    });
 
     config.module.rules.push({
       test: /\.svg$/i,
