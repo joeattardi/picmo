@@ -1,6 +1,3 @@
-import { Image } from './views/Image';
-import { View } from './views/view';
-
 type Callback = () => void;
 
 export class LazyLoader {

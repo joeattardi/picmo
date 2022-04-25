@@ -1,0 +1,29 @@
+{
+  "name": "picmo",
+  "version": "5.0.0-beta.3",
+  "description": "JavaScript emoji picker. any app, any framework.",
+  "keywords": [
+    "emoji",
+    "emoji picker",
+    "javascript"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "update-scss-types": "typed-scss-modules src",
+    "lint": "eslint src/*.ts",
+    "test": "jest --coverage src",
+    "test:watch": "jest --watch src"
+  },
+  "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.dev)",
+  "repository": "joeattardi/picmo",
+  "homepage": "https://picmojs.com",
+  "bugs": "https://github.com/joeattardi/picmo/issues",
+  "funding": "https://github.com/sponsors/joeattardi",
+  "license": "MIT",
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "emojibase": "^6.1.0",
+    "tslib": "^2.4.0",
+    "twemoji": "^14.0.2"
+  }
+}

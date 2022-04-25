@@ -4,4 +4,3 @@ export const notFound: string;
 export const searchAccessory: string;
 export const searchContainer: string;
 export const searchField: string;
-export const searchResults: string;
