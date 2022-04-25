@@ -33,6 +33,10 @@ const config = {
         googleAnalytics: {
           trackingID: 'G-L13JJCL4ND',
           anonymizeIP: true
+        },
+        gtag: {
+          trackingID: 'G-L13JJCL4ND',
+          anonymizeIP: true
         }
       }),
     ],
