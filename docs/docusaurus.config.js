@@ -13,8 +13,8 @@ const config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'joeattardi', // Usually your GitHub org/user name.
-  projectName: 'picmo', // Usually your repo name.
+  organizationName: 'joeattardi',
+  projectName: 'picmo',
 
   presets: [
     [

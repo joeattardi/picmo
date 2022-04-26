@@ -16,12 +16,6 @@ const defaultOptions: Partial<PickerOptions> = {
   showRecents: true,
   showPreview: true,
 
-  hideOnClickOutside: true,
-  hideOnEmojiSelect: true,
-  hideOnEscape: true,
-  autoFocusSearch: true,
-
-  position: 'auto',
   emojisPerRow: 8,
   visibleRows: 6,
 

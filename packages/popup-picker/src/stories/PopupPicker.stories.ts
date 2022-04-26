@@ -1,6 +1,6 @@
-import { createPopupPicker } from './EmojiButton';
+import { createPicker } from './popupPicker';
 
-import { getArgs, customEmojis } from './common';
+import { getArgs, customEmojis } from '../../../picmo/src/stories/common';
 
 export default getArgs({
   title: 'Popup Emoji Picker',
@@ -40,7 +40,7 @@ export default getArgs({
 });
 
 const Template = args => {
-  return createPopupPicker({
+  return createPicker({
     position: 'right-start',
     ...args
   });

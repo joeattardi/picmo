@@ -2,14 +2,14 @@
   "name": "picmo",
   "private": true,
   "version": "5.0.0-beta.3",
-  "description": "JavaScript emoji picker - any app, any framework.",
+  "description": "JavaScript emoji picker. Any app, any framework.",
   "keywords": [
     "emoji",
     "emoji picker",
     "javascript"
   ],
   "workspaces": [
-    "./projects/*"
+    "./packages/*"
   ],
   "main": "dist/index.js",
   "scripts": {

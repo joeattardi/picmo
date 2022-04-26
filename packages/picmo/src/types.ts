@@ -1,4 +1,3 @@
-import { Placement } from '@popperjs/core';
 import { Locale, MessagesDataset, Emoji } from 'emojibase';
 import { Renderer } from './renderers/renderer';
 import { Dictionary } from './i18n';
@@ -43,8 +42,6 @@ export type FixedPosition = {
   left?: string;
   right?: string;
 };
-
-export type Position = FixedPosition | Placement;
 
 export type CategoryKey = 'activities' | 'animals-nature' | 'custom' | 'flags' | 'food-drink' | 'objects' | 'people-body' | 'recents' | 'smileys-emotion' | 'symbols' | 'travel-places';
 
@@ -114,52 +111,7 @@ export type PickerOptions = {
    */
   showPreview: boolean;
 
-  /**
-   * Whether or not to hide the picker when the user clicks outside of it.
-   * Only applies to popup pickers.
-   * @default true
-   */
-  hideOnClickOutside: boolean;
-
-  /**
-   * Whether or not to hide the picker when an emoji is selected.
-   * Only applies to popup pickers.
-   * @default true
-   */
-  hideOnEmojiSelect: boolean;
-
-  /**
-   * Whether or not to hide the picker when the user presses the Escape key.
-   * Only applies to popup pickers.
-   * @default true
-   */
-  hideOnEscape: boolean;
-
-  /**
-   * Whether or not to automatically focus the search box when the picker is shown.
-   * Only applies to popup pickers.
-   * @default true
-   */
   autoFocusSearch: boolean;
-
-  /**
-   * How the picker should be positioned.
-   * Only applies to popup pickers.
-   * @default 'auto'
-   */
-  position?: Position;
-
-  /**
-   * The element which the picker will be positioned relative to.
-   * Only applies to popup pickers.
-   */
-  referenceElement?: HTMLElement;
-
-  /**
-   * The element which is used to trigger a popup picker, usually a button or other interactive element.
-   * Only applies to popup pickers.
-   */
-  triggerElement?: HTMLElement;
 
   /**
    * The maximum number of recent emojis that should be remembered.

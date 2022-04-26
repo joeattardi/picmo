@@ -1,13 +1,15 @@
-import { EmojiPicker } from './views/EmojiPicker';
-import { PickerOptions, Position } from './types';
-import { ExternalEvent, ExternalEvents } from './ExternalEvents';
-
-import { EventCallback } from './events';
-import { createPicker } from './createPicker';
+import {
+  animate,
+  getOptions as getPickerOptions,
+  EmojiPicker,
+  EventCallback,
+  createPicker,
+  FocusTrap,
+  PickerOptions
+} from 'picmo';
+import { PopupEvent, PopupEvents } from './PopupEvents';
 import { setPosition, PositionCleanup } from './positioning';
-import { animate } from './util';
-import { FocusTrap } from './focusTrap';
-
+import { PopupOptions, Position } from './types';
 import { getOptions } from './options';
 
 const SHOW_HIDE_DURATION = 150;
@@ -19,12 +21,13 @@ export class PopupPickerController {
   private popupEl: HTMLElement;
   private focusTrap: FocusTrap;
   private positionCleanup: PositionCleanup;
-  private options: PickerOptions;
-  private externalEvents = new ExternalEvents();
 
-  constructor(options: Partial<PickerOptions>) {
+  private options: PickerOptions & PopupOptions;
+  private externalEvents = new PopupEvents();
+
+  constructor(pickerOptions: Partial<PickerOptions>, popupOptions: Partial<PopupOptions>) {
     this.popupEl = document.createElement('div');
-    this.options = getOptions(options);
+    this.options = { ...getOptions(popupOptions), ...getPickerOptions(pickerOptions) };
     this.picker = createPicker({ ...this.options, rootElement: this.popupEl });
     this.focusTrap = new FocusTrap();
 
@@ -56,14 +59,20 @@ export class PopupPickerController {
    * @param event The event to listen for
    * @param callback The callback to call when the event is triggered
    */
-  addEventListener(event: ExternalEvent, callback: EventCallback) {
+  addEventListener(event: PopupEvent, callback: EventCallback) {
     this.externalEvents.on(event, callback);
     this.picker.addEventListener(event, callback);
   }
 
-  removeEventListener(event: ExternalEvent, callback: EventCallback) {
+  removeEventListener(event: PopupEvent, callback: EventCallback) {
     this.externalEvents.off(event, callback);
     this.picker.removeEventListener(event, callback);
+  }
+
+  private handleKeydown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.close();
+    }
   }
 
   /**
@@ -116,7 +125,7 @@ export class PopupPickerController {
   }
 
   /**
-   * Closes the picker
+   * Closes the picker.
    *
    * @returns a Promise that resolves when the picker is finished closing
    */
@@ -131,16 +140,42 @@ export class PopupPickerController {
     this.popupEl.remove();
     this.picker.reset();
     this.positionCleanup();
-    
+
     this.focusTrap.deactivate();
     this.options.triggerElement?.focus();
     this.externalEvents.emit('picker:close');
   }
 
-  private handleKeydown(event: KeyboardEvent) {
-    if (event.key === 'Escape') {
-      this.close();
+  /**
+   * Finds any pending (running) animations on the picker element.
+   *
+   * @returns an array of Animation objects that are in the 'running' state.
+   */
+  private getRunningAnimations(): Animation[] {
+    return this.picker.el.getAnimations().filter(animation => animation.playState === 'running');
+  }
+
+  /**
+   * Sets up the picker positioning.
+   */
+  private setPosition() {
+    this.positionCleanup?.();
+    if (this.options.referenceElement) {
+      this.positionCleanup = setPosition(
+        this.popupEl,
+        this.options.referenceElement,
+        this.options.position as Position
+      );
     }
+  }
+
+  /**
+   * Waits for all pending animations on the picker element to finish.
+   *
+   * @returns a Promise that resolves when all animations have finished
+   */
+  private awaitPendingAnimations(): Promise<Animation[]> {
+    return Promise.all(this.getRunningAnimations().map(animation => animation.finished));
   }
 
   /**
@@ -165,34 +200,6 @@ export class PopupPickerController {
   }
 
   /**
-   * Finds any pending (running) animations on the picker element.
-   *
-   * @returns an array of Animation objects that are in the 'running' state.
-   */
-  private getRunningAnimations(): Animation[] {
-    return this.picker.el.getAnimations().filter(animation => animation.playState === 'running');
-  }
-
-  /**
-   * Sets up the picker positioning.
-   */
-  private setPosition() {
-    this.positionCleanup?.();
-    if (this.options.referenceElement) {
-      this.positionCleanup = setPosition(this.popupEl, this.options.referenceElement, this.options.position as Position);
-    }
-  }
-
-  /**
-   * Waits for all pending animations on the picker element to finish.
-   *
-   * @returns a Promise that resolves when all animations have finished
-   */
-  private awaitPendingAnimations(): Promise<Animation[]> {
-    return Promise.all(this.getRunningAnimations().map(animation => animation.finished));
-  }
-
-  /**
    * Initiates an animation either for opening or closing the picker using the Web Animations API.
    * If animations are not enabled or supported, the picker will be immediately opened or closed.
    *
@@ -200,15 +207,20 @@ export class PopupPickerController {
    * @returns The Animation object that is running
    */
   private animateOpenStateChange(openState: boolean): Promise<Animation | void> {
-    return animate(this.picker.el, {
-      opacity: [0, 1],
-      transform: ['scale(0.9)', 'scale(1)']
-    }, {
-      duration: SHOW_HIDE_DURATION,
-      id: openState ? 'show-picker' : 'hide-picker',
-      easing: 'ease-in-out',
-      direction: openState ? 'normal' : 'reverse'
-    }, this.options);
+    return animate(
+      this.picker.el,
+      {
+        opacity: [0, 1],
+        transform: ['scale(0.9)', 'scale(1)']
+      },
+      {
+        duration: SHOW_HIDE_DURATION,
+        id: openState ? 'show-picker' : 'hide-picker',
+        easing: 'ease-in-out',
+        direction: openState ? 'normal' : 'reverse'
+      },
+      this.options
+    );
   }
 
   /**

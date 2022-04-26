@@ -1,33 +1,31 @@
 {
-  "name": "picmo",
+  "name": "@picmo/popup-picker",
   "version": "5.0.0-beta.3",
-  "description": "JavaScript emoji picker. Any app, any framework.",
-  "keywords": [
-    "emoji",
-    "emoji picker",
-    "javascript"
-  ],
+  "description": "Popup emoji picker for PicMo",
   "main": "dist/index.js",
-  "files": ["dist"],
   "scripts": {
     "build": "npm run check && rollup -c",
     "check": "tsc --noEmit",
     "clean": "rimraf dist",
     "lint": "eslint src/*.ts",
-    "start": "rollup -cw",
-    "test:watch": "jest --watch src",
-    "test": "jest --coverage src",
-    "update-scss-types": "typed-scss-modules src"
+    "start": "rollup -cw"
   },
+  "keywords": [
+    "popup",
+    "emoji",
+    "emoji picker",
+    "javascript"
+  ],
   "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.dev)",
   "repository": "joeattardi/picmo",
   "homepage": "https://picmojs.com",
   "bugs": "https://github.com/joeattardi/picmo/issues",
   "funding": "https://github.com/sponsors/joeattardi",
   "license": "MIT",
+  "peerDependencies": {
+    "picmo": "^5.0.0-beta.3"
+  },
   "dependencies": {
-    "emojibase": "^6.1.0",
-    "tslib": "^2.4.0",
-    "twemoji": "^14.0.2"
+    "@popperjs/core": "^2.11.5"
   }
 }

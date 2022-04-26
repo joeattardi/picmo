@@ -1,7 +1,11 @@
 const path = require('path');
 
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: [
+    '../packages/picmo/src/stories/*.stories.ts',
+    '../packages/popup-picker/src/stories/*.stories.ts'
+  ],
+  // stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   framework: '@storybook/html',
 
@@ -32,7 +36,7 @@ module.exports = {
 
     config.module.rules.push({
       test: /\.svg$/i,
-      include: path.resolve(__dirname, '../src/icons'),
+      exclude: /stories/,
       type: 'asset/source'
     })
 

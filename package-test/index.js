@@ -4,8 +4,8 @@
 
 // import TwemojiRenderer from 'picmo/dist/twemoji';
 // import { createPopup } from 'picmo';
-import { TwemojiRenderer } from 'picmo/renderers/twemoji';
-import { NativeRenderer } from 'picmo/renderers/native';
+// import { TwemojiRenderer } from 'picmo/renderers/twemoji';
+// import { NativeRenderer } from 'picmo/renderers/native';
 import { createPopup } from 'picmo';
 
 const button = document.querySelector('#native .emoji-button');
@@ -13,7 +13,6 @@ const button = document.querySelector('#native .emoji-button');
 const picker = createPopup({
   referenceElement: button,
   triggerElement: button,
-  renderer: new NativeRenderer(),
   position: 'right-start'
 });
 
@@ -21,14 +20,14 @@ button.addEventListener('click', () => {
   picker.toggle();
 });
 
-const twemoji = document.querySelector('#twemoji .emoji-button');
-const twemojiPicker = createPopup({
-  referenceElement: twemoji,
-  triggerElement: twemoji,
-  renderer: new TwemojiRenderer(),
-  position: 'right-start'
-});
+// const twemoji = document.querySelector('#twemoji .emoji-button');
+// const twemojiPicker = createPopup({
+//   referenceElement: twemoji,
+//   triggerElement: twemoji,
+//   renderer: new TwemojiRenderer(),
+//   position: 'right-start'
+// });
 
-twemoji.addEventListener('click', () => {
-  twemojiPicker.toggle();
-});
+// twemoji.addEventListener('click', () => {
+//   twemojiPicker.toggle();
+// });
