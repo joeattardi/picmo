@@ -10,6 +10,7 @@
   "main": "dist/index.js",
   "files": ["dist"],
   "scripts": {
+    "prepublishOnly": "npm run clean && npm run build",
     "build": "npm run check && rollup -c",
     "check": "tsc --noEmit",
     "clean": "rimraf dist",

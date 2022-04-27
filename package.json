@@ -16,8 +16,8 @@
   ],
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run check && rollup -c",
-    "release": "npm run build && node scripts/prepare-release.js",
+    "prepublishOnly": "npm run build",
+    "build": "npm run --workspace=packages build",
     "precommit": "npm run lint && npm run test && npm run check",
     "check": "tsc --noEmit",
     "check:watch": "tsc --noEmit --watch",

@@ -10,9 +10,9 @@ const bundles = [
     input: 'src/index.ts',
     output: {
       sourcemap: true,
-      file: 'dist/umd/picmo-popup.js',
+      file: 'dist/umd/picmo-twemoji.js',
       format: 'umd',
-      name: 'picmoPopup'
+      name: 'picmoTwemoji'
     }
   },
   {

@@ -3,7 +3,7 @@ import { View } from '../src/views/view';
 
 import { Events } from '../src/events';
 import { AppEvent } from '../src/AppEvents';
-import { Bundle } from '../src/i18n';
+import { Bundle } from '../src/i18n/bundle';
 import { NativeRenderer } from '../src/renderers/native';
 import { Database } from '../src/db';
 

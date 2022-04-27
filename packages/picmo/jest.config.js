@@ -8,5 +8,10 @@ module.exports = {
     '\\.{jt}s$': 'ts-jest',
     '\\.svg$': 'jest-raw-loader'
   },
+  globals: {
+    'ts-jest': {
+      tsConfig: 'tsconfig.test.json'
+    }
+  },
   setupFilesAfterEnv: ['<rootDir>/jest-setup.ts']
 };
