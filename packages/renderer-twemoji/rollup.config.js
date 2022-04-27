@@ -7,18 +7,16 @@ import { terser } from 'rollup-plugin-terser';
 
 const bundles = [
   {
-    input: 'src/umd/picmo.ts',
+    input: 'src/index.ts',
     output: {
       sourcemap: true,
-      file: 'dist/umd/picmo.js',
+      file: 'dist/umd/picmo-popup.js',
       format: 'umd',
-      name: 'picmo'
+      name: 'picmoPopup'
     }
   },
   {
-    input: {
-      'index': './src/index.ts'
-    },
+    input: './src/index.ts',
     output: {
       dir: 'dist',
       format: 'es'

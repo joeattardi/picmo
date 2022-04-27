@@ -1,1 +1,1 @@
-export * from './bundle';
+export { default as en } from './lang-en';

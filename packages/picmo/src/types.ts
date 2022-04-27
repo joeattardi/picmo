@@ -1,6 +1,6 @@
 import { Locale, MessagesDataset, Emoji } from 'emojibase';
 import { Renderer } from './renderers/renderer';
-import { Dictionary } from './i18n';
+import { Dictionary } from './i18n/bundle';
 
 export type EmojiFocusTarget = {
   row: 'first' | 'last' | number;

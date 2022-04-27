@@ -13,13 +13,6 @@ module.exports = {
     builder: 'webpack5'
   },
 
-  babel: async options => {
-    return {
-      ...options,
-      plugins: options.plugins.filter(x => !(typeof x === 'string' && x.includes('plugin-transform-classes')))
-    };
-  },
-
   managerWebpack: async (config) => {
     if (process.env.NODE_ENV === 'production') {
       config.output.publicPath = '/storybook/';

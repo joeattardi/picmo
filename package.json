@@ -9,7 +9,8 @@
     "javascript"
   ],
   "workspaces": [
-    "./packages/*"
+    "./packages/*",
+    "./package-test"
   ],
   "main": "dist/index.js",
   "scripts": {

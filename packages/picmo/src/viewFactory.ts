@@ -1,7 +1,7 @@
 import { AppEvent } from './AppEvents';
 import { Database } from './db';
 import { Events } from './events';
-import { Bundle } from './i18n';
+import { Bundle } from './i18n/bundle';
 import { Renderer } from './renderers/renderer';
 import { PickerOptions, EmojiRecord } from './types';
 import { View } from './views/view';

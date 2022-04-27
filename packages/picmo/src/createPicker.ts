@@ -5,7 +5,7 @@ import { ViewFactory } from './viewFactory';
 export { LazyLoader } from './LazyLoader';
 import { Database } from './db';
 import { initDatabase } from './emojiData';
-import { Bundle } from './i18n';
+import { Bundle } from './i18n/bundle';
 import { getOptions } from './options';
 
 function initData(options: PickerOptions): Promise<Database> {

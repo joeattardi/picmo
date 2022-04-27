@@ -1,4 +1,4 @@
-import { TwemojiRenderer } from '../renderers/twemoji';
+import { TwemojiRenderer } from '../../../renderer-twemoji/src/index';
 import { NativeRenderer } from '../renderers/native';
 
 import { lightTheme, darkTheme, autoTheme } from '../themes';

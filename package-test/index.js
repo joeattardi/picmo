@@ -6,7 +6,9 @@
 // import { createPopup } from 'picmo';
 // import { TwemojiRenderer } from 'picmo/renderers/twemoji';
 // import { NativeRenderer } from 'picmo/renderers/native';
-import { createPopup } from 'picmo';
+// import { createPopup } from 'picmo';
+import { createPopup } from '@picmo/popup-picker';
+import { TwemojiRenderer } from '@picmo/renderer-twemoji';
 
 const button = document.querySelector('#native .emoji-button');
 

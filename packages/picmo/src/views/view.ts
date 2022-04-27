@@ -2,7 +2,7 @@ import { Template, TemplateData } from '../Template';
 import { AppEvent, AppEventKey } from '../AppEvents';
 import { Events, EventArgs, EventCallback, AsyncEventCallback } from '../events';
 import { ViewFactory } from '../viewFactory';
-import { Bundle } from '../i18n';
+import { Bundle } from '../i18n/bundle';
 import { Renderer } from '../renderers/renderer';
 import { Database } from '../db';
 import { EmojiRecord, PickerOptions } from '../types';

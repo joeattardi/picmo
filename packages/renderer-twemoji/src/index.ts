@@ -1,7 +1,6 @@
 import twemoji from 'twemoji';
 
-import { EmojiRecord, EmojiSelection } from '../types';
-import { Renderer } from './renderer';
+import { EmojiRecord, EmojiSelection, Renderer } from 'picmo';
 
 import classes from './twemoji.scss';
 

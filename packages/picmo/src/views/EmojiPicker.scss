@@ -234,10 +234,6 @@
   display: grid;
   gap: 8px;
   border-bottom: 1px solid var(--border-color);
-
-  &:empty {
-    background: red;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

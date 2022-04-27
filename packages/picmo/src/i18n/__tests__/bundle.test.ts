@@ -1,4 +1,4 @@
-import { Bundle } from '../index';
+import { Bundle } from '../bundle';
 
 describe('i18n Bundle', () => {
   test('gets an existing value from the map', () => {
