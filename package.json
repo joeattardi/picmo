@@ -10,7 +10,8 @@
   ],
   "workspaces": [
     "./packages/*",
-    "./package-test"
+    "./package-test",
+    "./storybook"
   ],
   "main": "dist/index.js",
   "scripts": {
@@ -26,10 +27,8 @@
     "test:watch": "jest --watch src",
     "lint": "eslint src/*.ts",
     "prettify": "prettier src/*.ts --write",
-    "storybook": "start-storybook -p 6006",
-    "start": "npm run storybook",
-    "update-scss-types": "typed-scss-modules src",
-    "build:storybook": "build-storybook -o docs/static/storybook",
+    "start": "npm run --prefix storybook start",
+    "update-scss-types": "typed-scss-modules packages",
     "build:docs": "npm run build:storybook && npm run --prefix docs build",
     "start:docs": "npm run --prefix docs start"
   },

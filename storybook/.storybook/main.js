@@ -1,10 +1,11 @@
 const path = require('path');
 
 module.exports = {
-  stories: [
-    '../packages/picmo/src/stories/*.stories.ts',
-    '../packages/popup-picker/src/stories/*.stories.ts'
-  ],
+  stories: ['../stories/**/*.stories.ts'],
+  // stories: [
+  //   '../packages/picmo/src/stories/*.stories.ts',
+  //   '../packages/popup-picker/src/stories/*.stories.ts'
+  // ],
   // stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   framework: '@storybook/html',

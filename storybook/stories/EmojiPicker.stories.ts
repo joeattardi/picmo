@@ -1,6 +1,6 @@
 import { renderPicker } from './EmojiButton';
 import { getArgs, customEmojis } from './common';
-import { CategoryKey } from '../types';
+import { CategoryKey } from 'picmo';
 
 export default getArgs({
   title: 'Emoji Picker'
@@ -36,7 +36,7 @@ Custom.args = {
 
 export const CustomDimensions = Template.bind({});
 CustomDimensions.args = {
-  emojisPerRow: 8,
+  emojisPerRow: 12,
   visibleRows: 6,
   emojiSize: '2em'
 };

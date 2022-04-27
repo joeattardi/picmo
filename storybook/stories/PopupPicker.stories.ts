@@ -1,6 +1,6 @@
-import { createPicker } from './popupPicker';
+import { createPicker } from './PopupPicker';
 
-import { getArgs, customEmojis } from '../../../picmo/src/stories/common';
+import { getArgs, customEmojis } from './common';
 
 export default getArgs({
   title: 'Popup Emoji Picker',

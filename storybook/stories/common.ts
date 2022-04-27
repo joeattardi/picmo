@@ -1,8 +1,14 @@
-import { TwemojiRenderer } from '../../../renderer-twemoji/src/index';
-import { NativeRenderer } from '../renderers/native';
-
-import { lightTheme, darkTheme, autoTheme } from '../themes';
 import { Meta } from '@storybook/html';
+
+import { TwemojiRenderer } from '@picmo/renderer-twemoji';
+import { lightTheme, darkTheme, autoTheme, NativeRenderer } from 'picmo';
+
+export function toElement<E extends Element = HTMLElement>(html: string): E {
+  const template = document.createElement('template');
+  template.innerHTML = html;
+
+  return template.content?.firstElementChild as E;
+}
 
 export function getArgs(extraArgs): Meta {
   return {

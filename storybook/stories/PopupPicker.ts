@@ -1,5 +1,5 @@
-import { Template } from '../../../picmo/src/Template';
-import { createPopup } from '../index';
+import { toElement } from './common';
+import { createPopup } from '@picmo/popup-picker';
 
 function handleEmojiSelection(button: HTMLButtonElement) {
   return selection => {
@@ -17,11 +17,11 @@ function handleEmojiSelection(button: HTMLButtonElement) {
 }
 
 export function createPicker(options: any = {}) {
-  const rootElement = new Template(() => /* html */`
+  const rootElement = toElement(/* html */`
     <div>
       <button class="emoji-button empty"></button>
     </div>
-  `).renderSync();
+  `);
 
   const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button');
 

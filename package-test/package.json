@@ -1,5 +1,6 @@
 {
   "name": "package-test",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "scripts": {
