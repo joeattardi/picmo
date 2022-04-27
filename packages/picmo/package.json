@@ -1,6 +1,6 @@
 {
   "name": "picmo",
-  "version": "5.0.0-beta.3",
+  "version": "5.0.0-beta.4",
   "description": "JavaScript emoji picker. Any app, any framework.",
   "keywords": [
     "emoji",
@@ -8,7 +8,9 @@
     "javascript"
   ],
   "main": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "prepublishOnly": "npm run clean && npm run build",
     "build": "npm run check && rollup -c",

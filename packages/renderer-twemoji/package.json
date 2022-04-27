@@ -1,9 +1,11 @@
 {
   "name": "@picmo/renderer-twemoji",
-  "version": "5.0.0-beta.3",
+  "version": "5.0.0-beta.4",
   "description": "Twemoji renderer for PicMo",
   "main": "dist/index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "prepublishOnly": "npm run clean && npm run build",
     "build": "npm run check && rollup -c",
