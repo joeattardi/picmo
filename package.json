@@ -11,14 +11,14 @@
   "workspaces": [
     "./packages/*",
     "./package-test",
-    "./storybook"
+    "./storybook",
+    "./docs"
   ],
   "main": "dist/index.js",
   "scripts": {
     "build": "npm run check && rollup -c",
     "release": "npm run build && node scripts/prepare-release.js",
     "precommit": "npm run lint && npm run test && npm run check",
-    "prebuild:docs": "npm install --prefix docs",
     "check": "tsc --noEmit",
     "check:watch": "tsc --noEmit --watch",
     "clean": "rimraf dist",
@@ -29,7 +29,7 @@
     "prettify": "prettier src/*.ts --write",
     "start": "npm run --prefix storybook start",
     "update-scss-types": "typed-scss-modules packages",
-    "build:docs": "npm run build:storybook && npm run --prefix docs build",
+    "build:docs": "npm run --prefix storybook build && npm run --prefix docs build",
     "start:docs": "npm run --prefix docs start"
   },
   "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.dev)",
