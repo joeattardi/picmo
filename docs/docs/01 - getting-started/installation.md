@@ -42,13 +42,16 @@ This will expose a `picmo` object in the global window scope with the following 
 - `autoTheme`: CSS class for the `auto` theme
 - `darkTheme`: CSS class for the `dark` theme
 - `lightTheme`: CSS class for the `light` theme
-- [`createDatabase`](../api/functions/create-database)
-- [`createPicker`](../api/functions/create-picker)
-- [`createPopup`](../api/functions/create-popup)
-- [`deleteDatabase`](../api/functions/delete-database)
-- [`deleteRecents`](../api/functions/delete-recents)
-- [`NativeRenderer`](../api/classes/native-renderer)
-- [`Renderer`](../api/classes/renderer)
+- [`createDatabase`](../api/picmo/functions/create-database)
+- [`createPicker`](../api/picmo/functions/create-picker)
+- [`deleteDatabase`](../api/picmo/functions/delete-database)
+- [`deleteRecents`](../api/picmo/functions/delete-recents)
+- [`NativeRenderer`](../api/picmo/classes/native-renderer)
+- [`Renderer`](../api/picmo/classes/renderer)
+
+### Popup picker
+
+- [`createPopup`](../api/popup-picker/functions/create-popup)
 
 ### Twemoji renderer
 
@@ -58,7 +61,7 @@ If you want to use the Twemoji renderer, it is a separate UMD module:
 <script src="https://unpkg.com/picmo@5.0.0-beta.3/umd/picmo.twemoji.js"></script>
 ```
 
-This will expose the [`TwemojiRenderer`](../api/classes/twemoji-renderer) class in the global window scope.
+This will expose the [`TwemojiRenderer`](../api/renderer-twemoji/classes/twemoji-renderer) class in the global window scope.
 
 ## Use ESM from CDN
 

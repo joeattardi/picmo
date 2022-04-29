@@ -3,13 +3,22 @@
 	"tasks": [
 		{
 			"type": "npm",
-			"script": "storybook",
+			"script": "start",
 			"problemMatcher": [],
-			"label": "npm: storybook",
-			"detail": "start-storybook -p 6006",
+			"label": "run storybook",
 			"group": {
 				"kind": "build",
-				"isDefault": true
+				"isDefault": false
+			}
+		},
+		{
+			"type": "npm",
+			"script": "start:docs",
+			"problemMatcher": [],
+			"label": "run documentation",
+			"group": {
+				"kind": "build",
+				"isDefault": false
 			}
 		}
 	]

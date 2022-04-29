@@ -6,7 +6,7 @@ Controls how emoji are rendered, and also the data that is emitted when an emoji
 
 :::note
 
-You won't need to work with the `Renderer` class unless you are writing a custom renderer. Otherwise, you can just instantiate the [`NativeRenderer`](./native-renderer) or [`TwemojiRenderer`](./twemoji-renderer) classes as needed.
+You won't need to work with the `Renderer` class unless you are writing a custom renderer. Otherwise, you can just instantiate the [`NativeRenderer`](./native-renderer) or [`TwemojiRenderer`](../../renderer-twemoji/classes/twemoji-renderer) classes as needed.
 
 :::
 

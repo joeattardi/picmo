@@ -6,8 +6,6 @@ A `PickerOptions` object is passed to the `createPicker` and `createPopup` funct
 
 ## Properties
 
-The following properties are supported for both inline and popup pickers.
-
 ### `animate`
 
 - **Type**: `boolean`

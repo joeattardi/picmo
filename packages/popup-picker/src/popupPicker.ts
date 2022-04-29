@@ -5,7 +5,8 @@ import {
   EventCallback,
   createPicker,
   FocusTrap,
-  PickerOptions
+  PickerOptions,
+  ExternalEvent
 } from 'picmo';
 import { PopupEvent, PopupEvents } from './PopupEvents';
 import { setPosition, PositionCleanup } from './positioning';
@@ -61,12 +62,12 @@ export class PopupPickerController {
    */
   addEventListener(event: PopupEvent, callback: EventCallback) {
     this.externalEvents.on(event, callback);
-    this.picker.addEventListener(event, callback);
+    this.picker.addEventListener(event as ExternalEvent, callback);
   }
 
   removeEventListener(event: PopupEvent, callback: EventCallback) {
     this.externalEvents.off(event, callback);
-    this.picker.removeEventListener(event, callback);
+    this.picker.removeEventListener(event as ExternalEvent, callback);
   }
 
   private handleKeydown(event: KeyboardEvent) {

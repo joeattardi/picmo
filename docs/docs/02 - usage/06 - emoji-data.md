@@ -32,7 +32,7 @@ const picker = createPicker({
 
 Once the data is available, whether provided in the bundle or downloaded from the CDN, it is used to populate an IndexedDB database of the emoji data. Databases are locale-specific - a new database is created per locale used by the picker.
 
-The database is automatically created when the picker is first initialized if it one does not already exist. However, you can also pre-create the database ahead of time by calling [`createDatabase`](../api/functions/create-database).
+The database is automatically created when the picker is first initialized if it one does not already exist. However, you can also pre-create the database ahead of time by calling [`createDatabase`](../api/picmo/functions/create-database).
 
 All picker instances share the same database.
 

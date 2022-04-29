@@ -1,7 +1,7 @@
 import './EmojiButton.css';
 import { toElement } from './common';
 
-import { createPicker } from 'picmo';
+import { createPicker } from '../../packages/picmo/src/index';
 
 function getUIFlags(options: any) {
   const flags = {

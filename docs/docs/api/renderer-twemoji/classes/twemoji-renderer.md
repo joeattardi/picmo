@@ -1,7 +1,7 @@
 # `TwemojiRenderer`
 
 <pre>
-class TwemojiRenderer extends <a href="renderer">Renderer</a>
+class TwemojiRenderer extends <a href="../../picmo/classes/renderer">Renderer</a>
 </pre>
 
 Renders emojis using the [Twemoji](https://twemoji.twitter.com/) images.

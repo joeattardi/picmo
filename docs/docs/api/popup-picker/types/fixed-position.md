@@ -8,18 +8,26 @@ More details on fixed positining can be found [on MDN](https://developer.mozilla
 
 ## Properties
 
-### `top`: `string` | `undefined`
+### `top`
+
+- **Type**: `string` | `undefined`
 
 The value for the `top` CSS property. Can be any valid CSS value.
 
-### `bottom`: `string` | `undefined`
+### `bottom`
+
+- **Type**: `string` | `undefined`
 
 The value for the `bottom` CSS property. Can be any valid CSS value.
 
-### `left`: `string` | `undefined`
+### `left`
+
+- **Type**: `string` | `undefined`
 
 The value for the `left` CSS property. Can be any valid CSS value.
 
-### `right`: `string` | `undefined`
+### `right`
+
+- **Type**: `string` | `undefined`
 
 The value for the `right` CSS property. Can be any valid CSS value.

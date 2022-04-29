@@ -8,12 +8,12 @@ PicMo ships with three built-in themes:
 
 ## Specifying a theme
 
-The theme is specified with the `theme` option in the [`PickerOptions`](../api/types/picker-options#theme-string) object.
+The theme is specified with the `theme` option in the [`PickerOptions`](../api/picmo/types/picker-options#theme) object.
 
-The theme names are exported from the `picmo/themes` submodule:
+The theme names are exported directly from the `picmo` module:
 
 ```javascript
-import { autoTheme, lightTheme, darkTheme } from 'picmo/themes';
+import { autoTheme, lightTheme, darkTheme } from 'picmo';
 ```
 ## Custom theming
 

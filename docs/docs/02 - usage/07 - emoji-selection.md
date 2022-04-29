@@ -1,6 +1,6 @@
 # Emoji selection
 
-When an emoji is selected in the picker, it will emit an `emoji:select` event with an [`EmojiSelection`](../api/types/emoji-selection) object containing information about the emoji that was selected. 
+When an emoji is selected in the picker, it will emit an `emoji:select` event with an [`EmojiSelection`](../api/picmo/types/emoji-selection) object containing information about the emoji that was selected. 
 
 ## Native emojis
 

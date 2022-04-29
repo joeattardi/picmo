@@ -11,12 +11,12 @@
   "workspaces": [
     "./packages/*",
     "./package-test",
-    "./storybook",
-    "./docs"
+    "./storybook"
   ],
   "main": "dist/index.js",
   "scripts": {
     "prepublishOnly": "npm run build",
+    "prebuild:docs": "npm install --prefix docs",
     "build": "npm run --workspace=packages build",
     "precommit": "npm run lint && npm run test && npm run check",
     "check": "tsc --noEmit",

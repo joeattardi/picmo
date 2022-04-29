@@ -2,38 +2,49 @@
 
 ## Popup properties
 
-### `autoFocusSearch`: `boolean`
+### `autoFocusSearch`
+
+- **Type**: `boolean`
+- **Default**: `true`
 
 If `true`, the search field will automatically receive focus when the picker opens.
 
-### `hideOnClickOutside`: `boolean`
+### `hideOnClickOutside`
 
-Default: `true`
+- **Type**: `boolean`
+- **Default**: `true`
 
 If `true`, the picker will close when clicking anywhere outside of it.
 
-### `hideOnEmojiSelect`: `boolean`
+### `hideOnEmojiSelect`
 
-Default: `true`
+- **Type**: `boolean`
+- **Default**: `true`
 
 If `true`, the picker will automatically close when an emoji is selected.
 
-### `hideOnEscape`: `boolean`
+### `hideOnEscape`
 
-Default: `true`
+- **Type**: `boolean`
+- **Default**: `true`
 
 If `true`, the picker will close when the Escape key is pressed.
 
-### `position`: [`Position`](./position)
+### `position`
 
-Default: `'auto'`
+- **Type**: [`Position`](./position)
+- **Default**: `'auto'`
 
 The positioning method to use for the popup picker.
 
-### `referenceElement`: `HTMLElement` | `undefined`
+### `referenceElement`
+
+- **Type**: `HTMLElement` | `undefined`
 
 If using relative positioning, this defines the element that the picker is positioned relative to. This is required if using relative positioning, but can be omitted if using fixed positioning.
 
-### `triggerElement`: `HTMLELement` | `undefined`
+### `triggerElement`
+
+- **Type**: `HTMLELement` | `undefined`
 
 The interactive element (usually a button) that will trigger the popup picker.
