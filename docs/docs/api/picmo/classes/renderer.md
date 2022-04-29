@@ -1,6 +1,8 @@
 # `Renderer`
 
-Abstract class. Controls how emoji are rendered, and also the data that is emitted when an emoji is selected.
+Abstract base class for renderers.
+
+Controls how emoji are rendered, and also the data that is emitted when an emoji is selected.
 
 :::note
 
@@ -12,32 +14,28 @@ You won't need to work with the `Renderer` class unless you are writing a custom
 
 ### `renderElement`
 
-```javascript
+<pre>
 renderElement(content: HTMLElement): RenderTask
-```
+</pre>
 
 Immediately renders static content in an element.
 
 #### Arguments
 
-##### `content`: `HTMLElement`
-
-The content to render.
+- `content`: The content to render.
+  - **Type**: `HTMLElement`
 
 ### `renderImage`
 
-```javascript
+<pre>
 renderImage(classNames = '', urlResolver: () => string): RenderTask
-```
+</pre>
 
 Renders an image. 
 
 #### Arguments
 
-##### `classNames`: `string`
-
-The class names to apply to the image.
-
-#### `urlResolver`: `() => string | Promise<string>`
-
-A function that should return the URL of the image. This can be the URL itself, or a `Promise` that resolves to the URL if finding the URL is an asynchronous operation.
+- `classNames`: The class names to apply to the image.
+  - **Type**: `string`
+- `urlResolver`: A function that should return the URL of the image. This can be the URL itself, or a `Promise` that resolves to the URL if finding the URL is an asynchronous operation.
+  - **Type**: `() => string | Promise<string>`

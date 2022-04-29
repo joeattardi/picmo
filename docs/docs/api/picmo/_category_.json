@@ -1,0 +1,9 @@
+{
+  "label": "picmo",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "title": "picmo",
+    "description": "The main package of PicMo. Contains the emoji picker and supporting code."
+  }
+}

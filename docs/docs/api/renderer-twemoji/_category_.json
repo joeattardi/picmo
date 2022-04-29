@@ -1,0 +1,9 @@
+{
+  "label": "@picmo/renderer-twemoji",
+  "position": 3,
+  "link": {
+    "type": "generated-index",
+    "title": "@picmo/renderer-twemoji",
+    "description": "Adds support for rendering emojis with Twitter's Twemoji library."
+  }
+}

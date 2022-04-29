@@ -1,6 +1,6 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-
+const path = require('path');
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
@@ -56,11 +56,11 @@ const config = {
             type: 'doc',
             docId: 'getting-started/overview',
             position: 'right',
-            label: 'Getting Started'
+            label: 'Docs'
           },
           {
             type: 'doc',
-            docId: 'api/api-reference',
+            docId: 'api/overview',
             position: 'right',
             label: 'API'
           },
@@ -91,7 +91,7 @@ const config = {
               },
               {
                 label: 'API',
-                to: '/docs/api/api-reference',
+                to: '/docs/api/overview',
               }
             ],
           },

@@ -2,9 +2,7 @@ import { Events, EventKey } from './events';
 
 export type ExternalEvent = 
   'emoji:select' |
-  'data:ready' |
-  'picker:open' |
-  'picker:close';
+  'data:ready';
 
 export type ExternalEventKey = EventKey<ExternalEvent>;
 

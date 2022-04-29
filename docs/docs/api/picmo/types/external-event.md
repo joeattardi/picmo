@@ -13,11 +13,3 @@ Emitted when an emoji is selected in the picker.
 ### Payload
 
 This event is emitted with an [`EmojiSelection`](./emoji-selection) object.
-
-## `picker:close`
-
-Emitted when a popup picker is closed.
-
-## `picker:open`
-
-Emitted when a popup picker is opened.

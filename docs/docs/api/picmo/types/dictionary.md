@@ -1,6 +1,6 @@
 # `Dictionary`
 
-Contains UI string definitions. This is a dictionary of key/value pairs:
+Contains UI string definitions. 
 
 ```
 'categories.activities': 'Activities',

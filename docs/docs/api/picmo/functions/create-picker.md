@@ -1,5 +1,7 @@
 # `createPicker`
 
+Creates an empji picker.
+
 ```javascript
 import { createPicker } from 'picmo';
 ```
@@ -14,9 +16,8 @@ After it is created, the picker will be automatically inserted into the root ele
 
 ## Arguments
 
-### `options`: [`PickerOptions`](../types/picker-options)
-
-The options to use when creating the picker.
+- `options`: Configuration options for the picker to be created.
+  - **Type**: [`PickerOptions`](../types/picker-options)
 
 ## Return value
 

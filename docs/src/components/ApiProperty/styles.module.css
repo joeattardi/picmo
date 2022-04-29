@@ -1,0 +1,18 @@
+.property {
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 16px;
+  background: #f6f6f6;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.property dd {
+  margin: 0;
+}
+
+.property dt {
+  justify-self: end;
+  font-weight: bold;
+}

@@ -1,5 +1,7 @@
 # `deleteDatabase`
 
+Deletes a local emoji database.
+
 ```javascript
 import { deleteDatabase } from 'picmo';
 ```
@@ -12,9 +14,8 @@ Deletes an emoji database.
 
 ## Arguments
 
-### `locale`: [`Locale`](https://emojibase.dev/api/emojibase#Locale)
-
-The locale for the database to be deleted.
+- `locale`: The locale for the database to be deleted.
+  - **Type**: [`Locale`](https://emojibase.dev/api/emojibase#Locale)
 
 ## Return value
 

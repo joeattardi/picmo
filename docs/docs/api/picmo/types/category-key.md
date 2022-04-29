@@ -1,6 +1,6 @@
 # `CategoryKey`
 
-Uniquely identifies one of the supported emoji categories. The valid values are:
+Uniquely identifies one of the supported emoji categories.
 
 - `activities`
 - `animals-nature`
