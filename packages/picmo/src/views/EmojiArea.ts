@@ -134,10 +134,10 @@ export class EmojiArea extends View {
   reset(): void {
     this.events.emit('preview:hide');
 
-    const category = this.categories.find((category: Category) => category.key !== 'recents');
+    const category = this.options.initialCategory || this.categories.find((category: Category) => category.key !== 'recents')?.key;
     if (category) {
-      this.selectCategory(category.key, { focus: 'button', performFocus: true, scroll: 'jump' });
-      this.selectedCategory = this.getCategoryIndex(category.key);
+      this.selectCategory(category, { focus: 'button', performFocus: true, scroll: 'jump' });
+      this.selectedCategory = this.getCategoryIndex(category);
     }
   }
 

@@ -69,6 +69,12 @@ A specific number can be specified, or `auto` can be used to automatically deter
 
 A collection of i18n strings to use for the picker.
 
+### `initialCategory`
+
+- **Type**: [`CategoryKey`](../types/category-key.md)
+
+If specified, the picker will start with the specified category selected.
+
 ### `locale`
 
 - **Type**: [`Locale`](https://emojibase.dev/api/emojibase#Locale)

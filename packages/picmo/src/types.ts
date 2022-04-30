@@ -110,6 +110,10 @@ export type PickerOptions = {
    */
   showPreview: boolean;
 
+  /**
+   * Whether or not to autofocus the search field when the picker is rendered.
+   * @default false
+   */
   autoFocusSearch: boolean;
 
   /**
@@ -143,6 +147,8 @@ export type PickerOptions = {
    * @default undefined
    */
   categories?: CategoryKey[];
+
+  initialCategory?: CategoryKey;
 
   /**
    * An array of custom emoji records to show in the picker.
