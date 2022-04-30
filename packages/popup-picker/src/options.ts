@@ -4,7 +4,6 @@ const defaultOptions: Partial<PopupOptions> = {
   hideOnClickOutside: true,
   hideOnEmojiSelect: true,
   hideOnEscape: true,
-  autoFocusSearch: true,
   position: 'auto'
 };
 
