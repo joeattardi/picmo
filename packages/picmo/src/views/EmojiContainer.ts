@@ -134,9 +134,7 @@ export class EmojiContainer extends View {
    * @param column the currently focused column
    */
   private triggerPreviousCategory(column: number) {
-    if (this.category) {
-      this.events.emit('category:previous', column);
-    }
+    this.events.emit('category:previous', column);
   }
 
   /**

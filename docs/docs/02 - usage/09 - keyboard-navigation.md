@@ -6,6 +6,10 @@ A PicMo picker has full keyboard support.
 
 When searching, the search results can be closed by pressing the `Escape` key. This will return to the main emoji grid.
 
+When there are search results, pressing the `Enter` or `Down Arrow` key will set focus to the emoji search results.
+
+On the top row of search results, pressing the `Up Arrow` key will set focus back to the search field.
+
 ## Category selection
 
 When a category tab is highlighted, the category can be changed by pressing the `Left Arrow` and `Right Arrow` keys.
@@ -35,17 +39,33 @@ A popup picker can be closed by pressing the `Escape` key from the emoji grid. I
 
 ## Summary
 
-| Key         | UI element                  | Function
-| ----------- | --------------------------- | ----- |
-| `Escape`    | Anywhere (while searching)  | Close search results   |
-| `Escape`  | Variant popup        | Close variant popup      |
-| `Escape`  | Popup picker        | Close popup picker      |
-| `Tab`     | Anywhere          | Cycle through UI elements        |
-| `LeftArrow` | Category tabs | Navigate to previous category        |
-| `LeftArrow` | Emoji grid, variant popup | Navigate to previous emoji        |
-| `RightArrow` | Category tabs | Navigate to next category        |
-| `RightArrow` | Emoji grid, variant popup | Navigate to next emoji |
-| `UpArrow` | Emoji grid, variant popup | Navigate to previous row |
-| `DownArrow` | Emoji grid, variant popup | Navigate to next row |
-| `Enter` | Emoji grid, variant popup | Emit emoji |
-| `Space` | Emoji grid, variant popup | Emit emoji |
+### Anywhere while search results are shown
+
+- `Escape`: Close search results
+
+### Variant popup
+
+- `Escape`: Close variant popup
+- ⬆️, ⬇️, ⬅️, ➡️: Navigate variant grid
+- `Enter`, `Space`: Select variant
+
+### Popup picker
+- `Escape`: Close popup picker
+
+### Category tabs
+
+- ⬅️, ➡️: Navigate category tabs
+
+### Search field
+
+- `Enter`, ⬇️: Focus search results
+- `Escape`: Clear search field and return to emoji grid
+
+### Search results
+
+- ⬆️: Focus search field
+
+### Emoji grid
+
+- ⬆️, ⬇️, ⬅️, ➡️: Navigate emoji grid
+- `Enter`, `Space`: Select emoji

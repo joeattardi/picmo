@@ -45,6 +45,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      autoCollapseSidebarCategories: false,
       navbar: {
         logo: {
           alt: 'PicMo Logo',

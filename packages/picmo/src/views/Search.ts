@@ -56,6 +56,10 @@ export class Search extends View {
       searchAccessory: View.byClass(classes.searchAccessory)
     };
 
+    this.appEvents = {
+      'category:previous': this.focusSearch
+    };
+
     this.uiEvents = [
       View.childEvent('searchField', 'keydown', this.onKeyDown),
       View.childEvent('searchField', 'input', this.onSearchInput)
@@ -91,6 +95,10 @@ export class Search extends View {
     this.showSearchIcon();
 
     return this.el;
+  }
+
+  private focusSearch() {
+    this.ui.searchField.focus();
   }
 
   private showSearchIcon() {
@@ -138,6 +146,9 @@ export class Search extends View {
   onKeyDown(event: KeyboardEvent): void {
     if (event.key === 'Escape' && this.searchField.value) {
       this.onClearSearch(event);
+    } else if ((event.key === 'Enter' || event.key === 'ArrowDown') && this.resultsContainer) {
+      event.preventDefault();
+      this.resultsContainer.el.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
     }
   }
 
