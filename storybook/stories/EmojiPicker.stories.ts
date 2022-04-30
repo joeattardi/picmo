@@ -1,6 +1,6 @@
 import { renderPicker } from './EmojiButton';
 import { getArgs, customEmojis } from './common';
-import { CategoryKey } from 'picmo';
+import { CategoryKey } from '../../packages/picmo/src/index';
 
 export default getArgs({
   title: 'Emoji Picker'

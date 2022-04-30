@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/html';
 
-import { TwemojiRenderer } from '@picmo/renderer-twemoji';
-import { lightTheme, darkTheme, autoTheme, NativeRenderer } from 'picmo';
+import { TwemojiRenderer } from '../../packages/renderer-twemoji/src/index';
+import { lightTheme, darkTheme, autoTheme, NativeRenderer } from '../../packages/picmo/src/index';
 
 export function toElement<E extends Element = HTMLElement>(html: string): E {
   const template = document.createElement('template');

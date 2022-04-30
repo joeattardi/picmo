@@ -17,6 +17,7 @@
   "scripts": {
     "prepublishOnly": "npm run build",
     "prebuild:docs": "npm install --prefix docs",
+    "prebuild:storybook": "npm run build",
     "build": "npm run --workspace=packages build",
     "precommit": "npm run lint && npm run test && npm run check",
     "check": "tsc --noEmit",
@@ -29,6 +30,7 @@
     "prettify": "prettier src/*.ts --write",
     "start": "npm run --prefix storybook start",
     "update-scss-types": "typed-scss-modules packages",
+    "build:storybook": "npm run --prefix storybook build",
     "build:docs": "npm run --prefix storybook build && npm run --prefix docs build",
     "start:docs": "npm run --prefix docs start"
   },
