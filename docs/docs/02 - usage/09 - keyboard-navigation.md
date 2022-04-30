@@ -39,6 +39,10 @@ A popup picker can be closed by pressing the `Escape` key from the emoji grid. I
 
 ## Summary
 
+### Anywhere within the picker
+
+- `Command+S`, `Control+S`: Jump to the search field
+
 ### Anywhere while search results are shown
 
 - `Escape`: Close search results

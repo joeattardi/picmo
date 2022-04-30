@@ -57,7 +57,7 @@ export class Search extends View {
     };
 
     this.appEvents = {
-      'category:previous': this.focusSearch
+      // 'category:previous': this.focus
     };
 
     this.uiEvents = [
@@ -97,9 +97,9 @@ export class Search extends View {
     return this.el;
   }
 
-  private focusSearch() {
-    this.ui.searchField.focus();
-  }
+  // private focusSearch() {
+  //   this.ui.searchField.focus();
+  // }
 
   private showSearchIcon() {
     this.showSearchAccessory(this.searchIcon);

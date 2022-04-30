@@ -56,6 +56,10 @@ export class EmojiPicker extends View {
       header: View.byClass(classes.header)
     };
 
+    this.uiEvents = [
+      View.uiEvent('keydown', this.handleKeyDown)
+    ];
+
     this.appEvents = {
       error: this.onError,
       reinitialize: this.reinitialize,
@@ -111,6 +115,14 @@ export class EmojiPicker extends View {
     if (this.pickerReady) {
       this.showContent();
       this.emojiArea.reset();
+    }
+  }
+
+  private handleKeyDown(event: KeyboardEvent) {
+    const isShortcut = event.ctrlKey || event.metaKey;
+    if (event.key === 's' && isShortcut && this.search) {
+      event.preventDefault();
+      this.search.focus();
     }
   }
 
