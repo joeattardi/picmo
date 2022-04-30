@@ -6,23 +6,11 @@ import { icon } from '../icons';
 import { EmojiContainer } from './EmojiContainer';
 import { ErrorMessage } from './ErrorMessage';
 
-import { Template } from '../Template';
 import { debounce } from '../util';
 import { LazyLoader } from '../LazyLoader';
 import { Category } from '../types';
 
-const clearSearchButtonTemplate = new Template<HTMLButtonElement>(({ classes, i18n }) => /* html */`
-  <button title="${i18n.get('search.clear')}" class="${classes.clearSearchButton}">
-    <i data-icon="xmark" data-size="large"></i>
-  </button>
-`);
-
-const searchTemplate = new Template(({ classes, i18n }) => /* html */`
-<div class="${classes.searchContainer}">
-  <input class="${classes.searchField}" placeholder="${i18n.get('search')}">
-  <span class="${classes.searchAccessory}"></span>
-</div>
-`, { mode: 'async' });
+import { clearSearchButtonTemplate, searchTemplate } from './Search.template';
 
 type SearchOptions = {
   categories: Category[];
@@ -71,7 +59,7 @@ export class Search extends View {
   async render(): Promise<HTMLElement> {
     await super.render();
 
-    this.searchIcon = icon('search', 'large');
+    this.searchIcon = icon('search');
 
     this.notFoundMessage = this.viewFactory.create(ErrorMessage, { 
       message: this.i18n.get('search.notFound'),
@@ -96,10 +84,6 @@ export class Search extends View {
 
     return this.el;
   }
-
-  // private focusSearch() {
-  //   this.ui.searchField.focus();
-  // }
 
   private showSearchIcon() {
     this.showSearchAccessory(this.searchIcon);

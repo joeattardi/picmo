@@ -2,7 +2,7 @@ import { Template } from '../Template';
 
 export const clearSearchButtonTemplate = new Template<HTMLButtonElement>(({ classes, i18n }) => /* html */`
   <button title="${i18n.get('search.clear')}" class="${classes.clearSearchButton}">
-    <i data-icon="xmark" data-size="large"></i>
+    <i data-icon="xmark"></i>
   </button>
 `);
 
