@@ -13,7 +13,6 @@ export type PopupOptions = {
   hideOnClickOutside: boolean;
   hideOnEmojiSelect: boolean;
   hideOnEscape: boolean;
-  autoFocusSearch: boolean;
   position: Position;
   referenceElement?: HTMLElement;
   triggerElement?: HTMLElement;

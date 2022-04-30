@@ -52,7 +52,6 @@ export type Category = {
 }
 
 export type PickerOptions = {
-
   /**
    * The renderer to use for rendering and emitting emojis.
    * This should be an instance of a subclass of `Renderer`.

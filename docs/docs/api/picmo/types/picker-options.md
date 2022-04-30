@@ -13,6 +13,13 @@ A `PickerOptions` object is passed to the `createPicker` and `createPopup` funct
 
 Whether or not to show animated transitions in the picker.
 
+### `autoFocusSearch`
+
+- **Type**: `boolean`
+- **Default**: `false`
+
+If `true`, the search field will automatically receive focus when the picker first renders. For popup pickers, this will autofocus the search field every time the picker is opened.
+
 ### `categories`
 
 - **Type**: [`CategoryKey[]`](./category-key) | `undefined`

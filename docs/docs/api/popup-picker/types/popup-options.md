@@ -2,13 +2,6 @@
 
 ## Popup properties
 
-### `autoFocusSearch`
-
-- **Type**: `boolean`
-- **Default**: `true`
-
-If `true`, the search field will automatically receive focus when the picker opens.
-
 ### `hideOnClickOutside`
 
 - **Type**: `boolean`
