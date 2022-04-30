@@ -26,10 +26,7 @@ export function createPicker(options: any = {}) {
   const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button');
 
   const picker = createPopup(
-    {
-      ...options,
-      initialCategory: 'activities'
-    },
+    options,
     {
       triggerElement: button,
       referenceElement: button

@@ -75,6 +75,18 @@ A collection of i18n strings to use for the picker.
 
 If specified, the picker will start with the specified category selected.
 
+### `initialEmoji`
+
+- **Type**: `string`
+
+Specified as the emoji string value itself. If specified, the picker will pre-focus the given emoji in the grid. 
+
+:::note
+
+If `initialEmoji` is set, `initialCategory` must be set as well, specifying the category this emoji belongs to. If `initialCategory` is not set, or it is set to a category that does not contain `initialEmoji`, the picker will use the default initial emoji instead (the first emoji in the initial category).
+
+:::
+
 ### `locale`
 
 - **Type**: [`Locale`](https://emojibase.dev/api/emojibase#Locale)

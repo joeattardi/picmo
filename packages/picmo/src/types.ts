@@ -2,10 +2,12 @@ import { Locale, MessagesDataset, Emoji } from 'emojibase';
 import { Renderer } from './renderers/renderer';
 import { Dictionary } from './i18n/bundle';
 
-export type EmojiFocusTarget = {
+export type EmojiFocusTargetOffset = {
   row: 'first' | 'last' | number;
   offset: number;
 };
+
+export type EmojiFocusTarget = EmojiFocusTargetOffset | string;
 
 export type EmojiRecord = {
   emoji: string;
@@ -149,6 +151,8 @@ export type PickerOptions = {
   categories?: CategoryKey[];
 
   initialCategory?: CategoryKey;
+
+  initialEmoji?: string;
 
   /**
    * An array of custom emoji records to show in the picker.

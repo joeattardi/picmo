@@ -125,6 +125,12 @@ type Cell = {
     this.events.emit('focus:change', { from: previousIndex, to: this.getIndex(), performFocus });
   }
 
+  setFocusedIndex(index: number, performFocus = true) {
+    const row = Math.floor(index / this.columnCount);
+    const column = index % this.columnCount;
+    this.setCell(row, column, performFocus);
+  }
+
   /**
    * Moves the focus to the next cell in the current row.
    * Emits `focus:overflow` if there is no next cell. 

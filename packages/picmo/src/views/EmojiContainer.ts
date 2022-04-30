@@ -82,7 +82,20 @@ export class EmojiContainer extends View {
       return;
     }
 
-    if (focusTarget.row === 'first' || focusTarget.row === 0) {
+    if (typeof focusTarget === 'string') {
+      const index = this.emojis.findIndex(emoji => emoji.emoji === focusTarget);
+      this.grid.setFocusedIndex(index, false);
+
+      setTimeout(() => {
+        const targetView = this.emojiViews[index].el;
+        targetView.scrollIntoView();
+
+        // Need to scroll up a bit to offset the sticky header
+        const header = targetView.parentElement?.previousElementSibling as HTMLElement;
+        const emojiArea = targetView.parentElement?.parentElement?.parentElement as HTMLElement;
+        emojiArea.scrollTop -= header?.offsetHeight ?? 0;
+      });
+    } else if (focusTarget.row === 'first' || focusTarget.row === 0) {
       this.grid.setCell(0, focusTarget.offset, performFocus);
     } else if (focusTarget.row === 'last') {
       this.grid.setCell(this.grid.getRowCount() - 1, focusTarget.offset, performFocus);

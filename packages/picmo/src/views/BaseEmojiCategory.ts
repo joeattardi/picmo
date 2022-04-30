@@ -13,7 +13,7 @@ type BaseEmojiCategoryOptions = {
 }
 
 export abstract class BaseEmojiCategory extends View {
-  protected category: Category;
+  category: Category;
   protected showVariants: boolean;
   protected lazyLoader?: LazyLoader;
   protected emojiContainer: EmojiContainer;

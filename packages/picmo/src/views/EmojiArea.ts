@@ -131,12 +131,36 @@ export class EmojiArea extends View {
     });
   }
 
+  private determineInitialCategory() {
+    if (this.options.initialCategory) {
+      if (this.categories.find(c => c.key === this.options.initialCategory)) {
+        return this.options.initialCategory;
+      }
+    }
+
+    return this.categories.find(c => c.key !== 'recents')?.key;
+  }
+
+  private determineFocusTarget(category) {
+    const categoryView = this.emojiCategories.find(c => c.category.key === category);
+    if (this.options.initialEmoji && categoryView?.el.querySelector(`[data-emoji="${this.options.initialEmoji}"]`)) {
+      return this.options.initialEmoji;
+    }
+
+    return 'button'
+  }
+
   reset(): void {
     this.events.emit('preview:hide');
 
-    const category = this.options.initialCategory || this.categories.find((category: Category) => category.key !== 'recents')?.key;
+    const category = this.determineInitialCategory();
     if (category) {
-      this.selectCategory(category, { focus: 'button', performFocus: true, scroll: 'jump' });
+      this.selectCategory(category, { 
+        focus: this.determineFocusTarget(category), 
+        performFocus: true, 
+        scroll: 'jump' 
+      });
+
       this.selectedCategory = this.getCategoryIndex(category);
     }
   }
