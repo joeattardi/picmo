@@ -31,7 +31,7 @@
     "start": "npm run --prefix storybook start",
     "update-scss-types": "typed-scss-modules packages",
     "build:storybook": "npm run --prefix storybook build",
-    "build:docs": "npm run --prefix storybook build && npm run --prefix docs build",
+    "build:docs": "npm run build:storybook && npm run --prefix docs build",
     "start:docs": "npm run --prefix docs start"
   },
   "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.dev)",
