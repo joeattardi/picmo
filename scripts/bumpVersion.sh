@@ -8,7 +8,9 @@ if [ -z "$VERSION" ]; then
 fi
 
 echo "Bumping version to $VERSION..."
-npm version --workspaces $VERSION
+npm version --workspace packages $VERSION
+npm version --no-git-tag-version $VERSION
+git commit -am "Bump version to $VERSION"
 
 echo "Creating git tag..."
 git tag "v$VERSION"
