@@ -8,7 +8,7 @@
   margin: 0;
   background: var(--category-name-background);
   color: var(--category-name-text-color);
-  position: sticky;
+  // position: sticky;
   top: 0;
   z-index: 1;
   display: grid;
@@ -20,22 +20,6 @@
   height: var(--category-name-height);
   justify-content: flex-start;
   text-transform: uppercase;
-
-  // TODO: Need to fix the fade here, maybe make category background fade as well?
-  &::after {
-    width: 100%;
-    height: 10px;
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    background-image: 
-    linear-gradient(
-      180deg, 
-      var(--fade-gradient-start) 30%, 
-      var(--fade-gradient-end) 100%
-    );
-  }
 
   button {
     background: transparent;

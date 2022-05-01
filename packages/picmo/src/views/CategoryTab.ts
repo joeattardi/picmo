@@ -10,8 +10,6 @@ type CategoryTabOptions = {
   icon: Element;
 }
 
-const focusEventOptions = { scroll: 'animate', focus: 'button', performFocus: true };
-
 export class CategoryTab extends View {
   category: Category;
   private icon: Element;
@@ -32,7 +30,6 @@ export class CategoryTab extends View {
 
     this.uiEvents = [
       View.childEvent('button', 'click', this.selectCategory),
-      View.childEvent('button', 'focus', this.selectCategory)
     ];
 
     super.initialize();
@@ -49,19 +46,35 @@ export class CategoryTab extends View {
     return this.el;
   }
 
-  setActive(isActive: boolean, changeFocus = true) {
+  /**
+   * Sets the active state of the tab.
+   * 
+   * @param isActive The new active state
+   * @param changeFocus Whether or not to change the active focusable element to the tab button
+   * @param scroll Whether or not to scroll to the new category
+   */
+  setActive(isActive: boolean, changeFocus = true, scroll = false) {
     this.el.classList.toggle(classes.categoryTabActive, isActive);
     if (changeFocus) {
-      this.setFocused(isActive);
+      this.setFocused(isActive, scroll);
     }
     this.isActive = isActive;
   }
 
-  private setFocused(isFocused: boolean) {
+  /**
+   * Changes the focused state of the tab button.
+   * @param isFocused The new active state
+   * @param scroll Whether or not to scroll to the new category
+   */
+  private setFocused(isFocused: boolean, scroll = false) {
     this.ui.button.ariaSelected = isFocused.toString();
     if (isFocused) {
       this.ui.button.tabIndex = 0;
       this.ui.button.focus();
+
+      if (scroll) {
+        this.events.emit('category:select', this.category.key, { scroll: 'animate', focus: 'button', performFocus: false });
+      }
     } else {
       this.ui.button.tabIndex = -1;
     }
@@ -69,7 +82,7 @@ export class CategoryTab extends View {
 
   private selectCategory() {
     if (!this.isActive) {
-      this.events.emit('category:select', this.category.key, focusEventOptions);
+      this.events.emit('category:select', this.category.key, { scroll: 'animate', focus: 'button', performFocus: true });
     }
   }
 }

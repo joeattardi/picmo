@@ -52,7 +52,7 @@ export class CategoryTabs extends View {
     return this.tabViews[this.activeCategoryIndex];
   }
 
-  setActiveTab(index: number, focus = true): void {
+  setActiveTab(index: number, focus = true, scroll = true): void {
     // Don't do anything if the desired tab is already active
     if (index === this.activeCategoryIndex) {
       return;
@@ -62,7 +62,7 @@ export class CategoryTabs extends View {
     const newCategory = this.tabViews[index];
 
     oldCategory.setActive(false, focus);
-    newCategory.setActive(true, focus);
+    newCategory.setActive(true, focus, scroll);
     this.activeCategoryIndex = index;
   }
 

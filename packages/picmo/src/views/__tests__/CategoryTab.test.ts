@@ -1,5 +1,4 @@
 import userEvent from '@testing-library/user-event';
-import { fireEvent } from '@testing-library/dom';
 import { testViewSync } from '../../../testHelpers/testView';
 
 import { Events } from '../../events';
@@ -62,14 +61,6 @@ describe('CategoryTab', () => {
     const button = tab.ui.button;
 
     userEvent.click(button);
-    expect(events.emit).toHaveBeenCalledWith('category:select', 'smileys-emotion', expect.anything());
-  });
-
-  test('emits a category:select event when focused', () => {
-    const tab = renderTab();
-    const button = tab.ui.button;
-
-    fireEvent.focus(button);
     expect(events.emit).toHaveBeenCalledWith('category:select', 'smileys-emotion', expect.anything());
   });
 });

@@ -281,6 +281,7 @@ export class EmojiArea extends View {
    * @param options The options for the category selection.
    */
   private async selectCategory(category: CategoryKey | number, options: SelectCategoryOptions = {}): Promise<void> {
+    this.scrollListenerState = 'suspend';
     const { focus, performFocus, scroll } = {
       performFocus: false,
       ...options
@@ -289,13 +290,15 @@ export class EmojiArea extends View {
     this.emojiCategories[this.selectedCategory].setActive(false);
 
     const categoryIndex = this.selectedCategory = typeof category === 'number' ? category : this.getCategoryIndex(category);
-    this.categoryTabs?.setActiveTab(this.selectedCategory, performFocus);
+    this.categoryTabs?.setActiveTab(this.selectedCategory, performFocus, focus === 'button');
     const targetPosition = this.emojiCategories[categoryIndex].el.offsetTop;
     this.emojiCategories[categoryIndex].setActive(true, getFocusTarget(focus), focus !== 'button' && performFocus);
 
     if (scroll) {
       await this.scrollTo(targetPosition, scroll === 'animate');
     }
+
+    this.scrollListenerState = 'resume';
   }
 
   /**
@@ -303,6 +306,11 @@ export class EmojiArea extends View {
    * @param category the key of the currently focused category
    */
   private updateFocusedCategory(category: CategoryKey) {
+    // Do nothing if this is already the focused category
+    if (this.categories[this.selectedCategory].key === category) {
+      return;
+    }
+
     this.scrollListenerState = 'suspend';
     this.selectedCategory = this.getCategoryIndex(category);
     this.categoryTabs?.setActiveTab(this.selectedCategory, false);
