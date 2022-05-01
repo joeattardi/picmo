@@ -44,7 +44,7 @@ const icons = {
   tree,
   users, 
   warning, 
-  xmark 
+  xmark,
 };
 
 Object.keys(icons).forEach(iconName => {

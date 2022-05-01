@@ -44,10 +44,6 @@ export class Search extends View {
       searchAccessory: View.byClass(classes.searchAccessory)
     };
 
-    this.appEvents = {
-      // 'category:previous': this.focus
-    };
-
     this.uiEvents = [
       View.childEvent('searchField', 'keydown', this.onKeyDown),
       View.childEvent('searchField', 'input', this.onSearchInput)
@@ -171,7 +167,6 @@ export class Search extends View {
 
         this.resultsContainer.renderSync();
         if (this.resultsContainer?.el) {
-          // this.resultsContainer.el.classList.add(classes.searchResults);
           lazyLoader.observe(this.el.parentElement as HTMLElement);
           this.resultsContainer.setActive(true, { row: 0, offset: 0}, false);
 

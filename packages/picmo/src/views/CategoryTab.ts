@@ -51,7 +51,6 @@ export class CategoryTab extends View {
 
   setActive(isActive: boolean, changeFocus = true) {
     this.el.classList.toggle(classes.categoryTabActive, isActive);
-    // this.ui.button.classList.toggle(classes.categoryButtonActive, isActive);
     if (changeFocus) {
       this.setFocused(isActive);
     }

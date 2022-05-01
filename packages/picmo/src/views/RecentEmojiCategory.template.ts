@@ -5,7 +5,6 @@ export default new Template(({ emojiCount, classes, category, pickerId, icon, i1
   <h3 data-category="${category.key}" class="${classes.categoryName}">
     <i data-icon="${icon}"></i>
     ${i18n.get(`categories.${category.key}`, category.message || category.key)}
-    <!-- <button title="<%= i18n.get('recents.clear') %>"><i class="fa-solid fa-lg fa-square-xmark"></i></button> -->
   </h3>
   <div data-empty="${emojiCount === 0}" class="${classes.recentEmojis}">
     <div data-view="emojis" data-render="sync"></div>

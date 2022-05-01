@@ -27,7 +27,7 @@ export class Template<E extends HTMLElement = HTMLElement> {
   renderSync(data: TemplateData = {}): E {
     const result = toElement<E>(this.#templateFn(data));
     this.#bindPlaceholders(result, data);
-    this.#bindIcons(result, data);
+    this.#bindIcons(result);
     this.#renderChildViews(result, data);
     return result;
   }
@@ -35,26 +35,13 @@ export class Template<E extends HTMLElement = HTMLElement> {
   async renderAsync(data: TemplateData = {}): Promise<E> {
     const result = toElement<E>(this.#templateFn(data));
     this.#bindPlaceholders(result, data);
-    this.#bindIcons(result, data);
+    this.#bindIcons(result);
     await this.#renderChildViews(result, data);
     return result;
   }
 
   render(data: TemplateData): E | Promise<E> {
     return this.#mode === 'sync' ? this.renderSync(data) : this.renderAsync(data);
-  }
-
-  async #bindContent(result: E, data: TemplateData, selector: string, replacer) {
-    const placeholders = result.querySelectorAll<HTMLElement>(selector);
-    for (const placeholder of placeholders) {
-      const newContent = replacer(placeholder, data);
-      if (this.#mode === 'async') {
-        await newContent;
-      }
-      placeholder.replaceWith(...[newContent].flat());
-    }
-
-    return result;
   }
 
   async #renderChildViews(result: E, data: ViewData) {
@@ -81,11 +68,12 @@ export class Template<E extends HTMLElement = HTMLElement> {
     return Promise.all(asyncViews);
   }
 
-  #bindIcons(result: E, data: TemplateData) {
-    return this.#bindContent(result, data, '[data-icon]', (placeholder: HTMLElement) => {
+  #bindIcons(result: E) {
+    const icons = result.querySelectorAll<HTMLElement>('i[data-icon]');
+    icons.forEach((placeholder: HTMLElement) => {
       const { icon: iconKey, size } = placeholder.dataset;
-      return icon(iconKey as string, size as IconSize);
-    });
+      placeholder.replaceWith(icon(iconKey as string, size as IconSize));
+    })
   }
 
   #bindPlaceholders(result: E, data: TemplateData): E {

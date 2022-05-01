@@ -11,17 +11,15 @@
   position: sticky;
   top: 0;
   z-index: 1;
-  display: flex;
+  display: grid;
+  gap: 4px;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   line-height: 1;
   box-sizing: border-box;
   height: var(--category-name-height);
   justify-content: flex-start;
   text-transform: uppercase;
-
-  svg {
-    margin-right: 0.25em;
-  }
 
   // TODO: Need to fix the fade here, maybe make category background fade as well?
   &::after {
@@ -39,18 +37,12 @@
     );
   }
 
-  &:hover button {
-    opacity: 0.5;
-  }
-
   button {
-    opacity: 0;
     background: transparent;
     border: none;
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: opacity 0.2s ease-in-out;
     color: var(--category-name-button-color);
 
     &:hover {
