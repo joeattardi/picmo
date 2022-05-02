@@ -1,6 +1,10 @@
 name: Node CI
 
-on: []
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build:
@@ -17,11 +21,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+        cache: 'npm'
     - name: npm install, build, and test
       run: |
-        npm install
-        npm run build
-        npm run lint
-        npm test
+        npm ci
+        npm run precommit
       env:
         CI: true
