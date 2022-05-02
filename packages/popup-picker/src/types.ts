@@ -16,4 +16,5 @@ export type PopupOptions = {
   position: Position;
   referenceElement?: HTMLElement;
   triggerElement?: HTMLElement;
+  showCloseButton?: boolean;
 }

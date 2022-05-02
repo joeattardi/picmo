@@ -6,12 +6,15 @@ import {
   createPicker,
   FocusTrap,
   PickerOptions,
-  ExternalEvent
+  ExternalEvent,
 } from 'picmo';
 import { PopupEvent, PopupEvents } from './PopupEvents';
 import { setPosition, PositionCleanup } from './positioning';
 import { PopupOptions, Position } from './types';
 import { getOptions } from './options';
+
+import classes from './popupPicker.scss';
+import closeIcon from './icons/close.svg';
 
 const SHOW_HIDE_DURATION = 150;
 
@@ -23,13 +26,27 @@ export class PopupPickerController {
   private focusTrap: FocusTrap;
   private positionCleanup: PositionCleanup;
 
+  private closeButton: HTMLElement;
   private options: PickerOptions & PopupOptions;
   private externalEvents = new PopupEvents();
 
   constructor(pickerOptions: Partial<PickerOptions>, popupOptions: Partial<PopupOptions>) {
     this.popupEl = document.createElement('div');
+    this.popupEl.classList.add(classes.popupContainer);
+    
     this.options = { ...getOptions(popupOptions), ...getPickerOptions(pickerOptions) };
-    this.picker = createPicker({ ...this.options, rootElement: this.popupEl });
+
+    if (this.options.showCloseButton) {
+      this.closeButton = document.createElement('button');
+      this.closeButton.classList.add(classes.closeButton);
+      this.closeButton.innerHTML = closeIcon;
+      this.popupEl.appendChild(this.closeButton);
+    }
+
+    const pickerContainer = document.createElement('div');
+    this.popupEl.appendChild(pickerContainer);
+
+    this.picker = createPicker({ ...this.options, rootElement: pickerContainer });
     this.focusTrap = new FocusTrap();
 
     this.picker.addEventListener('data:ready', () => {
@@ -207,7 +224,11 @@ export class PopupPickerController {
    * @param openState The desired open state of the picker
    * @returns The Animation object that is running
    */
-  private animateOpenStateChange(openState: boolean): Promise<Animation | void> {
+  private animateOpenStateChange(openState: boolean): Promise<Animation | void> {    
+    if (this.closeButton){
+      this.closeButton.style.visibility = openState ? 'visible' : 'hidden';
+    }
+    
     return animate(
       this.picker.el,
       {

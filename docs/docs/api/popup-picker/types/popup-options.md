@@ -30,6 +30,11 @@ If `true`, the picker will close when the Escape key is pressed.
 
 The positioning method to use for the popup picker.
 
+### `showCloseButton`
+- **Default**: `true`
+
+If `true`, the popup will have a Close button.
+
 ### `referenceElement`
 
 - **Type**: `HTMLElement` | `undefined`
