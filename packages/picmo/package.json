@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "prepublishOnly": "npm run clean && npm run build",
+    "precommit": "npm-run-all lint check test",
     "build": "npm run check && rollup -c",
     "check": "tsc --noEmit",
     "clean": "rimraf dist",

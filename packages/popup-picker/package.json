@@ -8,6 +8,7 @@
   ],
   "scripts": {
     "prepublishOnly": "npm run clean && npm run build",
+    "precommit": "npm-run-all lint check",
     "build": "npm run check && rollup -c",
     "check": "tsc --noEmit",
     "clean": "rimraf dist",
