@@ -4,8 +4,7 @@
 }
 
 .closeButton {
-  animation-delay: 150ms;
-  animation-fill-mode: both;
+  opacity: 0;
   background: transparent;
   border: none;
   z-index: 1;
@@ -15,13 +14,17 @@
   padding: 4px;
   align-self: flex-end;
   transform: translate(50%, 50%);
-  background: #666;
+  background: #999999;
   width: 1.5rem;
   height: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
+
+  &:hover {
+    background: var(--accent-color);
+  }
 
   svg {
     fill: white;

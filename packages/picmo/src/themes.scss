@@ -1,6 +1,7 @@
 @mixin lightTheme {
   color-scheme: light;
   --background-color: #f9fafb;
+  --accent-color: #4f46e5;
   --secondary-background-color: #e2e8f0;
   --border-color: #cccccc;
   --secondary-text-color: #666666;
@@ -12,7 +13,7 @@
   --category-name-text-color: hsl(214, 30%, 50%);
   --category-name-button-color: #999999;
   --category-name-accent: hsl(214, 30%, 50%);
-  --category-button-active-color: #4f46e5;
+  --category-button-active-color: var(--accent-color);
   --category-button-active-background: rgba(255, 255, 255, 0.6);
   --category-button-active-shadow: rgba(79,70,229,0.5);
   --category-button-highlight-background: rgba(0, 0, 0, 0.15);
@@ -41,6 +42,7 @@
 @mixin darkTheme {
   color-scheme: dark;
   --background-color: #333333;
+  --accent-color: #A580F9;
   --secondary-background-color: #000000 ;
   --border-color: #666666;
   --secondary-text-color: #999999;
@@ -51,7 +53,7 @@
   --category-name-background: #333333;
   --category-name-text-color: #ffffff;
   --category-name-button-color: #eeeeee;
-  --category-button-active-color: #A580F9;
+  --category-button-active-color: var(--accent-color);
   --category-button-active-background: #000000;
   --category-button-active-shadow: rgba(165,128,249,0.5);
   --category-button-highlight-background: #4A4A4A;

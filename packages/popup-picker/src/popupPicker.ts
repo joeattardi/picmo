@@ -16,8 +16,6 @@ import { getOptions } from './options';
 import classes from './popupPicker.scss';
 import closeIcon from './icons/close.svg';
 
-const SHOW_HIDE_DURATION = 150;
-
 export class PopupPickerController {
   picker: EmojiPicker;
   isOpen = false;
@@ -31,10 +29,11 @@ export class PopupPickerController {
   private externalEvents = new PopupEvents();
 
   constructor(pickerOptions: Partial<PickerOptions>, popupOptions: Partial<PopupOptions>) {
+    this.options = { ...getOptions(popupOptions), ...getPickerOptions(pickerOptions) };
+
     this.popupEl = document.createElement('div');
     this.popupEl.classList.add(classes.popupContainer);
-    
-    this.options = { ...getOptions(popupOptions), ...getPickerOptions(pickerOptions) };
+    this.popupEl.classList.add(this.options.theme);
 
     if (this.options.showCloseButton) {
       this.closeButton = document.createElement('button');
@@ -137,7 +136,8 @@ export class PopupPickerController {
     this.setPosition();
     this.picker.reset();
 
-    await this.animateOpenStateChange(true);
+    await this.animatePopup(true);
+    await this.animateCloseButton(true);
     this.picker.setInitialFocus();
     this.externalEvents.emit('picker:open');
   }
@@ -153,7 +153,8 @@ export class PopupPickerController {
     }
 
     await this.initiateOpenStateChange(false);
-    await this.animateOpenStateChange(false);
+    await this.animateCloseButton(false);
+    await this.animatePopup(false);
 
     this.popupEl.remove();
     this.picker.reset();
@@ -217,18 +218,7 @@ export class PopupPickerController {
     }
   }
 
-  /**
-   * Initiates an animation either for opening or closing the picker using the Web Animations API.
-   * If animations are not enabled or supported, the picker will be immediately opened or closed.
-   *
-   * @param openState The desired open state of the picker
-   * @returns The Animation object that is running
-   */
-  private animateOpenStateChange(openState: boolean): Promise<Animation | void> {    
-    if (this.closeButton){
-      this.closeButton.style.visibility = openState ? 'visible' : 'hidden';
-    }
-    
+  private animatePopup(openState: boolean) {
     return animate(
       this.picker.el,
       {
@@ -236,13 +226,28 @@ export class PopupPickerController {
         transform: ['scale(0.9)', 'scale(1)']
       },
       {
-        duration: SHOW_HIDE_DURATION,
+        duration: 150,
         id: openState ? 'show-picker' : 'hide-picker',
         easing: 'ease-in-out',
-        direction: openState ? 'normal' : 'reverse'
+        direction: openState ? 'normal' : 'reverse',
+        fill: 'both'
       },
       this.options
     );
+  }
+
+  private animateCloseButton(openState: boolean) {
+    return animate(this.closeButton, {
+      opacity: [0, 1]
+    },
+    {
+      duration: 25,
+      id: openState ? 'show-close' : 'hide-close',
+      easing: 'ease-in-out',
+      direction: openState ? 'normal' : 'reverse',
+      fill: 'both',
+    },
+    this.options)
   }
 
   /**
