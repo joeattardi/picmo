@@ -84,6 +84,13 @@ export class Database {
     this.db.close();
   }
 
+  async getEmojiCount(): Promise<number> {
+    const transaction = this.db.transaction('emoji', 'readonly');
+    const store = transaction.objectStore('emoji');
+    const result = await this.waitForRequest(store.count());
+    return result.target.result;
+  }
+
   /**
    * Gets the ETags stored in the meta datastore.
    * @returns a Promise that resolves to the ETag data
@@ -107,14 +114,25 @@ export class Database {
    * @param emojisEtag the ETag for the emoji data
    * @param messagesEtag the ETag for the message data
    */
-  async setEtags(emojisEtag, messagesEtag) {
+  async setMeta(meta) {
     const transaction = this.db.transaction('meta', 'readwrite');
     const store = transaction.objectStore('meta');
-    await Promise.all([
-      this.waitForRequest(store.put(emojisEtag, 'emojisEtag')),
-      this.waitForRequest(store.put(messagesEtag, 'messagesEtag'))
-    ]);
+
+    return new Promise((resolve) => {
+      transaction.oncomplete = resolve;
+
+      const properties = Object.keys(meta).filter(Boolean);
+      properties.forEach(property => { store.put(meta[property], property)});
+    });
   }
+
+  async getHash() {
+    const transaction = this.db.transaction('meta', 'readonly');
+    const store = transaction.objectStore('meta');
+    const result = await this.waitForRequest(store.get('hash'));
+    return result.target.result;
+  }
+  
 
   /**
    * Determines whether or not the database is populated.
@@ -138,14 +156,26 @@ export class Database {
    * @param messagesEtag the message data ETag
    * @returns a Promise that resolves when all data has been written
    */
-  async populate(groups: GroupMessage[], emojis: Emoji[], emojisEtag?: string | null, messagesEtag?: string | null) {
+  async populate({
+    groups,
+    emojis,
+    emojisEtag,
+    messagesEtag,
+    hash
+  }: {
+    groups: GroupMessage[],
+    emojis: Emoji[],
+    emojisEtag?: string | null,
+    messagesEtag?: string | null,
+    hash?: string | null
+  }) {
     // Wipe out any old data first
     await this.removeAllObjects('category', 'emoji');
 
     const tasks = [
       this.addObjects('category', groups),
       this.addObjects('emoji', emojis),
-      this.setEtags(emojisEtag, messagesEtag)
+      this.setMeta({ emojisEtag, messagesEtag, hash })
     ];
 
     await Promise.all(tasks);

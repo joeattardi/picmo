@@ -1,5 +1,6 @@
 import { Locale, MessagesDataset, fetchMessages, fetchEmojis, Emoji } from 'emojibase';
 import { Database } from './db';
+import { computeHash } from './util';
 
 /**
  * Generates the URLs for emoji data for a given emojibase version and locale.
@@ -39,7 +40,8 @@ async function getEtag(url: string): Promise<string | null> {
  * @param messagesUrl the URL of the message data
  * @returns a Promise that resolves to an array of the ETag values
  */
-function getEtags(emojisUrl, messagesUrl): Promise<Array<string | null>> {
+function getEtags(locale): Promise<Array<string | null>> {
+  const { emojisUrl, messagesUrl } = getCdnUrls('latest', locale);
   return Promise.all([
     getEtag(emojisUrl),
     getEtag(messagesUrl),
@@ -62,26 +64,56 @@ async function checkUpdates(db: Database, emojisEtag: string | null, messagesEta
   // If either ETag does not match, repopulate the database with the latest CDN data
   if (messagesEtag !== storedMessagesEtag || emojisEtag !== storedEmojisEtag) {
     const [messages, emojis] = await Promise.all([fetchMessages(db.locale), fetchEmojis(db.locale)]);
-    await db.populate(messages.groups, emojis, emojisEtag, messagesEtag);
+    await db.populate({
+      groups: messages.groups, 
+      emojis,
+      emojisEtag,
+      messagesEtag
+    });
   }
 }
 
-export async function initDatabase(locale: Locale, staticMessages?: MessagesDataset, staticEmojis?: Emoji[], existingDb?: Database) {
+/**
+ * Checks for a new version of local emoji data. This is done by comparing the stored hash with the 
+ * newly computed one.
+ * 
+ * @param db The database
+ * @param hash The hash of the local emoji data
+ * @returns true if there is a hash mismatch and a database update is required
+ */
+async function checkLocalUpdates(db: Database, hash: string) {
+  const storedHash = await db.getHash();
+  return hash !== storedHash;
+}
+
+/**
+ * Opens the database.
+ * 
+ * @param locale the database locale
+ * @param existingDb any existing database to use
+ * @returns Promise that resolves to the database instance
+ */
+async function openDatabase(locale: Locale, existingDb?: Database): Promise<Database> {
   const db = existingDb || new Database(locale);
   await db.open();
+  return db;
+}
 
-  const { emojisUrl, messagesUrl } = getCdnUrls('latest', locale);
-  const [emojisEtag, messagesEtag] = await getEtags(emojisUrl, messagesUrl);
+/**
+ * Initializes an emoji database with data from the CDN.
+ * 
+ * @param locale the locale for the database
+ * @param existingDb any existing database to repopulate
+ * @returns a Promise that resolves to a fully populated database instance
+ */
+async function initDatabaseFromCdn(locale: Locale, existingDb?: Database) {
+  const db = await openDatabase(locale, existingDb);
+
+  const [emojisEtag, messagesEtag] = await getEtags(locale);
 
   if (!(await db.isPopulated())) {
-    let messages = staticMessages;
-    let emojis = staticEmojis;
-
-    if (!messages || !emojis) {
-      [messages, emojis] = await Promise.all([fetchMessages(locale), fetchEmojis(locale)]);
-    }
-
-    await db.populate(messages.groups, emojis, emojisEtag, messagesEtag);
+    const [messages, emojis] = await Promise.all([fetchMessages(locale), fetchEmojis(locale)]);
+    await db.populate({ groups: messages.groups, emojis, emojisEtag, messagesEtag });
   } else if (emojisEtag || messagesEtag) {
     await checkUpdates(db, emojisEtag, messagesEtag);
   }
@@ -89,6 +121,47 @@ export async function initDatabase(locale: Locale, staticMessages?: MessagesData
   return db;
 }
 
+/**
+ * Initializes an emoji database with local data from the emojibase-data package.
+ * 
+ * @param locale the locale
+ * @param messages the messages dataset
+ * @param emojis the emoji dataset
+ * @param existingDb any existing database to repopulate
+ * @returns a Promise that resolves to a fully populated database instance
+ */
+async function initDatabaseWithLocalData(locale: Locale, messages: MessagesDataset, emojis: Emoji[], existingDb?: Database) {
+  const db = await openDatabase(locale, existingDb);
+
+  const hash = await computeHash(emojis);
+  if (!(await db.isPopulated()) || await checkLocalUpdates(db, hash)) {
+    await db.populate({ groups: messages.groups, emojis, hash });
+  }
+
+  return db;
+}
+
+/**
+ * Public API for initializing a database.
+ * 
+ * @param locale the locale
+ * @param staticMessages local messages dataset, if any
+ * @param staticEmojis local emoji dataset, if any
+ * @param existingDb any existing database to repopulate
+ * @returns a Promise that resolves to the database instance
+ */
+export async function initDatabase(locale: Locale, staticMessages?: MessagesDataset, staticEmojis?: Emoji[], existingDb?: Database) {
+  if (staticMessages && staticEmojis) {
+    return initDatabaseWithLocalData(locale, staticMessages, staticEmojis, existingDb);
+  } else {
+    return initDatabaseFromCdn(locale, existingDb);
+  }
+}
+
+/**
+ * Deletes a database instance for a locale.
+ * @param locale the locale to delete
+ */
 export function deleteDatabase(locale: Locale) {
   Database.deleteDatabase(locale);
 }

@@ -1,6 +1,9 @@
 import './EmojiButton.css';
 import { toElement } from './common';
 
+import emojis from 'emojibase-data/en/data.json';
+import messages from 'emojibase-data/en/messages.json';
+
 import { createPicker } from '../../packages/picmo/src/index';
 
 function getUIFlags(options: any) {
