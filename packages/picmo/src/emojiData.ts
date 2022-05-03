@@ -42,10 +42,15 @@ async function getEtag(url: string): Promise<string | null> {
  */
 function getEtags(locale): Promise<Array<string | null>> {
   const { emojisUrl, messagesUrl } = getCdnUrls('latest', locale);
-  return Promise.all([
-    getEtag(emojisUrl),
-    getEtag(messagesUrl),
-  ]);
+
+  try {
+    return Promise.all([
+      getEtag(emojisUrl),
+      getEtag(messagesUrl),
+    ]);
+  } catch (error) {
+    return Promise.all([null, null]);
+  }
 }
 
 /**
@@ -58,8 +63,16 @@ function getEtags(locale): Promise<Array<string | null>> {
  * @param emojisEtag the ETag of the emojis data
  * @param messagesEtag the ETag of the messages data
  */
-async function checkUpdates(db: Database, emojisEtag: string | null, messagesEtag: string | null) {
-  const { storedEmojisEtag, storedMessagesEtag } = await db.getEtags();
+async function checkUpdates(db: Database, emojisEtag: string, messagesEtag: string) {
+  let etags;
+
+  try {
+    etags = await db.getEtags();
+  } catch (error) {
+    etags = {};
+  }
+
+  const { storedEmojisEtag, storedMessagesEtag } = etags;
 
   // If either ETag does not match, repopulate the database with the latest CDN data
   if (messagesEtag !== storedMessagesEtag || emojisEtag !== storedEmojisEtag) {
@@ -114,7 +127,7 @@ async function initDatabaseFromCdn(locale: Locale, existingDb?: Database) {
   if (!(await db.isPopulated())) {
     const [messages, emojis] = await Promise.all([fetchMessages(locale), fetchEmojis(locale)]);
     await db.populate({ groups: messages.groups, emojis, emojisEtag, messagesEtag });
-  } else if (emojisEtag || messagesEtag) {
+  } else if (emojisEtag && messagesEtag) {
     await checkUpdates(db, emojisEtag, messagesEtag);
   }
 

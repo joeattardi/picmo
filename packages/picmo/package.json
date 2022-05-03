@@ -33,5 +33,9 @@
     "emojibase": "^6.1.0",
     "tslib": "^2.4.0",
     "twemoji": "^14.0.2"
+  },
+  "devDependencies": {
+    "msw": "^0.39.2",
+    "node-fetch": "^2.6.7"
   }
 }

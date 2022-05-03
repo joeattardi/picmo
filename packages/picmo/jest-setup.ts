@@ -1,5 +1,11 @@
 import '@testing-library/jest-dom';
+import 'node-fetch';
+import './testHelpers/fetch-polyfill';
+import { server } from './testHelpers/mocks/server';
 
-global.afterEach(() => {
-  document.body.replaceChildren();
-});
+beforeAll(() => server.listen());
+
+afterEach(() => server.resetHandlers());
+afterEach(() => document.body.replaceChildren());
+
+afterAll(() => server.close())
