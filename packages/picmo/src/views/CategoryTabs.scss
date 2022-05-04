@@ -1,10 +1,7 @@
 .categoryButtons {
   --tab-size-ratio: 1.55; 
-  --tab-gap: 8px;
   --tab-padding: 0.5em;
-  --gap-count: calc(var(--category-count) - 1);
-  --gap-offset: calc(var(--tab-gap) * var(--gap-count));
-  --tab-area-width: calc(var(--picker-width) - var(--gap-offset) - (var(--tab-padding) * 2));
+  --tab-area-width: calc(var(--picker-width) - (var(--tab-padding) * 2));
   --tab-size: calc((var(--tab-area-width) / var(--category-count))) / var(--tab-size-ratio);
 
   display: grid;
@@ -24,8 +21,9 @@
 }
 
 .categoryButton {
+  border-radius: 5px;
   background: transparent;
-  border: none;
+  border: 2px solid transparent;
   color: var(--category-button-color);
   cursor: pointer;
   padding: 2px;
@@ -35,40 +33,40 @@
   justify-content: center;
   font-size: 1.2rem;
   font-size: min(var(--tab-size), 1.2rem);
-  width: 100%;
-  height: 1.5em;
+  width: 1.6em;
+  height: 1.6em;
 
   img {
     width: var(--category-button-size);
     height: var(--category-button-size);
   }
+
+  &:hover {
+    background: var(--category-button-highlight-background);
+  }
 }
 
 .categoryTab {
-  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: stretch;
   transition: all 100ms;
 
-  &:hover {
-    background: var(--category-button-highlight-background);
-    box-shadow: 0px 0px 0px 2px var(--category-button-highlight-background);
-  }
+
 }
 
 .categoryTabActive {
-  background-color: var(--category-button-active-background);
-  box-shadow: 0px 0px 0px 2px var(--category-button-active-shadow);
-
-  &:hover {
-    background-color: var(--category-button-active-background);
-    box-shadow: 0px 0px 0px 2px var(--category-button-active-shadow);
-  }
-
   .categoryButton {
     color: var(--category-button-active-color);
-    position: relative;
+    background: 
+    linear-gradient(rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%),
+      linear-gradient(var(--category-button-active-color) 0%, var(--category-button-active-color) 100%);
+
+    border: 2px solid var(--category-button-active-color);
+
+    &:hover {
+      background-color: var(--category-button-active-background);
+    }
   }
 }
 
