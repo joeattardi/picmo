@@ -3,7 +3,7 @@ import { CategoryTabs } from './CategoryTabs';
 import { EmojiCategory } from './EmojiCategory';
 import { RecentEmojiCategory } from './RecentEmojiCategory';
 import { CustomEmojiCategory } from './CustomEmojiCategory';
-import { shouldAnimate, throttle } from '../util';
+import { throttle } from '../util';
 import { LazyLoader } from '../LazyLoader';
 import { Category, CategoryKey, EmojiFocusTarget } from '../types';
 import { Template } from '../Template';
@@ -166,75 +166,6 @@ export class EmojiArea extends View {
   }
 
   /**
-   * Scrolls the emoji area to a target position, optionally animating it.
-   * 
-   * @param targetPosition The final target position.
-   * @param animate Whether or not the scroll should be animated.
-   * @returns a Promise that is resolved when the scroll is complete.
-   */
-  private async scrollTo(targetPosition, animate = true): Promise<void> {
-    // We don't want to trigger the auto selection, so pause scroll listening here.
-    this.scrollListenerState = 'suspend';
-
-    // If a scroll animation is already in progress, cancel it and jump to the end
-    // before starting this one.
-    this.cancelScroll?.();
-
-    let isCancelled = false;
-    this.cancelScroll = () => isCancelled = true;
-
-    if (!animate || !shouldAnimate(this.options)) {
-      this.scrollListenerState = 'resume';
-      this.el.scrollTop = targetPosition;
-      return;
-    }
-
-    return new Promise<void>(resolve => {
-        const difference = targetPosition - this.el.scrollTop;
-        const step = difference / 7;
-
-        let previous;
-        const scrollStep = time => {
-          if (!previous) {
-            previous = time;
-          }
-
-          // If the scroll operation was cancelled, stop scrolling and let the next scroll take over.
-          if (isCancelled) {
-            return resolve();
-          }
-
-          // If we are scrolling down, check to see if there is still scrollable area below the current position.
-          // If we have hit the end, we can't scroll any further and should bail out to prevent an infinite loop.
-          const canScroll = this.el.scrollHeight - this.el.scrollTop > this.el.offsetHeight || difference < 0;
-          
-          // Aim for 60fps.
-          if (time - previous >= (1000/60)) {
-            if (targetPosition !== this.el.scrollTop && canScroll) {
-              // If we haven't reached the target position yet - and we can still scroll - continue the scroll animation.
-              const currentDifference = targetPosition - this.el.scrollTop;
-              const nextStep = Math.abs(currentDifference) > Math.abs(step) && Math.sign(currentDifference) === Math.sign(step) ? step : currentDifference;
-              this.el.scrollTop += nextStep;
-              previous = time;
-              requestAnimationFrame(scrollStep);
-            } else {
-              // Otherwse we either have reached the target position or can't scroll down any further.
-              // Only start listening for scroll events once the scroll animation is complete.
-              this.scrollListenerState = 'resume';
-              resolve();
-            }
-          } else {
-            // Not enough time has passed yet, request a new frame.
-            requestAnimationFrame(scrollStep);
-          }
-        };
-    
-        // Start the scroll animation.
-        requestAnimationFrame(scrollStep);
-    });
-  }
-
-  /**
    * Given a category key, returns the index of the category in the categories array.
    * @param key 
    * @returns 
@@ -295,7 +226,7 @@ export class EmojiArea extends View {
     this.emojiCategories[categoryIndex].setActive(true, getFocusTarget(focus), focus !== 'button' && performFocus);
 
     if (scroll) {
-      await this.scrollTo(targetPosition, scroll === 'animate');
+      this.el.scrollTop = targetPosition;
     }
 
     this.scrollListenerState = 'resume';
@@ -336,8 +267,8 @@ export class EmojiArea extends View {
     const currentPosition = this.el.scrollTop;
     const maxScroll = this.el.scrollHeight - this.el.offsetHeight;    
 
-    const targetCategory = this.emojiCategories.findIndex((category: EmojiCategory) => {
-      return category.el.offsetTop >= currentPosition;
+    const targetCategory = this.emojiCategories.findIndex((category: EmojiCategory, index: number) => {
+      return currentPosition < (this.emojiCategories[index + 1])?.el.offsetTop;
     });
 
     if (currentPosition === 0) {
@@ -345,7 +276,7 @@ export class EmojiArea extends View {
     } else if (Math.floor(currentPosition) === Math.floor(maxScroll) || targetCategory < 0) {
       this.categoryTabs.setActiveTab(this.categories.length - 1, false);
     } else {
-      this.categoryTabs.setActiveTab(targetCategory - 1, false);
+      this.categoryTabs.setActiveTab(targetCategory, false);
     }
   }
 }
