@@ -28,6 +28,10 @@ module.exports = {
 
     config.resolve.fallback.fs = false;
 
+    config.resolve.alias.picmo = path.resolve(__dirname, '../../packages/picmo/src');
+    config.resolve.alias['@picmo/popup-picker'] = path.resolve(__dirname, '../../packages/popup-picker/src');
+    config.resolve.alias['@picmo/renderer-twemoji'] = path.resolve(__dirname, '../../packages/renderer-twemoji/src');
+
     config.module.rules.push({
       test: /\.svg$/i,
       exclude: /stories/,
