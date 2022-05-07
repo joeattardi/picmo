@@ -13,12 +13,12 @@
   width: 1.5em;
 
   &:hover {
-    background: var(--hover-color);
+    background: var(--hover-background-color);
   }
 
   &:focus {
     border-radius: 0;
-    background: var(--focus-indicator-background);
+    background: var(--focus-indicator-background-color);
     outline: 1px soldi var(--focus-indicator-color);
   }
 }

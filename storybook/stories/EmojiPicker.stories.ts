@@ -34,6 +34,12 @@ Custom.args = {
   custom: customEmojis
 };
 
+export const CustomTheme = Template.bind({});
+CustomTheme.storyName = 'Custom color theme';
+CustomTheme.args = {
+  className: 'custom-theme'
+};
+
 export const CustomDimensions = Template.bind({});
 CustomDimensions.args = {
   emojisPerRow: 12,

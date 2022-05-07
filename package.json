@@ -16,8 +16,8 @@
   "main": "dist/index.js",
   "scripts": {
     "prepublishOnly": "npm run build",
-    "prebuild:docs": "npm install --prefix docs",
     "prebuild:storybook": "npm run build",
+    "postinstall": "npm install --prefix docs",
     "build": "npm run --workspace=packages build",
     "precommit": "npm run --workspace packages precommit",
     "check": "tsc --noEmit",

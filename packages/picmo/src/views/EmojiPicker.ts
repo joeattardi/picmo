@@ -232,7 +232,8 @@ export class EmojiPicker extends View {
         emojiArea,
         preview,
         showHeader: Boolean(this.search || this.categoryTabs),
-        theme: this.options.theme
+        theme: this.options.theme,
+        className: this.options.className
       });
 
       this.el.style.setProperty('--category-count', this.categories.length.toString());

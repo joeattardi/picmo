@@ -68,6 +68,8 @@ export type PickerOptions = {
    */
   theme: string;
 
+  className?: string;
+
   /**
    * The DOM element that the picker will be appended to. Any existing children
    * will be removed.

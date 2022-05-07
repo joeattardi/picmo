@@ -26,6 +26,12 @@ If `true`, the search field will automatically receive focus when the picker fir
 
 If specified, only the categories in this array will be shown in the picker. The filtered categories will be shown in the order they in which they appear in the array.
 
+### `className`
+
+- **Type**: `string` | `undefined`
+
+Sets any additional CSS classes to be applied to the picker. This is typically used to override theme styles.
+
 ### `custom`
 
 - **Type**: [`CustomEmoji[]`](./custom-emoji) | `undefined`

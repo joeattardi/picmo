@@ -11,7 +11,7 @@
   box-sizing: border-box;
   padding: 0.5em;
   position: relative;
-  background: var(--preview-background);
+  background: var(--preview-background-color);
 }
 
 .previewEmoji {
@@ -43,24 +43,11 @@
   margin: 0;
   font-size: 0.75em;
   overflow: hidden;
-  &::before {
-    width: 75px;
-    height: 100%;
-    content: '';
-    position: absolute;
-    right: 0;
-    height: 1.5em;
-    background-image: linear-gradient(
-                        270deg, 
-                        var(--preview-background) 40%, 
-                        var(--fade-gradient-end) 100%
-    );
-  }
 }
 
 .tag {
   border-radius: 3px;
-  background: var(--tag-background);
+  background: var(--tag-background-color);
   color: var(--text-color);
   padding: 2px 8px;
   margin-right: 0.25em;

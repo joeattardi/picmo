@@ -24,7 +24,7 @@
   border-radius: 5px;
   background: transparent;
   border: 2px solid transparent;
-  color: var(--category-button-color);
+  color: var(--category-tab-color);
   cursor: pointer;
   padding: 2px;
   vertical-align: middle;
@@ -38,12 +38,12 @@
   transition: all 100ms;
 
   img {
-    width: var(--category-button-size);
-    height: var(--category-button-size);
+    width: var(--category-tab-size);
+    height: var(--category-tab-size);
   }
 
   &:hover {
-    background: var(--category-button-highlight-background);
+    background: var(--category-tab-highlight-background-color);
   }
 }
 
@@ -56,15 +56,15 @@
 
 .categoryTabActive {
   .categoryButton {
-    color: var(--category-button-active-color);
+    color: var(--category-tab-active-color);
     background: 
       linear-gradient(rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%),
-      linear-gradient(var(--category-button-active-color) 0%, var(--category-button-active-color) 100%);
+      linear-gradient(var(--category-tab-active-color) 0%, var(--category-tab-active-color) 100%);
 
-    border: 2px solid var(--category-button-active-color);
+    border: 2px solid var(--category-tab-active-color);
 
     &:hover {
-      background-color: var(--category-button-active-background);
+      background-color: var(--category-tab-active-background-color);
     }
   }
 }

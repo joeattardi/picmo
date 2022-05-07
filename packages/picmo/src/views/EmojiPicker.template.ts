@@ -14,9 +14,9 @@ function header({ showHeader, classes }) {
 }
 
 function renderPicker(data) {
-  const { classes, theme } = data;
+  const { classes, theme, className = ''} = data;
   return /* html */`
-    <div class="${classes.picker} ${theme}">
+    <div class="${classes.picker} ${theme} ${className}">
       ${header(data)}
       <div class="${classes.content}">
         <div data-view="emojiArea"></div>
@@ -27,7 +27,7 @@ function renderPicker(data) {
 }
 
 function renderPlaceholder(data) {
-  const { emojiCount, classes, theme } = data;
+  const { emojiCount, classes, theme, className } = data;
 
   const search = ({ showSearch, classes }) => showSearch ? /* html */`
     <div class="${classes.searchSkeleton}">
@@ -59,7 +59,7 @@ function renderPlaceholder(data) {
   ` : '';
 
   return /* html */`
-    <div class="${classes.skeleton} ${classes.picker} ${theme}">
+    <div class="${classes.skeleton} ${classes.picker} ${theme} ${className}">
       ${header(data)}
       <div class="${classes.contentSkeleton}">
         <div class="${classes.placeholder} ${classes.categoryName}"></div>
