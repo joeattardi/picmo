@@ -31,8 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "emojibase": "^6.1.0",
-    "tslib": "^2.4.0",
-    "twemoji": "^14.0.2"
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
     "msw": "^0.39.2",
