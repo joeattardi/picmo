@@ -96,7 +96,6 @@
   "dependencies": {
     "@popperjs/core": "^2.4.0",
     "emojibase": "^6.1.0",
-    "tslib": "^2.0.0",
     "twemoji": "^14.0.1"
   }
 }

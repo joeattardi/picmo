@@ -30,8 +30,7 @@
   "funding": "https://github.com/sponsors/joeattardi",
   "license": "MIT",
   "dependencies": {
-    "emojibase": "^6.1.0",
-    "tslib": "^2.4.0"
+    "emojibase": "^6.1.0"
   },
   "devDependencies": {
     "msw": "^0.39.2",

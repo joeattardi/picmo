@@ -36,5 +36,6 @@ export default bundles.map(bundle => ({
     typescript(),
     postcss({ modules: true }),
     terser()
-  ]
+  ],
+  external: ['picmo']
 }));
