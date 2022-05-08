@@ -73,7 +73,6 @@ export type PickerOptions = {
   /**
    * The DOM element that the picker will be appended to. Any existing children
    * will be removed.
-   * @default document.body
    */
   rootElement: HTMLElement;
 

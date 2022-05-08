@@ -268,6 +268,10 @@ export class EmojiPicker extends View {
       emojiCount: this.options.emojisPerRow * this.options.visibleRows
     });
 
+    if (!this.options.rootElement) {
+      throw new Error('Picker must be given a root element via the rootElement option');
+    }
+    
     this.options.rootElement.replaceChildren(this.el);
     this.setStyleProperties();
 

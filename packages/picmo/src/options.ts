@@ -30,7 +30,6 @@ const defaultOptions: Partial<PickerOptions> = {
 export function getOptions(options: Partial<PickerOptions> = {}): PickerOptions {
   return { 
     ...defaultOptions,
-    rootElement: document.body,
     ...options 
   } as PickerOptions;
 }

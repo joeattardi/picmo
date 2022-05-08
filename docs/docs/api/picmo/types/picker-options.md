@@ -124,9 +124,8 @@ The `Renderer` subclass instance that will be used to render the emojis.
 ### `rootElement`
 
 - **Type**: `HTMLElement`
-- **Default**: `document.body`
 
-The DOM element that will contain the picker. Any existing children of this element will be removed when `createPicker` is called.
+The DOM element that will contain the picker. Any existing children of this element will be removed when `createPicker` is called. If a root element is not specified, an error will be thrown.
 
 ### `showCategoryTabs`
 
