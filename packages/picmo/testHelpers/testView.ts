@@ -33,7 +33,7 @@ function createTestView<T extends View>(
 
 export async function testView<T extends View>(
   constructor: ViewConstructor<T>,
-  args: ViewConstructorParameters<T>,
+  args: ViewConstructorParameters<T> = [],
   dependencies = {}
 ) {
   const view = createTestView(constructor, args, dependencies);
@@ -43,7 +43,7 @@ export async function testView<T extends View>(
 
 export function testViewSync<T extends View>(
   constructor: ViewConstructor<T>,
-  args: ViewConstructorParameters<T>,
+  args: ViewConstructorParameters<T> = [],
   dependencies = {}
 ) {
   const view = createTestView(constructor, args, dependencies);
