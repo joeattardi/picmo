@@ -3,7 +3,7 @@
 Creates a popup picker.
 
 ```javascript
-import { createPopup } from 'picmo';
+import { createPopup } from '@picmo/popup-picker';
 ```
 
 <pre>
