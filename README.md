@@ -19,6 +19,10 @@ Formerly known as [Emoji Button](https://emoji-button.js.org).
 - Add custom images and GIFs!
 - Render inline on the page or as a popup
 
+## Demos and documentation
+
+Demos and full documentation, including the API and usage guide, is available at [https://picmojs.com](https://picmojs.com).
+
 ## Installation
 
 At a minimum, you need the core picker package. This gives you a picker that you can insert inline into an element on the page.

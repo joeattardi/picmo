@@ -4,6 +4,9 @@ Adds support to PicMo for rendering emojis from [Twemoji](https://twemoji.twitte
 
 Requires the [base PicMo package](../picmo) to be installed as a peer dependency.
 
+<img width="390" alt="Twemoji renderer" src="https://user-images.githubusercontent.com/219285/167279294-6a5341cb-e211-46b0-a179-348293715bfa.png">
+
+
 ## Installation
 
 ```
