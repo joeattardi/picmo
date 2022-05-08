@@ -1,7 +1,7 @@
 import { Template } from '../Template';
 
 export default new Template(({ emojiCount, classes, category, pickerId, icon, i18n }) => /* html */`
-  <div class="${classes.emojiCategory}" role="tabpanel" aria-labelledby="${pickerId}-category-${category.key}">
+  <section class="${classes.emojiCategory}" role="tabpanel" aria-labelledby="${pickerId}-category-${category.key}">
   <h3 data-category="${category.key}" class="${classes.categoryName}">
     <i data-icon="${icon}"></i>
     ${i18n.get(`categories.${category.key}`, category.message || category.key)}
@@ -12,5 +12,5 @@ export default new Template(({ emojiCount, classes, category, pickerId, icon, i1
   <div class="${classes.noRecents}">
     ${i18n.get('recents.none')}
   </div>
-</div>
+</section>
 `, { mode: 'async' });

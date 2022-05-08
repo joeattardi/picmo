@@ -70,8 +70,6 @@ export class EmojiArea extends View {
 
   emojiCategories: EmojiCategory[];
 
-  private cancelScroll: () => void;
-
   constructor({ categoryTabs, categories, emojiVersion }: EmojiAreaOptions) {
     super({ template, classes });
 
