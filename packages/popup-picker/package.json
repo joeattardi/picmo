@@ -1,6 +1,6 @@
 {
   "name": "@picmo/popup-picker",
-  "version": "5.0.0-beta.7",
+  "version": "5.0.0-beta.8",
   "description": "Popup emoji picker for PicMo",
   "main": "dist/index.js",
   "files": [
