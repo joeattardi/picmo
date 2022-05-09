@@ -13,7 +13,10 @@ const bundles = [
       sourcemap: true,
       file: 'dist/umd/picmo-twemoji.js',
       format: 'umd',
-      name: 'picmoTwemoji'
+      name: 'picmoTwemoji',
+      globals: {
+        picmo: 'picmo'
+      }
     }
   },
   {

@@ -12,7 +12,10 @@ const bundles = [
       sourcemap: true,
       file: 'dist/umd/picmo-popup.js',
       format: 'umd',
-      name: 'picmoPopup'
+      name: 'picmoPopup',
+      globals: {
+        picmo: 'picmo'
+      }
     }
   },
   {
