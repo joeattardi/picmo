@@ -31,6 +31,6 @@
     "picmo": "^5.0.0-beta.3"
   },
   "dependencies": {
-    "twemoji": "^14.0.2"
+    "twemoji-parser": "^14.0.0"
   }
 }

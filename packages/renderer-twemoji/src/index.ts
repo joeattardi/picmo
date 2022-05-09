@@ -1,64 +1,39 @@
-import twemoji from 'twemoji';
+import { parse } from 'twemoji-parser';
 
 import { EmojiRecord, EmojiSelection, Renderer } from 'picmo';
 
 import classes from './twemoji.scss';
 
-type TwemojiCallbackOptions = {
-  base: string;
-  size: string;
-  ext: string;
-};
-
-type TwemojiOptions = {
-  ext: string;
-  folder: string;
-}
-
 type TwemojiImageFormat = 'svg' | 'png';
 
-const formatOptions: Record<TwemojiImageFormat, TwemojiOptions> = {
-  png: {
-    ext: '.png',
-    folder: '72x72'
-  },
-  svg: {
-    ext: '.svg',
-    folder: 'svg'
-  }
-}
-
-function getTwemojiUrl(record: EmojiRecord, options: TwemojiOptions): Promise<string> {
-  return new Promise(resolve => {
-    twemoji.parse(record.emoji, {
-      ...options,
-      callback: (icon, options) => {
-        const { base, size, ext } = options as TwemojiCallbackOptions;
-        const url = `${base}${size}/${icon}${ext}`;
-        resolve(url);
-        return url;
-      }
-    });
-  });
+function getTwemojiUrl(record: EmojiRecord, format: TwemojiImageFormat) {
+  const [result] = parse(record.emoji, { assetType: format });
+  return result?.url;
 }
 
 /**
  * Renders emojis using Twemoji images.
  */
 export class TwemojiRenderer extends Renderer {
-  private options: TwemojiOptions;
+  private format: TwemojiImageFormat;
 
   constructor(format: TwemojiImageFormat = 'svg') {
     super();
-    this.options = formatOptions[format];
+    this.format = format;
   }
 
   render(record: EmojiRecord, classNames = classes.twemoji) {
-    return this.renderImage(classNames, () => getTwemojiUrl(record, this.options));
+    return this.renderImage(classNames, () => {
+      return getTwemojiUrl(record, this.format);
+    });
   }
 
-  async emit(record: EmojiRecord): Promise<EmojiSelection> {
-    const url = await getTwemojiUrl(record, this.options);
-    return { url, hexcode: record.hexcode,emoji: record.emoji, label: record.label };
+  emit(record: EmojiRecord): EmojiSelection {
+    return { 
+      url: getTwemojiUrl(record, this.format), 
+      hexcode: record.hexcode,
+      emoji: record.emoji, 
+      label: record.label 
+    };
   }
 }

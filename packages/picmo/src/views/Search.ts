@@ -167,7 +167,7 @@ export class Search extends View {
 
         this.resultsContainer.renderSync();
         if (this.resultsContainer?.el) {
-          lazyLoader.observe(this.el.parentElement as HTMLElement);
+          lazyLoader.observe(this.resultsContainer.el);
           this.resultsContainer.setActive(true, { row: 0, offset: 0}, false);
 
           this.resultsContainer.el.addEventListener('keydown', event => this.handleResultsKeydown(event));
