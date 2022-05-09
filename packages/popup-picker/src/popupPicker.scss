@@ -4,6 +4,7 @@
 }
 
 .closeButton {
+  position: absolute;
   opacity: 0;
   background: transparent;
   border: none;
@@ -13,7 +14,7 @@
   cursor: pointer;
   padding: 4px;
   align-self: flex-end;
-  transform: translate(50%, 50%);
+  transform: translate(50%, -50%);
   background: #999999;
   width: 1.5rem;
   height: 1.5rem;

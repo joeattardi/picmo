@@ -40,7 +40,10 @@ export default getArgs({
 });
 
 const Template = args => {
-  return createPicker(args);
+  return createPicker({
+    position: 'bottom-start',
+    ...args
+  });
 };
 
 export const Native = Template.bind({});
