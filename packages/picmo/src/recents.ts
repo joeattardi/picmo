@@ -7,8 +7,12 @@ export function clear(): void {
 }
 
 export function getRecents(maxCount: number): Array<EmojiRecord> {
-  const recents = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) ?? '[]');
-  return recents.slice(0, maxCount);
+  try {
+    const recents = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) ?? '[]');
+    return recents.slice(0, maxCount);
+  } catch (error) { // localStorage is not available, no recents
+    return [];
+  }
 }
 
 export function addOrUpdateRecent(emoji: EmojiRecord, maxCount: number) {
@@ -18,5 +22,9 @@ export function addOrUpdateRecent(emoji: EmojiRecord, maxCount: number) {
     ...getRecents(maxCount).filter(recent => recent.hexcode !== emoji.hexcode)
   ].slice(0, maxCount);
   
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recents));
+  try {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recents));
+  } catch (error) {
+    // localStorage is not available, no recents
+  }
 }

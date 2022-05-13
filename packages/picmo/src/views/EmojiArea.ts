@@ -65,6 +65,9 @@ export class EmojiArea extends View {
   private categories: Category[];
   private emojiVersion: number;
 
+  private scrollHeight: number;
+  private scrollTop: number;
+
   private scrollListenerState: ScrollListenerState = 'active';
   private lazyLoader = new LazyLoader();
 
@@ -92,7 +95,7 @@ export class EmojiArea extends View {
 
     super.initialize();
   }
-  
+
   get focusableEmoji(): HTMLElement {
     return this.el.querySelector<HTMLElement>('[tabindex="0"]') as HTMLElement;
   }
@@ -110,6 +113,25 @@ export class EmojiArea extends View {
     });
 
     this.lazyLoader.observe(this.el);
+
+    // We need to watch for changes in the scroll height. This will happen if a new recent emoji is 
+    // added such that a new row is added to the recents category, which will shift the scroll height.
+    // This will compensate so that from the user's perspective, the scroll position stays the same.
+    const observer = new ResizeObserver(() => {
+      const heightChange = this.el.scrollHeight - this.scrollHeight;
+      const scrollTopChange = this.el.scrollTop - this.scrollTop;
+
+      if (scrollTopChange === 0 && heightChange > 0) {
+        this.el.scrollTop += heightChange;
+      }
+
+      this.scrollHeight = this.el.scrollHeight;
+      this.scrollTop = this.el.scrollTop;
+    });
+
+    this.emojiCategories.forEach(category => {
+      observer.observe(category.el);
+    })
 
     return this.el;
   }

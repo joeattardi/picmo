@@ -38,10 +38,12 @@
 .noRecents {
   color: var(--secondary-text-color);
   grid-column: 1 / span var(--emojis-per-row);
-  font-size: 0.8em;
+  font-size: 0.9em;
   text-align: center;
-  display: block;
-  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(var(--emoji-size) * var(--emoji-size-multiplier));
 }
 
 .recentEmojis[data-empty="true"] {

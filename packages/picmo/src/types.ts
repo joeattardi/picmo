@@ -134,7 +134,7 @@ export type PickerOptions = {
   /**
    * The size of the emojis in the picker grid.
    * Should be a valid CSS size string, e.g. `'1em'`.
-   * @default '2em'
+   * @default '2rem'
    */
   emojiSize: string;
 

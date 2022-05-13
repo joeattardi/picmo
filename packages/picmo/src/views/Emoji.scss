@@ -5,12 +5,12 @@
   cursor: pointer;
   font-family: var(--emoji-font);
   font-size: var(--emoji-size);
-  height: 1.5em;
+  height: 100%;
   justify-content: center;
   margin: 0;
   overflow: hidden;
   padding: 0;
-  width: 1.5em;
+  width: 100%;
 
   &:hover {
     background: var(--hover-background-color);
