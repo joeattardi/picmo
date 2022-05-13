@@ -1,25 +1,30 @@
-import { EMOJI_VERSIONS } from 'emojibase';
-import { Database } from './db';
+// TODO: Can we find a way to test versions that only consist of combinations of emojis?
+// These could give a false positive if one of the emojis in the sequence is an older supported emoji,
+// we might think that version is supported.
+// Can we somehow check if only one "character" is rendered?
 
-const emojiVersions = EMOJI_VERSIONS.map(version => parseFloat(version));
+// Representative emojis for each emoji version. If a given emoji is supported,
+// we assume the system supports that emoji version.
+const TEST_EMOJIS = [
+  { version: 15, emoji: String.fromCodePoint(0x1FAE8) },
+  { version: 14, emoji: String.fromCodePoint(0x1F6DD) },
+  { version: 13, emoji: String.fromCodePoint(0x1FAC1) },
+  { version: 12, emoji: String.fromCodePoint(0x1F971) },
+  { version: 11, emoji: String.fromCodePoint(0x1F9B7) },
+  { version: 5, emoji: String.fromCodePoint(0x1F92A) }, 
+  { version: 4, emoji: String.fromCodePoint(0x2695) },
+  { version: 3, emoji: String.fromCodePoint(0x1F922) },
+  { version: 2, emoji: String.fromCodePoint(0x1F5E8) },
+  { version: 1, emoji: String.fromCodePoint(0x1F600) }
+];
 
 /**
  * Determines the latest emoji version that is supported by the browser.
- * 
- * @param emojiData the emoji database
  * @returns the supported emoji version number
  */
-export async function determineEmojiVersion(emojiData: Database) {
-  for (let i = EMOJI_VERSIONS.length - 1; i >= 0; i--) {
-    // Find the first emoji for this version.
-    const { emoji } = await emojiData.getEmojiForVersion(emojiVersions[i]);
-
-    // If it's supported, this is the version (since we start with the latest first)
-    // Otherwise we'll check the next version
-    if (supportsEmoji(emoji)) {
-      return emojiVersions[i];
-    }
-  }
+export function determineEmojiVersion() {
+  const supportedEmoji = TEST_EMOJIS.find(emoji => supportsEmoji(emoji.emoji));
+  return supportedEmoji?.version ?? 1;
 }
 
 /**

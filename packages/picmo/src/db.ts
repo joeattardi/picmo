@@ -216,20 +216,6 @@ export class Database {
   }
 
   /**
-   * Finds the first emoji for a particular emoji version.
-   * 
-   * @param emojiVersion the emoji version to check
-   * @returns a Promise that resolves to the first emoji for that version
-   */
-  async getEmojiForVersion(emojiVersion: number): Promise<Emoji> {
-    const transaction = this.db.transaction('emoji', 'readonly');
-    const emojiStore = transaction.objectStore('emoji');
-    const index = emojiStore.index('version');
-    const result = await this.waitForRequest(index.get(emojiVersion));
-    return result.target.result as Emoji;
-  }
-
-  /**
    * Gets all emojis for a particular category and emoji version.
    * 
    * @param category the category to get emojis for

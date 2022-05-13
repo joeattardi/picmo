@@ -80,6 +80,9 @@ export class EmojiPicker extends View {
    */
   destroy(): void {
     super.destroy();
+    this.search?.destroy();
+    this.emojiArea.destroy();
+    this.categoryTabs?.destroy();
     this.events.removeAll();
     this.externalEvents.removeAll();
   }
@@ -216,7 +219,8 @@ export class EmojiPicker extends View {
       }
 
       if (this.options.emojiVersion === 'auto') {
-        this.emojiVersion = (await determineEmojiVersion(this.emojiData)) || parseFloat(LATEST_EMOJI_VERSION);
+        this.emojiVersion = determineEmojiVersion() || parseFloat(LATEST_EMOJI_VERSION);
+        console.log(`Emoji version: ${this.emojiVersion}`);
       } else {
         this.emojiVersion = this.options.emojiVersion;
       }
