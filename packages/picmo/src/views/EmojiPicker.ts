@@ -220,7 +220,6 @@ export class EmojiPicker extends View {
 
       if (this.options.emojiVersion === 'auto') {
         this.emojiVersion = determineEmojiVersion() || parseFloat(LATEST_EMOJI_VERSION);
-        console.log(`Emoji version: ${this.emojiVersion}`);
       } else {
         this.emojiVersion = this.options.emojiVersion;
       }
