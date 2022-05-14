@@ -4,7 +4,7 @@ const TEST_EMOJIS = [
   { version: 15, emoji: String.fromCodePoint(0x1FAE8) },
   { version: 14, emoji: String.fromCodePoint(0x1F6DD) },
   { version: 13, emoji: String.fromCodePoint(0x1FAC1) },
-  { version: 12, emoji: String.fromCodePoint(0x1F971) },
+  { version: 12, emoji: String.fromCodePoint(0x1F9A9) },
   { version: 11, emoji: String.fromCodePoint(0x1F9B7) },
   { version: 5, emoji: String.fromCodePoint(0x1F92A) }, 
   { version: 4, emoji: String.fromCodePoint(0x2695) },
