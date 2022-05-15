@@ -28,6 +28,20 @@
   color: #ffffff;
 }
 
+.alert > h2 {
+  color: #9a3412;
+  font-family: 'Roboto', sans-serif;
+}
+
+.alert {
+  background: #fed7aa;
+  align-self: stretch;
+  color: #9a3412;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
 .badges {
   display: flex;
   flex-direction: row;
