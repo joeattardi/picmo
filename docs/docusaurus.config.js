@@ -128,12 +128,12 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-      announcementBar: {
-        id: 'work-in-progress',
-        content: 'PicMo is currently available as a beta. Documentation is still in progress. Final release coming soon. See <a href="/blog">the blog</a> for updates.',
-        backgroundColor: '#fdba74',
-        isCloseable: false
-      }
+      // announcementBar: {
+      //   id: 'work-in-progress',
+      //   content: 'PicMo is currently available as a beta. Documentation is still in progress. Final release coming soon. See <a href="/blog">the blog</a> for updates.',
+      //   backgroundColor: '#fdba74',
+      //   isCloseable: false
+      // }
     }),
 };
 
