@@ -1,3 +1,3 @@
 #!/bin/zsh
 
-npm publish --workspace packages --tag beta --access public
+npm publish --workspace packages --access public
