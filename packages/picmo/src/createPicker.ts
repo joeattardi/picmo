@@ -24,6 +24,8 @@ function getPickerId() {
  * @returns a Promise that resolves to the picker when it is ready.
  */
 export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
+  console.log('WELCOME');
+  debugger;
   const finalOptions = getOptions(options);
   const customEmojis: EmojiRecord[] = (finalOptions?.custom || []).map((custom: CustomEmoji) => ({
     ...custom,

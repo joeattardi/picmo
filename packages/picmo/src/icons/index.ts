@@ -47,10 +47,6 @@ const icons = {
   xmark,
 };
 
-Object.keys(icons).forEach(iconName => {
-  icons[iconName] = createIcon(iconName, icons[iconName]);
-});
-
 export { icons };
 
 export const categoryIcons: Record<CategoryKey, string> = {
@@ -73,7 +69,8 @@ export function icon(name: string, size?: IconSize): Element {
     return document.createElement('div');
   }
 
-  const icon = icons[name].cloneNode(true);
+  const icon = createIcon(name, icons[name]);
+  // const icon = icons[name].cloneNode(true);
   if (size) {
     icon.classList.add(classes[`icon-${size}`]);
   }

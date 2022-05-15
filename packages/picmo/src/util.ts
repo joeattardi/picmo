@@ -1,7 +1,5 @@
 import { EmojiRecord, PickerOptions } from './types';
 
-const matcher = window.matchMedia?.('(prefers-reduced-motion: reduce)');
-
 export function getEmojiForEvent(event: Event, emojis: EmojiRecord[]): EmojiRecord | null {
   const target = event.target as HTMLElement;
   const emojiElement = target.closest('[data-emoji]') as HTMLElement;
@@ -16,6 +14,7 @@ export function getEmojiForEvent(event: Event, emojis: EmojiRecord[]): EmojiReco
 }
 
 export function shouldAnimate(options: PickerOptions) {
+  const matcher = window.matchMedia?.('(prefers-reduced-motion: reduce)');
   return options.animate && !matcher?.matches;
 }
 

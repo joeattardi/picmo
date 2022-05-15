@@ -20,3 +20,4 @@ export async function createDatabase(locale: Locale, staticMessages?: MessagesDa
   const database = await initDatabaseInternal(locale, staticMessages, staticEmojis);
   database.close();
 }
+
