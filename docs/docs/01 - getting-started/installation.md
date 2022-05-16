@@ -34,7 +34,7 @@ PicMo is also available as a UMD module to use outside of a bundler. This distri
 ### Main picker code
 
 ```html
-<script src="https://unpkg.com/picmo@5.0.0-beta.3/umd/picmo.js"></script>
+<script src="https://unpkg.com/picmo@5.0.0/dist/umd/picmo.js"></script>
 ```
 
 This will expose a `picmo` object in the global window scope with the following exports:
@@ -53,12 +53,18 @@ This will expose a `picmo` object in the global window scope with the following 
 
 - [`createPopup`](../api/popup-picker/functions/create-popup)
 
+If you want a popup picker, it is a separate UMD module:
+
+```html
+<script src="https://unpkg.com/@picmo/popup-picker@5.0.0/dist/umd/picmo-popup.js"></script>
+```
+
 ### Twemoji renderer
 
 If you want to use the Twemoji renderer, it is a separate UMD module:
 
 ```html
-<script src="https://unpkg.com/picmo@5.0.0-beta.3/umd/picmo.twemoji.js"></script>
+<script src="https://unpkg.com/@picmo/renderer-twemoji@5.0.0/dist/umd/picmo-twemoji.js"></script>
 ```
 
 This will expose the [`TwemojiRenderer`](../api/renderer-twemoji/classes/twemoji-renderer) class in the global window scope.
@@ -68,7 +74,7 @@ This will expose the [`TwemojiRenderer`](../api/renderer-twemoji/classes/twemoji
 You can also import the ESM version of PicMo directly. You will first to create an ES module that imports PicMo:
 
 ```javascript title="index.js"
-import { createPicker } from 'https://unpkg.com/picmo@5.0.0-beta.3/index.js';
+import { createPicker } from 'https://unpkg.com/picmo@5.0.0/dist/index.js';
 
 createPicker(...);
 ```
@@ -76,5 +82,5 @@ createPicker(...);
 Then you can import the local module from a `script` tag:
 
 ```html
-<script type="module" src="esm.js"></script>
+<script type="module" src="index.js"></script>
 ```
