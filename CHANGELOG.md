@@ -2,6 +2,12 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.0.1] - 2022-05-18
+
+### Changed
+
+- Fixed exception being thrown when opening a popup picker with `showCloseButton: false` set.
+
 ## [5.0.0] - 2022-05-15
 
 First PicMo release (previously Emoji Button).

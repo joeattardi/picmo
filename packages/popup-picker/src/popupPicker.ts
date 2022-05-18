@@ -237,17 +237,19 @@ export class PopupPickerController {
   }
 
   private animateCloseButton(openState: boolean) {
-    return animate(this.closeButton, {
-      opacity: [0, 1]
-    },
-    {
-      duration: 25,
-      id: openState ? 'show-close' : 'hide-close',
-      easing: 'ease-in-out',
-      direction: openState ? 'normal' : 'reverse',
-      fill: 'both',
-    },
-    this.options)
+    if (this.closeButton) {
+      return animate(this.closeButton, {
+        opacity: [0, 1]
+      },
+      {
+        duration: 25,
+        id: openState ? 'show-close' : 'hide-close',
+        easing: 'ease-in-out',
+        direction: openState ? 'normal' : 'reverse',
+        fill: 'both',
+      },
+      this.options);
+    }
   }
 
   /**
