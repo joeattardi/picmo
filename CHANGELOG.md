@@ -52,6 +52,7 @@ First PicMo release (previously Emoji Button).
   - Emitted data has the properties `{ data, emoji, hexcode, url, label }`.
 - `hidden` event changed to to `emoji:hide` in `@picmo/popup-picker`.
 - Twemoji options changed to only specify the desired image type: `svg` (the default) or `png`.
+- Event listeners are now added to pickers via `.addEventListener` instead of `.on`.
 
 #### Picker options
 
