@@ -30,7 +30,7 @@
   "funding": "https://github.com/sponsors/joeattardi",
   "license": "MIT",
   "peerDependencies": {
-    "picmo": "^5.0.0-beta.3"
+    "picmo": "^5.0.1"
   },
   "dependencies": {
     "twemoji-parser": "^14.0.0"
