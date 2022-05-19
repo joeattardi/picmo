@@ -1,7 +1,7 @@
 import { Locale, MessagesDataset, Emoji } from 'emojibase';
 import { Renderer } from './renderers/renderer';
 import { Dictionary } from './i18n/bundle';
-import { DataStoreFactory } from './DataStore';
+import { DataStoreFactory } from './data/DataStore';
 
 export type EmojiFocusTargetOffset = {
   row: 'first' | 'last' | number;

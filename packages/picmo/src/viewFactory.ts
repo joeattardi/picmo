@@ -1,5 +1,5 @@
 import { AppEvent } from './AppEvents';
-import { Database } from './db';
+import { DataStore } from './data/DataStore';
 import { Events } from './events';
 import { Bundle } from './i18n/bundle';
 import { Renderer } from './renderers/renderer';
@@ -10,7 +10,7 @@ type DependencyMapping = {
   events: Events<AppEvent>;
   i18n: Bundle;
   renderer: Renderer;
-  emojiData: Promise<Database>;
+  emojiData: Promise<DataStore>;
   options: PickerOptions;
   customEmojis: EmojiRecord[];
   pickerId: string;
@@ -23,7 +23,7 @@ export class ViewFactory {
   private events: Events<AppEvent>;
   private i18n: Bundle;
   private renderer: Renderer;
-  private emojiData: Promise<Database>;
+  private emojiData: Promise<DataStore>;
   private options: PickerOptions;
   private customEmojis: EmojiRecord[];
   private pickerId: string;
@@ -38,7 +38,7 @@ export class ViewFactory {
     this.pickerId = pickerId;
   }
 
-  setEmojiData(emojiData: Database) {
+  setEmojiData(emojiData: DataStore) {
     this.emojiData = Promise.resolve(emojiData);
   }
 

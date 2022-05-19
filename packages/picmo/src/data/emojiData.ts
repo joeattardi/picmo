@@ -1,7 +1,7 @@
 import { Locale, MessagesDataset, fetchMessages, fetchEmojis, Emoji } from 'emojibase';
 // import { Database } from './db';
 import { DataStoreFactory, DataStore } from './DataStore';
-import { computeHash } from './util';
+import { computeHash } from '../util';
 
 /**
  * Generates the URLs for emoji data for a given emojibase version and locale.

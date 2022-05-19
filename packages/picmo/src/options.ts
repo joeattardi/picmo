@@ -3,7 +3,7 @@ import { PickerOptions } from './types';
 import { NativeRenderer } from './renderers/native';
 import { lightTheme } from './themes';
 import en from './i18n/lang-en';
-import { IndexedDbStoreFactory } from './IndexedDbStore';
+import { IndexedDbStoreFactory } from './data/IndexedDbStore';
 
 const defaultOptions: Partial<PickerOptions> = {
   renderer: new NativeRenderer(),

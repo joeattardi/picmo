@@ -1,18 +1,18 @@
 import { Locale, Emoji, GroupMessage } from 'emojibase';
 import { Meta, getEmojiRecord, PopulateOptions, DataStore, queryMatches } from './DataStore';
-import { PickerOptions, EmojiRecord, Category, CategoryKey } from './types';
+import { PickerOptions, EmojiRecord, Category, CategoryKey } from '../types';
 
-import { applyRules } from './rules';
+import { applyRules } from '../rules';
 
-export function InMemoryDatastoreFactory(locale: Locale): DataStore {
-  return new InMemoryDatastore(locale);
+export function InMemoryStoreFactory(locale: Locale): DataStore {
+  return new InMemoryStore(locale);
 }
 
-InMemoryDatastoreFactory.deleteDatabase = (locale: Locale) => {
+InMemoryStoreFactory.deleteDatabase = (locale: Locale) => {
   // Not implemented for in memory datastore
 };
 
-export class InMemoryDatastore extends DataStore {
+export class InMemoryStore extends DataStore {
   private categories: GroupMessage[];
   private emojis: Emoji[];
   private meta: Meta;

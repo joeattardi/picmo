@@ -1,6 +1,6 @@
 import { renderPicker } from './EmojiButton';
 import { getArgs, customEmojis } from './common';
-import { CategoryKey, InMemoryDatastoreFactory } from '../../packages/picmo/src/index';
+import { CategoryKey } from '../../packages/picmo/src/index';
 
 export default getArgs({
   title: 'Emoji Picker'
@@ -16,7 +16,6 @@ const Template = args => {
 export const Native = Template.bind({});
 Native.args = {
   renderer: 'native',
-  dataStore: InMemoryDatastoreFactory
 };
 
 export const Twemoji = Template.bind({});

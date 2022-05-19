@@ -4,7 +4,7 @@ import { Events, EventArgs, EventCallback, AsyncEventCallback } from '../events'
 import { ViewFactory } from '../viewFactory';
 import { Bundle } from '../i18n/bundle';
 import { Renderer } from '../renderers/renderer';
-import { DataStore } from '../DataStore';
+import { DataStore } from '../data/DataStore';
 import { EmojiRecord, PickerOptions } from '../types';
 import { shouldAnimate } from '../util';
 

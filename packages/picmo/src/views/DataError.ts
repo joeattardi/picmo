@@ -1,7 +1,6 @@
 import { View } from './view';
 import { ErrorMessage } from './ErrorMessage';
-import { initDatabase } from '../emojiData';
-import { DataStore } from '../DataStore';
+import { initDatabase } from '../data/emojiData';
 
 import classes from './DataError.scss';
 import template from './DataError.template';
@@ -26,8 +25,7 @@ export class DataError extends ErrorMessage {
     if (this.emojiData) {
       await this.emojiData.delete();
     } else {
-      // TODO fix delete
-      // await Database.deleteDatabase(this.options.locale);
+      await this.options.dataStore.deleteDatabase(this.options.locale);
     }
 
     this.events.emit('reinitialize');

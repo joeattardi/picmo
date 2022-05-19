@@ -1,6 +1,6 @@
 import { GroupMessage, Emoji, Locale } from 'emojibase';
-import { PickerOptions, EmojiRecord, Category, CategoryKey } from './types';
-import { applyRules } from './rules';
+import { PickerOptions, EmojiRecord, Category, CategoryKey } from '../types';
+import { applyRules } from '../rules';
 import { queryMatches, getEmojiRecord, DataStore } from './DataStore';
 
 // Base database name. It will have the locale appended to it.

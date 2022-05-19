@@ -1,22 +1,21 @@
 import { ViewConstructor, ViewConstructorParameters, ViewFactory } from '../src/viewFactory';
 import { View } from '../src/views/view';
 
+jest.mock('../src/data/InMemoryStore');
+
 import { Events } from '../src/events';
 import { AppEvent } from '../src/AppEvents';
 import { Bundle } from '../src/i18n/bundle';
 import { NativeRenderer } from '../src/renderers/native';
-import { Database } from '../src/db';
-
+import { InMemoryStore } from '../src/data/InMemoryStore';
 import { getOptions } from '../src/options';
-
-jest.mock('../src/db');
 
 const defaultDependencies = {
   events: new Events<AppEvent>(),
   i18n: new Bundle(),
   renderer: new NativeRenderer(),
   options: getOptions({ i18n: {} }),
-  emojiData: Promise.resolve(new Database()),
+  emojiData: Promise.resolve(new InMemoryStore()),
   customEmojis: [],
   pickerId: 'test-picker'
 };

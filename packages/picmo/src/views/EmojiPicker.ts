@@ -8,7 +8,7 @@ import { Search } from './Search';
 import { VariantPopup } from './VariantPopup';
 import { CategoryTabs } from './CategoryTabs';
 import { addOrUpdateRecent } from '../recents';
-import { DataStore } from '../DataStore';
+import { DataStore } from '../data/DataStore';
 import { EventCallback } from '../events';
 
 import { determineEmojiVersion } from '../emojiSupport';

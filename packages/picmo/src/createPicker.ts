@@ -3,8 +3,8 @@ import { EmojiPicker } from './views/EmojiPicker';
 import { PickerOptions, CustomEmoji, EmojiRecord } from './types';
 import { ViewFactory } from './viewFactory';
 export { LazyLoader } from './LazyLoader';
-import { DataStore } from './DataStore';
-import { initDatabase } from './emojiData';
+import { DataStore } from './data/DataStore';
+import { initDatabase } from './data/emojiData';
 import { Bundle } from './i18n/bundle';
 import { getOptions } from './options';
 

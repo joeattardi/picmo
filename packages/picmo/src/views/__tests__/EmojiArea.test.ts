@@ -2,11 +2,11 @@ import { screen } from '@testing-library/dom';
 import { testView, testViewSync } from '../../../testHelpers/testView';
 import { Category } from '../../types';
 
-jest.mock('../../db');
+jest.mock('../../data/InMemoryStore');
 
 import { EmojiArea } from '../EmojiArea';
 import { CategoryTabs } from '../CategoryTabs';
-import { Database } from '../../db';
+import { InMemoryStore } from '../../data/InMemoryStore';
 
 import { Events } from '../../events';
 import { AppEvent } from '../../AppEvents';
@@ -36,7 +36,7 @@ describe('EmojiArea', () => {
     ]
   };
 
-  jest.spyOn(Database.prototype, 'getEmojis').mockImplementation((category: Category) => 
+  jest.spyOn(InMemoryStore.prototype, 'getEmojis').mockImplementation((category: Category) => 
   Promise.resolve(emojiData[category.key]));
 
   test('renders the emoji area', async () => {
