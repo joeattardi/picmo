@@ -46,3 +46,9 @@ If using relative positioning, this defines the element that the picker is posit
 - **Type**: `HTMLELement` | `undefined`
 
 The interactive element (usually a button) that will trigger the popup picker.
+
+### `zIndex`
+
+- **Type**: `number` | `undefined`
+
+If specified, sets the z-index of the popup picker to the desired value.

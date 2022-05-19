@@ -17,4 +17,5 @@ export type PopupOptions = {
   referenceElement?: HTMLElement;
   triggerElement?: HTMLElement;
   showCloseButton?: boolean;
+  zIndex?: number;
 }
