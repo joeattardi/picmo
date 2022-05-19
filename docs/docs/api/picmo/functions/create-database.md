@@ -8,9 +8,11 @@ import { createDatabase } from 'picmo';
 
 <pre>
 createDatabase(
-<br/>
+<br />
 &nbsp;&nbsp;locale: <a href="https://emojibase.dev/api/emojibase#Locale">Locale</a>,
-<br/>
+<br />
+&nbsp;&nbsp;factory: <a href="../types/DataStoreFactory">DataStoreFactory</a>,
+<br />
 &nbsp;&nbsp;staticMessages?: <a href="https://emojibase.dev/api/emojibase/interface/MessagesDataset">MessagesDataset</a> | undefined,
 <br />
 &nbsp;&nbsp;staticEmojis?: <a href="https://emojibase.dev/api/emojibase/interface/Emoji">Emoji</a>[] | undefined): Promise&lt;void&gt;

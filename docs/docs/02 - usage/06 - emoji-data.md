@@ -30,17 +30,33 @@ const picker = createPicker({
 
 ## Emoji database
 
-Once the data is available, whether provided in the bundle or downloaded from the CDN, it is used to populate an IndexedDB database of the emoji data. Databases are locale-specific - a new database is created per locale used by the picker.
+By default, PicMo uses a local IndexedDB database to store the emoji data. This is the preferred method, and is the default if no data store factory is specified.
+
+Once the data is available, whether provided in the bundle or downloaded from the CDN, it is used to populate the database of the emoji data. 
 
 The database is automatically created when the picker is first initialized if it one does not already exist. However, you can also pre-create the database ahead of time by calling [`createDatabase`](../api/picmo/functions/create-database).
 
 All picker instances share the same database.
 
+### IndexedDB data store
+
+By default, PicMo uses a local IndexedDB database to store the emoji data. This is the preferred method, and is the default if no data store factory is specified. Databases are locale-specific - a new database is created per locale used by the picker.
+
+The IndexedDB store is the default, but it can also be manually specified by setting the `dataStore` picker option to [`IndexedDBStoreFactory`](../api/picmo/functions/indexed-db-store-factory).
+
+### In-memory data store
+
+If you are deploying PicMo in a high security environment where IndexedDB is not available, you can use a simple in-memory data store implementation. This will have a performance cost as all emojis and categories will be kept in memory. The in-memory store is also not persisted across sessions.
+
+If using the in-memory data store, it's recommended that you install the [`emojibase-data`](https://www.npmjs.com/package/emojibase-data) package to provide the emoji data. Using the CDN method will result in the data being downloaded on every page load.
+
+To use the in-memory store, set the `dataStore` picker option to [`InMemoryStoreFactory`](../api/picmo/functions/in-memory-store-factory).
+
 ### Checking for updates
 
 When data is initially downloaded from a CDN, the ETag values for each bundle is stored in the database. For every subsequent picker initialization, a `HEAD` request is made and the ETags are compared to determine if new data needs to be downloaded.
 
-### TBD: How does locally supplied data get checked for updates?
+For locally provided data, the ETag values are not available, so PicMo will compute a hash of the current emoji data to check if the emoji data has changed, at which time it will repopulate the database.
 
 ### Error recovery
 
