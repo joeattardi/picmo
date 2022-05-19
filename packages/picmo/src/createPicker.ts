@@ -3,13 +3,13 @@ import { EmojiPicker } from './views/EmojiPicker';
 import { PickerOptions, CustomEmoji, EmojiRecord } from './types';
 import { ViewFactory } from './viewFactory';
 export { LazyLoader } from './LazyLoader';
-import { Database } from './db';
+import { DataStore } from './DataStore';
 import { initDatabase } from './emojiData';
 import { Bundle } from './i18n/bundle';
 import { getOptions } from './options';
 
-function initData(options: PickerOptions): Promise<Database> {
-  return initDatabase(options.locale, options.messages, options.emojiData);
+function initData(options: PickerOptions): Promise<DataStore> {
+  return initDatabase(options.locale, options.dataStore, options.messages, options.emojiData);
 }
 
 let pickerIndex = 0;

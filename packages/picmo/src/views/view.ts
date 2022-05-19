@@ -4,7 +4,7 @@ import { Events, EventArgs, EventCallback, AsyncEventCallback } from '../events'
 import { ViewFactory } from '../viewFactory';
 import { Bundle } from '../i18n/bundle';
 import { Renderer } from '../renderers/renderer';
-import { Database } from '../db';
+import { DataStore } from '../DataStore';
 import { EmojiRecord, PickerOptions } from '../types';
 import { shouldAnimate } from '../util';
 
@@ -41,8 +41,8 @@ export abstract class View {
   protected uiEvents: UIEventListenerBinding[] = [];
   protected keyBindings: KeyBindings;
   protected uiElements: UIElementSelectors = {};
-  protected emojiData: Database;
-  protected emojiDataPromise: Promise<Database>;
+  protected emojiData: DataStore;
+  protected emojiDataPromise: Promise<DataStore>;
   protected options: PickerOptions;
   protected customEmojis: EmojiRecord[];
 
@@ -93,14 +93,14 @@ export abstract class View {
     this.renderer = renderer;
   }
 
-  setEmojiData(emojiDataPromise: Promise<Database>) {
+  setEmojiData(emojiDataPromise: Promise<DataStore>) {
     this.emojiDataPromise = emojiDataPromise;
     emojiDataPromise.then(emojiData => {
       this.emojiData = emojiData;
     });
   }
 
-  updateEmojiData(emojiData: Database) {
+  updateEmojiData(emojiData: DataStore) {
     this.emojiData = emojiData;
     this.emojiDataPromise = Promise.resolve(emojiData);
   }

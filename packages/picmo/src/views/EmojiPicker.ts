@@ -8,7 +8,7 @@ import { Search } from './Search';
 import { VariantPopup } from './VariantPopup';
 import { CategoryTabs } from './CategoryTabs';
 import { addOrUpdateRecent } from '../recents';
-import { Database } from '../db';
+import { DataStore } from '../DataStore';
 import { EventCallback } from '../events';
 
 import { determineEmojiVersion } from '../emojiSupport';
@@ -207,7 +207,7 @@ export class EmojiPicker extends View {
    *
    * This will replace the loader placeholder with the full picker UI.
    */
-  private async onDataReady(db: Database) {
+  private async onDataReady(db: DataStore) {
     // Save the current el so we can replace it in the DOM after the new render.
     const currentView = this.el;
 

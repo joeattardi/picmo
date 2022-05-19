@@ -3,9 +3,11 @@ import { PickerOptions } from './types';
 import { NativeRenderer } from './renderers/native';
 import { lightTheme } from './themes';
 import en from './i18n/lang-en';
+import { IndexedDbStoreFactory } from './IndexedDbStore';
 
 const defaultOptions: Partial<PickerOptions> = {
   renderer: new NativeRenderer(),
+  dataStore: IndexedDbStoreFactory,
   theme: lightTheme,
 
   animate: true,

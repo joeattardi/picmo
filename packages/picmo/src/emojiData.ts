@@ -1,5 +1,6 @@
 import { Locale, MessagesDataset, fetchMessages, fetchEmojis, Emoji } from 'emojibase';
-import { Database } from './db';
+// import { Database } from './db';
+import { DataStoreFactory, DataStore } from './DataStore';
 import { computeHash } from './util';
 
 /**
@@ -63,7 +64,7 @@ function getEtags(locale): Promise<Array<string | null>> {
  * @param emojisEtag the ETag of the emojis data
  * @param messagesEtag the ETag of the messages data
  */
-async function checkUpdates(db: Database, emojisEtag: string, messagesEtag: string) {
+async function checkUpdates(db: DataStore, emojisEtag: string, messagesEtag: string) {
   let etags;
 
   try {
@@ -94,7 +95,7 @@ async function checkUpdates(db: Database, emojisEtag: string, messagesEtag: stri
  * @param hash The hash of the local emoji data
  * @returns true if there is a hash mismatch and a database update is required
  */
-async function checkLocalUpdates(db: Database, hash: string) {
+async function checkLocalUpdates(db: DataStore, hash: string) {
   const storedHash = await db.getHash();
   return hash !== storedHash;
 }
@@ -106,8 +107,8 @@ async function checkLocalUpdates(db: Database, hash: string) {
  * @param existingDb any existing database to use
  * @returns Promise that resolves to the database instance
  */
-async function openDatabase(locale: Locale, existingDb?: Database): Promise<Database> {
-  const db = existingDb || new Database(locale);
+async function openDatabase(locale: Locale, factory: DataStoreFactory, existingDb?: DataStore): Promise<DataStore> {
+  const db = existingDb || factory(locale);
   await db.open();
   return db;
 }
@@ -119,8 +120,8 @@ async function openDatabase(locale: Locale, existingDb?: Database): Promise<Data
  * @param existingDb any existing database to repopulate
  * @returns a Promise that resolves to a fully populated database instance
  */
-async function initDatabaseFromCdn(locale: Locale, existingDb?: Database) {
-  const db = await openDatabase(locale, existingDb);
+async function initDatabaseFromCdn(locale: Locale, factory: DataStoreFactory, existingDb?: DataStore) {
+  const db = await openDatabase(locale, factory, existingDb);
 
   const [emojisEtag, messagesEtag] = await getEtags(locale);
 
@@ -143,8 +144,8 @@ async function initDatabaseFromCdn(locale: Locale, existingDb?: Database) {
  * @param existingDb any existing database to repopulate
  * @returns a Promise that resolves to a fully populated database instance
  */
-async function initDatabaseWithLocalData(locale: Locale, messages: MessagesDataset, emojis: Emoji[], existingDb?: Database) {
-  const db = await openDatabase(locale, existingDb);
+async function initDatabaseWithLocalData(locale: Locale, factory: DataStoreFactory, messages: MessagesDataset, emojis: Emoji[], existingDb?: DataStore) {
+  const db = await openDatabase(locale, factory, existingDb);
 
   const hash = await computeHash(emojis);
   if (!(await db.isPopulated()) || await checkLocalUpdates(db, hash)) {
@@ -163,11 +164,11 @@ async function initDatabaseWithLocalData(locale: Locale, messages: MessagesDatas
  * @param existingDb any existing database to repopulate
  * @returns a Promise that resolves to the database instance
  */
-export async function initDatabase(locale: Locale, staticMessages?: MessagesDataset, staticEmojis?: Emoji[], existingDb?: Database) {
+export async function initDatabase(locale: Locale, factory: DataStoreFactory, staticMessages?: MessagesDataset, staticEmojis?: Emoji[], existingDb?: DataStore) {
   if (staticMessages && staticEmojis) {
-    return initDatabaseWithLocalData(locale, staticMessages, staticEmojis, existingDb);
+    return initDatabaseWithLocalData(locale, factory, staticMessages, staticEmojis, existingDb);
   } else {
-    return initDatabaseFromCdn(locale, existingDb);
+    return initDatabaseFromCdn(locale, factory, existingDb);
   }
 }
 
@@ -175,6 +176,6 @@ export async function initDatabase(locale: Locale, staticMessages?: MessagesData
  * Deletes a database instance for a locale.
  * @param locale the locale to delete
  */
-export function deleteDatabase(locale: Locale) {
-  Database.deleteDatabase(locale);
+export function deleteDatabase(factory: DataStoreFactory, locale: Locale) {
+  factory.deleteDatabase(locale);
 }

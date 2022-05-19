@@ -1,6 +1,7 @@
 import { Locale, MessagesDataset, Emoji } from 'emojibase';
 import { Renderer } from './renderers/renderer';
 import { Dictionary } from './i18n/bundle';
+import { DataStoreFactory } from './DataStore';
 
 export type EmojiFocusTargetOffset = {
   row: 'first' | 'last' | number;
@@ -49,7 +50,7 @@ export type CategoryKey = 'activities' | 'animals-nature' | 'custom' | 'flags' |
 
 export type Category = {
   key: CategoryKey;
-  message: string;
+  message?: string;
   order: number;
 }
 
@@ -69,6 +70,8 @@ export type PickerOptions = {
   theme: string;
 
   className?: string;
+
+  dataStore: DataStoreFactory;
 
   /**
    * The DOM element that the picker will be appended to. Any existing children
