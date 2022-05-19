@@ -2,6 +2,20 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.1.0] - TBD
+
+### Added
+
+- Added a new in-memory emoji data store for scenarios where IndexedDB is not available ([#199](https://github.com/joeattardi/picmo/issues/199)). See [Emoji Data](https://picmojs.com/docs/usage/emoji-data) for more details.
+
+#### Picker options
+
+- New option: `dataStore` to specify a factory to create the desired data store type.
+
+#### Popup options
+
+- New option: `zIndex` to assign a z-index value to the popup ([#198](https://github.com/joeattardi/picmo/issues/198)).
+
 ## [5.0.1] - 2022-05-18
 
 ### Changed
