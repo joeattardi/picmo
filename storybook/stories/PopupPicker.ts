@@ -28,6 +28,7 @@ export function createPicker(options: any = {}) {
   const picker = createPopup(
     options,
     {
+      className: 'custom-popup',
       triggerElement: button,
       referenceElement: button
     }

@@ -1,5 +1,7 @@
 # Popup pickers
 
+A popup picker is contained in a wrapper element that is displayed as a popup. To apply custom styling to the popup, use the `className` property. This can be used, for example, to set a custom `z-index` for the popup.
+
 ## Closing popup pickers
 
 A popup picker is closed when one of the following occurs:

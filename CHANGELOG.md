@@ -2,7 +2,7 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
-## [5.1.0] - TBD
+## [5.1.0] - 2022-05-22
 
 ### Added
 
@@ -14,7 +14,7 @@ For full details, see the documentation at [https://picmojs.com](https://picmojs
 
 #### Popup options
 
-- New option: `zIndex` to assign a z-index value to the popup ([#198](https://github.com/joeattardi/picmo/issues/198)).
+- New option: `className` to apply additional CSS classes to the popup container (to override the theme or set a `z-index`). ([#198](https://github.com/joeattardi/picmo/issues/198)).
 
 ## [5.0.1] - 2022-05-18
 

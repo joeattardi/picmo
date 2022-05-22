@@ -2,6 +2,12 @@
 
 ## Popup properties
 
+### `className`
+
+- **Type**: `string` | `undefined`
+
+Sets any additional CSS classes to be applied to the popup container. This is typically used to override theme styles or to apply a custom `z-index`.
+
 ### `hideOnClickOutside`
 
 - **Type**: `boolean`
@@ -46,9 +52,3 @@ If using relative positioning, this defines the element that the picker is posit
 - **Type**: `HTMLELement` | `undefined`
 
 The interactive element (usually a button) that will trigger the popup picker.
-
-### `zIndex`
-
-- **Type**: `number` | `undefined`
-
-If specified, sets the z-index of the popup picker to the desired value.

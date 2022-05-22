@@ -35,8 +35,8 @@ export class PopupPickerController {
     this.popupEl.classList.add(classes.popupContainer);
     this.popupEl.classList.add(this.options.theme);
 
-    if (popupOptions.zIndex) {
-      this.popupEl.style.zIndex = popupOptions.zIndex.toString();
+    if (popupOptions.className) {
+      this.popupEl.classList.add(popupOptions.className);
     }
 
     if (this.options.showCloseButton) {
