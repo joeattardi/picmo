@@ -4,8 +4,13 @@ import { PickerOptions, EmojiRecord, Category, CategoryKey } from '../types';
 
 import { applyRules } from '../rules';
 
+const instances = {} as Record<Locale, InMemoryStore>;
+
 export function InMemoryStoreFactory(locale: Locale): DataStore {
-  return new InMemoryStore(locale);
+  if (!instances[locale]) {
+    instances[locale] = new InMemoryStore(locale);
+  }
+  return instances[locale];
 }
 
 InMemoryStoreFactory.deleteDatabase = (locale: Locale) => {

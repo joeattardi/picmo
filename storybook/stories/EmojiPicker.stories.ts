@@ -15,7 +15,7 @@ const Template = args => {
 
 export const Native = Template.bind({});
 Native.args = {
-  renderer: 'native',
+  renderer: 'native'
 };
 
 export const Twemoji = Template.bind({});
