@@ -41,7 +41,7 @@ Specifies the custom emojis/GIFs to show in the picker. They will all be include
 ### `dataStore`
 
 - **Type** [`DataStoreFactory`](./data-store-factory)
-- **Default**: [`IndexedDBStoreFactory`](../functions//indexed-db-store-factory)
+- **Default**: [`IndexedDBStoreFactory`](../functions/indexed-db-store-factory)
 
 Specifies the factory to use for creating a data store. In most cases this should be kept at the default value unless deploying in an environment where IndexedDB is not available.
 

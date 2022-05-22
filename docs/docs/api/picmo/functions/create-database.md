@@ -1,6 +1,6 @@
 # `createDatabase`
 
-Creates an IndexedDB local emoji database.
+Creates a local emoji database.
 
 ```javascript
 import { createDatabase } from 'picmo';
@@ -11,7 +11,7 @@ createDatabase(
 <br />
 &nbsp;&nbsp;locale: <a href="https://emojibase.dev/api/emojibase#Locale">Locale</a>,
 <br />
-&nbsp;&nbsp;factory: <a href="../types/DataStoreFactory">DataStoreFactory</a>,
+&nbsp;&nbsp;factory: <a href="../types/data-store-factory">DataStoreFactory</a>,
 <br />
 &nbsp;&nbsp;staticMessages?: <a href="https://emojibase.dev/api/emojibase/interface/MessagesDataset">MessagesDataset</a> | undefined,
 <br />
@@ -30,12 +30,16 @@ This function is provided for convenience and troubleshooting purposes. It is *n
 
 :::
 
-The name of the created database in the browser will be `PicMo-<locale>`, e.g. `PicMo-en` for English.
+For IndexedDB databases, the name of the database in the browser will be `PicMo-<locale>`, e.g. `PicMo-en` for English.
+
+In-memory databases are ephemeral and will be discarded when the page is closed.
 
 ## Arguments
 
 - `locale`: The locale to use for the emoji database.
   - **Type**: [`Locale`](https://emojibase.dev/api/emojibase#Locale)
+- `factory`: The data store factory to use to create the database.
+  - **Type**: [`DataStoreFactory`](../types/data-store-factory)
 - `staticMessages`: An optional set of static message data from the [emojibase-data](https://www.npmjs.com/package/emojibase-data) package.
   - **Type**: [`MessagesDataset`](https://emojibase.dev/api/emojibase/interface/MessagesDataset) | `undefined`
   - **Default value**: `undefined`
