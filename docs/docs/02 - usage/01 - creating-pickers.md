@@ -38,13 +38,12 @@ To use a popup picker, you must first install the `@picmo/popup-picker` package.
 [`createPopup`](../api/popup-picker/functions/create-popup) takes two arguments: first, the [`PickerOptions`](../api/picmo/types/picker-options) to configure the picker itself, and the the [`PopupOptions`](../api/popup-picker/types/popup-options) which configure the popup.
 
 <pre>
-  createPicker(
-    pickerOptions: <a href="../api/picmo/types/picker-options">PickerOptions</a>,
+  createPopup(pickerOptions: <a href="../api/picmo/types/picker-options">PickerOptions</a>,
     popupOptions: <a href="../api/popup-picker/types/popup-options">PopupOptions</a>
   ): <a href="../api/popup-picker/classes/popup-picker-controller">PopupPickerController</a>
 </pre>
 
-## Required elements
+### Popup elements
 
 A popup picker supports two elements to be defined in the [`PopupOptions`](../api/popup-picker/types/popup-options):
 
@@ -80,6 +79,8 @@ import { createPopup } from 'picmo';
 const trigger = document.querySelector('.emoji-button');
 
 const picker = createPopup({
+  // picker options go here
+}, {
   referenceElement: trigger,
   triggerElement: trigger
 });

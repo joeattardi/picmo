@@ -7,7 +7,7 @@ import { createPopup } from '@picmo/popup-picker';
 ```
 
 <pre>
-  createPicker(pickerOptions: <a href="../../picmo/types/picker-options">PickerOptions</a>,
+  createPopup(pickerOptions: <a href="../../picmo/types/picker-options">PickerOptions</a>,
     popupOptions: <a href="../types/popup-options">PopupOptions</a>
   ): <a href="../classes/popup-picker-controller">PopupPickerController</a>
 </pre>
