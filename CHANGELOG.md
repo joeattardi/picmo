@@ -2,6 +2,12 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.1.1] - 2022-05-30
+
+### Fixed
+
+- [`@picmo/popup-picker`] Fixed issue where the positionCleanup function was not defined when using fixed positioning, leading to a potential exception when closing a popup picker
+
 ## [5.1.0] - 2022-05-22
 
 ### Added
