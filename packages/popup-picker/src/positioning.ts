@@ -5,7 +5,7 @@ import { Position, FixedPosition } from './types';
 
 export type PositionCleanup = () => void;
 
-export function setPosition(picker: HTMLElement, referenceElement: HTMLElement, position: Position): PositionCleanup {
+export function setPosition(picker: HTMLElement, referenceElement: HTMLElement | undefined, position: Position): PositionCleanup {
   if (!position) {
     throw new Error('Must provide a positioning option');
   }
@@ -15,7 +15,7 @@ export function setPosition(picker: HTMLElement, referenceElement: HTMLElement, 
     setFixedPosition(picker, position);
 }
 
-function setRelativePosition(picker: HTMLElement, referenceElement: HTMLElement, placement: Placement): PositionCleanup {
+function setRelativePosition(picker: HTMLElement, referenceElement: HTMLElement | undefined, placement: Placement): PositionCleanup {
   if (!referenceElement) {
     throw new Error('Reference element is required for relative positioning');
   }

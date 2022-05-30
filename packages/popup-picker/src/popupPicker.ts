@@ -162,7 +162,7 @@ export class PopupPickerController {
 
     this.popupEl.remove();
     this.picker.reset();
-    this.positionCleanup();
+    this.positionCleanup?.();
 
     this.focusTrap.deactivate();
     this.options.triggerElement?.focus();
@@ -183,13 +183,11 @@ export class PopupPickerController {
    */
   private setPosition() {
     this.positionCleanup?.();
-    if (this.options.referenceElement) {
       this.positionCleanup = setPosition(
         this.popupEl,
         this.options.referenceElement,
         this.options.position as Position
       );
-    }
   }
 
   /**
