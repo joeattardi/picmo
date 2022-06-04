@@ -2,6 +2,12 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.1.2] - 2022-06-03
+
+### Fixed
+
+- [`picmo`] Fixed buttons within the picker to have the attribute `type="button"` to prevent unintentional form submission when a picker appears inside of a form ([#209](https://github.com/joeattardi/picmo/issues/209)).
+
 ## [5.1.1] - 2022-05-30
 
 ### Fixed
