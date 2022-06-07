@@ -12,7 +12,7 @@ import { TwemojiRenderer } from '@picmo/renderer-twemoji';
 
 const button = document.querySelector('#native .emoji-button');
 
-const picker = createPopup({
+const picker = createPopup({},{
   referenceElement: button,
   triggerElement: button,
   position: 'right-start'
@@ -23,7 +23,7 @@ button.addEventListener('click', () => {
 });
 
 // const twemoji = document.querySelector('#twemoji .emoji-button');
-// const twemojiPicker = createPopup({
+// const twemojiPicker = createPopup({}, {
 //   referenceElement: twemoji,
 //   triggerElement: twemoji,
 //   renderer: new TwemojiRenderer(),
