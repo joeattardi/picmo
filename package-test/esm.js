@@ -3,7 +3,7 @@ import { TwemojiRenderer } from 'https://unpkg.com/picmo@5.0.0-beta.3/renderers/
 
 document.addEventListener('DOMContentLoaded', () => {
   const nativeButton = document.querySelector('#native .emoji-button');
-  const nativePicker = createPopup({
+  const nativePicker = createPopup({}, {
     referenceElement: nativeButton,
     triggerElement: nativeButton,
     position: 'right-start'
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const twemojiButton = document.querySelector('#twemoji .emoji-button');
-  const twemojiPicker = createPopup({
+  const twemojiPicker = createPopup({}, {
     renderer: new TwemojiRenderer(),
     referenceElement: twemojiButton,
     triggerElement: twemojiButton,

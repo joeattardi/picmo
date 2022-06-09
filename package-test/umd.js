@@ -2,7 +2,7 @@ const { createPopup } = window.picmo;
 
 document.addEventListener('DOMContentLoaded', () => {
   const nativeButton = document.querySelector('#native .emoji-button');
-  const nativePicker = createPopup({
+  const nativePicker = createPopup({}, {
     referenceElement: nativeButton,
     triggerElement: nativeButton,
     position: 'right-start'
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   const twemojiButton = document.querySelector('#twemoji .emoji-button');
-  const twemojiPicker = createPopup({
+  const twemojiPicker = createPopup({}, {
     renderer: new window.TwemojiRenderer(),
     referenceElement: twemojiButton,
     triggerElement: twemojiButton,
