@@ -2,6 +2,12 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.2.0] - 2022-06-11
+
+### Added
+
+- [`picmo`] Added support for custom recent emoji data providers, added localStorage and sessionStorage providers built-in ([#202](https://github.com/joeattardi/picmo/issues/202)).
+
 ## [5.1.2] - 2022-06-03
 
 ### Fixed
