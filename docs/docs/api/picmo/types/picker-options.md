@@ -122,8 +122,8 @@ The messages data to use for the picker, containing category names. If not speci
 
 ### `recentsProvider`
 
-- **Type**: [`RecentsProvider`](./recents-provider) subclass
-- **Default**: Instance of [`LocalStorageProvider`](./local-storage-provider)
+- **Type**: [`RecentsProvider`](../classes/recents-provider) subclass
+- **Default**: Instance of [`LocalStorageProvider`](../classes/local-storage-provider)
 
 The provider to use for storing recent emojis.
 
