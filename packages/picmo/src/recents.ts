@@ -1,30 +1,20 @@
-import { EmojiRecord } from './types';
+import { RecentsProvider } from './recents/RecentsProvider';
 
-const LOCAL_STORAGE_KEY = 'PicMo:recents';
+// Deprecated legacy interface to clear recents for backwards compatibility.
+// This should not be used by new code; instead, call clear() on the 
+// RecentsProvider itself.
+
+// It's a little odd and won't work well with a custom provider, but leaving it in
+// so as not to create breaking changes.
+
+// @deprecated Remove in 6.0.0.
+
+let provider: RecentsProvider;
+
+export function setProvider(_provider: RecentsProvider) {
+  provider = _provider;
+}
 
 export function clear(): void {
-  localStorage.removeItem(LOCAL_STORAGE_KEY);
-}
-
-export function getRecents(maxCount: number): Array<EmojiRecord> {
-  try {
-    const recents = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) ?? '[]');
-    return recents.slice(0, maxCount);
-  } catch (error) { // localStorage is not available, no recents
-    return [];
-  }
-}
-
-export function addOrUpdateRecent(emoji: EmojiRecord, maxCount: number) {
-  // Add the new recent to the beginning of the list, removing it if it exists already
-  const recents = [
-    emoji,
-    ...getRecents(maxCount).filter(recent => recent.hexcode !== emoji.hexcode)
-  ].slice(0, maxCount);
-  
-  try {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recents));
-  } catch (error) {
-    // localStorage is not available, no recents
-  }
+  provider.clear();
 }

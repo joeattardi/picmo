@@ -7,7 +7,7 @@ import { EmojiPreview } from './Preview';
 import { Search } from './Search';
 import { VariantPopup } from './VariantPopup';
 import { CategoryTabs } from './CategoryTabs';
-import { addOrUpdateRecent } from '../recents';
+import { setProvider } from '../recents';
 import { DataStore } from '../data/DataStore';
 import { EventCallback } from '../events';
 
@@ -70,6 +70,7 @@ export class EmojiPicker extends View {
     };
 
     super.initialize();
+    setProvider(this.options.recentsProvider);
   }
 
   /**
@@ -85,6 +86,13 @@ export class EmojiPicker extends View {
     this.categoryTabs?.destroy();
     this.events.removeAll();
     this.externalEvents.removeAll();
+  }
+
+  /**
+   * Convenience method to clear the recents using the configured recents provider.
+   */
+  clearRecents() {
+    this.options.recentsProvider.clear();
   }
 
   /**
@@ -410,7 +418,7 @@ export class EmojiPicker extends View {
    */
   private async emitEmoji(emoji: EmojiRecord): Promise<void> {
     this.externalEvents.emit('emoji:select', await this.renderer.doEmit(emoji));
-    addOrUpdateRecent(emoji, this.options.maxRecents);
+    this.options.recentsProvider.addOrUpdateRecent(emoji, this.options.maxRecents);
     this.events.emit('recent:add', emoji);
   }
 }

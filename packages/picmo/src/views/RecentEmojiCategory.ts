@@ -4,19 +4,22 @@ import { RecentEmojiContainer } from './RecentEmojiContainer';
 import { Category, EmojiRecord } from '../types';
 import { LazyLoader } from '../LazyLoader';
 import { categoryIcons } from '../icons';
-import { getRecents, clear } from '../recents';
 import template from './RecentEmojiCategory.template';
 import classes from './EmojiCategory.scss';
+import { RecentsProvider } from '../recents/RecentsProvider';
 
 type RecentEmojiCategoryOptions = {
   category: Category;
+  provider: RecentsProvider;
   lazyLoader?: LazyLoader;
 };
 export class RecentEmojiCategory extends BaseEmojiCategory {
   emojiContainer: RecentEmojiContainer;
+  private provider: RecentsProvider;
 
-  constructor({ category, lazyLoader }: RecentEmojiCategoryOptions) {
+  constructor({ category, lazyLoader, provider }: RecentEmojiCategoryOptions) {
     super({ category, showVariants: false, lazyLoader, template });
+    this.provider = provider;
   }
 
   initialize() {
@@ -38,7 +41,7 @@ export class RecentEmojiCategory extends BaseEmojiCategory {
   }
 
   async render(): Promise<HTMLElement> {
-    const recents = getRecents(this.options.maxRecents);
+    const recents = this.provider?.getRecents(this.options.maxRecents);
 
     this.emojiContainer = this.viewFactory.create(RecentEmojiContainer, {
       emojis: recents,

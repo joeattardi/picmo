@@ -22,6 +22,13 @@ Adds an event listener to the picker.
 - `listener`: The function to call when this event is emitted.
   - **Type**: `function`
 
+### `clearRecents`
+
+```
+clearRecents(): void
+```
+
+Removes all recent emojis from the picker, as managed by the recents provider.
 
 ### `destroy`
 

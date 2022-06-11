@@ -38,9 +38,9 @@ export abstract class Renderer {
     const { content, resolver } = this.render(emoji, classNames);
     const contentElement = content instanceof HTMLElement ? content : content.el;
 
-    if (lazyLoader && resolver) {
-      return lazyLoader.lazyLoad(contentElement, resolver)
-    }
+    // if (lazyLoader && resolver) {
+    //   return lazyLoader.lazyLoad(contentElement, resolver)
+    // }
 
     if (resolver) {
       resolver();

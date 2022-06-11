@@ -3,7 +3,7 @@
 Renders emojis using the native operating system font glyphs.
 
 ```
-import { NativeRenderer } from 'picmo/renderers/native';
+import { NativeRenderer } from 'picmo';
 ```
 
 <pre>

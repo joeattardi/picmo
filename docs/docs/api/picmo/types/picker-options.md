@@ -120,6 +120,13 @@ The maximum number of recent emojis to cache locally.
 
 The messages data to use for the picker, containing category names. If not specified, the data will be downloaded from the CDN when the database is created.
 
+### `recentsProvider`
+
+- **Type**: [`RecentsProvider`](./recents-provider) subclass
+- **Default**: Instance of [`LocalStorageProvider`](./local-storage-provider)
+
+The provider to use for storing recent emojis.
+
 ### `renderer`
 
 - **Type**: [`Renderer`](../classes/renderer) subclass instance
