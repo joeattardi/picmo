@@ -25,6 +25,7 @@
     "check:watch": "tsc --noEmit --watch",
     "clean": "rimraf dist",
     "clean:release": "rimraf release",
+    "deploy:docs": "npm run build:docs && netlify deploy",
     "test": "jest --coverage src",
     "test:watch": "jest --watch src",
     "lint": "eslint src/*.ts",
