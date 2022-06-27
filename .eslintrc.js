@@ -23,5 +23,5 @@ module.exports = {
     'no-console': ['error', { allow: ['warn', 'error'] }]
   },
   plugins: ['@typescript-eslint'],
-  ignorePatterns: ['webpack.*.js', 'scripts/prepare-release.js']
+  ignorePatterns: ['webpack.*.js', '**/scripts/*.js']
 };

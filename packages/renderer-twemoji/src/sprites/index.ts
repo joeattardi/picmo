@@ -1,0 +1,9 @@
+export { default as smileysEmotion } from './smileys-emotion.svg';
+export { default as peopleBody } from './people-body.svg';
+export { default as animalsNature } from './animals-nature.svg';
+export { default as foodDrink } from './food-drink.svg';
+export { default as travelPlaces } from './travel-places.svg';
+export { default as activities } from './activities.svg';
+export { default as objects } from './objects.svg';
+export { default as symbols } from './symbols.svg';
+export { default as flags } from './flags.svg';

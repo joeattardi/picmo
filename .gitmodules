@@ -1,0 +1,3 @@
+[submodule "packages/renderer-twemoji/twemoji"]
+	path = packages/renderer-twemoji/twemoji
+	url = https://github.com/twitter/twemoji.git

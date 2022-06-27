@@ -9,9 +9,10 @@
     "dist"
   ],
   "scripts": {
+    "build:sprites": "node scripts/generateSprites.js",
     "prepublishOnly": "npm run clean && npm run build",
     "precommit": "npm-run-all lint check",
-    "build": "npm run check && rollup -c",
+    "build": "npm run build:sprites && npm run check && rollup -c",
     "check": "tsc --noEmit",
     "clean": "rimraf dist",
     "lint": "eslint src/*.ts",
@@ -34,5 +35,10 @@
   },
   "dependencies": {
     "twemoji-parser": "^14.0.0"
+  },
+  "devDependencies": {
+    "camelcase": "^7.0.0",
+    "emojibase-data": "^7.0.1",
+    "svg-sprite": "^1.5.4"
   }
 }
