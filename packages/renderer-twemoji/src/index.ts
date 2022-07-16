@@ -8,6 +8,12 @@ type TwemojiImageFormat = 'svg' | 'png';
 
 import * as spriteSheets from './sprites';
 
+/**
+ * Given an EmojiRecord, calculate the key of its sprite within the sprite sheet.
+ * 
+ * @param record the record to render
+ * @returns the key of the sprite
+ */
 function getTwemojiKey(record: EmojiRecord) {
   const [result] = parse(record.emoji);
   const [filename] = result.url.split('/').slice(-1);
@@ -39,12 +45,12 @@ export class TwemojiRenderer extends Renderer {
   constructor(format: TwemojiImageFormat = 'svg') {
     super();
     this.format = format;
-
-    if (this.format === 'svg') {
-      this.#insertSvg();
-    }
+    this.#insertSvg();
   }
 
+  /**
+   * Inserts the SVG sprite sheets into the document if they do not already exist.
+   */
   #insertSvg() {
     if (!document.getElementById(SVG_SPRITES_ID)) {
       const svgContainer = document.createElement('div');
@@ -58,7 +64,6 @@ export class TwemojiRenderer extends Renderer {
     }
   }
 
-  // TODO: need to split/lazy load
   render(record: EmojiRecord, classNames = classes.twemoji) {
     const svgKey = getTwemojiKey(record);
     if (svgKey) {
