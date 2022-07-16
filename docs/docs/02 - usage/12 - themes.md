@@ -64,7 +64,7 @@ These are the available CSS variables that can be overridden in your theme:
 - `--placeholder-background-color`: The background color for loading placeholders.
 - `--preview-background-color`: The background color of the preview area.
 - `--scrollbar-background-color`: The background color of the scrollbar.
-- `-scrollbar-color`: The color of the scrollbar.
+- `--scrollbar-color`: The color of the scrollbar.
 - `--search-background-color`: The background color of the search input.
 - `--search-focus-background-color`: The background color of the search input when it has focus.
 - `--search-icon-color`: The color of the search and clear search icons in the search field.
