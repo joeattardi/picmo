@@ -1,7 +1,6 @@
 {
   "name": "picmo",
   "private": true,
-  "version": "5.2.0",
   "description": "JavaScript emoji picker. Any app, any framework.",
   "keywords": [
     "emoji",
