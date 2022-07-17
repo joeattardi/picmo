@@ -20,7 +20,7 @@ const picker = createPicker({
 
 ## Twemoji
 
-[Twemoji](https://twemoji.twitter.com/) is a free emoji library from Twitter. It contains images for each emoji. The [`TwemojiRenderer`](../api/renderer-twemoji/classes/twemoji-renderer) will render the emojis using the images from Twemoji. By default, these are rendered as SVGs. PNGs can be used instead by passing `png` as the `format` option to the renderer constructor.
+[Twemoji](https://twemoji.twitter.com/) is a free emoji library from Twitter. It contains images for each emoji. The [`TwemojiRenderer`](../api/renderer-twemoji/classes/twemoji-renderer) will render the emojis using the SVG images from Twemoji.
 
 ```javascript
 import { TwemojiRenderer } from 'picmo/renderers/twemoji';
