@@ -25,6 +25,7 @@ jobs:
     - name: npm install, build, and test
       run: |
         npm ci
+        npm run bootstrap
         npm run build
         npm run precommit
       env:
