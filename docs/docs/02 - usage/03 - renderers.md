@@ -38,7 +38,7 @@ The built-in renderers (native and Twemoji) both have pros and cons.
 
 - The [`NativeRenderer`](../api/picmo/classes/native-renderer) renders quickly because all the emojis are text nodes. However, because new emojis must be added via an operating system update, this may limit the available emojis. Also, the emojis will appear differently depending on the operating system.
 
-- The [`TwemojiRenderer`](../api/renderer-twemoji/classes/twemoji-renderer) has a consistent cross-platform look for emojis. It generally will get support for new emojis before operating systems do. However, there is a performance cost because each emoji is an individual image file (Twemoji does not use a sprite sheet).
+- The [`TwemojiRenderer`](../api/renderer-twemoji/classes/twemoji-renderer) has a consistent cross-platform look for emojis. It generally will get support for new emojis before operating systems do. However, there is a bundle size cost since the Twemoji renderer uses SVG sprite sheets, some of which are quite large. 
 
 ## Creating a custom renderer
 
