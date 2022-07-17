@@ -2,6 +2,11 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.3.0] - 2022-07-16
+
+- [`picmo`] Fixed custom styling not being applied to the search results scrollbar ([#215](https://github.com/joeattardi/picmo/issues/215)).
+- [`@picmo/renderer-twemoji`] New rendering design using SVG sprite sheets for improved performance ([#210](https://github.com/joeattardi/picmo/issues/210)).
+
 ## [5.2.0] - 2022-06-11
 
 ### Added
