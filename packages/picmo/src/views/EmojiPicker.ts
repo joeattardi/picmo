@@ -294,6 +294,29 @@ export class EmojiPicker extends View {
   }
 
   /**
+   * Determines what element, if any, should be automatically focused when the picker is rendered.
+   * 
+   * @returns the focus target, or `null` if nothing should be focused
+   */
+  private getInitialFocusTarget() {
+    if (typeof this.options.autoFocus !== 'undefined') {
+      switch (this.options.autoFocus) {
+        case 'emojis':
+          return this.emojiArea.focusableEmoji;
+        case 'search':
+          return this.search;
+        default:
+          return null;
+      }
+    }
+
+    if (this.options.autoFocusSearch === true) {
+      console.warn('options.autoFocusSearch is deprecated, please use options.focusTarget instead');
+      return this.search;
+    }
+  }
+
+  /**
    * Sets the initial autofocus, depending on options.
    */
   setInitialFocus() {
@@ -301,11 +324,7 @@ export class EmojiPicker extends View {
       return;
     }
 
-    if (this.search && this.options.autoFocusSearch) {
-      this.search.focus();
-    } else {
-      this.emojiArea.focusableEmoji.focus();
-    }
+    this.getInitialFocusTarget()?.focus();
   }
 
   /**

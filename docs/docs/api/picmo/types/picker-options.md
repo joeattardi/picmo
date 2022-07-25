@@ -13,7 +13,29 @@ A `PickerOptions` object is passed to the `createPicker` and `createPopup` funct
 
 Whether or not to show animated transitions in the picker.
 
+### `autoFocus`
+
+- **Type**: `'emojis' | 'search' | 'none' | undefined`
+- **Default**: `undefined`
+
+Specifies which UI element of the picker, if any, should automatically receive focus when the picker is rendered. If not specified, no UI element will be focused automatically.
+
+The supported values are:
+
+- `emojis`: The first focusable emoji will receive focus.
+- `search`: The search field will receive focus (if `showSearch` is `true`).
+- `none`: No UI element will receive focus.
+
+
+:::note
+For inline pickers, the autofocus behavior only happens once, when the picker is first rendered. For popup pickers, the autofocus target is applied every time the picker is opened.
+:::
+
 ### `autoFocusSearch`
+
+:::caution Deprecated
+The `autoFocusSearch` option will be removed in a future release. Please use `autoFocus` instead.
+:::
 
 - **Type**: `boolean`
 - **Default**: `false`
