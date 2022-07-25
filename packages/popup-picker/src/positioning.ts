@@ -1,38 +1,39 @@
-import { Placement } from '@popperjs/core';
-import { createPopper } from '@popperjs/core';
+import { autoUpdate ,computePosition, Placement, flip, offset } from '@floating-ui/dom';
 
 import { Position, FixedPosition } from './types';
 
 export type PositionCleanup = () => void;
 
-export function setPosition(picker: HTMLElement, referenceElement: HTMLElement | undefined, position: Position): PositionCleanup {
+export async function setPosition(picker: HTMLElement, referenceElement: HTMLElement | undefined, position: Position): Promise<PositionCleanup> {
   if (!position) {
     throw new Error('Must provide a positioning option');
   }
 
-  return typeof position === 'string' ? 
+  return await (typeof position === 'string' ? 
     setRelativePosition(picker, referenceElement, position) : 
-    setFixedPosition(picker, position);
+    setFixedPosition(picker, position));
 }
 
-function setRelativePosition(picker: HTMLElement, referenceElement: HTMLElement | undefined, placement: Placement): PositionCleanup {
+async function setRelativePosition(picker: HTMLElement, referenceElement: HTMLElement | undefined, placement: Placement): Promise<PositionCleanup> {
   if (!referenceElement) {
     throw new Error('Reference element is required for relative positioning');
   }
 
-  const popper = createPopper(referenceElement, picker, {
-    placement,
-    modifiers: [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 5]
-        }
-      }
-    ]
-  });
+  return autoUpdate(referenceElement, picker, async () => {
+    const {x, y} = await computePosition(referenceElement, picker, {
+      placement,
+      middleware: [
+        flip(),
+        offset(5)
+      ]
+    });
 
-  return () => popper.destroy();
+    Object.assign(picker.style, {
+      position: 'absolute',
+      left: `${x}px`,
+      top: `${y}px`
+    });
+  });
 }
 
 function setFixedPosition(picker: HTMLElement, position: FixedPosition): PositionCleanup {
@@ -42,6 +43,6 @@ function setFixedPosition(picker: HTMLElement, position: FixedPosition): Positio
     picker.style[key] = value;
   });
 
-  /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+  /* eslint-disable @typescript-eslint/no-empty-function */
   return () => {};
 }

@@ -2,6 +2,12 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.4.0] - TBD
+
+- [`picmo`] Added new `autoFocus` option to better control autofocus behavior (or disable it entirely).
+- [`picmo`] Deprecated the `autoFocusSearch` option in favor of `autoFocus`.
+- [`@picmo/popup-picker`] Upgraded to use the floating-ui library (successor to Popper.js).
+
 ## [5.3.0] - 2022-07-16
 
 - [`picmo`] Fixed custom styling not being applied to the search results scrollbar ([#215](https://github.com/joeattardi/picmo/issues/215)).

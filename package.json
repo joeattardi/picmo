@@ -79,7 +79,6 @@
     "typescript": "^4.5.5"
   },
   "dependencies": {
-    "@popperjs/core": "^2.4.0",
     "emojibase": "^6.1.0",
     "twemoji": "^14.0.1"
   }

@@ -33,6 +33,6 @@
     "picmo": "^5.0.1"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.5"
+    "@floating-ui/dom": "^1.0.0"
   }
 }

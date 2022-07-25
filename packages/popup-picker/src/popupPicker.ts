@@ -137,7 +137,7 @@ export class PopupPickerController {
 
     await this.initiateOpenStateChange(true);
     this.options.rootElement.appendChild(this.popupEl);
-    this.setPosition();
+    await this.setPosition();
     this.picker.reset();
 
     await this.animatePopup(true);
@@ -181,9 +181,9 @@ export class PopupPickerController {
   /**
    * Sets up the picker positioning.
    */
-  private setPosition() {
+  private async setPosition() {
     this.positionCleanup?.();
-      this.positionCleanup = setPosition(
+      this.positionCleanup = await setPosition(
         this.popupEl,
         this.options.referenceElement,
         this.options.position as Position
