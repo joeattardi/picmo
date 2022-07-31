@@ -1,6 +1,6 @@
-import { autoUpdate ,computePosition, Placement, flip, offset } from '@floating-ui/dom';
+import { autoUpdate, ComputePositionConfig, computePosition, Placement, flip, offset, autoPlacement, shift } from '@floating-ui/dom';
 
-import { Position, FixedPosition } from './types';
+import { Position, RelativePosition, FixedPosition } from './types';
 
 export type PositionCleanup = () => void;
 
@@ -14,20 +14,34 @@ export async function setPosition(picker: HTMLElement, referenceElement: HTMLEle
     setFixedPosition(picker, position));
 }
 
-async function setRelativePosition(picker: HTMLElement, referenceElement: HTMLElement | undefined, placement: Placement): Promise<PositionCleanup> {
+async function setRelativePosition(picker: HTMLElement, referenceElement: HTMLElement | undefined, placement: RelativePosition): Promise<PositionCleanup> {
   if (!referenceElement) {
     throw new Error('Reference element is required for relative positioning');
   }
 
-  return autoUpdate(referenceElement, picker, async () => {
-    const {x, y} = await computePosition(referenceElement, picker, {
-      placement,
+  let config: Partial<ComputePositionConfig>;
+
+  if (placement === 'auto') {
+    config = {
+      middleware: [
+        autoPlacement(),
+        shift(),
+        offset({ mainAxis: 5, crossAxis: 12 })
+      ]
+    };
+  } else {
+    config = {
+      placement: placement as Placement,
       middleware: [
         flip(),
+        shift(),
         offset(5)
       ]
-    });
+    };
+  }
 
+  return autoUpdate(referenceElement, picker, async () => { 
+    const {x, y} = await computePosition(referenceElement, picker, config);
     Object.assign(picker.style, {
       position: 'absolute',
       left: `${x}px`,

@@ -76,6 +76,7 @@ export class TwemojiRenderer extends Renderer {
   #insertSvg() {
     if (!document.getElementById(SVG_SPRITES_ID)) {
       const svgContainer = document.createElement('div');
+      svgContainer.style.display = 'none';
       svgContainer.id = SVG_SPRITES_ID;
 
       Object.values(spriteSheets).forEach(spriteContent => {

@@ -7,7 +7,8 @@ export type FixedPosition = {
   right?: string;
 };
 
-export type Position = FixedPosition | Placement;
+export type RelativePosition = Placement | 'auto';
+export type Position = FixedPosition | RelativePosition;
 
 export type PopupOptions = {
   hideOnClickOutside: boolean;

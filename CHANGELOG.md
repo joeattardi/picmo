@@ -7,6 +7,7 @@ For full details, see the documentation at [https://picmojs.com](https://picmojs
 - [`picmo`] Added new `autoFocus` option to better control autofocus behavior (or disable it entirely).
 - [`picmo`] Deprecated the `autoFocusSearch` option in favor of `autoFocus`.
 - [`@picmo/popup-picker`] Upgraded to use the floating-ui library (successor to Popper.js).
+- [`@picmo/renderer-twemoji`] Made SVG container `display: none` to fix popup positioning issues.
 
 ## [5.3.0] - 2022-07-16
 
