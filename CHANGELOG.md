@@ -2,7 +2,7 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
-## [5.4.0] - TBD
+## [5.4.0] - 2022-07-30
 
 - [`picmo`] Added new `autoFocus` option to better control autofocus behavior (or disable it entirely).
 - [`picmo`] Deprecated the `autoFocusSearch` option in favor of `autoFocus`.
