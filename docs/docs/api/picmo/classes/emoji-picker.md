@@ -49,10 +49,6 @@ Removes an event listener from the picker.
 
 #### Arguments
 
-```
-reset(): void
-```
-
 - `event`: The event to remove the listener from.
   - **Type**: [`ExternalEvent`](../types/external-event)
 - `listener`: The previously registered listener function to remove.
@@ -60,4 +56,18 @@ reset(): void
 
 ### `reset`
 
+```
+reset(): void
+```
+
 Resets the picker back to its initial state.
+
+### `updateOptions`
+
+<pre>
+updateOptions(options: <a href="../types/updatable-options">UpdatableOptions</a>): void
+</pre>
+
+Updates picker options after the picker has been created. Updated options take effect immediately. 
+
+Not all options are updatable; see [`UpdatableOptions`](../types/updatable-options) for a list of supported options.

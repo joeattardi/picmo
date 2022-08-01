@@ -13,7 +13,7 @@ import { EventCallback } from '../events';
 
 import { determineEmojiVersion } from '../emojiSupport';
 
-import { Category, EmojiRecord } from '../types';
+import { Category, EmojiRecord, UpdatableOptions } from '../types';
 import { LATEST_EMOJI_VERSION } from 'emojibase';
 
 import template from './EmojiPicker.template';
@@ -196,6 +196,10 @@ export class EmojiPicker extends View {
         this.el.style.setProperty(variableNames[key], this.options[key].toString());
       }
     });
+  }
+
+  private updateStyleProperty(option: string, value: any) {
+    this.el.style.setProperty(variableNames[option], value.toString());
   }
 
   private reinitialize() {
@@ -439,5 +443,35 @@ export class EmojiPicker extends View {
     this.externalEvents.emit('emoji:select', await this.renderer.doEmit(emoji));
     this.options.recentsProvider.addOrUpdateRecent(emoji, this.options.maxRecents);
     this.events.emit('recent:add', emoji);
+  }
+
+  // TODO: better layout for narrow pickers - scroll category tabs?
+  private updaters = {
+    styleProperty: propertyName => value => this.el.style.setProperty(variableNames[propertyName], value.toString()),
+
+    theme: theme => {
+      this.el.classList.remove(this.options.theme);
+      this.el.classList.add(theme);
+    },
+
+    className: className => {
+      if (this.options.className) {
+        this.el.classList.remove(this.options.className);
+      }
+
+      this.el.classList.add(className);
+    },
+
+    emojisPerRow: this.updateStyleProperty.bind(this, 'emojisPerRow'),
+    emojiSize: this.updateStyleProperty.bind(this, 'emojiSize'),
+    visibleRows: this.updateStyleProperty.bind(this, 'visibleRows')
+  }
+
+  updateOptions(options: UpdatableOptions) {
+    Object.keys(options).forEach(option => {
+      this.updaters[option](options[option]);
+    });
+
+    Object.assign(this.options, options);
   }
 }

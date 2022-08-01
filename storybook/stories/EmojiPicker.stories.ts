@@ -44,7 +44,7 @@ export const CustomDimensions = Template.bind({});
 CustomDimensions.args = {
   emojisPerRow: 12,
   visibleRows: 6,
-  emojiSize: '2rem'
+  emojiSize: '2rem',
 };
 CustomDimensions.argTypes = {
   emojisPerRow: {

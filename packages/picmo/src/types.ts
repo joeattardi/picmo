@@ -84,3 +84,11 @@ export type PickerOptions = {
   theme: string;
   visibleRows: number;
 };
+
+export type UpdatableOptions = Pick<Partial<PickerOptions>, 
+  'className' |
+  'theme' |
+  'emojiSize' |
+  'emojisPerRow' |
+  'visibleRows'
+>;

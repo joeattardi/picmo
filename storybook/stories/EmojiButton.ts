@@ -1,6 +1,5 @@
 import { toElement } from './common';
-
-import { createPicker } from '../../packages/picmo/src/index';
+import { lightTheme, darkTheme, createPicker } from '../../packages/picmo/src/index';
 import './EmojiButton.css';
 
 function getUIFlags(options: any) {
@@ -44,7 +43,7 @@ export function renderPicker(options: any = {}) {
     </div>
   `);
 
-  const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button');
+  const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button') as HTMLButtonElement;
   const pickerElement = rootElement.querySelector<HTMLElement>('.picker');
 
   const picker = createPicker({
@@ -52,6 +51,14 @@ export function renderPicker(options: any = {}) {
     ...getUIFlags(options),
     rootElement: pickerElement
   });
+
+  setTimeout(() => {
+    picker.updateOptions({
+      className: 'foobarbaz'
+    });
+  }, 3000);
+
+  // setTimeout(() => picker.setEmojisPerRow(3), 3000);
 
   picker.addEventListener('emoji:select', handleEmojiSelection(button));
   picker.addEventListener('emoji:select', options.emojiSelect);
