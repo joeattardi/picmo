@@ -7,7 +7,6 @@ import { IndexedDbStoreFactory } from './data/IndexedDbStore';
 import { LocalStorageProvider } from './recents/LocalStorageProvider';
 
 const defaultOptions: Partial<PickerOptions> = {
-  renderer: new NativeRenderer(),
   dataStore: IndexedDbStoreFactory,
   theme: lightTheme,
 
@@ -27,7 +26,6 @@ const defaultOptions: Partial<PickerOptions> = {
   locale: 'en',
 
   maxRecents: 50,
-  recentsProvider: new LocalStorageProvider(),
 
   custom: []
 };
@@ -35,6 +33,8 @@ const defaultOptions: Partial<PickerOptions> = {
 export function getOptions(options: Partial<PickerOptions> = {}): PickerOptions {
   return { 
     ...defaultOptions,
-    ...options 
+    ...options,
+    renderer: options.renderer || new NativeRenderer(),
+    recentsProvider: options.recentsProvider || new LocalStorageProvider()
   } as PickerOptions;
 }
