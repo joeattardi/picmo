@@ -1,6 +1,6 @@
 import { View } from './view';
 
-import { CategoryTab } from './CategoryTab';
+import { CategoryTab, SetActiveOptions } from './CategoryTab';
 import { categoryIcons } from '../icons';
 import { Category } from '../types';
 
@@ -39,7 +39,7 @@ export class CategoryTabs extends View {
       tabs: this.tabViews.map(view => view.renderSync())
     });
 
-    this.currentTabView.setActive(true);
+    // this.currentTabView.setActive(true);
 
     return this.el;
   }
@@ -52,7 +52,7 @@ export class CategoryTabs extends View {
     return this.tabViews[this.activeCategoryIndex];
   }
 
-  setActiveTab(index: number, focus = true, scroll = true): void {
+  setActiveTab(index: number, options: SetActiveOptions): void {
     // Don't do anything if the desired tab is already active
     if (index === this.activeCategoryIndex) {
       return;
@@ -61,8 +61,8 @@ export class CategoryTabs extends View {
     const oldCategory = this.currentTabView;
     const newCategory = this.tabViews[index];
 
-    oldCategory.setActive(false, focus);
-    newCategory.setActive(true, focus, scroll);
+    oldCategory.setActive(false, options);
+    newCategory.setActive(true, options);
     this.activeCategoryIndex = index;
   }
 
@@ -81,7 +81,10 @@ export class CategoryTabs extends View {
   private stepSelectedTab(step: number) {
     return () => {
       const newIndex = this.activeCategoryIndex + step;
-      this.setActiveTab(this.getTargetCategory(newIndex));
+      this.setActiveTab(this.getTargetCategory(newIndex), {
+        changeFocusable: true,
+        performFocus: true
+      });
     };
   }
 }

@@ -10,6 +10,12 @@ type CategoryTabOptions = {
   icon: Element;
 }
 
+export type SetActiveOptions = {
+  changeFocusable?: boolean;
+  performFocus?: boolean;
+  scroll?: boolean;
+}
+
 export class CategoryTab extends View {
   category: Category;
   private icon: Element;
@@ -30,6 +36,7 @@ export class CategoryTab extends View {
 
     this.uiEvents = [
       View.childEvent('button', 'click', this.selectCategory),
+      View.childEvent('button', 'focus', this.selectCategory)
     ];
 
     super.initialize();
@@ -53,31 +60,29 @@ export class CategoryTab extends View {
    * @param changeFocus Whether or not to change the active focusable element to the tab button
    * @param scroll Whether or not to scroll to the new category
    */
-  setActive(isActive: boolean, changeFocus = true, scroll = false) {
-    this.el.classList.toggle(classes.categoryTabActive, isActive);
-    if (changeFocus) {
-      this.setFocused(isActive, scroll);
-    }
-    this.isActive = isActive;
-  }
+  setActive(active: boolean, options: SetActiveOptions) {
+    const { changeFocusable, performFocus, scroll } = {
+      changeFocusable: true,
+      performFocus: true,
+      scroll: true,
+      ...options
+    };
 
-  /**
-   * Changes the focused state of the tab button.
-   * @param isFocused The new active state
-   * @param scroll Whether or not to scroll to the new category
-   */
-  private setFocused(isFocused: boolean, scroll = false) {
-    this.ui.button.ariaSelected = isFocused.toString();
-    if (isFocused) {
-      this.ui.button.tabIndex = 0;
+    this.el.classList.toggle(classes.categoryTabActive, active);
+
+    if (changeFocusable) {
+      this.ui.button.tabIndex = active ? 0 : -1;
+    }
+
+    if (active && performFocus) {
       this.ui.button.focus();
 
       if (scroll) {
         this.events.emit('category:select', this.category.key, { scroll: 'animate', focus: 'button', performFocus: false });
       }
-    } else {
-      this.ui.button.tabIndex = -1;
     }
+
+    this.isActive = active;
   }
 
   private selectCategory() {

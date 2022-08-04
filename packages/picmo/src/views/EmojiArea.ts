@@ -9,6 +9,7 @@ import { Category, CategoryKey, EmojiFocusTarget } from '../types';
 import { Template } from '../Template';
 
 import classes from './EmojiArea.scss';
+import { SetActiveOptions } from './CategoryTab';
 
 const template = new Template(({ classes }) => /* html */`
   <div class="${classes.emojis}">
@@ -182,14 +183,14 @@ export class EmojiArea extends View {
     return 'button'
   }
 
-  reset(): void {
+  reset(performFocus = true): void {
     this.events.emit('preview:hide');
 
     const category = this.determineInitialCategory();
     if (category) {
       this.selectCategory(category, { 
-        focus: this.determineFocusTarget(category), 
-        performFocus: true, 
+        focus: this.determineFocusTarget(category),
+        performFocus, 
         scroll: 'jump' 
       });
 
@@ -253,7 +254,11 @@ export class EmojiArea extends View {
     this.emojiCategories[this.selectedCategory].setActive(false);
 
     const categoryIndex = this.selectedCategory = typeof category === 'number' ? category : this.getCategoryIndex(category);
-    this.categoryTabs?.setActiveTab(this.selectedCategory, performFocus, focus === 'button');
+    this.categoryTabs?.setActiveTab(this.selectedCategory, {
+      performFocus,
+      scroll: focus === 'button'
+    })
+    // this.categoryTabs?.setActiveTab(this.selectedCategory, performFocus, focus === 'button');
     const targetPosition = this.emojiCategories[categoryIndex].el.offsetTop;
     this.emojiCategories[categoryIndex].setActive(true, getFocusTarget(focus), focus !== 'button' && performFocus);
 
@@ -276,7 +281,10 @@ export class EmojiArea extends View {
 
     this.scrollListenerState = 'suspend';
     this.selectedCategory = this.getCategoryIndex(category);
-    this.categoryTabs?.setActiveTab(this.selectedCategory, false);
+    this.categoryTabs?.setActiveTab(this.selectedCategory, {
+      changeFocusable: false,
+      performFocus: false
+    });
     this.scrollListenerState = 'resume';
   }
 
@@ -303,12 +311,18 @@ export class EmojiArea extends View {
       return currentPosition < (this.emojiCategories[index + 1])?.el.offsetTop;
     });
 
+    const options: SetActiveOptions = {
+      changeFocusable: false,
+      performFocus: false,
+      scroll: false
+    };
+
     if (currentPosition === 0) {
-      this.categoryTabs.setActiveTab(0, false);
+      this.categoryTabs.setActiveTab(0, options);
     } else if (Math.floor(currentPosition) === Math.floor(maxScroll) || targetCategory < 0) {
-      this.categoryTabs.setActiveTab(this.categories.length - 1, false);
+      this.categoryTabs.setActiveTab(this.categories.length - 1, options);
     } else {
-      this.categoryTabs.setActiveTab(targetCategory, false);
+      this.categoryTabs.setActiveTab(targetCategory, options);
     }
   }
 }

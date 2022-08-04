@@ -125,7 +125,7 @@ export class EmojiPicker extends View {
   initializePickerView() {
     if (this.pickerReady) {
       this.showContent();
-      this.emojiArea.reset();
+      this.emojiArea.reset(false);
     }
   }
 
