@@ -2,6 +2,11 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.4.1] - 2022-08-04
+
+- [`picmo`] Fixed an issue where the initial category button would steal the focus on creation in an inline picker.
+- [`picmo`] Fixed default options processing so that a `LocalStorageProvider` isn't instantiated immediately upon importing PicMo; this was causing errors in environments like Next.js where `localStorage` is not available. Now `localStorage` is only referenced when calling `createPicker`.
+
 ## [5.4.0] - 2022-07-30
 
 - [`picmo`] Added new `autoFocus` option to better control autofocus behavior (or disable it entirely).
