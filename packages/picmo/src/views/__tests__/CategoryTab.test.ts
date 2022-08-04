@@ -41,8 +41,10 @@ describe('CategoryTab', () => {
     const button = tab.ui.button;
     expect(button.ariaSelected).toBe('false');
 
-    // By default it should make the tab focusable and set aria-selected to true
-    tab.setActive(true);
+    tab.setActive(true, {
+      changeFocusable: true,
+      performFocus: true
+    });
     expect(button.ariaSelected).toBe('true');
     expect(button.tabIndex).toBe(0);
 
@@ -52,7 +54,11 @@ describe('CategoryTab', () => {
     expect(button.tabIndex).toBe(-1);
 
     // Setting active without focus (like when scrolling) should not change tabindex or aria-selected
-    tab.setActive(true, false);
+    tab.setActive(true, {
+      changeFocusable: false,
+      performFocus: false,
+      scroll: false
+    });
     expect(button.ariaSelected).toBe('false');
   });
 

@@ -60,7 +60,7 @@ export class CategoryTab extends View {
    * @param changeFocus Whether or not to change the active focusable element to the tab button
    * @param scroll Whether or not to scroll to the new category
    */
-  setActive(active: boolean, options: SetActiveOptions) {
+  setActive(active: boolean, options: SetActiveOptions = {}) {
     const { changeFocusable, performFocus, scroll } = {
       changeFocusable: true,
       performFocus: true,
@@ -72,6 +72,7 @@ export class CategoryTab extends View {
 
     if (changeFocusable) {
       this.ui.button.tabIndex = active ? 0 : -1;
+      this.ui.button.ariaSelected = active.toString();
     }
 
     if (active && performFocus) {

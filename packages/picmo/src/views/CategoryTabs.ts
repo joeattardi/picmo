@@ -52,7 +52,7 @@ export class CategoryTabs extends View {
     return this.tabViews[this.activeCategoryIndex];
   }
 
-  setActiveTab(index: number, options: SetActiveOptions): void {
+  setActiveTab(index: number, options: SetActiveOptions = {}): void {
     // Don't do anything if the desired tab is already active
     if (index === this.activeCategoryIndex) {
       return;
