@@ -17,7 +17,7 @@
     "build": "lerna run build",
     "precommit": "lerna run lint && lerna run check && lerna run test",
     "clean": "rimraf dist",
-    "deploy:docs": "npm run build:docs && netlify deploy",
+    "deploy:docs": "npm run build:docs && netlify deploy --prod",
     "test": "lerna run test",
     "test:watch": "lerna run --parallel test:watch",
     "lint": "lerna run lint",
