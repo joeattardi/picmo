@@ -24,7 +24,7 @@ function HomepageHeader() {
             <img className={styles.heroLogo} src={logo} />
           </h1>
           <p className={clsx('hero__subtitle', styles.heroSubtitle)}>{siteConfig.tagline}</p>
-          <img src="https://img.shields.io/npm/v/picmo?color=9cf&label=npm%20package&logo=npm" />
+          <a href="https://npmjs.com/package/picmo"><img src="https://img.shields.io/npm/v/picmo?color=9cf&label=npm%20package&logo=npm" /></a>
           <div className={styles.buttons}>
             <Link
               className="button button--secondary button--lg"
