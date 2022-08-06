@@ -2,6 +2,10 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.4.2] - 2022.08-06
+
+- [`picmo`] Removed inline style from SVG icons that was causing Content-Security-Policy problems ([#224](https://github.com/joeattardi/picmo/issues/224))
+
 ## [5.4.1] - 2022-08-04
 
 - [`picmo`] Fixed an issue where the initial category button would steal the focus on creation in an inline picker.
