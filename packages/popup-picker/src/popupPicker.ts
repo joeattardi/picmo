@@ -24,7 +24,7 @@ export class PopupPickerController {
   private focusTrap: FocusTrap;
   private positionCleanup: PositionCleanup;
 
-  private closeButton: HTMLElement;
+  private closeButton: HTMLButtonElement;
   private options: PickerOptions & PopupOptions;
   private externalEvents = new PopupEvents();
 
@@ -41,6 +41,7 @@ export class PopupPickerController {
 
     if (this.options.showCloseButton) {
       this.closeButton = document.createElement('button');
+      this.closeButton.type = 'button';
       this.closeButton.classList.add(classes.closeButton);
       this.closeButton.innerHTML = closeIcon;
       this.popupEl.appendChild(this.closeButton);
@@ -165,7 +166,7 @@ export class PopupPickerController {
     this.positionCleanup?.();
 
     this.focusTrap.deactivate();
-    this.options.triggerElement?.focus();
+    // this.options.triggerElement?.focus();
     this.externalEvents.emit('picker:close');
   }
 
