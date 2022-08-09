@@ -3,7 +3,7 @@
   overflow-y: auto;
   position: relative;
   scrollbar-color: var(--scrollbar-color) var(--scrollbar-background-color);
-  scrollbar-width: 8px;
+  scrollbar-width: thin;
 
   &::-webkit-scrollbar {
     background: var(--scrollbar-background-color);
