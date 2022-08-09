@@ -30,10 +30,8 @@
   "bugs": "https://github.com/joeattardi/picmo/issues",
   "funding": "https://github.com/sponsors/joeattardi",
   "license": "MIT",
-  "peerDependencies": {
-    "picmo": "^5.0.1"
-  },
   "dependencies": {
+    "picmo": "^5.4.2",
     "twemoji-parser": "^14.0.0"
   },
   "devDependencies": {

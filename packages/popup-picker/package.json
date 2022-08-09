@@ -29,10 +29,8 @@
   "bugs": "https://github.com/joeattardi/picmo/issues",
   "funding": "https://github.com/sponsors/joeattardi",
   "license": "MIT",
-  "peerDependencies": {
-    "picmo": "^5.0.1"
-  },
   "dependencies": {
-    "@floating-ui/dom": "^1.0.0"
+    "@floating-ui/dom": "^1.0.0",
+    "picmo": "^5.4.2"
   }
 }
