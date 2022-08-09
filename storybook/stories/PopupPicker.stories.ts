@@ -41,7 +41,6 @@ export default getArgs({
 
 const Template = args => {
   return createPicker({
-    position: 'auto',
     ...args
   });
 };

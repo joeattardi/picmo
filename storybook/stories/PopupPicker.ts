@@ -23,11 +23,12 @@ export function createPicker(options: any = {}) {
     </div>
   `);
 
-  const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button');
+  const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button') as HTMLButtonElement;
 
   const picker = createPopup(
     options,
     {
+      position: 'auto',
       className: 'custom-popup',
       triggerElement: button,
       referenceElement: button

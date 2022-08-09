@@ -57,7 +57,7 @@ export type Category = {
 
 export type PickerOptions = {
   animate?: boolean;
-  autoFocus?: 'search' | 'emojis' | 'none';
+  autoFocus?: 'auto' | 'search' | 'emojis' | 'none';
   autoFocusSearch: boolean;
   categories?: CategoryKey[];
   className?: string;

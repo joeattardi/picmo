@@ -22,6 +22,10 @@ Type: `Partial<`[`PickerOptions`](../../picmo/types/picker-options)`>`
 
 The options to use when creating the popup picker.
 
+:::note
+When creating a popup picker, the [`autoFocus`](../../picmo/types/picker-options#autofocus) picker option deaults to `auto` so that the picker receives focus as soon as it is opened. This differs from an inline PicMo picker, which defaults to `none`.
+:::
+
 ### `popupOptions`
 
 Type: `Partial<`[`PickerOptions`](../types/popup-options)`>`

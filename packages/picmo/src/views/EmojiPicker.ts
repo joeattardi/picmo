@@ -309,6 +309,8 @@ export class EmojiPicker extends View {
           return this.emojiArea.focusableEmoji;
         case 'search':
           return this.search;
+        case 'auto':
+          return this.search || this.emojiArea.focusableEmoji;
         default:
           return null;
       }

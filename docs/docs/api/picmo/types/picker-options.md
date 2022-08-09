@@ -15,13 +15,14 @@ Whether or not to show animated transitions in the picker.
 
 ### `autoFocus`
 
-- **Type**: `'emojis' | 'search' | 'none' | undefined`
+- **Type**: `'auto' | 'emojis' | 'search' | 'none' | undefined`
 - **Default**: `undefined`
 
 Specifies which UI element of the picker, if any, should automatically receive focus when the picker is rendered. If not specified, no UI element will be focused automatically.
 
 The supported values are:
 
+- `auto`: Focuses the search field, if it exists. If `showSearch` is `false`, it will focus the emojis instead.
 - `emojis`: The first focusable emoji will receive focus.
 - `search`: The search field will receive focus (if `showSearch` is `true`).
 - `none`: No UI element will receive focus.
