@@ -61,6 +61,7 @@ export class PopupPickerController {
     if (this.options.hideOnEmojiSelect) {
       this.picker.addEventListener('emoji:select', () => {
         this.close();
+        this.options.triggerElement?.focus();
       });
     }
 
@@ -94,6 +95,7 @@ export class PopupPickerController {
   private handleKeydown(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       this.close();
+      this.options.triggerElement?.focus();
     }
   }
 
@@ -166,7 +168,6 @@ export class PopupPickerController {
     this.positionCleanup?.();
 
     this.focusTrap.deactivate();
-    // this.options.triggerElement?.focus();
     this.externalEvents.emit('picker:close');
   }
 
