@@ -208,7 +208,7 @@
     height: calc(var(--content-height) + var(--category-tabs-height) + var(--category-tabs-offset));
     overflow-y: auto;
     scrollbar-color: var(--scrollbar-color) var(--scrollbar-background-color);
-    scrollbar-width: 8px;
+    scrollbar-width: thin;
 
     &::-webkit-scrollbar {
       background: var(--scrollbar-background-color);
