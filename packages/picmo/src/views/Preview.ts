@@ -3,7 +3,7 @@ import { EmojiRecord } from '../types';
 
 import { Template } from '../Template';
 
-import classes from './Preview.scss';
+import classes from './Preview.module.scss';
 
 const tagTemplate = new Template(({ classes, tag }) => /* html */`
   <li class="${classes.tag}">${tag}</li>

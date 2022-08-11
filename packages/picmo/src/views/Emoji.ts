@@ -5,7 +5,7 @@ import { View } from './view';
 import { CategoryKey, EmojiRecord } from '../types';
 
 import template from './Emoji.template';
-import classes from './Emoji.scss';
+import classes from './Emoji.module.scss';
 
 type EmojiOptions = {
   emoji: EmojiRecord

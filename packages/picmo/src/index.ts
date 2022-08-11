@@ -8,9 +8,13 @@ export * from './events';
 export * from './types';
 export * from './themes';
 
+// TODO: support option to disable injection
+import './styles/index.css';
+
+
 export { createPicker } from './createPicker';
 export { EmojiPicker } from './views/EmojiPicker';
-export { ExternalEvent, ExternalEventKey } from './ExternalEvents';
+export type { ExternalEvent, ExternalEventKey } from './ExternalEvents';
 
 export { Renderer } from './renderers/renderer';
 export { NativeRenderer } from './renderers/native';

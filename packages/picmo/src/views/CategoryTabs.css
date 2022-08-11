@@ -37,7 +37,7 @@
   height: 1.6em;
   transition: all 100ms;
 
-  img {
+  &img {
     width: var(--category-tab-size);
     height: var(--category-tab-size);
   }
@@ -55,7 +55,7 @@
 }
 
 .categoryTabActive {
-  .categoryButton {
+  & .categoryButton {
     color: var(--category-tab-active-color);
     background: 
       linear-gradient(rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%),

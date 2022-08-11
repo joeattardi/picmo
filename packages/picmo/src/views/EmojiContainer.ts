@@ -6,7 +6,7 @@ import { CategoryKey, EmojiFocusTarget, EmojiRecord } from '../types';
 import { FocusGrid, FocusChangeEvent } from '../focusGrid';
 
 import template from './EmojiContainer.template';
-import classes from './EmojiContainer.scss';
+import classes from './EmojiContainer.module.scss';
 
 type EmojiContainerOptions = {
   emojis: EmojiRecord[];

@@ -1,5 +1,5 @@
 import { View } from './view';
-import classes from './Search.scss';
+import classes from './Search.module.scss';
 
 import { icon } from '../icons';
 

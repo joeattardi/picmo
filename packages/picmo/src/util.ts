@@ -93,3 +93,14 @@ export async function computeHash(obj: any) {
   const hashArray = Array.from(new Uint8Array(hashBuffer));
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
+
+export function getClasses(...classNames) {
+  return classNames.reduce((result, className) => ({
+    ...result,
+    [className]: className
+  }), {});
+}
+
+export function prefixClassName(className) {
+  return `PicMo__${className}`;
+}

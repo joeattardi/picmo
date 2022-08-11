@@ -3,7 +3,7 @@ import { CustomEmoji, EmojiRecord, EmojiSelection } from '../types';
 import { View } from '../views/view';
 import { Image } from '../views/Image';
 
-import classes from './custom.scss';
+import classes from './custom.module.scss';
 
 export type RenderTask = {
   content: View | Element;

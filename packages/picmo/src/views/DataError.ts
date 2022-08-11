@@ -2,8 +2,10 @@ import { View } from './view';
 import { ErrorMessage } from './ErrorMessage';
 import { initDatabase } from '../data/emojiData';
 
-import classes from './DataError.scss';
 import template from './DataError.template';
+import { getClasses } from '../util';
+
+const classes = getClasses('dataError');
 
 type DataErrorOptions = {
   message: string;

@@ -3,7 +3,7 @@ import { Template } from '../Template';
 import { EmojiContainer } from './EmojiContainer';
 import { Category, EmojiFocusTarget } from '../types';
 import { LazyLoader } from '../LazyLoader';
-import classes from './EmojiCategory.scss';
+import classes from './EmojiCategory.module.scss';
 
 type BaseEmojiCategoryOptions = {
   category: Category;

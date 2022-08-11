@@ -18,7 +18,7 @@ import { LATEST_EMOJI_VERSION } from 'emojibase';
 
 import template from './EmojiPicker.template';
 
-import classes from './EmojiPicker.scss';
+import classes from './EmojiPicker.module.scss';
 
 const variableNames = {
   emojisPerRow: '--emojis-per-row',

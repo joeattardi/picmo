@@ -6,7 +6,7 @@ import { animate } from '../util';
 import { FocusTrap } from '../focusTrap';
 
 import template from './VariantPopup.template';
-import classes from './VariantPopup.scss';
+import classes from './VariantPopup.module.scss';
 
 type VariantPopupOptions = {
   emoji: EmojiRecord;

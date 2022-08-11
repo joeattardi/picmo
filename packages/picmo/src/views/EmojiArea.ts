@@ -8,7 +8,7 @@ import { LazyLoader } from '../LazyLoader';
 import { Category, CategoryKey, EmojiFocusTarget } from '../types';
 import { Template } from '../Template';
 
-import classes from './EmojiArea.scss';
+import classes from './EmojiArea.module.scss';
 import { SetActiveOptions } from './CategoryTab';
 
 const template = new Template(({ classes }) => /* html */`

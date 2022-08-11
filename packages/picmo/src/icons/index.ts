@@ -1,28 +1,28 @@
 import { toElement } from '../util';
 import { CategoryKey } from '../types';
-import classes from './icons.scss';
+// import classes from './icons.module.scss';
 
-import clock from './clock-solid.svg';
-import flag from './flag-solid.svg';
-import frown from './face-frown-open-solid.svg';
-import gamepad from './gamepad-solid.svg';
-import lightbulb from './lightbulb-solid.svg';
-import mug from './mug-saucer-solid.svg';
-import plane from './plane-solid.svg';
-import robot from './robot-solid.svg';
-import sad from './face-sad-tear-solid.svg';
-import search from './magnifying-glass-solid.svg';
-import smiley from './face-grin-solid.svg';
-import symbols from './icons-solid.svg';
-import tree from './tree-solid.svg';
-import users from './user-group-solid.svg';
-import warning from './triangle-exclamation-solid.svg';
-import xmark from './xmark-solid.svg';
+import clock from './clock-solid.svg?raw';
+import flag from './flag-solid.svg?raw';
+import frown from './face-frown-open-solid.svg?raw';
+import gamepad from './gamepad-solid.svg?raw';
+import lightbulb from './lightbulb-solid.svg?raw';
+import mug from './mug-saucer-solid.svg?raw';
+import plane from './plane-solid.svg?raw';
+import robot from './robot-solid.svg?raw';
+import sad from './face-sad-tear-solid.svg?raw';
+import search from './magnifying-glass-solid.svg?raw';
+import smiley from './face-grin-solid.svg?raw';
+import symbols from './icons-solid.svg?raw';
+import tree from './tree-solid.svg?raw';
+import users from './user-group-solid.svg?raw';
+import warning from './triangle-exclamation-solid.svg?raw';
+import xmark from './xmark-solid.svg?raw';
 
 function createIcon(iconName: string, svg: string): SVGElement {
   const el = toElement<SVGSVGElement>(svg);
   el.dataset.icon = iconName;
-  el.classList.add(classes.icon);
+  el.classList.add('icon');
   return el;
 }
 
@@ -72,7 +72,7 @@ export function icon(name: string, size?: IconSize): Element {
   const icon = createIcon(name, icons[name]);
   // const icon = icons[name].cloneNode(true);
   if (size) {
-    icon.classList.add(classes[`icon-${size}`]);
+    icon.classList.add(`icon-${size}`);
   }
 
   return icon;

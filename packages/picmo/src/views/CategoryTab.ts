@@ -3,7 +3,10 @@ import { View } from './view';
 import { Category } from '../types';
 
 import template from './CategoryTab.template';
-import classes from './CategoryTabs.scss';
+import { getClasses } from '../util';
+
+
+const classes = getClasses('categoryTab', 'categoryTabActive', 'categoryButton');
 
 type CategoryTabOptions = {
   category: Category;
