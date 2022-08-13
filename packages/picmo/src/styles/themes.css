@@ -1,4 +1,4 @@
-@mixin lightTheme {
+@define-mixin lightTheme {
   color-scheme: light;
   --accent-color: #4f46e5;
   --background-color: #f9fafb;
@@ -30,7 +30,7 @@
   --variant-popup-background-color: #ffffff;
 }
 
-@mixin darkTheme {
+@define-mixin darkTheme {
   color-scheme: dark;
   --accent-color: #A580F9;
   --background-color: #333333;
@@ -60,20 +60,16 @@
   --variant-popup-background-color: #333333;
 }
 
-.lightTheme {
-  @include lightTheme;
+.light, .auto {
+  @mixin lightTheme;
 }
 
-.darkTheme {
-  @include darkTheme;
-}
-
-.autoTheme {
-  @include lightTheme;
+.dark {
+  @mixin darkTheme;
 }
 
 @media (prefers-color-scheme: dark) {
-  .autoTheme {
-    @include darkTheme;
+  .auto {
+    @mixin darkTheme;
   }
 }

@@ -1,11 +1,10 @@
 import { View } from './view';
-import { BaseEmojiCategory } from './BaseEmojiCategory';
+import { BaseEmojiCategory, classes } from './BaseEmojiCategory';
 import { RecentEmojiContainer } from './RecentEmojiContainer';
 import { Category, EmojiRecord } from '../types';
 import { LazyLoader } from '../LazyLoader';
 import { categoryIcons } from '../icons';
 import template from './RecentEmojiCategory.template';
-import classes from './EmojiCategory.module.scss';
 import { RecentsProvider } from '../recents/RecentsProvider';
 
 type RecentEmojiCategoryOptions = {

@@ -2,8 +2,9 @@ import { LazyLoader } from '../LazyLoader';
 import { CustomEmoji, EmojiRecord, EmojiSelection } from '../types';
 import { View } from '../views/view';
 import { Image } from '../views/Image';
+import { getPrefixedClasses } from '../util';
 
-import classes from './custom.module.scss';
+const classes = getPrefixedClasses('customEmoji');
 
 export type RenderTask = {
   content: View | Element;

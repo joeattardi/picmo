@@ -17,8 +17,31 @@ import { Category, EmojiRecord, UpdatableOptions } from '../types';
 import { LATEST_EMOJI_VERSION } from 'emojibase';
 
 import template from './EmojiPicker.template';
+import { getPrefixedClasses } from '../util';
 
-import classes from './EmojiPicker.module.scss';
+const classes = getPrefixedClasses(
+  'picker',
+  'skeleton',
+  'placeholder',
+  'searchSkeleton',
+  'searchInput',
+  'categoryTabsSkeleton',
+  'categoryTab',
+  'contentSkeleton',
+  'categoryName',
+  'emojiGrid',
+  'emoji',
+  'previewSkeleton',
+  'previewEmoji',
+  'previewName',
+  'tagList',
+  'tag',
+  'overlay',
+  'content',
+  'fullHeight',
+  'pluginContainer',
+  'header'
+);
 
 const variableNames = {
   emojisPerRow: '--emojis-per-row',

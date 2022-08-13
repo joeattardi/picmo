@@ -3,7 +3,7 @@ import { Template } from '../Template';
 import { EmojiContainer } from './EmojiContainer';
 import { Category, EmojiFocusTarget } from '../types';
 import { LazyLoader } from '../LazyLoader';
-import classes from './EmojiCategory.module.scss';
+import { getPrefixedClasses } from '../util';
 
 type BaseEmojiCategoryOptions = {
   category: Category;
@@ -11,6 +11,13 @@ type BaseEmojiCategoryOptions = {
   lazyLoader?: LazyLoader;
   template: Template;
 }
+
+export const classes = getPrefixedClasses(
+  'emojiCategory',
+  'categoryName',
+  'noRecents',
+  'recentEmojis'
+);
 
 export abstract class BaseEmojiCategory extends View {
   category: Category;

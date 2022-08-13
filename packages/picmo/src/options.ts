@@ -1,14 +1,13 @@
 import { PickerOptions } from './types';
-
+import themes from './themes';
 import { NativeRenderer } from './renderers/native';
-import { lightTheme } from './themes';
 import en from './i18n/lang-en';
 import { IndexedDbStoreFactory } from './data/IndexedDbStore';
 import { LocalStorageProvider } from './recents/LocalStorageProvider';
 
 const defaultOptions: Partial<PickerOptions> = {
   dataStore: IndexedDbStoreFactory,
-  theme: lightTheme,
+  theme: themes.light,
 
   animate: true,
 

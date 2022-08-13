@@ -3,10 +3,14 @@ import { View } from './view';
 import { Category } from '../types';
 
 import template from './CategoryTab.template';
-import { getClasses } from '../util';
+import { getPrefixedClasses } from '../util';
 
 
-const classes = getClasses('categoryTab', 'categoryTabActive', 'categoryButton');
+const classes = getPrefixedClasses(
+  'categoryTab', 
+  'categoryTabActive', 
+  'categoryButton'
+);
 
 type CategoryTabOptions = {
   category: Category;

@@ -1,4 +1,7 @@
-import { createPicker } from './src/index';
+import { createPicker, globalConfig } from './src/index';
+// import './src/styles/index.css';
+
+globalConfig.injectStyles = false;
 
 const rootElement = document.querySelector('#picker');
 const selectionContainer = document.querySelector('#selection-outer');
@@ -6,7 +9,7 @@ const emoji = document.querySelector('#selection-emoji');
 const name = document.querySelector('#selection-name');
 
 const picker = createPicker({
-  rootElement,
+  rootElement
 });
 
 picker.addEventListener('emoji:select', (selection) => {

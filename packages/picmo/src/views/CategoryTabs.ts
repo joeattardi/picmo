@@ -5,13 +5,13 @@ import { categoryIcons } from '../icons';
 import { Category } from '../types';
 
 import template from './CategoryTabs.template';
-import { getClasses } from '../util';
+import { getPrefixedClasses } from '../util';
 
 type CategoryTabsOptions = {
   categories: Category[];
 }
 
-const classes = getClasses('categoryButtons');
+const classes = getPrefixedClasses('categoryButtons');
 
 export class CategoryTabs extends View {
   private categories: Category[];

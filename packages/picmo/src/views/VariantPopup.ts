@@ -2,11 +2,15 @@ import { View } from './view';
 
 import { EmojiContainer } from './EmojiContainer';
 import { EmojiRecord } from '../types';
-import { animate } from '../util';
+import { animate, getPrefixedClasses } from '../util';
 import { FocusTrap } from '../focusTrap';
 
 import template from './VariantPopup.template';
-import classes from './VariantPopup.module.scss';
+
+const classes = getPrefixedClasses(
+  'variantOverlay',
+  'variantPopup'
+);
 
 type VariantPopupOptions = {
   emoji: EmojiRecord;

@@ -1,6 +1,11 @@
 import { View } from './view';
 import { Template } from '../Template';
-import classes from '../common.module.scss';
+import { getPrefixedClasses } from '../util';
+
+const classes = getPrefixedClasses(
+  'imagePlaceholder',
+  'placeholder'
+);
 
 const template = new Template(({ classes }) => /* html */`
   <div class="${classes.placeholder} ${classes.imagePlaceholder}"></div>

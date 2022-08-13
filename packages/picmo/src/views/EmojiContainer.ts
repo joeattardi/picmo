@@ -1,12 +1,13 @@
 import { Emoji } from './Emoji';
 import { LazyLoader } from '../LazyLoader';
-import { getEmojiForEvent } from '../util';
+import { getEmojiForEvent, getPrefixedClasses } from '../util';
 import { View } from './view';
 import { CategoryKey, EmojiFocusTarget, EmojiRecord } from '../types';
 import { FocusGrid, FocusChangeEvent } from '../focusGrid';
 
 import template from './EmojiContainer.template';
-import classes from './EmojiContainer.module.scss';
+
+const classes = getPrefixedClasses('emojiContainer');
 
 type EmojiContainerOptions = {
   emojis: EmojiRecord[];

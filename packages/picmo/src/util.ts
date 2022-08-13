@@ -94,13 +94,13 @@ export async function computeHash(obj: any) {
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-export function getClasses(...classNames) {
+export function getPrefixedClasses(...classNames) {
   return classNames.reduce((result, className) => ({
     ...result,
-    [className]: className
+    [className]: prefixClassName(className)
   }), {});
 }
 
 export function prefixClassName(className) {
-  return `PicMo__${className}`;
+  return `PicMo_${className}`;
 }

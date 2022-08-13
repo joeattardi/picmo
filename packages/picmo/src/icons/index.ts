@@ -1,6 +1,5 @@
-import { toElement } from '../util';
+import { prefixClassName, toElement } from '../util';
 import { CategoryKey } from '../types';
-// import classes from './icons.module.scss';
 
 import clock from './clock-solid.svg?raw';
 import flag from './flag-solid.svg?raw';
@@ -22,7 +21,7 @@ import xmark from './xmark-solid.svg?raw';
 function createIcon(iconName: string, svg: string): SVGElement {
   const el = toElement<SVGSVGElement>(svg);
   el.dataset.icon = iconName;
-  el.classList.add('icon');
+  el.classList.add(prefixClassName('icon'));
   return el;
 }
 
@@ -70,9 +69,8 @@ export function icon(name: string, size?: IconSize): Element {
   }
 
   const icon = createIcon(name, icons[name]);
-  // const icon = icons[name].cloneNode(true);
   if (size) {
-    icon.classList.add(`icon-${size}`);
+    icon.classList.add(prefixClassName(`icon-${size}`));
   }
 
   return icon;

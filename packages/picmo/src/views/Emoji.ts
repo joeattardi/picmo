@@ -5,7 +5,10 @@ import { View } from './view';
 import { CategoryKey, EmojiRecord } from '../types';
 
 import template from './Emoji.template';
-import classes from './Emoji.module.scss';
+import { getPrefixedClasses } from '../util';
+
+const classes = getPrefixedClasses('emojiButton');
+
 
 type EmojiOptions = {
   emoji: EmojiRecord

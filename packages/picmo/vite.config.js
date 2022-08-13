@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import prefixer from 'postcss-prefixer';
 import nesting from 'postcss-nesting';
+import mixins from 'postcss-mixins';
 
 // const styleHashes = [
 //   'sha256-uGpgsd6O3MzwnnjlF0d3YoqiAte0KZJ7n816yYhWB3w=',
@@ -16,8 +17,9 @@ export default {
   css: {
     postcss: {
       plugins: [
-        nesting()
-        // prefixer({ prefix: 'PicMo_' })
+        mixins(),
+        nesting(),
+        prefixer({ prefix: 'PicMo_' })
       ]
     }
   },
@@ -27,9 +29,9 @@ export default {
       name: 'PicMo'
     }
   },
-  // server: {
-  //   headers: {
-  //     'Content-Security-Policy': `default-src 'self'; style-src 'self'`
-  //   }
-  // }
+  server: {
+    headers: {
+      'Content-Security-Policy': `default-src 'self'; connect-src *; style-src 'self'`
+    }
+  }
 }

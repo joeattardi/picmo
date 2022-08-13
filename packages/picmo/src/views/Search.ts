@@ -1,12 +1,11 @@
 import { View } from './view';
-import classes from './Search.module.scss';
 
 import { icon } from '../icons';
 
 import { EmojiContainer } from './EmojiContainer';
 import { ErrorMessage } from './ErrorMessage';
 
-import { debounce } from '../util';
+import { debounce, getPrefixedClasses } from '../util';
 import { LazyLoader } from '../LazyLoader';
 import { Category } from '../types';
 
@@ -16,6 +15,15 @@ type SearchOptions = {
   categories: Category[];
   emojiVersion: number;
 };
+
+const classes = getPrefixedClasses(
+  'searchContainer',
+  'searchField',
+  'clearButton',
+  'searchAccessory',
+  'clearSearchButton',
+  'notFound'
+);
 
 export class Search extends View {
   private categories: Category[];

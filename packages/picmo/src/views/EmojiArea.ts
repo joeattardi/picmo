@@ -3,16 +3,16 @@ import { CategoryTabs } from './CategoryTabs';
 import { EmojiCategory } from './EmojiCategory';
 import { RecentEmojiCategory } from './RecentEmojiCategory';
 import { CustomEmojiCategory } from './CustomEmojiCategory';
-import { throttle } from '../util';
+import { getPrefixedClasses, throttle } from '../util';
 import { LazyLoader } from '../LazyLoader';
 import { Category, CategoryKey, EmojiFocusTarget } from '../types';
 import { Template } from '../Template';
 
-import classes from './EmojiArea.module.scss';
 import { SetActiveOptions } from './CategoryTab';
+const classes = getPrefixedClasses('emojiArea');
 
 const template = new Template(({ classes }) => /* html */`
-  <div class="${classes.emojis}">
+  <div class="${classes.emojiArea}">
     <div data-placeholder="emojis"></div>
   </div>
 `, { mode: 'async' });
@@ -92,7 +92,7 @@ export class EmojiArea extends View {
       'category:next': this.focusNextCategory,
       'focus:change': this.updateFocusedCategory
     };
-    this.uiElements = { emojis: View.byClass(classes.emojis) };
+    this.uiElements = { emojis: View.byClass(classes.emojiArea) };
     this.uiEvents = [ View.uiEvent('scroll', this.handleScroll) ]
 
     super.initialize();

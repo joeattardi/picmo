@@ -1,3 +1,4 @@
+import styleInject from 'style-inject';
 import { AppEvents } from './AppEvents';
 import { EmojiPicker } from './views/EmojiPicker';
 import { PickerOptions, CustomEmoji, EmojiRecord } from './types';
@@ -7,6 +8,15 @@ import { DataStore } from './data/DataStore';
 import { initDatabase } from './data/emojiData';
 import { Bundle } from './i18n/bundle';
 import { getOptions } from './options';
+
+import globalConfig from './globalConfig';
+import css from './styles/index.css?inline';
+
+let cssLoaded = false;
+
+// // TODO: support option to disable injection
+// import css from './styles/index.css?inline';
+// styleInject(css);
 
 function initData(options: PickerOptions): Promise<DataStore> {
   return initDatabase(options.locale, options.dataStore, options.messages, options.emojiData);
@@ -24,6 +34,11 @@ function getPickerId() {
  * @returns a Promise that resolves to the picker when it is ready.
  */
 export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
+  if (globalConfig.injectStyles && !cssLoaded) {
+    styleInject(css);  
+    cssLoaded = true;
+  }
+  
   const finalOptions = getOptions(options);
   const customEmojis: EmojiRecord[] = (finalOptions?.custom || []).map((custom: CustomEmoji) => ({
     ...custom,

@@ -1,7 +1,7 @@
 import { View } from './view';
 import { Template } from '../Template';
 import errorTemplate from './ErrorMessage.template';
-import { getClasses } from '../util';
+import { getPrefixedClasses } from '../util';
 
 type ErrorMessageOptions = {
   message: string;
@@ -10,7 +10,7 @@ type ErrorMessageOptions = {
   className?: string;
 };
 
-const classes = getClasses('error', 'iconContainer', 'title');
+const classes = getPrefixedClasses('error', 'iconContainer', 'title');
 
 export class ErrorMessage extends View {
   private message: string;

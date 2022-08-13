@@ -1,5 +1,4 @@
 .variantOverlay {
-  // opacity: 0;
   background: var(--overlay-background-color);
   border-radius: 5px;
   display: flex;
@@ -14,7 +13,6 @@
 }
 
 .variantPopup {
-  // opacity: 0;
   background: var(--variant-popup-background-color);
   border-radius: 5px;
   margin: 0.5em;

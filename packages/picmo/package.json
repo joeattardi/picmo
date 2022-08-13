@@ -39,6 +39,7 @@
     "msw": "^0.39.2",
     "node-fetch": "^2.6.7",
     "postcss": "^8.4.16",
+    "postcss-mixins": "^9.0.3",
     "postcss-modules": "^4.3.1",
     "postcss-nesting": "^10.1.10",
     "postcss-prefixer": "^2.1.3",

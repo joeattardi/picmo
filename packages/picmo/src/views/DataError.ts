@@ -3,9 +3,9 @@ import { ErrorMessage } from './ErrorMessage';
 import { initDatabase } from '../data/emojiData';
 
 import template from './DataError.template';
-import { getClasses } from '../util';
+import { getPrefixedClasses } from '../util';
 
-const classes = getClasses('dataError');
+const classes = getPrefixedClasses('dataError');
 
 type DataErrorOptions = {
   message: string;

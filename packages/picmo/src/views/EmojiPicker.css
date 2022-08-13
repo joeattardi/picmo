@@ -64,7 +64,7 @@
     box-sizing: border-box;
   }
 
-  .placeholder {
+  & .placeholder {
     background: var(--placeholder-background-color);
     position: relative;
     overflow: hidden;
@@ -88,25 +88,25 @@
     }
   }
 
-  .searchSkeleton {
+  & .searchSkeleton {
     padding: 0 8px;
     height: var(--search-height);
 
-    .searchInput {
+    & .searchInput {
       width: 100%;
       height: 28px;
       border-radius: 3px;
     }
   }
 
-  .categoryTabsSkeleton {
+  & .categoryTabsSkeleton {
     height: var(--category-tabs-height);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
 
-    .categoryTab {
+    & .categoryTab {
       width: 25px;
       height: 25px;
       padding: 2px;
@@ -114,19 +114,19 @@
     }
   }
 
-  .contentSkeleton {
+  & .contentSkeleton {
     height: var(--content-height);
     padding-right: 8px;
     opacity: 0.7;
 
-    .categoryName {
+    & .categoryName {
       width: 50%;
       height: 1rem;
       margin: 0.5rem;
       box-sizing: border-box;
     }
 
-    .emojiGrid {
+    & .emojiGrid {
       display: grid;
       justify-content: space-between;
       gap: 1px;
@@ -136,7 +136,7 @@
       align-items: center;
       justify-items: center;
 
-      .emoji {
+      & .emoji {
         width: var(--emoji-size);
         height: var(--emoji-size);
         border-radius: 50%;
@@ -144,7 +144,7 @@
     }
   }
 
-  .previewSkeleton {
+  & .previewSkeleton {
     height: var(--emoji-preview-height);
     border-top: 1px solid var(--border-color);
     display: grid;
@@ -157,20 +157,20 @@
       'emoji name'
       'emoji tags';
 
-    .previewEmoji {
+    & .previewEmoji {
       grid-area: emoji;
       border-radius: 50%;
       width: var(--emoji-preview-size);
       height: var(--emoji-preview-size);
     }
 
-    .previewName {
+    & .previewName {
       grid-area: name;
       width: 12em;
       height: 0.8em;
     }
 
-    .tagList {
+    & .tagList {
       grid-area: tags;
       list-style-type: none;
       display: flex;
@@ -178,7 +178,7 @@
       padding: 0;
       margin: 0;
 
-      .tag {
+      & .tag {
         border-radius: 3px;
         padding: 2px 8px;
         margin-right: 0.25em;

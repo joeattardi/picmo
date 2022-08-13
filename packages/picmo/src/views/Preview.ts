@@ -2,8 +2,15 @@ import { View } from './view';
 import { EmojiRecord } from '../types';
 
 import { Template } from '../Template';
+import { getPrefixedClasses } from '../util';
 
-import classes from './Preview.module.scss';
+const classes = getPrefixedClasses(
+  'preview',
+  'previewEmoji',
+  'previewName',
+  'tagList',
+  'tag'
+);
 
 const tagTemplate = new Template(({ classes, tag }) => /* html */`
   <li class="${classes.tag}">${tag}</li>

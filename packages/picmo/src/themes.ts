@@ -1,4 +1,3 @@
-import themes from './themes.module.scss';
+import { getPrefixedClasses } from './util';
 
-const { autoTheme, lightTheme, darkTheme } = themes;
-export { autoTheme, lightTheme, darkTheme };
+export default getPrefixedClasses('light', 'dark', 'auto');
