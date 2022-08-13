@@ -9,7 +9,7 @@ import { initDatabase } from './data/emojiData';
 import { Bundle } from './i18n/bundle';
 import { getOptions } from './options';
 
-import { globalConfig } from './globalConfig';
+import globalConfig from './globalConfig';
 import css from './styles/index.css?inline';
 
 let cssLoaded = false;
@@ -34,6 +34,7 @@ function getPickerId() {
  * @returns a Promise that resolves to the picker when it is ready.
  */
 export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
+  console.log(globalConfig);
   if (globalConfig.injectStyles && !cssLoaded) {
     styleInject(css);  
     cssLoaded = true;

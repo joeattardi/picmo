@@ -1,7 +1,3 @@
-export const globalConfig = {
-  injectStyles: false
+export default {
+  injectStyles: true
 };
-
-export default function setGlobalConfig(options) {
-  Object.assign(globalConfig, options);
-}

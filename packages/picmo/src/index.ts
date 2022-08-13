@@ -7,7 +7,7 @@ export * from './options';
 export * from './events';
 export * from './types';
 export { default as themes } from './themes';
-export { default as setGlobalConfig } from './globalConfig';
+export { default as globalConfig } from './globalConfig';
 export { createPicker } from './createPicker';
 export { EmojiPicker } from './views/EmojiPicker';
 export type { ExternalEvent, ExternalEventKey } from './ExternalEvents';
@@ -19,7 +19,6 @@ export { default as en } from './i18n/lang-en';
 
 export { deleteDatabase } from './data/emojiData';
 import { DataStoreFactory } from './data/DataStore';
-import globalConfig from './globalConfig';
 export { IndexedDbStoreFactory } from './data/IndexedDbStore';
 export { InMemoryStoreFactory } from './data/InMemoryStore';
 

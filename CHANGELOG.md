@@ -2,6 +2,11 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.5.0] - TBD
+- [`picmo`] Added a global configuration store with an `injectStyles` option to control automatic CSS injection.
+- [`picmo`] Fixed invalid scrollbar CSS properties.
+- [`@picmo/popup-picker`] Added type="button" to the popup close button to prevent accidental form submission.
+
 ## [5.4.2] - 2022.08-06
 
 - [`picmo`] Removed inline style from SVG icons that was causing Content-Security-Policy problems ([#224](https://github.com/joeattardi/picmo/issues/224))
