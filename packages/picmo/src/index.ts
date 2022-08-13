@@ -7,7 +7,7 @@ export * from './options';
 export * from './events';
 export * from './types';
 export { default as themes } from './themes';
-export { default as globalConfig } from './globalConfig';
+export { default as setGlobalConfig } from './globalConfig';
 export { createPicker } from './createPicker';
 export { EmojiPicker } from './views/EmojiPicker';
 export type { ExternalEvent, ExternalEventKey } from './ExternalEvents';

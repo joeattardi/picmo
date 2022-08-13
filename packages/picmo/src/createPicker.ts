@@ -9,7 +9,7 @@ import { initDatabase } from './data/emojiData';
 import { Bundle } from './i18n/bundle';
 import { getOptions } from './options';
 
-import globalConfig from './globalConfig';
+import { globalConfig } from './globalConfig';
 import css from './styles/index.css?inline';
 
 let cssLoaded = false;
