@@ -1,4 +1,4 @@
-.searchContainer {
+.picmo-picker .searchContainer {
   display: flex;
   height: var(--search-height);
   box-sizing: border-box;
@@ -36,7 +36,7 @@
     display: flex;
     align-items: center;
   
-    svg {
+    & svg {
       fill: var(--search-icon-color);
     }
   }
@@ -62,7 +62,7 @@
   }
   
   & .notFound {
-    [data-icon] {
+    & [data-icon] {
       fill: #f3e265;
     }
   }

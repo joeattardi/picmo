@@ -6,7 +6,7 @@ export * from './focusTrap';
 export * from './options';
 export * from './events';
 export * from './types';
-export { default as themes } from './themes';
+export * from './themes';
 export { default as globalConfig } from './globalConfig';
 export { createPicker } from './createPicker';
 export { EmojiPicker } from './views/EmojiPicker';

@@ -1,4 +1,4 @@
-.preview {
+.picmo-picker .preview {
   border-top: 1px solid var(--border-color);
   display: grid;
   align-items: center;

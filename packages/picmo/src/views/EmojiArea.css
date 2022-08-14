@@ -1,4 +1,4 @@
-.emojiArea {
+.picmo-picker .emojiArea {
   height: var(--emoji-area-height);
   overflow-y: auto;
   position: relative;

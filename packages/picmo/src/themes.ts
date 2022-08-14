@@ -1,3 +1,9 @@
 import { getPrefixedClasses } from './util';
 
-export default getPrefixedClasses('light', 'dark', 'auto');
+const {
+  light: lightTheme,
+  dark: darkTheme,
+  auto: autoTheme
+} = getPrefixedClasses('light', 'dark', 'auto');
+
+export { lightTheme, darkTheme, autoTheme };

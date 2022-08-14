@@ -4,7 +4,7 @@
   }
 }
 
-.picker {
+.picmo-picker.picker {
   --border-radius: 5px;
   --emoji-area-height: calc(
     (var(--row-count) * var(--emoji-size) * var(--emoji-size-multiplier)) + var(--category-name-height)
@@ -52,7 +52,7 @@
   }
 }
 
-.skeleton {
+.picmo-picker.skeleton {
   background: var(--background-color);
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);

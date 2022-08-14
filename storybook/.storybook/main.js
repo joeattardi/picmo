@@ -38,6 +38,8 @@ module.exports = {
       type: 'asset/source'
     })
 
+    // TOOD: postcss loader
+
     config.module.rules.push({
       test: /\.scss$/,
       use: [
