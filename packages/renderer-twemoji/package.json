@@ -37,6 +37,11 @@
   "devDependencies": {
     "camelcase": "^7.0.0",
     "emojibase-data": "^7.0.1",
-    "svg-sprite": "^1.5.4"
+    "postcss": "^8.4.16",
+    "postcss-mixins": "^9.0.3",
+    "postcss-nesting": "^10.1.10",
+    "style-inject": "^0.3.0",
+    "svg-sprite": "^1.5.4",
+    "vite": "^3.0.7"
   }
 }

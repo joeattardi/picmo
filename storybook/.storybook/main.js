@@ -38,22 +38,31 @@ module.exports = {
       type: 'asset/source'
     })
 
-    // TOOD: postcss loader
+    config.module.rules = config.module.rules.filter(rule => rule.test.toString() !== '/\\.css$/');
 
     config.module.rules.push({
-      test: /\.scss$/,
+      test: /\.css$/i,
       use: [
-        'style-loader', 
+        "style-loader",
         {
           loader: 'css-loader',
           options: {
-            modules: {
-              localIdentName: 'PicMo__[path][name]__[local]'
-              // localIdentName: 'EmojiButton__[local]_[hash:base64:5]'
-            }
+            importLoaders: 1
           }
         },
-        'sass-loader'
+        {
+          loader: 'postcss-loader',
+          options: {
+            postcssOptions: {
+              config: false,
+              plugins: [
+                'postcss-import',
+                'postcss-nesting',
+                'postcss-mixins'
+              ],
+            },
+          },
+        }
       ]
     });
 

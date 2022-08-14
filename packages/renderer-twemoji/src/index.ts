@@ -1,12 +1,22 @@
+import styleInject from 'style-inject';
 import { parse } from 'twemoji-parser';
 
-import { EmojiRecord, EmojiSelection, Renderer, toElement } from 'picmo';
+import { EmojiRecord, EmojiSelection, Renderer, toElement, globalConfig } from 'picmo';
 
-import classes from './twemoji.scss';
-
+import css from './twemoji.css?inline';
 import * as spriteSheets from './sprites';
 
 type TwemojiImageFormat = 'svg' | 'png';
+
+const classes = {
+  twemoji: 'twemoji'
+};
+
+let cssLoaded = false;
+if (globalConfig.injectStyles && !cssLoaded) {
+  styleInject(css);
+  cssLoaded = true;
+}
 
 /**
  * Given an EmojiRecord, calculate the key of its sprite within the sprite sheet.

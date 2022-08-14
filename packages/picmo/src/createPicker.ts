@@ -11,7 +11,6 @@ import { getOptions } from './options';
 
 import globalConfig from './globalConfig';
 import css from './styles/index.css?inline';
-
 let cssLoaded = false;
 
 function initData(options: PickerOptions): Promise<DataStore> {

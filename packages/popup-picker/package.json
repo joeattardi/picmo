@@ -32,5 +32,12 @@
   "dependencies": {
     "@floating-ui/dom": "^1.0.0",
     "picmo": "^5.4.2"
+  },
+  "devDependencies": {
+    "postcss": "^8.4.16",
+    "postcss-mixins": "^9.0.3",
+    "postcss-nesting": "^10.1.10",
+    "style-inject": "^0.3.0",
+    "vite": "^3.0.7"
   }
 }

@@ -19,6 +19,11 @@
     "@storybook/builder-webpack5": "^6.5.9",
     "@storybook/html": "^6.5.9",
     "@storybook/manager-webpack5": "^6.5.9",
-    "@storybook/theming": "^6.5.9"
+    "@storybook/theming": "^6.5.9",
+    "postcss": "^8.4.16",
+    "postcss-import": "^14.1.0",
+    "postcss-loader": "^7.0.1",
+    "postcss-mixins": "^9.0.3",
+    "postcss-nesting": "^10.1.10"
   }
 }

@@ -1,14 +1,21 @@
-import { createPicker, globalConfig } from './src/index';
+// import { globalConfig } from 'picmo';
+import { createPopup } from './src/index';
 
-globalConfig.injectStyles = true;
+// globalConfig.injectStyles = true;
 
-const rootElement = document.querySelector('#picker');
 const selectionContainer = document.querySelector('#selection-outer');
 const emoji = document.querySelector('#selection-emoji');
 const name = document.querySelector('#selection-name');
 
-const picker = createPicker({
-  rootElement
+const trigger = document.querySelector('#trigger');
+
+const picker = createPopup({}, {
+  triggerElement: trigger,
+  referenceElement: trigger
+});
+
+trigger.addEventListener('click', () => {
+  picker.toggle();
 });
 
 picker.addEventListener('emoji:select', (selection) => {

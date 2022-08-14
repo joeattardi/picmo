@@ -15,7 +15,7 @@ export default {
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'PicMo',
+      name: 'PicMo-popup',
       fileName: 'index'
     }
   },

@@ -13,9 +13,12 @@ import { setPosition, PositionCleanup } from './positioning';
 import { PopupOptions, Position } from './types';
 import { getOptions } from './options';
 
-import classes from './popupPicker.scss';
-import closeIcon from './icons/close.svg';
+import closeIcon from './icons/close.svg?raw';
 
+const classes = {
+  popupContainer: 'popupContainer',
+  closeButton: 'closeButton'
+};
 export class PopupPickerController {
   picker: EmojiPicker;
   isOpen = false;

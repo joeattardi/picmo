@@ -1,4 +1,5 @@
-import { createPicker, globalConfig } from './src/index';
+import { createPicker, globalConfig } from 'picmo';
+import { TwemojiRenderer } from './src/index';
 
 globalConfig.injectStyles = true;
 
@@ -8,7 +9,8 @@ const emoji = document.querySelector('#selection-emoji');
 const name = document.querySelector('#selection-name');
 
 const picker = createPicker({
-  rootElement
+  rootElement,
+  renderer: new TwemojiRenderer()
 });
 
 picker.addEventListener('emoji:select', (selection) => {
