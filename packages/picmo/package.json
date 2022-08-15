@@ -16,15 +16,15 @@
   "scripts": {
     "prepublishOnly": "npm run clean && npm run build",
     "precommit": "npm-run-all lint check test",
-    "build": "npm run check && rollup -c",
+    "build": "npm run check && vite build && npm run build:types && npm run build:css",
     "build:css": "postcss src/styles/index.css -o dist/index.css",
+    "build:types": "tsc --declaration --emitDeclarationOnly",
     "check": "tsc --noEmit",
     "clean": "rimraf dist",
     "lint": "eslint src/*.ts",
-    "start": "rollup -cw",
+    "start": "vite",
     "test:watch": "jest --watch src",
-    "test": "jest --coverage src",
-    "update-scss-types": "typed-scss-modules src"
+    "test": "jest --coverage src"
   },
   "author": "Joe Attardi <jattardi@gmail.com> (https://joeattardi.dev)",
   "repository": "joeattardi/picmo",
@@ -36,16 +36,20 @@
     "emojibase": "^6.1.0"
   },
   "devDependencies": {
-    "esbuild": "^0.15.1",
+    "@testing-library/dom": "^8.17.1",
+    "@testing-library/user-event": "^14.4.3",
+    "eslint": "^8.22.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^28.1.3",
+    "jest-raw-loader": "^1.0.1",
     "msw": "^0.39.2",
     "node-fetch": "^2.6.7",
     "postcss": "^8.4.16",
     "postcss-cli": "^10.0.0",
     "postcss-import": "^14.1.0",
     "postcss-mixins": "^9.0.3",
-    "postcss-modules": "^4.3.1",
     "postcss-nesting": "^10.1.10",
-    "sass": "^1.54.4",
+    "prettier": "^2.7.1",
     "style-inject": "^0.3.0",
     "vite": "^3.0.7"
   }

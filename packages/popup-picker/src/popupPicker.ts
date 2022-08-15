@@ -3,12 +3,13 @@ import {
   getOptions as getPickerOptions,
   EmojiPicker,
   EventCallback,
+  Events,
   createPicker,
   FocusTrap,
   PickerOptions,
   ExternalEvent,
 } from 'picmo';
-import { PopupEvent, PopupEvents } from './PopupEvents';
+import { PopupEvent } from './PopupEvents';
 import { setPosition, PositionCleanup } from './positioning';
 import { PopupOptions, Position } from './types';
 import { getOptions } from './options';
@@ -29,7 +30,7 @@ export class PopupPickerController {
 
   private closeButton: HTMLButtonElement;
   private options: PickerOptions & PopupOptions;
-  private externalEvents = new PopupEvents();
+  private externalEvents = new Events<PopupEvent>();
 
   constructor(pickerOptions: Partial<PickerOptions>, popupOptions: Partial<PopupOptions>) {
     this.options = { ...getOptions(popupOptions), ...getPickerOptions(pickerOptions) };

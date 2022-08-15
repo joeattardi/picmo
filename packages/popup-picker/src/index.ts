@@ -3,7 +3,7 @@ import { PickerOptions, globalConfig } from 'picmo';
 import { PopupOptions } from './types';
 import { PopupPickerController } from './popupPicker';
 
-import css from './index.css?inline';
+import css from './styles/index.css?inline';
 
 export * from './types';
 export { PopupPickerController };

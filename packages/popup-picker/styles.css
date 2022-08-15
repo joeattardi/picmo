@@ -44,3 +44,7 @@ h2 {
   border: 1px solid #999;
   background: #fff;
 }
+
+.popupContainer > button.closeButton {
+  z-index: 5000;
+}

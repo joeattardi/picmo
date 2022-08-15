@@ -11,7 +11,9 @@
   "scripts": {
     "prepublishOnly": "npm run clean && npm run build",
     "precommit": "npm-run-all lint check",
-    "build": "npm run check && rollup -c",
+    "build": "npm run check && vite build && npm run build:types && npm run build:css",
+    "build:css": "postcss src/styles/index.css -o dist/index.css",
+    "build:types": "tsc --declaration --emitDeclarationOnly",
     "check": "tsc --noEmit",
     "clean": "rimraf dist",
     "lint": "eslint src/*.ts",
@@ -34,9 +36,18 @@
     "picmo": "^5.4.2"
   },
   "devDependencies": {
+    "@testing-library/dom": "^8.17.1",
+    "@testing-library/user-event": "^14.4.3",
+    "eslint": "^8.22.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^28.1.3",
+    "jest-raw-loader": "^1.0.1",
     "postcss": "^8.4.16",
+    "postcss-cli": "^10.0.0",
+    "postcss-import": "^14.1.0",
     "postcss-mixins": "^9.0.3",
     "postcss-nesting": "^10.1.10",
+    "prettier": "^2.7.1",
     "style-inject": "^0.3.0",
     "vite": "^3.0.7"
   }

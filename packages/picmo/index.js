@@ -1,6 +1,6 @@
 import { createPicker, globalConfig } from './src/index';
 
-globalConfig.injectStyles = true;
+globalConfig.injectStyles = false;
 
 const rootElement = document.querySelector('#picker');
 const selectionContainer = document.querySelector('#selection-outer');

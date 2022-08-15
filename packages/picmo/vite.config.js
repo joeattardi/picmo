@@ -18,10 +18,5 @@ export default {
       name: 'PicMo',
       fileName: 'index'
     }
-  },
-  // server: {
-    // headers: {
-      // 'Content-Security-Policy': `default-src 'self'; connect-src *; style-src 'self'`
-    // }
-  // }
+  }
 }
