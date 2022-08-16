@@ -2,7 +2,7 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
-## [5.5.0] - TBD
+## [5.5.0] - 2022-08-16
 - Major CSS refactoring that will allow for easier style overrides when needed. Class names are no longer scoped with random prefixes for easier customization.
 - [`picmo`] Added a new `auto` autofocus option that will choose a target based on available elements.
 - [`picmo`] Added a global configuration store with an `injectStyles` option to control automatic CSS injection.
@@ -10,7 +10,7 @@ For full details, see the documentation at [https://picmojs.com](https://picmojs
 - [`@picmo/popup-picker`] Added type="button" to the popup close button to prevent accidental form submission.
 - [`@picmo/popup-picker`] Focus is returned to the trigger when closing only when pressing Escape or selecting an emoji
 
-## [5.4.2] - 2022.08-06
+## [5.4.2] - 2022-08-06
 
 - [`picmo`] Removed inline style from SVG icons that was causing Content-Security-Policy problems ([#224](https://github.com/joeattardi/picmo/issues/224))
 

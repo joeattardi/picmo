@@ -17,7 +17,7 @@
     "build:types": "tsc --declaration --emitDeclarationOnly",
     "check": "tsc --noEmit",
     "clean": "rimraf dist",
-    "lint": "eslint src/*.ts",
+    "lint": "eslint src",
     "start": "rollup -cw"
   },
   "keywords": [
