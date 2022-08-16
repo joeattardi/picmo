@@ -1,6 +1,6 @@
 {
   "name": "@picmo/popup-picker",
-  "version": "5.4.0",
+  "version": "5.5.0",
   "description": "Popup emoji picker for PicMo",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -33,7 +33,7 @@
   "license": "MIT",
   "dependencies": {
     "@floating-ui/dom": "^1.0.0",
-    "picmo": "^5.4.2"
+    "picmo": "^5.5.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.17.1",
