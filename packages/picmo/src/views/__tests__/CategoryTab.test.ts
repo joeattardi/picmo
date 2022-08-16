@@ -62,11 +62,12 @@ describe('CategoryTab', () => {
     expect(button.ariaSelected).toBe('false');
   });
 
-  test('emits a category:select event when clicked', () => {
+  test('emits a category:select event when clicked', async () => {
+    const user = userEvent.setup();
     const tab = renderTab();
     const button = tab.ui.button;
 
-    userEvent.click(button);
+    await user.click(button);
     expect(events.emit).toHaveBeenCalledWith('category:select', 'smileys-emotion', expect.anything());
   });
 });

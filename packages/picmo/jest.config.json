@@ -2,11 +2,12 @@
   "preset": "ts-jest",
   "testEnvironment": "jsdom",
   "moduleNameMapper": {
-    "\\.scss$": "identity-obj-proxy"
+    "\\.scss$": "identity-obj-proxy",
+    "(.*)\\.svg\\?raw$": "$1.svg"
   },
   "transform": {
     "\\.{jt}s$": "ts-jest",
-    "\\.svg$": "jest-raw-loader"
+    "\\.svg$": "<rootDir>/raw-loader.js"
   },
   "globals": {
     "ts-jest": {

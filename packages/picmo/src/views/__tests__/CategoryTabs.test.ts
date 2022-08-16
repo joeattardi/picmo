@@ -41,26 +41,27 @@ describe('CategoryTabs', () => {
   });
 
   test('cycles tabs with the arrow keys', async () => {
+    const user = userEvent.setup();
     const container = await renderTabs();
     container.currentTabView.ui.button.focus();
 
     expect(container.currentCategory.key).toEqual('smileys-emotion');
     
-    userEvent.keyboard('[ArrowRight]');
+    await user.keyboard('[ArrowRight]');
     expect(container.currentCategory.key).toEqual('people-body');
 
-    userEvent.keyboard('[ArrowRight]');
+    await user.keyboard('[ArrowRight]');
     expect(container.currentCategory.key).toEqual('animals-nature');
 
     // should cycle back to first tab
-    userEvent.keyboard('[ArrowRight]');
+    await user.keyboard('[ArrowRight]');
     expect(container.currentCategory.key).toEqual('smileys-emotion');
 
     // should cycle back to last tab
-    userEvent.keyboard('[ArrowLeft]');
+    await user.keyboard('[ArrowLeft]');
     expect(container.currentCategory.key).toEqual('animals-nature');
 
-    userEvent.keyboard('[ArrowLeft]');
+    await user.keyboard('[ArrowLeft]');
     expect(container.currentCategory.key).toEqual('people-body');
 
   });

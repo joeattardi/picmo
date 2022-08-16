@@ -24,25 +24,26 @@ describe('VariantPopup', () => {
     expect(buttons[2]).toHaveTextContent('👍🏿');
   });
 
-  test('navigates emojis with arrow keys', () => {
+  test('navigates emojis with arrow keys', async () => {
+    const user = userEvent.setup();
     testViewSync(VariantPopup, [{ emoji, parent: document.body }]);
     const buttons = screen.getAllByRole('button');
 
     buttons[0].focus();
 
-    userEvent.keyboard('[ArrowLeft]');
+    await user.keyboard('[ArrowLeft]');
     expect(buttons[2]).toHaveFocus();
 
-    userEvent.keyboard('[ArrowRight]');
+    await user.keyboard('[ArrowRight]');
     expect(buttons[0]).toHaveFocus();
 
-    userEvent.keyboard('[ArrowRight]');
+    await user.keyboard('[ArrowRight]');
     expect(buttons[1]).toHaveFocus();
 
-    userEvent.keyboard('[ArrowRight]');
+    await user.keyboard('[ArrowRight]');
     expect(buttons[2]).toHaveFocus();
 
-    userEvent.keyboard('[ArrowRight]');
+    await user.keyboard('[ArrowRight]');
     expect(buttons[0]).toHaveFocus();
   });
 });
