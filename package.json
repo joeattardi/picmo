@@ -15,7 +15,6 @@
     "prebuild:docs": "npm install --prefix docs",
     "prebuild:storybook": "npm run build",
     "postinstall": "npm install --prefix docs && npm install --prefix storybook",
-    "bootstrap": "lerna bootstrap",
     "build": "lerna run build",
     "precommit": "lerna run lint && lerna run check && lerna run test",
     "clean": "lerna run clean",
