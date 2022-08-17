@@ -14,6 +14,9 @@ export default function createConfig(basedir, moduleName) {
   };
 
   return {
+    define: {
+      'process.env.NODE_ENV': JSON.stringify('production')
+    },
     css: {
       postcss: {
         plugins: [

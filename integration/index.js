@@ -10,7 +10,7 @@ const name = document.querySelector('#selection-name');
 
 const trigger = document.querySelector('#trigger');
 
-picmo.globalConfig.injectStyles = false;
+// picmo.globalConfig.injectStyles = false;
 
 // const picker = picmo.createPicker({
 //   rootElement: document.querySelector('#picker'),
@@ -18,7 +18,7 @@ picmo.globalConfig.injectStyles = false;
 // });
 
 const picker = picmoPopup.createPopup({
-  renderer: new picmoTwemoji.TwemojiRenderer()
+  // renderer: new picmoTwemoji.TwemojiRenderer()
 }, {
   triggerElement: trigger,
   referenceElement: trigger,

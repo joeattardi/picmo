@@ -2,6 +2,9 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.5.2] - 2022-08-17
+- Fixed `process.env` appearing in build output.
+
 ## [5.5.1] - 2022-08-17
 - Fixed issues with UMD build (however, different URL patterns are now required)
 - Fixed bundling issue where core `picmo` packages was bundled with all add-on packages
