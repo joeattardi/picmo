@@ -18,7 +18,7 @@
     "check": "tsc --noEmit",
     "clean": "rimraf dist",
     "lint": "eslint src",
-    "start": "rollup -cw"
+    "start": "vite"
   },
   "keywords": [
     "popup",
@@ -33,8 +33,10 @@
   "funding": "https://github.com/sponsors/joeattardi",
   "license": "MIT",
   "dependencies": {
-    "picmo": "^5.5.0",
     "twemoji-parser": "^14.0.0"
+  },
+  "peerDependencies": {
+    "picmo": "^5.5.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.17.1",

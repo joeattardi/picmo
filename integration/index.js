@@ -1,6 +1,6 @@
 // import { globalConfig } from 'picmo';
-import { createPopup } from '@picmo/popup-picker';
-import { TwemojiRenderer } from '@picmo/renderer-twemoji';
+// import { createPopup } from '@picmo/popup-picker';
+// import { TwemojiRenderer } from '@picmo/renderer-twemoji';
 
 // globalConfig.injectStyles = true;
 
@@ -10,21 +10,28 @@ const name = document.querySelector('#selection-name');
 
 const trigger = document.querySelector('#trigger');
 
-const picker = createPopup({
-  renderer: new TwemojiRenderer()
+picmo.globalConfig.injectStyles = false;
+
+// const picker = picmo.createPicker({
+//   rootElement: document.querySelector('#picker'),
+//   renderer: new picmoTwemoji.TwemojiRenderer()
+// });
+
+const picker = picmoPopup.createPopup({
+  renderer: new picmoTwemoji.TwemojiRenderer()
 }, {
   triggerElement: trigger,
-  referenceElement: trigger
+  referenceElement: trigger,
+  position: 'right-start'
 });
 
 trigger.addEventListener('click', () => {
   picker.toggle();
 });
 
-picker.addEventListener('emoji:select', (selection) => {
-  console.log(selection);
-  emoji.innerHTML = selection.emoji;
-  name.textContent = selection.label;
+// picker.addEventListener('emoji:select', (selection) => {
+//   emoji.innerHTML = selection.emoji;
+//   name.textContent = selection.label;
 
-  selectionContainer.classList.remove('empty');
-});
+//   selectionContainer.classList.remove('empty');
+// });

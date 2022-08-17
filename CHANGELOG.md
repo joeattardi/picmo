@@ -2,6 +2,11 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.5.1] - 2022-08-17
+- Fixed issues with UMD build (however, different URL patterns are now required)
+- Fixed bundling issue where core `picmo` packages was bundled with all add-on packages
+- [`@picmo/popup-picker`] Fixed an issue where the variant popup would not be reset when closing the picker
+
 ## [5.5.0] - 2022-08-16
 - Major CSS refactoring that will allow for easier style overrides when needed. Class names are no longer scoped with random prefixes for easier customization.
 - [`picmo`] Added a new `auto` autofocus option that will choose a target based on available elements.

@@ -365,9 +365,8 @@ export class EmojiPicker extends View {
       this.showContent(this.emojiArea);
     }
 
-    if (this.search) {
-      this.search.clear();
-    }
+    this.search?.clear();
+    this.hideVariantPopup();
   }
 
   /**

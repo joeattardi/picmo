@@ -7,7 +7,9 @@
     "emoji picker",
     "javascript"
   ],
-  "main": "dist/index.js",
+  "workspaces": [
+    "./packages/*"
+  ],
   "scripts": {
     "prepublishOnly": "npm run build",
     "prebuild:docs": "npm install --prefix docs",

@@ -1,7 +1,5 @@
-import { createPicker, globalConfig } from 'picmo';
+import { createPicker } from 'picmo';
 import { TwemojiRenderer } from './src/index';
-
-globalConfig.injectStyles = true;
 
 const rootElement = document.querySelector('#picker');
 const selectionContainer = document.querySelector('#selection-outer');

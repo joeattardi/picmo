@@ -1,0 +1,828 @@
+.picmo-picker .icon {
+  width: 1.25em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.icon-small {
+  font-size: 0.8em;
+}
+
+.icon-medium {
+  font-size: 1em;
+}
+
+.icon-large {
+  font-size: 1.25em;
+}
+
+.icon-2x {
+  font-size: 2em;
+}
+
+.icon-3x {
+  font-size: 3em;
+}
+
+.icon-4x {
+  font-size: 4em;
+}
+
+.icon-5x {
+  font-size: 5em;
+}
+
+.icon-8x {
+  font-size: 8em;
+}
+
+.icon-10x {
+  font-size: 10em;
+}
+
+.light, .auto {
+  color-scheme: light;
+  --accent-color: #4f46e5;
+  --background-color: #f9fafb;
+  --border-color: #cccccc;
+  --category-name-background-color: #f9fafb;
+  --category-name-button-color: #999999;
+  --category-name-text-color: hsl(214, 30%, 50%);
+  --category-tab-active-background-color: rgba(255, 255, 255, 0.6);
+  --category-tab-active-color: var(--accent-color);
+  --category-tab-color: #666;
+  --category-tab-highlight-background-color: rgba(0, 0, 0, 0.15);
+  --error-color-dark: hsl(0, 100%, 45%);
+  --error-color: hsl(0, 100%, 40%);
+  --focus-indicator-background-color: hsl(198, 65%, 85%);
+  --focus-indicator-color: #333333;
+  --hover-background-color: #c7d2fe;
+  --placeholder-background-color: #cccccc;
+  --preview-background-color: var(--secondary-background-color);
+  --scrollbar-background-color: var(--background-color);
+  --scrollbar-color: rgba(0, 0, 0, 0.75);
+  --search-background-color: #f9fafb;
+  --search-focus-background-color: #ffffff;
+  --search-icon-color: #999999;
+  --search-placeholder-color: #71717a;
+  --secondary-background-color: #e2e8f0;
+  --secondary-text-color: #666666;
+  --tag-background-color: rgba(162, 190, 245, 0.3);
+  --text-color: #000000;
+  --variant-popup-background-color: #ffffff;
+}
+
+.dark {
+  color-scheme: dark;
+  --accent-color: #A580F9;
+  --background-color: #333333;
+  --border-color: #666666;
+  --category-name-background-color: #333333;
+  --category-name-button-color: #eeeeee;
+  --category-name-text-color: #ffffff;
+  --category-tab-active-background-color: #000000;
+  --category-tab-active-color: var(--accent-color);
+  --category-tab-color: #cccccc;
+  --category-tab-highlight-background-color: #4A4A4A;
+  --error-color-dark: hsl(0, 7%, 3%);
+  --error-color: hsl(0, 30%, 60%);
+  --focus-indicator-background-color: hsl(0, 0%, 50%);
+  --focus-indicator-color: #999999;
+  --hover-background-color: hsla(0, 0%, 40%, 0.85);
+  --image-placeholder-color: #ffffff;
+  --placeholder-background-color: #666666;
+  --search-background-color: #71717a;
+  --search-focus-background-color: #52525b;
+  --search-icon-color: #cccccc;
+  --search-placeholder-color: #d4d4d8;
+  --secondary-background-color: #000000 ;
+  --secondary-text-color: #999999;
+  --tag-background-color: rgba(162, 190, 245, 0.3);
+  --text-color: #ffffff;
+  --variant-popup-background-color: #333333;
+}
+
+@media (prefers-color-scheme: dark) {
+  .auto {
+    color-scheme: dark;
+    --accent-color: #A580F9;
+    --background-color: #333333;
+    --border-color: #666666;
+    --category-name-background-color: #333333;
+    --category-name-button-color: #eeeeee;
+    --category-name-text-color: #ffffff;
+    --category-tab-active-background-color: #000000;
+    --category-tab-active-color: var(--accent-color);
+    --category-tab-color: #cccccc;
+    --category-tab-highlight-background-color: #4A4A4A;
+    --error-color-dark: hsl(0, 7%, 3%);
+    --error-color: hsl(0, 30%, 60%);
+    --focus-indicator-background-color: hsl(0, 0%, 50%);
+    --focus-indicator-color: #999999;
+    --hover-background-color: hsla(0, 0%, 40%, 0.85);
+    --image-placeholder-color: #ffffff;
+    --placeholder-background-color: #666666;
+    --search-background-color: #71717a;
+    --search-focus-background-color: #52525b;
+    --search-icon-color: #cccccc;
+    --search-placeholder-color: #d4d4d8;
+    --secondary-background-color: #000000 ;
+    --secondary-text-color: #999999;
+    --tag-background-color: rgba(162, 190, 245, 0.3);
+    --text-color: #ffffff;
+    --variant-popup-background-color: #333333;
+  }
+}
+
+.picmo-picker .categoryButtons {
+  --tab-size-ratio: 1.55; 
+  --tab-padding: 0.5em;
+  --tab-area-width: calc(var(--picker-width) - (var(--tab-padding) * 2));
+  --tab-size: calc((var(--tab-area-width) / var(--category-count))) / var(--tab-size-ratio);
+
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-auto-flow: column;
+  gap: var(--tab-gap);
+  justify-content: center;
+  margin: 0;
+  padding: 0 var(--tab-padding);
+  align-items: center;
+  height: var(--category-tabs-height);
+  box-sizing: border-box;
+  
+  position: relative;
+
+  list-style-type: none;
+}
+
+.picmo-picker .categoryButtons .categoryTab {
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+    transition: all 100ms;
+  }
+
+.picmo-picker .categoryButtons .categoryTab.categoryTabActive .categoryButton {
+        color: var(--category-tab-active-color);
+        background: 
+          linear-gradient(rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%),
+          linear-gradient(var(--category-tab-active-color) 0%, var(--category-tab-active-color) 100%);
+    
+        border: 2px solid var(--category-tab-active-color);
+      }
+
+.picmo-picker .categoryButtons .categoryTab.categoryTabActive .categoryButton:hover {
+          background-color: var(--category-tab-active-background-color);
+        }
+
+.picmo-picker .categoryButtons .categoryTab button.categoryButton {
+      border-radius: 5px;
+      background: transparent;
+      border: 2px solid transparent;
+      color: var(--category-tab-color);
+      cursor: pointer;
+      padding: 2px;
+      vertical-align: middle;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-size: min(var(--tab-size), 1.2rem);
+      width: 1.6em;
+      height: 1.6em;
+      transition: all 100ms;
+    }
+
+.picmo-picker .categoryButtons .categoryTab button.categoryButton:is(img) {
+        width: var(--category-tab-size);
+        height: var(--category-tab-size);
+      }
+
+.picmo-picker .categoryButtons .categoryTab button.categoryButton:hover {
+        background: var(--category-tab-highlight-background-color);
+      }
+
+.dataError [data-icon] {
+    opacity: 0.8;
+  }
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes appear-grow {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+.picmo-picker .error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--secondary-text-color);
+}
+
+.picmo-picker .error .iconContainer {
+    opacity: 0.8;
+    animation: appear-grow 250ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+    --color-primary: var(--error-color);
+    --color-secondary: var(--error-color-dark);
+  }
+
+.picmo-picker .error .title {
+    animation: appear 250ms;
+    animation-delay: 50ms;
+    animation-fill-mode: both;
+  }
+
+.picmo-picker .error button {
+    padding: 8px 16px;
+    cursor: pointer;
+    background: var(--background-color);
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    color: var(--text-color);
+  }
+
+.picmo-picker .error button:hover {
+      background: var(--text-color);
+      color: var(--background-color);
+    }
+
+.emojiButton {
+  background: transparent;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  font-family: var(--emoji-font);
+  font-size: var(--emoji-size);
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+}
+
+.emojiButton:hover {
+    background: var(--hover-background-color);
+  }
+
+.emojiButton:focus {
+    border-radius: 0;
+    background: var(--focus-indicator-background-color);
+    outline: 1px soldi var(--focus-indicator-color);
+  }
+
+.picmo-picker .emojiArea {
+  height: var(--emoji-area-height);
+  overflow-y: auto;
+  position: relative;
+  scrollbar-color: var(--scrollbar-color) var(--scrollbar-background-color);
+  scrollbar-width: thin;
+}
+
+.picmo-picker .emojiArea::-webkit-scrollbar {
+    background: var(--scrollbar-background-color);
+    width: 1.1em;
+  }
+
+.picmo-picker .emojiArea::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    background-clip: padding-box;
+    height: 1em;
+    border-radius: 1em
+  }
+
+.picmo-picker .emojiCategory {
+  position: relative;
+}
+
+.picmo-picker .emojiCategory .categoryName {
+    font-size: 0.9em;
+    padding: 0.5rem;
+    margin: 0;
+    background: var(--category-name-background-color);
+    color: var(--category-name-text-color);
+    top: 0;
+    z-index: 1;
+    display: grid;
+    gap: 4px;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    line-height: 1;
+    box-sizing: border-box;
+    height: var(--category-name-height);
+    justify-content: flex-start;
+    text-transform: uppercase;
+  }
+
+.picmo-picker .emojiCategory .categoryName button {
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: var(--category-name-button-color);
+    }
+
+.picmo-picker .emojiCategory .categoryName button:hover {
+        opacity: 1;
+      }
+
+.picmo-picker .emojiCategory .noRecents {
+    color: var(--secondary-text-color);
+    grid-column: 1 / span var(--emojis-per-row);
+    font-size: 0.9em;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(var(--emoji-size) * var(--emoji-size-multiplier));
+  }
+
+.picmo-picker .emojiCategory .recentEmojis[data-empty="true"] {
+    display: none;
+  }
+
+:is(.picmo-picker .emojiCategory) .recentEmojis[data-empty="false"] + div {
+    display: none;
+  }
+
+.picmo-picker .emojiContainer {
+  display: grid;
+  justify-content: space-between;
+  gap: 1px;
+  padding: 0 0.5em;
+  grid-template-columns: repeat(var(--emojis-per-row), calc(var(--emoji-size) * var(--emoji-size-multiplier)));
+  grid-auto-rows: calc(var(--emoji-size) * var(--emoji-size-multiplier));
+  align-items: center;
+  justify-items: center;
+}
+
+@keyframes shine {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.picmo-picker.picker {
+  --border-radius: 5px;
+  --emoji-area-height: calc(
+    (var(--row-count) * var(--emoji-size) * var(--emoji-size-multiplier)) + var(--category-name-height)
+  );
+  --content-height: var(--emoji-area-height);
+  --emojis-per-row: 8;
+  --row-count: 6;
+  --emoji-preview-margin: 4px;
+  --emoji-preview-height: calc(var(--emoji-preview-size) + 1em + 1px);
+  --emoji-preview-height-full: calc(var(--emoji-preview-height) + var(--emoji-preview-margin));
+  --emoji-preview-size: 2.75em;
+  --emoji-size: 2rem;
+  --emoji-size-multiplier: 1.3;
+  --content-margin: 8px;
+  --category-tabs-height: calc(1.5em + 4px + 4px + 1px);
+  --category-tabs-offset: 8px;
+  --category-tab-size: 1.2rem;
+  --category-name-height: 2rem;
+  --category-name-padding-y: 6px;
+  --search-height: 2em;
+  --search-margin: 0.5em;
+  --search-margin-bottom: 4px;
+  --search-height-full: calc(var(--search-height) + var(--search-margin) + var(--search-margin-bottom));
+  --overlay-background-color: rgba(0, 0, 0, 0.8);
+  --emoji-font: 'Segoe UI Emoji', 'Segoe UI Symbol', 'Segoe UI', 'Apple Color Emoji', 'Twemoji Mozilla',
+    'Noto Color Emoji', 'EmojiOne Color', 'Android Emoji';
+  --ui-font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  --ui-font-size: 16px;
+  --picker-width: calc(var(--emojis-per-row) * var(--emoji-size) * var(--emoji-size-multiplier) + 2.75rem);
+
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  font-family: var(--ui-font);
+  font-size: var(--ui-font-size);
+  overflow: hidden;
+  position: relative;
+  width: var(--picker-width);
+
+  display: grid;
+  gap: 8px;
+}
+
+.picmo-picker.picker > * {
+    font-family: var(--ui-font);
+  }
+
+.picmo-picker.skeleton {
+  background: var(--background-color);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  font-family: var(--ui-font);
+  width: var(--picker-width);
+  color: var(--secondary-text-color);
+}
+
+.picmo-picker.skeleton * {
+    box-sizing: border-box;
+  }
+
+.picmo-picker.skeleton .placeholder {
+    background: var(--placeholder-background-color);
+    position: relative;
+    overflow: hidden;
+  }
+
+.picmo-picker.skeleton .placeholder::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      transform: translateX(-100%);
+      background-image: linear-gradient(
+        90deg,
+        rgba(#fff, 0) 0,
+        rgba(#fff, 0.2) 20%,
+        rgba(#fff, 0.5) 60%,
+        rgba(#fff, 0)
+      );
+      animation: shine 2s infinite;
+      content: '';
+    }
+
+.picmo-picker.skeleton .searchSkeleton {
+    padding: 0 8px;
+    height: var(--search-height);
+  }
+
+.picmo-picker.skeleton .searchSkeleton .searchInput {
+      width: 100%;
+      height: 28px;
+      border-radius: 3px;
+    }
+
+.picmo-picker.skeleton .categoryTabsSkeleton {
+    height: var(--category-tabs-height);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+.picmo-picker.skeleton .categoryTabsSkeleton .categoryTab {
+      width: 25px;
+      height: 25px;
+      padding: 2px;
+      border-radius: 5px;
+    }
+
+.picmo-picker.skeleton .contentSkeleton {
+    height: var(--content-height);
+    padding-right: 8px;
+    opacity: 0.7;
+  }
+
+.picmo-picker.skeleton .contentSkeleton .categoryName {
+      width: 50%;
+      height: 1rem;
+      margin: 0.5rem;
+      box-sizing: border-box;
+    }
+
+.picmo-picker.skeleton .contentSkeleton .emojiGrid {
+      display: grid;
+      justify-content: space-between;
+      gap: 1px;
+      padding: 0 0.5em;
+      grid-template-columns: repeat(var(--emojis-per-row), calc(var(--emoji-size) * var(--emoji-size-multiplier)));
+      grid-auto-rows: calc(var(--emoji-size) * var(--emoji-size-multiplier));
+      align-items: center;
+      justify-items: center;
+    }
+
+.picmo-picker.skeleton .contentSkeleton .emojiGrid .emoji {
+        width: var(--emoji-size);
+        height: var(--emoji-size);
+        border-radius: 50%;
+      }
+
+.picmo-picker.skeleton .previewSkeleton {
+    height: var(--emoji-preview-height);
+    border-top: 1px solid var(--border-color);
+    display: grid;
+    align-items: center;
+    padding: 0.5em;
+    gap: 6px;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'emoji name'
+      'emoji tags';
+  }
+
+.picmo-picker.skeleton .previewSkeleton .previewEmoji {
+      grid-area: emoji;
+      border-radius: 50%;
+      width: var(--emoji-preview-size);
+      height: var(--emoji-preview-size);
+    }
+
+.picmo-picker.skeleton .previewSkeleton .previewName {
+      grid-area: name;
+      width: 12em;
+      height: 0.8em;
+    }
+
+.picmo-picker.skeleton .previewSkeleton .tagList {
+      grid-area: tags;
+      list-style-type: none;
+      display: flex;
+      flex-direction: row;
+      padding: 0;
+      margin: 0;
+    }
+
+.picmo-picker.skeleton .previewSkeleton .tagList .tag {
+        border-radius: 3px;
+        padding: 2px 8px;
+        margin-right: 0.25em;
+        height: 1em;
+        width: 3em;
+      }
+
+.overlay {
+  background: rgba(0, 0, 0, 0.75);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.content {
+  position: relative;
+  overflow: hidden;
+  height: var(--content-height);
+}
+
+.content.fullHeight {
+    height: calc(var(--content-height) + var(--category-tabs-height) + var(--category-tabs-offset));
+    overflow-y: auto;
+    scrollbar-color: var(--scrollbar-color) var(--scrollbar-background-color);
+    scrollbar-width: thin;
+  }
+
+.content.fullHeight::-webkit-scrollbar {
+      background: var(--scrollbar-background-color);
+      width: 1.1em;
+    }
+
+.content.fullHeight::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-color);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      background-clip: padding-box;
+      height: 1em;
+      border-radius: 1em
+    }
+
+.pluginContainer {
+  margin: 0.5em;
+  display: flex;
+  flex-direction: row;
+}
+
+.header {
+  background-color: var(--secondary-background-color);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  display: grid;
+  gap: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .placeholder {
+    background: var(--placeholder-background-color);
+    position: relative;
+    overflow: hidden;
+  }
+
+    .placeholder::after {
+      display: none;
+    }
+}
+
+.picmo-picker .preview {
+  border-top: 1px solid var(--border-color);
+  display: grid;
+  align-items: center;
+  gap: 6px;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "emoji name"
+                       "emoji tags";
+  height: var(--emoji-preview-height);
+  box-sizing: border-box;
+  padding: 0.5em;
+  position: relative;
+  background: var(--preview-background-color);
+}
+
+.picmo-picker .preview .previewEmoji {
+    grid-area: emoji;
+    font-size: var(--emoji-preview-size);
+    font-family: var(--emoji-font);
+    width: 1.25em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.picmo-picker .preview .previewName {
+    grid-area: name;
+    color: var(--text-color);
+    font-size: 0.8em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+  }
+
+.picmo-picker .preview .tagList {
+    grid-area: tags;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    font-size: 0.75em;
+    overflow: hidden;
+  }
+
+.picmo-picker .preview .tag {
+    border-radius: 3px;
+    background: var(--tag-background-color);
+    color: var(--text-color);
+    padding: 2px 8px;
+    margin-right: 0.25em;
+    white-space: nowrap;
+  }
+
+.picmo-picker .preview .tag:last-child {
+      margin-right: 0;
+    }
+
+.picmo-picker .searchContainer {
+  display: flex;
+  height: var(--search-height);
+  box-sizing: border-box;
+  padding: 0 8px;
+  position: relative;
+}
+
+.picmo-picker .searchContainer .searchField {
+    background: var(--search-background-color);
+    border-radius: 3px;
+    border: none;
+    box-sizing: border-box;
+    color: var(--text-color);
+    font-size: 0.9em;
+    outline: none;
+    padding-right: 2em;
+    padding: 0.5em 2.25em 0.5em 0.5em;
+    width: 100%;
+  }
+
+.picmo-picker .searchContainer .searchField:focus {
+      background: var(--search-focus-background-color);
+    }
+
+.picmo-picker .searchContainer .searchField::placeholder {
+      color: var(--search-placeholder-color);  
+    }
+
+.picmo-picker .searchContainer .searchAccessory {
+    color: var(--search-icon-color);
+    height: 100%;
+    position: absolute;
+    right: 1em;
+    top: 0;
+    width: 1.25rem;
+    display: flex;
+    align-items: center;
+  }
+
+.picmo-picker .searchContainer .searchAccessory svg {
+      fill: var(--search-icon-color);
+    }
+
+.picmo-picker .searchContainer .clearButton {
+    border: 0;
+    color: var(--search-icon-color);
+    background: transparent;
+    cursor: pointer;
+  }
+
+.picmo-picker .searchContainer .clearSearchButton {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--search-icon-color);
+    font-size: 1em;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0;
+  }
+
+.picmo-picker .searchContainer .notFound [data-icon] {
+      fill: #f3e265;
+    }
+
+.picmo-picker .variantOverlay {
+  background: var(--overlay-background-color);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.picmo-picker .variantOverlay .variantPopup {
+    background: var(--variant-popup-background-color);
+    border-radius: 5px;
+    margin: 0.5em;
+    padding: 0.5em;
+    text-align: center;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+.customEmoji {
+  width: 1em;
+  height: 1em;
+}
+
+@keyframes shine {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.picmo-picker .imagePlaceholder {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.placeholder {
+  background: #DDDBDD;
+  position: relative;
+}
+
+.placeholder::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background-image: linear-gradient(
+      90deg,
+      rgba(#fff, 0) 0,
+      rgba(#fff, 0.2) 20%,
+      rgba(#fff, 0.5) 60%,
+      rgba(#fff, 0)
+    );
+    animation: shine 2s infinite;
+    content: '';
+  }

@@ -42,7 +42,7 @@ groups.forEach(group => {
     }
   });
 
-  index += `export { default as ${camelCase(group.key)} } from './${group.key}.svg';\n`;
+  index += `export { default as ${camelCase(group.key)} } from './${group.key}.svg?raw';\n`;
 
   const categoryEmojis = emojiData.filter(emoji => emoji.group === group.order);
   categoryEmojis.forEach(emoji => {

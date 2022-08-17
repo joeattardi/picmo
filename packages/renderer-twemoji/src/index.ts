@@ -1,7 +1,6 @@
-import styleInject from 'style-inject';
 import { parse } from 'twemoji-parser';
 
-import { EmojiRecord, EmojiSelection, Renderer, toElement, globalConfig } from 'picmo';
+import { EmojiRecord, EmojiSelection, Renderer, toElement, createStyleInjector } from 'picmo';
 
 import css from './twemoji.css?inline';
 import * as spriteSheets from './sprites';
@@ -12,11 +11,7 @@ const classes = {
   twemoji: 'twemoji'
 };
 
-let cssLoaded = false;
-if (globalConfig.injectStyles && !cssLoaded) {
-  styleInject(css);
-  cssLoaded = true;
-}
+const styleInject = createStyleInjector();
 
 /**
  * Given an EmojiRecord, calculate the key of its sprite within the sprite sheet.
@@ -76,6 +71,7 @@ export class TwemojiRenderer extends Renderer {
   constructor(format: TwemojiImageFormat = 'svg') {
     super();
     this.format = format;
+    styleInject(css);
     this.#insertSvg();
   }
 

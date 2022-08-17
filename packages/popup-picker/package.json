@@ -32,7 +32,9 @@
   "funding": "https://github.com/sponsors/joeattardi",
   "license": "MIT",
   "dependencies": {
-    "@floating-ui/dom": "^1.0.0",
+    "@floating-ui/dom": "^1.0.0"
+  },
+  "peerDependencies": {
     "picmo": "^5.5.0"
   },
   "devDependencies": {

@@ -16,9 +16,9 @@ export { Renderer } from './renderers/renderer';
 export { NativeRenderer } from './renderers/native';
 
 export { default as en } from './i18n/lang-en';
-
 export { deleteDatabase } from './data/emojiData';
 import { DataStoreFactory } from './data/DataStore';
+export { createStyleInjector } from './injectStyles';
 export { IndexedDbStoreFactory } from './data/IndexedDbStore';
 export { InMemoryStoreFactory } from './data/InMemoryStore';
 
