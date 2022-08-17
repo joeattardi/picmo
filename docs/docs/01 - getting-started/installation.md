@@ -7,7 +7,15 @@ import TabItem from '@theme/TabItem';
 
 # Installation
 
-## From NPM
+All PicMo packages are available on the NPM registry, and are also distributed as UMD modules which can be added to any site with a simple `<script>` tag. Resources can be served locally or loaded from a CDN.
+
+The UMD distributions for each module will expose a global object containing all of the same exports that are included in the NPM package.
+
+The add-on packages include `picmo` as a _peer dependency_ - it is not bundled with them. In an npm project, you will need to install `picmo` along with any add-on packages. When using the UMD distributions, the main `picmo` module must be loaded first since the other modules reference it by its global name `picmo`.
+
+## `picmo`
+
+### From NPM
 
 <Tabs>
   <TabItem value="npm" label="NPM" default>
@@ -27,60 +35,166 @@ yarn add picmo
   </TabItem>
 </Tabs>
 
-## Use UMD build from CDN
+### From a CDN (UMD)
 
-PicMo is also available as a UMD module to use outside of a bundler. This distribution can be installed from a CDN with a `<script>` tag:
+The UMD for `picmo` exposes a global `picmo` object containing all exports.
 
-### Main picker code
-
-```html
-<script src="https://unpkg.com/picmo@latest/dist/umd/picmo.js"></script>
-```
-
-This will expose a `picmo` object in the global window scope with the following exports:
-
-- `autoTheme`: CSS class for the `auto` theme
-- `darkTheme`: CSS class for the `dark` theme
-- `lightTheme`: CSS class for the `light` theme
-- [`createDatabase`](../api/picmo/functions/create-database)
-- [`createPicker`](../api/picmo/functions/create-picker)
-- [`deleteDatabase`](../api/picmo/functions/delete-database)
-- [`deleteRecents`](../api/picmo/functions/delete-recents)
-- [`NativeRenderer`](../api/picmo/classes/native-renderer)
-- [`Renderer`](../api/picmo/classes/renderer)
-
-### Popup picker
-
-- [`createPopup`](../api/popup-picker/functions/create-popup)
-
-If you want a popup picker, it is a separate UMD module:
+<Tabs>
+  <TabItem value="unpkg" label="unpkg">
 
 ```html
-<script src="https://unpkg.com/@picmo/popup-picker@latest/dist/umd/picmo-popup.js"></script>
+<script src="https://unpkg.com/picmo@latest/dist/umd/index.js"></script>
 ```
 
-### Twemoji renderer
-
-If you want to use the Twemoji renderer, it is a separate UMD module:
+  </TabItem>
+  <TabItem value="jsdelivr" label="jsDelivr">
 
 ```html
-<script src="https://unpkg.com/@picmo/renderer-twemoji@latest/dist/umd/picmo-twemoji.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/picmo@latest/dist/umd/index.js"></script>
 ```
 
-This will expose the [`TwemojiRenderer`](../api/renderer-twemoji/classes/twemoji-renderer) class in the global window scope.
+  </TabItem>
+</Tabs>
 
-## Use ESM from CDN
+### From a CDN (ESM)
 
-You can also import the ESM version of PicMo directly. You will first to create an ES module that imports PicMo:
-
-```javascript title="index.js"
-import { createPicker } from 'https://unpkg.com/picmo@latest/dist/index.js';
-
-createPicker(...);
-```
-
-Then you can import the local module from a `script` tag:
+<Tabs>
+  <TabItem value="unpkg" label="unpkg">
 
 ```html
-<script type="module" src="index.js"></script>
+<script src="https://unpkg.com/picmo@latest/dist/index.js"></script>
 ```
+
+  </TabItem>
+  <TabItem value="jsdelivr" label="jsDelivr">
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/picmo@latest/dist/index.js"></script>
+```
+
+  </TabItem>
+</Tabs>
+
+## `@picmo/popup-picker`
+
+### From NPM
+
+<Tabs>
+  <TabItem value="npm" label="NPM" default>
+
+```bash
+npm install @picmo/popup-picker
+```
+
+  </TabItem>
+
+  <TabItem value="yarn" label="Yarn">
+
+```bash
+yarn add @picmo/popup-picker
+```
+
+  </TabItem>
+</Tabs>
+
+### From a CDN (UMD)
+
+The UMD for `@picmo/popup-picker` exposes a global `picmoPopup` object containing all exports.
+
+<Tabs>
+  <TabItem value="unpkg" label="unpkg">
+
+```html
+<script src="https://unpkg.com/@picmo/popup-picker@latest/dist/umd/index.js"></script>
+```
+
+  </TabItem>
+  <TabItem value="jsdelivr" label="jsDelivr">
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@picmo/popup-picker@latest/dist/umd/index.js"></script>
+```
+
+  </TabItem>
+</Tabs>
+
+### From a CDN (ESM)
+
+<Tabs>
+  <TabItem value="unpkg" label="unpkg">
+
+```html
+<script src="https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module"></script>
+```
+
+  </TabItem>
+  <TabItem value="jsdelivr" label="jsDelivr">
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@picmo/popup-picker@latest/dist/index.js"></script>
+```
+
+  </TabItem>
+</Tabs>
+
+## `@picmo/renderer-twemoji`
+
+### From NPM
+
+<Tabs>
+  <TabItem value="npm" label="NPM" default>
+
+```bash
+npm install @picmo/renderer-twemoji
+```
+
+  </TabItem>
+
+  <TabItem value="yarn" label="Yarn">
+
+```bash
+yarn add @picmo/renderer-twemoji
+```
+
+  </TabItem>
+</Tabs>
+
+### From a CDN (UMD)
+
+The UMD for `@picmo/renderer-twemoji` exposes a global `picmoTwemoji` object containing all exports.
+
+<Tabs>
+  <TabItem value="unpkg" label="unpkg">
+
+```html
+<script src="https://unpkg.com/@picmo/renderer-twemoji@latest/dist/umd/index.js"></script>
+```
+
+  </TabItem>
+  <TabItem value="jsdelivr" label="jsDelivr">
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@picmo/renderer-twemoji@latest/dist/umd/index.js"></script>
+```
+
+  </TabItem>
+</Tabs>
+
+### From a CDN (ESM)
+
+<Tabs>
+  <TabItem value="unpkg" label="unpkg">
+
+```html
+<script src="https://unpkg.com/@picmo/renderer-twemoji@latest/dist/index.js?module"></script>
+```
+
+  </TabItem>
+  <TabItem value="jsdelivr" label="jsDelivr">
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/@picmo/renderer-twemoji@latest/dist/index.js"></script>
+```
+
+  </TabItem>
+</Tabs>
