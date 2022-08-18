@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PicMo</title>
+    <title>PicMo: Twemoji Picker (UMD)</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/picmo@latest/dist/umd/index.js"></script>
+    <script src="https://unpkg.com/@picmo/renderer-twemoji@latest/dist/umd/index.js"></script>
+    <script src="twemoji.js"></script>
   </head>
 
   <body>
-    <h1>PicMo: Inline Picker (UMD)</h1>
+    <h1>PicMo: Twemoji Picker (UMD)</h1>
 
     <div id="picker"></div>
 
@@ -18,7 +21,5 @@
         <div id="selection-name" class="empty">Nothing selected</div>
       </div>
     </section>
-
-    <script type="module" src="index.js"></script>
   </body>
 </html>

@@ -9,9 +9,15 @@ import TabItem from '@theme/TabItem';
 
 All PicMo packages are available on the NPM registry, and are also distributed as UMD modules which can be added to any site with a simple `<script>` tag. Resources can be served locally or loaded from a CDN.
 
+## Using the UMD distributions
+
 The UMD distributions for each module will expose a global object containing all of the same exports that are included in the NPM package.
 
 The add-on packages include `picmo` as a _peer dependency_ - it is not bundled with them. In an npm project, you will need to install `picmo` along with any add-on packages. When using the UMD distributions, the main `picmo` module must be loaded first since the other modules reference it by its global name `picmo`.
+
+## Using the ESM distributions from the browser
+
+If your browser supports ES Modules, you can import PicMo or its add-ons with an import statement in a JavaScript file. This file must be added with a `script` tag with `type` set to `module`.
 
 ## `picmo`
 
@@ -61,15 +67,15 @@ The UMD for `picmo` exposes a global `picmo` object containing all exports.
 <Tabs>
   <TabItem value="unpkg" label="unpkg">
 
-```html
-<script src="https://unpkg.com/picmo@latest/dist/index.js"></script>
+```javascript
+import { createPicker } from 'https://unpkg.com/picmo@latest/dist/index.js';
 ```
 
   </TabItem>
   <TabItem value="jsdelivr" label="jsDelivr">
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/picmo@latest/dist/index.js"></script>
+```javascript
+import { createPicker } from 'https://cdn.jsdelivr.net/npm/picmo@latest/dist/index.js';
 ```
 
   </TabItem>
@@ -123,15 +129,15 @@ The UMD for `@picmo/popup-picker` exposes a global `picmoPopup` object containin
 <Tabs>
   <TabItem value="unpkg" label="unpkg">
 
-```html
-<script src="https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module"></script>
+```javascript
+import { createPopup } from 'https://unpkg.com/@picmo/popup-picker@latest/dist/index.js?module';
 ```
 
   </TabItem>
   <TabItem value="jsdelivr" label="jsDelivr">
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/@picmo/popup-picker@latest/dist/index.js"></script>
+```javascript
+import { createPopup } from 'https://cdn.jsdelivr.net/npm/@picmo/popup-picker@latest/dist/index.js';
 ```
 
   </TabItem>
@@ -185,15 +191,15 @@ The UMD for `@picmo/renderer-twemoji` exposes a global `picmoTwemoji` object con
 <Tabs>
   <TabItem value="unpkg" label="unpkg">
 
-```html
-<script src="https://unpkg.com/@picmo/renderer-twemoji@latest/dist/index.js?module"></script>
+```javascript
+import { TwemojiRenderer } from 'https://unpkg.com/@picmo/renderer-twemoji@latest/dist/index.js?module';
 ```
 
   </TabItem>
   <TabItem value="jsdelivr" label="jsDelivr">
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/@picmo/renderer-twemoji@latest/dist/index.js"></script>
+```javascript
+import { TwemojiRenderer } from 'https://cdn.jsdelivr.net/npm/@picmo/renderer-twemoji@latest/dist/index.js';
 ```
 
   </TabItem>

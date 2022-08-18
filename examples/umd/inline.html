@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PicMo</title>
+    <title>PicMo: Inline Picker (UMD)</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/picmo@latest/dist/umd/index.js"></script>
+    <script src="inline.js"></script>
   </head>
 
   <body>
     <h1>PicMo: Inline Picker (UMD)</h1>
 
-    <form>
-      <div id="picker"></div>
-    </form>
+    <div id="picker"></div>
 
     <section id="selection-outer" class="empty">
       <h2>Selected emoji!</h2>
@@ -20,7 +20,5 @@
         <div id="selection-name" class="empty">Nothing selected</div>
       </div>
     </section>
-
-    <script type="module" src="index.js"></script>
   </body>
 </html>
