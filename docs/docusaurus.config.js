@@ -42,6 +42,10 @@ const config = {
     ],
   ],
 
+  themes: [
+    require.resolve('@easyops-cn/docusaurus-search-local')
+  ],
+
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
