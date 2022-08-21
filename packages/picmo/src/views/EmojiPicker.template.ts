@@ -27,7 +27,7 @@ function renderPicker(data) {
 }
 
 function renderPlaceholder(data) {
-  const { emojiCount, classes, theme, className } = data;
+  const { emojiCount, classes, theme, className, categoryCount } = data;
 
   const search = ({ showSearch, classes }) => showSearch ? /* html */`
     <div class="${classes.searchSkeleton}">
@@ -37,7 +37,7 @@ function renderPlaceholder(data) {
 
   const categoryTabs = ({ showCategoryTabs, classes }) => showCategoryTabs ? /* html */`
     <div class="${classes.categoryTabsSkeleton}">
-      ${repeat(10, /* html */`<div class="${classes.placeholder} ${classes.categoryTab}"></div>`)}
+      ${repeat(categoryCount, /* html */`<div class="${classes.placeholder} ${classes.categoryTab}"></div>`)}
     </div>
   ` : '';
 

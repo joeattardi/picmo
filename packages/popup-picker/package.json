@@ -17,7 +17,7 @@
     "check": "tsc --noEmit",
     "clean": "rimraf dist",
     "lint": "eslint src",
-    "start": "rollup -cw"
+    "start": "vite"
   },
   "keywords": [
     "popup",

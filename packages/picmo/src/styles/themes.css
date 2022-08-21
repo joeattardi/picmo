@@ -18,7 +18,7 @@
   --placeholder-background-color: #cccccc;
   --preview-background-color: var(--secondary-background-color);
   --scrollbar-background-color: var(--background-color);
-  --scrollbar-color: rgba(0, 0, 0, 0.75);
+  --scrollbar-color: #aaa;
   --search-background-color: #f9fafb;
   --search-focus-background-color: #ffffff;
   --search-icon-color: #999999;

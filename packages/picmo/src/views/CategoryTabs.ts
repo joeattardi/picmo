@@ -11,7 +11,7 @@ type CategoryTabsOptions = {
   categories: Category[];
 }
 
-const classes = getPrefixedClasses('categoryButtons');
+const classes = getPrefixedClasses('categoryButtons', 'categoryButtonsContainer');
 
 export class CategoryTabs extends View {
   private categories: Category[];
@@ -30,7 +30,25 @@ export class CategoryTabs extends View {
       ArrowRight: this.stepSelectedTab(1)
     };
 
+    this.uiEvents = [
+      View.uiEvent('scroll', this.checkOverflow)
+    ];
+
     super.initialize();
+  }
+
+  checkOverflow() {
+    const hasOverflowRight = this.el.scrollLeft < this.el.scrollWidth - this.el.offsetWidth
+    const hasOverflowLeft = this.el.scrollLeft > 0;
+
+    this.el.className = 'categoryButtonsContainer';
+    if (hasOverflowLeft && hasOverflowRight) {
+      this.el.classList.add('has-overflow-both');
+    } else if (hasOverflowLeft) {
+      this.el.classList.add('has-overflow-left');
+    } else if (hasOverflowRight) {
+      this.el.classList.add('has-overflow-right');
+    }
   }
 
   renderSync(): HTMLElement {
@@ -41,6 +59,7 @@ export class CategoryTabs extends View {
       tabs: this.tabViews.map(view => view.renderSync())
     });
 
+    // console.log(this.el.offsetWidth);
     // this.currentTabView.setActive(true);
 
     return this.el;
@@ -59,6 +78,10 @@ export class CategoryTabs extends View {
     if (index === this.activeCategoryIndex) {
       return;
     }
+
+    this.checkOverflow();
+    // this.el.classList.toggle('has-overflow', this.el.offsetWidth < this.el.scrollWidth);
+    // console.log(this.el.offsetWidth, this.el.scrollWidth);
 
     const oldCategory = this.currentTabView;
     const newCategory = this.tabViews[index];

@@ -14,7 +14,23 @@ Reflects the current  visibility state of the picker.
 
 - **Type**: [`EmojiPicker`](../../picmo/classes/emoji-picker)
 
-The picker being managed by this controller
+The picker being managed by this controller.
+
+### `referenceElement`
+
+- **Type**: `HTMLElement | undefined`
+
+The current reference element, if any, used for positioning the popup.
+
+This defaults to the value passed in the [`PopupOptions`](../types/popup-options), if any. If the picker is opened with a new reference element, this property will be updated with the new reference element.
+
+### `triggerElement`
+
+- **Type**: `HTMLElement | undefined`
+
+The current trigger element, if any, used to toggle the popup.
+
+This defaults to the value passed in the [`PopupOptions`](../types/popup-options), if any. If the picker is opened with a new trigger element, this property will be updated with the new trigger element.
 
 ## Methods
 
@@ -62,11 +78,16 @@ A `Promise` that resolves when the picker has been closed and destroyed.
 
 ### `open`
 
-```
-open(): Promise<void>
-```
+<pre>
+open(options: <a href="../types/popup-options">PopupOptions</a> | undefined): Promise&lt;void&gt;
+</pre>
 
 Opens the picker.
+
+#### Arguments
+
+- `options`: Optional options object to set new reference and trigger elements.
+  - **Type**: [`OpenOptions`](../types/open-options)
 
 #### Return value
 
@@ -90,8 +111,17 @@ Removes an event listener from the picker.
 
 ### `toggle`
 
-```
-toggle(): Promise<void>
-```
+<pre>
+toggle(options: <a href="../types/popup-options">PopupOptions</a> | undefined): Promise&lt;void&gt;
+</pre>
 
-Toggles the state of the picker. If it is closed, it will be opened; if it is open, it will be closed.
+Toggles the state of the picker. If it is closed, it will be opened with the specified options; if it is open, it will be closed.
+
+#### Arguments
+
+- `options`: Optional options object to pass when toggling the picker open.
+  - **Type**: [`OpenOptions`](../types/open-options.md)
+
+#### Return value
+
+A `Promise` that resolves when the picker has finished opening or closing.

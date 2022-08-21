@@ -103,14 +103,16 @@
     height: var(--category-tabs-height);
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
+    justify-self: center;
+
 
     & .categoryTab {
       width: 25px;
       height: 25px;
       padding: 2px;
       border-radius: 5px;
+      margin: 0.25em;
     }
   }
 
@@ -217,11 +219,11 @@
 
     &::-webkit-scrollbar-thumb {
       background: var(--scrollbar-color);
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
+      /* border-left: 4px solid transparent;
+      border-right: 4px solid transparent; */
       background-clip: padding-box;
       height: 1em;
-      border-radius: 1em
+      border-radius: 0.5em
     }
   }
 }

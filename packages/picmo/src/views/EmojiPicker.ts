@@ -296,6 +296,11 @@ export class EmojiPicker extends View {
    * @returns the root element of the picker
    */
   renderSync(): HTMLElement {
+    let categoryCount = this.options.categories?.length || 10;
+    if (this.options.showRecents) {
+      categoryCount += 1;
+    }
+
     super.renderSync({
       isLoaded: false,
       theme: this.options.theme,
@@ -303,7 +308,8 @@ export class EmojiPicker extends View {
       showPreview: this.options.showPreview,
       showCategoryTabs: this.options.showCategoryTabs,
       showHeader: this.options.showSearch || this.options.showCategoryTabs,
-      emojiCount: this.options.emojisPerRow * this.options.visibleRows
+      emojiCount: this.options.emojisPerRow * this.options.visibleRows,
+      categoryCount
     });
 
     if (!this.options.rootElement) {
@@ -469,7 +475,6 @@ export class EmojiPicker extends View {
     this.events.emit('recent:add', emoji);
   }
 
-  // TODO: better layout for narrow pickers - scroll category tabs?
   private updaters = {
     styleProperty: propertyName => value => this.el.style.setProperty(variableNames[propertyName], value.toString()),
 

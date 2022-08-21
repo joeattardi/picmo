@@ -16,6 +16,11 @@ import { getOptions } from './options';
 
 import closeIcon from './icons/close.svg?raw';
 
+type OpenOptions = {
+  referenceElement?: HTMLElement;
+  triggerElement?: HTMLElement;
+}
+
 const classes = {
   popupContainer: 'popupContainer',
   closeButton: 'closeButton'
@@ -23,6 +28,9 @@ const classes = {
 export class PopupPickerController {
   picker: EmojiPicker;
   isOpen = false;
+
+  referenceElement?: HTMLElement;
+  triggerElement?: HTMLElement;
 
   private popupEl: HTMLElement;
   private focusTrap: FocusTrap;
@@ -65,7 +73,7 @@ export class PopupPickerController {
     if (this.options.hideOnEmojiSelect) {
       this.picker.addEventListener('emoji:select', () => {
         this.close();
-        this.options.triggerElement?.focus();
+        this.triggerElement?.focus();
       });
     }
 
@@ -78,6 +86,9 @@ export class PopupPickerController {
       this.handleKeydown = this.handleKeydown.bind(this);
       this.popupEl.addEventListener('keydown', this.handleKeydown);
     }
+
+    this.referenceElement = this.options.referenceElement;
+    this.triggerElement = this.options.triggerElement;
   }
 
   /**
@@ -99,7 +110,7 @@ export class PopupPickerController {
   private handleKeydown(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       this.close();
-      this.options.triggerElement?.focus();
+      this.triggerElement?.focus();
     }
   }
 
@@ -128,8 +139,8 @@ export class PopupPickerController {
    *
    * @returns a Promise that resolves when the visibility state change is complete
    */
-  toggle(): Promise<void> {
-    return this.isOpen ? this.close() : this.open();
+  toggle(options: OpenOptions): Promise<void> {
+    return this.isOpen ? this.close() : this.open(options);
   }
 
   /**
@@ -137,9 +148,17 @@ export class PopupPickerController {
    *
    * @returns a Promise that resolves when the picker is finished opening
    */
-  async open(): Promise<void> {
+  async open({ triggerElement, referenceElement }: OpenOptions = {}): Promise<void> {
     if (this.isOpen) {
       return;
+    }
+
+    if (triggerElement) {
+      this.triggerElement = triggerElement;
+    }
+
+    if (referenceElement) {
+      this.referenceElement = referenceElement;
     }
 
     await this.initiateOpenStateChange(true);
@@ -191,7 +210,7 @@ export class PopupPickerController {
     this.positionCleanup?.();
       this.positionCleanup = await setPosition(
         this.popupEl,
-        this.options.referenceElement,
+        this.referenceElement,
         this.options.position as Position
       );
   }
@@ -219,7 +238,7 @@ export class PopupPickerController {
   private onDocumentClick(event: MouseEvent) {
     const clickedNode = event.target as Node;
 
-    const isClickOnTrigger = this.options.triggerElement?.contains(clickedNode);
+    const isClickOnTrigger = this.triggerElement?.contains(clickedNode);
 
     if (this.isOpen && !this.picker.isPickerClick(event) && !isClickOnTrigger) {
       this.close();

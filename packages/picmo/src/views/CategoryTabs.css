@@ -1,39 +1,74 @@
-.picmo-picker .categoryButtons {
-  --tab-size-ratio: 1.55; 
-  --tab-padding: 0.5em;
-  --tab-area-width: calc(var(--picker-width) - (var(--tab-padding) * 2));
-  --tab-size: calc((var(--tab-area-width) / var(--category-count))) / var(--tab-size-ratio);
+.picmo-picker .categoryButtonsContainer {
+  overflow: auto;
+  padding: 2px 0;
+  scrollbar-width: thin;
 
-  display: grid;
-  grid-auto-columns: 1fr;
-  grid-auto-flow: column;
+  &.has-overflow-right {
+    -webkit-mask-image: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 10%);
+  }
+
+  &.has-overflow-left {
+    -webkit-mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 10%);
+  }
+
+  &.has-overflow-both {
+    mask-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 1) 10%,
+      rgba(255, 255, 255, 1) 90%,
+      rgba(255, 255, 255, 0) 100%
+    );
+
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 1) 10%,
+      rgba(255, 255, 255, 1) 90%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+    border-radius: 1em;
+  }
+}
+
+.picmo-picker .categoryButtons {
+  display: flex;
+  flex-direction: row;
   gap: var(--tab-gap);
-  justify-content: center;
   margin: 0;
-  padding: 0 var(--tab-padding);
+  padding: 0 0.5em;
   align-items: center;
   height: var(--category-tabs-height);
   box-sizing: border-box;
-  
+
   position: relative;
 
   list-style-type: none;
+  justify-self: center;
 
   & .categoryTab {
     display: flex;
     align-items: center;
-    justify-content: stretch;
     transition: all 100ms;
+    width: 2em;
 
     &.categoryTabActive {
       & .categoryButton {
         color: var(--category-tab-active-color);
-        background: 
-          linear-gradient(rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%),
+        background: linear-gradient(rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%),
           linear-gradient(var(--category-tab-active-color) 0%, var(--category-tab-active-color) 100%);
-    
+
         border: 2px solid var(--category-tab-active-color);
-    
+
         &:hover {
           background-color: var(--category-tab-active-background-color);
         }
@@ -52,16 +87,15 @@
       align-items: center;
       justify-content: center;
       font-size: 1.2rem;
-      font-size: min(var(--tab-size), 1.2rem);
       width: 1.6em;
       height: 1.6em;
       transition: all 100ms;
-    
+
       &img {
         width: var(--category-tab-size);
         height: var(--category-tab-size);
       }
-    
+
       &:hover {
         background: var(--category-tab-highlight-background-color);
       }
