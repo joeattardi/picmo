@@ -4,9 +4,9 @@ For full details, see the documentation at [https://picmojs.com](https://picmojs
 
 ## [5.6.0] - 2022-08-22
 
-[`picmo`] Added ability to update certain picker options after creation.
-[`picmo`] Improved layout of category tabs when picker is very narrow or very wide.
-[`@picmo/popup-picker`] Added ability to specify new reference and trigger elements when opening the picker.
+- [`picmo`] Added ability to update certain picker options after creation.
+- [`picmo`] Improved layout of category tabs when picker is very narrow or very wide.
+- [`@picmo/popup-picker`] Added ability to specify new reference and trigger elements when opening the picker.
 
 ## [5.5.2] - 2022-08-17
 - Fixed `process.env` appearing in build output.
