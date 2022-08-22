@@ -79,7 +79,7 @@ A `Promise` that resolves when the picker has been closed and destroyed.
 ### `open`
 
 <pre>
-open(options: <a href="../types/popup-options">PopupOptions</a> | undefined): Promise&lt;void&gt;
+open(options: <a href="../types/open-options">OpenOptions</a> | undefined): Promise&lt;void&gt;
 </pre>
 
 Opens the picker.
@@ -112,7 +112,7 @@ Removes an event listener from the picker.
 ### `toggle`
 
 <pre>
-toggle(options: <a href="../types/popup-options">PopupOptions</a> | undefined): Promise&lt;void&gt;
+toggle(options: <a href="../types/open-options">OpenOptions</a> | undefined): Promise&lt;void&gt;
 </pre>
 
 Toggles the state of the picker. If it is closed, it will be opened with the specified options; if it is open, it will be closed.
