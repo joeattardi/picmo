@@ -26,6 +26,7 @@ const classes = getPrefixedClasses(
   'searchSkeleton',
   'searchInput',
   'categoryTabsSkeleton',
+  'headerSkeleton',
   'categoryTab',
   'contentSkeleton',
   'categoryName',
@@ -311,6 +312,8 @@ export class EmojiPicker extends View {
       emojiCount: this.options.emojisPerRow * this.options.visibleRows,
       categoryCount
     });
+
+    this.el.style.setProperty('--category-count', categoryCount.toString());
 
     if (!this.options.rootElement) {
       throw new Error('Picker must be given a root element via the rootElement option');

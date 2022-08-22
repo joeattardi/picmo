@@ -38,7 +38,8 @@ export class CategoryTabs extends View {
   }
 
   checkOverflow() {
-    const hasOverflowRight = this.el.scrollLeft < this.el.scrollWidth - this.el.offsetWidth
+    // Check the difference to account for fractional pixels in the scroll position
+    const hasOverflowRight = Math.abs(this.el.scrollLeft - (this.el.scrollWidth - this.el.offsetWidth)) > 1;
     const hasOverflowLeft = this.el.scrollLeft > 0;
 
     this.el.className = 'categoryButtonsContainer';
@@ -59,9 +60,6 @@ export class CategoryTabs extends View {
       tabs: this.tabViews.map(view => view.renderSync())
     });
 
-    // console.log(this.el.offsetWidth);
-    // this.currentTabView.setActive(true);
-
     return this.el;
   }
 
@@ -80,8 +78,6 @@ export class CategoryTabs extends View {
     }
 
     this.checkOverflow();
-    // this.el.classList.toggle('has-overflow', this.el.offsetWidth < this.el.scrollWidth);
-    // console.log(this.el.offsetWidth, this.el.scrollWidth);
 
     const oldCategory = this.currentTabView;
     const newCategory = this.tabViews[index];

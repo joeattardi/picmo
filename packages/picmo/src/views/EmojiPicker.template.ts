@@ -42,7 +42,7 @@ function renderPlaceholder(data) {
   ` : '';
 
   const header = ({ showHeader, classes }) => showHeader ? /* html */`
-    <header class="${classes.header}">
+    <header class="${classes.headerSkeleton}">
       ${search(data)}
       ${categoryTabs(data)}
     </header>
