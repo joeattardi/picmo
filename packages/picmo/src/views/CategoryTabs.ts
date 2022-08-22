@@ -72,11 +72,6 @@ export class CategoryTabs extends View {
   }
 
   setActiveTab(index: number, options: SetActiveOptions = {}): void {
-    // Don't do anything if the desired tab is already active
-    if (index === this.activeCategoryIndex) {
-      return;
-    }
-
     this.checkOverflow();
 
     const oldCategory = this.currentTabView;
