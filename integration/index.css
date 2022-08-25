@@ -60,7 +60,7 @@
   --placeholder-background-color: #cccccc;
   --preview-background-color: var(--secondary-background-color);
   --scrollbar-background-color: var(--background-color);
-  --scrollbar-color: rgba(0, 0, 0, 0.75);
+  --scrollbar-color: #aaa;
   --search-background-color: #f9fafb;
   --search-focus-background-color: #ffffff;
   --search-icon-color: #999999;
@@ -134,41 +134,80 @@
   }
 }
 
-.picmo-picker .categoryButtons {
-  --tab-size-ratio: 1.55; 
-  --tab-padding: 0.5em;
-  --tab-area-width: calc(var(--picker-width) - (var(--tab-padding) * 2));
-  --tab-size: calc((var(--tab-area-width) / var(--category-count))) / var(--tab-size-ratio);
+.picmo-picker .categoryButtonsContainer {
+  overflow: auto;
+  padding: 2px 0;
+  scrollbar-width: thin;
+}
 
-  display: grid;
-  grid-auto-columns: 1fr;
-  grid-auto-flow: column;
+.picmo-picker .categoryButtonsContainer.has-overflow-right {
+    mask-image: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 10%);
+    -webkit-mask-image: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 10%);
+  }
+
+.picmo-picker .categoryButtonsContainer.has-overflow-left {
+    mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 10%);
+    -webkit-mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 10%);
+  }
+
+.picmo-picker .categoryButtonsContainer.has-overflow-both {
+    mask-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 1) 10%,
+      rgba(255, 255, 255, 1) 90%,
+      rgba(255, 255, 255, 0) 100%
+    );
+
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 1) 10%,
+      rgba(255, 255, 255, 1) 90%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+.picmo-picker .categoryButtonsContainer::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+.picmo-picker .categoryButtonsContainer::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+    border-radius: 1em;
+  }
+
+.picmo-picker .categoryButtons {
+  display: flex;
+  flex-direction: row;
   gap: var(--tab-gap);
-  justify-content: center;
   margin: 0;
-  padding: 0 var(--tab-padding);
+  padding: 0 0.5em;
   align-items: center;
   height: var(--category-tabs-height);
   box-sizing: border-box;
-  
+  width: 100%;
+  justify-content: space-between;
   position: relative;
 
   list-style-type: none;
+  justify-self: center;
+  max-width: min(calc(8 * 2rem * 1.3 + 2.75rem), calc(var(--category-count) * 2.5rem));
 }
 
 .picmo-picker .categoryButtons .categoryTab {
     display: flex;
     align-items: center;
-    justify-content: stretch;
     transition: all 100ms;
+    width: 2em;
   }
 
 .picmo-picker .categoryButtons .categoryTab.categoryTabActive .categoryButton {
         color: var(--category-tab-active-color);
-        background: 
-          linear-gradient(rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%),
+        background: linear-gradient(rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 100%),
           linear-gradient(var(--category-tab-active-color) 0%, var(--category-tab-active-color) 100%);
-    
+
         border: 2px solid var(--category-tab-active-color);
       }
 
@@ -188,7 +227,6 @@
       align-items: center;
       justify-content: center;
       font-size: 1.2rem;
-      font-size: min(var(--tab-size), 1.2rem);
       width: 1.6em;
       height: 1.6em;
       transition: all 100ms;
@@ -287,7 +325,7 @@
 .emojiButton:focus {
     border-radius: 0;
     background: var(--focus-indicator-background-color);
-    outline: 1px soldi var(--focus-indicator-color);
+    outline: 1px solid var(--focus-indicator-color);
   }
 
 .picmo-picker .emojiArea {
@@ -460,14 +498,26 @@
       transform: translateX(-100%);
       background-image: linear-gradient(
         90deg,
-        rgba(#fff, 0) 0,
-        rgba(#fff, 0.2) 20%,
-        rgba(#fff, 0.5) 60%,
-        rgba(#fff, 0)
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.2) 20%,
+        rgba(255, 255, 255, 0.5) 60%,
+        rgba(255, 255, 255, 0) 100%
       );
       animation: shine 2s infinite;
       content: '';
     }
+
+.picmo-picker.skeleton .headerSkeleton {
+    background-color: var(--secondary-background-color);
+    padding-top: 8px;
+    padding-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-color);
+    width: var(--picker-width);
+  }
 
 .picmo-picker.skeleton .searchSkeleton {
     padding: 0 8px;
@@ -484,8 +534,9 @@
     height: var(--category-tabs-height);
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
     align-items: center;
+    justify-self: center;
+    width: calc(2rem * var(--category-count));
   }
 
 .picmo-picker.skeleton .categoryTabsSkeleton .categoryTab {
@@ -493,6 +544,7 @@
       height: 25px;
       padding: 2px;
       border-radius: 5px;
+      margin: 0.25em;
     }
 
 .picmo-picker.skeleton .contentSkeleton {
@@ -517,6 +569,7 @@
       grid-auto-rows: calc(var(--emoji-size) * var(--emoji-size-multiplier));
       align-items: center;
       justify-items: center;
+      width: var(--picker-width);
     }
 
 .picmo-picker.skeleton .contentSkeleton .emojiGrid .emoji {
@@ -548,8 +601,8 @@
 
 .picmo-picker.skeleton .previewSkeleton .previewName {
       grid-area: name;
-      width: 12em;
       height: 0.8em;
+      width: 80%;
     }
 
 .picmo-picker.skeleton .previewSkeleton .tagList {
@@ -566,7 +619,7 @@
         padding: 2px 8px;
         margin-right: 0.25em;
         height: 1em;
-        width: 3em;
+        width: 20%;
       }
 
 .overlay {
@@ -599,11 +652,9 @@
 
 .content.fullHeight::-webkit-scrollbar-thumb {
       background: var(--scrollbar-color);
-      border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
       background-clip: padding-box;
       height: 1em;
-      border-radius: 1em
+      border-radius: 0.5em
     }
 
 .pluginContainer {
@@ -818,10 +869,10 @@
     transform: translateX(-100%);
     background-image: linear-gradient(
       90deg,
-      rgba(#fff, 0) 0,
-      rgba(#fff, 0.2) 20%,
-      rgba(#fff, 0.5) 60%,
-      rgba(#fff, 0)
+      rgba(255, 255, 255, 0) 0,
+      rgba(255, 255, 255, 0.2) 20%,
+      rgba(255, 255, 255, 0.5) 60%,
+      rgba(255, 255, 255, 0) 100%
     );
     animation: shine 2s infinite;
     content: '';

@@ -117,7 +117,7 @@
     flex-direction: row;
     align-items: center;
     justify-self: center;
-    width: calc(2rem * var(--category-count));
+    width: calc(2rem * var(--category-count, 1));
 
     & .categoryTab {
       width: 25px;
@@ -232,8 +232,6 @@
 
     &::-webkit-scrollbar-thumb {
       background: var(--scrollbar-color);
-      /* border-left: 4px solid transparent;
-      border-right: 4px solid transparent; */
       background-clip: padding-box;
       height: 1em;
       border-radius: 0.5em

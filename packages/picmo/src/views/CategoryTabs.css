@@ -57,7 +57,7 @@
 
   list-style-type: none;
   justify-self: center;
-  max-width: min(calc(8 * 2rem * 1.3 + 2.75rem), calc(var(--category-count) * 2.5rem));
+  max-width: min(calc(8 * 2rem * 1.3 + 2.75rem), calc(var(--category-count, 1) * 2.5rem));
 
   & .categoryTab {
     display: flex;
