@@ -176,6 +176,9 @@ export class EmojiContainer extends View {
   }
 
   private selectEmoji(event: Event) {
+    // Prevent the document click listener from firing, which in some cases
+    // can cause the picker to close even when it's configured not to.
+    event.stopPropagation();
     const emoji = getEmojiForEvent(event, this.emojis);
     if (emoji) {
       this.events.emit('emoji:select', {
