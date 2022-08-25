@@ -41,7 +41,7 @@ async function setRelativePosition(picker: HTMLElement, referenceElement: HTMLEl
   }
 
   return autoUpdate(referenceElement, picker, async () => { 
-    const {x, y} = await computePosition(referenceElement, picker, config);
+    const { x, y } = await computePosition(referenceElement, picker, config);
     Object.assign(picker.style, {
       position: 'absolute',
       left: `${x}px`,
