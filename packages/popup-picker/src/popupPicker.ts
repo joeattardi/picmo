@@ -139,7 +139,7 @@ export class PopupPickerController {
    *
    * @returns a Promise that resolves when the visibility state change is complete
    */
-  toggle(options: OpenOptions): Promise<void> {
+  toggle(options?: OpenOptions): Promise<void> {
     return this.isOpen ? this.close() : this.open(options);
   }
 
@@ -168,8 +168,8 @@ export class PopupPickerController {
     this.popupEl.style.opacity = '0';
 
     // Calculate position and add to DOM
-    await this.setPosition();
     this.options.rootElement.appendChild(this.popupEl);
+    await this.setPosition();
 
     // Reset to the initial category and state
     this.picker.reset(false);
