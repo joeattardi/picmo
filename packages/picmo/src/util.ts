@@ -71,6 +71,16 @@ export function animate(element: HTMLElement, keyframes: Keyframe[] | PropertyIn
     return element.animate(keyframes, options).finished;
   }
 
+  // If animation isn't enabled or supported, find the final style state and
+  // apply it directly.
+  const propertyIndex = options.direction === 'normal' ? 1 : 0;
+  const finalState = Object.entries(keyframes).reduce((result, [key, values]) => {
+    return {
+      ...result,
+      [key]: values[propertyIndex]
+    }
+  }, {});
+  Object.assign(element.style, finalState);
   return Promise.resolve();
 }
 

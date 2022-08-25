@@ -162,10 +162,20 @@ export class PopupPickerController {
     }
 
     await this.initiateOpenStateChange(true);
-    this.options.rootElement.appendChild(this.popupEl);
-    await this.setPosition();
-    this.picker.reset();
 
+    // Picker must be in the DOM in order to find the
+    // Hide it with opacity until it's ready to show.
+    this.popupEl.style.opacity = '0';
+
+    // Calculate position and add to DOM
+    await this.setPosition();
+    this.options.rootElement.appendChild(this.popupEl);
+
+    // Reset to the initial category and state
+    this.picker.reset(false);
+
+    // Picker is positioned and scrolled. 
+    // Now we can show it with the animation.
     await this.animatePopup(true);
     await this.animateCloseButton(true);
     this.picker.setInitialFocus();
@@ -247,7 +257,7 @@ export class PopupPickerController {
 
   private animatePopup(openState: boolean) {
     return animate(
-      this.picker.el,
+      this.popupEl,
       {
         opacity: [0, 1],
         transform: ['scale(0.9)', 'scale(1)']

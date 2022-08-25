@@ -3,7 +3,7 @@ import { createPopup } from './src/index';
 const trigger = document.querySelector('#trigger');
 
 const picker = createPopup({}, {
-  position: 'right-end'
+  position: 'bottom-end'
 });
 
 trigger.addEventListener('click', () => {

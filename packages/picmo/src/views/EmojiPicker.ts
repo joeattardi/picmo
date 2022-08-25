@@ -368,9 +368,9 @@ export class EmojiPicker extends View {
   /**
    * Resets the picker to its default, "inactive" state.
    */
-  reset() {
+  reset(performFocus = true) {
     if (this.pickerReady) {
-      this.emojiArea.reset();
+      this.emojiArea.reset(performFocus);
       this.showContent(this.emojiArea);
     }
 
