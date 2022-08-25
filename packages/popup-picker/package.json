@@ -44,7 +44,6 @@
     "cssnano": "^5.1.13",
     "eslint": "^8.22.0",
     "identity-obj-proxy": "^3.0.0",
-    "install": "^0.13.0",
     "jest": "^28.1.3",
     "jest-environment-jsdom": "^28.1.3",
     "jest-raw-loader": "^1.0.1",
