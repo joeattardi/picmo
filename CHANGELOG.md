@@ -2,6 +2,14 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.6.1] - 2022-08-26
+
+- Fixed some invalid CSS properties.
+- [`@picmo`] Click event propagation is stopped when selecting an emoji. This fixes an issue where the picker would close a popup when selecting an emoji from the recents category, if `hideOnEmojiSelect` is set to `false`.
+- [`@picmo/popup-picker`] Fixed positioning/focus issues when opening a popup.
+- [`@picmo/popup-picker`] Fixed animation order to prevent an incorrectly positioned picker from appearing momentarily before "jumping" to the final location and animating.
+- [`@picmo/popup-picker`] Fixed type of `options` parameter on the `toggle` method to be optional as documented.
+
 ## [5.6.0] - 2022-08-22
 
 - [`picmo`] Added ability to update certain picker options after creation.
