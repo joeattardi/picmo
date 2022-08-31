@@ -24,6 +24,8 @@ export type EmojiRecord = {
   version?: number;
 }
 
+export type EmojiExtra = Record<string, Partial<EmojiRecord>>;
+
 export type EmojiSelection = {
   url?: string;
   hexcode?: string;
@@ -67,6 +69,7 @@ export type PickerOptions = {
   emojiSize: string;
   emojisPerRow: number;
   emojiVersion: number | 'auto';
+  extraData?: EmojiExtra;
   i18n: Dictionary;
   initialCategory?: CategoryKey;
   initialEmoji?: string;

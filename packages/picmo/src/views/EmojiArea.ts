@@ -160,7 +160,8 @@ export class EmojiArea extends View {
       showVariants: true,
       lazyLoader: this.lazyLoader,
       emojiVersion: this.emojiVersion,
-      provider: this.options.recentsProvider
+      provider: this.options.recentsProvider,
+      extraData: this.options.extraData
     });
   }
 

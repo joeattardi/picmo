@@ -1,6 +1,7 @@
 import { GroupMessage, Emoji, Locale } from 'emojibase';
-import { PickerOptions, EmojiRecord, Category, CategoryKey } from '../types';
+import { PickerOptions, EmojiRecord, Category, CategoryKey, EmojiExtra } from '../types';
 import { applyRules } from '../rules';
+import { applyExtraData } from '../extra';
 import { queryMatches, getEmojiRecord, DataStore } from './DataStore';
 
 // Base database name. It will have the locale appended to it.
@@ -206,7 +207,7 @@ export class IndexedDbStore extends DataStore {
    * @param emojiVersion the maximum version for returned emojis
    * @returns a Promise that resolves to an array of the EmojiRecord data
    */
-  async getEmojis(category: Category, emojiVersion: number): Promise<EmojiRecord[]> {
+  async getEmojis(category: Category, emojiVersion: number, extraData?: EmojiExtra): Promise<EmojiRecord[]> {
     const transaction = this.db.transaction('emoji', 'readonly');
     const emojiStore = transaction.objectStore('emoji');
     const groupsIndex = emojiStore.index('category');
@@ -221,7 +222,8 @@ export class IndexedDbStore extends DataStore {
 
         return 0;
       })
-      .map(getEmojiRecord);
+      .map(getEmojiRecord)
+      .map((e: EmojiRecord) => applyExtraData(e, extraData));
 
     return applyRules(records, emojiVersion);
   }
@@ -239,7 +241,8 @@ export class IndexedDbStore extends DataStore {
     query: string,
     customEmojis: EmojiRecord[],
     emojiVersion: number,
-    categories: Category[]
+    categories: Category[],
+    extraData?: EmojiExtra
   ): Promise<EmojiRecord[]> {
     const results: EmojiRecord[] = [];
 
@@ -260,7 +263,7 @@ export class IndexedDbStore extends DataStore {
           ]);
         }
 
-        const emoji = cursor.value as Emoji;
+        const emoji = applyExtraData(cursor.value, extraData) as Emoji;
         if (queryMatches(emoji, query, categories) && emoji.version <= emojiVersion) {
           results.push(getEmojiRecord(emoji));
         }

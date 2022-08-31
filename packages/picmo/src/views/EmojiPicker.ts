@@ -179,7 +179,8 @@ export class EmojiPicker extends View {
     if (this.options.showSearch) {
       this.search = this.viewFactory.create(Search, {
         categories: this.categories,
-        emojiVersion: this.emojiVersion
+        emojiVersion: this.emojiVersion,
+        extraData: this.options.extraData
       });
     }
 
