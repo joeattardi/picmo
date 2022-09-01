@@ -2,6 +2,11 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.6.2] - 2022-09-01
+
+- [`@picmo/popup-picker`] Fixed peer dependency version for `picmo`.
+- [`@picmo/renderer-twemoji`] Fixed peer dependency version for `picmo`.
+
 ## [5.6.1] - 2022-08-26
 
 - Fixed some invalid CSS properties.
