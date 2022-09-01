@@ -7,14 +7,13 @@ import { ErrorMessage } from './ErrorMessage';
 
 import { debounce, getPrefixedClasses } from '../util';
 import { LazyLoader } from '../LazyLoader';
-import { Category, EmojiExtra } from '../types';
+import { Category } from '../types';
 
 import { clearSearchButtonTemplate, searchTemplate } from './Search.template';
 
 type SearchOptions = {
   categories: Category[];
   emojiVersion: number;
-  extraData?: EmojiExtra;
 };
 
 const classes = getPrefixedClasses(
@@ -29,7 +28,6 @@ const classes = getPrefixedClasses(
 export class Search extends View {
   private categories: Category[];
   private emojiVersion: number;
-  private extraData?: EmojiExtra;
 
   private searchIcon: Element;
   private clearSearchButton: HTMLButtonElement;
@@ -39,12 +37,11 @@ export class Search extends View {
 
   searchField: HTMLInputElement;
 
-  constructor({ categories, emojiVersion, extraData }: SearchOptions) {
+  constructor({ categories, emojiVersion }: SearchOptions) {
     super({ template: searchTemplate, classes });
 
     this.categories = categories.filter((category: Category) => category.key !== 'recents');
     this.emojiVersion = emojiVersion;
-    this.extraData = extraData;
 
     this.search = debounce(this.search.bind(this), 100);
   }
@@ -162,8 +159,7 @@ export class Search extends View {
         this.searchField.value,
         this.customEmojis, 
         this.emojiVersion,
-        this.categories,
-        this.extraData
+        this.categories
       );
 
       this.events.emit('preview:hide');

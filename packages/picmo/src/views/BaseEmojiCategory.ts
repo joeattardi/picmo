@@ -1,7 +1,7 @@
 import { View } from './view';
 import { Template } from '../Template';
 import { EmojiContainer } from './EmojiContainer';
-import { Category, EmojiExtra, EmojiFocusTarget } from '../types';
+import { Category, EmojiFocusTarget } from '../types';
 import { LazyLoader } from '../LazyLoader';
 import { getPrefixedClasses } from '../util';
 
@@ -24,7 +24,6 @@ export abstract class BaseEmojiCategory extends View {
   protected showVariants: boolean;
   protected lazyLoader?: LazyLoader;
   protected emojiContainer: EmojiContainer;
-  protected extraData?: EmojiExtra;
 
   protected baseUIElements = {
     categoryName: View.byClass(classes.categoryName)

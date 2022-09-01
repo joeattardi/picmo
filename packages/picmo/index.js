@@ -26,11 +26,7 @@ const customEmojis = [
 const picker = createPicker({
   rootElement,
   custom: customEmojis,
-  extraData: {
-    '🎃': {
-      tags: ['pumpkin']
-    }
-  }
+  // emojisPerRow: 5
 });
 
 picker.addEventListener('emoji:select', (selection) => {

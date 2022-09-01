@@ -1,5 +1,5 @@
 import { Emoji, GroupMessage, Locale } from 'emojibase';
-import { PickerOptions, EmojiRecord, Category, EmojiExtra } from '../types';
+import { PickerOptions, EmojiRecord, Category } from '../types';
 import { caseInsensitiveIncludes } from '../util';
 
 export type PopulateOptions = {
@@ -84,6 +84,6 @@ export abstract class DataStore {
   abstract isPopulated(): Promise<boolean>;
   abstract populate(options: PopulateOptions): Promise<void>;
   abstract getCategories(options: PickerOptions): Promise<Category[]>;
-  abstract getEmojis(category: Category, emojiVersion: number, extraData?: EmojiExtra): Promise<EmojiRecord[]>;
-  abstract searchEmojis(query: string, customEmojis: EmojiRecord[], emojiVersion: number, categories: Category[], extraData?: EmojiExtra): Promise<EmojiRecord[]>;
+  abstract getEmojis(category: Category, emojiVersion: number): Promise<EmojiRecord[]>;
+  abstract searchEmojis(query: string, customEmojis: EmojiRecord[], emojiVersion: number, categories: Category[]): Promise<EmojiRecord[]>;
 }

@@ -1,6 +1,6 @@
 import { Locale, Emoji, GroupMessage } from 'emojibase';
 import { Meta, getEmojiRecord, PopulateOptions, DataStore, queryMatches } from './DataStore';
-import { PickerOptions, EmojiExtra, EmojiRecord, Category, CategoryKey } from '../types';
+import { PickerOptions, EmojiRecord, Category, CategoryKey } from '../types';
 
 import { applyRules } from '../rules';
 
@@ -80,7 +80,7 @@ export class InMemoryStore extends DataStore {
       return Promise.resolve(categories);
   }
 
-  getEmojis(category: Category, emojiVersion: number, extraData?: EmojiExtra): Promise<EmojiRecord[]> {
+  getEmojis(category: Category, emojiVersion: number): Promise<EmojiRecord[]> {
     const emojiResults = this.emojis
       .filter(emoji => emoji.group === category.order)
       .filter((e: Emoji) => e.version <= emojiVersion)
@@ -95,7 +95,7 @@ export class InMemoryStore extends DataStore {
     return Promise.resolve(applyRules(emojiResults, emojiVersion));
   }
 
-  searchEmojis(query: string, customEmojis: EmojiRecord[], emojiVersion: number, categories: Category[], extraData?: EmojiExtra): Promise<EmojiRecord[]> {
+  searchEmojis(query: string, customEmojis: EmojiRecord[], emojiVersion: number, categories: Category[]): Promise<EmojiRecord[]> {
     const matchingEmojis = this.emojis.filter(emoji => queryMatches(emoji, query, categories)).map(getEmojiRecord);
     const matchingCustom = customEmojis.filter(emoji => queryMatches(emoji, query, categories));
 
