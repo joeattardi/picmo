@@ -9,6 +9,8 @@ import { Bundle } from './i18n/bundle';
 import { getOptions } from './options';
 import { createStyleInjector } from './injectStyles';
 
+import { EmojiPickerElement } from './elements';
+
 import css from './styles/index.css?inline';
 
 function initData(options: PickerOptions): Promise<DataStore> {
@@ -61,4 +63,14 @@ export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
   const picker = viewFactory.create(EmojiPicker);
   picker.renderSync();
   return picker;
+}
+
+export function createPickerElement(options: Partial<PickerOptions>) {
+  const finalOptions = getOptions(options);
+
+  const emojiDataPromise = initData(finalOptions);
+
+  const pickerElement = new EmojiPickerElement(finalOptions, emojiDataPromise);
+  finalOptions.rootElement.replaceChildren(pickerElement);
+  return pickerElement;
 }

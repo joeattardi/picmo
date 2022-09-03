@@ -1,4 +1,4 @@
-import { createPicker } from './src/index';
+import { createPicker, createPickerElement } from './src/index';
 
 const rootElement = document.querySelector('#picker');
 const selectionEl = document.querySelector('pre');
@@ -22,6 +22,10 @@ const customEmojis = [
     }
   }
 ];
+
+const pickerElement = createPickerElement({
+  rootElement: document.querySelector('#picker-element')
+});
 
 const picker = createPicker({
   rootElement,
