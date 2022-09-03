@@ -70,7 +70,8 @@ export function createPickerElement(options: Partial<PickerOptions>) {
 
   const emojiDataPromise = initData(finalOptions);
 
-  const pickerElement = new EmojiPickerElement(finalOptions, emojiDataPromise);
+  const pickerId = getPickerId();
+  const pickerElement = new EmojiPickerElement(finalOptions, pickerId, emojiDataPromise);
   finalOptions.rootElement.replaceChildren(pickerElement);
   return pickerElement;
 }

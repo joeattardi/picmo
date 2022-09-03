@@ -9,10 +9,13 @@ export class HeaderElement extends LitElement {
   @property({ type: Array })
   categories: Category[];
 
+  @property()
+  pickerId: string;
+
   render() {
     return html`
       <header>
-        <picmo-categories .categories=${this.categories}></picmo-categories>
+        <picmo-categories .pickerId=${this.pickerId} .categories=${this.categories}></picmo-categories>
       </header>
     `;
   } 

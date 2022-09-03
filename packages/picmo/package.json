@@ -33,6 +33,8 @@
   "funding": "https://github.com/sponsors/joeattardi",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.2.0",
+    "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "emojibase": "^6.1.0",
     "lit": "^2.3.1"
   },
