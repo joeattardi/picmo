@@ -1,6 +1,8 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { until } from 'lit/directives/until.js';
 import { contextProvider } from '@lit-labs/context';
+import { LATEST_EMOJI_VERSION } from 'emojibase';
 
 import { i18nContext } from './I18nContext';
 import { DataStore } from '../data/DataStore';
@@ -8,9 +10,12 @@ import { PickerOptions } from '../types';
 
 import { Category } from '../types';
 
+import { determineEmojiVersion } from '../emojiSupport';
 import { lightTheme, darkTheme } from './themes';
 import { Bundle } from '../i18n/bundle';
 import { emojiPickerContext, PickerContextData } from './EmojiPickerContext';
+import { dataContext } from './EmojiDataContext';
+import { optionsContext } from './OptionsContext';
 @customElement('picmo-emoji-picker')
 export class EmojiPickerElement extends LitElement {
   static styles = [
@@ -64,26 +69,41 @@ export class EmojiPickerElement extends LitElement {
   @property({ attribute: false })
   contextData: PickerContextData;
 
+  @contextProvider({ context: dataContext })
+  @property({ attribute: false })
+  emojiData: Promise<DataStore>;
+
+  @contextProvider({ context: optionsContext })
+  @property({ attribute: false })
+  options: PickerOptions;
+
   @state()
   private categories: Category[];
 
-  constructor(private options: PickerOptions, private pickerId: string, private emojiDataPromise: Promise<DataStore>) {
+  constructor(options: PickerOptions, private pickerId: string, emojiDataPromise: Promise<DataStore>) {
     super();
 
     this.bundle = new Bundle(options.i18n);
 
-    this.contextData = {
-      pickerId
+    this.contextData = { 
+      pickerId,
+      emojiVersion: options.emojiVersion === 'auto' ? 
+        determineEmojiVersion() || parseFloat(LATEST_EMOJI_VERSION) :
+        this.options.emojiVersion as number
     };
+    this.options = options;
 
-    this.emojiDataPromise.then(emojiData => {
+    this.emojiData = emojiDataPromise;
+    this.emojiData.then(emojiData => {
       return emojiData.getCategories(this.options);
     }).then(categories => {
       this.categories = categories;
     });
   }
 
-  render() {
+  async renderPicker() {
+    await this.emojiData;
+
     return html`
       <div class="picker lightTheme">
         <picmo-header .pickerId=${this.pickerId} .categories=${this.categories}></picmo-header>
@@ -92,5 +112,9 @@ export class EmojiPickerElement extends LitElement {
         </div>
       </div>
     `;
+  }
+
+  render() {
+    return html`${until(this.renderPicker(), html`<h1>Loading</h1>`)}`;
   } 
 }

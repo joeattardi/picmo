@@ -4,8 +4,13 @@ export const lightTheme = css`
   .lightTheme {
     --background-color: #f9fafb;
     --border-color: #cccccc;
+    --category-name-background-color: #f9fafb;
+    --category-name-text-color: hsl(214, 30%, 50%);
     --category-tab-color: #666;
     --category-tab-highlight-background-color: rgba(0, 0, 0, 0.15);
+    --focus-indicator-background-color: hsl(198, 65%, 85%);
+    --focus-indicator-color: #333333;
+    --hover-background-color: #c7d2fe;
     --search-background-color: #f9fafb;
     --search-focus-background-color: #ffffff;
     --search-icon-color: #999999;

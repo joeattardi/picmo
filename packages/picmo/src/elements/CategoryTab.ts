@@ -59,7 +59,7 @@ export class CategoryTabElement extends Element {
           data-category="${this.category.key}"
           id="${this.pickerId}-category-${this.category.key}"
         >
-          <picmo-icon icon=${categoryIcons[this.category.key]}></picmo-icon>
+          <picmo-icon icon="${categoryIcons[this.category.key]}"></picmo-icon>
         </button>
       </li>
     `;

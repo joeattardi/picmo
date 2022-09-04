@@ -1,8 +1,9 @@
+export { CategoryTabElement } from './CategoryTab';
+export { CategoryTabsElement } from './CategoryTabs';
+export { Emoji } from './Emoji';
+export { EmojiArea } from './EmojiArea';
+export { EmojiCategory } from './EmojiCategory';
 export { EmojiPickerElement } from './EmojiPickerElement';
 export { HeaderElement } from './Header';
-export { CategoryTabsElement } from './CategoryTabs';
-export { CategoryTabElement } from './CategoryTab';
 export { Icon } from './Icon';
-export { EmojiArea } from './EmojiArea';
 export { SearchBar } from './SearchBar';
-export { EmojiCategory } from './EmojiCategory';
