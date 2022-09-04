@@ -1,16 +1,15 @@
-import { LitElement, html, css } from 'lit';
+import { html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { Category } from '../types';
 
-import { categoryIcons } from '../icons';
+import { categoryIcons } from './icons';
+
+import { Element } from './Element';
 
 @customElement('picmo-category-tab')
-export class CategoryTabElement extends LitElement {
+export class CategoryTabElement extends Element {
   @property()
   category: Category;
-
-  @property()
-  pickerId: string;
 
   static styles = css`
     .categoryTab {
@@ -56,6 +55,7 @@ export class CategoryTabElement extends LitElement {
           class="categoryButton"
           tabindex="-1"
           type="button"
+          title="${this.i18n.get(`categories.${this.category.key}`, this.category.message || this.category.key)}"
           data-category="${this.category.key}"
           id="${this.pickerId}-category-${this.category.key}"
         >

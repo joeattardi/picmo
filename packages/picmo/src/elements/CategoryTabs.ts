@@ -39,7 +39,7 @@ export class CategoryTabsElement extends LitElement {
       <div class="container">
         <ul role="tablist" class="categoryButtons">
           ${this.categories?.map(category => 
-            html`<picmo-category-tab .pickerId=${this.pickerId} .category=${category}></picmo-category>`
+            html`<picmo-category-tab .category=${category}></picmo-category>`
           )}
         </ul>
       </div>

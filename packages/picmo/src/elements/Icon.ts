@@ -3,7 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 
 import { icon, IconName } from '@fortawesome/fontawesome-svg-core';
 
-import { iconStyles } from '../icons';
+import { iconStyles } from './icons';
 
 @customElement('picmo-icon')
 export class Icon extends LitElement {

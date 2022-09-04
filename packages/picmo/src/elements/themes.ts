@@ -6,6 +6,9 @@ export const lightTheme = css`
     --border-color: #cccccc;
     --category-tab-color: #666;
     --category-tab-highlight-background-color: rgba(0, 0, 0, 0.15);
+    --search-background-color: #f9fafb;
+    --secondary-background-color: #e2e8f0;
+    --text-color: #000000;
   }
 `;
 

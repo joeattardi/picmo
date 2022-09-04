@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { Category } from '../types';
 
@@ -12,9 +12,21 @@ export class HeaderElement extends LitElement {
   @property()
   pickerId: string;
 
+  static styles = css`
+    .header {
+      background-color: var(--secondary-background-color);
+      padding-top: 8px;
+      padding-bottom: 8px;
+      display: grid;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-color);
+    }
+  `;
+
   render() {
     return html`
-      <header>
+      <header class="header">
+        <picmo-search-bar></picmo-search-bar>
         <picmo-categories .pickerId=${this.pickerId} .categories=${this.categories}></picmo-categories>
       </header>
     `;
