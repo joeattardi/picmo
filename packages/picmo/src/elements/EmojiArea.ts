@@ -15,6 +15,20 @@ export class EmojiArea extends LitElement {
       scrollbar-color: var(--scrollbar-color) var(--scrollbar-background-color);
       scrollbar-width: thin;
     }
+
+    .emojiArea::-webkit-scrollbar {
+      background: var(--scrollbar-background-color);
+      width: 1.1em;
+    }
+
+    .emojiArea::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-color);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      background-clip: padding-box;
+      height: 1em;
+      border-radius: 1em
+    }
   `;
 
   render() {

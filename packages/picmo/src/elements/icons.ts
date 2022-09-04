@@ -11,11 +11,13 @@ import {
   faMugSaucer,
   faPlane,
   faRobot,
+  faMagnifyingGlass,
   faTree,
-  faUsers
+  faUsers,
+  faXmark
 } from '@fortawesome/free-solid-svg-icons';
 
-import { CategoryKey } from './types';
+import { CategoryKey } from '../types';
 
 config.autoAddCss = false;
 
@@ -29,8 +31,10 @@ library.add(
   faMugSaucer,
   faPlane,
   faRobot,
+  faMagnifyingGlass,
   faTree,
-  faUsers
+  faUsers,
+  faXmark
 );
 
 const iconCss = dom.css();

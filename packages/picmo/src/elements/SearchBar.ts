@@ -1,5 +1,5 @@
 import { css, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 
 import { Element } from './Element';
 
@@ -26,12 +26,83 @@ export class SearchBar extends Element {
       padding: 0.5em 2.25em 0.5em 0.5em;
       width: 100%;
     }
+
+    .searchField:focus {
+      background: var(--search-focus-background-color);
+    }
+
+    .searchField::placeholder {
+      color: var(--search-placeholder-color);
+    }
+
+    .searchAccessory {
+      color: var(--search-icon-color);
+      height: 100%;
+      position: absolute;
+      right: 1em;
+      top: 0;
+      width: 1.25rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .clearSearchButton {
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--search-icon-color);
+      font-size: 1em;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+    }
   `;
+
+  @property({ attribute: false })
+  private searchText = '';
+
+  private onSearchInput(event: InputEvent) {
+    const input = event.target as HTMLInputElement;
+    this.searchText = input.value;
+  }
+
+  private onSearchKeyDown(event: KeyboardEvent) {
+    if (event.key === 'Escape') {
+      this.clearSearch();
+    }
+  }
+
+  private clearSearch() {
+    this.searchText = '';
+  }
+
+  private getSearchAccessory() {
+    if (this.searchText) {
+      return html`
+        <button 
+          title="${this.i18n.get('search.clear')}" 
+          class="clearSearchButton"
+          @click="${this.clearSearch}"
+        >
+          <picmo-icon icon="xmark"></picmo-icon>
+        </button>
+      `
+    }
+
+    return html`<picmo-icon icon="magnifying-glass"></picmo-icon>`;
+  }
 
   render() {
     return html`
       <div class="searchContainer">
-        <input class="searchField" placeholder=${this.i18n.get('search')}>
+        <input 
+          class="searchField" 
+          @input="${this.onSearchInput}"
+          @keydown="${this.onSearchKeyDown}"
+          placeholder=${this.i18n.get('search')}
+          .value="${this.searchText}"
+        >
+        <span class="searchAccessory">${this.getSearchAccessory()}</span>
       </div>
     `;
   }
