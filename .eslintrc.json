@@ -35,6 +35,7 @@
   ],
   "ignorePatterns": [
     "webpack.*.js",
-    "**/scripts/*.js"
+    "**/scripts/*.js",
+    "postcss.config.cjs"
   ]
 }
