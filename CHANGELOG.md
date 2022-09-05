@@ -2,6 +2,10 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.6.3] - 2022-09-05
+
+- [`@picmo/popup-picker`] Fixed close button not working under some circumstances.
+
 ## [5.6.2] - 2022-09-01
 
 - [`@picmo/popup-picker`] Fixed peer dependency version for `picmo`.

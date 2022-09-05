@@ -56,6 +56,9 @@ export class PopupPickerController {
       this.closeButton.type = 'button';
       this.closeButton.classList.add(classes.closeButton);
       this.closeButton.innerHTML = closeIcon;
+      this.closeButton.addEventListener('click', () => {
+        this.close();
+      });
       this.popupEl.appendChild(this.closeButton);
     }
 
