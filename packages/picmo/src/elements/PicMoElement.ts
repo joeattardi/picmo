@@ -1,5 +1,5 @@
 import { LitElement } from 'lit';
-import { contextProvided } from '@lit-labs/context';
+import { ContextConsumer, contextProvided } from '@lit-labs/context';
 import { state } from 'lit/decorators.js';
 
 import { i18nContext } from './I18nContext';
@@ -11,7 +11,7 @@ import { DataStore } from '../data/DataStore';
 import { optionsContext } from './OptionsContext';
 import { PickerOptions } from '../types';
 
-export class Element extends LitElement {
+export class PicMoElement extends LitElement {
   @contextProvided({ context: i18nContext })
   @state()
   i18n: Bundle;

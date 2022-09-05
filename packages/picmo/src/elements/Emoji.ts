@@ -2,10 +2,10 @@ import { html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { EmojiRecord } from '../types';
 
-import { Element } from './Element';
+import { PicMoElement } from './PicMoElement';
 
 @customElement('picmo-emoji')
-export class Emoji extends Element {
+export class Emoji extends PicMoElement {
   static styles = css`
     :host {
       width: 100%;
@@ -42,7 +42,11 @@ export class Emoji extends Element {
   @property()
   emoji: EmojiRecord;
 
+  content: Element;
+
   render() {
+    this.content = this.options.renderer.doRender(this.emoji);
+
     return html`
       <button
         type="button"
@@ -50,7 +54,7 @@ export class Emoji extends Element {
         title="${this.emoji.label}"
         data-emoji="${this.emoji.emoji}"
         tabindex="-1">
-        ${this.options.renderer.doRender(this.emoji)}
+        ${this.content}
       </button>
     `;
   }

@@ -16,6 +16,8 @@ export const lightTheme = css`
     --search-icon-color: #999999;
     --search-placeholder-color: #71717a;
     --secondary-background-color: #e2e8f0;
+    --tag-background-color: rgba(162, 190, 245, 0.3);
+    --preview-background-color: var(--secondary-background-color);
     --text-color: #000000;
   }
 `;

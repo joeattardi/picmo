@@ -7,3 +7,4 @@ export { EmojiPickerElement } from './EmojiPickerElement';
 export { HeaderElement } from './Header';
 export { Icon } from './Icon';
 export { SearchBar } from './SearchBar';
+export { Preview } from './Preview';

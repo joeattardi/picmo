@@ -1,10 +1,10 @@
 import { css, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 
-import { Element } from './Element';
+import { PicMoElement } from './PicMoElement';
 
 @customElement('picmo-search-bar')
-export class SearchBar extends Element {
+export class SearchBar extends PicMoElement {
   static styles = css`
     .searchContainer {
       display: flex;

@@ -4,10 +4,10 @@ import { Category } from '../types';
 
 import { categoryIcons } from './icons';
 
-import { Element } from './Element';
+import { PicMoElement } from './PicMoElement';
 
 @customElement('picmo-category-tab')
-export class CategoryTabElement extends Element {
+export class CategoryTabElement extends PicMoElement {
   @property()
   category: Category;
 

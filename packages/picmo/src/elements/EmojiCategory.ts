@@ -1,15 +1,17 @@
-import { html, css } from 'lit';
+import { html, css, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { until } from 'lit/directives/until.js';
 
 import { Category, EmojiRecord } from '../types';
 import { categoryIcons } from './icons';
 
-import { Element } from './Element';
+import { PicMoElement } from './PicMoElement';
 import { Emoji } from './Emoji';
 
+import { getEmojiForEvent } from '../util';
+
 @customElement('picmo-emoji-category')
-export class EmojiCategory extends Element {
+export class EmojiCategory extends PicMoElement {
   static styles = css`
     .emojiCategory {
       position: relative;
@@ -52,13 +54,37 @@ export class EmojiCategory extends Element {
   @state()
   private emojis: EmojiRecord[];
 
-  async renderEmojis() {
-    if (!this.emojis) {
-      const dataStore = await this.emojiData;
-      this.emojis = await dataStore.getEmojis(this.category, this.emojiVersion);
-    }
+  connectedCallback() {
+    super.connectedCallback();
+    this.emojiData.getEmojis(this.category, this.emojiVersion).then(emojis => this.emojis = emojis);
+  }
 
-    return this.emojis.map(emoji => html`<picmo-emoji .emoji=${emoji}></picmo-emoji>`);
+  private onHoverEmoji(event) {
+    if (event.target instanceof Emoji) {
+      const target = event.target as Emoji;
+      if (target.emoji) {
+        const event = new CustomEvent('preview', {
+          composed: true,
+          detail: {
+            emoji: target.emoji,
+            content: target.content?.cloneNode(true)
+          }
+        });
+        this.dispatchEvent(event);
+      }
+    }
+  }
+
+  private clearPreview() {
+    const event = new CustomEvent('preview', {
+      composed: true,
+      detail: null
+    });
+    this.dispatchEvent(event);
+  }
+
+  private renderEmojis() {
+    return this.emojis ? this.emojis.map(emoji => html`<picmo-emoji .emoji=${emoji}></picmo-emoji>`) : nothing;
   }
 
   render() {
@@ -68,8 +94,8 @@ export class EmojiCategory extends Element {
           <picmo-icon fixedWidth icon="${categoryIcons[this.category.key]}"></picmo-icon>
           ${this.i18n.get(`categories.${this.category.key}`)}
         </h3>
-        <div class="emojis">
-          ${until(this.renderEmojis())}
+        <div class="emojis" @mouseover=${this.onHoverEmoji} @mouseout=${this.clearPreview}>
+          ${this.renderEmojis()}
         </div>
       </div>
     `;
