@@ -13,6 +13,12 @@ export class Icon extends LitElement {
   @property({ type: Boolean })
   fixedWidth = false;
 
+  @property({ type: String })
+  size;
+
+  @property({ type: String })
+  animation;
+
   static styles = [
     iconStyles
   ];
@@ -22,6 +28,14 @@ export class Icon extends LitElement {
 
     if (this.fixedWidth) {
       iconNode.classList.add('fa-fw');
+    }
+
+    if (this.size) {
+      iconNode.classList.add(`fa-${this.size}`);
+    }
+
+    if (this.animation) {
+      iconNode.classList.add(`fa-${this.animation}`);
     }
 
     return iconNode;

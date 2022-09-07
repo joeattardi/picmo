@@ -146,7 +146,7 @@ export class EmojiPickerElement extends LitElement {
   private renderSearchResults() {
     return this.searchResults?.length ?
       html`<picmo-emojis .emojis=${this.searchResults}></picmo-emojis>` :
-      html`<h1>Not found</h1>`;
+      html`<picmo-search-not-found></picmo-search-not-found>`;
   }
 
   private renderEmojiArea() {

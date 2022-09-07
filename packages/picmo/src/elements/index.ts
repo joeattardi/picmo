@@ -9,3 +9,4 @@ export { HeaderElement } from './Header';
 export { Icon } from './Icon';
 export { Preview } from './Preview';
 export { SearchBar } from './SearchBar';
+export { SearchNotFound } from './SearchNotFound';

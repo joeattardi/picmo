@@ -16,6 +16,6 @@ export default {
   'retry': 'Try again',
   'search.clear': 'Clear search',
   'search.error': 'Failed to search emojis',
-  'search.notFound': 'No results found',
+  'search.notFound': 'No emojis found',
   'search': 'Search emojis...'
 };
