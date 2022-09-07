@@ -33,7 +33,7 @@ export class EmojiArea extends LitElement {
 
   render() {
     return html`
-      <div class="emojiArea">
+      <div class="emojiArea" >
         <slot></slot>
       </div>
     `

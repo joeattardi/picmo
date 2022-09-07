@@ -1,7 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { cache } from 'lit/directives/cache.js';
-// import { until } from 'lit/directives/until.js';
+
 import { contextProvider } from '@lit-labs/context';
 import { LATEST_EMOJI_VERSION } from 'emojibase';
 
@@ -65,6 +65,8 @@ export class EmojiPickerElement extends LitElement {
         overflow: hidden;
         position: relative;
         width: var(--picker-width);
+        display: grid;
+        gap: 8px;
       }
 
       .picker > * {
@@ -123,6 +125,16 @@ export class EmojiPickerElement extends LitElement {
     });
   }
 
+  private async selectEmoji(event) {
+    this.dispatchEvent(new CustomEvent('emoji:select', {
+      bubbles: true,
+      composed: true,
+      detail: await this.options.renderer.doEmit(event.detail)
+    }));
+
+    // TODO variant popup
+  }
+
   private updatePreview(event) {
     this.currentPreview = event.detail;
   }
@@ -165,7 +177,7 @@ export class EmojiPickerElement extends LitElement {
           @search=${this.onSearch}
         ></picmo-header>
         <div class="content">
-          <picmo-emoji-area @preview=${this.updatePreview}>
+          <picmo-emoji-area @preview=${this.updatePreview} @select=${this.selectEmoji}>
             ${this.renderContent()}
           </picmo-emoji-area>
         </div>

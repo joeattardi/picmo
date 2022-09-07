@@ -27,6 +27,10 @@ const pickerElement = createPickerElement({
   rootElement: document.querySelector('#picker-element')
 });
 
+pickerElement.addEventListener('emoji:select', event => {
+  selectionEl.textContent = JSON.stringify(event.detail, null, 2);
+});
+
 const picker = createPicker({
   rootElement,
   custom: customEmojis,

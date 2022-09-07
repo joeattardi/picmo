@@ -48,9 +48,22 @@ export class Emojis extends LitElement {
     this.dispatchEvent(event);
   }
 
+  private handleClick(event) {
+    if (event.target instanceof Emoji) {
+      const target = event.target as Emoji;
+      if (target.emoji) {
+        this.dispatchEvent(new CustomEvent('select', {
+          composed: true,
+          bubbles: true,
+          detail: target.emoji
+        }));
+      }
+    }
+  }
+
   render() {
     return html`
-        <div class="emojis" @mouseover=${this.onHoverEmoji} @mouseout=${this.clearPreview}>
+        <div class="emojis" @mouseover=${this.onHoverEmoji} @mouseout=${this.clearPreview} @click=${this.handleClick}>
           ${this.emojis?.map(emoji => html`<picmo-emoji .emoji=${emoji}></picmo-emoji>`)}
         </div>`;
   }
