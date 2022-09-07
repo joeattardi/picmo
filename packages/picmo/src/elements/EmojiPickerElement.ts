@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { until } from 'lit/directives/until.js';
+import { cache } from 'lit/directives/cache.js';
+// import { until } from 'lit/directives/until.js';
 import { contextProvider } from '@lit-labs/context';
 import { LATEST_EMOJI_VERSION } from 'emojibase';
 
@@ -16,6 +17,7 @@ import { Bundle } from '../i18n/bundle';
 import { emojiPickerContext, PickerContextData } from './EmojiPickerContext';
 import { dataContext } from './EmojiDataContext';
 import { optionsContext } from './OptionsContext';
+import { SearchEvent } from './events';
 
 interface PreviewData {
   emoji: EmojiRecord;
@@ -93,7 +95,14 @@ export class EmojiPickerElement extends LitElement {
   @state()
   private currentPreview: PreviewData;
 
-  constructor(options: PickerOptions, private pickerId: string, emojiDataPromise: Promise<DataStore>) {
+  @state()
+  private searchResults: EmojiRecord[] | null = null;
+
+  constructor(
+    options: PickerOptions, 
+    pickerId: string,
+    private customEmojis: EmojiRecord[],
+    emojiDataPromise: Promise<DataStore>) {
     super();
 
     this.bundle = new Bundle(options.i18n);
@@ -118,15 +127,47 @@ export class EmojiPickerElement extends LitElement {
     this.currentPreview = event.detail;
   }
 
-  renderPicker() {
+  private async onSearch(event: SearchEvent) {
+    const searchQuery = event.detail;
+
+    if (!searchQuery) {
+      this.searchResults = null;
+      return;
+    }
+
+    this.searchResults = await this.emojiData.searchEmojis(
+      searchQuery,
+      this.customEmojis,
+      this.contextData.emojiVersion,
+      this.categories
+    );
+  }
+
+  private renderSearchResults() {
+    return this.searchResults?.length ?
+      html`<picmo-emojis .emojis=${this.searchResults}></picmo-emojis>` :
+      html`<h1>Not found</h1>`;
+  }
+
+  private renderEmojiArea() {
+    return this.categories?.map(category => html`<picmo-emoji-category .category=${category}></picmo-emoji-category>`);
+  }
+
+  private renderContent() {
+    return cache(this.searchResults ? this.renderSearchResults() : this.renderEmojiArea());
+  }
+
+  private renderPicker() {
     return html`
       <div class="picker lightTheme">
-        <picmo-header .pickerId=${this.pickerId} .categories=${this.categories}></picmo-header>
+        <picmo-header 
+          .categories=${this.categories}
+          @search=${this.onSearch}
+        ></picmo-header>
         <div class="content">
-          <picmo-emoji-area
-            .categories=${this.categories}
-            @preview=${this.updatePreview}
-          ></picmo-emoji-area>
+          <picmo-emoji-area @preview=${this.updatePreview}>
+            ${this.renderContent()}
+          </picmo-emoji-area>
         </div>
         <picmo-preview .preview=${this.currentPreview}></picmo-preview>
       </div>

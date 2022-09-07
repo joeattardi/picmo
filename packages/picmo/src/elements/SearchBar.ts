@@ -1,5 +1,6 @@
 import { css, html } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
+import { EmojiRecord } from '../types';
 
 import { PicMoElement } from './PicMoElement';
 
@@ -61,9 +62,17 @@ export class SearchBar extends PicMoElement {
   @property({ attribute: false })
   private searchText = '';
 
-  private onSearchInput(event: InputEvent) {
+  private async onSearchInput(event: InputEvent) {
     const input = event.target as HTMLInputElement;
-    this.searchText = input.value;
+    this.search(input.value);
+  }
+
+  private search(searchText) {
+    this.searchText = searchText;
+    this.dispatchEvent(new CustomEvent('search', {
+      composed: true,
+      detail: this.searchText
+    }));
   }
 
   private onSearchKeyDown(event: KeyboardEvent) {
@@ -73,7 +82,7 @@ export class SearchBar extends PicMoElement {
   }
 
   private clearSearch() {
-    this.searchText = '';
+    this.search('');
   }
 
   private getSearchAccessory() {

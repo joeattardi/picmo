@@ -2,15 +2,10 @@ import { LitElement, html, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { Category } from '../types';
 
-import { CategoryTabsElement } from './CategoryTabs';
-
 @customElement('picmo-header')
 export class HeaderElement extends LitElement {
   @property({ type: Array })
   categories: Category[];
-
-  @property()
-  pickerId: string;
 
   static styles = css`
     .header {
@@ -27,7 +22,7 @@ export class HeaderElement extends LitElement {
     return html`
       <header class="header">
         <picmo-search-bar></picmo-search-bar>
-        <picmo-categories .pickerId=${this.pickerId} .categories=${this.categories}></picmo-categories>
+        <picmo-categories .categories=${this.categories}></picmo-categories>
       </header>
     `;
   } 

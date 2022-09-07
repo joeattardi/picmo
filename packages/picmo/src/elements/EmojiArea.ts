@@ -34,7 +34,7 @@ export class EmojiArea extends LitElement {
   render() {
     return html`
       <div class="emojiArea">
-        ${this.categories?.map(category => html`<picmo-emoji-category .category=${category}></picmo-emoji-category>`)}
+        <slot></slot>
       </div>
     `
   }

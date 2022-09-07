@@ -31,9 +31,6 @@ export class CategoryTabsElement extends LitElement {
   @property({ type: Array })
   categories: Category[];
 
-  @property()
-  pickerId: string;
-
   render() {
     return html`
       <div class="container">

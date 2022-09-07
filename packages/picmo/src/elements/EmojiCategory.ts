@@ -59,34 +59,6 @@ export class EmojiCategory extends PicMoElement {
     this.emojiData.getEmojis(this.category, this.emojiVersion).then(emojis => this.emojis = emojis);
   }
 
-  private onHoverEmoji(event) {
-    if (event.target instanceof Emoji) {
-      const target = event.target as Emoji;
-      if (target.emoji) {
-        const event = new CustomEvent('preview', {
-          composed: true,
-          detail: {
-            emoji: target.emoji,
-            content: target.content?.cloneNode(true)
-          }
-        });
-        this.dispatchEvent(event);
-      }
-    }
-  }
-
-  private clearPreview() {
-    const event = new CustomEvent('preview', {
-      composed: true,
-      detail: null
-    });
-    this.dispatchEvent(event);
-  }
-
-  private renderEmojis() {
-    return this.emojis ? this.emojis.map(emoji => html`<picmo-emoji .emoji=${emoji}></picmo-emoji>`) : nothing;
-  }
-
   render() {
     return html`
       <section class="emojiCategory" aria-labelledby="${this.pickerId}-category-${this.category.key}">
@@ -94,9 +66,7 @@ export class EmojiCategory extends PicMoElement {
           <picmo-icon fixedWidth icon="${categoryIcons[this.category.key]}"></picmo-icon>
           ${this.i18n.get(`categories.${this.category.key}`)}
         </h3>
-        <div class="emojis" @mouseover=${this.onHoverEmoji} @mouseout=${this.clearPreview}>
-          ${this.renderEmojis()}
-        </div>
+        <picmo-emojis .emojis=${this.emojis}></picmo-emojis>
       </div>
     `;
   }

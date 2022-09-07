@@ -69,11 +69,15 @@ export function createPickerElement(options: Partial<PickerOptions>) {
   const finalOptions = getOptions(options);
 
   const emojiDataPromise = initData(finalOptions);
-
-  const i18n = new Bundle(finalOptions.i18n);
   const pickerId = getPickerId();
 
-  const pickerElement = new EmojiPickerElement(finalOptions, pickerId, emojiDataPromise);
+  const customEmojis: EmojiRecord[] = (finalOptions?.custom || []).map((custom: CustomEmoji) => ({
+    ...custom,
+    custom: true,
+    tags: ['custom', ...(custom.tags || [])]
+  }));
+
+  const pickerElement = new EmojiPickerElement(finalOptions, pickerId, customEmojis, emojiDataPromise);
   finalOptions.rootElement.replaceChildren(pickerElement);
   return pickerElement;
 }
