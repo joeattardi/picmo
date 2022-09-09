@@ -65,6 +65,19 @@ const picker = createPopup({
 });
 ```
 
+#### Handling a loss of the reference element
+
+The relative positioning of the picker is continuously updated. If the reference element changes position, the picker will move as well to maintain the relative placement.
+
+However, if the reference element is hidden or removed from the DOM, it no longer has any positioning data available. In this instance the picker will lose its relative position and jump to the top left corner of the screen (position (0,0)).
+
+This behavior can be changed with the [`onPositionLost`](../api/popup-picker/types/popup-options#onpositionlost) option. There are four possible values:
+
+- `none`: This is the default behavior. The picker will jump to the top left corner if it has not previously been closed.
+- `close`: The picker will close. It can be reopened again with a new reference element (or fixed position).
+- `destroy`: Used for final cleanup. The picker will close, and immediately be destroyed. It cannot be reopened. 
+- `hold`: The previously known relative position is maintained, and the picker does not move. Once it is closed, however, it will need to be given a new reference element the next time it is opened.
+
 ## Closing popup pickers
 
 A popup picker is closed when one of the following occurs:

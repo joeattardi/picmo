@@ -35,7 +35,7 @@
     "@floating-ui/dom": "^1.0.0"
   },
   "peerDependencies": {
-    "picmo": "^5.6.0"
+    "picmo": "^5.7.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.17.1",

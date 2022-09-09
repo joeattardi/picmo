@@ -31,13 +31,13 @@ export class PopupPickerController {
 
   referenceElement?: HTMLElement;
   triggerElement?: HTMLElement;
+  options: PickerOptions & PopupOptions;
 
   private popupEl: HTMLElement;
   private focusTrap: FocusTrap;
   private positionCleanup: PositionCleanup;
 
   private closeButton: HTMLButtonElement;
-  private options: PickerOptions & PopupOptions;
   private externalEvents = new Events<PopupEvent>();
 
   constructor(pickerOptions: Partial<PickerOptions>, popupOptions: Partial<PopupOptions>) {
@@ -222,6 +222,7 @@ export class PopupPickerController {
   private async setPosition() {
     this.positionCleanup?.();
       this.positionCleanup = await setPosition(
+        this,
         this.popupEl,
         this.referenceElement,
         this.options.position as Position

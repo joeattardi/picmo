@@ -2,6 +2,10 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.7.0] - 2022-09-09
+
+- [`@picmo/popup-picker`] Added a new `onPositionLost` option to configure the behavior of the popup if the reference element is lost.
+
 ## [5.6.3] - 2022-09-05
 
 - [`@picmo/popup-picker`] Fixed close button not working under some circumstances.

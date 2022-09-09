@@ -5,7 +5,8 @@ const defaultOptions: Partial<PopupOptions> = {
   hideOnEmojiSelect: true,
   hideOnEscape: true,
   position: 'auto',
-  showCloseButton: true
+  showCloseButton: true,
+  onPositionLost: 'none'
 };
 
 export function getOptions(options: Partial<PopupOptions> = {}): PopupOptions {
