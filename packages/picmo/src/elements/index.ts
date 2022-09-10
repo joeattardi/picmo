@@ -8,5 +8,6 @@ export { Emojis } from './Emojis';
 export { HeaderElement } from './Header';
 export { Icon } from './Icon';
 export { Preview } from './Preview';
+export { RecentEmojiCategory } from './RecentEmojiCategory'
 export { SearchBar } from './SearchBar';
 export { SearchNotFound } from './SearchNotFound';

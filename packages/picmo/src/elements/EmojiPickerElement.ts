@@ -19,6 +19,9 @@ import { dataContext } from './EmojiDataContext';
 import { optionsContext } from './OptionsContext';
 import { SearchEvent } from './events';
 
+import { AppEvents } from '../AppEvents';
+import { EventBus } from '../EventBus';
+
 interface PreviewData {
   emoji: EmojiRecord;
   content: Element;
@@ -100,6 +103,8 @@ export class EmojiPickerElement extends LitElement {
   @state()
   private searchResults: EmojiRecord[] | null = null;
 
+  private events = new EventBus();
+
   constructor(
     options: PickerOptions, 
     pickerId: string,
@@ -111,6 +116,7 @@ export class EmojiPickerElement extends LitElement {
 
     this.contextData = { 
       pickerId,
+      events: this.events,
       emojiVersion: options.emojiVersion === 'auto' ? 
         determineEmojiVersion() || parseFloat(LATEST_EMOJI_VERSION) :
         this.options.emojiVersion as number
@@ -131,6 +137,9 @@ export class EmojiPickerElement extends LitElement {
       composed: true,
       detail: await this.options.renderer.doEmit(event.detail)
     }));
+
+    this.options.recentsProvider.addOrUpdateRecent(event.detail, this.options.maxRecents);
+    this.events.dispatch('emoji:select', event.detail);
 
     // TODO variant popup
   }
@@ -162,7 +171,11 @@ export class EmojiPickerElement extends LitElement {
   }
 
   private renderEmojiArea() {
-    return this.categories?.map(category => html`<picmo-emoji-category .category=${category}></picmo-emoji-category>`);
+    return this.categories?.map(category =>
+      category.key === 'recents' ?
+        html`<picmo-recent-emojis .category=${category}></picmo-recent-emojis>` :
+        html`<picmo-emoji-category .category=${category}></picmo-emoji-category>`
+    );
   }
 
   private renderContent() {

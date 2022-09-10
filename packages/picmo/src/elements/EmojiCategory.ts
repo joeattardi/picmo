@@ -12,7 +12,7 @@ import { getEmojiForEvent } from '../util';
 
 @customElement('picmo-emoji-category')
 export class EmojiCategory extends PicMoElement {
-  static styles = css`
+  static styles = [css`
     .emojiCategory {
       position: relative;
     }
@@ -46,17 +46,25 @@ export class EmojiCategory extends PicMoElement {
       align-items: center;
       justify-items: center;
     }
-  `;
+  `];
 
   @property()
   category: Category
 
   @state()
-  private emojis: EmojiRecord[];
+  protected emojis: EmojiRecord[];
+
+  async loadEmojis() {
+    this.emojis = await this.emojiData.getEmojis(this.category, this.emojiVersion);
+  }
 
   connectedCallback() {
     super.connectedCallback();
-    this.emojiData.getEmojis(this.category, this.emojiVersion).then(emojis => this.emojis = emojis);
+    this.loadEmojis();
+  }
+
+  renderEmojis() {
+    return html`<picmo-emojis .emojis=${this.emojis}></picmo-emojis>`;
   }
 
   render() {
@@ -66,7 +74,7 @@ export class EmojiCategory extends PicMoElement {
           <picmo-icon fixedWidth icon="${categoryIcons[this.category.key]}"></picmo-icon>
           ${this.i18n.get(`categories.${this.category.key}`)}
         </h3>
-        <picmo-emojis .emojis=${this.emojis}></picmo-emojis>
+        ${this.renderEmojis()}
       </div>
     `;
   }

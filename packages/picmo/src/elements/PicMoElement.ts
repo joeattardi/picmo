@@ -36,4 +36,8 @@ export class PicMoElement extends LitElement {
     return this.contextData.emojiVersion;
   }
 
+  get events() {
+    return this.contextData.events;
+  }
+
 }
