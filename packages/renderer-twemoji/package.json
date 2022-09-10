@@ -1,6 +1,6 @@
 {
   "name": "@picmo/renderer-twemoji",
-  "version": "5.6.1",
+  "version": "5.7.0",
   "description": "Twemoji renderer for PicMo",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -36,7 +36,7 @@
     "twemoji-parser": "^14.0.0"
   },
   "peerDependencies": {
-    "picmo": "^5.5.0"
+    "picmo": "^5.7.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.17.1",

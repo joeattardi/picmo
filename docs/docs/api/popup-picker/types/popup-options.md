@@ -29,6 +29,13 @@ If `true`, the picker will automatically close when an emoji is selected.
 
 If `true`, the picker will close when the Escape key is pressed.
 
+### `onPositionLost`
+
+- **Type** [`PositionLostStrategy`](./position-lost-strategy)
+- **Default**: `none`
+
+Determines how to react when the picker loses its reference element. This typically happens when the reference element is removed from the DOM or is hidden with `display: none`. In either case, the picker loses its relative position (by default). See [`PositionLostStrategy`](./position-lost-strategy) for details of the options.
+
 ### `position`
 
 - **Type**: [`Position`](./position)

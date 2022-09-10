@@ -1,20 +1,20 @@
 import { autoUpdate, ComputePositionConfig, computePosition, Placement, flip, offset, autoPlacement, shift } from '@floating-ui/dom';
-
-import { Position, RelativePosition, FixedPosition } from './types';
+import { PopupPickerController } from './popupPicker';
+import { Position, RelativePosition, FixedPosition, PositionLostStrategy } from './types';
 
 export type PositionCleanup = () => void;
 
-export async function setPosition(picker: HTMLElement, referenceElement: HTMLElement | undefined, position: Position): Promise<PositionCleanup> {
+export async function setPosition(picker: PopupPickerController, pickerElement: HTMLElement, referenceElement: HTMLElement | undefined, position: Position): Promise<PositionCleanup> {
   if (!position) {
     throw new Error('Must provide a positioning option');
   }
 
   return await (typeof position === 'string' ? 
-    setRelativePosition(picker, referenceElement, position) : 
-    setFixedPosition(picker, position));
+    setRelativePosition(picker, pickerElement, referenceElement, position) : 
+    setFixedPosition(pickerElement, position));
 }
 
-async function setRelativePosition(picker: HTMLElement, referenceElement: HTMLElement | undefined, placement: RelativePosition): Promise<PositionCleanup> {
+async function setRelativePosition(picker: PopupPickerController, pickerElement: HTMLElement, referenceElement: HTMLElement | undefined, placement: RelativePosition): Promise<PositionCleanup> {
   if (!referenceElement) {
     throw new Error('Reference element is required for relative positioning');
   }
@@ -40,9 +40,15 @@ async function setRelativePosition(picker: HTMLElement, referenceElement: HTMLEl
     };
   }
 
-  return autoUpdate(referenceElement, picker, async () => { 
-    const { x, y } = await computePosition(referenceElement, picker, config);
-    Object.assign(picker.style, {
+  return autoUpdate(referenceElement, pickerElement, async () => {
+    if (!referenceElement.isConnected || !referenceElement.offsetParent) {
+      if (handlePositionLost(picker)) {
+        return;
+      }
+    }
+
+    const { x, y } = await computePosition(referenceElement, pickerElement, config);
+    Object.assign(pickerElement.style, {
       position: 'absolute',
       left: `${x}px`,
       top: `${y}px`
@@ -59,4 +65,17 @@ function setFixedPosition(picker: HTMLElement, position: FixedPosition): Positio
 
   /* eslint-disable @typescript-eslint/no-empty-function */
   return () => {};
+}
+
+function handlePositionLost(picker: PopupPickerController) {
+  switch (picker.options.onPositionLost) {
+    case 'close':
+      picker.close();
+      return true;
+    case 'destroy':
+      picker.destroy();
+      return true;
+    case 'hold':
+      return true;
+  }
 }

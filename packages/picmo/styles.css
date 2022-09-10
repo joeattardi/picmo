@@ -3,6 +3,6 @@ body {
 }
 
 pre {
-  font-family: Menlo, 'Courier New', monospace;
   min-height: 6em;
+  font-size: 2em;
 }
