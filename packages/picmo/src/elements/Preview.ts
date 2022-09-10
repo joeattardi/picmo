@@ -1,5 +1,5 @@
 import { html, css, nothing } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, state } from 'lit/decorators.js';
 import { EmojiRecord } from '../types';
 
 import { PicMoElement } from './PicMoElement';
@@ -68,8 +68,20 @@ export class Preview extends PicMoElement {
     }
   `;
 
-  @property()
-  preview: { emoji: EmojiRecord, content: Element };
+  @state()
+  preview: { emoji: EmojiRecord, content: Node } | null;
+
+  connectedCallback() {
+    super.connectedCallback();
+
+    this.events.register('preview:show', (emoji, content) => this.preview = { emoji, content: content as Node });
+    this.events.register('preview:clear', () => this.preview = null);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    // TODO remove listener
+  }
 
   renderTags() {
     if (this.preview?.emoji.tags) {

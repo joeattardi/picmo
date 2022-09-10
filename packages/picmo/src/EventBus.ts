@@ -2,7 +2,8 @@ import { EmojiRecord } from './types';
 
 export type Events = {
   'emoji:select': (emoji: EmojiRecord) => void,
-  // 'test:event': never
+  'preview:show': (emoji: EmojiRecord, content: Node) => void,
+  'preview:clear': void
 };
 
 export type EventKey = keyof Events;

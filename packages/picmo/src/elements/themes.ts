@@ -11,13 +11,15 @@ export const lightTheme = css`
     --focus-indicator-background-color: hsl(198, 65%, 85%);
     --focus-indicator-color: #333333;
     --hover-background-color: #c7d2fe;
+    --preview-background-color: var(--secondary-background-color);
+    --scrollbar-background-color: var(--background-color);
+    --scrollbar-color: #aaa;
     --search-background-color: #f9fafb;
     --search-focus-background-color: #ffffff;
     --search-icon-color: #999999;
     --search-placeholder-color: #71717a;
     --secondary-background-color: #e2e8f0;
     --tag-background-color: rgba(162, 190, 245, 0.3);
-    --preview-background-color: var(--secondary-background-color);
     --text-color: #000000;
   }
 `;

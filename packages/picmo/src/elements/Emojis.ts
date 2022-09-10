@@ -4,8 +4,9 @@ import { customElement, state } from 'lit/decorators.js';
 import { EmojiRecord } from '../types';
 import { Emoji } from './Emoji';
 
+import { PicMoElement } from './PicMoElement';
 @customElement('picmo-emojis')
-export class Emojis extends LitElement {
+export class Emojis extends PicMoElement {
   static styles = css`
     .emojis {
       display: grid;
@@ -26,26 +27,13 @@ export class Emojis extends LitElement {
     if (event.target instanceof Emoji) {
       const target = event.target as Emoji;
       if (target.emoji) {
-        const event = new CustomEvent('preview', {
-          composed: true,
-          bubbles: true,
-          detail: {
-            emoji: target.emoji,
-            content: target.content?.cloneNode(true)
-          }
-        });
-        this.dispatchEvent(event);
+        this.events.dispatch('preview:show', target.emoji, target.content.cloneNode(true));
       }
     }
   }
 
   private clearPreview() {
-    const event = new CustomEvent('preview', {
-      composed: true,
-      bubbles: true,
-      detail: null
-    });
-    this.dispatchEvent(event);
+    this.events.dispatch('preview:clear');
   }
 
   private handleClick(event) {

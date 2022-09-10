@@ -19,13 +19,8 @@ import { dataContext } from './EmojiDataContext';
 import { optionsContext } from './OptionsContext';
 import { SearchEvent } from './events';
 
-import { AppEvents } from '../AppEvents';
 import { EventBus } from '../EventBus';
 
-interface PreviewData {
-  emoji: EmojiRecord;
-  content: Element;
-}
 @customElement('picmo-emoji-picker')
 export class EmojiPickerElement extends LitElement {
   static styles = [
@@ -98,9 +93,6 @@ export class EmojiPickerElement extends LitElement {
   private categories: Category[];
 
   @state()
-  private currentPreview: PreviewData;
-
-  @state()
   private searchResults: EmojiRecord[] | null = null;
 
   private events = new EventBus();
@@ -142,10 +134,6 @@ export class EmojiPickerElement extends LitElement {
     this.events.dispatch('emoji:select', event.detail);
 
     // TODO variant popup
-  }
-
-  private updatePreview(event) {
-    this.currentPreview = event.detail;
   }
 
   private async onSearch(event: SearchEvent) {
@@ -190,11 +178,11 @@ export class EmojiPickerElement extends LitElement {
           @search=${this.onSearch}
         ></picmo-header>
         <div class="content">
-          <picmo-emoji-area @preview=${this.updatePreview} @select=${this.selectEmoji}>
+          <picmo-emoji-area @select=${this.selectEmoji}>
             ${this.renderContent()}
           </picmo-emoji-area>
         </div>
-        <picmo-preview .preview=${this.currentPreview}></picmo-preview>
+        <picmo-preview></picmo-preview>
       </div>
     `;
   }
