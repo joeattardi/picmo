@@ -40,11 +40,7 @@ export class Emojis extends PicMoElement {
     if (event.target instanceof Emoji) {
       const target = event.target as Emoji;
       if (target.emoji) {
-        this.dispatchEvent(new CustomEvent('select', {
-          composed: true,
-          bubbles: true,
-          detail: target.emoji
-        }));
+        this.events.dispatch('emoji:select', target.emoji);
       }
     }
   }

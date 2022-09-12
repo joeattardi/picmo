@@ -1,12 +1,9 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { Category } from '../types';
 
 @customElement('picmo-emoji-area')
 export class EmojiArea extends LitElement {
-  @property()
-  private categories: Category[];
-
   static styles = css`
     .emojiArea {
       height: var(--emoji-area-height);

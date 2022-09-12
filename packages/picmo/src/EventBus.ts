@@ -1,34 +1,53 @@
 import { EmojiRecord } from './types';
 
 export type Events = {
-  'emoji:select': (emoji: EmojiRecord) => void,
-  'preview:show': (emoji: EmojiRecord, content: Node) => void,
-  'preview:clear': void
+  'emoji:select': [EmojiRecord];
+  'preview:clear': [];
+  'preview:show': [EmojiRecord, Node];
+  'recents:update': [];
+  search: [string];
 };
 
 export type EventKey = keyof Events;
-type Handler<T extends EventKey> = (...args: Parameters<Events[T]>) => ReturnType<Events[T]>;
+
+type EventBinding<Event extends EventKey> = {
+  context?: any;
+  handler: (...args: Events[Event]) => any;
+  once?: boolean;
+};
 
 export class EventBus {
-  private subscriptions = new Map();
+  private subscriptions = new Map<EventKey, EventBinding<EventKey>[]>();
 
-  private getSubscriptionsFor(event: EventKey) {
-    if (!this.subscriptions.has(event)) {
-      this.subscriptions.set(event, []);
+  private getSubscriptionsFor<Event extends EventKey>(event: EventKey) {
+    let results = this.subscriptions.get(event);
+    if (!results) {
+      results = [];
+      this.subscriptions.set(event, results);
     }
 
-    return this.subscriptions.get(event);
+    return results as EventBinding<Event>[];
   }
 
-  register<T extends EventKey>(event: T, handler: Handler<T>) {
-    const subscriptions = this.getSubscriptionsFor(event);
-    subscriptions.push(handler);
+  register<Event extends EventKey>(event: Event, handler: (...args: Events[Event]) => any, context?: any, once = false) {
+    const subscriptions = this.getSubscriptionsFor<Event>(event);
+    subscriptions.push({
+      context,
+      handler,
+      once
+    } as EventBinding<Event>);
   }
 
-  dispatch<T extends EventKey>(event: T, ...args: Parameters<Events[T]>) {
+  dispatch<Event extends EventKey>(event: Event, ...args: Events[Event]) {
     const subscriptions = this.getSubscriptionsFor(event);
-    subscriptions.forEach(handler => {
-      handler(...args);
+    subscriptions.forEach(subscription => {
+      subscription.handler.apply(subscription.context, args);
+      // TODO: handle once
     });
+  }
+
+  unregister<Event extends EventKey>(event: Event, handler: (...args: Events[Event]) => any) {
+    const subscriptions = this.getSubscriptionsFor(event);
+    this.subscriptions.set(event, subscriptions.filter(h => h.handler !== handler));
   }
 }

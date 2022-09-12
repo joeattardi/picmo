@@ -27,9 +27,12 @@ export class RecentEmojiCategory extends EmojiCategory {
 
   connectedCallback() {
     super.connectedCallback();
-    this.events.register('emoji:select', emoji => {
-      this.loadEmojis();
-    });
+    this.events.register('recents:update', this.loadEmojis, this);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.events.unregister('recents:update', this.loadEmojis);
   }
 
   async loadEmojis() {

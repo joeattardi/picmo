@@ -121,24 +121,25 @@ export class EmojiPickerElement extends LitElement {
     }).then(categories => {
       this.categories = categories;
     });
+
+    this.events.register('search', this.onSearch, this);
+    this.events.register('emoji:select', this.selectEmoji, this);
   }
 
-  private async selectEmoji(event) {
+  private async selectEmoji(emoji: EmojiRecord) {
     this.dispatchEvent(new CustomEvent('emoji:select', {
       bubbles: true,
       composed: true,
-      detail: await this.options.renderer.doEmit(event.detail)
+      detail: await this.options.renderer.doEmit(emoji)
     }));
 
-    this.options.recentsProvider.addOrUpdateRecent(event.detail, this.options.maxRecents);
-    this.events.dispatch('emoji:select', event.detail);
+    this.options.recentsProvider.addOrUpdateRecent(emoji, this.options.maxRecents);
+    this.events.dispatch('recents:update', emoji);
 
     // TODO variant popup
   }
 
-  private async onSearch(event: SearchEvent) {
-    const searchQuery = event.detail;
-
+  private async onSearch(searchQuery: string) {
     if (!searchQuery) {
       this.searchResults = null;
       return;
@@ -173,10 +174,7 @@ export class EmojiPickerElement extends LitElement {
   private renderPicker() {
     return html`
       <div class="picker lightTheme">
-        <picmo-header 
-          .categories=${this.categories}
-          @search=${this.onSearch}
-        ></picmo-header>
+        <picmo-header .categories=${this.categories}></picmo-header>
         <div class="content">
           <picmo-emoji-area @select=${this.selectEmoji}>
             ${this.renderContent()}

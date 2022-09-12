@@ -74,13 +74,23 @@ export class Preview extends PicMoElement {
   connectedCallback() {
     super.connectedCallback();
 
-    this.events.register('preview:show', (emoji, content) => this.preview = { emoji, content: content as Node });
-    this.events.register('preview:clear', () => this.preview = null);
+    this.events.register('preview:show', this.showPreview, this);
+    this.events.register('preview:clear', this.clearPreview, this);
+  }
+
+  showPreview(emoji: EmojiRecord, content: Node) {
+    this.preview = { emoji, content };
+  }
+
+  clearPreview() {
+    this.preview = null;
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    // TODO remove listener
+
+    this.events.unregister('preview:show', this.showPreview);
+    this.events.unregister('preview:clear', this.clearPreview);
   }
 
   renderTags() {

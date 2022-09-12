@@ -69,10 +69,7 @@ export class SearchBar extends PicMoElement {
 
   private search(searchText) {
     this.searchText = searchText;
-    this.dispatchEvent(new CustomEvent('search', {
-      composed: true,
-      detail: this.searchText
-    }));
+    this.events.dispatch('search', this.searchText);
   }
 
   private onSearchKeyDown(event: KeyboardEvent) {
