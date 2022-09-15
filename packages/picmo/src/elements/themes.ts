@@ -11,6 +11,7 @@ export const lightTheme = css`
     --focus-indicator-background-color: hsl(198, 65%, 85%);
     --focus-indicator-color: #333333;
     --hover-background-color: #c7d2fe;
+    --placeholder-background-color: #cccccc;
     --preview-background-color: var(--secondary-background-color);
     --scrollbar-background-color: var(--background-color);
     --scrollbar-color: #aaa;

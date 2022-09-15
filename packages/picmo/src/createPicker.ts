@@ -45,7 +45,7 @@ export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
   const i18n = new Bundle(finalOptions.i18n);
 
   emojiDataPromise.then(emojiData => {
-    events.emit('data:ready', emojiData);
+    // events.emit('data:ready', emojiData);
   }).catch(error => {
     events.emit('error', error);
   });
@@ -68,7 +68,9 @@ export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
 export function createPickerElement(options: Partial<PickerOptions>) {
   const finalOptions = getOptions(options);
 
-  const emojiDataPromise = initData(finalOptions);
+  // const emojiDataPromise = initData(finalOptions);
+  const emojiDataPromise = new Promise(resolve => {});
+
   const pickerId = getPickerId();
 
   const customEmojis: EmojiRecord[] = (finalOptions?.custom || []).map((custom: CustomEmoji) => ({

@@ -7,6 +7,11 @@ import { PicMoElement } from './PicMoElement';
 @customElement('picmo-search-bar')
 export class SearchBar extends PicMoElement {
   static styles = css`
+    .skeleton {
+      padding: 0 8px;
+      height: var(--search-height);
+    }
+
     .searchContainer {
       display: flex;
       height: var(--search-height);
@@ -99,16 +104,24 @@ export class SearchBar extends PicMoElement {
   }
 
   render() {
+    if (this.emojiData) {
+      return html`
+        <div class="searchContainer">
+          <input 
+            class="searchField" 
+            @input="${this.onSearchInput}"
+            @keydown="${this.onSearchKeyDown}"
+            placeholder=${this.i18n.get('search')}
+            .value="${this.searchText}"
+          >
+          <span class="searchAccessory">${this.getSearchAccessory()}</span>
+        </div>
+      `;
+    }
+
     return html`
-      <div class="searchContainer">
-        <input 
-          class="searchField" 
-          @input="${this.onSearchInput}"
-          @keydown="${this.onSearchKeyDown}"
-          placeholder=${this.i18n.get('search')}
-          .value="${this.searchText}"
-        >
-        <span class="searchAccessory">${this.getSearchAccessory()}</span>
+      <div class="skeleton">
+        <picmo-skeleton width="100%" height="28px"></picmo-skeleton>
       </div>
     `;
   }

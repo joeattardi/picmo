@@ -11,3 +11,4 @@ export { Preview } from './Preview';
 export { RecentEmojiCategory } from './RecentEmojiCategory'
 export { SearchBar } from './SearchBar';
 export { SearchNotFound } from './SearchNotFound';
+export { Skeleton } from './Skeleton';

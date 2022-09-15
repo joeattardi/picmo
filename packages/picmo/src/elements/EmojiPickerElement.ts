@@ -134,7 +134,7 @@ export class EmojiPickerElement extends LitElement {
     }));
 
     this.options.recentsProvider.addOrUpdateRecent(emoji, this.options.maxRecents);
-    this.events.dispatch('recents:update', emoji);
+    this.events.dispatch('recents:update');
 
     // TODO variant popup
   }
@@ -186,10 +186,11 @@ export class EmojiPickerElement extends LitElement {
   }
 
   render() {
-    if (this.categories) {
-      return this.renderPicker();
-    }
+    return this.renderPicker();
+    // if (this.categories) {
+    //   return this.renderPicker();
+    // }
 
-    return html`<h1>Loading...</h1>`;
+    // return html`<picmo-skeleton></picmo-skeleton>`;
   } 
 }
