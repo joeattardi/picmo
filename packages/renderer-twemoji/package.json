@@ -1,6 +1,6 @@
 {
   "name": "@picmo/renderer-twemoji",
-  "version": "5.7.0",
+  "version": "5.7.1",
   "description": "Twemoji renderer for PicMo",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
