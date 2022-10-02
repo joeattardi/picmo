@@ -45,7 +45,7 @@ export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
   const i18n = new Bundle(finalOptions.i18n);
 
   emojiDataPromise.then(emojiData => {
-    // events.emit('data:ready', emojiData);
+    events.emit('data:ready', emojiData);
   }).catch(error => {
     events.emit('error', error);
   });
