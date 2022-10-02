@@ -20,7 +20,7 @@ export class PicMoElement extends LitElement {
   @state()
   contextData: PickerContextData;
 
-  @contextProvided({ context: dataContext })
+  @contextProvided({ context: dataContext, subscribe: true })
   @state()
   emojiData: DataStore;
 
@@ -39,5 +39,4 @@ export class PicMoElement extends LitElement {
   get events() {
     return this.contextData.events;
   }
-
 }

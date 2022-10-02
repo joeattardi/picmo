@@ -1,4 +1,4 @@
-import { html, css } from 'lit';
+import { html, css, TemplateResult } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import { Category } from '../types';
@@ -10,11 +10,12 @@ export class CategoryTabsElement extends PicMoElement {
   static styles = css`
     .skeleton {
       height: var(--category-tabs-height);
-      display: flex;
-      flex-direction: row;
+      display: grid;
+      grid-auto-flow: column;
       align-items: center;
-      justify-self: center;
+      justify-items: center;
       width: calc(2rem * var(--category-count, 1));
+      margin: 0 0.25em;
     }
 
     .container {
@@ -60,9 +61,14 @@ export class CategoryTabsElement extends PicMoElement {
       `;
     }
 
+    const categorySkeletons: TemplateResult[] = [];
+    for (let i = 0; i < this.categoryCount; i++) {
+      categorySkeletons.push(html`<picmo-skeleton width="25px" height="25px"></picmo-skeleton>`);
+    }
+
     return html`
       <div class="skeleton" style="width: calc(2rem * ${this.categoryCount});">
-        hi
+        ${categorySkeletons}
       </div>
     `;
   } 

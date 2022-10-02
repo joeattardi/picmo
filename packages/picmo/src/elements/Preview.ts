@@ -94,6 +94,15 @@ export class Preview extends PicMoElement {
   }
 
   renderTags() {
+    if (!this.emojiData) {
+      return html`
+        <ul class="tagList">
+          <picmo-skeleton width="20%" height="1em"></picmo-skeleton>
+          <picmo-skeleton width="20%" height="1em"></picmo-skeleton>
+        </ul>
+      `;
+    }
+
     if (this.preview?.emoji.tags) {
       return html`
         <ul class="tagList">
@@ -104,11 +113,27 @@ export class Preview extends PicMoElement {
   }
 
   render() {
+    if (this.emojiData) {
+      return html`
+        <div class="preview">
+          <div class="previewEmoji">${this.preview?.content}</div>
+          <div class="previewName">${this.preview?.emoji.label}</div>
+          ${this.renderTags()}
+        </div>
+      `;
+    }
+
     return html`
       <div class="preview">
-        <div class="previewEmoji">${this.preview?.content}</div>
-        <div class="previewName">${this.preview?.emoji.label}</div>
-        ${this.renderTags()}
+        <div class="previewEmoji">
+          <picmo-skeleton width="2.5rem" height="2.5rem" borderRadius="50%"></picmo-skeleton>
+        </div>
+        <div class="previewName">
+          <picmo-skeleton width="80%" height="1em" borderRadius="0"></picmo-skeleton>
+        </div>
+        <ul class="tagList">
+          <picmo-skeleton width="5em" height="1em"></picmo-skeleton>
+        </ul>
       </div>
     `;
   }

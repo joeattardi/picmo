@@ -1,6 +1,11 @@
 import { css, html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
+import { keyed } from 'lit/directives/keyed.js';
+import { until } from 'lit/directives/until';
 import { EmojiRecord } from '../types';
+import { ContextConsumer, contextProvided } from '@lit-labs/context';
+import { DataStore } from '../data/DataStore';
+import { dataContext } from './EmojiDataContext';
 
 import { PicMoElement } from './PicMoElement';
 

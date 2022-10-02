@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, TemplateResult } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { cache } from 'lit/directives/cache.js';
 
@@ -51,6 +51,20 @@ export class EmojiPickerElement extends LitElement {
         --emoji-area-height: calc(
           (var(--row-count) * var(--emoji-size) * var(--emoji-size-multiplier)) + var(--category-name-height)
         );
+      }
+
+      .skeletonGrid {
+        display: grid;
+        grid-template-columns: repeat(var(--emojis-per-row), calc(var(--emoji-size) * var(--emoji-size-multiplier)));
+        grid-auto-rows: calc(var(--emoji-size) * var(--emoji-size-multiplier));
+        justify-content: space-between;
+        gap: 1px;
+        padding: 0 0.5em;
+      }
+
+      .skeletonCategory {
+        margin: 0.5rem;
+        margin-top: 0;
       }
 
       .picker {
@@ -160,11 +174,26 @@ export class EmojiPickerElement extends LitElement {
   }
 
   private renderEmojiArea() {
-    return this.categories?.map(category =>
-      category.key === 'recents' ?
-        html`<picmo-recent-emojis .category=${category}></picmo-recent-emojis>` :
-        html`<picmo-emoji-category .category=${category}></picmo-emoji-category>`
-    );
+    if (this.categories) {
+      return this.categories.map(category =>
+        category.key === 'recents' ?
+          html`<picmo-recent-emojis .category=${category}></picmo-recent-emojis>` :
+          html`<picmo-emoji-category .category=${category}></picmo-emoji-category>`
+      );
+    }
+
+    const emojis: TemplateResult[] = [];
+    const emojiCount = this.options.emojisPerRow * this.options.visibleRows;
+    for (let i = 0; i < emojiCount; i++) {
+      emojis.push(html`<picmo-skeleton width="var(--emoji-size)" height="var(--emoji-size)" borderRadius="50%"></picmo-skeleton>`);
+    }
+
+    return html`
+      <div class="skeletonCategory"><picmo-skeleton width="50%" height="1rem" borderRadius="0"></picmo-skeleton></div>
+      <div class="skeletonGrid">
+        ${emojis}
+      </div>
+    `;
   }
 
   private renderContent() {
@@ -187,10 +216,5 @@ export class EmojiPickerElement extends LitElement {
 
   render() {
     return this.renderPicker();
-    // if (this.categories) {
-    //   return this.renderPicker();
-    // }
-
-    // return html`<picmo-skeleton></picmo-skeleton>`;
   } 
 }

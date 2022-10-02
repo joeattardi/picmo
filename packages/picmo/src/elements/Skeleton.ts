@@ -16,8 +16,6 @@ export class Skeleton extends PicMoElement {
       background: var(--placeholder-background-color);
       position: relative;
       overflow: hidden;
-      width: 100px;
-      height: 32px;
     }
 
     .skeleton::after {
@@ -40,12 +38,18 @@ export class Skeleton extends PicMoElement {
   `;
 
   @property()
-  width: string;
+  width = '100px';
 
   @property()
-  height: string;
+  height = '32px';
+
+  @property()
+  borderRadius = '5px';
+
+  @property()
+  margin = "0";
 
   render() {
-    return html` <div class="skeleton" style="width: ${this.width}; height: ${this.height};"></div> `;
+    return html` <div class="skeleton" style="width: ${this.width}; height: ${this.height}; border-radius: ${this.borderRadius}; margin: ${this.margin};"></div> `;
   }
 }

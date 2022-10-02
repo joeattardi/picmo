@@ -1,6 +1,7 @@
 import { LitElement, html, css } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { Category } from '../types';
+import { PicMoElement } from './PicMoElement';
 
 @customElement('picmo-emoji-area')
 export class EmojiArea extends LitElement {
@@ -30,9 +31,9 @@ export class EmojiArea extends LitElement {
 
   render() {
     return html`
-      <div class="emojiArea" >
+      <div class="emojiArea">
         <slot></slot>
       </div>
-    `
+    `;
   }
 }

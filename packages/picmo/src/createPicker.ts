@@ -68,8 +68,7 @@ export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
 export function createPickerElement(options: Partial<PickerOptions>) {
   const finalOptions = getOptions(options);
 
-  // const emojiDataPromise = initData(finalOptions);
-  const emojiDataPromise = new Promise(resolve => {});
+  const emojiDataPromise = initData(finalOptions);
 
   const pickerId = getPickerId();
 
