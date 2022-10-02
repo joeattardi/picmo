@@ -185,6 +185,7 @@ export class EmojiArea extends View {
 
   reset(performFocus = true): void {
     this.events.emit('preview:hide');
+    this.scrollHeight = this.el.scrollHeight;
 
     const category = this.determineInitialCategory();
     if (category) {

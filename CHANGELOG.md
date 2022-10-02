@@ -2,6 +2,10 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.7.1] - 2022-10-02
+
+- [`@picmo/popup-picker`] Fixed incorrect scroll position when reopening popup under certain conditions.
+
 ## [5.7.0] - 2022-09-09
 
 - [`@picmo/popup-picker`] Added a new `onPositionLost` option to configure the behavior of the popup if the reference element is lost.
