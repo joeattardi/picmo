@@ -1,24 +1,7 @@
-import { toElement } from './common';
+import { toElement, getUIFlags } from './common';
 import { lightTheme, darkTheme, createPicker } from '../../packages/picmo/src/index';
 import './EmojiButton.css';
 
-function getUIFlags(options: any) {
-  const flags = {
-    showRecents: false,
-    showCategoryTabs: false,
-    showSearch: false,
-    showVariants: false,
-    showPreview: false
-  };
-
-  if (options.uiElements) {
-    options.uiElements.forEach(element => {
-      flags[element] = true;
-    })
-  }
-
-  return flags;
-}
 
 function handleEmojiSelection(button: HTMLButtonElement) {
   return selection => {

@@ -1,4 +1,4 @@
-import { toElement } from './common';
+import { toElement, getUIFlags } from './common';
 import { createPopup } from '../../packages/popup-picker/src/index';
 
 function handleEmojiSelection(button: HTMLButtonElement) {
@@ -25,9 +25,10 @@ export function createPicker(options: any = {}) {
 
   const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button') as HTMLButtonElement;
 
-  const picker = createPopup(
-    options,
-    {
+  const picker = createPopup({
+    ...options,
+    ...getUIFlags(options)
+  }, {
       position: 'auto',
       className: 'custom-popup',
       triggerElement: button,
