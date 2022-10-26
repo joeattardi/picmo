@@ -2,6 +2,11 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.7.2] - 2022-10-25
+
+- [`picmo`] Removed inconsistent scrollbar styling
+- [`@picmo/popup-picker`] Fix issue where the theme was not updated properly via updateOptions from a popup picker.
+
 ## [5.7.1] - 2022-10-02
 
 - [`@picmo/popup-picker`] Fixed incorrect scroll position when reopening popup under certain conditions.
