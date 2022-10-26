@@ -16,9 +16,6 @@
   --focus-indicator-color: #333333;
   --hover-background-color: #c7d2fe;
   --placeholder-background-color: #cccccc;
-  --preview-background-color: var(--secondary-background-color);
-  --scrollbar-background-color: var(--background-color);
-  --scrollbar-color: #aaa;
   --search-background-color: #f9fafb;
   --search-focus-background-color: #ffffff;
   --search-icon-color: #999999;
@@ -53,7 +50,7 @@
   --search-focus-background-color: #52525b;
   --search-icon-color: #cccccc;
   --search-placeholder-color: #d4d4d8;
-  --secondary-background-color: #000000 ;
+  --secondary-background-color: #000000;
   --secondary-text-color: #999999;
   --tag-background-color: rgba(162, 190, 245, 0.3);
   --text-color: #ffffff;

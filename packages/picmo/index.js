@@ -1,4 +1,4 @@
-import { createPicker } from './src/index';
+import { createPicker, darkTheme, lightTheme } from './src/index';
 
 const rootElement = document.querySelector('#picker');
 const selectionEl = document.querySelector('pre');
@@ -31,6 +31,14 @@ const picker = createPicker({
 
 picker.addEventListener('emoji:select', (selection) => {
   selectionEl.textContent = JSON.stringify(selection, null, 2);
+});
+
+let theme = lightTheme;
+
+document.querySelector('#changeTheme').addEventListener('click', () => {
+  theme = theme === lightTheme ? darkTheme : lightTheme;
+
+  picker.updateOptions({ theme });
 });
 
 window.picker = picker;

@@ -482,8 +482,14 @@ export class EmojiPicker extends View {
     styleProperty: propertyName => value => this.el.style.setProperty(variableNames[propertyName], value.toString()),
 
     theme: theme => {
-      this.el.classList.remove(this.options.theme);
+      const currentTheme = this.options.theme;
+      const container = this.el.closest(`.${currentTheme}`)
+
+      this.el.classList.remove(currentTheme);
+      container?.classList.remove(currentTheme);
+
       this.el.classList.add(theme);
+      container?.classList.add(theme);
     },
 
     className: className => {

@@ -34,6 +34,7 @@
   --ui-font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
   --ui-font-size: 16px;
   --picker-width: calc(var(--emojis-per-row) * var(--emoji-size) * var(--emoji-size-multiplier) + 2.75rem);
+  --preview-background-color: var(--secondary-background-color);
 
   background: var(--background-color);
   border-radius: var(--border-radius);
@@ -222,20 +223,6 @@
   &.fullHeight {
     height: calc(var(--content-height) + var(--category-tabs-height) + var(--category-tabs-offset));
     overflow-y: auto;
-    scrollbar-color: var(--scrollbar-color) var(--scrollbar-background-color);
-    scrollbar-width: thin;
-
-    &::-webkit-scrollbar {
-      background: var(--scrollbar-background-color);
-      width: 1.1em;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: var(--scrollbar-color);
-      background-clip: padding-box;
-      height: 1em;
-      border-radius: 0.5em
-    }
   }
 }
 

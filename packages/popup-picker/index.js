@@ -17,3 +17,9 @@ picker.addEventListener('emoji:select', (selection) => {
   trigger.innerHTML = selection.emoji;
   trigger.nextElementSibling.textContent = JSON.stringify(selection, null, 2);
 });
+
+document.querySelectorAll('input[type="radio"]').forEach(button => {
+  button.addEventListener('click', event => {
+    picker.picker.updateOptions({ theme: event.target.value });
+  });
+})
