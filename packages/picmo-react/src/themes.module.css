@@ -1,0 +1,25 @@
+@define-mixin lightTheme {
+  color-scheme: light;
+  --background-color: #f9fafb;
+}
+
+@define-mixin darkTheme {
+  color-scheme: dark;
+  --background-color: #333333;
+}
+
+.light, .auto {
+  @mixin lightTheme;
+}
+
+.dark {
+  @mixin darkTheme;
+}
+
+@media (prefers-color-scheme: dark) {
+  .auto {
+    @mixin darkTheme;
+  }
+}
+
+
