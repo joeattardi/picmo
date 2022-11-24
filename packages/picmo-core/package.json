@@ -1,0 +1,20 @@
+{
+  "name": "picmo",
+  "version": "6.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "vite build",
+    "start": "vite"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@preact/preset-vite": "^2.4.0",
+    "@types/preact-custom-element": "^4.0.1",
+    "preact": "^10.11.3",
+    "preact-custom-element": "^4.2.1"
+  }
+}

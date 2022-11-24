@@ -15,7 +15,6 @@
     "prepublishOnly": "npm run build",
     "prebuild:docs": "npm install --prefix docs",
     "prebuild:storybook": "npm run build",
-    "postinstall": "npm install --prefix docs && npm install --prefix storybook",
     "build": "lerna run build",
     "precommit": "lerna run lint && lerna run check && lerna run test",
     "clean": "lerna run clean",
@@ -35,7 +34,9 @@
   "funding": "https://github.com/sponsors/joeattardi",
   "license": "MIT",
   "devDependencies": {
-  },
-  "dependencies": {
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "typescript": "^4.9.3",
+    "vite": "^3.2.4"
   }
 }
