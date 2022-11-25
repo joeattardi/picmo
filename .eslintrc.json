@@ -1,5 +1,10 @@
 {
   "parser": "@typescript-eslint/parser",
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "env": {
     "browser": true,
     "es6": true,
@@ -8,6 +13,8 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended"
   ],
@@ -20,6 +27,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "react/react-in-jsx-scope": "off",
     "no-console": [
       "error",
       {

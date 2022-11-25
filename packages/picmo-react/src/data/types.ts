@@ -1,6 +1,6 @@
 export type EmojiRecord = {
   custom?: boolean;
-  data?: any;
+  data?: object;
   emoji: string;
   hexcode?: string;
   label: string;
@@ -16,7 +16,7 @@ export type CustomEmoji = {
   label: string;
   url: string;
   tags?: string[];
-  data?: any;
+  data?: object;
 };
 
 export type CategoryKey = 'activities' | 'animals-nature' | 'custom' | 'flags' | 'food-drink' | 'objects' | 'people-body' | 'recents' | 'smileys-emotion' | 'symbols' | 'travel-places';

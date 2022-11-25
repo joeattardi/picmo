@@ -14,7 +14,7 @@ export function InMemoryStoreFactory(locale: Locale): DataStore {
   return instances[locale];
 }
 
-InMemoryStoreFactory.deleteDatabase = (locale: Locale) => {
+InMemoryStoreFactory.deleteDatabase = () => {
   // Not implemented for in memory datastore
 };
 

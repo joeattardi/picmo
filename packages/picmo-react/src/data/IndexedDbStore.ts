@@ -19,6 +19,7 @@ IndexedDbStoreFactory.deleteDatabase = (locale: Locale) => {
   });
 };
 
+// TODO: add schema typings
 export class IndexedDbStore extends DataStore {
   private db: IDBDatabase;
 
@@ -37,15 +38,15 @@ export class IndexedDbStore extends DataStore {
     const request = indexedDB.open(`${DATABASE_NAME}-${this.locale}`);
 
     return new Promise((resolve, reject) => {
-      request.addEventListener('success', (event: any) => {
-        this.db = event.target?.result;
+      request.addEventListener('success', () => {
+        this.db = request.result;
         resolve();
       });
 
       request.addEventListener('error', reject);
 
-      request.addEventListener('upgradeneeded', async (event: any) => {
-        this.db = event.target?.result;
+      request.addEventListener('upgradeneeded', async () => {
+        this.db = request.result;
 
         this.db.createObjectStore('category', { keyPath: 'order' });
 
@@ -249,7 +250,7 @@ export class IndexedDbStore extends DataStore {
       const emojiStore = transaction.objectStore('emoji');
       const request = emojiStore.openCursor();
 
-      request.addEventListener('success', (event: any) => {
+      request.addEventListener('success', (event: Event) => {
         const cursor: IDBCursorWithValue = event.target?.result;
         if (!cursor) {
           return resolve([
@@ -281,7 +282,7 @@ export class IndexedDbStore extends DataStore {
    * @param request the request
    * @returns a Promise that resolves when the request succeeds, or rejects if it fails
    */
-  async waitForRequest(request: IDBRequest): Promise<any> {
+  async waitForRequest(request: IDBRequest): Promise<object> {
     return new Promise((resolve, reject) => {
       request.onsuccess = resolve;
       request.onerror = reject;
@@ -328,7 +329,7 @@ export class IndexedDbStore extends DataStore {
    * @param objects the objects to add
    * @returns a Promise that resolves when the add is complete, or rejects if it fails
    */
-  protected async addObjects(storeName: string, objects: any[]) {
+  protected async addObjects(storeName: string, objects: object[]) {
     return this.withTransaction(storeName, 'readwrite', transaction => {
       const store = transaction.objectStore(storeName);
       objects.forEach(object => {

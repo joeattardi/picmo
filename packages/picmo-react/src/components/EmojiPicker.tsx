@@ -1,15 +1,27 @@
 import themes from '../themes.module.css';
-import classes from './EmojiPicker.module.css';
 
 import { PickerOptions, Theme } from './types';
+import { IndexedDbStoreFactory } from '../data/IndexedDbStore';
+import PicMoProvider from './PicMoProvider';
+import PickerContent from './PickerContent';
 
 export default function EmojiPicker({ 
-  theme = themes.light as Theme
+  theme = themes.light as Theme,
+  dataStore = IndexedDbStoreFactory,
+  locale = 'en',
+  ...props
 }: PickerOptions) {
+  const providerProps = {
+    theme,
+    dataStore,
+    locale,
+    ...props
+  };
+
   return (
-    <div className={`${theme} ${classes.picker}`}>
-      <h1>EmojiPicker</h1>
-    </div>
+    <PicMoProvider options={providerProps}>
+      <PickerContent />
+    </PicMoProvider>
   );
 }
 
