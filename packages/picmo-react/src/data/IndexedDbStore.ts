@@ -87,8 +87,8 @@ export class IndexedDbStore extends DataStore {
     ]);
 
     return {
-      storedEmojisEtag: emojisEtag.target.result,
-      storedMessagesEtag: messagesEtag.target.result
+      storedEmojisEtag: emojisEtag,
+      storedMessagesEtag: messagesEtag
     };
   }
 
@@ -114,8 +114,7 @@ export class IndexedDbStore extends DataStore {
   async getHash() {
     const transaction = this.db.transaction('meta', 'readonly');
     const store = transaction.objectStore('meta');
-    const result = await this.waitForRequest(store.get('hash'));
-    return result.target.result;
+    return this.waitForRequest(store.get('hash'));
   }
 
   /**
@@ -176,7 +175,7 @@ export class IndexedDbStore extends DataStore {
   async getCategories(options: PickerOptions): Promise<Category[]> {
     const transaction = this.db.transaction('category', 'readonly');
     const categoryStore = transaction.objectStore('category');
-    const result = await this.waitForRequest(categoryStore.getAll());
+    const result = await this.waitForRequest<Category[]>(categoryStore.getAll());
     let categories: Category[] = result.filter(({ key }: { key: string }) => key !== 'component');
 
     if (options.showRecents) {
