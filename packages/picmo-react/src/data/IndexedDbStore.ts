@@ -19,7 +19,6 @@ IndexedDbStoreFactory.deleteDatabase = (locale: Locale) => {
   });
 };
 
-// TODO: add schema typings
 export class IndexedDbStore extends DataStore {
   private db: IDBDatabase;
 
@@ -72,8 +71,7 @@ export class IndexedDbStore extends DataStore {
   async getEmojiCount(): Promise<number> {
     const transaction = this.db.transaction('emoji', 'readonly');
     const store = transaction.objectStore('emoji');
-    const result = await this.waitForRequest(store.count());
-    return result.target.result;
+    return this.waitForRequest(store.count());
   }
 
   /**
@@ -128,8 +126,7 @@ export class IndexedDbStore extends DataStore {
   async isPopulated(): Promise<boolean> {
     const transaction = this.db.transaction('category', 'readonly');
     const store = transaction.objectStore('category');
-    const categoryCountResult = await this.waitForRequest(store.count());
-    const categoryCount = categoryCountResult.target.result;
+    const categoryCount = await this.waitForRequest(store.count());
     return categoryCount > 0;
   }
 
@@ -180,7 +177,7 @@ export class IndexedDbStore extends DataStore {
     const transaction = this.db.transaction('category', 'readonly');
     const categoryStore = transaction.objectStore('category');
     const result = await this.waitForRequest(categoryStore.getAll());
-    let categories: Category[] = result.target.result.filter(({ key }: { key: string }) => key !== 'component');
+    let categories: Category[] = result.filter(({ key }: { key: string }) => key !== 'component');
 
     if (options.showRecents) {
       categories.unshift({ key: 'recents', order: -1 });
@@ -212,8 +209,7 @@ export class IndexedDbStore extends DataStore {
     const transaction = this.db.transaction('emoji', 'readonly');
     const emojiStore = transaction.objectStore('emoji');
     const groupsIndex = emojiStore.index('category');
-    const result = await this.waitForRequest(groupsIndex.getAll(category.order));
-    const emojis = result.target.result as Emoji[];
+    const emojis = await this.waitForRequest<Emoji[]>(groupsIndex.getAll(category.order));
     const records = emojis
       .filter((e: Emoji) => e.version <= emojiVersion)
       .sort((a: Emoji, b: Emoji) => {
@@ -250,8 +246,8 @@ export class IndexedDbStore extends DataStore {
       const emojiStore = transaction.objectStore('emoji');
       const request = emojiStore.openCursor();
 
-      request.addEventListener('success', (event: Event) => {
-        const cursor: IDBCursorWithValue = event.target?.result;
+      request.addEventListener('success', () => {
+        const cursor: IDBCursorWithValue | null = request.result;
         if (!cursor) {
           return resolve([
             // matching emojis from the database
@@ -282,10 +278,15 @@ export class IndexedDbStore extends DataStore {
    * @param request the request
    * @returns a Promise that resolves when the request succeeds, or rejects if it fails
    */
-  async waitForRequest(request: IDBRequest): Promise<object> {
+  async waitForRequest<T>(request: IDBRequest<T>): Promise<T> {
     return new Promise((resolve, reject) => {
-      request.onsuccess = resolve;
-      request.onerror = reject;
+      request.addEventListener('success', () => {
+        resolve(request.result);
+      });
+
+      request.addEventListener('error', () => {
+        reject(request.error);
+      })
     });
   }
 
@@ -329,7 +330,7 @@ export class IndexedDbStore extends DataStore {
    * @param objects the objects to add
    * @returns a Promise that resolves when the add is complete, or rejects if it fails
    */
-  protected async addObjects(storeName: string, objects: object[]) {
+  protected async addObjects<T>(storeName: string, objects: T[]) {
     return this.withTransaction(storeName, 'readwrite', transaction => {
       const store = transaction.objectStore(storeName);
       objects.forEach(object => {

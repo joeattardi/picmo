@@ -19,6 +19,7 @@ export default function EmojiPicker({
   };
 
   return (
+    
     <PicMoProvider options={providerProps}>
       <PickerContent />
     </PicMoProvider>
