@@ -1,5 +1,5 @@
 import { Emoji, GroupMessage, Locale } from 'emojibase';
-import { EmojiRecord, Category } from './types';
+import { EmojiRecord, Category, CustomEmoji } from './types';
 import { PickerOptions } from '../components/types';
 import { caseInsensitiveIncludes } from '../util';
 
@@ -23,7 +23,7 @@ export type Meta = {
 }
 
 export type DataStoreFactory = { 
-  (locale: Locale): DataStore; 
+  (locale: Locale, customEmojis?: CustomEmoji[]): DataStore; 
   deleteDatabase(locale: Locale): void;
 }
 
@@ -70,9 +70,19 @@ export type DataStoreFactory = {
 
 export abstract class DataStore {
   locale: Locale;
+  customEmojis?: EmojiRecord[];
 
-  constructor(locale: Locale = 'en') {
+  constructor(locale: Locale = 'en', customEmojis?: CustomEmoji[]) {
     this.locale = locale;
+    this.customEmojis = customEmojis;
+
+    if (customEmojis?.length) {
+      this.customEmojis = customEmojis.map((custom: CustomEmoji) => ({
+        ...custom,
+        custom: true,
+        tags: ['custom', ...(custom.tags || [])]
+      }));
+    }
   }
 
   abstract open(): Promise<void>;
@@ -86,5 +96,5 @@ export abstract class DataStore {
   abstract populate(options: PopulateOptions): Promise<void>;
   abstract getCategories(options: PickerOptions): Promise<Category[]>;
   abstract getEmojis(category: Category, emojiVersion: number): Promise<EmojiRecord[]>;
-  abstract searchEmojis(query: string, customEmojis: EmojiRecord[], emojiVersion: number, categories: Category[]): Promise<EmojiRecord[]>;
+  abstract searchEmojis(query: string, emojiVersion: number, categories: Category[]): Promise<EmojiRecord[]>;
 }

@@ -18,6 +18,7 @@ export const PicMoContext = React.createContext<ContextValue>({} as ContextValue
 export default function PicMoProvider({ options, children }: PicMoProviderProps) {
   const dataState = useEmojiData({
     locale: options.locale,
+    custom: options.custom,
     dataStoreFactory: options.dataStore,
     messages: options.messages,
     emojiData: options.emojiData

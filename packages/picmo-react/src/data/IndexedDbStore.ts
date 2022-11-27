@@ -1,14 +1,14 @@
 import { GroupMessage, Emoji, Locale } from 'emojibase';
 import { PickerOptions } from '../components/types';
-import { EmojiRecord, Category, CategoryKey } from './types';
+import { EmojiRecord, Category, CategoryKey, CustomEmoji } from './types';
 import { applyRules } from './rules';
 import { queryMatches, getEmojiRecord, DataStore, Meta } from './DataStore';
 
 // Base database name. It will have the locale appended to it.
 const DATABASE_NAME = 'PicMo';
 
-export function IndexedDbStoreFactory(locale: Locale): DataStore {
-  return new IndexedDbStore(locale);
+export function IndexedDbStoreFactory(locale: Locale, customEmojis?: CustomEmoji[]): DataStore {
+  return new IndexedDbStore(locale, customEmojis);
 }
 
 IndexedDbStoreFactory.deleteDatabase = (locale: Locale) => {
@@ -234,7 +234,6 @@ export class IndexedDbStore extends DataStore {
    */
   async searchEmojis(
     query: string,
-    customEmojis: EmojiRecord[],
     emojiVersion: number,
     categories: Category[]
   ): Promise<EmojiRecord[]> {
@@ -248,12 +247,13 @@ export class IndexedDbStore extends DataStore {
       request.addEventListener('success', () => {
         const cursor: IDBCursorWithValue | null = request.result;
         if (!cursor) {
+          const customEmojiResults = this.customEmojis?.filter(emoji => queryMatches(emoji, query)) || [];
           return resolve([
             // matching emojis from the database
             ...applyRules(results, emojiVersion),
 
             // matching custom emojis
-            ...customEmojis.filter(emoji => queryMatches(emoji, query))
+            ...customEmojiResults
           ]);
         }
 

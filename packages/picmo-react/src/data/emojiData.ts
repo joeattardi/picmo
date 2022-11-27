@@ -1,5 +1,6 @@
 import { Locale, MessagesDataset, fetchMessages, fetchEmojis, Emoji } from 'emojibase';
 // import { Database } from './db';
+import { CustomEmoji, EmojiRecord } from './types';
 import { DataStoreFactory, DataStore } from './DataStore';
 import { computeHash } from '../util';
 
@@ -107,8 +108,8 @@ async function checkLocalUpdates(db: DataStore, hash: string) {
  * @param existingDb any existing database to use
  * @returns Promise that resolves to the database instance
  */
-async function openDatabase(locale: Locale, factory: DataStoreFactory, existingDb?: DataStore): Promise<DataStore> {
-  const db = existingDb || factory(locale);
+async function openDatabase(locale: Locale, factory: DataStoreFactory, customEmojis?: CustomEmoji[], existingDb?: DataStore): Promise<DataStore> {
+  const db = existingDb || factory(locale, customEmojis);
   await db.open();
   return db;
 }
@@ -120,8 +121,8 @@ async function openDatabase(locale: Locale, factory: DataStoreFactory, existingD
  * @param existingDb any existing database to repopulate
  * @returns a Promise that resolves to a fully populated database instance
  */
-async function initDatabaseFromCdn(locale: Locale, factory: DataStoreFactory, existingDb?: DataStore) {
-  const db = await openDatabase(locale, factory, existingDb);
+async function initDatabaseFromCdn(locale: Locale, factory: DataStoreFactory, customEmojis?: CustomEmoji[], existingDb?: DataStore) {
+  const db = await openDatabase(locale, factory, customEmojis, existingDb);
 
   const [emojisEtag, messagesEtag] = await getEtags(locale);
 
@@ -144,8 +145,8 @@ async function initDatabaseFromCdn(locale: Locale, factory: DataStoreFactory, ex
  * @param existingDb any existing database to repopulate
  * @returns a Promise that resolves to a fully populated database instance
  */
-async function initDatabaseWithLocalData(locale: Locale, factory: DataStoreFactory, messages: MessagesDataset, emojis: Emoji[], existingDb?: DataStore) {
-  const db = await openDatabase(locale, factory, existingDb);
+async function initDatabaseWithLocalData(locale: Locale, factory: DataStoreFactory, customEmojis: CustomEmoji[] = [], messages: MessagesDataset, emojis: Emoji[], existingDb?: DataStore) {
+  const db = await openDatabase(locale, factory, customEmojis, existingDb);
 
   const hash = await computeHash(emojis);
   if (!(await db.isPopulated()) || await checkLocalUpdates(db, hash)) {
@@ -164,11 +165,11 @@ async function initDatabaseWithLocalData(locale: Locale, factory: DataStoreFacto
  * @param existingDb any existing database to repopulate
  * @returns a Promise that resolves to the database instance
  */
-export async function initDatabase(locale: Locale, factory: DataStoreFactory, staticMessages?: MessagesDataset, staticEmojis?: Emoji[], existingDb?: DataStore) {
+export async function initDatabase(locale: Locale, factory: DataStoreFactory, customEmojis?: CustomEmoji[], staticMessages?: MessagesDataset, staticEmojis?: Emoji[], existingDb?: DataStore) {
   if (staticMessages && staticEmojis) {
-    return initDatabaseWithLocalData(locale, factory, staticMessages, staticEmojis, existingDb);
+    return initDatabaseWithLocalData(locale, factory, customEmojis, staticMessages, staticEmojis, existingDb);
   } else {
-    return initDatabaseFromCdn(locale, factory, existingDb);
+    return initDatabaseFromCdn(locale, factory, customEmojis, existingDb);
   }
 }
 

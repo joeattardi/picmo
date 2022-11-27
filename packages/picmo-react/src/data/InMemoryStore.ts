@@ -1,15 +1,15 @@
 import { Locale, Emoji, GroupMessage } from 'emojibase';
 import { Meta, getEmojiRecord, PopulateOptions, DataStore, queryMatches } from './DataStore';
-import { EmojiRecord, Category, CategoryKey } from './types';
+import { EmojiRecord, Category, CategoryKey, CustomEmoji } from './types';
 import { PickerOptions } from '../components/types';
 
 import { applyRules } from './rules';
 
 const instances = {} as Record<Locale, InMemoryStore>;
 
-export function InMemoryStoreFactory(locale: Locale): DataStore {
+export function InMemoryStoreFactory(locale: Locale, customEmojis?: CustomEmoji[]): DataStore {
   if (!instances[locale]) {
-    instances[locale] = new InMemoryStore(locale);
+    instances[locale] = new InMemoryStore(locale, customEmojis);
   }
   return instances[locale];
 }
@@ -96,9 +96,9 @@ export class InMemoryStore extends DataStore {
     return Promise.resolve(applyRules(emojiResults, emojiVersion));
   }
 
-  searchEmojis(query: string, customEmojis: EmojiRecord[], emojiVersion: number, categories: Category[]): Promise<EmojiRecord[]> {
+  searchEmojis(query: string, emojiVersion: number, categories: Category[]): Promise<EmojiRecord[]> {
     const matchingEmojis = this.emojis.filter(emoji => queryMatches(emoji, query, categories)).map(getEmojiRecord);
-    const matchingCustom = customEmojis.filter(emoji => queryMatches(emoji, query, categories));
+    const matchingCustom = this.customEmojis?.filter(emoji => queryMatches(emoji, query, categories)) || [];
 
     const results = [
       ...applyRules(matchingEmojis, emojiVersion),
