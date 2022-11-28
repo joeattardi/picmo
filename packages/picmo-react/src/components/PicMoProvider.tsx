@@ -2,6 +2,7 @@ import React, { ReactElement, useMemo } from 'react';
 import { PickerOptions } from '../types';
 
 import useEmojiData, { DataState } from '../hooks/useEmojiData';
+import { Category } from '../data';
 
 type PicMoProviderProps = {
   options: PickerOptions;
@@ -10,24 +11,20 @@ type PicMoProviderProps = {
 
 type ContextValue = {
   dataState: DataState;
+  categories: Category[];
   options: PickerOptions;
 };
 
 export const PicMoContext = React.createContext<ContextValue>({} as ContextValue);
 
 export default function PicMoProvider({ options, children }: PicMoProviderProps) {
-  const dataState = useEmojiData({
-    locale: options.locale,
-    custom: options.custom,
-    dataStoreFactory: options.dataStore,
-    messages: options.messages,
-    emojiData: options.emojiData
-  });
+  const { dataState, categories } = useEmojiData(options);
 
-  const contextValue = useMemo(() => ({
+  const contextValue = useMemo<ContextValue>(() => ({
     dataState,
+    categories,
     options
-  }), [dataState, options]);
+  }), [dataState, categories, options]);
 
   return (
     <PicMoContext.Provider value={contextValue}>

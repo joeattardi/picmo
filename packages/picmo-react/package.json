@@ -26,6 +26,7 @@
     "typed-css-modules": "^0.7.2"
   },
   "dependencies": {
-    "emojibase": "^6.1.0"
+    "emojibase": "^6.1.0",
+    "react-icons": "^4.6.0"
   }
 }

@@ -2,7 +2,8 @@ import { Emoji, Locale, MessagesDataset } from 'emojibase';
 import { useEffect, useState } from 'react';
 import { DataStore, DataStoreFactory } from '../data/DataStore';
 import { initDatabase } from '../data/emojiData';
-import { CustomEmoji } from '../data/types';
+import { Category, CustomEmoji } from '../data/types';
+import { PickerOptions } from '../types';
 
 export type DataStatus = 
   'IDLE' |
@@ -12,7 +13,7 @@ export type DataStatus =
 
 export type DataState = {
   status: DataStatus;
-  error?: Error | null;
+  error?: unknown | null;
   dataStore?: DataStore | null;
 };
 
@@ -24,16 +25,34 @@ type Options = {
   emojiData?: Emoji[];
 }
 
-export default function useEmojiData({
-  locale,
-  dataStoreFactory,
-  messages,
-  emojiData,
-  custom
-}: Options) {
+export default function useEmojiData(options: PickerOptions) {
+  const { locale, dataStore: dataStoreFactory, messages, emojiData, custom } = options;
+  const [categories, setCategories] = useState<Category[]>([]);
   const [dataState, setDataState] = useState<DataState>({
     status: 'IDLE'
   });
+
+  useEffect(() => {
+    async function loadInitialData() {
+      try {
+        const dataStore = await initDatabase(locale, dataStoreFactory, custom, messages, emojiData);
+        const categories = await dataStore.getCategories(options);
+        setDataState({
+          status: 'READY',
+          dataStore,
+          error: null
+        });
+        setCategories(categories);
+      } catch (error: unknown) {
+        setDataState({
+          status: 'ERROR',
+          error
+        });
+      }
+    }
+
+    loadInitialData();
+  }, []);
 
   useEffect(() => {
     initDatabase(locale, dataStoreFactory, custom, messages, emojiData).then(dataStore => {
@@ -50,5 +69,8 @@ export default function useEmojiData({
     })
   }, [locale, custom, dataStoreFactory, messages, emojiData]);
 
-  return dataState;
+  return {
+    dataState,
+    categories
+  };
 }
