@@ -1,6 +1,5 @@
 import { Locale, MessagesDataset, fetchMessages, fetchEmojis, Emoji } from 'emojibase';
-// import { Database } from './db';
-import { CustomEmoji, EmojiRecord } from './types';
+import { CustomEmoji } from './types';
 import { DataStoreFactory, DataStore } from './DataStore';
 import { computeHash } from '../util';
 

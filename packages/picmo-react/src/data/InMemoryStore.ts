@@ -1,7 +1,7 @@
 import { Locale, Emoji, GroupMessage } from 'emojibase';
 import { Meta, getEmojiRecord, PopulateOptions, DataStore, queryMatches } from './DataStore';
 import { EmojiRecord, Category, CategoryKey, CustomEmoji } from './types';
-import { PickerOptions } from '../components/types';
+import { PickerOptions } from '../types';
 
 import { applyRules } from './rules';
 

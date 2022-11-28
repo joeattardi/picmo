@@ -1,5 +1,5 @@
 import { GroupMessage, Emoji, Locale } from 'emojibase';
-import { PickerOptions } from '../components/types';
+import { PickerOptions } from '../types';
 import { EmojiRecord, Category, CategoryKey, CustomEmoji } from './types';
 import { applyRules } from './rules';
 import { queryMatches, getEmojiRecord, DataStore, Meta } from './DataStore';

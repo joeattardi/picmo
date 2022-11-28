@@ -1,8 +1,6 @@
-import { Emoji, MessagesDataset } from 'emojibase';
-import themes from '../themes.module.css';
-import { CategoryKey, CustomEmoji } from '../data/types';
-import { DataStoreFactory } from '../data/DataStore';
-import { Locale } from 'emojibase';
+import { Emoji, MessagesDataset, Locale } from 'emojibase';
+import themes from './themes.module.css';
+import { DataStoreFactory, CategoryKey, CustomEmoji } from './data';
 
 export type Theme = keyof typeof themes;
 

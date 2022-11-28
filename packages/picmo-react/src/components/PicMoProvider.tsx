@@ -1,5 +1,5 @@
 import React, { ReactElement, useMemo } from 'react';
-import { PickerOptions } from './types';
+import { PickerOptions } from '../types';
 
 import useEmojiData, { DataState } from '../hooks/useEmojiData';
 

@@ -2,6 +2,7 @@ import { useContext } from 'react';
 
 import classes from './EmojiPicker.module.css';
 
+import Header from './Header';
 import { PicMoContext } from './PicMoProvider';
 
 export default function PickerContent() {
@@ -11,8 +12,7 @@ export default function PickerContent() {
 
   return (
     <div className={`${theme} ${classes.picker}`}>
-      <h1>EmojiPicker</h1>
-      <h2>{dataState.status}</h2>
+      <Header />
     </div>
   );
 }

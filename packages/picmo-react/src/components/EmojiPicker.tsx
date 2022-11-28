@@ -1,7 +1,7 @@
 import themes from '../themes.module.css';
 
-import { PickerOptions, Theme } from './types';
-import { IndexedDbStoreFactory } from '../data/IndexedDbStore';
+import { PickerOptions, Theme } from '../types';
+import { IndexedDbStoreFactory } from '../data';
 import PicMoProvider from './PicMoProvider';
 import PickerContent from './PickerContent';
 
