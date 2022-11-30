@@ -11,8 +11,10 @@ export default function PickerContent() {
   const { theme } = options;
 
   return (
-    <div className={`${theme} ${classes.picker}`}>
-      <Header />
+    <div className={theme}>
+      <div className={classes.picker}>
+        <Header />
+      </div>
     </div>
   );
 }

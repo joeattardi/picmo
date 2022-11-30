@@ -1,3 +1,8 @@
 .picker {
   background: var(--background-color);
+
+  display: inline-grid;
+
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
 }

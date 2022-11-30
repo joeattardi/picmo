@@ -1,11 +1,20 @@
 @define-mixin lightTheme {
   color-scheme: light;
+  
   --background-color: #f9fafb;
+  --border-color: #cccccc;
+  --category-tab-highlight: rgba(0, 0, 0, 0.15);
+  --search-background-color: #f9fafb;
+  --secondary-background-color: #e2e8f0;
 }
 
 @define-mixin darkTheme {
   color-scheme: dark;
+
   --background-color: #333333;
+  --border-color: #666666;
+  --category-tab-highlight: #4A4A4A;
+  --secondary-background-color: #000000 ;
 }
 
 .light, .auto {

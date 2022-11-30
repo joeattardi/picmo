@@ -1,0 +1,23 @@
+.categoryTab {
+  & button {
+    display: flex;
+    width: 2.5em;
+    height: 2.5em;
+    /* background:red; */
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background: transparent;
+    cursor: pointer;
+
+    &:hover {
+      background: var(--category-tab-highlight);
+    }
+
+    & svg {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
+}

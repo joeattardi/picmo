@@ -1,0 +1,14 @@
+.searchContainer {
+  padding: 8px 8px 0 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.searchField {
+  background: var(--search-background-color);
+  border-radius: 3px;
+  border: none;
+  color: var(--text-color);
+  padding-right: 2em;
+  padding: 0.5em 2.25em 0.5em 0.5em;
+}

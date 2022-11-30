@@ -2,12 +2,14 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
 import mixins from 'postcss-mixins';
+import nesting from 'postcss-nesting';
 
 export default defineConfig({
   css: {
     postcss: {
       plugins: [
-        mixins
+        mixins,
+        nesting
       ]
     }
   },

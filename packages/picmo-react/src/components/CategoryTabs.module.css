@@ -1,0 +1,7 @@
+.categoryTabs {
+  list-style-type: none;
+  padding: 0.5em;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+}

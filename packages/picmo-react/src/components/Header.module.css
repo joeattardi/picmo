@@ -1,3 +1,5 @@
 .header {
-  
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-background-color);
 }
