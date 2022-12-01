@@ -1,17 +1,23 @@
 {
   "name": "picmo",
   "private": true,
+  "version": "6.0.0",
   "type": "module",
   "description": "JavaScript emoji picker. Any app, any framework.",
   "keywords": [
     "emoji",
     "emoji picker",
-    "javascript"
-  ],
-  "workspaces": [
-    "./packages/*"
+    "javascript",
+    "typescript",
+    "svelte"
   ],
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json"
+  },
+  "scripts_old": {
     "prepublishOnly": "npm run build",
     "prebuild:docs": "npm install --prefix docs",
     "prebuild:storybook": "npm run build",
@@ -35,13 +41,18 @@
   "funding": "https://github.com/sponsors/joeattardi",
   "license": "MIT",
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@typescript-eslint/eslint-plugin": "^5.33.1",
-    "lerna": "^5.1.8",
-    "nx": "^14.4.3"
+    "@sveltejs/vite-plugin-svelte": "^1.1.0",
+    "@tsconfig/svelte": "^3.0.0",
+    "svelte": "^3.52.0",
+    "svelte-check": "^2.9.2",
+    "svelte-preprocess": "^4.10.7",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.3"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "emojibase": "^6.1.0",
-    "twemoji": "^14.0.1"
+    "svelte-awesome": "^3.0.0"
   }
 }

@@ -4,3 +4,10 @@ dist
 coverage
 release
 .parcel-cache
+
+logs
+*.log
+pnpm-debug.log*
+npm-debug.log*
+
+.vscode
