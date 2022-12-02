@@ -46,7 +46,7 @@ export class InMemoryStore extends DataStore {
 
   getEtags(): Promise<Record<string, string | undefined>> {
     // Not implemented for in memory datastore
-    return Promise.resolve({ foo: 'bar'});
+    return Promise.resolve({ foo: 'bar' });
   }
 
   getHash(): Promise<string> {
@@ -61,25 +61,25 @@ export class InMemoryStore extends DataStore {
   }
 
   getCategories(options: PickerOptions): Promise<Category[]> {
-      let categories: Category[] = this.categories.filter(category => category.key !== 'component') as Category[];
+    let categories: Category[] = this.categories.filter(category => category.key !== 'component') as Category[];
 
-      if (options.showRecents) {
-        categories.unshift({ key: 'recents', order: -1 });
-      }
+    if (options.showRecents) {
+      categories.unshift({ key: 'recents', order: -1 });
+    }
 
-      if (options.custom?.length) {
-        categories.push({ key: 'custom', order: 10 });
-      }
+    if (options.custom?.length) {
+      categories.push({ key: 'custom', order: 10 });
+    }
 
-      if (options.categories) {
-        const includeList = options.categories as CategoryKey[];
-        categories = categories.filter(category => includeList.includes(category.key));
-        categories.sort((a: Category, b: Category) => includeList.indexOf(a.key) - includeList.indexOf(b.key));
-      } else {
-        categories.sort((a: Category, b: Category) => a.order - b.order);
-      }
+    if (options.categories) {
+      const includeList = options.categories as CategoryKey[];
+      categories = categories.filter(category => includeList.includes(category.key));
+      categories.sort((a: Category, b: Category) => includeList.indexOf(a.key) - includeList.indexOf(b.key));
+    } else {
+      categories.sort((a: Category, b: Category) => a.order - b.order);
+    }
 
-      return Promise.resolve(categories);
+    return Promise.resolve(categories);
   }
 
   getEmojis(category: Category, emojiVersion: number): Promise<EmojiRecord[]> {
@@ -92,7 +92,8 @@ export class InMemoryStore extends DataStore {
         }
 
         return 0;
-      }).map(getEmojiRecord);
+      })
+      .map(getEmojiRecord);
 
     return Promise.resolve(applyRules(emojiResults, emojiVersion));
   }
@@ -101,10 +102,7 @@ export class InMemoryStore extends DataStore {
     const matchingEmojis = this.emojis.filter(emoji => queryMatches(emoji, query, categories)).map(getEmojiRecord);
     const matchingCustom = this.customEmojis?.filter(emoji => queryMatches(emoji, query, categories)) || [];
 
-    const results = [
-      ...applyRules(matchingEmojis, emojiVersion),
-      ...matchingCustom
-    ];
+    const results = [...applyRules(matchingEmojis, emojiVersion), ...matchingCustom];
 
     return Promise.resolve(results);
   }

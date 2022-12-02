@@ -26,12 +26,18 @@
   setContext('categories', categoryStore);
 
   let dataStatus: DataStatus;
-  dataStore.subscribe((state: DataState) => dataStatus = state.status);
+  dataStore.subscribe((state: DataState) => (dataStatus = state.status));
 
   onMount(async () => {
     try {
       dataStore.update(state => ({ ...state, status: 'LOADING' }));
-      const db = await initDatabase(mergedOptions.locale, mergedOptions.dataStore, mergedOptions.custom, mergedOptions.messages, mergedOptions.emojiData);
+      const db = await initDatabase(
+        mergedOptions.locale,
+        mergedOptions.dataStore,
+        mergedOptions.custom,
+        mergedOptions.messages,
+        mergedOptions.emojiData
+      );
       const categories = await db.getCategories(mergedOptions);
       categoryStore.set(categories);
       dataStore.set({
@@ -45,13 +51,11 @@
   });
 </script>
 
-<style>
-
-
-</style>
-
 <ThemeWrapper>
   <div>
     <Header />
   </div>
 </ThemeWrapper>
+
+<style>
+</style>

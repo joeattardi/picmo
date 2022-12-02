@@ -234,11 +234,7 @@ export class IndexedDbStore extends DataStore {
    * @param categories the categories to search
    * @returns a Promise that resolves to the matching EmojiRecords
    */
-  async searchEmojis(
-    query: string,
-    emojiVersion: number,
-    categories: Category[]
-  ): Promise<EmojiRecord[]> {
+  async searchEmojis(query: string, emojiVersion: number, categories: Category[]): Promise<EmojiRecord[]> {
     const results: EmojiRecord[] = [];
 
     return new Promise((resolve, reject) => {
@@ -287,7 +283,7 @@ export class IndexedDbStore extends DataStore {
 
       request.addEventListener('error', () => {
         reject(request.error);
-      })
+      });
     });
   }
 

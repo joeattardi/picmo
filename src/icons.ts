@@ -16,15 +16,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export const categoryIcons: Record<CategoryKey, IconDefinition> = {
-  'recents': faHistory,
+  recents: faHistory,
   'smileys-emotion': faSmile,
   'people-body': faUserAstronaut,
   'animals-nature': faLeaf,
   'food-drink': faCoffee,
   'travel-places': faCarAlt,
-  'activities': faGamepad,
-  'objects': faLightbulb,
-  'symbols': faIcons,
-  'flags': faFlag,
-  'custom': faStar
+  activities: faGamepad,
+  objects: faLightbulb,
+  symbols: faIcons,
+  flags: faFlag,
+  custom: faStar
 };

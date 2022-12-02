@@ -7,6 +7,12 @@
   export let category: Category;
 </script>
 
+<li>
+  <button title={category.message || category.key}>
+    <Icon data={categoryIcons[category.key]} scale={1.2} />
+  </button>
+</li>
+
 <style>
   button {
     width: 2.75em;
@@ -24,11 +30,3 @@
     background: #ccc;
   }
 </style>
-
-<li>
-  <button
-    title={category.message || category.key}
-  >
-    <Icon data={categoryIcons[category.key]} scale={1.2} />
-  </button>
-</li>

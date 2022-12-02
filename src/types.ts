@@ -15,4 +15,4 @@ export type PickerOptions = {
   showRecents: boolean;
   showSearch: boolean;
   showVariants: boolean;
-}
+};
