@@ -5,6 +5,8 @@
   import { onMount, setContext } from 'svelte';
   import { initDatabase, IndexedDbStoreFactory } from '../data';
   import { categoryStore, dataStore } from '../store';
+
+  import ThemeWrapper from './ThemeWrapper.svelte';
   import Header from './Header.svelte';
 
   export let options: Partial<PickerOptions> = {};
@@ -43,8 +45,13 @@
   });
 </script>
 
-<div>
+<style>
+
+
+</style>
+
+<ThemeWrapper>
   <div>
     <Header />
   </div>
-</div>
+</ThemeWrapper>
