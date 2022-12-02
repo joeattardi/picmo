@@ -16,7 +16,12 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "format": "prettier --plugin-search-dir=. --write src"
+    "lint": "eslint src",
+    "format": "prettier --plugin-search-dir=. --write --ignore-unknown src",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{ts,js,svelte}": ["eslint src", "prettier --plugin-search-dir=. --write --ignore-unknown src"]
   },
   "scripts_old": {
     "prepublishOnly": "npm run build",
@@ -48,6 +53,8 @@
     "@typescript-eslint/parser": "^5.45.0",
     "eslint": "^8.28.0",
     "eslint-plugin-svelte3": "^4.0.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
     "prettier": "^2.8.0",
     "prettier-plugin-svelte": "^2.8.1",
     "svelte": "^3.52.0",
