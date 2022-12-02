@@ -3,12 +3,13 @@
 
   import Icon from 'svelte-awesome';
   import { categoryIcons } from '../icons';
+  import i18n from '../i18n';
 
   export let category: Category;
 </script>
 
 <li>
-  <button title={category.message || category.key}>
+  <button title={i18n.categories[category.key] || category.message || category.key}>
     <Icon data={categoryIcons[category.key]} scale={1.2} />
   </button>
 </li>

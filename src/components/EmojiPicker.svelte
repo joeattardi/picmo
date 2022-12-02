@@ -52,10 +52,18 @@
 </script>
 
 <ThemeWrapper>
-  <div>
+  <div class="picker">
     <Header />
   </div>
 </ThemeWrapper>
 
 <style>
+  .picker {
+    --border-radius: 5px;
+
+    background: var(--background-color);
+    display: inline-flex;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+  }
 </style>

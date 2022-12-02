@@ -11,6 +11,7 @@
   .light {
     color-scheme: light;
     --background-color: #f9fafb;
+    --border-color: #cccccc;
   }
 
   .dark {
