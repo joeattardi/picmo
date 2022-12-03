@@ -85,7 +85,7 @@
     flex-grow: 1;
     flex-direction: row;
     padding: 0.75em;
-    padding-left: 2em;
+    padding-left: 2.5em;
     padding-right: 2em;
     background: var(--search-background-color);
     border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -93,14 +93,18 @@
     font-size: 1em;
     color: var(--text-color);
     border-bottom: 1px solid var(--border-color);
+    outline: none;
   }
 
   .search-container input:focus {
     background: var(--search-focus-background-color);
+    outline: 1px solid var(--search-icon-focus-color);
+    border-bottom-color: transparent;
   }
 
   .search-container input:focus + .search-icon {
     opacity: 1;
+    color: var(--search-icon-focus-color);
   }
 
   .search-container input::placeholder {
