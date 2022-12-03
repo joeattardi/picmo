@@ -25,7 +25,7 @@
   .emojiArea {
     overflow: auto;
     --row-height: calc(var(--emoji-size) + 0.5em);
-    height: calc(var(--emoji-rows) * var(--row-height) + 2em);
+    height: calc(var(--emoji-rows) * var(--row-height) - 0.5em);
     padding: 0.5em;
   }
 </style>
