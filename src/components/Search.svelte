@@ -1,0 +1,111 @@
+<script lang="ts">
+  import { faMagnifyingGlass, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+  import Icon from 'svelte-awesome';
+
+  import i18n from '../i18n';
+
+  let searchQuery = '';
+
+  function clearSearch() {
+    searchQuery = '';
+  }
+
+  function handleSearchKeyDown(event) {
+    if (event.key === 'Escape') {
+      clearSearch();
+    }
+  }
+</script>
+
+<div class="search-container">
+  <input type="text" bind:value={searchQuery} placeholder={i18n.search.placeholder} on:keydown={handleSearchKeyDown} />
+  <div class="search-icon">
+    <Icon data={faMagnifyingGlass} />
+  </div>
+  {#if searchQuery.length}
+    <div class="clear-search-button">
+      <button type="button" on:click={clearSearch}>
+        <Icon data={faCircleXmark} />
+      </button>
+    </div>
+  {/if}
+</div>
+
+<style>
+  .clear-search-button {
+    position: absolute;
+    right: 0;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+
+    color: var(--search-icon-color);
+    opacity: 0.5;
+  }
+
+  .clear-search-button:hover {
+    opacity: 1;
+  }
+
+  .clear-search-button button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .clear-search-button:hover {
+    opacity: 1;
+  }
+
+  .search-icon {
+    position: absolute;
+    height: 100%;
+    width: 2.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0.5em;
+    color: var(--search-icon-color);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+
+  .search-container {
+    display: flex;
+    position: relative;
+  }
+
+  .search-container input {
+    flex-grow: 1;
+    flex-direction: row;
+    padding: 0.75em;
+    padding-left: 2em;
+    padding-right: 2em;
+    background: var(--search-background-color);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border: none;
+    font-size: 1em;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .search-container input:focus {
+    background: var(--search-focus-background-color);
+  }
+
+  .search-container input:focus + .search-icon {
+    opacity: 1;
+  }
+
+  .search-container input::placeholder {
+    opacity: 0;
+  }
+
+  .search-container input:focus::placeholder {
+    opacity: 1;
+  }
+</style>

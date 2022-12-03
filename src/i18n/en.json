@@ -24,6 +24,6 @@
     "clear": "Clear search",
     "error": "Failed to search emojis",
     "notFound": "No emojis found",
-    "placeholder": "Search emojis..."
+    "placeholder": "Search for emojis..."
   }
 }
