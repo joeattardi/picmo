@@ -8,6 +8,7 @@
 
   import ThemeWrapper from './ThemeWrapper.svelte';
   import Header from './Header.svelte';
+  import EmojiArea from './EmojiArea.svelte';
 
   export let options: Partial<PickerOptions> = {};
 
@@ -54,6 +55,7 @@
 <ThemeWrapper>
   <div class="picker">
     <Header />
+    <EmojiArea />
   </div>
 </ThemeWrapper>
 
@@ -61,8 +63,13 @@
   .picker {
     --border-radius: 5px;
 
+    --emoji-columns: 8;
+    --emoji-rows: 8;
+    --emoji-size: 2rem;
+
     background: var(--background-color);
     display: inline-flex;
+    flex-direction: column;
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
   }
