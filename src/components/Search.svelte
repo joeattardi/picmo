@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { scale } from 'svelte/transition';
+  import { backIn, backOut } from 'svelte/easing';
   import { faMagnifyingGlass, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
 
@@ -23,7 +25,7 @@
     <Icon data={faMagnifyingGlass} />
   </div>
   {#if searchQuery.length}
-    <div class="clear-search-button">
+    <div transition:scale={{ duration: 250, opacity: 0.5, easing: backOut }} class="clear-search-button">
       <button type="button" on:click={clearSearch}>
         <Icon data={faCircleXmark} />
       </button>
