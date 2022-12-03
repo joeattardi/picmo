@@ -26,7 +26,7 @@
   </div>
   {#if searchQuery.length}
     <div transition:scale={{ duration: 250, opacity: 0.5, easing: backOut }} class="clear-search-button">
-      <button type="button" on:click={clearSearch}>
+      <button type="button" on:click={clearSearch} title={i18n.search.clear}>
         <Icon data={faCircleXmark} />
       </button>
     </div>

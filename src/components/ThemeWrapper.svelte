@@ -21,6 +21,10 @@
     --search-focus-background-color: #ffffff;
     --search-icon-color: #999999;
     --search-icon-focus-color: #60a5fa;
+
+    --category-tab-icon-color: #64748b;
+    --category-tab-icon-focus-color: #38bdf8;
+    --category-tab-hover-background-color: rgba(167, 139, 250, 0.3);
   }
 
   .dark {

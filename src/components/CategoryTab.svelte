@@ -25,9 +25,10 @@
     border-radius: 5px;
     border: 2px solid transparent;
     background: transparent;
+    color: var(--category-tab-icon-color);
   }
 
   button:hover {
-    background: #ccc;
+    background: var(--category-tab-hover-background-color);
   }
 </style>
