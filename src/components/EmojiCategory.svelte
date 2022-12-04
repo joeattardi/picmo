@@ -29,6 +29,7 @@
 
   h3 {
     color: var(--category-header-color);
+    font-weight: 500;
     font-size: 1rem;
     margin: 0.5em 0;
   }

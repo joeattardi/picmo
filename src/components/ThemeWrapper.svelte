@@ -27,6 +27,8 @@
     --category-tab-hover-background-color: rgba(167, 139, 250, 0.3);
 
     --category-header-color: #1e3a8a;
+
+    --emoji-hover-background-color: #e2e8f0;
   }
 
   .dark {
