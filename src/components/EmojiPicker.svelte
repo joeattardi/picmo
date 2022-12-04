@@ -60,13 +60,19 @@
 </ThemeWrapper>
 
 <style>
+  @font-face {
+    font-family: 'color-emoji';
+    src: local('Apple Color Emoji'), local('Segoe UI Emoji'), local('Segoe UI Symbol'), local('Noto Color Emoji');
+  }
   .picker {
     --border-radius: 5px;
 
     --emoji-columns: 8;
     --emoji-rows: 8;
-    --emoji-size: 2rem;
+    --emoji-size: 1.75rem;
 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
+      sans-serif;
     background: var(--background-color);
     display: inline-flex;
     flex-direction: column;

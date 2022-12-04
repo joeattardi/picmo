@@ -10,7 +10,7 @@
 <style>
   .light {
     color-scheme: light;
-    --background-color: #f9fafb;
+    --background-color: #ffffff;
     --secondary-background-color: #e2e8f0;
     --border-color: #cccccc;
     --text-color: #000000;
@@ -25,6 +25,8 @@
     --category-tab-icon-color: #64748b;
     --category-tab-icon-focus-color: #38bdf8;
     --category-tab-hover-background-color: rgba(167, 139, 250, 0.3);
+
+    --category-header-color: #1e3a8a;
   }
 
   .dark {

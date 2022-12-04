@@ -13,6 +13,5 @@
     background: var(--header-background-color);
     display: flex;
     flex-direction: column;
-    border-radius: var(--border-radius);
   }
 </style>

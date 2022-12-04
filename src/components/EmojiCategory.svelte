@@ -28,6 +28,9 @@
   }
 
   h3 {
+    color: var(--category-header-color);
+    font-size: 1rem;
+    margin: 0.5em 0;
   }
 
   .emojis {

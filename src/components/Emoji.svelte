@@ -8,6 +8,7 @@
 
 <style>
   button {
+    font-family: color-emoji;
     font-size: var(--emoji-size);
     width: 1.25em;
     height: 1.25em;
