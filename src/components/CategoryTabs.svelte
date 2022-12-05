@@ -15,7 +15,10 @@
   });
 
   function setSelectedCategory(event: CustomEvent<Category>) {
-    selectedCategoryStore.set(event.detail);
+    selectedCategoryStore.set({
+      category: event.detail,
+      method: 'click'
+    });
   }
 </script>
 
@@ -25,7 +28,7 @@
   <div>
     <ul class="categoryTabs">
       {#each categories as category}
-        <CategoryTab on:select={setSelectedCategory} {category} />
+        <CategoryTab on:selectCategory={setSelectedCategory} {category} />
       {/each}
     </ul>
   </div>

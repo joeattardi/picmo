@@ -1,6 +1,6 @@
 <script lang="ts">
   import { scale } from 'svelte/transition';
-  import { backIn, backOut } from 'svelte/easing';
+  import { backOut } from 'svelte/easing';
   import { faMagnifyingGlass, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
 

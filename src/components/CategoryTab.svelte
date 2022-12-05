@@ -12,13 +12,13 @@
   let isSelected = false;
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   selectedCategoryStore.subscribe(value => {
-    isSelected = value.key === category.key;
+    isSelected = value.category.key === category.key;
   });
 
   const dispatch = createEventDispatcher();
 
   function onClickCategory() {
-    dispatch('select', category);
+    dispatch('selectCategory', category);
   }
 </script>
 

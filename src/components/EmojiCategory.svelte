@@ -1,6 +1,5 @@
 <script lang="ts">
   import type { Category, EmojiRecord } from '../data';
-  import type { SelectedCategoryStore } from '../store';
 
   import { getContext } from 'svelte';
   import type { DataStore } from '../store';
@@ -9,10 +8,11 @@
 
   export let category: Category;
   let emojis: EmojiRecord[] = [];
+
   const dataStore = getContext<DataStore>('dataStore');
 
   dataStore.subscribe(async emojiData => {
-    emojis = await emojiData.dataStore.getEmojis(category, 14);
+    emojis = await emojiData.dataStore.getEmojis(category, 14); // TODO get emoji version
   });
 </script>
 

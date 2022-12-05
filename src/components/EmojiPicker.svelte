@@ -28,6 +28,7 @@
   setContext('selectedCategory', selectedCategoryStore);
 
   let dataStatus: DataStatus;
+
   dataStore.subscribe((state: DataState) => (dataStatus = state.status));
 
   onMount(async () => {
@@ -42,7 +43,7 @@
       );
       const categories = await db.getCategories(mergedOptions);
       categoryStore.set(categories);
-      selectedCategoryStore.set(categories[0]);
+      selectedCategoryStore.set({ category: categories[0], method: 'initial' });
       dataStore.set({
         dataStore: db,
         status: 'READY',
