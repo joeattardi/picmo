@@ -36,5 +36,6 @@
     --row-height: calc(var(--emoji-size) + 0.5em);
     height: calc(var(--emoji-rows) * var(--row-height) - 1em);
     margin-bottom: 0.5em;
+    position: relative;
   }
 </style>
