@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { Category, EmojiRecord } from '../data';
+  import type { SelectedCategoryStore } from '../store';
+
   import { getContext } from 'svelte';
   import type { DataStore } from '../store';
   import i18n from '../i18n';
@@ -14,7 +16,7 @@
   });
 </script>
 
-<div class="category">
+<div class="category" data-category-key={category.key}>
   <h3>{i18n.categories[category.key] || category.message || category.key}</h3>
   <div class="emojis">
     {#each emojis as emoji}
@@ -28,10 +30,14 @@
   }
 
   h3 {
+    position: sticky;
+    top: 0;
     color: var(--category-header-color);
+    background: var(--background-color);
     font-weight: 500;
     font-size: 1rem;
-    margin: 0.5em 0;
+    margin: 0;
+    padding: 0.5em;
   }
 
   .emojis {

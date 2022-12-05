@@ -4,7 +4,7 @@
 
   import { onMount, setContext } from 'svelte';
   import { initDatabase, IndexedDbStoreFactory } from '../data';
-  import { categoryStore, dataStore } from '../store';
+  import { categoryStore, dataStore, selectedCategoryStore } from '../store';
 
   import ThemeWrapper from './ThemeWrapper.svelte';
   import Header from './Header.svelte';
@@ -25,6 +25,7 @@
 
   setContext('dataStore', dataStore);
   setContext('categories', categoryStore);
+  setContext('selectedCategory', selectedCategoryStore);
 
   let dataStatus: DataStatus;
   dataStore.subscribe((state: DataState) => (dataStatus = state.status));
@@ -41,6 +42,7 @@
       );
       const categories = await db.getCategories(mergedOptions);
       categoryStore.set(categories);
+      selectedCategoryStore.set(categories[0]);
       dataStore.set({
         dataStore: db,
         status: 'READY',

@@ -4,7 +4,8 @@ import EmojiPicker from './components/EmojiPicker.svelte';
 
 export function createPicker(options: Partial<PickerOptions>) {
   const picker = new EmojiPicker({
-    target: options.rootElement
+    target: options.rootElement,
+    props: { options }
   });
 
   return picker;
