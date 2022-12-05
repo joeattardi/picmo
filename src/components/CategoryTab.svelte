@@ -46,7 +46,9 @@
     color: var(--category-tab-icon-color);
   }
 
-  .selected {
+  .selected,
+  .selected:hover {
+    background: var(--category-tab-active-background-color);
     color: var(--category-tab-active-color);
   }
 

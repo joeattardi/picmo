@@ -25,7 +25,8 @@
     --category-tab-icon-color: #64748b;
     --category-tab-icon-focus-color: #38bdf8;
     --category-tab-hover-background-color: rgba(167, 139, 250, 0.3);
-    --category-tab-active-color: #4f46e5;
+    --category-tab-active-background-color: #4f46e5;
+    --category-tab-active-color: #ffffff;
 
     --category-header-color: #1e3a8a;
 
