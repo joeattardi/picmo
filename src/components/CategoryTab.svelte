@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Category } from '../data';
-  import type { SelectedCategoryStore } from '../store';
+  import type { SelectedCategoryStore } from '../types';
 
   import { getContext, createEventDispatcher } from 'svelte';
   import Icon from 'svelte-awesome';

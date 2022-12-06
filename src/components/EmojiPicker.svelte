@@ -1,14 +1,15 @@
 <script lang="ts">
-  import type { DataState, DataStatus } from '../data';
-  import type { PickerOptions } from '../types';
+  import type { EmojiRecord, Category, DataState, DataStatus } from '../data';
+  import type { PickerOptions, CategorySelection } from '../types';
 
   import { onMount, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
   import { initDatabase, IndexedDbStoreFactory } from '../data';
-  import { categoryStore, dataStore, selectedCategoryStore } from '../store';
 
   import ThemeWrapper from './ThemeWrapper.svelte';
   import Header from './Header.svelte';
   import EmojiArea from './EmojiArea.svelte';
+  import Preview from './Preview.svelte';
 
   export let options: Partial<PickerOptions> = {};
 
@@ -23,9 +24,15 @@
     ...options
   } as PickerOptions;
 
+  const dataStore = writable<DataState>({ status: 'IDLE' });
+  const categoryStore = writable<Category[]>(null);
+  const selectedCategoryStore = writable<CategorySelection>(null);
+  const previewStore = writable<EmojiRecord>(null);
+
   setContext('dataStore', dataStore);
   setContext('categories', categoryStore);
   setContext('selectedCategory', selectedCategoryStore);
+  setContext('preview', previewStore);
 
   let dataStatus: DataStatus;
 
@@ -59,6 +66,7 @@
   <div class="picker">
     <Header />
     <EmojiArea />
+    <Preview />
   </div>
 </ThemeWrapper>
 
@@ -74,9 +82,11 @@
     --emoji-rows: 8;
     --emoji-size: 1.75rem;
 
+    width: calc(var(--emoji-columns) * var(--emoji-size) * 1.5);
+
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
       sans-serif;
-    background: var(--background-color);
+    background: var(--secondary-background-color);
     display: inline-flex;
     flex-direction: column;
     border-radius: var(--border-radius);

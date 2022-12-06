@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Category } from '../data';
-  import type { SelectedCategoryStore, CategoryStore } from '../store';
+  import type { SelectedCategoryStore, CategoryStore } from '../types';
 
   import { getContext } from 'svelte';
   import EmojiCategory from './EmojiCategory.svelte';
@@ -73,9 +73,10 @@
 <style>
   .emojiArea {
     overflow: auto;
+    background: var(--background-color);
     --row-height: calc(var(--emoji-size) + 0.5em);
     height: calc(var(--emoji-rows) * var(--row-height) - 1em);
-    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
     position: relative;
   }
 </style>

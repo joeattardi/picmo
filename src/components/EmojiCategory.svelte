@@ -2,21 +2,41 @@
   import type { Category, EmojiRecord } from '../data';
 
   import { getContext } from 'svelte';
-  import type { DataStore } from '../store';
+  import type { DataStore, PreviewStore } from '../types';
   import i18n from '../i18n';
   import Emoji from './Emoji.svelte';
+  import { getEmojiForEvent } from '../util';
 
   export let category: Category;
   let emojis: EmojiRecord[] = [];
 
   const dataStore = getContext<DataStore>('dataStore');
+  const previewStore = getContext<PreviewStore>('preview');
 
   dataStore.subscribe(async emojiData => {
     emojis = await emojiData.dataStore.getEmojis(category, 14); // TODO get emoji version
   });
+
+  function showPreview(event) {
+    const emoji = getEmojiForEvent(event, emojis);
+    if (emoji) {
+      previewStore.set(emoji);
+    }
+  }
+
+  function hidePreview() {
+    // previewStore.set(null);
+  }
 </script>
 
-<div class="category" data-category-key={category.key}>
+<div
+  on:mouseover={showPreview}
+  on:mouseout={hidePreview}
+  on:focus={showPreview}
+  on:blur={hidePreview}
+  class="category"
+  data-category-key={category.key}
+>
   <h3>{i18n.categories[category.key] || category.message || category.key}</h3>
   <div class="emojis">
     {#each emojis as emoji}

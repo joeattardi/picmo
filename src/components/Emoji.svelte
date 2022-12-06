@@ -4,7 +4,7 @@
   export let emoji: EmojiRecord;
 </script>
 
-<button>{emoji.emoji}</button>
+<button data-emoji={emoji.emoji}>{emoji.emoji}</button>
 
 <style>
   button {

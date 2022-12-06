@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Category } from '../data';
-  import type { SelectedCategoryStore, CategoryStore } from '../store';
+  import type { SelectedCategoryStore, CategoryStore } from '../types';
 
   import { getContext } from 'svelte';
 
