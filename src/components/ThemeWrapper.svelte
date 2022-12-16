@@ -14,6 +14,7 @@
     --secondary-background-color: #e2e8f0;
     --border-color: #cccccc;
     --text-color: #000000;
+    --secondary-text-color: #666666;
 
     --header-background-color: var(--secondary-background-color);
 

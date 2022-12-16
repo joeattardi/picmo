@@ -134,8 +134,12 @@ async function initDatabaseFromCdn(
 
   const [emojisEtag, messagesEtag] = await getEtags(locale);
 
+  // TODO: make shortcodes configurable?
   if (!(await db.isPopulated())) {
-    const [messages, emojis] = await Promise.all([fetchMessages(locale), fetchEmojis(locale)]);
+    const [messages, emojis] = await Promise.all([
+      fetchMessages(locale),
+      fetchEmojis(locale, { shortcodes: ['emojibase'] })
+    ]);
     await db.populate({ groups: messages.groups, emojis, emojisEtag, messagesEtag });
   } else if (emojisEtag && messagesEtag) {
     await checkUpdates(db, emojisEtag, messagesEtag);

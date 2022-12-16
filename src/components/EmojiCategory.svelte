@@ -25,7 +25,7 @@
   }
 
   function hidePreview() {
-    // previewStore.set(null);
+    previewStore.set(null);
   }
 </script>
 

@@ -17,6 +17,7 @@ export type EmojiRecord = {
   order?: number;
   skins?: EmojiRecord[];
   tags?: string[];
+  shortcodes?: string[];
   url?: string;
   version?: number;
 };

@@ -82,7 +82,7 @@
     --emoji-rows: 8;
     --emoji-size: 1.75rem;
 
-    width: calc(var(--emoji-columns) * var(--emoji-size) * 1.5);
+    width: calc(var(--emoji-columns) * var(--emoji-size) * 1.75);
 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
       sans-serif;

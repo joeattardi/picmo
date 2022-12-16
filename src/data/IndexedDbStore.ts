@@ -9,6 +9,8 @@ import { queryMatches, getEmojiRecord, DataStore } from './DataStore';
 // Base database name. It will have the locale appended to it.
 const DATABASE_NAME = 'PicMo';
 
+const DATABASE_VERSION = 1;
+
 export function IndexedDbStoreFactory(locale: Locale, customEmojis?: CustomEmoji[]): DataStore {
   return new IndexedDbStore(locale, customEmojis);
 }
@@ -36,7 +38,7 @@ export class IndexedDbStore extends DataStore {
    * @returns a Promise that resolves when the database is ready
    */
   async open(): Promise<void> {
-    const request = indexedDB.open(`${DATABASE_NAME}-${this.locale}`);
+    const request = indexedDB.open(`${DATABASE_NAME}-${this.locale}`, DATABASE_VERSION);
 
     return new Promise((resolve, reject) => {
       request.addEventListener('success', () => {
@@ -125,10 +127,20 @@ export class IndexedDbStore extends DataStore {
    * @returns a Promise that resolves to a boolean indicating the populated state
    */
   async isPopulated(): Promise<boolean> {
-    const transaction = this.db.transaction('category', 'readonly');
-    const store = transaction.objectStore('category');
-    const categoryCount = await this.waitForRequest(store.count());
-    return categoryCount > 0;
+    const transaction = this.db.transaction(['emoji', 'category'], 'readonly');
+    const categoryStore = transaction.objectStore('category');
+    const categoryCount = await this.waitForRequest(categoryStore.count());
+    if (categoryCount === 0) {
+      return false;
+    }
+
+    const emojiStore = transaction.objectStore('emoji');
+    const testEmoji = await this.waitForRequest(emojiStore.get('😀'));
+    if (!testEmoji.shortcodes) {
+      return false;
+    }
+
+    return true;
   }
 
   /**

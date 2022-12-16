@@ -39,6 +39,7 @@ export function getEmojiRecord(emoji: Emoji): EmojiRecord {
     label: emoji.label,
     tags: emoji.tags,
     skins: emoji.skins?.map(skin => getEmojiRecord(skin)),
+    shortcodes: emoji.shortcodes,
     order: emoji.order,
     custom: false,
     hexcode: emoji.hexcode,

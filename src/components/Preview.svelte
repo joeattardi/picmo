@@ -16,7 +16,9 @@
   {#if currentPreview}
     <div class="preview-emoji">{currentPreview.emoji}</div>
     <div class="preview-name">{currentPreview.label}</div>
-    <ul class="preview-tags">tags</ul>
+    {#if currentPreview?.shortcodes.length}
+      <div class="preview-shortcode">:{currentPreview.shortcodes[0]}:</div>
+    {/if}
   {/if}
 </div>
 
@@ -25,19 +27,22 @@
     display: grid;
     grid-template-areas:
       'emoji name'
-      'emoji tags';
-    grid-template-rows: 1fr 1fr;
+      'emoji shortcode';
+    grid-template-rows: 1.2em 1.2em;
     grid-template-columns: auto 1fr;
-    column-gap: 0.5em;
+    column-gap: 0.75em;
     padding: 0.5em;
     border-top: 1px solid var(--border-color);
     height: 3em;
+    align-items: center;
+    align-content: center;
+    font-weight: 500;
   }
 
   .preview-emoji {
     grid-area: emoji;
     font-family: color-emoji;
-    font-size: 2.5em;
+    font-size: 2.75em;
   }
 
   .preview-name {
@@ -47,12 +52,12 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    /* align-self: end; */
   }
 
-  .preview-tags {
-    font-size: 0.9em;
-    grid-area: tags;
-    margin: 0;
-    padding: 0;
+  .preview-shortcode {
+    grid-area: shortcode;
+    font-size: 0.8em;
+    color: var(--secondary-text-color);
   }
 </style>
