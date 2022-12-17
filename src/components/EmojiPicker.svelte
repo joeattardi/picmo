@@ -65,7 +65,7 @@
 <ThemeWrapper>
   <div class="picker">
     <Header />
-    <EmojiArea />
+    <EmojiArea on:emojiselect />
     <Preview />
   </div>
 </ThemeWrapper>

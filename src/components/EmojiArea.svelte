@@ -65,7 +65,7 @@
 {#if categories}
   <div use:intersectionObserver bind:this={scrollableArea} class="emojiArea">
     {#each categories as category}
-      <EmojiCategory {category} />
+      <EmojiCategory on:emojiselect {category} />
     {/each}
   </div>
 {/if}

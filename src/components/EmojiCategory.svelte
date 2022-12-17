@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Category, EmojiRecord } from '../data';
 
-  import { getContext } from 'svelte';
+  import { createEventDispatcher, getContext } from 'svelte';
   import type { DataStore, PreviewStore } from '../types';
   import i18n from '../i18n';
   import Emoji from './Emoji.svelte';
@@ -12,6 +12,8 @@
 
   const dataStore = getContext<DataStore>('dataStore');
   const previewStore = getContext<PreviewStore>('preview');
+
+  const dispatch = createEventDispatcher();
 
   dataStore.subscribe(async emojiData => {
     emojis = await emojiData.dataStore.getEmojis(category, 14); // TODO get emoji version
@@ -27,6 +29,13 @@
   function hidePreview() {
     previewStore.set(null);
   }
+
+  function handleClick(event) {
+    if (event.target.dataset.emoji) {
+      const emoji = getEmojiForEvent(event, emojis);
+      dispatch('emojiselect', emoji);
+    }
+  }
 </script>
 
 <div
@@ -34,6 +43,7 @@
   on:mouseout={hidePreview}
   on:focus={showPreview}
   on:blur={hidePreview}
+  on:click={handleClick}
   class="category"
   data-category-key={category.key}
 >
