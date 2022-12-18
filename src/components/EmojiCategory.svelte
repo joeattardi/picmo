@@ -5,19 +5,20 @@
   import type { DataStore, PreviewStore } from '../types';
   import i18n from '../i18n';
   import Emoji from './Emoji.svelte';
+  import Emojis from './Emojis.svelte';
   import { getEmojiForEvent } from '../util';
 
   export let category: Category;
-  let emojis: EmojiRecord[] = [];
+  export let emojis: EmojiRecord[];
 
   const dataStore = getContext<DataStore>('dataStore');
   const previewStore = getContext<PreviewStore>('preview');
 
   const dispatch = createEventDispatcher();
 
-  dataStore.subscribe(async emojiData => {
-    emojis = await emojiData.dataStore.getEmojis(category, 14); // TODO get emoji version
-  });
+  // dataStore.subscribe(async emojiData => {
+  //   emojis = await emojiData.dataStore.getEmojis(category, 14); // TODO get emoji version
+  // });
 
   function showPreview(event) {
     const emoji = getEmojiForEvent(event, emojis);
@@ -48,11 +49,7 @@
   data-category-key={category.key}
 >
   <h3>{i18n.categories[category.key] || category.message || category.key}</h3>
-  <div class="emojis">
-    {#each emojis as emoji}
-      <Emoji {emoji} />
-    {/each}
-  </div>
+  <Emojis {emojis} />
 </div>
 
 <style>
@@ -68,10 +65,5 @@
     font-size: 1rem;
     margin: 0;
     padding: 0.5em;
-  }
-
-  .emojis {
-    display: grid;
-    grid-template-columns: repeat(var(--emoji-columns), 1fr);
   }
 </style>

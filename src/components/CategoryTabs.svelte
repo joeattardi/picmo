@@ -2,19 +2,25 @@
   import type { Category } from '../data';
   import type { SelectedCategoryStore, CategoryStore } from '../types';
 
-  import { getContext } from 'svelte';
+  import { getContext, createEventDispatcher, tick } from 'svelte';
 
   import CategoryTab from './CategoryTab.svelte';
 
   const categoryStore = getContext<CategoryStore>('categories');
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
 
+  const dispatch = createEventDispatcher();
+
+  export let isSearching: boolean;
+
   let categories: Category[];
   categoryStore.subscribe(categoryList => {
     categories = categoryList;
   });
 
-  function setSelectedCategory(event: CustomEvent<Category>) {
+  async function setSelectedCategory(event: CustomEvent<Category>) {
+    dispatch('categoryClick');
+    await tick();
     selectedCategoryStore.set({
       category: event.detail,
       method: 'click'
@@ -28,7 +34,7 @@
   <div>
     <ul class="categoryTabs">
       {#each categories as category}
-        <CategoryTab on:selectCategory={setSelectedCategory} {category} />
+        <CategoryTab on:selectCategory={setSelectedCategory} {isSearching} {category} />
       {/each}
     </ul>
   </div>

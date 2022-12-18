@@ -48,3 +48,5 @@ export type Category = {
   message?: string;
   order: number;
 };
+
+export type EmojiMappings = Record<Partial<CategoryKey>, EmojiRecord[]>;

@@ -1,15 +1,30 @@
 <script lang="ts">
+  import type { SelectedCategoryStore } from '../types';
+
   import { scale } from 'svelte/transition';
   import { backOut } from 'svelte/easing';
+  import { createEventDispatcher, getContext } from 'svelte';
   import { faMagnifyingGlass, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
 
   import i18n from '../i18n';
 
   let searchQuery = '';
+  const dispatch = createEventDispatcher();
 
-  function clearSearch() {
+  const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
+
+  selectedCategoryStore.subscribe(() => {
+    if (searchQuery.length) {
+      clearSearch(false);
+    }
+  });
+
+  function clearSearch(dispatchAction = true) {
     searchQuery = '';
+    if (dispatchAction) {
+      dispatch('search');
+    }
   }
 
   function handleSearchKeyDown(event) {
@@ -17,10 +32,24 @@
       clearSearch();
     }
   }
+
+  async function handleSearchInput(event) {
+    if (searchQuery) {
+      dispatch('search', searchQuery);
+    } else {
+      clearSearch();
+    }
+  }
 </script>
 
 <div class="search-container">
-  <input type="text" bind:value={searchQuery} placeholder={i18n.search.placeholder} on:keydown={handleSearchKeyDown} />
+  <input
+    type="text"
+    bind:value={searchQuery}
+    placeholder={i18n.search.placeholder}
+    on:keydown={handleSearchKeyDown}
+    on:input={handleSearchInput}
+  />
   <div class="search-icon">
     <Icon data={faMagnifyingGlass} />
   </div>

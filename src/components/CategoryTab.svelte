@@ -8,11 +8,12 @@
   import i18n from '../i18n';
 
   export let category: Category;
+  export let isSearching: boolean;
 
   let isSelected = false;
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   selectedCategoryStore.subscribe(value => {
-    isSelected = value.category.key === category.key;
+    isSelected = value?.category?.key === category?.key;
   });
 
   const dispatch = createEventDispatcher();
@@ -24,7 +25,7 @@
 
 <li>
   <button
-    class={isSelected ? 'selected' : ''}
+    class={isSelected && !isSearching ? 'selected' : ''}
     on:click={onClickCategory}
     title={i18n.categories[category.key] || category.message || category.key}
   >

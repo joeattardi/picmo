@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { Category } from '../data';
+  import type { Category, EmojiMappings } from '../data';
   import type { SelectedCategoryStore, CategoryStore } from '../types';
 
   import { getContext } from 'svelte';
@@ -7,6 +7,8 @@
 
   const categoryStore = getContext<CategoryStore>('categories');
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
+
+  export let categoryEmojis: EmojiMappings;
 
   let categories: Category[];
   categoryStore.subscribe(categoryList => {
@@ -62,10 +64,10 @@
   }
 </script>
 
-{#if categories}
+{#if categoryEmojis}
   <div use:intersectionObserver bind:this={scrollableArea} class="emojiArea">
     {#each categories as category}
-      <EmojiCategory on:emojiselect {category} />
+      <EmojiCategory on:emojiselect emojis={categoryEmojis[category.key]} {category} />
     {/each}
   </div>
 {/if}
@@ -74,8 +76,7 @@
   .emojiArea {
     overflow: auto;
     background: var(--background-color);
-    --row-height: calc(var(--emoji-size) + 0.5em);
-    height: calc(var(--emoji-rows) * var(--row-height) - 1em);
+    height: var(--content-area-height);
     padding-bottom: 0.5em;
     position: relative;
   }
