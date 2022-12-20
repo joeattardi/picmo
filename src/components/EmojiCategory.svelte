@@ -57,6 +57,8 @@
   }
 
   h3 {
+    height: var(--category-header-height);
+    box-sizing: border-box;
     position: sticky;
     top: 0;
     color: var(--category-header-color);

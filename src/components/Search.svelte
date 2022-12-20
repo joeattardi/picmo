@@ -55,7 +55,7 @@
   </div>
   {#if searchQuery.length}
     <div transition:scale={{ duration: 250, opacity: 0.5, easing: backOut }} class="clear-search-button">
-      <button type="button" on:click={clearSearch} title={i18n.search.clear}>
+      <button type="button" on:click={() => clearSearch()} title={i18n.search.clear}>
         <Icon data={faCircleXmark} />
       </button>
     </div>
@@ -108,6 +108,7 @@
   .search-container {
     display: flex;
     position: relative;
+    height: var(--search-height);
   }
 
   .search-container input {

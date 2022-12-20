@@ -3,6 +3,7 @@
   import type { PickerOptions, CategorySelection } from '../types';
   import type { DataStore, EmojiMappings } from '../data';
 
+  import { fade } from 'svelte/transition';
   import { onMount, setContext, tick } from 'svelte';
   import { writable } from 'svelte/store';
   import { initDatabase, IndexedDbStoreFactory } from '../data';
@@ -14,6 +15,7 @@
   import Preview from './Preview.svelte';
   import Search from './Search.svelte';
   import SearchResults from './SearchResults.svelte';
+  import Loader from './Loader.svelte';
 
   export let options: Partial<PickerOptions> = {};
 
@@ -44,7 +46,10 @@
   let categories: Category[];
   let db: DataStore;
 
+  let dataReady = false;
+
   dataStore.subscribe(state => {
+    dataStatus = state.status;
     db = state.dataStore;
   });
 
@@ -87,7 +92,6 @@
       searchResults = await db.searchEmojis(event.detail, 14, categories);
     } else {
       searchResults = null;
-      // await tick();
       selectedCategoryStore.set({ category: categories[0], method: 'click' });
     }
   }
@@ -98,18 +102,25 @@
 </script>
 
 <ThemeWrapper>
-  <div class="picker">
-    <header>
-      <Search on:search={search} />
-      <CategoryTabs on:categoryClick={clearSearchResults} isSearching={searchResults != null} />
-    </header>
-    {#if searchResults}
-      <SearchResults on:emojiselect {searchResults} />
-    {:else}
-      <EmojiArea {categoryEmojis} on:emojiselect />
-    {/if}
-    <Preview />
-  </div>
+  {#if dataReady}
+    <div class="picker" transition:fade={{ duration: 150 }}>
+      <header>
+        <Search on:search={search} />
+        <CategoryTabs on:categoryClick={clearSearchResults} isSearching={searchResults != null} />
+      </header>
+      {#if searchResults}
+        <SearchResults on:emojiselect {searchResults} />
+      {:else}
+        <EmojiArea {categoryEmojis} on:emojiselect />
+      {/if}
+      <Preview />
+    </div>
+  {/if}
+  {#if dataStatus === 'LOADING'}
+    <div class="picker" transition:fade on:outroend={() => (dataReady = true)}>
+      <Loader />
+    </div>
+  {/if}
 </ThemeWrapper>
 
 <style>
@@ -124,8 +135,17 @@
     --emoji-rows: 8;
     --emoji-size: 1.75rem;
 
-    --row-height: calc(var(--emoji-size) + 0.5em);
-    --content-area-height: calc(var(--emoji-rows) * var(--row-height) - 1em);
+    --category-header-height: 2.25em;
+    --row-height: calc((var(--emoji-size) * 1.5) + 2px);
+    --content-area-height: calc((var(--emoji-rows) * var(--row-height)) + var(--category-header-height));
+
+    --search-height: 2.5em;
+    --preview-height: 3em;
+    --category-tabs-height: 3em;
+
+    --full-height: calc(
+      var(--content-area-height) + var(--search-height) + var(--preview-height) + var(--category-tabs-height)
+    );
 
     width: calc(var(--emoji-columns) * var(--emoji-size) * 1.75);
 
@@ -136,11 +156,6 @@
     flex-direction: column;
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
-  }
-
-  header {
-    background: var(--header-background-color);
-    display: flex;
-    flex-direction: column;
+    height: var(--full-height);
   }
 </style>

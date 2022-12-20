@@ -31,7 +31,7 @@
 {#if !categories}
   <div>loading</div>
 {:else}
-  <div>
+  <div class="container">
     <ul class="categoryTabs">
       {#each categories as category}
         <CategoryTab on:selectCategory={setSelectedCategory} {isSearching} {category} />
@@ -41,6 +41,13 @@
 {/if}
 
 <style>
+  .container {
+    height: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
   .categoryTabs {
     list-style-type: none;
     padding: 0.5em;
