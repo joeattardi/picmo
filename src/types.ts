@@ -12,9 +12,11 @@ export type CategoryStore = Writable<Category[]>;
 export type DataStore = Writable<DataState>;
 export type PreviewStore = Writable<EmojiRecord>;
 
+export type Theme = 'light' | 'dark' | 'auto';
+
 export type PickerOptions = {
   dataStore: DataStoreFactory;
-  // theme: Theme;
+  theme: Theme;
   categories?: CategoryKey[];
   custom?: CustomEmoji[];
   emojiData?: Emoji[];

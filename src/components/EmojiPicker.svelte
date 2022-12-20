@@ -29,6 +29,7 @@
     showRecents: true,
     showSearch: true,
     showVariants: true,
+    theme: 'light',
     ...options
   } as PickerOptions;
 
@@ -107,7 +108,7 @@
   }
 </script>
 
-<ThemeWrapper>
+<ThemeWrapper theme={mergedOptions.theme}>
   {#if dataReady}
     <div class="picker" transition:fade={{ duration: 150 }}>
       <header>

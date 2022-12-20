@@ -52,7 +52,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* align-self: end; */
+    color: var(--text-color);
   }
 
   .preview-shortcode {
