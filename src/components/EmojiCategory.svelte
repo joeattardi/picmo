@@ -11,14 +11,9 @@
   export let category: Category;
   export let emojis: EmojiRecord[];
 
-  const dataStore = getContext<DataStore>('dataStore');
   const previewStore = getContext<PreviewStore>('preview');
 
   const dispatch = createEventDispatcher();
-
-  // dataStore.subscribe(async emojiData => {
-  //   emojis = await emojiData.dataStore.getEmojis(category, 14); // TODO get emoji version
-  // });
 
   function showPreview(event) {
     const emoji = getEmojiForEvent(event, emojis);

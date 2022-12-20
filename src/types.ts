@@ -13,12 +13,12 @@ export type DataStore = Writable<DataState>;
 export type PreviewStore = Writable<EmojiRecord>;
 
 export type PickerOptions = {
-  rootElement: HTMLElement;
   dataStore: DataStoreFactory;
   // theme: Theme;
   categories?: CategoryKey[];
   custom?: CustomEmoji[];
   emojiData?: Emoji[];
+  emojiVersion: number | 'auto';
   locale: Locale;
   messages?: MessagesDataset;
   showCategoryTabs: boolean;

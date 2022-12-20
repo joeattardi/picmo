@@ -6,6 +6,7 @@ export type DataState = {
   status: DataStatus;
   error?: unknown | null;
   dataStore?: DataStore | null;
+  emojiVersion?: number;
 };
 
 export type EmojiRecord = {

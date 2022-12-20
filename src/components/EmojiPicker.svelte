@@ -7,21 +7,23 @@
   import { onMount, setContext, tick } from 'svelte';
   import { writable } from 'svelte/store';
   import { initDatabase, IndexedDbStoreFactory } from '../data';
+  import { determineEmojiVersion } from '../emojiSupport';
 
   import ThemeWrapper from './ThemeWrapper.svelte';
-  import Emojis from './Emojis.svelte';
   import CategoryTabs from './CategoryTabs.svelte';
   import EmojiArea from './EmojiArea.svelte';
   import Preview from './Preview.svelte';
   import Search from './Search.svelte';
   import SearchResults from './SearchResults.svelte';
   import Loader from './Loader.svelte';
+  import { LATEST_EMOJI_VERSION } from 'emojibase';
 
   export let options: Partial<PickerOptions> = {};
 
   const mergedOptions: PickerOptions = {
     dataStore: IndexedDbStoreFactory,
     locale: 'en',
+    emojiVersion: 'auto',
     showCategoryTabs: true,
     showPreview: true,
     showRecents: true,
@@ -45,6 +47,7 @@
   let dataStatus: DataStatus;
   let categories: Category[];
   let db: DataStore;
+  let emojiVersion: number;
 
   let dataReady = false;
 
@@ -65,7 +68,9 @@
       );
       categories = await db.getCategories(mergedOptions);
 
-      const allEmojis = await Promise.all(categories.map(category => db.getEmojis(category, 14)));
+      emojiVersion = mergedOptions.emojiVersion === 'auto' ? determineEmojiVersion() : mergedOptions.emojiVersion;
+
+      const allEmojis = await Promise.all(categories.map(category => db.getEmojis(category, emojiVersion)));
       categoryEmojis = categories.reduce(
         (result, category, index) => ({
           ...result,
@@ -79,6 +84,7 @@
       selectedCategoryStore.set({ category: categories[0], method: 'initial' });
       dataStore.set({
         dataStore: db,
+        emojiVersion: emojiVersion || parseFloat(LATEST_EMOJI_VERSION),
         status: 'READY',
         error: null
       });
@@ -89,7 +95,7 @@
 
   async function search(event) {
     if (event.detail) {
-      searchResults = await db.searchEmojis(event.detail, 14, categories);
+      searchResults = await db.searchEmojis(event.detail, emojiVersion, categories);
     } else {
       searchResults = null;
       selectedCategoryStore.set({ category: categories[0], method: 'click' });
