@@ -2,9 +2,8 @@
   import type { Category, EmojiRecord } from '../data';
 
   import { createEventDispatcher, getContext } from 'svelte';
-  import type { DataStore, PreviewStore } from '../types';
+  import type { PreviewStore } from '../types';
   import i18n from '../i18n';
-  import Emoji from './Emoji.svelte';
   import Emojis from './Emojis.svelte';
   import { getEmojiForEvent } from '../util';
 

@@ -1,9 +1,26 @@
 <script lang="ts">
-  // TODO support auto theme
+  import { onMount } from 'svelte';
+
   export let theme: 'light' | 'dark' | 'auto' = 'light';
+
+  let className = theme;
+
+  function themeUpdate(event) {
+    className = event.matches ? 'dark' : 'light';
+  }
+
+  onMount(() => {
+    if (window.matchMedia && theme === 'auto') {
+      const match = window.matchMedia('(prefers-color-scheme: dark');
+      className = match.matches ? 'dark' : 'light';
+
+      match.addEventListener('change', themeUpdate);
+      return () => match.removeEventListener('change', themeUpdate);
+    }
+  });
 </script>
 
-<div class={theme}>
+<div class={className}>
   <slot />
 </div>
 
