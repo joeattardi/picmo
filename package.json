@@ -18,7 +18,8 @@
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "lint": "eslint src",
     "format": "prettier --plugin-search-dir=. --write --ignore-unknown src",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "e2e": "cypress run --component"
   },
   "lint-staged": {
     "src/**/*.{ts,js,svelte}": [
