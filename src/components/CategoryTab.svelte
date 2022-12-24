@@ -23,7 +23,7 @@
   }
 </script>
 
-<li>
+<li data-category-key={category.key}>
   <button
     class={isSelected && !isSearching ? 'selected' : ''}
     on:click={onClickCategory}
