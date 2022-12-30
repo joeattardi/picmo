@@ -4,7 +4,7 @@
   import type { DataStore, EmojiMappings } from '../data';
 
   import { fade } from 'svelte/transition';
-  import { onMount, setContext, tick } from 'svelte';
+  import { onMount, setContext, createEventDispatcher } from 'svelte';
   import { writable } from 'svelte/store';
   import { initDatabase, IndexedDbStoreFactory } from '../data';
   import { determineEmojiVersion } from '../emojiSupport';
@@ -17,6 +17,7 @@
   import SearchResults from './SearchResults.svelte';
   import Loader from './Loader.svelte';
   import { LATEST_EMOJI_VERSION } from 'emojibase';
+  import { LocalStorageProvider } from '../recents/LocalStorageProvider';
 
   export let options: Partial<PickerOptions> = {};
 
@@ -30,6 +31,7 @@
     showSearch: true,
     showVariants: true,
     theme: 'light',
+    recentsProvider: new LocalStorageProvider(),
     ...options
   } as PickerOptions;
 
@@ -37,11 +39,13 @@
   const categoryStore = writable<Category[]>(null);
   const selectedCategoryStore = writable<CategorySelection>(null);
   const previewStore = writable<EmojiRecord>(null);
+  const recentsStore = writable<EmojiRecord[]>([]);
 
   setContext('dataStore', dataStore);
   setContext('categories', categoryStore);
   setContext('selectedCategory', selectedCategoryStore);
   setContext('preview', previewStore);
+  setContext('recents', recentsStore);
 
   let categoryEmojis: EmojiMappings | null = null;
   let searchResults: EmojiRecord[];
@@ -51,6 +55,8 @@
   let emojiVersion: number;
 
   let dataReady = false;
+
+  const dispatch = createEventDispatcher();
 
   dataStore.subscribe(state => {
     dataStatus = state.status;
@@ -89,6 +95,8 @@
         status: 'READY',
         error: null
       });
+
+      recentsStore.set(await mergedOptions.recentsProvider.getRecents());
     } catch (error: unknown) {
       dataStore.update(state => ({ ...state, status: 'ERROR', error }));
     }
@@ -106,6 +114,11 @@
   function clearSearchResults(event) {
     searchResults = null;
   }
+
+  function onEmojiSelect(event) {
+    recentsStore.set(mergedOptions.recentsProvider.addOrUpdateRecent(event.detail));
+    dispatch('emojiselect', event.detail);
+  }
 </script>
 
 <ThemeWrapper theme={mergedOptions.theme}>
@@ -116,9 +129,9 @@
         <CategoryTabs on:categoryClick={clearSearchResults} isSearching={searchResults != null} />
       </header>
       {#if searchResults}
-        <SearchResults on:emojiselect {searchResults} />
+        <SearchResults on:emojiselect={onEmojiSelect} {searchResults} />
       {:else}
-        <EmojiArea {categoryEmojis} on:emojiselect />
+        <EmojiArea {categoryEmojis} on:emojiselect={onEmojiSelect} />
       {/if}
       <Preview />
     </div>

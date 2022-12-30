@@ -4,6 +4,7 @@
 
   import { getContext } from 'svelte';
   import EmojiCategory from './EmojiCategory.svelte';
+  import RecentEmojisCategory from './RecentEmojisCategory.svelte';
 
   const categoryStore = getContext<CategoryStore>('categories');
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
@@ -67,7 +68,11 @@
 {#if categoryEmojis}
   <div use:intersectionObserver bind:this={scrollableArea} class="emojiArea">
     {#each categories as category}
-      <EmojiCategory on:emojiselect emojis={categoryEmojis[category.key]} {category} />
+      {#if category.key === 'recents'}
+        <RecentEmojisCategory on:emojiselect {category} />
+      {:else}
+        <EmojiCategory on:emojiselect emojis={categoryEmojis[category.key]} {category} />
+      {/if}
     {/each}
   </div>
 {/if}
