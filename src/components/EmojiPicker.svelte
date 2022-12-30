@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { EmojiRecord, Category, DataState, DataStatus, CategoryKey } from '../data';
+  import type { EmojiRecord, Category, DataState, DataStatus } from '../data';
   import type { PickerOptions, CategorySelection } from '../types';
   import type { DataStore, EmojiMappings } from '../data';
 
@@ -111,7 +111,7 @@
     }
   }
 
-  function clearSearchResults(event) {
+  function clearSearchResults() {
     searchResults = null;
   }
 

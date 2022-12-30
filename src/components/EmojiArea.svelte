@@ -22,7 +22,7 @@
     if (scrollableArea && selection && selection.method === 'click') {
       pauseScroll = true;
       const targetEl = scrollableArea.querySelector<HTMLElement>(`[data-category-key="${selection.category.key}"]`);
-      scrollableArea.scrollTo({ top: targetEl.offsetTop });
+      scrollableArea.scrollTo({ top: targetEl.offsetTop + 5 });
     }
   });
 
@@ -36,7 +36,7 @@
           return;
         }
 
-        if (entry.boundingClientRect.top < 0) {
+        if (entry.boundingClientRect.top < 0 || entry.boundingClientRect.height < scrollableArea.offsetHeight) {
           const targetElement = entry.target as HTMLElement;
           const categoryKey = targetElement.dataset.categoryKey;
 

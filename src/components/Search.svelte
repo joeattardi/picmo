@@ -33,7 +33,7 @@
     }
   }
 
-  async function handleSearchInput(event) {
+  async function handleSearchInput() {
     if (searchQuery) {
       dispatch('search', searchQuery);
     } else {

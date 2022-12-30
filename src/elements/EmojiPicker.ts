@@ -5,7 +5,7 @@ export default class PicmoPicker extends HTMLElement {
   options: Partial<PickerOptions>;
   component: EmojiPicker;
 
-  constructor(options: Partial<PickerOptions>) {
+  constructor(options: Partial<PickerOptions> = {}) {
     super();
     this.options = options;
 
