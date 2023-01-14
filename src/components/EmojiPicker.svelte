@@ -18,6 +18,7 @@
   import Loader from './Loader.svelte';
   import { LATEST_EMOJI_VERSION } from 'emojibase';
   import { LocalStorageProvider } from '../recents/LocalStorageProvider';
+  import VariantPopup from './VariantPopup.svelte';
 
   export let options: Partial<PickerOptions> = {};
 
@@ -53,6 +54,7 @@
   let categories: Category[];
   let db: DataStore;
   let emojiVersion: number;
+  let showVariantPopup = false;
 
   let dataReady = false;
 
@@ -115,15 +117,22 @@
     searchResults = null;
   }
 
-  function onEmojiSelect(event) {
-    recentsStore.set(mergedOptions.recentsProvider.addOrUpdateRecent(event.detail));
-    dispatch('emojiselect', event.detail);
+  function onEmojiSelect({ detail: emoji }: { detail: EmojiRecord }) {
+    if (emoji.skins) {
+      showVariantPopup = true;
+    } else {
+      recentsStore.set(mergedOptions.recentsProvider.addOrUpdateRecent(emoji));
+      dispatch('emojiselect', emoji);
+    }
   }
 </script>
 
 <ThemeWrapper theme={mergedOptions.theme}>
   {#if dataReady}
     <div class="picker" transition:fade={{ duration: 150 }}>
+      {#if showVariantPopup}
+        <VariantPopup on:close={() => (showVariantPopup = false)} />
+      {/if}
       <header>
         <Search on:search={search} />
         <CategoryTabs on:categoryClick={clearSearchResults} isSearching={searchResults != null} />
@@ -177,5 +186,6 @@
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     height: var(--full-height);
+    position: relative;
   }
 </style>
