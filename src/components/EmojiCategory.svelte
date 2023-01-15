@@ -48,6 +48,7 @@
 
 <style>
   .category {
+    --grid-template-columns: repeat(var(--emoji-columns), 1fr);
   }
 
   h3 {

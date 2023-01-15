@@ -1,6 +1,12 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
-  import { fade } from 'svelte/transition';
+  import { fade, scale } from 'svelte/transition';
+
+  import type { EmojiRecord } from '../data';
+
+  import Emojis from './Emojis.svelte';
+
+  export let emoji: EmojiRecord;
 
   const dispatch = createEventDispatcher();
 
@@ -12,8 +18,8 @@
 </script>
 
 <div class="overlay" transition:fade={{ duration: 150 }} on:keydown={handleKeyDown}>
-  <div class="content" transition:fade={{ duration: 150, delay: 150 }}>
-    <button>Variant popup</button>
+  <div class="content" transition:scale={{ duration: 150 }}>
+    <Emojis emojis={[emoji, ...emoji.skins]} />
   </div>
 </div>
 
@@ -23,13 +29,19 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(255, 255, 255, 0.75);
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .content {
+    border-radius: var(--border-radius);
+    padding: 1em 0;
+    flex-grow: 1;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.25);
     background: white;
+    --grid-template-columns: repeat(auto-fit, minmax(3em, 3em));
+    max-width: 90%;
   }
 </style>

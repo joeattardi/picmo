@@ -3,17 +3,22 @@
   import Icon from 'svelte-awesome';
   import { backOut } from 'svelte/easing';
   import { scale } from 'svelte/transition';
+  import type { Category } from '../data';
 
   import i18n from '../i18n';
-  import Emojis from './Emojis.svelte';
+  import EmojiCategory from './EmojiCategory.svelte';
+
+  const searchResultsCategory: Category = {
+    key: 'search-results',
+    order: 1
+  };
 
   export let searchResults;
 </script>
 
 <div class="searchResults">
   {#if searchResults.length}
-    <h3>Search Results</h3>
-    <Emojis emojis={searchResults} />
+    <EmojiCategory emojis={searchResults} category={searchResultsCategory} on:emojiselect />
   {:else}
     <div class="noResults">
       <div in:scale={{ duration: 250, opacity: 0.5, easing: backOut }} class="icon">

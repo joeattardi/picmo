@@ -42,7 +42,8 @@ export type CategoryKey =
   | 'recents'
   | 'smileys-emotion'
   | 'symbols'
-  | 'travel-places';
+  | 'travel-places'
+  | 'search-results';
 
 export type Category = {
   key: CategoryKey;

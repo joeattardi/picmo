@@ -54,7 +54,7 @@
   let categories: Category[];
   let db: DataStore;
   let emojiVersion: number;
-  let showVariantPopup = false;
+  let showVariantPopup: EmojiRecord | null = null;
 
   let dataReady = false;
 
@@ -119,7 +119,7 @@
 
   function onEmojiSelect({ detail: emoji }: { detail: EmojiRecord }) {
     if (emoji.skins) {
-      showVariantPopup = true;
+      showVariantPopup = emoji;
     } else {
       recentsStore.set(mergedOptions.recentsProvider.addOrUpdateRecent(emoji));
       dispatch('emojiselect', emoji);
@@ -131,7 +131,7 @@
   {#if dataReady}
     <div class="picker" transition:fade={{ duration: 150 }}>
       {#if showVariantPopup}
-        <VariantPopup on:close={() => (showVariantPopup = false)} />
+        <VariantPopup emoji={showVariantPopup} on:close={() => (showVariantPopup = null)} />
       {/if}
       <header>
         <Search on:search={search} />

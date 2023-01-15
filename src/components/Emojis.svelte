@@ -14,6 +14,7 @@
 <style>
   .emojis {
     display: grid;
-    grid-template-columns: repeat(var(--emoji-columns), 1fr);
+    grid-template-columns: var(--grid-template-columns);
+    justify-content: center;
   }
 </style>
