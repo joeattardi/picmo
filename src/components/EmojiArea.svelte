@@ -80,7 +80,7 @@
 <style>
   .emojiArea {
     overflow: auto;
-    background: var(--background-color);
+    background: var(--emoji-area-background);
     height: var(--content-area-height);
     padding-bottom: 0.5em;
     position: relative;

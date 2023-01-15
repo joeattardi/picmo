@@ -34,11 +34,12 @@
     height: var(--content-area-height);
     overflow: auto;
     padding-bottom: 0.5em;
-    background: var(--background-color);
+    background: var(--emoji-area-background);
   }
 
   .noResults {
     color: var(--secondary-text-color);
+    background: var(--emoji-area-background);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -50,6 +51,7 @@
     color: var(--secondary-text-color);
     font-size: 1.2em;
     font-weight: bold;
+    background: var(--emoji-area-background);
   }
 
   .icon {

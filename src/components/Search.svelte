@@ -118,7 +118,8 @@
     padding-left: 2.5em;
     padding-right: 2em;
     background: var(--search-background-color);
-    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    border-top-left-radius: calc(var(--border-radius) - 1px);
+    border-top-right-radius: calc(var(--border-radius) - 1px);
     border: none;
     font-size: 1em;
     color: var(--text-color);

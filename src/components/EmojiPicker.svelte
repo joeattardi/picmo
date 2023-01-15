@@ -187,5 +187,6 @@
     border: 1px solid var(--border-color);
     height: var(--full-height);
     position: relative;
+    overflow: hidden;
   }
 </style>

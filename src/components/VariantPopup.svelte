@@ -28,8 +28,8 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    z-index: 1;
-    background: rgba(255, 255, 255, 0.75);
+    z-index: 2;
+    background: rgba(0, 0, 0, 0.75);
     display: flex;
     align-items: center;
     justify-content: center;
