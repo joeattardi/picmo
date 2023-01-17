@@ -41,12 +41,14 @@
   const selectedCategoryStore = writable<CategorySelection>(null);
   const previewStore = writable<EmojiRecord>(null);
   const recentsStore = writable<EmojiRecord[]>([]);
+  const variantStore = writable(null);
 
   setContext('dataStore', dataStore);
   setContext('categories', categoryStore);
   setContext('selectedCategory', selectedCategoryStore);
   setContext('preview', previewStore);
   setContext('recents', recentsStore);
+  setContext('variant', variantStore);
 
   let categoryEmojis: EmojiMappings | null = null;
   let searchResults: EmojiRecord[];
@@ -54,7 +56,6 @@
   let categories: Category[];
   let db: DataStore;
   let emojiVersion: number;
-  let showVariantPopup: EmojiRecord | null = null;
 
   let dataReady = false;
 
@@ -118,21 +119,15 @@
   }
 
   function onEmojiSelect({ detail: emoji }: { detail: EmojiRecord }) {
-    if (emoji.skins) {
-      showVariantPopup = emoji;
-    } else {
-      recentsStore.set(mergedOptions.recentsProvider.addOrUpdateRecent(emoji));
-      dispatch('emojiselect', emoji);
-    }
+    recentsStore.set(mergedOptions.recentsProvider.addOrUpdateRecent(emoji));
+    dispatch('emojiselect', emoji);
   }
 </script>
 
 <ThemeWrapper theme={mergedOptions.theme}>
   {#if dataReady}
     <div class="picker" transition:fade={{ duration: 150 }}>
-      {#if showVariantPopup}
-        <VariantPopup emoji={showVariantPopup} on:close={() => (showVariantPopup = null)} />
-      {/if}
+      <VariantPopup />
       <header>
         <Search on:search={search} />
         <CategoryTabs on:categoryClick={clearSearchResults} isSearching={searchResults != null} />

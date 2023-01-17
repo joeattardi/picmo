@@ -16,5 +16,6 @@
     display: grid;
     grid-template-columns: var(--grid-template-columns);
     justify-items: center;
+    justify-content: center;
   }
 </style>

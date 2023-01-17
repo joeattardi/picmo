@@ -2,7 +2,7 @@
   import type { Category, EmojiRecord } from '../data';
 
   import { createEventDispatcher, getContext } from 'svelte';
-  import type { PreviewStore } from '../types';
+  import type { PreviewStore, VariantStore } from '../types';
   import i18n from '../i18n';
   import Emojis from './Emojis.svelte';
   import { getEmojiForEvent } from '../util';
@@ -11,6 +11,7 @@
   export let emojis: EmojiRecord[];
 
   const previewStore = getContext<PreviewStore>('preview');
+  const variantStore = getContext<VariantStore>('variant');
 
   const dispatch = createEventDispatcher();
 
@@ -28,7 +29,14 @@
   function handleClick(event) {
     if (event.target.dataset.emoji) {
       const emoji = getEmojiForEvent(event, emojis);
-      dispatch('emojiselect', emoji);
+      if (emoji.skins) {
+        variantStore.set({
+          emoji,
+          element: event.target
+        });
+      } else {
+        dispatch('emojiselect', emoji);
+      }
     }
   }
 </script>

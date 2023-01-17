@@ -53,6 +53,7 @@
     "vite": "^3.2.3"
   },
   "dependencies": {
+    "@floating-ui/dom": "^1.1.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "emojibase": "^6.1.0",
     "svelte-awesome": "^3.0.0"
