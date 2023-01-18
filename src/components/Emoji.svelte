@@ -15,13 +15,13 @@
     background: transparent;
     border: none;
     cursor: pointer;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid transparent;
   }
 
   button:hover {
     background: var(--emoji-hover-background-color);
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid #cbd5e1;
   }
 </style>

@@ -27,9 +27,10 @@
   }
 
   function handleClick(event) {
+    event.preventDefault();
     if (event.target.dataset.emoji) {
       const emoji = getEmojiForEvent(event, emojis);
-      if (emoji.skins) {
+      if (emoji.skins?.length) {
         variantStore.set({
           emoji,
           element: event.target

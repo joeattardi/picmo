@@ -127,7 +127,7 @@
 <ThemeWrapper theme={mergedOptions.theme}>
   {#if dataReady}
     <div class="picker" transition:fade={{ duration: 150 }}>
-      <VariantPopup />
+      <VariantPopup on:emojiselect={onEmojiSelect} />
       <header>
         <Search on:search={search} />
         <CategoryTabs on:categoryClick={clearSearchResults} isSearching={searchResults != null} />

@@ -1,13 +1,14 @@
 <script lang="ts">
-  import { getContext, onMount } from 'svelte';
+  import { getContext, createEventDispatcher, onMount } from 'svelte';
   import { fade, scale } from 'svelte/transition';
 
   import { computePosition, shift, arrow, offset } from '@floating-ui/dom';
 
   import type { VariantStore } from '../types';
+  import type { EmojiRecord } from '../data';
 
   import Emoji from './Emoji.svelte';
-  import type { EmojiRecord } from '../data';
+  import { getEmojiForEvent } from '../util';
 
   let emoji: EmojiRecord;
   let variants: EmojiRecord[];
@@ -16,24 +17,40 @@
   let emojiElement: HTMLElement;
   let contentElement: HTMLElement;
 
+  const dispatch = createEventDispatcher();
+
   const store = getContext<VariantStore>('variant');
 
   store.subscribe(data => {
     emoji = data?.emoji;
-    variants = data && [emoji, ...emoji.skins];
+    variants = data && [{ ...emoji, skins: [] }, ...emoji.skins];
     emojiElement = data?.element;
   });
 
+  function close() {
+    store.set(null);
+  }
+
   function handleKeyDown(event) {
     if (event.key === 'Escape') {
-      store.set(null);
+      close();
+    }
+  }
+
+  function handleClick(event) {
+    if (event.target.dataset.emoji) {
+      const emoji = getEmojiForEvent(event, variants);
+      if (emoji) {
+        close();
+        dispatch('emojiselect', emoji);
+      }
     }
   }
 
   onMount(() => {
     function checkClickOutside(event) {
       if (!event.composedPath().includes(contentElement)) {
-        store.set(null);
+        close();
       }
     }
 
@@ -75,7 +92,7 @@
 </script>
 
 {#if emoji}
-  <div class="overlay" transition:fade={{ duration: 150 }} on:keydown={handleKeyDown}>
+  <div class="overlay" transition:fade={{ duration: 150 }} on:keydown={handleKeyDown} on:click={handleClick}>
     <div bind:this={contentElement} class="content" transition:scale={{ duration: 150 }}>
       {#each variants as emoji}
         <Emoji {emoji} />
