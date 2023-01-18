@@ -2,9 +2,18 @@
   import type { EmojiRecord } from '../data';
 
   export let emoji: EmojiRecord;
+  export let isFocused = false;
+
+  let element: HTMLElement;
+
+  $: {
+    if (isFocused) {
+      element?.focus();
+    }
+  }
 </script>
 
-<button data-emoji={emoji.emoji}>{emoji.emoji}</button>
+<button bind:this={element} tabindex={isFocused ? 0 : -1} data-emoji={emoji.emoji}>{emoji.emoji}</button>
 
 <style>
   button {

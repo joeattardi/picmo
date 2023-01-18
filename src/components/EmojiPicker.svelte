@@ -32,6 +32,8 @@
     showSearch: true,
     showVariants: true,
     theme: 'light',
+    rows: 8,
+    columns: 8,
     recentsProvider: new LocalStorageProvider(),
     ...options
   } as PickerOptions;
@@ -49,6 +51,7 @@
   setContext('preview', previewStore);
   setContext('recents', recentsStore);
   setContext('variant', variantStore);
+  setContext('options', mergedOptions);
 
   let categoryEmojis: EmojiMappings | null = null;
   let searchResults: EmojiRecord[];
@@ -126,7 +129,11 @@
 
 <ThemeWrapper theme={mergedOptions.theme}>
   {#if dataReady}
-    <div class="picker" transition:fade={{ duration: 150 }}>
+    <div
+      class="picker"
+      transition:fade={{ duration: 150 }}
+      style={`--emoji-rows: ${mergedOptions.rows}; --emoji-columns: ${mergedOptions.columns}`}
+    >
       <VariantPopup on:emojiselect={onEmojiSelect} />
       <header>
         <Search on:search={search} />
@@ -155,8 +162,6 @@
   .picker {
     --border-radius: 5px;
 
-    --emoji-columns: 8;
-    --emoji-rows: 8;
     --emoji-size: 1.75rem;
 
     --category-header-height: 2.25em;

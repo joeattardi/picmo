@@ -3,11 +3,12 @@
   import Emoji from './Emoji.svelte';
 
   export let emojis: EmojiRecord[];
+  export let focused: string | null;
 </script>
 
 <div class="emojis">
   {#each emojis as emoji}
-    <Emoji {emoji} />
+    <Emoji isFocused={focused === emoji.emoji} {emoji} />
   {/each}
 </div>
 

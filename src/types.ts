@@ -13,16 +13,24 @@ export type VariantState = {
   element: HTMLElement;
 };
 
+export type FocusState = {
+  category: number;
+  offset: number;
+};
+
 export type SelectedCategoryStore = Writable<CategorySelection>;
 export type CategoryStore = Writable<Category[]>;
 export type RecentsStore = Writable<EmojiRecord[]>;
 export type DataStore = Writable<DataState>;
 export type PreviewStore = Writable<EmojiRecord>;
 export type VariantStore = Writable<VariantState>;
+export type FocusStore = Writable<FocusState>;
 
 export type Theme = 'light' | 'dark' | 'auto';
 
 export type PickerOptions = {
+  rows: number;
+  columns: number;
   dataStore: DataStoreFactory;
   theme: Theme;
   categories?: CategoryKey[];

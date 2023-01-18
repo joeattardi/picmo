@@ -6,6 +6,7 @@
   import type { RecentsStore } from '../types';
 
   export let category: Category;
+  export let index: number;
 
   const recentsStore = getContext<RecentsStore>('recents');
 
@@ -13,4 +14,4 @@
   recentsStore.subscribe(value => (recents = value));
 </script>
 
-<EmojiCategory on:emojiselect emojis={recents} {category} />
+<EmojiCategory on:emojiselect emojis={recents} {category} {index} />

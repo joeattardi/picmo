@@ -1,10 +1,14 @@
 <script lang="ts">
   import type { Category, EmojiMappings } from '../data';
-  import type { SelectedCategoryStore, CategoryStore } from '../types';
+  import type { SelectedCategoryStore, CategoryStore, FocusState } from '../types';
 
-  import { getContext } from 'svelte';
+  import { getContext, setContext } from 'svelte';
+  import { writable } from 'svelte/store';
   import EmojiCategory from './EmojiCategory.svelte';
   import RecentEmojisCategory from './RecentEmojisCategory.svelte';
+
+  const focusStore = writable<FocusState>({ category: 0, offset: 0 });
+  setContext('focus', focusStore);
 
   const categoryStore = getContext<CategoryStore>('categories');
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
@@ -67,11 +71,11 @@
 
 {#if categoryEmojis}
   <div use:intersectionObserver bind:this={scrollableArea} class="emojiArea">
-    {#each categories as category}
+    {#each categories as category, index}
       {#if category.key === 'recents'}
-        <RecentEmojisCategory on:emojiselect {category} />
+        <RecentEmojisCategory on:emojiselect {category} {index} />
       {:else}
-        <EmojiCategory on:emojiselect emojis={categoryEmojis[category.key]} {category} />
+        <EmojiCategory on:emojiselect emojis={categoryEmojis[category.key]} {category} {index} />
       {/if}
     {/each}
   </div>

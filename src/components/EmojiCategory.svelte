@@ -2,16 +2,31 @@
   import type { Category, EmojiRecord } from '../data';
 
   import { createEventDispatcher, getContext } from 'svelte';
-  import type { PreviewStore, VariantStore } from '../types';
+  import type { FocusStore, FocusState, PreviewStore, VariantStore } from '../types';
   import i18n from '../i18n';
-  import Emojis from './Emojis.svelte';
   import { getEmojiForEvent } from '../util';
+  import Emojis from './Emojis.svelte';
+  import FocusGrid from './FocusGrid.svelte';
 
   export let category: Category;
+  export let index: number;
   export let emojis: EmojiRecord[];
+
+  let focusState: FocusState;
 
   const previewStore = getContext<PreviewStore>('preview');
   const variantStore = getContext<VariantStore>('variant');
+
+  const focusStore = getContext<FocusStore>('focus');
+  focusStore.subscribe(state => {
+    if (state.category === index && state.offset === -1) {
+      focusStore.set({ ...state, offset: emojis.length - 1 });
+    } else {
+      focusState = state;
+    }
+
+    // console.log(focusState);
+  });
 
   const dispatch = createEventDispatcher();
 
@@ -52,7 +67,9 @@
   data-category-key={category.key}
 >
   <h3>{i18n.categories[category.key] || category.message || category.key}</h3>
-  <Emojis {emojis} />
+  <FocusGrid {emojis} isActive={focusState.category === index}>
+    <Emojis {emojis} focused={focusState.category === index ? emojis[focusState.offset].emoji : null} />
+  </FocusGrid>
 </div>
 
 <style>
