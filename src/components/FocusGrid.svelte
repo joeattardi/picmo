@@ -15,7 +15,6 @@
 
   function focusLeft() {
     focusStore.update(state => {
-      // console.log({ state });
       if (state.offset > 0) {
         return { ...state, offset: state.offset - 1 };
       }
@@ -43,7 +42,7 @@
   function focusDown() {
     focusStore.update(state => {
       if (state.offset < lastRowStart) {
-        return { ...state, offset: state.offset + options.columns };
+        return { ...state, offset: Math.min(state.offset + options.columns, emojis.length - 1) };
       }
 
       return { ...state, offset: 0, category: state.category + 1 };
