@@ -24,6 +24,10 @@
   let scrollableArea: HTMLElement;
   selectedCategoryStore.subscribe(selection => {
     if (scrollableArea && selection && selection.method === 'click') {
+      focusStore.set({
+        category: categories.indexOf(selection.category),
+        offset: 0
+      });
       pauseScroll = true;
       const targetEl = scrollableArea.querySelector<HTMLElement>(`[data-category-key="${selection.category.key}"]`);
       scrollableArea.scrollTo({ top: targetEl.offsetTop + 5 });

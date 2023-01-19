@@ -10,10 +10,16 @@
   export let category: Category;
   export let isSearching: boolean;
 
+  let button: HTMLButtonElement;
+
   let isSelected = false;
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   selectedCategoryStore.subscribe(value => {
     isSelected = value?.category?.key === category?.key;
+
+    if (isSelected) {
+      button?.focus();
+    }
   });
 
   const dispatch = createEventDispatcher();
@@ -25,7 +31,9 @@
 
 <li data-category-key={category.key}>
   <button
+    tabindex={isSelected ? 0 : -1}
     class={isSelected && !isSearching ? 'selected' : ''}
+    bind:this={button}
     on:click={onClickCategory}
     title={i18n.categories[category.key] || category.message || category.key}
   >

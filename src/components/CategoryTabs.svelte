@@ -26,13 +26,43 @@
       method: 'click'
     });
   }
+
+  function getNewCategory(current: Category, offset: number) {
+    const currentIndex = categories.indexOf(current);
+
+    const newIndex = currentIndex + offset;
+
+    if (newIndex < 0) {
+      return categories[categories.length - 1];
+    }
+
+    if (newIndex >= categories.length) {
+      return categories[0];
+    }
+
+    return categories[newIndex];
+  }
+
+  const offsets = {
+    ArrowRight: 1,
+    ArrowLeft: -1
+  };
+
+  function handleKeyDown(event) {
+    if (event.key in offsets) {
+      selectedCategoryStore.update(selection => ({
+        category: getNewCategory(selection.category, offsets[event.key]),
+        method: 'click'
+      }));
+    }
+  }
 </script>
 
 {#if !categories}
   <div>loading</div>
 {:else}
   <div class="container">
-    <ul class="categoryTabs">
+    <ul class="categoryTabs" on:keydown={handleKeyDown}>
       {#each categories as category}
         <CategoryTab on:selectCategory={setSelectedCategory} {isSearching} {category} />
       {/each}
