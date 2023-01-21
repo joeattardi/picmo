@@ -77,9 +77,15 @@
   <div use:intersectionObserver bind:this={scrollableArea} class="emojiArea">
     {#each categories as category, index}
       {#if category.key === 'recents'}
-        <RecentEmojisCategory on:emojiselect {category} {index} />
+        <RecentEmojisCategory on:emojiselect {category} {index} categoryCount={categories.length} />
       {:else}
-        <EmojiCategory on:emojiselect emojis={categoryEmojis[category.key]} {category} {index} />
+        <EmojiCategory
+          on:emojiselect
+          emojis={categoryEmojis[category.key]}
+          {category}
+          {index}
+          categoryCount={categories.length}
+        />
       {/if}
     {/each}
   </div>

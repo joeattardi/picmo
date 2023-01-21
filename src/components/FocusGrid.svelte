@@ -3,8 +3,10 @@
   import type { PickerOptions, FocusStore } from '../types';
   import { getContext } from 'svelte';
 
+  export let categoryCount: number;
   export let emojis: EmojiRecord[];
   export let isActive: boolean;
+  export let wrap = false;
 
   const focusStore = getContext<FocusStore>('focus');
 
@@ -21,6 +23,10 @@
     if (category > 0) {
       return { offset: -1, category: category - 1 };
     }
+
+    if (wrap) {
+      return { offset: emojis.length - 1 };
+    }
   }
 
   function focusRight({ offset, category }) {
@@ -28,8 +34,14 @@
       return { offset: offset + 1 };
     }
 
-    // Overflow - move to the next category
-    return { offset: 0, category: category + 1 };
+    if (category < categoryCount - 1) {
+      // Overflow - move to the next category
+      return { offset: 0, category: category + 1 };
+    }
+
+    if (wrap) {
+      return { offset: 0 };
+    }
   }
 
   function focusDown({ offset, category }) {

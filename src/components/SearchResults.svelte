@@ -1,19 +1,25 @@
 <script lang="ts">
   import { faFaceFrown } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
+  import { setContext } from 'svelte';
+  import { writable } from 'svelte/store';
   import { backOut } from 'svelte/easing';
   import { scale } from 'svelte/transition';
   import type { Category } from '../data';
+  import type { FocusState } from '../types';
 
   import i18n from '../i18n';
   import EmojiCategory from './EmojiCategory.svelte';
+
+  export let searchResults;
 
   const searchResultsCategory: Category = {
     key: 'search-results',
     order: 1
   };
 
-  export let searchResults;
+  const focusStore = writable<FocusState>({ category: 0, offset: 0 });
+  setContext('focus', focusStore);
 </script>
 
 <div class="searchResults">

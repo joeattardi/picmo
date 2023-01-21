@@ -9,7 +9,8 @@
   import FocusGrid from './FocusGrid.svelte';
 
   export let category: Category;
-  export let index: number;
+  export let categoryCount = 1;
+  export let index = 0;
   export let emojis: EmojiRecord[];
 
   let focusState: FocusState;
@@ -24,8 +25,6 @@
     } else {
       focusState = state;
     }
-
-    // console.log(focusState);
   });
 
   const dispatch = createEventDispatcher();
@@ -67,11 +66,11 @@
   data-category-key={category.key}
 >
   <h3>{i18n.categories[category.key] || category.message || category.key}</h3>
-  <FocusGrid {emojis} isActive={focusState.category === index}>
+  <FocusGrid {emojis} isActive={focusState.category === index} {categoryCount}>
     <Emojis
       {emojis}
       categoryIndex={index}
-      focused={focusState.category === index ? emojis[focusState.offset].emoji : null}
+      focused={focusState.category === index ? emojis?.[focusState.offset].emoji : null}
     />
   </FocusGrid>
 </div>

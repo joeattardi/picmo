@@ -1,14 +1,16 @@
 <script lang="ts">
-  import { getContext, createEventDispatcher, onMount } from 'svelte';
+  import { getContext, createEventDispatcher, onMount, setContext, tick } from 'svelte';
   import { fade, scale } from 'svelte/transition';
 
   import { computePosition, shift, arrow, offset } from '@floating-ui/dom';
 
-  import type { VariantStore } from '../types';
+  import type { FocusState, VariantStore } from '../types';
   import type { EmojiRecord } from '../data';
 
   import Emoji from './Emoji.svelte';
   import { getEmojiForEvent } from '../util';
+  import FocusGrid from './FocusGrid.svelte';
+  import { writable } from 'svelte/store';
 
   let emoji: EmojiRecord;
   let variants: EmojiRecord[];
@@ -20,6 +22,14 @@
   const dispatch = createEventDispatcher();
 
   const store = getContext<VariantStore>('variant');
+
+  let focusState: FocusState;
+  const focusStore = writable<FocusState>({ category: 0, offset: 0 });
+  setContext('focus', focusStore);
+
+  focusStore.subscribe(state => {
+    focusState = state;
+  });
 
   store.subscribe(data => {
     emoji = data?.emoji;
@@ -47,7 +57,15 @@
     }
   }
 
-  onMount(() => {
+  onMount(async () => {
+    await tick();
+
+    focusStore.set({
+      category: 0,
+      offset: 0,
+      applyFocus: true
+    });
+
     function checkClickOutside(event) {
       if (!event.composedPath().includes(contentElement)) {
         close();
@@ -94,9 +112,11 @@
 {#if emoji}
   <div class="overlay" transition:fade={{ duration: 150 }} on:keydown={handleKeyDown} on:click={handleClick}>
     <div bind:this={contentElement} class="content" transition:scale={{ duration: 150 }}>
-      {#each variants as emoji}
-        <Emoji {emoji} />
-      {/each}
+      <FocusGrid emojis={variants} isActive={true} wrap={true} categoryCount={1}>
+        {#each variants as emoji, index}
+          <Emoji categoryIndex={0} {emoji} {index} isFocused={focusState.offset === index} />
+        {/each}
+      </FocusGrid>
       <div bind:this={arrowElement} class="arrow" />
     </div>
   </div>
