@@ -68,7 +68,11 @@
 >
   <h3>{i18n.categories[category.key] || category.message || category.key}</h3>
   <FocusGrid {emojis} isActive={focusState.category === index}>
-    <Emojis {emojis} focused={focusState.category === index ? emojis[focusState.offset].emoji : null} />
+    <Emojis
+      {emojis}
+      categoryIndex={index}
+      focused={focusState.category === index ? emojis[focusState.offset].emoji : null}
+    />
   </FocusGrid>
 </div>
 

@@ -3,12 +3,13 @@
   import Emoji from './Emoji.svelte';
 
   export let emojis: EmojiRecord[];
+  export let categoryIndex: number;
   export let focused: string | null;
 </script>
 
 <div class="emojis">
-  {#each emojis as emoji}
-    <Emoji isFocused={focused === emoji.emoji} {emoji} />
+  {#each emojis as emoji, index}
+    <Emoji {categoryIndex} {index} {emoji} isFocused={focused === emoji.emoji} />
   {/each}
 </div>
 

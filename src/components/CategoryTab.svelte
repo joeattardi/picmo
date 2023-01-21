@@ -17,7 +17,7 @@
   selectedCategoryStore.subscribe(value => {
     isSelected = value?.category?.key === category?.key;
 
-    if (isSelected) {
+    if (isSelected && value?.method === 'click') {
       button?.focus();
     }
   });

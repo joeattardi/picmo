@@ -16,6 +16,7 @@ export type VariantState = {
 export type FocusState = {
   category: number;
   offset: number;
+  applyFocus?: boolean;
 };
 
 export type SelectedCategoryStore = Writable<CategorySelection>;

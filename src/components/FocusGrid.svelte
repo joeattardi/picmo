@@ -13,54 +13,41 @@
   const rowCount = Math.floor(emojis.length / options.columns);
   const lastRowStart = rowCount * options.columns;
 
-  function focusLeft() {
-    focusStore.update(state => {
-      if (state.offset > 0) {
-        return { ...state, offset: state.offset - 1 };
-      }
+  function focusLeft({ offset, category }) {
+    if (offset > 0) {
+      return { offset: offset - 1 };
+    }
 
-      // Underflow - move to previous category if there is one
-      if (state.category > 0) {
-        return { ...state, offset: -1, category: state.category - 1 };
-      }
-
-      return state;
-    });
+    if (category > 0) {
+      return { offset: -1, category: category - 1 };
+    }
   }
 
-  function focusRight() {
-    focusStore.update(state => {
-      if (state.offset < emojis.length - 1) {
-        return { ...state, offset: state.offset + 1 };
-      }
+  function focusRight({ offset, category }) {
+    if (offset < emojis.length - 1) {
+      return { offset: offset + 1 };
+    }
 
-      // Overflow - move to the next category
-      return { ...state, offset: 0, category: state.category + 1 };
-    });
+    // Overflow - move to the next category
+    return { offset: 0, category: category + 1 };
   }
 
-  function focusDown() {
-    focusStore.update(state => {
-      if (state.offset < lastRowStart) {
-        return { ...state, offset: Math.min(state.offset + options.columns, emojis.length - 1) };
-      }
+  function focusDown({ offset, category }) {
+    if (offset < lastRowStart) {
+      return { offset: Math.min(offset + options.columns, emojis.length - 1) };
+    }
 
-      return { ...state, offset: 0, category: state.category + 1 };
-    });
+    return { offset: 0, category: category + 1 };
   }
 
-  function focusUp() {
-    focusStore.update(state => {
-      if (state.offset > options.columns) {
-        return { ...state, offset: state.offset - options.columns };
-      }
+  function focusUp({ offset, category }) {
+    if (offset > options.columns) {
+      return { offset: offset - options.columns };
+    }
 
-      if (state.category > 0) {
-        return { ...state, offset: -1, category: state.category - 1 };
-      }
-
-      return state;
-    });
+    if (category > 0) {
+      return { offset: -1, category: category - 1 };
+    }
   }
 
   const keyBindings = {
@@ -73,7 +60,11 @@
   function onKeyDown(event: KeyboardEvent) {
     if (isActive && event.key in keyBindings) {
       event.preventDefault();
-      keyBindings[event.key]();
+      focusStore.update(state => ({
+        ...state,
+        applyFocus: true,
+        ...keyBindings[event.key](state)
+      }));
     }
   }
 </script>

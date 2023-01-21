@@ -1,16 +1,27 @@
 <script lang="ts">
+  import { getContext } from 'svelte';
   import type { EmojiRecord } from '../data';
+  import type { FocusStore } from '../types';
 
   export let emoji: EmojiRecord;
+  export let index: number;
+  export let categoryIndex: number;
   export let isFocused = false;
 
-  let element: HTMLElement;
+  let element: HTMLButtonElement;
 
-  $: {
-    if (isFocused) {
+  const focusStore = getContext<FocusStore>('focus');
+  focusStore.subscribe(state => {
+    if (state.offset === index && state.category === categoryIndex && state.applyFocus) {
       element?.focus();
     }
-  }
+  });
+
+  // $: {
+  //   if (isFocused) {
+  //     element?.focus();
+  //   }
+  // }
 </script>
 
 <button bind:this={element} tabindex={isFocused ? 0 : -1} data-emoji={emoji.emoji}>{emoji.emoji}</button>
