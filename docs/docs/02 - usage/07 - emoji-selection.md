@@ -61,7 +61,7 @@ A [custom image](./custom) contains the base emoji data, the image URL, and any 
 ```javascript
 const picker = createPicker();
 
-picker.on('emoji:select', selection => {
+picker.addEventListener('emoji:select', selection => {
   console.log('Selected emoji: ', selection.emoji);
 });
 ```
