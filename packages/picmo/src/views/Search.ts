@@ -5,7 +5,7 @@ import { icon } from '../icons';
 import { EmojiContainer } from './EmojiContainer';
 import { ErrorMessage } from './ErrorMessage';
 
-import { debounce, getPrefixedClasses } from '../util';
+import { debounce, getPrefixedClasses, replaceChildren } from '../util';
 import { LazyLoader } from '../LazyLoader';
 import { Category } from '../types';
 
@@ -98,7 +98,7 @@ export class Search extends View {
   }
 
   private showSearchAccessory(accessory: Element) {
-    this.ui.searchAccessory.replaceChildren(accessory);
+    replaceChildren(this.ui.searchAccessory, accessory);
   }
 
   clear(): void {

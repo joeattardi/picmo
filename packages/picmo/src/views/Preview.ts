@@ -2,7 +2,7 @@ import { View } from './view';
 import { EmojiRecord } from '../types';
 
 import { Template } from '../Template';
-import { getPrefixedClasses } from '../util';
+import { getPrefixedClasses, empty, replaceChildren } from '../util';
 
 const classes = getPrefixedClasses(
   'preview',
@@ -44,19 +44,19 @@ export class EmojiPreview extends View {
     super.initialize();
   }
 
-  private showPreview(emoji: EmojiRecord, content: Element) {
-    this.ui.emoji.replaceChildren(content);
+  private showPreview(emoji: EmojiRecord, content: HTMLElement) {
+    replaceChildren(this.ui.emoji, content);
     this.ui.name.textContent = emoji.label;
     if (emoji.tags) {
       this.ui.tagList.style.display = 'flex';
       const tags = emoji.tags.map(tag => tagTemplate.renderSync({ tag, classes }) as HTMLElement);
-      this.ui.tagList.replaceChildren(...tags);
+      replaceChildren(this.ui.tagList, ...tags);
     }
   }
 
   private hidePreview() {
-    this.ui.emoji.replaceChildren();
-    this.ui.name.textContent = '';
-    this.ui.tagList.replaceChildren();
+    empty(this.ui.emoji);
+    empty(this.ui.name);
+    empty(this.ui.tagList);
   }
 }

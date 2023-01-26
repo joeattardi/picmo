@@ -17,7 +17,7 @@ import { Category, EmojiRecord, UpdatableOptions } from '../types';
 import { LATEST_EMOJI_VERSION } from 'emojibase';
 
 import template from './EmojiPicker.template';
-import { getPrefixedClasses } from '../util';
+import { getPrefixedClasses, replaceChildren } from '../util';
 
 const classes = getPrefixedClasses(
   'picker',
@@ -234,7 +234,7 @@ export class EmojiPicker extends View {
     const errorView = this.viewFactory.create(DataError, { message: this.i18n.get('error.load') });
     const height = this.el.offsetHeight || 375;
     this.el.style.height = `${height}px`;
-    this.el.replaceChildren(errorView.renderSync());
+    replaceChildren(this.el, errorView.renderSync());
     throw error;
   }
 
@@ -319,7 +319,7 @@ export class EmojiPicker extends View {
       throw new Error('Picker must be given a root element via the rootElement option');
     }
     
-    this.options.rootElement.replaceChildren(this.el);
+    replaceChildren(this.options.rootElement, this.el);
     this.setStyleProperties();
 
     if (this.pickerReady) {
@@ -396,7 +396,7 @@ export class EmojiPicker extends View {
     }
 
     this.ui.pickerContent.classList.toggle(classes.fullHeight, content !== this.emojiArea);
-    this.ui.pickerContent.replaceChildren(content.el);
+    replaceChildren(this.ui.pickerContent, content.el);
     this.currentView = content;
 
     if (content === this.emojiArea) {

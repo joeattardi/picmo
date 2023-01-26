@@ -114,3 +114,15 @@ export function getPrefixedClasses(...classNames) {
 export function prefixClassName(className) {
   return `${className}`;
 }
+
+export function empty(element: Element): Element {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+
+  return element;
+}
+
+export function replaceChildren(parent: Element, ...children: Element[]) {
+  empty(parent).append(...children);
+}
