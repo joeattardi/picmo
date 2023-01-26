@@ -2,6 +2,7 @@ import { resolve } from 'path';
 
 import nesting from 'postcss-nesting';
 import mixins from 'postcss-mixins';
+import prefix from 'postcss-prefixer';
 
 export default function createConfig(basedir, moduleName) {
   const rollupOptions = moduleName === 'picmo' ? {} : {
@@ -20,6 +21,7 @@ export default function createConfig(basedir, moduleName) {
     css: {
       postcss: {
         plugins: [
+          prefix({ prefix: 'picmo__' }),
           mixins(),
           nesting(),
         ]

@@ -112,7 +112,7 @@ export function getPrefixedClasses(...classNames) {
 }
 
 export function prefixClassName(className) {
-  return `${className}`;
+  return `picmo__${className}`;
 }
 
 export function empty(element: Element): Element {

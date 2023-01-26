@@ -16,7 +16,7 @@ function header({ showHeader, classes }) {
 function renderPicker(data) {
   const { classes, theme, className = ''} = data;
   return /* html */`
-    <div class="picmo-picker ${classes.picker} ${theme} ${className}">
+    <div class="picmo__picker ${classes.picker} ${theme} ${className}">
       ${header(data)}
       <div class="${classes.content}">
         <div data-view="emojiArea"></div>
@@ -59,7 +59,7 @@ function renderPlaceholder(data) {
   ` : '';
 
   return /* html */`
-    <div class="picmo-picker ${classes.skeleton} ${classes.picker} ${theme} ${className}">
+    <div class="picmo__picker ${classes.skeleton} ${classes.picker} ${theme} ${className}">
       ${header(data)}
       <div class="${classes.contentSkeleton}">
         <div class="${classes.placeholder} ${classes.categoryName}"></div>

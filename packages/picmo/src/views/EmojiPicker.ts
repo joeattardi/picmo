@@ -44,6 +44,8 @@ const classes = getPrefixedClasses(
   'header'
 );
 
+console.log(classes);
+
 const variableNames = {
   emojisPerRow: '--emojis-per-row',
   visibleRows: '--row-count',

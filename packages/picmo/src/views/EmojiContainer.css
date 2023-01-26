@@ -1,4 +1,4 @@
-.picmo-picker .emojiContainer {
+.picker .emojiContainer {
   display: grid;
   justify-content: space-between;
   gap: 1px;

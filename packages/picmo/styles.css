@@ -6,3 +6,7 @@ pre {
   min-height: 6em;
   font-size: 2em;
 }
+
+.my-picker {
+  --hover-background-color: red !important;
+}

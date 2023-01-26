@@ -1,4 +1,4 @@
-.picmo-picker .variantOverlay {
+.picker .variantOverlay {
   background: var(--overlay-background-color);
   border-radius: 5px;
   display: flex;

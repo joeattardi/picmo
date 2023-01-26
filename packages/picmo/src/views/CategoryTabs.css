@@ -1,4 +1,4 @@
-.picmo-picker .categoryButtonsContainer {
+.picker .categoryButtonsContainer {
   overflow: auto;
   padding: 2px 0;
 
@@ -31,7 +31,7 @@
   }
 }
 
-.picmo-picker .categoryButtons {
+.picker .categoryButtons {
   display: flex;
   flex-direction: row;
   gap: var(--tab-gap);

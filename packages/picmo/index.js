@@ -26,6 +26,7 @@ const customEmojis = [
 const picker = createPicker({
   rootElement,
   custom: customEmojis,
+  className: 'my-picker'
   // emojisPerRow: 5
 });
 
