@@ -2,6 +2,12 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.7.3] - 2023-01-26
+
+- [`picmo`] Fixed buggy scroll adjustment code that was sometimes causing issues when showing/hiding the picker. ([#246](https://github.com/joeattardi/picmo/issues/246))
+- [`picmo`] Added the `picmo__` prefix to all class names to reduce style conflicts. ([#253](https://github.com/joeattardi/picmo/issues/253))
+- [`picmo`] Replaced all uses of Element.replaceChildren with a safer implementation that has better browser compatibility. ([#256](https://github.com/joeattardi/picmo/issues/256))
+
 ## [5.7.2] - 2022-10-25
 
 - [`picmo`] Removed inconsistent scrollbar styling
