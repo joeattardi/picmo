@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext, createEventDispatcher, onMount, setContext, tick } from 'svelte';
+  import { getContext, createEventDispatcher, onMount, setContext, tick, onDestroy } from 'svelte';
   import { fade, scale } from 'svelte/transition';
 
   import { computePosition, shift, arrow, offset } from '@floating-ui/dom';
@@ -27,15 +27,21 @@
   const focusStore = writable<FocusState>({ category: 0, offset: 0 });
   setContext('focus', focusStore);
 
-  focusStore.subscribe(state => {
-    focusState = state;
-  });
+  const unsubscribe = [];
 
-  store.subscribe(data => {
-    emoji = data?.emoji;
-    variants = data && [{ ...emoji, skins: [] }, ...emoji.skins];
-    emojiElement = data?.element;
-  });
+  unsubscribe.push(
+    focusStore.subscribe(state => {
+      focusState = state;
+    })
+  );
+
+  unsubscribe.push(
+    store.subscribe(data => {
+      emoji = data?.emoji;
+      variants = data && [{ ...emoji, skins: [] }, ...emoji.skins];
+      emojiElement = data?.element;
+    })
+  );
 
   function close() {
     store.set(null);
@@ -107,6 +113,10 @@
       });
     }
   }
+
+  onDestroy(() => {
+    unsubscribe.forEach(fn => fn());
+  });
 </script>
 
 {#if emoji}

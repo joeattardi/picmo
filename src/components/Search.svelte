@@ -3,7 +3,7 @@
 
   import { scale } from 'svelte/transition';
   import { backOut } from 'svelte/easing';
-  import { createEventDispatcher, getContext } from 'svelte';
+  import { createEventDispatcher, getContext, onDestroy } from 'svelte';
   import { faMagnifyingGlass, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
 
@@ -17,17 +17,23 @@
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   const navigationStore = getContext<NavigationStore>('navigation');
 
-  navigationStore.subscribe(navigate => {
-    if (navigate?.target === 'search') {
-      searchInput.focus();
-    }
-  });
+  const unsubscribe = [];
 
-  selectedCategoryStore.subscribe(() => {
-    if (searchQuery.length) {
-      clearSearch(false);
-    }
-  });
+  unsubscribe.push(
+    navigationStore.subscribe(navigate => {
+      if (navigate?.target === 'search') {
+        searchInput.focus();
+      }
+    })
+  );
+
+  unsubscribe.push(
+    selectedCategoryStore.subscribe(() => {
+      if (searchQuery.length) {
+        clearSearch(false);
+      }
+    })
+  );
 
   function clearSearch(dispatchAction = true) {
     searchQuery = '';
@@ -40,6 +46,7 @@
     if (event.key === 'Escape') {
       clearSearch();
     } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
       navigationStore.set({ target: searchQuery ? 'searchResults' : 'categories' });
     }
   }
@@ -51,6 +58,10 @@
       clearSearch();
     }
   }
+
+  onDestroy(() => {
+    unsubscribe.forEach(fn => fn());
+  });
 </script>
 
 <div class="search-container">

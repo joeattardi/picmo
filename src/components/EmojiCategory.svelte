@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Category, EmojiRecord } from '../data';
 
-  import { createEventDispatcher, getContext } from 'svelte';
+  import { createEventDispatcher, getContext, onDestroy } from 'svelte';
   import type { FocusStore, FocusState, PreviewStore, VariantStore } from '../types';
   import i18n from '../i18n';
   import { getEmojiForEvent } from '../util';
@@ -19,7 +19,7 @@
   const variantStore = getContext<VariantStore>('variant');
 
   const focusStore = getContext<FocusStore>('focus');
-  focusStore.subscribe(state => {
+  const unsubscribe = focusStore.subscribe(state => {
     if (state.category === index && state.offset === -1) {
       focusStore.set({ ...state, offset: emojis.length - 1 });
     } else {
@@ -54,6 +54,8 @@
       }
     }
   }
+
+  onDestroy(unsubscribe);
 </script>
 
 <div

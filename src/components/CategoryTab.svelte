@@ -2,7 +2,7 @@
   import type { Category } from '../data';
   import type { SelectedCategoryStore } from '../types';
 
-  import { getContext, createEventDispatcher } from 'svelte';
+  import { getContext, createEventDispatcher, onDestroy } from 'svelte';
   import Icon from 'svelte-awesome';
   import { categoryIcons } from '../icons';
   import i18n from '../i18n';
@@ -14,7 +14,7 @@
 
   let isSelected = false;
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
-  selectedCategoryStore.subscribe(value => {
+  const unsubscribe = selectedCategoryStore.subscribe(value => {
     isSelected = value?.category?.key === category?.key;
 
     if (isSelected && value?.method === 'click') {
@@ -27,6 +27,8 @@
   function onClickCategory() {
     dispatch('selectCategory', category);
   }
+
+  onDestroy(unsubscribe);
 </script>
 
 <li data-category-key={category.key}>

@@ -2,7 +2,7 @@
   import type { Category } from '../data';
   import type { SelectedCategoryStore, CategoryStore, NavigationStore } from '../types';
 
-  import { getContext, createEventDispatcher, tick } from 'svelte';
+  import { getContext, createEventDispatcher, tick, onDestroy } from 'svelte';
 
   import CategoryTab from './CategoryTab.svelte';
 
@@ -16,14 +16,14 @@
 
   export let isSearching: boolean;
 
-  navigationStore.subscribe(navigate => {
+  const unsubscribeNavigation = navigationStore.subscribe(navigate => {
     if (navigate?.target === 'categories') {
       tabs.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
     }
   });
 
   let categories: Category[];
-  categoryStore.subscribe(categoryList => {
+  const unsubscribeCategory = categoryStore.subscribe(categoryList => {
     categories = categoryList;
   });
 
@@ -71,6 +71,11 @@
       navigationStore.set({ target: 'emojis' });
     }
   }
+
+  onDestroy(() => {
+    unsubscribeCategory();
+    unsubscribeNavigation();
+  });
 </script>
 
 {#if !categories}

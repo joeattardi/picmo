@@ -2,14 +2,16 @@
   import type { PreviewStore } from '../types';
   import type { EmojiRecord } from '../data';
 
-  import { getContext } from 'svelte';
+  import { getContext, onDestroy } from 'svelte';
 
   let currentPreview: EmojiRecord;
 
   const previewStore = getContext<PreviewStore>('preview');
-  previewStore.subscribe(emoji => {
+  const unsubscribe = previewStore.subscribe(emoji => {
     currentPreview = emoji;
   });
+
+  onDestroy(unsubscribe);
 </script>
 
 <div class="preview">

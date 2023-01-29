@@ -4,7 +4,7 @@
   import type { DataStore, EmojiMappings } from '../data';
 
   import { fade } from 'svelte/transition';
-  import { onMount, setContext, createEventDispatcher } from 'svelte';
+  import { onMount, setContext, createEventDispatcher, onDestroy } from 'svelte';
   import { writable } from 'svelte/store';
   import { initDatabase, IndexedDbStoreFactory } from '../data';
   import { determineEmojiVersion } from '../emojiSupport';
@@ -66,7 +66,7 @@
 
   const dispatch = createEventDispatcher();
 
-  dataStore.subscribe(state => {
+  const unsubscribe = dataStore.subscribe(state => {
     dataStatus = state.status;
     db = state.dataStore;
   });
@@ -132,6 +132,8 @@
   function focusSearch() {
     searchComponent.focusSearch();
   }
+
+  onDestroy(unsubscribe);
 </script>
 
 <ThemeWrapper theme={mergedOptions.theme}>

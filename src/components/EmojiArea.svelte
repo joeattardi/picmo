@@ -2,7 +2,7 @@
   import type { Category, EmojiMappings } from '../data';
   import type { SelectedCategoryStore, CategoryStore, FocusState, NavigationStore } from '../types';
 
-  import { getContext, setContext } from 'svelte';
+  import { getContext, onDestroy, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import EmojiCategory from './EmojiCategory.svelte';
   import RecentEmojisCategory from './RecentEmojisCategory.svelte';
@@ -18,30 +18,42 @@
 
   let categories: Category[];
 
-  categoryStore.subscribe(categoryList => {
-    categories = categoryList;
-  });
+  const unsubscribe = [];
+
+  unsubscribe.push(
+    categoryStore.subscribe(categoryList => {
+      categories = categoryList;
+    })
+  );
 
   let pauseScroll = false;
 
   let scrollableArea: HTMLElement;
 
-  navigationStore.subscribe(navigate => {
-    if (navigate?.target === 'emojis') {
-      scrollableArea.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
-    }
-  });
+  unsubscribe.push(
+    navigationStore.subscribe(navigate => {
+      if (navigate?.target === 'emojis') {
+        scrollableArea.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
+      }
+    })
+  );
 
-  selectedCategoryStore.subscribe(selection => {
-    if (scrollableArea && selection && selection.method === 'click') {
-      focusStore.set({
-        category: categories.indexOf(selection.category),
-        offset: 0
-      });
-      pauseScroll = true;
-      const targetEl = scrollableArea.querySelector<HTMLElement>(`[data-category-key="${selection.category.key}"]`);
-      scrollableArea.scrollTo({ top: targetEl.offsetTop + 5 });
-    }
+  unsubscribe.push(
+    selectedCategoryStore.subscribe(selection => {
+      if (scrollableArea && selection && selection.method === 'click') {
+        focusStore.set({
+          category: categories.indexOf(selection.category),
+          offset: 0
+        });
+        pauseScroll = true;
+        const targetEl = scrollableArea.querySelector<HTMLElement>(`[data-category-key="${selection.category.key}"]`);
+        scrollableArea.scrollTo({ top: targetEl.offsetTop + 5 });
+      }
+    })
+  );
+
+  onDestroy(() => {
+    unsubscribe.forEach(fn => fn());
   });
 
   function intersectionObserver(node: HTMLElement) {

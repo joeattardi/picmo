@@ -1,7 +1,7 @@
 <script lang="ts">
   import { faFaceFrown } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
-  import { getContext, setContext } from 'svelte';
+  import { getContext, onDestroy, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { backOut } from 'svelte/easing';
   import { scale } from 'svelte/transition';
@@ -24,11 +24,13 @@
   setContext('focus', focusStore);
 
   const navigationStore = getContext<NavigationStore>('navigation');
-  navigationStore.subscribe(navigate => {
+  const unsubscribe = navigationStore.subscribe(navigate => {
     if (navigate?.target === 'searchResults') {
       element.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
     }
   });
+
+  onDestroy(unsubscribe);
 </script>
 
 <div bind:this={element} class="searchResults">

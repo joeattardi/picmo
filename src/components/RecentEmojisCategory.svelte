@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Category, EmojiRecord } from '../data';
 
-  import { getContext } from 'svelte';
+  import { getContext, onDestroy } from 'svelte';
   import EmojiCategory from './EmojiCategory.svelte';
   import type { RecentsStore } from '../types';
 
@@ -12,7 +12,9 @@
   const recentsStore = getContext<RecentsStore>('recents');
 
   let recents: EmojiRecord[];
-  recentsStore.subscribe(value => (recents = value));
+  const unsubscribe = recentsStore.subscribe(value => (recents = value));
+
+  onDestroy(unsubscribe);
 </script>
 
 <EmojiCategory on:emojiselect emojis={recents} {category} {index} {categoryCount} />
