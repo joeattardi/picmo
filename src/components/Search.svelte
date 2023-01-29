@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { SelectedCategoryStore } from '../types';
+  import type { SelectedCategoryStore, NavigationStore } from '../types';
 
   import { scale } from 'svelte/transition';
   import { backOut } from 'svelte/easing';
@@ -9,10 +9,19 @@
 
   import i18n from '../i18n';
 
+  let searchInput: HTMLInputElement;
   let searchQuery = '';
+
   const dispatch = createEventDispatcher();
 
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
+  const navigationStore = getContext<NavigationStore>('navigation');
+
+  navigationStore.subscribe(navigate => {
+    if (navigate?.target === 'search') {
+      searchInput.focus();
+    }
+  });
 
   selectedCategoryStore.subscribe(() => {
     if (searchQuery.length) {
@@ -30,6 +39,8 @@
   function handleSearchKeyDown(event) {
     if (event.key === 'Escape') {
       clearSearch();
+    } else if (event.key === 'ArrowDown') {
+      navigationStore.set({ target: 'categories' });
     }
   }
 
@@ -45,6 +56,7 @@
 <div class="search-container">
   <input
     type="text"
+    bind:this={searchInput}
     bind:value={searchQuery}
     placeholder={i18n.search.placeholder}
     on:keydown={handleSearchKeyDown}

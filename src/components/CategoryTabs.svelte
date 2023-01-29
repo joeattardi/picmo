@@ -1,17 +1,26 @@
 <script lang="ts">
   import type { Category } from '../data';
-  import type { SelectedCategoryStore, CategoryStore } from '../types';
+  import type { SelectedCategoryStore, CategoryStore, NavigationStore } from '../types';
 
   import { getContext, createEventDispatcher, tick } from 'svelte';
 
   import CategoryTab from './CategoryTab.svelte';
 
+  let tabs: HTMLUListElement;
+
   const categoryStore = getContext<CategoryStore>('categories');
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
+  const navigationStore = getContext<NavigationStore>('navigation');
 
   const dispatch = createEventDispatcher();
 
   export let isSearching: boolean;
+
+  navigationStore.subscribe(navigate => {
+    if (navigate?.target === 'categories') {
+      tabs.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
+    }
+  });
 
   let categories: Category[];
   categoryStore.subscribe(categoryList => {
@@ -54,6 +63,12 @@
         category: getNewCategory(selection.category, offsets[event.key]),
         method: 'click'
       }));
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      navigationStore.set({ target: 'search' });
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      navigationStore.set({ target: 'emojis' });
     }
   }
 </script>
@@ -62,7 +77,7 @@
   <div>loading</div>
 {:else}
   <div class="container">
-    <ul class="categoryTabs" on:keydown={handleKeyDown}>
+    <ul class="categoryTabs" bind:this={tabs} on:keydown={handleKeyDown}>
       {#each categories as category}
         <CategoryTab on:selectCategory={setSelectedCategory} {isSearching} {category} />
       {/each}

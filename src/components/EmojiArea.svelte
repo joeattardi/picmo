@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { Category, EmojiMappings } from '../data';
-  import type { SelectedCategoryStore, CategoryStore, FocusState } from '../types';
+  import type { SelectedCategoryStore, CategoryStore, FocusState, NavigationStore } from '../types';
 
   import { getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
@@ -12,16 +12,26 @@
 
   const categoryStore = getContext<CategoryStore>('categories');
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
+  const navigationStore = getContext<NavigationStore>('navigation');
 
   export let categoryEmojis: EmojiMappings;
 
   let categories: Category[];
+
   categoryStore.subscribe(categoryList => {
     categories = categoryList;
   });
 
   let pauseScroll = false;
+
   let scrollableArea: HTMLElement;
+
+  navigationStore.subscribe(navigate => {
+    if (navigate?.target === 'emojis') {
+      scrollableArea.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
+    }
+  });
+
   selectedCategoryStore.subscribe(selection => {
     if (scrollableArea && selection && selection.method === 'click') {
       focusStore.set({

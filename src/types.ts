@@ -8,6 +8,11 @@ export type CategorySelection = {
   method: 'click' | 'scroll' | 'initial';
 };
 
+type NavigationTarget = 'search' | 'categories' | 'emojis';
+export type Navigation = {
+  target: NavigationTarget;
+};
+
 export type VariantState = {
   emoji: EmojiRecord;
   element: HTMLElement;
@@ -19,6 +24,7 @@ export type FocusState = {
   applyFocus?: boolean;
 };
 
+export type NavigationStore = Writable<Navigation>;
 export type SelectedCategoryStore = Writable<CategorySelection>;
 export type CategoryStore = Writable<Category[]>;
 export type RecentsStore = Writable<EmojiRecord[]>;

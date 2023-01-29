@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { EmojiRecord, Category, DataState, DataStatus } from '../data';
-  import type { PickerOptions, CategorySelection } from '../types';
+  import type { PickerOptions, CategorySelection, Navigation } from '../types';
   import type { DataStore, EmojiMappings } from '../data';
 
   import { fade } from 'svelte/transition';
@@ -44,6 +44,7 @@
   const previewStore = writable<EmojiRecord>(null);
   const recentsStore = writable<EmojiRecord[]>([]);
   const variantStore = writable(null);
+  const navigateStore = writable<Navigation>();
 
   setContext('dataStore', dataStore);
   setContext('categories', categoryStore);
@@ -52,6 +53,7 @@
   setContext('recents', recentsStore);
   setContext('variant', variantStore);
   setContext('options', mergedOptions);
+  setContext('navigation', navigateStore);
 
   let categoryEmojis: EmojiMappings | null = null;
   let searchResults: EmojiRecord[];
@@ -125,6 +127,11 @@
     recentsStore.set(mergedOptions.recentsProvider.addOrUpdateRecent(emoji));
     dispatch('emojiselect', emoji);
   }
+
+  let searchComponent;
+  function focusSearch() {
+    searchComponent.focusSearch();
+  }
 </script>
 
 <ThemeWrapper theme={mergedOptions.theme}>
@@ -136,8 +143,12 @@
     >
       <VariantPopup on:emojiselect={onEmojiSelect} />
       <header>
-        <Search on:search={search} />
-        <CategoryTabs on:categoryClick={clearSearchResults} isSearching={searchResults != null} />
+        <Search bind:this={searchComponent} on:search={search} />
+        <CategoryTabs
+          on:navigatePrevious={focusSearch}
+          on:categoryClick={clearSearchResults}
+          isSearching={searchResults != null}
+        />
       </header>
       {#if searchResults}
         <SearchResults on:emojiselect={onEmojiSelect} {searchResults} />
