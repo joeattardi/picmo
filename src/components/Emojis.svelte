@@ -19,5 +19,6 @@
     grid-template-columns: var(--grid-template-columns);
     justify-items: center;
     justify-content: center;
+    padding: 0.25em 0;
   }
 </style>
