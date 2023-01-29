@@ -11,7 +11,7 @@
   export let category: Category;
   export let categoryCount = 1;
   export let index = 0;
-  export let emojis: EmojiRecord[];
+  export let emojis: EmojiRecord[] = [];
 
   let focusState: FocusState;
 
@@ -66,18 +66,30 @@
   data-category-key={category.key}
 >
   <h3>{i18n.categories[category.key] || category.message || category.key}</h3>
-  <FocusGrid {emojis} isActive={focusState.category === index} {categoryCount}>
-    <Emojis
-      {emojis}
-      categoryIndex={index}
-      focused={focusState.category === index ? emojis?.[focusState.offset].emoji : null}
-    />
-  </FocusGrid>
+  {#if emojis.length}
+    <FocusGrid {emojis} isActive={focusState.category === index} {categoryCount}>
+      <Emojis
+        {emojis}
+        categoryIndex={index}
+        focused={focusState.category === index ? emojis?.[focusState.offset].emoji : null}
+      />
+    </FocusGrid>
+  {:else}
+    <p class="empty">{i18n.recents.none}</p>
+  {/if}
 </div>
 
 <style>
   .category {
     --grid-template-columns: repeat(var(--emoji-columns), 1fr);
+  }
+
+  .empty {
+    padding: 0.5em;
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--neutral-medium);
+    text-align: center;
   }
 
   h3 {
