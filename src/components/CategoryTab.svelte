@@ -34,6 +34,7 @@
     tabindex={isSelected ? 0 : -1}
     class={isSelected && !isSearching ? 'selected' : ''}
     bind:this={button}
+    disabled={isSearching}
     on:click={onClickCategory}
     title={i18n.categories[category.key] || category.message || category.key}
   >
@@ -53,6 +54,15 @@
     border: 2px solid transparent;
     background: transparent;
     color: var(--category-tab-icon-color);
+  }
+
+  button:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+
+  button:disabled:hover {
+    background: transparent;
   }
 
   .selected,

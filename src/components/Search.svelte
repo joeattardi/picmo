@@ -40,7 +40,7 @@
     if (event.key === 'Escape') {
       clearSearch();
     } else if (event.key === 'ArrowDown') {
-      navigationStore.set({ target: 'categories' });
+      navigationStore.set({ target: searchQuery ? 'searchResults' : 'categories' });
     }
   }
 

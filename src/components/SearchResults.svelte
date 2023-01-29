@@ -1,17 +1,19 @@
 <script lang="ts">
   import { faFaceFrown } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
-  import { setContext } from 'svelte';
+  import { getContext, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { backOut } from 'svelte/easing';
   import { scale } from 'svelte/transition';
-  import type { Category } from '../data';
-  import type { FocusState } from '../types';
+  import type { Category, EmojiRecord } from '../data';
+  import type { NavigationStore, FocusState } from '../types';
 
   import i18n from '../i18n';
   import EmojiCategory from './EmojiCategory.svelte';
 
-  export let searchResults;
+  export let searchResults: EmojiRecord[];
+
+  let element: HTMLElement;
 
   const searchResultsCategory: Category = {
     key: 'search-results',
@@ -20,9 +22,16 @@
 
   const focusStore = writable<FocusState>({ category: 0, offset: 0 });
   setContext('focus', focusStore);
+
+  const navigationStore = getContext<NavigationStore>('navigation');
+  navigationStore.subscribe(navigate => {
+    if (navigate?.target === 'searchResults') {
+      element.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
+    }
+  });
 </script>
 
-<div class="searchResults">
+<div bind:this={element} class="searchResults">
   {#if searchResults.length}
     <EmojiCategory emojis={searchResults} category={searchResultsCategory} on:emojiselect />
   {:else}

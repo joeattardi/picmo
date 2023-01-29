@@ -8,7 +8,7 @@ export type CategorySelection = {
   method: 'click' | 'scroll' | 'initial';
 };
 
-type NavigationTarget = 'search' | 'categories' | 'emojis';
+type NavigationTarget = 'search' | 'categories' | 'emojis' | 'searchResults';
 export type Navigation = {
   target: NavigationTarget;
 };
