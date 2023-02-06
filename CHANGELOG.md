@@ -2,6 +2,11 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.7.4] - 2023-02-05
+
+- [`@picmo/popup-picker`] Fixed missing prefixed class names ([#259](https://github.com/joeattardi/picmo/issues/259))
+- [`@picmo/renderer-twemoji`] Fixed missing prefixed class names
+
 ## [5.7.3] - 2023-01-28
 
 - [`picmo`] Fixed buggy scroll adjustment code that was sometimes causing issues when showing/hiding the picker. ([#246](https://github.com/joeattardi/picmo/issues/246))
