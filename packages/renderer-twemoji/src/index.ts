@@ -1,15 +1,13 @@
 import { parse } from 'twemoji-parser';
 
-import { EmojiRecord, EmojiSelection, Renderer, toElement, createStyleInjector } from 'picmo';
+import { EmojiRecord, EmojiSelection, Renderer, toElement, createStyleInjector, getPrefixedClasses } from 'picmo';
 
 import css from './twemoji.css?inline';
 import * as spriteSheets from './sprites';
 
 type TwemojiImageFormat = 'svg' | 'png';
 
-const classes = {
-  twemoji: 'twemoji'
-};
+const classes = getPrefixedClasses('twemoji')
 
 const styleInject = createStyleInjector();
 

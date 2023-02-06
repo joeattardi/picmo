@@ -8,6 +8,7 @@ import {
   FocusTrap,
   PickerOptions,
   ExternalEvent,
+  getPrefixedClasses,
 } from 'picmo';
 import { PopupEvent } from './PopupEvents';
 import { setPosition, PositionCleanup } from './positioning';
@@ -21,10 +22,11 @@ type OpenOptions = {
   triggerElement?: HTMLElement;
 }
 
-const classes = {
-  popupContainer: 'popupContainer',
-  closeButton: 'closeButton'
-};
+const classes = getPrefixedClasses(
+  'popupContainer',
+  'closeButton'
+);
+
 export class PopupPickerController {
   picker: EmojiPicker;
   isOpen = false;
