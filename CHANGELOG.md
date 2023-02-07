@@ -2,6 +2,10 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.7.5] = 2023-02-07
+
+- [`picmo`] Fixed an issue on mobile devices where the emojis would disappear if a category tab is selected while a scroll is in progress ([#260](https://github.com/joeattardi/picmo/issues/260))
+
 ## [5.7.4] - 2023-02-05
 
 - [`@picmo/popup-picker`] Fixed missing prefixed class names ([#259](https://github.com/joeattardi/picmo/issues/259))
