@@ -126,7 +126,11 @@ export class EmojiArea extends View {
   }
 
   private handleCategorySelect(category: CategoryKey, options?: SelectCategoryOptions) {
+
+    // On touch devices, if there is a "momentum scroll" in progress, we need to stop it so we can jump to the selected category
+    this.el.style.overflow = 'hidden';
     this.selectCategory(category, options);
+    this.el.style.overflow = 'auto';
   }
 
   private createCategory(category: Category): EmojiCategory {
