@@ -17,3 +17,7 @@ A provider is selected by passing a `recentsProvider` option to the [`createPick
 You can create a custom provider to store recent emojis in some other way. To do this, you need to create a class that extends from the [`RecentsProvider`](../api/picmo/classes/recents-provider) class and implement the three methods required (`clear`, `getRecents`, and `addOrUpdateRecent`).
 
 An instance of this class should be passed to the `recentsProvider` option of the [`createPicker`](../api/picmo/functions/create-picker) function.
+
+### Handling restricted environments
+
+If your browser does not allow `localStorage` to be used due to security constraints, PicMo will instead use a basic in-memory recents provider that will hold recent emojis but will be reset when the page is refreshed.

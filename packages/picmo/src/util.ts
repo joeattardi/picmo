@@ -126,3 +126,20 @@ export function empty(element: Element): Element {
 export function replaceChildren(parent: Element, ...children: Element[]) {
   empty(parent).append(...children);
 }
+
+function isStorageAvailable(key) {
+  try {
+    window[key].length;
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+export function isSessionStorageAvailable() {
+  return isStorageAvailable('sessionStorage');
+}
+
+export function isLocalStorageAvailable() {
+  return isStorageAvailable('localStorage');
+}

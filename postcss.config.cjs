@@ -3,13 +3,18 @@ const mixins = require('postcss-mixins');
 const postcssImport = require('postcss-import');
 const cssnano = require('cssnano');
 const prefix = require('postcss-prefixer');
+const exclude = require('postcss-exclude-files').default;
 
 module.exports = {
   plugins: [
-    postcssImport(),
-    prefix({
-      prefix: 'picmo__'
+    exclude({
+      filter:  [
+        '**/node_modules/**',
+        'docs/**'
+      ],
+      plugins: []
     }),
+    postcssImport(),
     mixins(),
     nesting(),
     cssnano()

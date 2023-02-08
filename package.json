@@ -38,7 +38,8 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@typescript-eslint/eslint-plugin": "^5.33.1",
     "lerna": "^5.1.8",
-    "nx": "^14.4.3"
+    "nx": "^14.4.3",
+    "postcss-exclude-files": "^1.0.15"
   },
   "dependencies": {
     "emojibase": "^6.1.0",

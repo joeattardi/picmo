@@ -1,7 +1,19 @@
 import { Locale, MessagesDataset, fetchMessages, fetchEmojis, Emoji } from 'emojibase';
 // import { Database } from './db';
 import { DataStoreFactory, DataStore } from './DataStore';
-import { computeHash } from '../util';
+import { computeHash, isSessionStorageAvailable } from '../util';
+import { createStorage } from '../webStorageShim';
+import { InMemoryStoreFactory } from './InMemoryStore';
+
+if (!isSessionStorageAvailable()) {
+  // emojibase relies on session storage being available for caching data.
+  // No way to disable this so we'll make a fake implementation. Caching won't work as expected
+  // but at least the picker will run.
+  console.warn('[picmo] sessionStorage not available, falling back to simple in-memory storage');
+  Object.defineProperty(window, 'sessionStorage', {
+    value: createStorage()
+  });
+}
 
 /**
  * Generates the URLs for emoji data for a given emojibase version and locale.
@@ -108,8 +120,14 @@ async function checkLocalUpdates(db: DataStore, hash: string) {
  * @returns Promise that resolves to the database instance
  */
 async function openDatabase(locale: Locale, factory: DataStoreFactory, existingDb?: DataStore): Promise<DataStore> {
-  const db = existingDb || factory(locale);
-  await db.open();
+  let db = existingDb || factory(locale);
+  try {
+    await db.open();
+  } catch (error) {
+    console.warn('[picmo] IndexedDB not available, falling back to InMemoryStoreFactory');
+    db = InMemoryStoreFactory(locale);
+  }
+
   return db;
 }
 

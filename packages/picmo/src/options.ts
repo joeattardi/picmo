@@ -4,6 +4,8 @@ import { NativeRenderer } from './renderers/native';
 import en from './i18n/lang-en';
 import { IndexedDbStoreFactory } from './data/IndexedDbStore';
 import { LocalStorageProvider } from './recents/LocalStorageProvider';
+import { isLocalStorageAvailable } from './util';
+import { createStorage } from './webStorageShim';
 
 const defaultOptions: Partial<PickerOptions> = {
   dataStore: IndexedDbStoreFactory,
@@ -28,6 +30,13 @@ const defaultOptions: Partial<PickerOptions> = {
 
   custom: []
 };
+
+if (!isLocalStorageAvailable()) {
+  console.warn('[picmo] localStorage not available, falling back to simple in-memory storage');
+  Object.defineProperty(window, 'localStorage', {
+    value: createStorage()
+  });
+}
 
 export function getOptions(options: Partial<PickerOptions> = {}): PickerOptions {
   return { 
