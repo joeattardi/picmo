@@ -96,7 +96,10 @@ export class InMemoryStore extends DataStore {
   }
 
   searchEmojis(query: string, customEmojis: EmojiRecord[], emojiVersion: number, categories: Category[]): Promise<EmojiRecord[]> {
-    const matchingEmojis = this.emojis.filter(emoji => queryMatches(emoji, query, categories)).map(getEmojiRecord);
+    const matchingEmojis = this.emojis
+      .filter(emoji => queryMatches(emoji, query, categories) && emoji.version <= emojiVersion)
+      .map(getEmojiRecord);
+
     const matchingCustom = customEmojis.filter(emoji => queryMatches(emoji, query, categories));
 
     const results = [
