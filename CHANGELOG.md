@@ -2,7 +2,12 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
-## [5.7.5] = 2023-02-07
+## [5.7.6] - 2023-02-08
+
+- [`picmo`] Fixed an issue where the picker crashed if `localStorage` or `indexedDB` are not available or restricted. In these cases a simplified in-memory fallback implementation is used so the picker still works ([#184](https://github.com/joeattardi/picmo/issues/184))
+- [`picmo`] Fixed the in-memory datastore search function to correctly exclude emojis that don't meet the version criteria ([#261](https://github.com/joeattardi/picmo/issues/261))
+
+## [5.7.5] - 2023-02-07
 
 - [`picmo`] Fixed an issue on mobile devices where the emojis would disappear if a category tab is selected while a scroll is in progress ([#260](https://github.com/joeattardi/picmo/issues/260))
 
