@@ -4,6 +4,7 @@
   import { getContext, onDestroy } from 'svelte';
   import EmojiCategory from './EmojiCategory.svelte';
   import type { RecentsStore } from '../types';
+  import i18n from '../i18n';
 
   export let category: Category;
   export let index: number;
@@ -17,4 +18,4 @@
   onDestroy(unsubscribe);
 </script>
 
-<EmojiCategory on:emojiselect emojis={recents} {category} {index} {categoryCount} />
+<EmojiCategory on:emojiselect emojis={recents} emptyMessage={i18n.recents.none} {category} {index} {categoryCount} />

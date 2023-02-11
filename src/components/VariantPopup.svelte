@@ -7,7 +7,7 @@
   import type { FocusState, VariantStore } from '../types';
   import type { EmojiRecord } from '../data';
 
-  import Emoji from './Emoji.svelte';
+  import EmojiButton from './EmojiButton.svelte';
   import { getEmojiForEvent } from '../util';
   import FocusGrid from './FocusGrid.svelte';
   import { writable } from 'svelte/store';
@@ -123,9 +123,11 @@
   <div class="overlay" transition:fade={{ duration: 150 }} on:keydown={handleKeyDown} on:click={handleClick}>
     <div bind:this={contentElement} class="content" transition:scale={{ duration: 150 }}>
       <FocusGrid emojis={variants} isActive={true} wrap={true} categoryCount={1}>
-        {#each variants as emoji, index}
-          <Emoji categoryIndex={0} {emoji} {index} isFocused={focusState.offset === index} />
-        {/each}
+        <div>
+          {#each variants as emoji, index}
+            <EmojiButton categoryIndex={0} {emoji} {index} isFocused={focusState.offset === index} />
+          {/each}
+        </div>
       </FocusGrid>
       <div bind:this={arrowElement} class="arrow" />
     </div>
@@ -153,6 +155,11 @@
     background: white;
     z-index: 1;
     --grid-template-columns: repeat(auto-fit, minmax(3em, 3em));
+  }
+
+  .content div:first-child {
+    display: flex;
+    align-items: center;
   }
 
   .arrow {

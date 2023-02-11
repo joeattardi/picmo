@@ -3,6 +3,7 @@
   import type { EmojiRecord } from '../data';
 
   import { getContext, onDestroy } from 'svelte';
+  import Emoji from './Emoji.svelte';
 
   let currentPreview: EmojiRecord;
 
@@ -16,9 +17,11 @@
 
 <div class="preview">
   {#if currentPreview}
-    <div class="preview-emoji">{currentPreview.emoji}</div>
+    <div class="preview-emoji">
+      <Emoji emoji={currentPreview} />
+    </div>
     <div class="preview-name">{currentPreview.label}</div>
-    {#if currentPreview?.shortcodes.length}
+    {#if currentPreview?.shortcodes?.length}
       <div class="preview-shortcode">:{currentPreview.shortcodes[0]}:</div>
     {/if}
   {/if}

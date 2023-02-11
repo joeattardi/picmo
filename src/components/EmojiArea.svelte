@@ -1,6 +1,6 @@
 <script lang="ts">
-  import type { Category, EmojiMappings } from '../data';
-  import type { SelectedCategoryStore, CategoryStore, FocusState, NavigationStore } from '../types';
+  import type { Category, DataState, EmojiMappings } from '../data';
+  import type { SelectedCategoryStore, CategoryStore, FocusState, NavigationStore, DataStore } from '../types';
 
   import { getContext, onDestroy, setContext } from 'svelte';
   import { writable } from 'svelte/store';
@@ -10,6 +10,8 @@
   const focusStore = writable<FocusState>({ category: 0, offset: 0 });
   setContext('focus', focusStore);
 
+  const dataStore = getContext<DataStore>('dataStore');
+
   const categoryStore = getContext<CategoryStore>('categories');
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   const navigationStore = getContext<NavigationStore>('navigation');
@@ -17,8 +19,15 @@
   export let categoryEmojis: EmojiMappings;
 
   let categories: Category[];
+  let data: DataState;
 
   const unsubscribe = [];
+
+  unsubscribe.push(
+    dataStore.subscribe(state => {
+      data = state;
+    })
+  );
 
   unsubscribe.push(
     categoryStore.subscribe(categoryList => {
@@ -100,6 +109,14 @@
     {#each categories as category, index}
       {#if category.key === 'recents'}
         <RecentEmojisCategory on:emojiselect {category} {index} categoryCount={categories.length} />
+      {:else if category.key === 'custom'}
+        <EmojiCategory
+          {category}
+          on:emojiselect
+          emojis={data.dataStore.customEmojis}
+          {index}
+          categoryCount={categories.length}
+        />
       {:else}
         <EmojiCategory
           on:emojiselect

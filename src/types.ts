@@ -2,6 +2,7 @@ import type { Writable } from 'svelte/store';
 import type { Emoji, MessagesDataset, Locale } from 'emojibase';
 import type { DataStoreFactory, CategoryKey, CustomEmoji, Category, DataState, EmojiRecord } from './data';
 import type { RecentsProvider } from './recents/RecentsProvider';
+import type { SvelteComponentTyped } from 'svelte';
 
 export type CategorySelection = {
   category: Category;
@@ -52,4 +53,5 @@ export type PickerOptions = {
   showRecents: boolean;
   showSearch: boolean;
   showVariants: boolean;
+  renderer: ConstructorOfATypedSvelteComponent;
 };

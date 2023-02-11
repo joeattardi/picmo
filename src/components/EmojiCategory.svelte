@@ -8,6 +8,7 @@
   import Emojis from './Emojis.svelte';
   import FocusGrid from './FocusGrid.svelte';
 
+  export let emptyMessage = null;
   export let category: Category;
   export let categoryCount = 1;
   export let index = 0;
@@ -42,7 +43,7 @@
 
   function handleClick(event) {
     event.preventDefault();
-    if (event.target.dataset.emoji) {
+    if (event.target.closest('[data-emoji]')?.dataset.emoji) {
       const emoji = getEmojiForEvent(event, emojis);
       if (emoji.skins?.length) {
         variantStore.set({
@@ -76,8 +77,8 @@
         focused={focusState.category === index ? emojis?.[focusState.offset].emoji : null}
       />
     </FocusGrid>
-  {:else}
-    <p class="empty">{i18n.recents.none}</p>
+  {:else if emptyMessage}
+    <p class="empty">{emptyMessage}</p>
   {/if}
 </div>
 

@@ -46,8 +46,9 @@
 
 <style>
   button {
-    width: 2.75em;
-    height: 2.75em;
+    width: 1.75em;
+    height: 1.75em;
+    font-size: 1.2em;
     display: flex;
     align-items: center;
     justify-content: center;

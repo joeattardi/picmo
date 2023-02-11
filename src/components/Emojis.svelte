@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { EmojiRecord } from '../data';
-  import Emoji from './Emoji.svelte';
+  import EmojiButton from './EmojiButton.svelte';
 
   export let emojis: EmojiRecord[];
   export let categoryIndex: number;
@@ -9,7 +9,7 @@
 
 <div class="emojis">
   {#each emojis as emoji, index}
-    <Emoji {categoryIndex} {index} {emoji} isFocused={focused === emoji.emoji} />
+    <EmojiButton {categoryIndex} {index} {emoji} isFocused={focused === emoji.emoji} />
   {/each}
 </div>
 

@@ -88,7 +88,6 @@ export abstract class DataStore {
   abstract close(): void;
   abstract getEmojiCount(): Promise<number>;
   abstract getEtags(): Promise<Record<string, string | undefined>>;
-  // abstract setMeta(meta: Meta): void;
   abstract getHash(): Promise<string>;
   abstract isPopulated(): Promise<boolean>;
   abstract populate(options: PopulateOptions): Promise<void>;

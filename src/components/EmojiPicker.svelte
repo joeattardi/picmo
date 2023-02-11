@@ -19,6 +19,7 @@
   import { LATEST_EMOJI_VERSION } from 'emojibase';
   import { LocalStorageProvider } from '../recents/LocalStorageProvider';
   import VariantPopup from './VariantPopup.svelte';
+  import PlatformEmoji from './renderers/PlatformEmoji.svelte';
 
   export let options: Partial<PickerOptions> = {};
 
@@ -35,6 +36,7 @@
     rows: 8,
     columns: 8,
     recentsProvider: new LocalStorageProvider(),
+    renderer: PlatformEmoji,
     ...options
   } as PickerOptions;
 
@@ -176,6 +178,7 @@
     --border-radius: 5px;
 
     --emoji-size: 1.75rem;
+    --emoji-button-size: 1.5em;
 
     --category-header-height: 2.25em;
     --row-height: calc((var(--emoji-size) * 1.5) + 2px);
