@@ -2,8 +2,21 @@ import type { Locale, MessagesDataset, Emoji } from 'emojibase';
 import type { CustomEmoji } from './types';
 import type { DataStoreFactory, DataStore } from './DataStore';
 
+import { InMemoryStoreFactory } from './InMemoryStore';
+import { isSessionStorageAvailable, createStorage } from '../storage';
+
 import { fetchMessages, fetchEmojis } from 'emojibase';
 import { computeHash } from '../util';
+
+if (!isSessionStorageAvailable()) {
+  // emojibase relies on session storage being available for caching data.
+  // No way to disable this so we'll make a fake implementation. Caching won't work as expected
+  // but at least the picker will run.
+  console.warn('picmo: sessionStorage not available, falling back to simple in-memory storage');
+  Object.defineProperty(window, 'sessionStorage', {
+    value: createStorage()
+  });
+}
 
 /**
  * Generates the URLs for emoji data for a given emojibase version and locale.
@@ -112,8 +125,14 @@ async function openDatabase(
   customEmojis?: CustomEmoji[],
   existingDb?: DataStore
 ): Promise<DataStore> {
-  const db = existingDb || factory(locale, customEmojis);
-  await db.open();
+  let db = existingDb || factory(locale, customEmojis);
+  try {
+    await db.open();
+  } catch (error) {
+    console.warn('picmo: IndexedDB not available, falling back to InMemoryStoreFactory');
+    db = InMemoryStoreFactory(locale);
+  }
+
   return db;
 }
 
@@ -130,6 +149,7 @@ async function initDatabaseFromCdn(
   customEmojis?: CustomEmoji[],
   existingDb?: DataStore
 ) {
+  // TODO handle DB error here
   const db = await openDatabase(locale, factory, customEmojis, existingDb);
 
   const [emojisEtag, messagesEtag] = await getEtags(locale);
