@@ -1,8 +1,5 @@
 import type { Writable } from 'svelte/store';
-import type { Emoji, MessagesDataset, Locale } from 'emojibase';
-import type { DataStoreFactory, CategoryKey, CustomEmoji, Category, DataState, EmojiRecord } from './data';
-import type { RecentsProvider } from './recents/RecentsProvider';
-import type { SvelteComponentTyped } from 'svelte';
+import type { Category, DataState, EmojiRecord } from './data';
 
 export type CategorySelection = {
   category: Category;
@@ -35,23 +32,3 @@ export type VariantStore = Writable<VariantState>;
 export type FocusStore = Writable<FocusState>;
 
 export type Theme = 'light' | 'dark' | 'auto';
-
-export type PickerOptions = {
-  rows: number;
-  columns: number;
-  dataStore: DataStoreFactory;
-  theme: Theme;
-  categories?: CategoryKey[];
-  custom?: CustomEmoji[];
-  emojiData?: Emoji[];
-  emojiVersion: number | 'auto';
-  locale: Locale;
-  messages?: MessagesDataset;
-  recentsProvider: RecentsProvider;
-  showCategoryTabs: boolean;
-  showPreview: boolean;
-  showRecents: boolean;
-  showSearch: boolean;
-  showVariants: boolean;
-  renderer: ConstructorOfATypedSvelteComponent;
-};

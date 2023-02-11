@@ -1,12 +1,14 @@
 <script lang="ts">
   import type { EmojiRecord, Category, DataState, DataStatus } from '../data';
-  import type { PickerOptions, CategorySelection, Navigation } from '../types';
+  import type { CategorySelection, Navigation } from '../types';
   import type { DataStore, EmojiMappings } from '../data';
+  import type { PickerOptions } from '../options';
 
   import { fade } from 'svelte/transition';
   import { onMount, setContext, createEventDispatcher, onDestroy } from 'svelte';
   import { writable } from 'svelte/store';
-  import { initDatabase, IndexedDbStoreFactory } from '../data';
+  import { initDatabase } from '../data';
+  import { getOptions } from '../options';
   import { determineEmojiVersion } from '../emojiSupport';
 
   import ThemeWrapper from './ThemeWrapper.svelte';
@@ -17,28 +19,11 @@
   import SearchResults from './SearchResults.svelte';
   import Loader from './Loader.svelte';
   import { LATEST_EMOJI_VERSION } from 'emojibase';
-  import { LocalStorageProvider } from '../recents/LocalStorageProvider';
   import VariantPopup from './VariantPopup.svelte';
-  import PlatformEmoji from './renderers/PlatformEmoji.svelte';
 
   export let options: Partial<PickerOptions> = {};
 
-  const mergedOptions: PickerOptions = {
-    dataStore: IndexedDbStoreFactory,
-    locale: 'en',
-    emojiVersion: 'auto',
-    showCategoryTabs: true,
-    showPreview: true,
-    showRecents: true,
-    showSearch: true,
-    showVariants: true,
-    theme: 'light',
-    rows: 8,
-    columns: 8,
-    recentsProvider: new LocalStorageProvider(),
-    renderer: PlatformEmoji,
-    ...options
-  } as PickerOptions;
+  const mergedOptions = getOptions(options);
 
   const dataStore = writable<DataState>({ status: 'IDLE' });
   const categoryStore = writable<Category[]>(null);
@@ -106,7 +91,7 @@
         error: null
       });
 
-      recentsStore.set(await mergedOptions.recentsProvider.getRecents());
+      recentsStore.set(mergedOptions.recentsProvider.getRecents());
     } catch (error: unknown) {
       dataStore.update(state => ({ ...state, status: 'ERROR', error }));
     }
