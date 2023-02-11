@@ -29,10 +29,7 @@ export abstract class WebStorageProvider extends RecentsProvider {
 
   addOrUpdateRecent(emoji: EmojiRecord) {
     // Add the new recent to the beginning of the list, removing it if it exists already
-    const recents = [emoji, ...this.getRecents().filter(recent => recent.hexcode !== emoji.hexcode)].slice(
-      0,
-      this.maxRecents
-    );
+    const recents = [emoji, ...this.getRecents().filter(recent => recent.id !== emoji.id)].slice(0, this.maxRecents);
 
     try {
       this.storage.setItem(STORAGE_KEY, JSON.stringify(recents));

@@ -9,7 +9,9 @@ export type DataState = {
   emojiVersion?: number;
 };
 
+// TODO: migrate DB to include shortcodes
 export type EmojiRecord = {
+  id: string;
   custom?: boolean;
   data?: object;
   emoji: string;

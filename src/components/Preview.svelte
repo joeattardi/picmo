@@ -21,9 +21,7 @@
       <Emoji emoji={currentPreview} />
     </div>
     <div class="preview-name">{currentPreview.label}</div>
-    {#if currentPreview?.custom}
-      <div class="preview-shortcode">{currentPreview.emoji}</div>
-    {:else if currentPreview?.shortcodes?.length}
+    {#if currentPreview?.shortcodes?.length}
       <div class="preview-shortcode">:{currentPreview.shortcodes[0]}:</div>
     {/if}
   {/if}

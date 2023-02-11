@@ -35,6 +35,7 @@ export type DataStoreFactory = {
  */
 export function getEmojiRecord(emoji: Emoji): EmojiRecord {
   return {
+    id: `emoji:${emoji.hexcode}`,
     emoji: emoji.emoji,
     label: emoji.label,
     tags: emoji.tags,
@@ -72,13 +73,14 @@ export abstract class DataStore {
 
   constructor(locale: Locale = 'en', customEmojis?: CustomEmoji[]) {
     this.locale = locale;
-    this.customEmojis = customEmojis;
 
     if (customEmojis?.length) {
       this.customEmojis = customEmojis.map((custom: CustomEmoji) => ({
         ...custom,
+        id: `custom:${custom.emoji}`,
         custom: true,
-        tags: ['custom', ...(custom.tags || [])]
+        tags: ['custom', ...(custom.tags || [])],
+        shortcodes: [custom.emoji]
       }));
     }
   }
