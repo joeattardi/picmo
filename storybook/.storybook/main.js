@@ -1,4 +1,5 @@
 const path = require('path');
+const exclude = require('postcss-exclude-files').default;
 
 module.exports = {
   stories: ['../stories/**/*.stories.ts'],
@@ -58,7 +59,13 @@ module.exports = {
               plugins: [
                 'postcss-import',
                 'postcss-nesting',
-                'postcss-mixins'
+                'postcss-mixins',
+                [
+                  'postcss-prefixer',
+                  {
+                    prefix: 'picmo__'
+                  }
+                ]
               ],
             },
           },

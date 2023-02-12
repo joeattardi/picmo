@@ -10,7 +10,8 @@ module.exports = {
     exclude({
       filter:  [
         '**/node_modules/**',
-        'docs/**'
+        'docs/**',
+        'storybook/**'
       ],
       plugins: []
     }),
