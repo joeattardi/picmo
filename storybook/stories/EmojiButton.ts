@@ -21,12 +21,12 @@ function handleEmojiSelection(button: HTMLButtonElement) {
 export function renderPicker(options: any = {}) {
   const rootElement = toElement(/* html */`
   <div>
-      <button type="button" class="emoji-button empty"></button>
+      <button type="button" class="picmo__emoji-button empty"></button>
       <div class="picker"></div>
     </div>
   `);
 
-  const button = rootElement.querySelector<HTMLButtonElement>('.emoji-button') as HTMLButtonElement;
+  const button = rootElement.querySelector<HTMLButtonElement>('.picmo__emoji-button') as HTMLButtonElement;
   const pickerElement = rootElement.querySelector<HTMLElement>('.picker');
 
   const picker = createPicker({
