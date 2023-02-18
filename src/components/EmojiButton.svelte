@@ -53,6 +53,6 @@
   button:hover {
     background: var(--emoji-hover-background-color);
     border-radius: 5px;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--emoji-hover-border-color);
   }
 </style>

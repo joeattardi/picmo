@@ -25,9 +25,33 @@
 </div>
 
 <style>
-  /* Refactoring UI Palette 2 */
+  /* Refactoring UI Palette 8 */
 
   .light, .dark {
+    --blue-1: #002159;
+    --blue-2: #01337D;
+    --blue-3: #03449E;
+    --blue-4: #0552B5;
+    --blue-5: #0967D2;
+    --blue-6: #2186EB;
+    --blue-7: #47A3F3;
+    --blue-8: #7CC4FA;
+    --blue-9: #BAE3FF;
+    --blue-10: #E6F6FF;
+
+    --gray-1: #1F2933;
+    --gray-2: #323F4B;
+    --gray-3: #3E4C59;
+    --gray-4: #52606D;
+    --gray-5: #616E7C;
+    --gray-6: #7B8794;
+    --gray-7: #9AA5B1;
+    --gray-8: #CBD2D9;
+    --gray-9: #E4E7EB;
+    --gray-10: #F5F7FA;
+
+
+
     --blue-dark: #003E6B;
     --blue-medium: #2680C2;
     --blue-light: #DCEEFB;
@@ -45,29 +69,30 @@
 
   .light {
     color-scheme: light;
-    /* --background-color: #ffffff; */
-    --background-color: var(--neutral-light);
+    --background-color: var(--gray-10);
+    --secondary-background-color: var(--gray-9);
+
     --emoji-area-background: var(--white);
-    --secondary-background-color: #e2e8f0;
-    --border-color: #cccccc;
-    --text-color: #000000;
-    --secondary-text-color: #666666;
+    --border-color: var(--gray-8);
+    --text-color: var(--gray-1);
+    --secondary-text-color: var(--gray-4);
 
-    --search-background-color: #f9fafb;
-    --search-focus-background-color: #ffffff;
-    --search-icon-color: #999999;
-    --search-icon-focus-color: #60a5fa;
+    --search-background-color: var(--gray-10);
+    --search-focus-background-color: var(--white);
+    --search-icon-color: var(--gray-3);
+    --search-icon-focus-color: var(--blue-6);
 
-    --category-tab-icon-color: #486581;
-    --category-tab-icon-focus-color: #38bdf8;
-    --category-tab-hover-background-color: #BCCCDC;
-    --category-tab-active-background-color: #0F609B;
-    --category-tab-active-color: #ffffff;
+    --category-tab-icon-color: var(--gray-4);
+    --category-tab-icon-focus-color: var(--blue-1);
+    --category-tab-hover-background-color: var(--gray-8);
+    --category-tab-active-background-color: var(--blue-6);
+    --category-tab-active-color: var(--white);
 
     --category-header-background: var(--white);
     --category-header-color: var(--blue-dark);
 
-    --emoji-hover-background-color: #e2e8f0;
+    --emoji-hover-background-color: var(--blue-10);
+    --emoji-hover-border-color: var(--blue-9);
   }
 
   .dark {

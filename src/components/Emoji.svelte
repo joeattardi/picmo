@@ -2,7 +2,7 @@
   import { getContext } from 'svelte';
 
   import type { EmojiRecord } from '../data';
-  import type { PickerOptions } from '../types';
+  import type { PickerOptions } from '../options';
   import CustomEmoji from './renderers/CustomEmoji.svelte';
 
   export let emoji: EmojiRecord;
