@@ -21,7 +21,7 @@ const customEmojis = [
 ];
 
 const picker = new EmojiPicker({
-  theme: themes.dark,
+  theme: themes.auto,
   custom: customEmojis
 });
 document.querySelector('#picker')?.appendChild(picker);

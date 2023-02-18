@@ -90,7 +90,7 @@
   .empty {
     padding: 0.5em;
     margin: 0;
-    font-size: 0.9em;
+    font-size: 0.8em;
     color: var(--secondary-text-color);
     text-align: center;
   }
@@ -102,7 +102,7 @@
     color: var(--category-header-color);
     background: linear-gradient(0deg, var(--category-shadow-color) 0%, var(--emoji-area-background) 15%);
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin: 0;
     padding: 0.5em;
   }

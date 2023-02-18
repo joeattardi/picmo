@@ -56,6 +56,8 @@
     --white: #fafafa;
   }
 
+  /* TODO: establish standardized sizing/spacing variables */
+
   .light {
     color-scheme: light;
     --background-color: var(--gray-9);
