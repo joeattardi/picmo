@@ -1,4 +1,4 @@
-import { EmojiPicker, type EmojiRecord } from './src';
+import { EmojiPicker, themes, type EmojiRecord } from './src';
 
 const customEmojis = [
   { 
@@ -21,6 +21,7 @@ const customEmojis = [
 ];
 
 const picker = new EmojiPicker({
+  theme: themes.dark,
   custom: customEmojis
 });
 document.querySelector('#picker')?.appendChild(picker);

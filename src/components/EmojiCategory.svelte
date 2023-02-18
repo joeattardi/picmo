@@ -91,7 +91,7 @@
     padding: 0.5em;
     margin: 0;
     font-size: 0.9em;
-    color: var(--neutral-medium);
+    color: var(--secondary-text-color);
     text-align: center;
   }
 
@@ -100,7 +100,7 @@
     position: sticky;
     top: 0;
     color: var(--category-header-color);
-    background: linear-gradient(0deg, rgba(250, 250, 250, 0.25) 0%, var(--emoji-area-background) 15%);
+    background: linear-gradient(0deg, var(--category-shadow-color) 0%, var(--emoji-area-background) 15%);
     font-weight: 500;
     font-size: 1rem;
     margin: 0;

@@ -1,18 +1,19 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import { themes } from '../themes';
 
-  export let theme: 'light' | 'dark' | 'auto' = 'light';
+  export let theme = themes.light;
 
   let className = theme;
 
   function themeUpdate(event) {
-    className = event.matches ? 'dark' : 'light';
+    className = event.matches ? themes.dark : themes.light;
   }
 
   onMount(() => {
-    if (window.matchMedia && theme === 'auto') {
+    if (window.matchMedia && theme === themes.auto) {
       const match = window.matchMedia('(prefers-color-scheme: dark');
-      className = match.matches ? 'dark' : 'light';
+      className = match.matches ? themes.dark : themes.light;
 
       match.addEventListener('change', themeUpdate);
       return () => match.removeEventListener('change', themeUpdate);
@@ -27,53 +28,42 @@
 <style>
   /* Refactoring UI Palette 8 */
 
-  .light, .dark {
+  /* The color palette */
+  .light,
+  .dark {
     --blue-1: #002159;
-    --blue-2: #01337D;
-    --blue-3: #03449E;
-    --blue-4: #0552B5;
-    --blue-5: #0967D2;
-    --blue-6: #2186EB;
-    --blue-7: #47A3F3;
-    --blue-8: #7CC4FA;
-    --blue-9: #BAE3FF;
-    --blue-10: #E6F6FF;
+    --blue-2: #01337d;
+    --blue-3: #03449e;
+    --blue-4: #0552b5;
+    --blue-5: #0967d2;
+    --blue-6: #2186eb;
+    --blue-7: #47a3f3;
+    --blue-8: #7cc4fa;
+    --blue-9: #bae3ff;
+    --blue-10: #e6f6ff;
 
-    --gray-1: #1F2933;
-    --gray-2: #323F4B;
-    --gray-3: #3E4C59;
-    --gray-4: #52606D;
-    --gray-5: #616E7C;
-    --gray-6: #7B8794;
-    --gray-7: #9AA5B1;
-    --gray-8: #CBD2D9;
-    --gray-9: #E4E7EB;
-    --gray-10: #F5F7FA;
-
-
-
-    --blue-dark: #003E6B;
-    --blue-medium: #2680C2;
-    --blue-light: #DCEEFB;
-
-    --yellow-dark: #F0B429;
-    --yellow-medium: #FADB5F;
-    --yellow-light: #FFFBEA;
-
-    --neutral-dark: #243B53;
-    --neutral-medium: #627D98;
-    --neutral-light: #F0F4F8;
+    --gray-1: #1f2933;
+    --gray-2: #323f4b;
+    --gray-3: #3e4c59;
+    --gray-4: #52606d;
+    --gray-5: #616e7c;
+    --gray-6: #7b8794;
+    --gray-7: #9aa5b1;
+    --gray-8: #cbd2d9;
+    --gray-9: #e4e7eb;
+    --gray-10: #f5f7fa;
 
     --white: #fafafa;
   }
 
   .light {
     color-scheme: light;
-    --background-color: var(--gray-10);
-    --secondary-background-color: var(--gray-9);
-
+    --background-color: var(--gray-9);
+    --category-shadow-color: hsla(216, 33%, 97%, 0.5);
+    --preview-shadow-color: hsl(216, 33%, 97%);
     --emoji-area-background: var(--white);
     --border-color: var(--gray-8);
+
     --text-color: var(--gray-1);
     --secondary-text-color: var(--gray-4);
 
@@ -88,8 +78,7 @@
     --category-tab-active-background-color: var(--blue-6);
     --category-tab-active-color: var(--white);
 
-    --category-header-background: var(--white);
-    --category-header-color: var(--blue-dark);
+    --category-header-color: var(--text-color);
 
     --emoji-hover-background-color: var(--blue-10);
     --emoji-hover-border-color: var(--blue-9);
@@ -97,25 +86,29 @@
 
   .dark {
     color-scheme: dark;
-    --background-color: #333333;
-    --secondary-background-color: #000000 ;
-    --border-color: --border-color: #666666;
-    --text-color: #ffffff;
-    --secondary-text-color: #999999;
+    --background-color: var(--gray-2);
+    --category-shadow-color: hsla(210, 24%, 16%, 0.5);
+    --preview-shadow-color: hsl(210, 24%, 16%);
+    --emoji-area-background: var(--gray-1);
+    --border-color: var(--gray-4);
 
-    --search-background-color: #71717a;
-    --search-focus-background-color: #333333;
-    --search-icon-color: #cccccc;
-    --search-icon-focus-color: #60a5fa;
+    --text-color: var(--gray-9);
+    --secondary-text-color: var(--gray-7);
 
-    --category-tab-icon-color: #94a3b8;
-    --category-tab-icon-focus-color: #7dd3fc;
-    --category-tab-hover-background-color: rgba(167, 139, 250, 0.3);
-    --category-tab-active-background-color: #4f46e5;
-    --category-tab-active-color: #ffffff;
+    --search-background-color: var(--gray-3);
+    --search-focus-background-color: var(--gray-2);
+    --search-icon-color: var(--gray-8);
+    --search-icon-focus-color: var(--blue-8);
 
-    --category-header-color: #93c5fd;
+    --category-tab-icon-color: var(--gray-7);
+    --category-tab-icon-focus-color: var(--blue-8);
+    --category-tab-hover-background-color: var(--gray-1);
+    --category-tab-active-background-color: var(--blue-6);
+    --category-tab-active-color: var(--white);
 
-    --emoji-hover-background-color: #e2e8f0;
+    --category-header-color: var(--gray-8);
+
+    --emoji-hover-background-color: var(--gray-3);
+    --emoji-hover-border-color: var(--gray-5);
   }
 </style>

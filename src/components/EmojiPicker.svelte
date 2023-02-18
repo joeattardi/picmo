@@ -181,7 +181,7 @@
 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
       sans-serif;
-    background: var(--secondary-background-color);
+    background: var(--background-color);
     display: inline-flex;
     flex-direction: column;
     border-radius: var(--border-radius);

@@ -43,7 +43,7 @@
     align-content: center;
     font-weight: 500;
     z-index: 1;
-    box-shadow: 0px -10px 15px 0px var(--white);
+    box-shadow: 0px -8px 15px 0px var(--preview-shadow-color);
   }
 
   .preview-emoji {
