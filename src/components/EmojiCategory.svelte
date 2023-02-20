@@ -14,19 +14,8 @@
   export let index = 0;
   export let emojis: EmojiRecord[] = [];
 
-  let focusState: FocusState;
-
   const previewStore = getContext<PreviewStore>('preview');
   const variantStore = getContext<VariantStore>('variant');
-
-  const focusStore = getContext<FocusStore>('focus');
-  const unsubscribe = focusStore.subscribe(state => {
-    if (state.category === index && state.offset === -1) {
-      focusStore.set({ ...state, offset: emojis.length - 1 });
-    } else {
-      focusState = state;
-    }
-  });
 
   const dispatch = createEventDispatcher();
 
@@ -55,8 +44,6 @@
       }
     }
   }
-
-  onDestroy(unsubscribe);
 </script>
 
 <div
@@ -70,13 +57,11 @@
 >
   <h3>{i18n.categories[category.key] || category.message || category.key}</h3>
   {#if emojis.length}
-    <FocusGrid {emojis} isActive={focusState.category === index} {categoryCount}>
       <Emojis
+        {categoryCount}
         {emojis}
         categoryIndex={index}
-        focused={focusState.category === index ? emojis?.[focusState.offset].emoji : null}
       />
-    </FocusGrid>
   {:else if emptyMessage}
     <p class="empty">{emptyMessage}</p>
   {/if}

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { faFaceFrown } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
-  import { getContext, onDestroy, setContext } from 'svelte';
+  import { getContext, onDestroy, onMount, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { backOut } from 'svelte/easing';
   import { scale } from 'svelte/transition';
@@ -11,6 +11,7 @@
   import i18n from '../i18n';
   import EmojiCategory from './EmojiCategory.svelte';
 
+  // TODO: use search store?
   export let searchResults: EmojiRecord[];
 
   let element: HTMLElement;
@@ -20,7 +21,7 @@
     order: 1
   };
 
-  const focusStore = writable<FocusState>({ category: 0, offset: 0 });
+  const focusStore = writable<FocusState>({ category: 0, column: 0, offset: 0 });
   setContext('focus', focusStore);
 
   const navigationStore = getContext<NavigationStore>('navigation');

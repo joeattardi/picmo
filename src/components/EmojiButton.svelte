@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { getContext, onDestroy } from 'svelte';
+  import { getContext, onDestroy, onMount } from 'svelte';
   import type { EmojiRecord } from '../data';
-  import type { PickerOptions, FocusState, FocusStore } from '../types';
+  import type { FocusState, FocusStore } from '../types';
   import Emoji from './Emoji.svelte';
 
   export let emoji: EmojiRecord;
@@ -39,6 +39,8 @@
   button {
     font-family: color-emoji;
     font-size: var(--emoji-size);
+    width: 1.5em;
+    height: 1.5em;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -46,6 +48,7 @@
     border: 1px solid transparent;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   button:hover {

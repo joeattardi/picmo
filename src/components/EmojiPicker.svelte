@@ -48,7 +48,7 @@
   let categories: Category[];
   let db: DataStore;
   let emojiVersion: number;
-
+  let searchQuery;
   let dataReady = false;
 
   const dispatch = createEventDispatcher();
@@ -98,6 +98,7 @@
   });
 
   async function search(event) {
+    searchQuery = event.detail;
     if (event.detail) {
       searchResults = await db.searchEmojis(event.detail, emojiVersion, categories);
     } else {
@@ -118,6 +119,10 @@
   let searchComponent;
   function focusSearch() {
     searchComponent.focusSearch();
+  }
+
+  $: {
+    console.log({ searchQuery })
   }
 
   onDestroy(unsubscribe);
@@ -142,7 +147,9 @@
         {/if}
       </header>
       {#if searchResults}
-        <SearchResults on:emojiselect={onEmojiSelect} {searchResults} />
+        {#key searchQuery}
+          <SearchResults on:emojiselect={onEmojiSelect} {searchResults} />
+        {/key}
       {:else}
         <EmojiArea {categoryEmojis} on:emojiselect={onEmojiSelect} />
       {/if}
@@ -169,7 +176,7 @@
     --preview-height: 3em;
     --category-tabs-height: 3em;
 
-    width: 400px;
+    width: 600px;
     height: 500px;
 
     display: grid;
@@ -178,6 +185,7 @@
       'body'
       'footer';
     grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
       sans-serif;

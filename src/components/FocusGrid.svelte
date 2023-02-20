@@ -1,27 +1,42 @@
 <script lang="ts">
   import type { EmojiRecord } from '../data';
-  import type { PickerOptions, FocusStore } from '../types';
+  import type { FocusStore } from '../types';
   import { getContext } from 'svelte';
 
   export let categoryCount: number;
+  export let columnCount: number;
   export let emojis: EmojiRecord[];
   export let isActive: boolean;
   export let wrap = false;
 
   const focusStore = getContext<FocusStore>('focus');
 
-  const options = getContext<PickerOptions>('options');
+  let rowCount;
+  let lastRowStart;
 
-  const rowCount = Math.floor(emojis.length / options.columns);
-  const lastRowStart = rowCount * options.columns;
+  $: {
+    if (columnCount) {
+      rowCount = Math.floor(emojis.length / columnCount);
+      lastRowStart = rowCount * columnCount;
+    }
+  }
+
+  function getCoordinates(offset) {
+    const row = Math.floor(offset / columnCount);
+    const column = offset - (columnCount * row);
+
+    return [row, column];
+  }
 
   function focusLeft({ offset, category }) {
-    if (offset > 0) {
-      return { offset: offset - 1 };
+    const [ row, column ] = getCoordinates(offset);
+
+    if (row === 0 && column === 0 && category > 0) {
+      return { offset: -1, column: columnCount, category: category - 1 };
     }
 
-    if (category > 0) {
-      return { offset: -1, category: category - 1 };
+    if (offset > 0) {
+      return { offset: offset - 1 };
     }
 
     if (wrap) {
@@ -45,21 +60,28 @@
   }
 
   function focusDown({ offset, category }) {
-    if (offset < lastRowStart) {
-      return { offset: Math.min(offset + options.columns, emojis.length - 1) };
+    const [row, column] = getCoordinates(offset);
+
+    if (row < rowCount - 1) {
+      return { offset: Math.min(offset + columnCount, emojis.length - 1) };
     }
 
-    return { offset: 0, category: category + 1 };
+    if (category < categoryCount - 1) {
+      return { offset: column, category: category + 1 };
+    }
+
+    // if wrap
   }
 
   function focusUp({ offset, category }) {
-    if (offset > options.columns) {
-      return { offset: offset - options.columns };
+    const [row, column] = getCoordinates(offset);
+    debugger;
+  
+    if (row === 0 && category > 0) {
+        return { column, offset: -1, category: category - 1 };
     }
 
-    if (category > 0) {
-      return { offset: -1, category: category - 1 };
-    }
+    return { offset: offset - columnCount };
   }
 
   const keyBindings = {

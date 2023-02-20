@@ -14,7 +14,7 @@
 
   let emoji: EmojiRecord;
   let variants: EmojiRecord[];
-
+  let columnCount: number;
   let arrowElement: HTMLElement;
   let emojiElement: HTMLElement;
   let contentElement: HTMLElement;
@@ -117,20 +117,22 @@
   onDestroy(() => {
     unsubscribe.forEach(fn => fn());
   });
+
+  function getColumnCount(element) {
+    const styles = getComputedStyle(element);
+    columnCount = styles.gridTemplateColumns.split(' ').length;
+  }
 </script>
 
 {#if emoji}
   <div class="overlay" transition:fade={{ duration: 150 }} on:keydown={handleKeyDown} on:click={handleClick}>
-    <div bind:this={contentElement} class="content" transition:scale={{ duration: 150 }}>
-      <FocusGrid emojis={variants} isActive={true} wrap={true} categoryCount={1}>
-        <div>
+    <FocusGrid columnCount={columnCount} emojis={variants} isActive={true} wrap={true} categoryCount={1}>
+      <div bind:this={contentElement} use:getColumnCount class="content" transition:scale={{ duration: 150 }}>
           {#each variants as emoji, index}
             <EmojiButton categoryIndex={0} {emoji} {index} isFocused={focusState.offset === index} />
           {/each}
-        </div>
-      </FocusGrid>
-      <div bind:this={arrowElement} class="arrow" />
-    </div>
+          <div bind:this={arrowElement} class="arrow" />
+        </FocusGrid>
   </div>
 {/if}
 
@@ -154,11 +156,10 @@
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.25);
     background: white;
     z-index: 1;
-  }
-
-  .content div:first-child {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1.5em);
+    font-size: var(--emoji-size);
+    max-width: 60%;
   }
 
   .arrow {

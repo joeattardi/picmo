@@ -19,6 +19,7 @@ export type VariantState = {
 export type FocusState = {
   category: number;
   offset: number;
+  column: number;
   applyFocus?: boolean;
 };
 
