@@ -24,7 +24,7 @@
   const store = getContext<VariantStore>('variant');
 
   let focusState: FocusState;
-  const focusStore = writable<FocusState>({ category: 0, offset: 0 });
+  const focusStore = writable<FocusState>({ category: 0, column: 0, offset: 0 });
   setContext('focus', focusStore);
 
   const unsubscribe = [];
@@ -68,6 +68,7 @@
 
     focusStore.set({
       category: 0,
+      column: 0,
       offset: 0,
       applyFocus: true
     });
@@ -87,6 +88,13 @@
 
   $: {
     if (emojiElement && contentElement && arrowElement) {
+      focusStore.set({
+        category: 0,
+        column: 0,
+        offset: 0,
+        applyFocus: true
+      });
+
       computePosition(emojiElement, contentElement, {
         middleware: [
           offset(5),

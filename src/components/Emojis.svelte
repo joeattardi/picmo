@@ -17,7 +17,7 @@
   let focusState: FocusState;
   const unsubscribe = focusStore.subscribe(state => {
     if (state.category === categoryIndex && state.offset < 0) {
-      const lastRow = Math.floor(emojis.length / columnCount);
+      const lastRow = Math.ceil(emojis.length / columnCount);
       const lastRowStart = (lastRow - 1) * columnCount;
       focusStore.set({ ...state, offset: Math.min(emojis.length - 1, lastRowStart + state.column) });
     } else {

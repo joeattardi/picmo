@@ -24,7 +24,6 @@
   function getCoordinates(offset) {
     const row = Math.floor(offset / columnCount);
     const column = offset - columnCount * row;
-
     return [row, column];
   }
 
@@ -62,7 +61,7 @@
   function focusDown({ offset, category }) {
     const [row, column] = getCoordinates(offset);
 
-    if (row < rowCount - 1) {
+    if (row < rowCount) {
       return { offset: Math.min(offset + columnCount, emojis.length - 1) };
     }
 
@@ -70,17 +69,26 @@
       return { offset: column, category: category + 1 };
     }
 
-    // if wrap
+    if (wrap) {
+      return { offset: column };
+    }
   }
 
   function focusUp({ offset, category }) {
     const [row, column] = getCoordinates(offset);
 
+    if (row > 0) {
+      return { offset: offset - columnCount };
+    }
+
     if (row === 0 && category > 0) {
       return { column, offset: -1, category: category - 1 };
     }
 
-    return { offset: offset - columnCount };
+    if (wrap) {
+      const lastRow = Math.floor(emojis.length / columnCount);
+      return { offset: lastRow * columnCount + column };
+    }
   }
 
   const keyBindings = {
