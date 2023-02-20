@@ -39,8 +39,6 @@
   button {
     font-family: color-emoji;
     font-size: var(--emoji-size);
-    width: var(--emoji-button-size);
-    height: var(--emoji-button-size);
     background: transparent;
     border: none;
     cursor: pointer;

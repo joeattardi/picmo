@@ -134,7 +134,7 @@
   .emojiArea {
     overflow: auto;
     background: var(--emoji-area-background);
-    height: var(--content-area-height);
+    grid-area: body;
     padding-bottom: 0.5em;
     position: relative;
   }

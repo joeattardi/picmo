@@ -48,7 +48,6 @@
 
 <style>
   .searchResults {
-    height: var(--content-area-height);
     overflow: auto;
     padding-bottom: 0.5em;
     background: var(--emoji-area-background);

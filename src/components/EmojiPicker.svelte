@@ -131,13 +131,15 @@
       style={`--emoji-rows: ${mergedOptions.rows}; --emoji-columns: ${mergedOptions.columns}`}
     >
       <VariantPopup on:emojiselect={onEmojiSelect} />
-      <header>
+      <header class="header">
         <Search bind:this={searchComponent} on:search={search} />
-        <CategoryTabs
-          on:navigatePrevious={focusSearch}
-          on:categoryClick={clearSearchResults}
-          isSearching={searchResults != null}
-        />
+        {#if !searchResults}
+          <CategoryTabs
+            on:navigatePrevious={focusSearch}
+            on:categoryClick={clearSearchResults}
+            isSearching={searchResults != null}
+          />
+        {/if}
       </header>
       {#if searchResults}
         <SearchResults on:emojiselect={onEmojiSelect} {searchResults} />
@@ -161,33 +163,34 @@
   }
   .picker {
     --border-radius: 5px;
-
-    --emoji-size: 1.75rem;
-    --emoji-button-size: 1.5em;
-
+    --emoji-size: 32px;
     --category-header-height: 2.25em;
-    --row-height: calc((var(--emoji-size) * 1.5) + 2px);
-    --content-area-height: calc((var(--emoji-rows) * var(--row-height)) + var(--category-header-height));
-
     --search-height: 2.5em;
     --preview-height: 3em;
     --category-tabs-height: 3em;
 
-    --full-height: calc(
-      var(--content-area-height) + var(--search-height) + var(--preview-height) + var(--category-tabs-height)
-    );
+    width: 400px;
+    height: 500px;
 
-    width: calc(var(--emoji-columns) * var(--emoji-size) * 1.75);
+    display: grid;
+    grid-template-areas:
+      'header'
+      'body'
+      'footer';
+    grid-template-rows: auto 1fr auto;
 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue',
       sans-serif;
     background: var(--background-color);
-    display: inline-flex;
     flex-direction: column;
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
-    height: var(--full-height);
+
     position: relative;
     overflow: hidden;
+  }
+
+  .header {
+    grid-area: header;
   }
 </style>

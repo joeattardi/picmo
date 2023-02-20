@@ -12,8 +12,8 @@
 <style>
   @keyframes pulse {
     from {
-      opacity: 0.3;
-      transform: scale(0.9);
+      opacity: 0.5;
+      transform: scale(0.95);
     }
     to {
       opacity: 0.9;
@@ -23,14 +23,14 @@
 
   .icon {
     position: absolute;
-    color: #334155;
+    color: var(--text-color);
     animation: pulse 1s alternate infinite;
   }
 
   .loader {
+    grid-area: body;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: var(--full-height);
   }
 </style>

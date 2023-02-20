@@ -16,7 +16,7 @@
 <style>
   .emojis {
     display: grid;
-    grid-template-columns: var(--grid-template-columns);
+    grid-template-columns: repeat(auto-fill, 3em);
     justify-items: center;
     justify-content: center;
     padding: 0.25em 0;

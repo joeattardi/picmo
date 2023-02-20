@@ -154,7 +154,6 @@
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.25);
     background: white;
     z-index: 1;
-    --grid-template-columns: repeat(auto-fit, minmax(3em, 3em));
   }
 
   .content div:first-child {

@@ -83,10 +83,6 @@
 </div>
 
 <style>
-  .category {
-    --grid-template-columns: repeat(var(--emoji-columns), 1fr);
-  }
-
   .empty {
     padding: 0.5em;
     margin: 0;
