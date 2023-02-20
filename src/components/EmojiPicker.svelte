@@ -45,12 +45,10 @@
   setContext('search', searchStore);
 
   let categoryEmojis: EmojiMappings | null = null;
-  let searchResults: EmojiRecord[];
   let dataStatus: DataStatus;
   let categories: Category[];
   let db: DataStore;
   let emojiVersion: number;
-  let searchQuery;
   let searchState: SearchState;
   let dataReady = false;
 

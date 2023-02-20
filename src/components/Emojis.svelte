@@ -34,20 +34,10 @@
   onDestroy(unsubscribe);
 </script>
 
-<FocusGrid
-  {emojis} 
-  isActive={focusState.category === categoryIndex} 
-  {categoryCount} 
-  {columnCount}
->
+<FocusGrid {emojis} isActive={focusState.category === categoryIndex} {categoryCount} {columnCount}>
   <div use:getColumnCount class="emojis">
     {#each emojis as emoji, index}
-      <EmojiButton
-        {categoryIndex} 
-        {index}
-        {emoji} 
-        isFocused={focused === emoji.emoji} 
-      />
+      <EmojiButton {categoryIndex} {index} {emoji} isFocused={focused === emoji.emoji} />
     {/each}
   </div>
 </FocusGrid>

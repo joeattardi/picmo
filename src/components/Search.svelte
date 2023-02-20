@@ -1,10 +1,9 @@
 <script lang="ts">
   import type { SelectedCategoryStore, NavigationStore, SearchStore } from '../types';
-  import type { PickerOptions } from '../options';
   import type { DataStore } from '../data';
   import { scale } from 'svelte/transition';
   import { backOut } from 'svelte/easing';
-  import { createEventDispatcher, getContext, onDestroy } from 'svelte';
+  import { getContext, onDestroy } from 'svelte';
   import { faMagnifyingGlass, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
 
@@ -17,9 +16,6 @@
   export let emojiVersion;
   export let categories;
 
-  const dispatch = createEventDispatcher();
-
-  const options = getContext<PickerOptions>('options');
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   const navigationStore = getContext<NavigationStore>('navigation');
   const searchStore = getContext<SearchStore>('search');
@@ -37,30 +33,17 @@
   unsubscribe.push(
     selectedCategoryStore.subscribe(() => {
       if (searchQuery.length) {
-        clearSearch(false);
+        clearSearch();
       }
     })
   );
 
-  // async function search() {
-  //   if (event.detail) {
-  //     searchResults = await db.searchEmojis(event.detail, emojiVersion, categories);
-  //   } else {
-  //     searchResults = null;
-  //     selectedCategoryStore.set({ category: categories[0], method: 'click' });
-  //   }
-  // }
-
-  function clearSearch(dispatchAction = true) {
+  function clearSearch() {
     searchQuery = '';
     searchStore.set({
       query: '',
-      results: null
+      search: null
     });
-
-    // if (dispatchAction) {
-    //   dispatch('search');
-    // }
   }
 
   function handleSearchKeyDown(event) {

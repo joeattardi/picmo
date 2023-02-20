@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getContext, onDestroy, onMount } from 'svelte';
+  import { getContext, onDestroy } from 'svelte';
   import type { EmojiRecord } from '../data';
   import type { FocusState, FocusStore } from '../types';
   import Emoji from './Emoji.svelte';

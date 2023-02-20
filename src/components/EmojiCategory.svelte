@@ -1,12 +1,11 @@
 <script lang="ts">
   import type { Category, EmojiRecord } from '../data';
 
-  import { createEventDispatcher, getContext, onDestroy } from 'svelte';
-  import type { FocusStore, FocusState, PreviewStore, VariantStore } from '../types';
+  import { createEventDispatcher, getContext } from 'svelte';
+  import type { PreviewStore, VariantStore } from '../types';
   import i18n from '../i18n';
   import { getEmojiForEvent } from '../util';
   import Emojis from './Emojis.svelte';
-  import FocusGrid from './FocusGrid.svelte';
 
   export let emptyMessage = null;
   export let category: Category;
@@ -57,11 +56,7 @@
 >
   <h3>{i18n.categories[category.key] || category.message || category.key}</h3>
   {#if emojis.length}
-      <Emojis
-        {categoryCount}
-        {emojis}
-        categoryIndex={index}
-      />
+    <Emojis {categoryCount} {emojis} categoryIndex={index} />
   {:else if emptyMessage}
     <p class="empty">{emptyMessage}</p>
   {/if}

@@ -1,7 +1,7 @@
 <script lang="ts">
   import { faFaceFrown } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
-  import { getContext, onDestroy, onMount, setContext } from 'svelte';
+  import { getContext, onDestroy, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import { backOut } from 'svelte/easing';
   import { scale } from 'svelte/transition';

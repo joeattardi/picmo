@@ -126,13 +126,14 @@
 
 {#if emoji}
   <div class="overlay" transition:fade={{ duration: 150 }} on:keydown={handleKeyDown} on:click={handleClick}>
-    <FocusGrid columnCount={columnCount} emojis={variants} isActive={true} wrap={true} categoryCount={1}>
+    <FocusGrid {columnCount} emojis={variants} isActive={true} wrap={true} categoryCount={1}>
       <div bind:this={contentElement} use:getColumnCount class="content" transition:scale={{ duration: 150 }}>
-          {#each variants as emoji, index}
-            <EmojiButton categoryIndex={0} {emoji} {index} isFocused={focusState.offset === index} />
-          {/each}
-          <div bind:this={arrowElement} class="arrow" />
-        </FocusGrid>
+        {#each variants as emoji, index}
+          <EmojiButton categoryIndex={0} {emoji} {index} isFocused={focusState.offset === index} />
+        {/each}
+        <div bind:this={arrowElement} class="arrow" />
+      </div></FocusGrid
+    >
   </div>
 {/if}
 
