@@ -23,13 +23,13 @@
 
   function getCoordinates(offset) {
     const row = Math.floor(offset / columnCount);
-    const column = offset - (columnCount * row);
+    const column = offset - columnCount * row;
 
     return [row, column];
   }
 
   function focusLeft({ offset, category }) {
-    const [ row, column ] = getCoordinates(offset);
+    const [row, column] = getCoordinates(offset);
 
     if (row === 0 && column === 0 && category > 0) {
       return { offset: -1, column: columnCount, category: category - 1 };
@@ -75,10 +75,9 @@
 
   function focusUp({ offset, category }) {
     const [row, column] = getCoordinates(offset);
-    debugger;
-  
+
     if (row === 0 && category > 0) {
-        return { column, offset: -1, category: category - 1 };
+      return { column, offset: -1, category: category - 1 };
     }
 
     return { offset: offset - columnCount };

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { EmojiRecord, Category, DataState, DataStatus } from '../data';
-  import type { CategorySelection, Navigation } from '../types';
+  import type { SearchState, CategorySelection, Navigation } from '../types';
   import type { DataStore, EmojiMappings } from '../data';
   import type { PickerOptions } from '../options';
 
@@ -32,6 +32,7 @@
   const recentsStore = writable<EmojiRecord[]>([]);
   const variantStore = writable(null);
   const navigateStore = writable<Navigation>();
+  const searchStore = writable<SearchState>();
 
   setContext('dataStore', dataStore);
   setContext('categories', categoryStore);
@@ -41,6 +42,7 @@
   setContext('variant', variantStore);
   setContext('options', mergedOptions);
   setContext('navigation', navigateStore);
+  setContext('search', searchStore);
 
   let categoryEmojis: EmojiMappings | null = null;
   let searchResults: EmojiRecord[];
@@ -49,14 +51,25 @@
   let db: DataStore;
   let emojiVersion: number;
   let searchQuery;
+  let searchState: SearchState;
   let dataReady = false;
 
   const dispatch = createEventDispatcher();
 
-  const unsubscribe = dataStore.subscribe(state => {
-    dataStatus = state.status;
-    db = state.dataStore;
-  });
+  const unsubscribe = [];
+
+  unsubscribe.push(
+    dataStore.subscribe(state => {
+      dataStatus = state.status;
+      db = state.dataStore;
+    })
+  );
+
+  unsubscribe.push(
+    searchStore.subscribe(state => {
+      searchState = state;
+    })
+  );
 
   onMount(async () => {
     try {
@@ -97,20 +110,6 @@
     }
   });
 
-  async function search(event) {
-    searchQuery = event.detail;
-    if (event.detail) {
-      searchResults = await db.searchEmojis(event.detail, emojiVersion, categories);
-    } else {
-      searchResults = null;
-      selectedCategoryStore.set({ category: categories[0], method: 'click' });
-    }
-  }
-
-  function clearSearchResults() {
-    searchResults = null;
-  }
-
   function onEmojiSelect({ detail: emoji }: { detail: EmojiRecord }) {
     recentsStore.set(mergedOptions.recentsProvider.addOrUpdateRecent(emoji));
     dispatch('emojiselect', emoji);
@@ -121,11 +120,9 @@
     searchComponent.focusSearch();
   }
 
-  $: {
-    console.log({ searchQuery })
-  }
-
-  onDestroy(unsubscribe);
+  onDestroy(() => {
+    unsubscribe.forEach(fn => fn());
+  });
 </script>
 
 <ThemeWrapper theme={mergedOptions.theme}>
@@ -137,18 +134,14 @@
     >
       <VariantPopup on:emojiselect={onEmojiSelect} />
       <header class="header">
-        <Search bind:this={searchComponent} on:search={search} />
-        {#if !searchResults}
-          <CategoryTabs
-            on:navigatePrevious={focusSearch}
-            on:categoryClick={clearSearchResults}
-            isSearching={searchResults != null}
-          />
+        <Search {emojiVersion} {categories} {db} bind:this={searchComponent} />
+        {#if !searchState?.search}
+          <CategoryTabs on:navigatePrevious={focusSearch} isSearching={searchState?.search != null} />
         {/if}
       </header>
-      {#if searchResults}
-        {#key searchQuery}
-          <SearchResults on:emojiselect={onEmojiSelect} {searchResults} />
+      {#if searchState?.search}
+        {#key searchState.query}
+          <SearchResults on:emojiselect={onEmojiSelect} search={searchState.search} />
         {/key}
       {:else}
         <EmojiArea {categoryEmojis} on:emojiselect={onEmojiSelect} />

@@ -11,8 +11,7 @@
   import i18n from '../i18n';
   import EmojiCategory from './EmojiCategory.svelte';
 
-  // TODO: use search store?
-  export let searchResults: EmojiRecord[];
+  export let search: Promise<EmojiRecord[]>;
 
   let element: HTMLElement;
 
@@ -34,18 +33,22 @@
   onDestroy(unsubscribe);
 </script>
 
-<div bind:this={element} class="searchResults">
-  {#if searchResults.length}
-    <EmojiCategory emojis={searchResults} category={searchResultsCategory} on:emojiselect />
-  {:else}
-    <div class="noResults">
-      <div in:scale={{ duration: 250, opacity: 0.5, easing: backOut }} class="icon">
-        <Icon data={faFaceFrown} scale={8} />
+{#await search}
+  <div>searching</div>
+{:then searchResults}
+  <div bind:this={element} class="searchResults">
+    {#if searchResults.length}
+      <EmojiCategory emojis={searchResults} category={searchResultsCategory} on:emojiselect />
+    {:else}
+      <div class="noResults">
+        <div in:scale={{ duration: 250, opacity: 0.5, easing: backOut }} class="icon">
+          <Icon data={faFaceFrown} scale={8} />
+        </div>
+        <h3>{i18n.search.notFound}</h3>
       </div>
-      <h3>{i18n.search.notFound}</h3>
-    </div>
-  {/if}
-</div>
+    {/if}
+  </div>
+{/await}
 
 <style>
   .searchResults {
