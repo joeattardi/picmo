@@ -23,11 +23,17 @@
 </script>
 
 {#if searchState?.search}
+  <!-- Wait on the current search promise -->
   {#await searchState.search}
+    <!-- 
+        In the meantime, if there is a previous search result, show that
+        to prevent flickering
+    -->
     {#if lastSearch}
       <SearchResultsContent emojis={lastSearch} on:emojiselect />
     {/if}
   {:then searchResults}
+    <!-- Now show the most up to date results. -->
     <SearchResultsContent emojis={searchResults} on:emojiselect />
   {/await}
 {/if}
