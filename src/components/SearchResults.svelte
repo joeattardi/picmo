@@ -2,7 +2,8 @@
   import { getContext, onDestroy, setContext } from 'svelte';
   import { writable } from 'svelte/store';
   import type { EmojiRecord } from '../data';
-  import type { FocusState, SearchStore, SearchState } from '../types';
+  import type { SearchService, SearchState } from '../search';
+  import type { FocusState } from '../types';
   import SearchResultsContent from './SearchResultsContent.svelte';
 
   let lastSearch: EmojiRecord[];
@@ -10,9 +11,9 @@
   const focusStore = writable<FocusState>({ category: 0, column: 0, offset: 0 });
   setContext('focus', focusStore);
 
-  const searchStore = getContext<SearchStore>('search');
+  const searchService = getContext<() => SearchService>('searchService')();
   let searchState: SearchState;
-  const unsubscribe = searchStore.subscribe(state => {
+  const unsubscribe = searchService.store.subscribe(state => {
     searchState = state;
     if (state.search) {
       state.search.then(results => (lastSearch = results));

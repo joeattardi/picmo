@@ -3,14 +3,17 @@
   import type { DataStore } from '../data';
   import { scale } from 'svelte/transition';
   import { backOut } from 'svelte/easing';
-  import { getContext, onDestroy } from 'svelte';
+  import { createEventDispatcher, getContext, onDestroy } from 'svelte';
   import { faMagnifyingGlass, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
 
   import i18n from '../i18n';
+  import { SearchService } from '../search';
 
   let searchInput: HTMLInputElement;
   let searchQuery = '';
+
+  const dispatch = createEventDispatcher();
 
   export let db: DataStore;
   export let emojiVersion;
@@ -18,7 +21,8 @@
 
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   const navigationStore = getContext<NavigationStore>('navigation');
-  const searchStore = getContext<SearchStore>('search');
+  const searchService = getContext<() => SearchService>('searchService')();
+  // const searchStore = getContext<SearchStore>('search');
 
   const unsubscribe = [];
 
@@ -40,10 +44,16 @@
 
   function clearSearch() {
     searchQuery = '';
-    searchStore.set({
+    dispatch('searchinput', '');
+    searchService.store.set({
       query: '',
-      search: null
+      search: null,
+      results: null
     });
+    // searchStore.set({
+    //   query: '',
+    //   search: null
+    // });
   }
 
   function handleSearchKeyDown(event) {
@@ -57,10 +67,11 @@
 
   async function handleSearchInput() {
     if (searchQuery) {
-      searchStore.set({
-        search: db.searchEmojis(searchQuery, emojiVersion, categories),
-        query: searchQuery
-      });
+      dispatch('searchinput', searchQuery);
+      // searchStore.set({
+      //   search: db.searchEmojis(searchQuery, emojiVersion, categories),
+      //   query: searchQuery
+      // });
     } else {
       clearSearch();
     }

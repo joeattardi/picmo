@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { EmojiRecord, Category, DataState, DataStatus } from '../data';
-  import type { SearchState, CategorySelection, Navigation } from '../types';
+  import type { CategorySelection, Navigation } from '../types';
   import type { DataStore, EmojiMappings } from '../data';
   import type { PickerOptions } from '../options';
 
-  import { fade } from 'svelte/transition';
+  import { fade, slide } from 'svelte/transition';
   import { onMount, setContext, createEventDispatcher, onDestroy } from 'svelte';
   import { writable } from 'svelte/store';
   import { initDatabase } from '../data';
@@ -20,8 +20,10 @@
   import Loader from './Loader.svelte';
   import { LATEST_EMOJI_VERSION } from 'emojibase';
   import VariantPopup from './VariantPopup.svelte';
+  import { SearchService, type SearchState } from '../search';
 
   export let options: Partial<PickerOptions> = {};
+  let searchQuery: string;
 
   const mergedOptions = getOptions(options);
 
@@ -34,6 +36,8 @@
   const navigateStore = writable<Navigation>();
   const searchStore = writable<SearchState>();
 
+  let searchService: SearchService;
+
   setContext('dataStore', dataStore);
   setContext('categories', categoryStore);
   setContext('selectedCategory', selectedCategoryStore);
@@ -43,6 +47,7 @@
   setContext('options', mergedOptions);
   setContext('navigation', navigateStore);
   setContext('search', searchStore);
+  setContext('searchService', () => searchService);
 
   let categoryEmojis: EmojiMappings | null = null;
   let dataStatus: DataStatus;
@@ -63,11 +68,11 @@
     })
   );
 
-  unsubscribe.push(
-    searchStore.subscribe(state => {
-      searchState = state;
-    })
-  );
+  // unsubscribe.push(
+  //   searchStore.subscribe(state => {
+  //     searchState = state;
+  //   })
+  // );
 
   onMount(async () => {
     try {
@@ -102,6 +107,13 @@
         error: null
       });
 
+      searchService = SearchService(db, emojiVersion, categories);
+      unsubscribe.push(
+        searchService.store.subscribe(state => {
+          searchState = state;
+        })
+      );
+
       recentsStore.set(mergedOptions.recentsProvider.getRecents());
     } catch (error: unknown) {
       dataStore.update(state => ({ ...state, status: 'ERROR', error }));
@@ -118,6 +130,14 @@
     searchComponent.focusSearch();
   }
 
+  function handleSearchInput(event) {
+    searchQuery = event.detail;
+  }
+
+  function startSearch() {
+    searchService.search(searchQuery);
+  }
+
   onDestroy(() => {
     unsubscribe.forEach(fn => fn());
   });
@@ -132,12 +152,14 @@
     >
       <VariantPopup on:emojiselect={onEmojiSelect} />
       <header class="header">
-        <Search {emojiVersion} {categories} {db} bind:this={searchComponent} />
-        {#if !searchState?.search}
-          <CategoryTabs on:navigatePrevious={focusSearch} isSearching={searchState?.search != null} />
+        <Search on:searchinput={handleSearchInput} {emojiVersion} {categories} {db} bind:this={searchComponent} />
+        {#if !searchQuery}
+          <div transition:slide|local={{ duration: 250 }} on:outroend={startSearch}>
+            <CategoryTabs on:navigatePrevious={focusSearch} isSearching={searchState?.search != null} />
+          </div>
         {/if}
       </header>
-      {#if searchState?.search}
+      {#if searchState?.results}
         <SearchResults on:emojiselect={onEmojiSelect} />
       {:else}
         <EmojiArea {categoryEmojis} on:emojiselect={onEmojiSelect} />
