@@ -167,7 +167,7 @@
     --preview-height: 3em;
     --category-tabs-height: 3em;
 
-    width: 600px;
+    width: 400px;
     height: 500px;
 
     display: grid;

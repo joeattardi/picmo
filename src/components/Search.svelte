@@ -71,13 +71,12 @@
   });
 </script>
 
-<div class="search-container">
+<div class="search-container" on:keydown={handleSearchKeyDown}>
   <input
     type="text"
     bind:this={searchInput}
     bind:value={searchQuery}
     placeholder={i18n.search.placeholder}
-    on:keydown={handleSearchKeyDown}
     on:input={handleSearchInput}
   />
   <div class="search-icon">
