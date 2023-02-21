@@ -138,9 +138,7 @@
         {/if}
       </header>
       {#if searchState?.search}
-        {#key searchState.query}
-          <SearchResults on:emojiselect={onEmojiSelect} search={searchState.search} />
-        {/key}
+        <SearchResults on:emojiselect={onEmojiSelect} />
       {:else}
         <EmojiArea {categoryEmojis} on:emojiselect={onEmojiSelect} />
       {/if}

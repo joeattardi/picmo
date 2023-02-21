@@ -11,6 +11,8 @@ const DATABASE_NAME = 'PicMo';
 
 const DATABASE_VERSION = 1;
 
+let initialSearch = true;
+
 export function IndexedDbStoreFactory(locale: Locale, customEmojis?: CustomEmoji[]): DataStore {
   return new IndexedDbStore(locale, customEmojis);
 }
@@ -258,13 +260,16 @@ export class IndexedDbStore extends DataStore {
         const cursor: IDBCursorWithValue | null = request.result;
         if (!cursor) {
           const customEmojiResults = this.customEmojis?.filter(emoji => queryMatches(emoji, query)) || [];
-          return resolve([
-            // matching emojis from the database
-            ...applyRules(results, emojiVersion),
+          return setTimeout(() => {
+            initialSearch = false;
+            return resolve([
+              // matching emojis from the database
+              ...applyRules(results, emojiVersion),
 
-            // matching custom emojis
-            ...customEmojiResults
-          ]);
+              // matching custom emojis
+              ...customEmojiResults
+            ]);
+          }, 0);
         }
 
         const emoji = cursor.value as Emoji;
