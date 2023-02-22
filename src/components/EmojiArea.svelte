@@ -3,7 +3,7 @@
   import type { SelectedCategoryStore, CategoryStore, FocusState, NavigationStore, DataStore } from '../types';
 
   import { getContext, onDestroy, setContext } from 'svelte';
-  import { writable } from 'svelte/store';
+  import { writable, type Unsubscriber } from 'svelte/store';
   import EmojiCategory from './EmojiCategory.svelte';
   import RecentEmojisCategory from './RecentEmojisCategory.svelte';
 
@@ -21,7 +21,7 @@
   let categories: Category[];
   let data: DataState;
 
-  const unsubscribe = [];
+  const unsubscribe: Unsubscriber[] = [];
 
   unsubscribe.push(
     dataStore.subscribe(state => {

@@ -1,3 +1,4 @@
+import type { ComponentType, SvelteComponentTyped } from 'svelte';
 import type { Emoji, Locale, MessagesDataset } from 'emojibase';
 import PlatformEmoji from './components/renderers/PlatformEmoji.svelte';
 import { type DataStoreFactory, type CategoryKey, type CustomEmoji, IndexedDbStoreFactory } from './data';
@@ -14,7 +15,7 @@ export type PickerOptions = {
   locale: Locale;
   messages?: MessagesDataset;
   recentsProvider: RecentsProvider;
-  renderer: ConstructorOfATypedSvelteComponent;
+  renderer: ComponentType<SvelteComponentTyped>;
   rows: number;
   showCategoryTabs: boolean;
   showPreview: boolean;

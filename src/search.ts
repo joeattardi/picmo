@@ -1,4 +1,4 @@
-import type { Writable } from 'svelte/store';
+import type { Subscriber, Unsubscriber, Writable } from 'svelte/store';
 import { writable } from 'svelte/store';
 import type { DataStore, Category, EmojiRecord } from './data';
 
@@ -11,6 +11,8 @@ export type SearchState = {
 export type SearchService = {
   store: Writable<SearchState>;
   search: (query: string) => void;
+  clear: () => void;
+  subscribe: (run: Subscriber<SearchState>) => Unsubscriber;
 };
 
 export function SearchService(db: DataStore, emojiVersion: number, categories: Category[]): SearchService {
@@ -30,8 +32,18 @@ export function SearchService(db: DataStore, emojiVersion: number, categories: C
     });
   }
 
+  function clear() {
+    store.set({
+      query: '',
+      search: null,
+      results: null
+    });
+  }
+
   return {
     store,
-    search
+    search,
+    clear,
+    subscribe: store.subscribe.bind(store)
   };
 }

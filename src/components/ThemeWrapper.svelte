@@ -6,7 +6,7 @@
 
   let className = theme;
 
-  function themeUpdate(event) {
+  function themeUpdate(event: MediaQueryListEvent) {
     className = event.matches ? themes.dark : themes.light;
   }
 

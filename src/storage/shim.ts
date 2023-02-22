@@ -3,7 +3,7 @@
  * to prevent exceptions.
  */
 export function createStorage(): Storage {
-  let data = {};
+  let data: Record<string, string> = {};
 
   return {
     getItem: key => data[key],

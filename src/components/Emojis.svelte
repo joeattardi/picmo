@@ -9,7 +9,7 @@
   export let emojis: EmojiRecord[];
   export let categoryIndex: number;
 
-  let focused;
+  let focused: string;
 
   let columnCount: number;
 
@@ -26,7 +26,7 @@
     }
   });
 
-  function getColumnCount(element) {
+  function getColumnCount(element: HTMLElement) {
     const styles = getComputedStyle(element);
     columnCount = styles.gridTemplateColumns.split(' ').length;
   }

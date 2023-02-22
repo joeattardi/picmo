@@ -1,30 +1,25 @@
 <script lang="ts">
-  import type { SelectedCategoryStore, NavigationStore, SearchStore } from '../types';
-  import type { DataStore } from '../data';
   import { scale } from 'svelte/transition';
   import { backOut } from 'svelte/easing';
   import { createEventDispatcher, getContext, onDestroy } from 'svelte';
   import { faMagnifyingGlass, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
 
+  import type { SelectedCategoryStore, NavigationStore } from '../types';
+  import type { SearchService } from '../search';
   import i18n from '../i18n';
-  import { SearchService } from '../search';
+  import type { Unsubscriber } from 'svelte/store';
 
   let searchInput: HTMLInputElement;
   let searchQuery = '';
 
   const dispatch = createEventDispatcher();
 
-  export let db: DataStore;
-  export let emojiVersion;
-  export let categories;
-
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   const navigationStore = getContext<NavigationStore>('navigation');
   const searchService = getContext<() => SearchService>('searchService')();
-  // const searchStore = getContext<SearchStore>('search');
 
-  const unsubscribe = [];
+  const unsubscribe: Unsubscriber[] = [];
 
   unsubscribe.push(
     navigationStore.subscribe(navigate => {
@@ -45,18 +40,10 @@
   function clearSearch() {
     searchQuery = '';
     dispatch('searchinput', '');
-    searchService.store.set({
-      query: '',
-      search: null,
-      results: null
-    });
-    // searchStore.set({
-    //   query: '',
-    //   search: null
-    // });
+    searchService.clear();
   }
 
-  function handleSearchKeyDown(event) {
+  function handleSearchKeyDown(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       clearSearch();
     } else if (event.key === 'ArrowDown') {
@@ -68,10 +55,6 @@
   async function handleSearchInput() {
     if (searchQuery) {
       dispatch('searchinput', searchQuery);
-      // searchStore.set({
-      //   search: db.searchEmojis(searchQuery, emojiVersion, categories),
-      //   query: searchQuery
-      // });
     } else {
       clearSearch();
     }

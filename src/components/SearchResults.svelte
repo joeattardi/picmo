@@ -13,7 +13,7 @@
 
   const searchService = getContext<() => SearchService>('searchService')();
   let searchState: SearchState;
-  const unsubscribe = searchService.store.subscribe(state => {
+  const unsubscribe = searchService.subscribe(state => {
     searchState = state;
     if (state.search) {
       state.search.then(results => (lastSearch = results));

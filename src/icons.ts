@@ -12,11 +12,12 @@ import {
   faIcons,
   faFlag,
   faStar,
-  type IconDefinition
+  type IconDefinition,
+  faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons';
 
 export const categoryIcons: Record<CategoryKey, IconDefinition> = {
-  recents: faHistory,
+  // Categories from the emoji dataset
   'smileys-emotion': faSmile,
   'people-body': faUserAstronaut,
   'animals-nature': faLeaf,
@@ -26,5 +27,9 @@ export const categoryIcons: Record<CategoryKey, IconDefinition> = {
   objects: faLightbulb,
   symbols: faIcons,
   flags: faFlag,
-  custom: faStar
+
+  // Additional categories for the picker
+  recents: faHistory,
+  custom: faStar,
+  'search-results': faMagnifyingGlass
 };

@@ -1,6 +1,6 @@
 import type { Emoji, GroupMessage, Locale } from 'emojibase';
 import type { EmojiRecord, Category, CustomEmoji } from './types';
-import type { PickerOptions } from '../types';
+import type { PickerOptions } from '../options';
 import { caseInsensitiveIncludes } from '../util';
 
 export type PopulateOptions = {

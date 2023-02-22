@@ -52,12 +52,12 @@
     return categories[newIndex];
   }
 
-  const offsets = {
+  const offsets: Record<string, number> = {
     ArrowRight: 1,
     ArrowLeft: -1
   };
 
-  function handleKeyDown(event) {
+  function handleKeyDown(event: KeyboardEvent) {
     if (event.key in offsets) {
       selectedCategoryStore.update(selection => ({
         category: getNewCategory(selection.category, offsets[event.key]),

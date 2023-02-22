@@ -19,13 +19,8 @@ export type VariantState = {
 export type FocusState = {
   category: number;
   offset: number;
-  column: number;
+  column?: number;
   applyFocus?: boolean;
-};
-
-export type SearchState = {
-  query: string;
-  search: Promise<EmojiRecord[]>;
 };
 
 export type NavigationStore = Writable<Navigation>;
@@ -36,6 +31,5 @@ export type DataStore = Writable<DataState>;
 export type PreviewStore = Writable<EmojiRecord>;
 export type VariantStore = Writable<VariantState>;
 export type FocusStore = Writable<FocusState>;
-export type SearchStore = Writable<SearchState>;
 
 export type Theme = 'light' | 'dark' | 'auto';

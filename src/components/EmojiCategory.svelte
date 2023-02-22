@@ -7,7 +7,7 @@
   import { getEmojiForEvent } from '../util';
   import Emojis from './Emojis.svelte';
 
-  export let emptyMessage = null;
+  export let emptyMessage: string = null;
   export let category: Category;
   export let categoryCount = 1;
   export let index = 0;
@@ -18,7 +18,7 @@
 
   const dispatch = createEventDispatcher();
 
-  function showPreview(event) {
+  function showPreview(event: Event) {
     const emoji = getEmojiForEvent(event, emojis);
     if (emoji) {
       previewStore.set(emoji);
@@ -29,18 +29,25 @@
     previewStore.set(null);
   }
 
-  function handleClick(event) {
+  function handleSelect(event: Event) {
     event.preventDefault();
-    if (event.target.closest('[data-emoji]')?.dataset.emoji) {
+    const target = event.target as HTMLElement;
+    if (target.closest<HTMLElement>('[data-emoji]')?.dataset.emoji) {
       const emoji = getEmojiForEvent(event, emojis);
       if (emoji.skins?.length) {
         variantStore.set({
           emoji,
-          element: event.target
+          element: target
         });
       } else {
         dispatch('emojiselect', emoji);
       }
+    }
+  }
+
+  function handleKeyDown(event: KeyboardEvent) {
+    if (['Enter', ' '].includes(event.key)) {
+      handleSelect(event);
     }
   }
 </script>
@@ -50,7 +57,8 @@
   on:mouseout={hidePreview}
   on:focus={showPreview}
   on:blur={hidePreview}
-  on:click={handleClick}
+  on:click={handleSelect}
+  on:keydown={handleKeyDown}
   class="category"
   data-category-key={category.key}
 >

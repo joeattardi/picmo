@@ -1,4 +1,4 @@
-import type { PickerOptions } from '../types';
+import type { PickerOptions } from '../options';
 import EmojiPicker from '../components/EmojiPicker.svelte';
 
 export default class PicmoPicker extends HTMLElement {

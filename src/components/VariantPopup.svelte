@@ -10,7 +10,7 @@
   import EmojiButton from './EmojiButton.svelte';
   import { getEmojiForEvent } from '../util';
   import FocusGrid from './FocusGrid.svelte';
-  import { writable } from 'svelte/store';
+  import { writable, type Unsubscriber } from 'svelte/store';
 
   let emoji: EmojiRecord;
   let variants: EmojiRecord[];
@@ -27,7 +27,7 @@
   const focusStore = writable<FocusState>({ category: 0, column: 0, offset: 0 });
   setContext('focus', focusStore);
 
-  const unsubscribe = [];
+  const unsubscribe: Unsubscriber[] = [];
 
   unsubscribe.push(
     focusStore.subscribe(state => {
@@ -47,14 +47,14 @@
     store.set(null);
   }
 
-  function handleKeyDown(event) {
+  function handleKeyDown(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       close();
     }
   }
 
-  function handleClick(event) {
-    if (event.target.dataset.emoji) {
+  function handleClick(event: MouseEvent) {
+    if ((event.target as HTMLElement).dataset.emoji) {
       const emoji = getEmojiForEvent(event, variants);
       if (emoji) {
         close();
@@ -73,7 +73,7 @@
       applyFocus: true
     });
 
-    function checkClickOutside(event) {
+    function checkClickOutside(event: MouseEvent) {
       if (!event.composedPath().includes(contentElement)) {
         close();
       }
@@ -126,7 +126,7 @@
     unsubscribe.forEach(fn => fn());
   });
 
-  function getColumnCount(element) {
+  function getColumnCount(element: HTMLElement) {
     const styles = getComputedStyle(element);
     columnCount = styles.gridTemplateColumns.split(' ').length;
   }

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { EmojiRecord } from '../data';
-  import type { FocusStore } from '../types';
+  import type { FocusStore, FocusState } from '../types';
   import { getContext } from 'svelte';
 
   export let categoryCount: number;
@@ -11,23 +11,23 @@
 
   const focusStore = getContext<FocusStore>('focus');
 
-  let rowCount;
-  let lastRowStart;
+  type FocusHandler = (state: Partial<FocusState>) => Partial<FocusState>;
+
+  let rowCount: number;
 
   $: {
     if (columnCount) {
       rowCount = Math.floor(emojis.length / columnCount);
-      lastRowStart = rowCount * columnCount;
     }
   }
 
-  function getCoordinates(offset) {
+  function getCoordinates(offset: number) {
     const row = Math.floor(offset / columnCount);
     const column = offset - columnCount * row;
     return [row, column];
   }
 
-  function focusLeft({ offset, category }) {
+  function focusLeft({ offset, category }: Partial<FocusState>) {
     const [row, column] = getCoordinates(offset);
 
     if (row === 0 && column === 0 && category > 0) {
@@ -43,7 +43,7 @@
     }
   }
 
-  function focusRight({ offset, category }) {
+  function focusRight({ offset, category }: Partial<FocusState>) {
     if (offset < emojis.length - 1) {
       return { offset: offset + 1 };
     }
@@ -58,7 +58,7 @@
     }
   }
 
-  function focusDown({ offset, category }) {
+  function focusDown({ offset, category }: Partial<FocusState>) {
     const [row, column] = getCoordinates(offset);
 
     if (row < rowCount) {
@@ -74,7 +74,7 @@
     }
   }
 
-  function focusUp({ offset, category }) {
+  function focusUp({ offset, category }: Partial<FocusState>) {
     const [row, column] = getCoordinates(offset);
 
     if (row > 0) {
@@ -91,7 +91,7 @@
     }
   }
 
-  const keyBindings = {
+  const keyBindings: Record<string, FocusHandler> = {
     ArrowLeft: focusLeft,
     ArrowRight: focusRight,
     ArrowDown: focusDown,

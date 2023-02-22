@@ -1,12 +1,12 @@
 <script lang="ts">
   import type { EmojiRecord, Category, DataState, DataStatus } from '../data';
   import type { CategorySelection, Navigation } from '../types';
-  import type { DataStore, EmojiMappings } from '../data';
+  import type { EmojiMappings } from '../data';
   import type { PickerOptions } from '../options';
 
   import { fade, slide } from 'svelte/transition';
   import { onMount, setContext, createEventDispatcher, onDestroy } from 'svelte';
-  import { writable } from 'svelte/store';
+  import { writable, type Unsubscriber } from 'svelte/store';
   import { initDatabase } from '../data';
   import { getOptions } from '../options';
   import { determineEmojiVersion } from '../emojiSupport';
@@ -52,27 +52,19 @@
   let categoryEmojis: EmojiMappings | null = null;
   let dataStatus: DataStatus;
   let categories: Category[];
-  let db: DataStore;
   let emojiVersion: number;
   let searchState: SearchState;
   let dataReady = false;
 
   const dispatch = createEventDispatcher();
 
-  const unsubscribe = [];
+  const unsubscribe: Unsubscriber[] = [];
 
   unsubscribe.push(
     dataStore.subscribe(state => {
       dataStatus = state.status;
-      db = state.dataStore;
     })
   );
-
-  // unsubscribe.push(
-  //   searchStore.subscribe(state => {
-  //     searchState = state;
-  //   })
-  // );
 
   onMount(async () => {
     try {
@@ -109,7 +101,7 @@
 
       searchService = SearchService(db, emojiVersion, categories);
       unsubscribe.push(
-        searchService.store.subscribe(state => {
+        searchService.subscribe(state => {
           searchState = state;
         })
       );
@@ -125,12 +117,7 @@
     dispatch('emojiselect', emoji);
   }
 
-  let searchComponent;
-  function focusSearch() {
-    searchComponent.focusSearch();
-  }
-
-  function handleSearchInput(event) {
+  function handleSearchInput(event: CustomEvent) {
     searchQuery = event.detail;
   }
 
@@ -152,10 +139,10 @@
     >
       <VariantPopup on:emojiselect={onEmojiSelect} />
       <header class="header">
-        <Search on:searchinput={handleSearchInput} {emojiVersion} {categories} {db} bind:this={searchComponent} />
+        <Search on:searchinput={handleSearchInput} />
         {#if !searchQuery}
           <div transition:slide|local={{ duration: 250 }} on:outroend={startSearch}>
-            <CategoryTabs on:navigatePrevious={focusSearch} isSearching={searchState?.search != null} />
+            <CategoryTabs isSearching={searchState?.search != null} />
           </div>
         {/if}
       </header>
