@@ -2,6 +2,10 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.8.0] - 2023-02-25
+
+- Added new UI text translations provided thanks to [Henryk Helsky](https://github.com/traone)!
+
 ## [5.7.6] - 2023-02-08
 
 - [`picmo`] Fixed an issue where the picker crashed if `localStorage` or `indexedDB` are not available or restricted. In these cases a simplified in-memory fallback implementation is used so the picker still works ([#184](https://github.com/joeattardi/picmo/issues/184))
