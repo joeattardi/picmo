@@ -15,6 +15,9 @@ export type { ExternalEvent, ExternalEventKey } from './ExternalEvents';
 export { Renderer } from './renderers/renderer';
 export { NativeRenderer } from './renderers/native';
 
+import * as i18n from './i18n';
+export { i18n };
+
 export { default as en } from './i18n/lang-en';
 export { deleteDatabase } from './data/emojiData';
 import { DataStoreFactory } from './data/DataStore';

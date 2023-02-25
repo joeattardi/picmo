@@ -103,7 +103,7 @@ A specific number can be specified, or `auto` can be used to automatically deter
 - **Type**: [`Dictionary`](./dictionary)
 - **Default**: Built-in English strings
 
-A collection of i18n strings to use for the picker.
+A collection of i18n strings to use for the picker. Available languages are exported from PicMo as an `i18n` object whose properties are the language codes.
 
 ### `initialCategory`
 

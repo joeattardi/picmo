@@ -1,4 +1,4 @@
-import { createPicker, darkTheme, lightTheme } from './src/index';
+import { createPicker, darkTheme, lightTheme, i18n } from './src/index';
 
 const rootElement = document.querySelector('#picker');
 const selectionEl = document.querySelector('pre');
@@ -27,6 +27,8 @@ const picker = createPicker({
   rootElement,
   custom: customEmojis,
   className: 'my-picker',
+  i18n: i18n.de,
+  locale: 'sv'
   // recentsProvider: new InMemoryProvider(),
   // dataStore: InMemoryStoreFactory
   // emojisPerRow: 5
