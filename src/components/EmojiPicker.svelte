@@ -119,6 +119,9 @@
 
   function handleSearchInput(event: CustomEvent) {
     searchQuery = event.detail;
+    if (searchQuery && searchState?.results) {
+      searchService.search(searchQuery);
+    }
   }
 
   function startSearch() {
