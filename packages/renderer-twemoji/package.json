@@ -36,7 +36,7 @@
     "twemoji-parser": "^14.0.0"
   },
   "peerDependencies": {
-    "picmo": "^5.7.0"
+    "picmo": "^5.8.0"
   },
   "devDependencies": {
     "@testing-library/dom": "^8.17.1",
