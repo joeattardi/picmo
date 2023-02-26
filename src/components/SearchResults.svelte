@@ -28,7 +28,6 @@
   onDestroy(unsubscribe);
 </script>
 
-{@debug searchState}
 {#if searchState?.search}
   <!-- Wait on the current search promise -->
   {#await searchState.search}

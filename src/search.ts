@@ -10,7 +10,7 @@ export type SearchState = {
 
 export type SearchService = {
   store: Writable<SearchState>;
-  search: (query: string) => void;
+  search: (query: string) => Promise<void>;
   clear: () => void;
   subscribe: (run: Subscriber<SearchState>) => Unsubscriber;
 };
@@ -29,7 +29,7 @@ export function SearchService(db: DataStore, emojiVersion: number, categories: C
       search
     }));
 
-    search.then(results => {
+    return search.then(results => {
       store.update(state => ({ ...state, results }));
     });
   }

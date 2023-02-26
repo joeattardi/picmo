@@ -105,37 +105,38 @@
   }
 </script>
 
-{#if categoryEmojis}
-  <div use:intersectionObserver bind:this={scrollableArea} class="emojiArea">
-    {#each categories as category, index}
-      {#if category.key === 'recents'}
-        <RecentEmojisCategory on:emojiselect {category} {index} categoryCount={categories.length} />
-      {:else if category.key === 'custom'}
-        <EmojiCategory
-          {category}
-          on:emojiselect
-          emojis={data.dataStore.customEmojis}
-          {index}
-          categoryCount={categories.length}
-        />
-      {:else}
-        <EmojiCategory
-          on:emojiselect
-          emojis={categoryEmojis[category.key]}
-          {category}
-          {index}
-          categoryCount={categories.length}
-        />
-      {/if}
-    {/each}
-  </div>
-{/if}
+<!-- {#if categoryEmojis} -->
+<div use:intersectionObserver bind:this={scrollableArea} class="emojiArea">
+  {#each categories as category, index}
+    {#if category.key === 'recents'}
+      <RecentEmojisCategory on:emojiselect {category} {index} categoryCount={categories.length} />
+    {:else if category.key === 'custom'}
+      <EmojiCategory
+        {category}
+        on:emojiselect
+        emojis={data.dataStore.customEmojis}
+        {index}
+        categoryCount={categories.length}
+      />
+    {:else}
+      <EmojiCategory
+        on:emojiselect
+        emojis={categoryEmojis[category.key]}
+        {category}
+        {index}
+        categoryCount={categories.length}
+      />
+    {/if}
+  {/each}
+</div>
 
+<!-- {/if} -->
 <style>
   .emojiArea {
     overflow: auto;
     background: var(--emoji-area-background);
     padding-bottom: 0.5em;
     position: relative;
+    height: 100%;
   }
 </style>
