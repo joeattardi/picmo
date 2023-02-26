@@ -8,7 +8,6 @@
   import i18n from '../i18n';
 
   export let category: Category;
-  export let isSearching: boolean;
 
   let button: HTMLButtonElement;
 
@@ -34,9 +33,8 @@
 <li data-category-key={category.key}>
   <button
     tabindex={isSelected ? 0 : -1}
-    class={isSelected && !isSearching ? 'selected' : ''}
+    class:selected={isSelected}
     bind:this={button}
-    disabled={isSearching}
     on:click={onClickCategory}
     title={i18n.categories[category.key] || category.message || category.key}
   >

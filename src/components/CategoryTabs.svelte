@@ -14,8 +14,6 @@
 
   const dispatch = createEventDispatcher();
 
-  export let isSearching: boolean;
-
   const unsubscribeNavigation = navigationStore.subscribe(navigate => {
     if (navigate?.target === 'categories') {
       tabs.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
@@ -84,7 +82,7 @@
   <div class="container">
     <ul class="categoryTabs" bind:this={tabs} on:keydown={handleKeyDown}>
       {#each categories as category}
-        <CategoryTab on:selectCategory={setSelectedCategory} {isSearching} {category} />
+        <CategoryTab on:selectCategory={setSelectedCategory} {category} />
       {/each}
     </ul>
   </div>
