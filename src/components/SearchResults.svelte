@@ -28,6 +28,7 @@
   onDestroy(unsubscribe);
 </script>
 
+{@debug searchState}
 {#if searchState?.search}
   <!-- Wait on the current search promise -->
   {#await searchState.search}
@@ -42,6 +43,6 @@
     <!-- Now show the most up to date results. -->
     <SearchResultsContent emojis={searchResults} on:emojiselect />
   {/await}
-{:else if lastSearch}
+{:else if searchState.results}
   <SearchResultsContent emojis={lastSearch} on:emojiselect />
 {/if}

@@ -40,7 +40,7 @@
   function clearSearch() {
     searchQuery = '';
     dispatch('searchinput', '');
-    searchService.clear();
+    // searchService.clear();
   }
 
   function handleSearchKeyDown(event: KeyboardEvent) {

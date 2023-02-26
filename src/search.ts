@@ -19,6 +19,8 @@ export function SearchService(db: DataStore, emojiVersion: number, categories: C
   const store = writable<SearchState>();
 
   function search(query: string) {
+    store.update(state => ({ ...state, query }));
+
     const search = db.searchEmojis(query, emojiVersion, categories);
 
     store.update(state => ({

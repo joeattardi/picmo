@@ -29,7 +29,6 @@
 
 <style>
   .preview {
-    grid-area: footer;
     display: grid;
     grid-template-areas:
       'emoji name'

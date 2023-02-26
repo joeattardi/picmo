@@ -5,7 +5,6 @@
   import type { PickerOptions } from '../options';
 
   import { fade, slide, fly } from 'svelte/transition';
-  import { quadIn, quadOut } from 'svelte/easing';
   import { onMount, setContext, createEventDispatcher, onDestroy } from 'svelte';
   import { writable, type Unsubscriber } from 'svelte/store';
   import { initDatabase } from '../data';
@@ -120,14 +119,24 @@
 
   function handleSearchInput(event: CustomEvent) {
     searchQuery = event.detail;
+  }
+
+  function doSearch() {
     if (searchQuery) {
+      currentView = 'search';
       searchService.search(searchQuery);
     }
+  }
+
+  function postSearch() {
+    currentView = 'emojis';
   }
 
   onDestroy(() => {
     unsubscribe.forEach(fn => fn());
   });
+
+  let currentView = 'emojis';
 </script>
 
 <ThemeWrapper theme={mergedOptions.theme}>
@@ -140,20 +149,34 @@
       <VariantPopup on:emojiselect={onEmojiSelect} />
       <header class="header">
         <Search on:searchinput={handleSearchInput} />
-        {#if !searchState?.results}
-          <div transition:slide>
+        {#if !searchQuery}
+          <div transition:slide on:outroend={doSearch} on:introend={postSearch}>
             <CategoryTabs isSearching={searchState?.search != null} />
           </div>
         {/if}
       </header>
-      {#if searchState?.results || searchState?.search}
-        <div class="results" transition:fly={{ x: 100 }}>
-          <SearchResults on:emojiselect={onEmojiSelect} />
-        </div>
-      {:else}
-        <EmojiArea {categoryEmojis} on:emojiselect={onEmojiSelect} />
-      {/if}
-      <Preview />
+      <div class="body">
+        {#if currentView === 'search'}
+          <div
+            out:fly={{ x: -500, opacity: 1, duration: 350 }}
+            in:fly={{ x: -500, opacity: 1, duration: 350, delay: 350 }}
+            class="results"
+          >
+            <SearchResults on:emojiselect={onEmojiSelect} />
+          </div>
+        {:else if categoryEmojis && currentView === 'emojis'}
+          <div
+            out:fly={{ x: 500, opacity: 1, duration: 350 }}
+            in:fly={{ x: 500, opacity: 1, duration: 350, delay: 350 }}
+            class="results"
+          >
+            <EmojiArea {categoryEmojis} on:emojiselect={onEmojiSelect} />
+          </div>
+        {/if}
+      </div>
+      <footer class="footer">
+        <Preview />
+      </footer>
     </div>
   {/if}
   {#if dataStatus === 'LOADING'}
@@ -202,8 +225,16 @@
     grid-area: header;
   }
 
-  .results {
+  .body {
     grid-area: body;
+    overflow: auto;
+  }
+
+  .footer {
+    grid-area: footer;
+  }
+
+  .results {
     overflow: auto;
     padding-bottom: 0.5em;
     background: var(--emoji-area-background);
