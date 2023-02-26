@@ -4,7 +4,8 @@
   import type { EmojiMappings } from '../data';
   import type { PickerOptions } from '../options';
 
-  import { fade, slide } from 'svelte/transition';
+  import { fade, slide, fly } from 'svelte/transition';
+  import { quadIn, quadOut } from 'svelte/easing';
   import { onMount, setContext, createEventDispatcher, onDestroy } from 'svelte';
   import { writable, type Unsubscriber } from 'svelte/store';
   import { initDatabase } from '../data';
@@ -119,13 +120,9 @@
 
   function handleSearchInput(event: CustomEvent) {
     searchQuery = event.detail;
-    if (searchQuery && searchState?.results) {
+    if (searchQuery) {
       searchService.search(searchQuery);
     }
-  }
-
-  function startSearch() {
-    searchService.search(searchQuery);
   }
 
   onDestroy(() => {
@@ -143,14 +140,16 @@
       <VariantPopup on:emojiselect={onEmojiSelect} />
       <header class="header">
         <Search on:searchinput={handleSearchInput} />
-        {#if !searchQuery}
-          <div transition:slide|local={{ duration: 250 }} on:outroend={startSearch}>
+        {#if !searchState?.results}
+          <div transition:slide>
             <CategoryTabs isSearching={searchState?.search != null} />
           </div>
         {/if}
       </header>
-      {#if searchState?.results}
-        <SearchResults on:emojiselect={onEmojiSelect} />
+      {#if searchState?.results || searchState?.search}
+        <div class="results" transition:fly={{ x: 100 }}>
+          <SearchResults on:emojiselect={onEmojiSelect} />
+        </div>
       {:else}
         <EmojiArea {categoryEmojis} on:emojiselect={onEmojiSelect} />
       {/if}
@@ -201,5 +200,12 @@
 
   .header {
     grid-area: header;
+  }
+
+  .results {
+    grid-area: body;
+    overflow: auto;
+    padding-bottom: 0.5em;
+    background: var(--emoji-area-background);
   }
 </style>

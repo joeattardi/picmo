@@ -3,6 +3,7 @@
   import type { SelectedCategoryStore, CategoryStore, FocusState, NavigationStore, DataStore } from '../types';
 
   import { getContext, onDestroy, setContext } from 'svelte';
+  import { fly } from 'svelte/transition';
   import { writable, type Unsubscriber } from 'svelte/store';
   import EmojiCategory from './EmojiCategory.svelte';
   import RecentEmojisCategory from './RecentEmojisCategory.svelte';
@@ -105,7 +106,7 @@
 </script>
 
 {#if categoryEmojis}
-  <div use:intersectionObserver bind:this={scrollableArea} class="emojiArea">
+  <div transition:fly={{ x: -100 }} use:intersectionObserver bind:this={scrollableArea} class="emojiArea">
     {#each categories as category, index}
       {#if category.key === 'recents'}
         <RecentEmojisCategory on:emojiselect {category} {index} categoryCount={categories.length} />

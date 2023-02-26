@@ -1,5 +1,6 @@
 <script lang="ts">
   import { getContext, onDestroy } from 'svelte';
+  import { fly } from 'svelte/transition';
   import { faFaceFrown } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
 
@@ -27,7 +28,7 @@
   onDestroy(unsubscribe);
 </script>
 
-<div bind:this={element} class="searchResults">
+<div bind:this={element}>
   {#if emojis.length}
     <EmojiCategory {emojis} category={searchResultsCategory} on:emojiselect />
   {:else}
@@ -41,13 +42,6 @@
 </div>
 
 <style>
-  .searchResults {
-    overflow: auto;
-    padding-bottom: 0.5em;
-    background: var(--emoji-area-background);
-    grid-area: body;
-  }
-
   .noResults {
     color: var(--secondary-text-color);
     background: var(--emoji-area-background);

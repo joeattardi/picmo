@@ -1,6 +1,7 @@
 <script lang="ts">
   import { getContext, onDestroy, setContext } from 'svelte';
   import { writable } from 'svelte/store';
+  import { fly } from 'svelte/transition';
   import type { EmojiRecord } from '../data';
   import type { SearchService, SearchState } from '../search';
   import type { FocusState } from '../types';
@@ -16,7 +17,11 @@
   const unsubscribe = searchService.subscribe(state => {
     searchState = state;
     if (state.search) {
-      state.search.then(results => (lastSearch = results));
+      state.search.then(results => {
+        if (results) {
+          lastSearch = results;
+        }
+      });
     }
   });
 
@@ -37,4 +42,6 @@
     <!-- Now show the most up to date results. -->
     <SearchResultsContent emojis={searchResults} on:emojiselect />
   {/await}
+{:else if lastSearch}
+  <SearchResultsContent emojis={lastSearch} on:emojiselect />
 {/if}
