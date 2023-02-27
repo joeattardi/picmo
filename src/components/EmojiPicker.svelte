@@ -21,6 +21,7 @@
   import { LATEST_EMOJI_VERSION } from 'emojibase';
   import VariantPopup from './VariantPopup.svelte';
   import { SearchService, type SearchState } from '../search';
+  import { slideTransition } from '../animation';
   import { expoOut } from 'svelte/easing';
 
   export let options: Partial<PickerOptions> = {};
@@ -125,12 +126,8 @@
     }
   }
 
-  function showSearch() {
-    currentView = 'search';
-  }
-
-  function showEmojis() {
-    currentView = 'emojis';
+  function setCurrentView(view: 'search' | 'emojis') {
+    return () => (currentView = view);
   }
 
   onDestroy(() => {
@@ -140,24 +137,6 @@
   let currentView = 'emojis';
 
   // TODO: cleanup this component in general!
-  // Honor prefers-reduced-motion: https://geoffrich.net/posts/accessible-svelte-transitions/
-  function slideTransition(node: HTMLElement, { direction = 1, enabled = true }) {
-    return {
-      duration: 250,
-      easing: expoOut,
-      css: (t: number) => {
-        if (enabled) {
-          return `
-            transform: translate3d(${(1 - t) * 100 * direction}%, 0, 0);
-          `;
-        }
-
-        return `
-          transform: translate3d(0, 0, 0);
-        `;
-      }
-    };
-  }
 </script>
 
 <ThemeWrapper theme={mergedOptions.theme}>
@@ -173,8 +152,8 @@
         {#if !searchQuery}
           <div
             transition:slide|local={{ duration: 250, easing: expoOut }}
-            on:outroend={showSearch}
-            on:introend={showEmojis}
+            on:outroend={setCurrentView('search')}
+            on:introend={setCurrentView('emojis')}
           >
             <CategoryTabs />
           </div>
