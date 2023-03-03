@@ -27,6 +27,8 @@ export type DataStoreFactory = {
   deleteDatabase(locale: Locale): void;
 };
 
+export type GetCategoriesOptions = Pick<PickerOptions, 'showRecents' | 'custom' | 'categories'>;
+
 /**
  * Transforms an Emoji from emojibase into an EmojiRecord.
  *
@@ -93,7 +95,7 @@ export abstract class DataStore {
   abstract getHash(): Promise<string>;
   abstract isPopulated(): Promise<boolean>;
   abstract populate(options: PopulateOptions): Promise<void>;
-  abstract getCategories(options: PickerOptions): Promise<Category[]>;
+  abstract getCategories(options: GetCategoriesOptions): Promise<Category[]>;
   abstract getEmojis(category: Category, emojiVersion: number): Promise<EmojiRecord[]>;
   abstract searchEmojis(query: string, emojiVersion: number, categories: Category[]): Promise<EmojiRecord[]>;
 }

@@ -1,5 +1,5 @@
 import type { Locale, Emoji, GroupMessage } from 'emojibase';
-import type { PopulateOptions } from './DataStore';
+import type { GetCategoriesOptions, PopulateOptions } from './DataStore';
 import type { EmojiRecord, Category, CategoryKey, CustomEmoji } from './types';
 import type { PickerOptions } from '../options';
 
@@ -60,7 +60,7 @@ export class InMemoryStore extends DataStore {
     return Promise.resolve();
   }
 
-  getCategories(options: PickerOptions): Promise<Category[]> {
+  getCategories(options: GetCategoriesOptions): Promise<Category[]> {
     let categories: Category[] = this.categories.filter(category => category.key !== 'component') as Category[];
 
     if (options.showRecents) {

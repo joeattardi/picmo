@@ -25,7 +25,6 @@ export type FocusState = {
 
 export type NavigationStore = Writable<Navigation>;
 export type SelectedCategoryStore = Writable<CategorySelection>;
-export type CategoryStore = Writable<Category[]>;
 export type RecentsStore = Writable<EmojiRecord[]>;
 export type DataStore = Writable<DataState>;
 export type PreviewStore = Writable<EmojiRecord>;

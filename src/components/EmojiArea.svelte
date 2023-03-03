@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { Category, DataState, EmojiMappings } from '../data';
-  import type { SelectedCategoryStore, CategoryStore, FocusState, NavigationStore, DataStore } from '../types';
+  import type { EmojiMappings } from '../data';
+  import type { SelectedCategoryStore, FocusState, NavigationStore } from '../types';
 
+  import type { DataServiceReturnValue } from '../data-service';
   import { getContext, onDestroy, setContext } from 'svelte';
-  import { fade, fly } from 'svelte/transition';
   import { writable, type Unsubscriber } from 'svelte/store';
   import EmojiCategory from './EmojiCategory.svelte';
   import RecentEmojisCategory from './RecentEmojisCategory.svelte';
@@ -11,30 +11,11 @@
   const focusStore = writable<FocusState>({ category: 0, offset: 0 });
   setContext('focus', focusStore);
 
-  const dataStore = getContext<DataStore>('dataStore');
-
-  const categoryStore = getContext<CategoryStore>('categories');
+  const dataService = getContext<DataServiceReturnValue>('dataService');
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   const navigationStore = getContext<NavigationStore>('navigation');
 
-  export let categoryEmojis: EmojiMappings;
-
-  let categories: Category[];
-  let data: DataState;
-
   const unsubscribe: Unsubscriber[] = [];
-
-  unsubscribe.push(
-    dataStore.subscribe(state => {
-      data = state;
-    })
-  );
-
-  unsubscribe.push(
-    categoryStore.subscribe(categoryList => {
-      categories = categoryList;
-    })
-  );
 
   let pauseScroll = false;
 
@@ -52,7 +33,7 @@
     selectedCategoryStore.subscribe(selection => {
       if (scrollableArea && selection && selection.method === 'click') {
         focusStore.set({
-          category: categories.indexOf(selection.category),
+          category: dataService.categories.indexOf(selection.category),
           offset: 0
         });
         pauseScroll = true;
@@ -82,12 +63,12 @@
 
           if (entry.isIntersecting) {
             // Category just entered from the top
-            const newCategory = categories.find(category => category.key === categoryKey);
+            const newCategory = dataService.categories.find(category => category.key === categoryKey);
             selectedCategoryStore.set({ category: newCategory, method: 'scroll' });
           } else {
             // Category just left at the top, so select the next category
-            const categoryIndex = categories.findIndex(category => category.key === categoryKey);
-            const newCategory = categories[categoryIndex + 1];
+            const categoryIndex = dataService.categories.findIndex(category => category.key === categoryKey);
+            const newCategory = dataService.categories[categoryIndex + 1];
             selectedCategoryStore.set({ category: newCategory, method: 'scroll' });
           }
         }
@@ -105,32 +86,30 @@
   }
 </script>
 
-<!-- {#if categoryEmojis} -->
 <div use:intersectionObserver bind:this={scrollableArea} class="emojiArea">
-  {#each categories as category, index}
+  {#each dataService.categories as category, index}
     {#if category.key === 'recents'}
-      <RecentEmojisCategory on:emojiselect {category} {index} categoryCount={categories.length} />
+      <RecentEmojisCategory on:emojiselect {category} {index} categoryCount={dataService.categories.length} />
     {:else if category.key === 'custom'}
       <EmojiCategory
         {category}
         on:emojiselect
-        emojis={data.dataStore.customEmojis}
+        emojis={dataService.customEmojis}
         {index}
-        categoryCount={categories.length}
+        categoryCount={dataService.categories.length}
       />
     {:else}
       <EmojiCategory
         on:emojiselect
-        emojis={categoryEmojis[category.key]}
+        emojis={dataService.categoryEmojis[category.key]}
         {category}
         {index}
-        categoryCount={categories.length}
+        categoryCount={dataService.categories.length}
       />
     {/if}
   {/each}
 </div>
 
-<!-- {/if} -->
 <style>
   .emojiArea {
     overflow: auto;

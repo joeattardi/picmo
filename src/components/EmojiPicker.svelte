@@ -1,15 +1,12 @@
 <script lang="ts">
   import type { EmojiRecord, Category, DataState, DataStatus } from '../data';
   import type { CategorySelection, Navigation } from '../types';
-  import type { EmojiMappings } from '../data';
   import type { PickerOptions } from '../options';
 
   import { fade, slide } from 'svelte/transition';
-  import { onMount, setContext, createEventDispatcher, onDestroy, tick } from 'svelte';
+  import { onMount, setContext, createEventDispatcher, onDestroy } from 'svelte';
   import { writable, type Unsubscriber } from 'svelte/store';
-  import { initDatabase } from '../data';
   import { getOptions } from '../options';
-  import { determineEmojiVersion } from '../emojiSupport';
 
   import ThemeWrapper from './ThemeWrapper.svelte';
   import CategoryTabs from './CategoryTabs.svelte';
@@ -18,9 +15,9 @@
   import Search from './Search.svelte';
   import SearchResults from './SearchResults.svelte';
   import Loader from './Loader.svelte';
-  import { LATEST_EMOJI_VERSION } from 'emojibase';
   import VariantPopup from './VariantPopup.svelte';
   import { SearchService, type SearchState } from '../search';
+  import { DataService } from '../data-service';
   import { slideTransition } from '../animation';
   import { expoOut } from 'svelte/easing';
 
@@ -30,7 +27,6 @@
   const mergedOptions = getOptions(options);
 
   const dataStore = writable<DataState>({ status: 'IDLE' });
-  const categoryStore = writable<Category[]>(null);
   const selectedCategoryStore = writable<CategorySelection>(null);
   const previewStore = writable<EmojiRecord>(null);
   const recentsStore = writable<EmojiRecord[]>([]);
@@ -39,9 +35,9 @@
   const searchStore = writable<SearchState>();
 
   let searchService: SearchService;
+  const dataService = DataService(mergedOptions);
 
   setContext('dataStore', dataStore);
-  setContext('categories', categoryStore);
   setContext('selectedCategory', selectedCategoryStore);
   setContext('preview', previewStore);
   setContext('recents', recentsStore);
@@ -49,9 +45,9 @@
   setContext('options', mergedOptions);
   setContext('navigation', navigateStore);
   setContext('search', searchStore);
+  setContext('dataService', dataService);
   setContext('searchService', () => searchService);
 
-  let categoryEmojis: EmojiMappings | null = null;
   let dataStatus: DataStatus;
   let categories: Category[];
   let emojiVersion: number;
@@ -63,55 +59,25 @@
   const unsubscribe: Unsubscriber[] = [];
 
   unsubscribe.push(
-    dataStore.subscribe(state => {
+    dataService.store.subscribe(state => {
       dataStatus = state.status;
     })
   );
 
   onMount(async () => {
-    try {
-      dataStore.update(state => ({ ...state, status: 'LOADING' }));
-      const db = await initDatabase(
-        mergedOptions.locale,
-        mergedOptions.dataStore,
-        mergedOptions.custom,
-        mergedOptions.messages,
-        mergedOptions.emojiData
-      );
-      categories = await db.getCategories(mergedOptions);
+    const db = await dataService.initialize();
 
-      emojiVersion = mergedOptions.emojiVersion === 'auto' ? determineEmojiVersion() : mergedOptions.emojiVersion;
+    selectedCategoryStore.set({ category: dataService.categories[0], method: 'initial' });
+    recentsStore.set(mergedOptions.recentsProvider.getRecents());
+    categories = dataService.categories;
+    emojiVersion = dataService.emojiVersion;
 
-      const allEmojis = await Promise.all(categories.map(category => db.getEmojis(category, emojiVersion)));
-      categoryEmojis = categories.reduce(
-        (result, category, index) => ({
-          ...result,
-          [category.key]: allEmojis[index]
-        }),
-        {} as EmojiMappings
-      );
-
-      categoryStore.set(categories);
-
-      selectedCategoryStore.set({ category: categories[0], method: 'initial' });
-      dataStore.set({
-        dataStore: db,
-        emojiVersion: emojiVersion || parseFloat(LATEST_EMOJI_VERSION),
-        status: 'READY',
-        error: null
-      });
-
-      searchService = SearchService(db, emojiVersion, categories);
-      unsubscribe.push(
-        searchService.subscribe(state => {
-          searchState = state;
-        })
-      );
-
-      recentsStore.set(mergedOptions.recentsProvider.getRecents());
-    } catch (error: unknown) {
-      dataStore.update(state => ({ ...state, status: 'ERROR', error }));
-    }
+    searchService = SearchService(db, dataService.emojiVersion, dataService.categories);
+    unsubscribe.push(
+      searchService.subscribe(state => {
+        searchState = state;
+      })
+    );
   });
 
   function onEmojiSelect({ detail: emoji }: { detail: EmojiRecord }) {
@@ -171,7 +137,7 @@
             out:slideTransition={{ direction: -1 }}
             class="panel"
           >
-            <EmojiArea {categoryEmojis} on:emojiselect={onEmojiSelect} />
+            <EmojiArea on:emojiselect={onEmojiSelect} />
           </div>
         {/if}
       </div>

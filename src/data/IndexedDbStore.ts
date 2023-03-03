@@ -1,7 +1,7 @@
 import type { GroupMessage, Emoji, Locale } from 'emojibase';
 import type { PickerOptions } from '../options';
 import type { EmojiRecord, Category, CategoryKey, CustomEmoji } from './types';
-import type { Meta } from './DataStore';
+import type { GetCategoriesOptions, Meta } from './DataStore';
 
 import { applyRules } from './rules';
 import { queryMatches, getEmojiRecord, DataStore } from './DataStore';
@@ -186,7 +186,7 @@ export class IndexedDbStore extends DataStore {
    * @param include an array of CategoryKeys to include
    * @returns an arrya of all categories, or only the ones specified if include is given
    */
-  async getCategories(options: PickerOptions): Promise<Category[]> {
+  async getCategories(options: GetCategoriesOptions): Promise<Category[]> {
     const transaction = this.db.transaction('category', 'readonly');
     const categoryStore = transaction.objectStore('category');
     const result = await this.waitForRequest<Category[]>(categoryStore.getAll());

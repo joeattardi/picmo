@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Category } from '../data';
-  import type { SelectedCategoryStore, CategoryStore, NavigationStore } from '../types';
+  import type { SelectedCategoryStore, NavigationStore } from '../types';
+  import type { DataServiceReturnValue } from '../data-service';
 
   import { getContext, createEventDispatcher, tick, onDestroy } from 'svelte';
 
@@ -8,7 +9,7 @@
 
   let tabs: HTMLUListElement;
 
-  const categoryStore = getContext<CategoryStore>('categories');
+  const dataService = getContext<DataServiceReturnValue>('dataService');
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   const navigationStore = getContext<NavigationStore>('navigation');
 
@@ -18,11 +19,6 @@
     if (navigate?.target === 'categories') {
       tabs.querySelector<HTMLElement>('[tabindex="0"]')?.focus();
     }
-  });
-
-  let categories: Category[];
-  const unsubscribeCategory = categoryStore.subscribe(categoryList => {
-    categories = categoryList;
   });
 
   async function setSelectedCategory(event: CustomEvent<Category>) {
@@ -35,6 +31,7 @@
   }
 
   function getNewCategory(current: Category, offset: number) {
+    const { categories } = dataService;
     const currentIndex = categories.indexOf(current);
 
     const newIndex = currentIndex + offset;
@@ -71,17 +68,17 @@
   }
 
   onDestroy(() => {
-    unsubscribeCategory();
     unsubscribeNavigation();
   });
 </script>
 
-{#if !categories}
+{#if !dataService.categories}
+  <!-- TODO improve this -->
   <div>loading</div>
 {:else}
   <div class="container">
     <ul class="categoryTabs" bind:this={tabs} on:keydown={handleKeyDown}>
-      {#each categories as category}
+      {#each dataService.categories as category}
         <CategoryTab on:selectCategory={setSelectedCategory} {category} />
       {/each}
     </ul>
