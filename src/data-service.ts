@@ -15,9 +15,6 @@ export type PendingDataState = {
 export type DataState = {
   status: 'READY';
   dataStore: DataStore | null;
-  emojiVersion: number;
-  categoryEmojis: EmojiMappings;
-  categories: Category[];
   error: null;
 };
 
@@ -46,6 +43,16 @@ export type DataServiceReturnValue = {
   readonly categories: Category[];
 };
 
+function createCategoryMappings(categories: Category[], allEmojis: EmojiRecord[][]) {
+  return categories.reduce<EmojiMappings>(
+    (result, category, index) => ({
+      ...result,
+      [category.key]: allEmojis[index]
+    }),
+    {} as EmojiMappings
+  );
+}
+
 export function DataService(options: DataServiceOptions): DataServiceReturnValue {
   const store = writable<DataState | PendingDataState | ErrorDataState>({ status: 'IDLE' });
   const emojiVersion = getEmojiVersion(options.emojiVersion);
@@ -66,21 +73,13 @@ export function DataService(options: DataServiceOptions): DataServiceReturnValue
       );
       categories = await db.getCategories(options);
       customEmojis = db.customEmojis;
+
       const allEmojis = await Promise.all(categories.map(category => db.getEmojis(category, emojiVersion)));
-      categoryEmojis = categories.reduce(
-        (result, category, index) => ({
-          ...result,
-          [category.key]: allEmojis[index]
-        }),
-        {} as EmojiMappings
-      );
+      categoryEmojis = createCategoryMappings(categories, allEmojis);
 
       store.set({
         dataStore: db,
-        emojiVersion,
         status: 'READY',
-        categoryEmojis,
-        categories,
         error: null
       });
 
@@ -93,13 +92,13 @@ export function DataService(options: DataServiceOptions): DataServiceReturnValue
   return {
     initialize,
     emojiVersion,
+    store,
     get customEmojis() {
       return customEmojis;
     },
     get categoryEmojis() {
       return categoryEmojis;
     },
-    store,
     get categories() {
       return categories;
     }
