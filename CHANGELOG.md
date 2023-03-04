@@ -2,6 +2,10 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.8.1] - 2023-03-04
+
+- Fixed an issue where server-side rendering frameworks like SvelteKit were throwing an error when creating the picker ([#269](https://github.com/joeattardi/picmo/issues/269))
+
 ## [5.8.0] - 2023-02-25
 
 - Added new UI text translations provided thanks to [Henryk Helsky](https://github.com/traone)!
