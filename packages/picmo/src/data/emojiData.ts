@@ -5,7 +5,7 @@ import { computeHash, isSessionStorageAvailable } from '../util';
 import { createStorage } from '../webStorageShim';
 import { InMemoryStoreFactory } from './InMemoryStore';
 
-if (!isSessionStorageAvailable()) {
+if (!isSessionStorageAvailable() && typeof window !== 'undefined') {
   // emojibase relies on session storage being available for caching data.
   // No way to disable this so we'll make a fake implementation. Caching won't work as expected
   // but at least the picker will run.

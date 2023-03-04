@@ -31,7 +31,7 @@ const defaultOptions: Partial<PickerOptions> = {
   custom: []
 };
 
-if (!isLocalStorageAvailable()) {
+if (!isLocalStorageAvailable() && typeof window !== 'undefined') {
   console.warn('[picmo] localStorage not available, falling back to simple in-memory storage');
   Object.defineProperty(window, 'localStorage', {
     value: createStorage()
