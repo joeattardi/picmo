@@ -54,7 +54,8 @@
   }
 
   function handleClick(event: MouseEvent) {
-    if ((event.target as HTMLElement).dataset.emoji) {
+    const target = event.target as HTMLElement;
+    if (target.closest<HTMLElement>('[data-emoji]')?.dataset.emoji) {
       const emoji = getEmojiForEvent(event, variants);
       if (emoji) {
         close();
@@ -140,8 +141,8 @@
           <EmojiButton categoryIndex={0} {emoji} {index} isFocused={focusState.offset === index} />
         {/each}
         <div bind:this={arrowElement} class="arrow" />
-      </div></FocusGrid
-    >
+      </div>
+    </FocusGrid>
   </div>
 {/if}
 
@@ -160,7 +161,7 @@
   .content {
     border-radius: var(--border-radius);
     position: absolute;
-    padding: 0.25em 0;
+    padding: 0.25em;
     flex-grow: 1;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.25);
     background: white;
