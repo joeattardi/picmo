@@ -29,15 +29,13 @@
     previewStore.set(null);
   }
 
-  function handleSelect(event: Event) {
-    event.preventDefault();
-    const target = event.target as HTMLElement;
-    if (target.closest<HTMLElement>('[data-emoji]')?.dataset.emoji) {
-      const emoji = getEmojiForEvent(event, emojis);
+  function handleSelect(event: MouseEvent | KeyboardEvent) {
+    const emoji = getEmojiForEvent(event, emojis);
+    if (emoji) {
       if (emoji.skins?.length) {
         variantStore.set({
           emoji,
-          element: target
+          element: event.target as HTMLElement
         });
       } else {
         dispatch('emojiselect', emoji);

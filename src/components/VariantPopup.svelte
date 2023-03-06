@@ -54,13 +54,10 @@
   }
 
   function handleClick(event: MouseEvent) {
-    const target = event.target as HTMLElement;
-    if (target.closest<HTMLElement>('[data-emoji]')?.dataset.emoji) {
-      const emoji = getEmojiForEvent(event, variants);
-      if (emoji) {
-        close();
-        dispatch('emojiselect', emoji);
-      }
+    const emoji = getEmojiForEvent(event, variants);
+    if (emoji) {
+      close();
+      dispatch('emojiselect', emoji);
     }
   }
 

@@ -31,7 +31,7 @@
   onDestroy(unsubscribe);
 </script>
 
-<button bind:this={element} tabindex={isFocused ? 0 : -1} data-emoji={emoji.emoji}>
+<button type="button" bind:this={element} tabindex={isFocused ? 0 : -1} data-emoji={emoji.emoji}>
   <Emoji {emoji} />
 </button>
 
