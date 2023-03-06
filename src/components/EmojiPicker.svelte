@@ -32,7 +32,6 @@
   const recentsStore = writable<EmojiRecord[]>([]);
   const variantStore = writable(null);
   const navigateStore = writable<Navigation>();
-  const searchStore = writable<SearchState>();
 
   let searchService: SearchService;
   const dataService = DataService(mergedOptions);
@@ -44,7 +43,6 @@
   setContext('variant', variantStore);
   setContext('options', mergedOptions);
   setContext('navigation', navigateStore);
-  setContext('search', searchStore);
   setContext('dataService', dataService);
   setContext('searchService', () => searchService);
 
