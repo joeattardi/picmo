@@ -2,6 +2,10 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
+## [5.8.2] - 2023.04-14
+
+- Fixed an issue where an IndexedDB error was thrown on multiple `createPicker` calls.
+
 ## [5.8.1] - 2023-03-04
 
 - Fixed an issue where server-side rendering frameworks like SvelteKit were throwing an error when creating the picker ([#269](https://github.com/joeattardi/picmo/issues/269))
