@@ -3,5 +3,5 @@
     "packages/*"
   ],
   "useNx": true,
-  "version": "5.8.2-beta.1.0"
+  "version": "5.8.2"
 }
