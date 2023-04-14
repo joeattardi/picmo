@@ -231,7 +231,7 @@ export class EmojiPicker extends View {
   }
 
   private onError(error: Error) {
-    const errorView = this.viewFactory.create(DataError, { message: this.i18n.get('error.load') });
+    const errorView = this.viewFactory.createWithOptions({ data: false }, DataError, { message: this.i18n.get('error.load') });
     const height = this.el.offsetHeight || 375;
     this.el.style.height = `${height}px`;
     replaceChildren(this.el, errorView.renderSync());

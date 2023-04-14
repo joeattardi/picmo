@@ -6,6 +6,10 @@ import { Renderer } from './renderers/renderer';
 import { PickerOptions, EmojiRecord } from './types';
 import { View } from './views/view';
 
+type ViewFactoryOptions = {
+  data?: boolean;
+};
+
 type DependencyMapping = {
   events: Events<AppEvent>;
   i18n: Bundle;
@@ -42,14 +46,18 @@ export class ViewFactory {
     this.emojiData = Promise.resolve(emojiData);
   }
 
-  create<T extends View>(constructor: ViewConstructor<T>, ...args: ViewConstructorParameters<T>): T {
+  createWithOptions<T extends View>(options: ViewFactoryOptions = {}, constructor: ViewConstructor<T>, ...args: ViewConstructorParameters<T>): T {
     const view = new constructor(...args);
     
     view.setPickerId(this.pickerId);
     view.setEvents(this.events);
     view.setI18n(this.i18n);
     view.setRenderer(this.renderer);
-    view.setEmojiData(this.emojiData);
+
+    if (options.data !== false) {
+      view.setEmojiData(this.emojiData);
+    }
+
     view.setOptions(this.options);
     view.setCustomEmojis(this.customEmojis);
 
@@ -57,5 +65,9 @@ export class ViewFactory {
 
     view.initialize();
     return view;
+  }
+
+  create<T extends View>(constructor: ViewConstructor<T>, ...args: ViewConstructorParameters<T>): T {
+    return this.createWithOptions({}, constructor, ...args);
   }
 }

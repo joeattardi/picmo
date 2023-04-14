@@ -27,12 +27,14 @@ const picker = createPicker({
   rootElement,
   custom: customEmojis,
   className: 'my-picker',
-  i18n: i18n.de,
-  locale: 'sv'
+  // i18n: i18n.de,
+  // locale: 'sv'
   // recentsProvider: new InMemoryProvider(),
   // dataStore: InMemoryStoreFactory
   // emojisPerRow: 5
 });
+
+createPicker({ rootElement });
 
 picker.addEventListener('emoji:select', (selection) => {
   selectionEl.textContent = JSON.stringify(selection, null, 2);

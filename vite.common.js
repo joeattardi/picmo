@@ -29,6 +29,7 @@ export default function createConfig(basedir, moduleName) {
     },
     build: {
       rollupOptions,
+      sourcemap: true,
       lib: {
         entry: resolve(basedir, 'src/index.ts'),
         name: moduleName,

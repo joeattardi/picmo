@@ -17,6 +17,8 @@ function initData(options: PickerOptions): Promise<DataStore> {
 
 let pickerIndex = 0;
 
+let emojiDataPromise;
+
 function getPickerId() {
   return `picmo-${Date.now()}-${pickerIndex++}`;
 }
@@ -39,7 +41,10 @@ export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
   }));
 
   const events = new AppEvents();
-  const emojiDataPromise = initData(finalOptions);
+  if (!emojiDataPromise) {
+    emojiDataPromise = initData(finalOptions);
+  }
+
   const i18n = new Bundle(finalOptions.i18n);
 
   emojiDataPromise.then(emojiData => {

@@ -140,7 +140,6 @@ async function openDatabase(locale: Locale, factory: DataStoreFactory, existingD
  */
 async function initDatabaseFromCdn(locale: Locale, factory: DataStoreFactory, existingDb?: DataStore) {
   const db = await openDatabase(locale, factory, existingDb);
-
   const [emojisEtag, messagesEtag] = await getEtags(locale);
 
   if (!(await db.isPopulated())) {
