@@ -44,6 +44,9 @@
   );
 
   function close() {
+    if (emojiElement) {
+      emojiElement.focus();
+    }
     store.set(null);
   }
 

@@ -45,6 +45,7 @@
 
   function handleKeyDown(event: KeyboardEvent) {
     if (['Enter', ' '].includes(event.key)) {
+      event.preventDefault();
       handleSelect(event);
     }
   }
