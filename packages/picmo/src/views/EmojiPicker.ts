@@ -305,6 +305,7 @@ export class EmojiPicker extends View {
     super.renderSync({
       isLoaded: false,
       theme: this.options.theme,
+      className: this.options.className,
       showSearch: this.options.showSearch,
       showPreview: this.options.showPreview,
       showCategoryTabs: this.options.showCategoryTabs,
