@@ -9,7 +9,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:storybook/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -36,7 +37,9 @@
   ],
   "overrides": [
     {
-      "files": ["*.svelte"],
+      "files": [
+        "*.svelte"
+      ],
       "processor": "svelte3/svelte3"
     }
   ],
