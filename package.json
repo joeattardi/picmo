@@ -3,6 +3,7 @@
   "private": true,
   "version": "6.0.0",
   "type": "module",
+  "module": "dist/index.js",
   "description": "JavaScript emoji picker. Any app, any framework.",
   "keywords": [
     "emoji",
