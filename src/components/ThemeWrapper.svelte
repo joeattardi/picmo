@@ -54,6 +54,8 @@
     --gray-10: #f5f7fa;
 
     --white: #fafafa;
+
+    background: var(--background-color);
   }
 
   /* TODO: establish standardized sizing/spacing variables */

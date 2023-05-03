@@ -99,7 +99,6 @@
   });
 
   let currentView = 'emojis';
-
   // TODO: cleanup this component in general!
 </script>
 
@@ -132,7 +131,7 @@
         {#if currentView === 'emojis'}
           <div
             in:slideTransition={{ direction: -1, enabled: searchState != null }}
-            out:slideTransition={{ direction: -1 }}
+            out:slideTransition|local={{ direction: -1 }}
             class="panel"
           >
             <EmojiArea on:emojiselect={onEmojiSelect} />

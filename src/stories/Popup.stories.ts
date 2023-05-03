@@ -11,7 +11,11 @@ const meta = {
     button.className = 'popupTrigger';
     button.textContent = '😎';
 
-    const popup = createPopup(picker, button);
+    const popup = createPopup({
+      triggerElement: button,
+      position: 'bottom-start'
+    });
+
     button.addEventListener('click', () => {
       popup.toggle();
     });
