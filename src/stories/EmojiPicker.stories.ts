@@ -11,6 +11,9 @@ const meta = {
       control: 'select',
       options: ['light', 'dark', 'auto']
     }
+  },
+  args: {
+    theme: 'light'
   }
 };
 

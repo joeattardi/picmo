@@ -1,0 +1,8 @@
+.popupTrigger {
+  font-size: 2rem;
+  background: #ddd;
+  cursor: pointer;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+}
