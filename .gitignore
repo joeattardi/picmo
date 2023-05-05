@@ -4,3 +4,6 @@ dist
 coverage
 release
 .parcel-cache
+
+# Local Netlify folder
+.netlify

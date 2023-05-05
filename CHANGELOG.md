@@ -2,7 +2,11 @@
 
 For full details, see the documentation at [https://picmojs.com](https://picmojs.com).
 
-## [5.8.2] - 2023.04-14
+## [5.8.4] - 2023-05-05
+
+- Switched to the new fork of Twemoji to fix broken CDN URLs ([#276](https://github.com/joeattardi/picmo/issues/276))
+
+## [5.8.2] - 2023-04-14
 
 - Fixed an issue where an IndexedDB error was thrown on multiple `createPicker` calls.
 
