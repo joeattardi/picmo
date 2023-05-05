@@ -25,5 +25,11 @@
     "postcss-loader": "^7.0.1",
     "postcss-mixins": "^9.0.3",
     "postcss-nesting": "^10.1.10"
+  },
+  "dependencies": {
+    "postcss-exclude-files": "^1.0.15",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.0.8"
   }
 }

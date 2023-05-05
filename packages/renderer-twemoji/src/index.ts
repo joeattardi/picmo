@@ -1,4 +1,4 @@
-import { parse } from 'twemoji-parser';
+import { parse } from '@twemoji/parser';
 
 import { EmojiRecord, EmojiSelection, Renderer, toElement, createStyleInjector, getPrefixedClasses } from 'picmo';
 

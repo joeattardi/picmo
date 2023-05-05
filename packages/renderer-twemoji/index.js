@@ -12,7 +12,8 @@ const picker = createPicker({
 });
 
 picker.addEventListener('emoji:select', (selection) => {
-  emoji.innerHTML = selection.emoji;
+  console.log(selection);
+  emoji.innerHTML = `<img src=${selection.url} />`;
   name.textContent = selection.label;
 
   selectionContainer.classList.remove('empty');

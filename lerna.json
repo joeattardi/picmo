@@ -2,6 +2,7 @@
   "packages": [
     "packages/*"
   ],
+  "useWorkspaces": true,
   "useNx": true,
   "version": "5.8.3"
 }
