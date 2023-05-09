@@ -116,6 +116,6 @@
     background: var(--emoji-area-background);
     padding-bottom: 0.5em;
     position: relative;
-    height: 100%;
+    height: calc(var(--emoji-size) * 1.5 * var(--emoji-rows) + 1.5rem);
   }
 </style>

@@ -107,7 +107,7 @@
     <div
       class="picker"
       transition:fade={{ duration: 150 }}
-      style={`--emoji-rows: ${mergedOptions.rows}; --emoji-columns: ${mergedOptions.columns}`}
+      style={`--emoji-rows: ${mergedOptions.rows}; --emoji-columns: ${mergedOptions.columns}; --emoji-size :${mergedOptions.emojiSize}`}
     >
       <VariantPopup on:emojiselect={onEmojiSelect} />
       <header class="header">
@@ -163,8 +163,7 @@
     --preview-height: 3em;
     --category-tabs-height: 3em;
 
-    width: 400px;
-    height: 500px;
+    width: calc((var(--emoji-size) * 1.5 * var(--emoji-columns)) + 16px + (var(--emoji-columns) * 2px));
 
     display: grid;
     grid-template-areas:
@@ -202,8 +201,7 @@
   }
 
   .panel {
-    position: absolute;
-    overflow: hidden;
+    /* position: absolute; */
     width: 100%;
     height: 100%;
     top: 0;

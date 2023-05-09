@@ -23,11 +23,13 @@ export type PickerOptions = {
   showSearch: boolean;
   showVariants: boolean;
   theme: Theme;
+  emojiSize: string;
 };
 
 const defaults: PickerOptions = {
   locale: 'en',
   emojiVersion: 'auto',
+  emojiSize: '32px',
   showCategoryTabs: true,
   showPreview: true,
   showRecents: true,

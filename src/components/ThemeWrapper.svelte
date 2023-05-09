@@ -55,6 +55,7 @@
 
     --white: #fafafa;
 
+    display: inline-block;
     background: var(--background-color);
   }
 

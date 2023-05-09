@@ -7,13 +7,27 @@ const meta = {
   },
   argTypes: {
     theme: {
-      name: 'Color theme',
       control: 'select',
       options: ['light', 'dark', 'auto']
+    },
+    rows: {
+      control: {
+        type: 'number',
+        min: 1
+      }
+    },
+    columns: {
+      control: {
+        type: 'number',
+        min: 1
+      }
     }
   },
   args: {
-    theme: 'light'
+    theme: 'light',
+    rows: 8,
+    columns: 8,
+    emojiSize: '32px'
   }
 };
 
