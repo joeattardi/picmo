@@ -38,7 +38,7 @@
     column-gap: 0.75em;
     padding: 0.5em;
     border-top: 1px solid var(--border-color);
-    height: 3em;
+    height: var(--preview-height);
     align-items: center;
     align-content: center;
     font-weight: 500;

@@ -4,6 +4,10 @@
 
   export let theme = themes.light;
 
+  export let rows: number;
+  export let columns: number;
+  export let emojiSize: string;
+
   let className = theme;
 
   function themeUpdate(event: MediaQueryListEvent) {
@@ -21,7 +25,7 @@
   });
 </script>
 
-<div class={className}>
+<div class={className} style={`--emoji-rows: ${rows}; --emoji-columns: ${columns}; --emoji-size :${emojiSize}`}>
   <slot />
 </div>
 
@@ -55,8 +59,20 @@
 
     --white: #fafafa;
 
+    --border-radius: 5px;
+    --emoji-size: 32px;
+    --category-header-height: 2.25em;
+    --search-height: 2.5em;
+    --preview-height: 3em;
+    --category-tabs-height: 3em;
+    --emoji-area-height: calc(var(--emoji-size) * 1.5 * var(--emoji-rows) + 1.5rem);
+
     display: inline-block;
     background: var(--background-color);
+    width: calc((var(--emoji-size) * 1.5 * var(--emoji-columns)) + 16px + (var(--emoji-columns) * 2px));
+    height: calc(
+      var(--emoji-area-height) + var(--search-height) + var(--preview-height) + var(--category-tabs-height) + 28px
+    );
   }
 
   /* TODO: establish standardized sizing/spacing variables */

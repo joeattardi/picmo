@@ -102,13 +102,14 @@
   // TODO: cleanup this component in general!
 </script>
 
-<ThemeWrapper theme={mergedOptions.theme}>
+<ThemeWrapper
+  theme={mergedOptions.theme}
+  rows={mergedOptions.rows}
+  columns={mergedOptions.columns}
+  emojiSize={mergedOptions.emojiSize}
+>
   {#if dataReady}
-    <div
-      class="picker"
-      transition:fade={{ duration: 150 }}
-      style={`--emoji-rows: ${mergedOptions.rows}; --emoji-columns: ${mergedOptions.columns}; --emoji-size :${mergedOptions.emojiSize}`}
-    >
+    <div class="picker" transition:fade={{ duration: 150 }}>
       <VariantPopup on:emojiselect={onEmojiSelect} />
       <header class="header">
         <Search on:searchinput={handleSearchInput} />
@@ -156,15 +157,6 @@
     src: local('Apple Color Emoji'), local('Segoe UI Emoji'), local('Segoe UI Symbol'), local('Noto Color Emoji');
   }
   .picker {
-    --border-radius: 5px;
-    --emoji-size: 32px;
-    --category-header-height: 2.25em;
-    --search-height: 2.5em;
-    --preview-height: 3em;
-    --category-tabs-height: 3em;
-
-    width: calc((var(--emoji-size) * 1.5 * var(--emoji-columns)) + 16px + (var(--emoji-columns) * 2px));
-
     display: grid;
     grid-template-areas:
       'header'
