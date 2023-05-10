@@ -49,6 +49,5 @@
     grid-template-columns: repeat(var(--emoji-columns), 1.5em);
     justify-items: center;
     justify-content: center;
-    padding: 0.25em 0;
   }
 </style>

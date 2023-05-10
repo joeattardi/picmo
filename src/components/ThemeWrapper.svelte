@@ -65,7 +65,7 @@
     --search-height: 2.5em;
     --preview-height: 3em;
     --category-tabs-height: 3em;
-    --emoji-area-height: calc(var(--emoji-size) * 1.5 * var(--emoji-rows) + 1.5rem);
+    --emoji-area-height: calc(var(--emoji-size) * 1.5 * var(--emoji-rows) + 1rem);
 
     display: inline-block;
     background: var(--background-color);
@@ -82,17 +82,19 @@
     --background-color: var(--gray-9);
     --category-shadow-color: hsla(216, 33%, 97%, 0.5);
     --preview-shadow-color: hsl(216, 33%, 97%);
+    --panel-background: var(--white);
     --emoji-area-background: var(--white);
     --border-color: var(--gray-8);
 
     --text-color: var(--gray-1);
     --secondary-text-color: var(--gray-4);
 
-    --search-background-color: var(--gray-10);
-    --search-focus-background-color: var(--white);
+    --search-background-color: var(--white);
+    --search-focus-background-color: #ffffff;
     --search-icon-color: var(--gray-3);
     --search-icon-focus-color: var(--blue-6);
 
+    --header-background-color: #f1f5f9;
     --category-tab-icon-color: var(--gray-5);
     --category-tab-hover-color: var(--gray-3);
     --category-tab-icon-focus-color: var(--blue-1);
@@ -100,10 +102,14 @@
     --category-tab-active-background-color: var(--blue-6);
     --category-tab-active-color: var(--blue-5);
 
-    --category-header-color: var(--text-color);
+    --category-header-color: #334155;
+    --category-header-border: #cbd5e1;
+    --category-header-background: #f1f5f9;
 
     --emoji-hover-background-color: var(--blue-10);
     --emoji-hover-border-color: var(--blue-9);
+
+    --preview-background: #fafaf9;
   }
 
   .dark {
@@ -117,7 +123,7 @@
     --text-color: var(--gray-9);
     --secondary-text-color: var(--gray-7);
 
-    --search-background-color: var(--gray-3);
+    --search-background-color: var(--gray-10);
     --search-focus-background-color: var(--gray-2);
     --search-icon-color: var(--gray-8);
     --search-icon-focus-color: var(--blue-8);

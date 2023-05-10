@@ -157,6 +157,7 @@
     src: local('Apple Color Emoji'), local('Segoe UI Emoji'), local('Segoe UI Symbol'), local('Noto Color Emoji');
   }
   .picker {
+    height: 100%;
     display: grid;
     grid-template-areas:
       'header'
@@ -177,6 +178,7 @@
   }
 
   .header {
+    background: var(--header-background-color);
     grid-area: header;
     z-index: 1;
     position: relative;
@@ -194,6 +196,7 @@
 
   .panel {
     /* position: absolute; */
+    background: var(--panel-background);
     width: 100%;
     height: 100%;
     top: 0;

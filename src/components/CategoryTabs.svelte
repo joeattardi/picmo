@@ -73,6 +73,8 @@
     }
   }
 
+  // TODO: scroll into view when autoselecting category on scroll
+
   onDestroy(() => {
     unsubscribeNavigation();
     unsubscribe();
@@ -83,34 +85,32 @@
   <!-- TODO improve this -->
   <div>loading</div>
 {:else}
-  <div class="container" style={`--category-count: ${dataService.categories.length};`}>
+  <div
+    class="container"
+    style={`--category-count: ${dataService.categories.length}; --bar-width: ${
+      (1 / dataService.categories.length) * 100
+    }%; --selection-offset: ${selectedCategoryIndex};`}
+  >
     <ul class="categoryTabs" bind:this={tabs} on:keydown={handleKeyDown}>
       {#each dataService.categories as category}
         <CategoryTab on:selectCategory={setSelectedCategory} {category} />
       {/each}
     </ul>
-    <div
-      class="bar"
-      style={`--bar-width: ${
-        (1 / dataService.categories.length) * 100
-      }%; --selection-offset: ${selectedCategoryIndex};`}
-    />
+    <div class="bar" />
   </div>
 {/if}
 
 <style>
   .container {
-    background: var(--gray-9);
-    height: 3em;
+    /* height: 3em; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0 0.5em;
-    border-bottom: 1px solid var(--border-color);
+    overflow-x: auto;
   }
 
   .categoryTabs {
-    overflow-x: auto;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -120,17 +120,17 @@
     justify-content: space-between;
   }
 
-  .categoryTabs::-webkit-scrollbar {
+  .container::-webkit-scrollbar {
     width: 0;
     height: 0;
   }
 
-  .bar {
+  .categoryTabs::after {
+    content: '';
     height: 4px;
     border-radius: 5px;
     background: var(--category-tab-active-color);
-    transform: translateX(calc(var(--selection-offset) * 100%));
-    width: var(--bar-width);
+    transform: translateX(calc(var(--selection-offset) * 100%)) scaleX(0.75);
     transition: transform 150ms ease-in-out;
   }
 </style>

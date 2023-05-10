@@ -30,6 +30,7 @@
 <style>
   .preview {
     display: grid;
+    background: var(--preview-background);
     grid-template-areas:
       'emoji name'
       'emoji shortcode';

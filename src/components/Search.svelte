@@ -77,7 +77,6 @@
   />
   <div class="search-icon">
     <MagnifyingGlass weight="duotone" size={24} />
-    <!-- <Icon data={faMagnifyingGlass} /> -->
   </div>
   {#if searchQuery.length}
     <div transition:scale={{ duration: 250, opacity: 0.5, easing: backOut }} class="clear-search-button">

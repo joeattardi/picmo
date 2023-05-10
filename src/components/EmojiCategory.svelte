@@ -83,10 +83,13 @@
     position: sticky;
     top: 0;
     color: var(--category-header-color);
-    background: linear-gradient(0deg, var(--category-shadow-color) 0%, var(--emoji-area-background) 15%);
+    background: var(--category-header-background);
     font-weight: 500;
-    font-size: 0.9rem;
+    /* box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1); */
+    font-size: 1rem;
     margin: 0;
     padding: 0.5em;
+    border-top: 1px solid var(--category-header-border);
+    border-bottom: 1px solid var(--category-header-border);
   }
 </style>
