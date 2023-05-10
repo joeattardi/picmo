@@ -1,4 +1,5 @@
 import type { CategoryKey } from './data';
+import type { IconProps } from 'phosphor-svelte/lib/shared';
 
 import {
   faHistory,
@@ -16,20 +17,34 @@ import {
   faMagnifyingGlass
 } from '@fortawesome/free-solid-svg-icons';
 
-export const categoryIcons: Record<CategoryKey, IconDefinition> = {
+import {
+  Airplane,
+  Smiley,
+  Users,
+  Cat,
+  Coffee,
+  GameController,
+  LightbulbFilament,
+  MusicNotes,
+  Flag,
+  ClockCounterClockwise,
+  Star
+} from 'phosphor-svelte';
+
+export const categoryIcons: Record<CategoryKey, SvelteComponent<IconProps>> = {
   // Categories from the emoji dataset
-  'smileys-emotion': faSmile,
-  'people-body': faUserAstronaut,
-  'animals-nature': faLeaf,
-  'food-drink': faCoffee,
-  'travel-places': faCarAlt,
-  activities: faGamepad,
-  objects: faLightbulb,
-  symbols: faIcons,
-  flags: faFlag,
+  'smileys-emotion': Smiley,
+  'people-body': Users,
+  'animals-nature': Cat,
+  'food-drink': Coffee,
+  'travel-places': Airplane,
+  activities: GameController,
+  objects: LightbulbFilament,
+  symbols: MusicNotes,
+  flags: Flag,
 
   // Additional categories for the picker
-  recents: faHistory,
-  custom: faStar,
+  recents: ClockCounterClockwise,
+  custom: Star,
   'search-results': faMagnifyingGlass
 };

@@ -5,6 +5,8 @@
   import { faMagnifyingGlass, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
 
+  import { MagnifyingGlass, XCircle } from 'phosphor-svelte';
+
   import type { SelectedCategoryStore, NavigationStore } from '../types';
   import type { SearchService } from '../search';
   import i18n from '../i18n';
@@ -74,12 +76,13 @@
     on:input={handleSearchInput}
   />
   <div class="search-icon">
-    <Icon data={faMagnifyingGlass} />
+    <MagnifyingGlass weight="duotone" size={24} />
+    <!-- <Icon data={faMagnifyingGlass} /> -->
   </div>
   {#if searchQuery.length}
     <div transition:scale={{ duration: 250, opacity: 0.5, easing: backOut }} class="clear-search-button">
       <button type="button" on:click={() => clearSearch()} title={i18n.search.clear}>
-        <Icon data={faCircleXmark} />
+        <XCircle size={20} weight="fill" />
       </button>
     </div>
   {/if}

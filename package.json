@@ -70,6 +70,7 @@
     "@floating-ui/dom": "^1.1.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "emojibase": "^6.1.0",
+    "phosphor-svelte": "^1.2.1",
     "svelte-awesome": "^3.0.0"
   }
 }

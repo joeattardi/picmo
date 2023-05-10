@@ -8,12 +8,18 @@
   import CategoryTab from './CategoryTab.svelte';
 
   let tabs: HTMLUListElement;
+  let selectedCategoryIndex: number;
 
   const dataService = getContext<DataServiceReturnValue>('dataService');
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   const navigationStore = getContext<NavigationStore>('navigation');
 
   const dispatch = createEventDispatcher();
+
+  const unsubscribe = selectedCategoryStore.subscribe(value => {
+    const { categories } = dataService;
+    selectedCategoryIndex = categories.indexOf(value.category);
+  });
 
   const unsubscribeNavigation = navigationStore.subscribe(navigate => {
     if (navigate?.target === 'categories') {
@@ -69,6 +75,7 @@
 
   onDestroy(() => {
     unsubscribeNavigation();
+    unsubscribe();
   });
 </script>
 
@@ -76,30 +83,54 @@
   <!-- TODO improve this -->
   <div>loading</div>
 {:else}
-  <div class="container">
+  <div class="container" style={`--category-count: ${dataService.categories.length};`}>
     <ul class="categoryTabs" bind:this={tabs} on:keydown={handleKeyDown}>
       {#each dataService.categories as category}
         <CategoryTab on:selectCategory={setSelectedCategory} {category} />
       {/each}
     </ul>
+    <div
+      class="bar"
+      style={`--bar-width: ${
+        (1 / dataService.categories.length) * 100
+      }%; --selection-offset: ${selectedCategoryIndex};`}
+    />
   </div>
 {/if}
 
 <style>
   .container {
+    background: var(--gray-9);
     height: 3em;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: 0 0.5em;
     border-bottom: 1px solid var(--border-color);
   }
 
   .categoryTabs {
+    overflow-x: auto;
     list-style-type: none;
-    padding: 0.5em;
+    padding: 0;
     margin: 0;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(var(--category-count), 1fr);
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .categoryTabs::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
+
+  .bar {
+    height: 4px;
+    border-radius: 5px;
+    background: var(--category-tab-active-color);
+    transform: translateX(calc(var(--selection-offset) * 100%));
+    width: var(--bar-width);
+    transition: transform 150ms ease-in-out;
   }
 </style>

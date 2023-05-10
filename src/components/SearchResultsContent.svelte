@@ -3,7 +3,7 @@
   import { fly } from 'svelte/transition';
   import { faFaceFrown } from '@fortawesome/free-solid-svg-icons';
   import Icon from 'svelte-awesome';
-
+  import { SmileyMeh } from 'phosphor-svelte';
   import type { EmojiRecord, Category } from '../data';
   import type { NavigationStore } from '../types';
   import i18n from '../i18n';
@@ -34,7 +34,7 @@
   {:else}
     <div class="noResults">
       <div class="icon">
-        <Icon data={faFaceFrown} scale={8} />
+        <SmileyMeh size={128} weight="duotone" />
       </div>
       <h3>{i18n.search.notFound}</h3>
     </div>

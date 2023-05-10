@@ -3,7 +3,6 @@
   import type { SelectedCategoryStore } from '../types';
 
   import { getContext, createEventDispatcher, onDestroy } from 'svelte';
-  import Icon from 'svelte-awesome';
   import { categoryIcons } from '../icons';
   import i18n from '../i18n';
 
@@ -38,13 +37,20 @@
     on:click={onClickCategory}
     title={i18n.categories[category.key] || category.message || category.key}
   >
-    <Icon data={categoryIcons[category.key]} scale={1.2} />
+    <svelte:component this={categoryIcons[category.key]} size={24} weight="duotone" />
   </button>
 </li>
 
 <style>
+  li {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   button {
-    width: 1.75em;
+    width: 100%;
     height: 1.75em;
     font-size: 1.2em;
     display: flex;
@@ -68,11 +74,12 @@
 
   .selected,
   .selected:hover {
-    background: var(--category-tab-active-background-color);
+    /* background: var(--category-tab-active-background-color); */
     color: var(--category-tab-active-color);
   }
 
   button:hover {
-    background: var(--category-tab-hover-background-color);
+    color: var(--category-tab-hover-color);
+    /* background: var(--category-tab-hover-background-color); */
   }
 </style>

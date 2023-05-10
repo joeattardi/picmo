@@ -93,11 +93,12 @@
     --search-icon-color: var(--gray-3);
     --search-icon-focus-color: var(--blue-6);
 
-    --category-tab-icon-color: var(--gray-4);
+    --category-tab-icon-color: var(--gray-5);
+    --category-tab-hover-color: var(--gray-3);
     --category-tab-icon-focus-color: var(--blue-1);
     --category-tab-hover-background-color: var(--gray-8);
     --category-tab-active-background-color: var(--blue-6);
-    --category-tab-active-color: var(--white);
+    --category-tab-active-color: var(--blue-5);
 
     --category-header-color: var(--text-color);
 
