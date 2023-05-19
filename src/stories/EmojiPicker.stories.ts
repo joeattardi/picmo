@@ -21,13 +21,42 @@ const meta = {
         type: 'number',
         min: 1
       }
+    },
+    categories: {
+      control: 'check',
+      options: [
+        'recents',
+        'smileys-emotion',
+        'people-body',
+        'animals-nature',
+        'food-drink',
+        'travel-places',
+        'activities',
+        'objects',
+        'symbols',
+        'flags',
+        'custom'
+      ]
     }
   },
   args: {
     theme: 'light',
     rows: 8,
     columns: 8,
-    emojiSize: '32px'
+    emojiSize: '32px',
+    categories: [
+      'recents',
+      'smileys-emotion',
+      'people-body',
+      'animals-nature',
+      'food-drink',
+      'travel-places',
+      'activities',
+      'objects',
+      'symbols',
+      'flags',
+      'custom'
+    ]
   }
 };
 
