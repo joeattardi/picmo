@@ -17,6 +17,6 @@ export default {
     'search.clear': 'Suche löschen',
     'search.error': 'Suche erfolglos',
     'search.notFound': 'Kein Emoji gefunden',
-    'search': 'Emojis durchsuchen ...'
+    'search': 'Emojis durchsuchen …'
   };
   
