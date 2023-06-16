@@ -17,5 +17,5 @@ export default {
   'search.clear': 'Clear search',
   'search.error': 'Failed to search emojis',
   'search.notFound': 'No emojis found',
-  'search': 'Search emojis...'
+  'search': 'Search emojis…'
 };
