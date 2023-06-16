@@ -1,0 +1,21 @@
+export default {
+  'categories.activities': 'Tevékenységek',
+  'categories.animals-nature': 'Állatok és természet',
+  'categories.custom': 'Egyéni',
+  'categories.flags': 'Flags',
+  'categories.food-drink': 'Étel és ital',
+  'categories.objects': 'Tárgyak',
+  'categories.people-body': 'Emberek és Test',
+  'categories.recents': 'Nemrég használt',
+  'categories.smileys-emotion': 'Hangulatjelek és érzelem',
+  'categories.symbols': 'Jelképek',
+  'categories.travel-places': 'Utazás és helyek',
+  'error.load': 'Nem sikerült betölteni a hangulatjeleket',
+  'recents.clear': 'A legutóbbi hangulatjelek törlése',
+  'recents.none': 'Nincsenek kijelölve hangulatjelek.',
+  'retry': 'Újrapróbálkozás',
+  'search.clear': 'Keresés törlése',
+  'search.error': 'Failed to search emojis',
+  'search.notFound': 'Nem található hangulatjel',
+  'search': 'Hangulatjelek keresése…'
+};
