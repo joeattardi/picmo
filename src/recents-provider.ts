@@ -1,4 +1,5 @@
 import type { EmojiRecord } from './data';
+import { createStorage, isLocalStorageAvailable } from './storage';
 
 const STORAGE_KEY = 'PicMo:recents';
 
@@ -11,6 +12,8 @@ export type RecentsProvider = {
 };
 
 export function recentsProvider(maxRecents: number): RecentsProvider {
+  const storage = isLocalStorageAvailable() ? localStorage : createStorage();
+
   // Holds the recents. This lets us still have recents even if local
   // storage isn't available. When we can, it is synced to local storage.
   let recents: RecentEmojis;
@@ -18,7 +21,7 @@ export function recentsProvider(maxRecents: number): RecentsProvider {
   function getRecents(): RecentEmojis {
     if (!recents) {
       try {
-        recents = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        recents = JSON.parse(storage.getItem(STORAGE_KEY)) || [];
       } catch (error) {
         recents = [];
       }
@@ -31,7 +34,7 @@ export function recentsProvider(maxRecents: number): RecentsProvider {
     recents = [];
 
     try {
-      localStorage.removeItem(STORAGE_KEY);
+      storage.removeItem(STORAGE_KEY);
     } catch (error) {
       // do nothing if local storage is not available
     }
@@ -42,7 +45,7 @@ export function recentsProvider(maxRecents: number): RecentsProvider {
     recents = [emoji, ...recents.filter(recent => recent.id !== emoji.id)];
 
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(recents));
+      storage.setItem(STORAGE_KEY, JSON.stringify(recents));
     } catch (error) {
       // failed to write, but recents will still stay in memory
     }
