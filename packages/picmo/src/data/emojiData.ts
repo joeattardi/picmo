@@ -5,16 +5,6 @@ import { computeHash, isSessionStorageAvailable } from '../util';
 import { createStorage } from '../webStorageShim';
 import { InMemoryStoreFactory } from './InMemoryStore';
 
-if (!isSessionStorageAvailable() && typeof window !== 'undefined') {
-  // emojibase relies on session storage being available for caching data.
-  // No way to disable this so we'll make a fake implementation. Caching won't work as expected
-  // but at least the picker will run.
-  console.warn('[picmo] sessionStorage not available, falling back to simple in-memory storage');
-  Object.defineProperty(window, 'sessionStorage', {
-    value: createStorage()
-  });
-}
-
 /**
  * Generates the URLs for emoji data for a given emojibase version and locale.
  * 
@@ -139,6 +129,10 @@ async function openDatabase(locale: Locale, factory: DataStoreFactory, existingD
  * @returns a Promise that resolves to a fully populated database instance
  */
 async function initDatabaseFromCdn(locale: Locale, factory: DataStoreFactory, existingDb?: DataStore) {
+  if (!isSessionStorageAvailable() && typeof window !== 'undefined') {
+    throw new Error('Session storage is required to use CDN emoji data.');
+  }
+
   const db = await openDatabase(locale, factory, existingDb);
   const [emojisEtag, messagesEtag] = await getEtags(locale);
 
