@@ -2,22 +2,6 @@ import type { CategoryKey } from './data';
 import type { IconProps } from 'phosphor-svelte/lib/shared';
 
 import {
-  faHistory,
-  faSmile,
-  faUserAstronaut,
-  faLeaf,
-  faCoffee,
-  faCarAlt,
-  faGamepad,
-  faLightbulb,
-  faIcons,
-  faFlag,
-  faStar,
-  type IconDefinition,
-  faMagnifyingGlass
-} from '@fortawesome/free-solid-svg-icons';
-
-import {
   Airplane,
   Smiley,
   Users,

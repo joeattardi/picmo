@@ -1,6 +1,4 @@
-import type EmojiPicker from '../components/EmojiPicker.svelte';
 import PopupPicker from './PopupPicker.svelte';
-import { computePosition, shift, arrow, offset } from '@floating-ui/dom';
 import type { PopupOptions } from './types';
 
 type PartialWithRequired<T, K extends keyof T> = Pick<T, K> & Partial<T>;

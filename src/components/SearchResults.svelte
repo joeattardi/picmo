@@ -1,7 +1,6 @@
 <script lang="ts">
   import { getContext, onDestroy, setContext } from 'svelte';
   import { writable } from 'svelte/store';
-  import { fly } from 'svelte/transition';
   import type { EmojiRecord } from '../data';
   import type { SearchService, SearchState } from '../search';
   import type { FocusState } from '../types';

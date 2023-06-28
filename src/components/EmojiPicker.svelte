@@ -3,7 +3,7 @@
   import type { CategorySelection, Navigation } from '../types';
   import type { PickerOptions } from '../options';
 
-  import { fade, slide } from 'svelte/transition';
+  import { fade } from 'svelte/transition';
   import { onMount, setContext, createEventDispatcher, onDestroy } from 'svelte';
   import { writable, type Unsubscriber } from 'svelte/store';
   import { getOptions } from '../options';
@@ -18,8 +18,6 @@
   import VariantPopup from './VariantPopup.svelte';
   import { SearchService, type SearchState } from '../search';
   import { DataService } from '../data-service';
-  import { slideTransition } from '../animation';
-  import { expoOut } from 'svelte/easing';
 
   export let options: Partial<PickerOptions> = {};
   let searchQuery: string;
@@ -90,15 +88,10 @@
     }
   }
 
-  function setCurrentView(view: 'search' | 'emojis') {
-    return () => (currentView = view);
-  }
-
   onDestroy(() => {
     unsubscribe.forEach(fn => fn());
   });
 
-  let currentView = 'emojis';
   // TODO: cleanup this component in general!
 </script>
 
@@ -114,27 +107,16 @@
       <header class="header">
         <Search on:searchinput={handleSearchInput} />
         {#if !searchQuery}
-          <div
-            transition:slide|local={{ duration: 250, easing: expoOut }}
-            on:outroend={setCurrentView('search')}
-            on:introend={setCurrentView('emojis')}
-          >
-            <CategoryTabs />
-          </div>
+          <CategoryTabs />
         {/if}
       </header>
       <div class="body">
-        {#if currentView === 'search'}
-          <div in:slideTransition={{ direction: 1 }} out:slideTransition={{ direction: 1 }} class="results panel">
+        {#if searchQuery}
+          <div class="results panel">
             <SearchResults on:emojiselect={onEmojiSelect} />
           </div>
-        {/if}
-        {#if currentView === 'emojis'}
-          <div
-            in:slideTransition={{ direction: -1, enabled: searchState != null }}
-            out:slideTransition|local={{ direction: -1 }}
-            class="panel"
-          >
+        {:else}
+          <div class="panel">
             <EmojiArea on:emojiselect={onEmojiSelect} />
           </div>
         {/if}

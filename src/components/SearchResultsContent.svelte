@@ -1,8 +1,5 @@
 <script lang="ts">
   import { getContext, onDestroy } from 'svelte';
-  import { fly } from 'svelte/transition';
-  import { faFaceFrown } from '@fortawesome/free-solid-svg-icons';
-  import Icon from 'svelte-awesome';
   import { SmileyMeh } from 'phosphor-svelte';
   import type { EmojiRecord, Category } from '../data';
   import type { NavigationStore } from '../types';

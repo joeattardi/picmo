@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { fade, scale } from 'svelte/transition';
-  import { backOut, cubicInOut } from 'svelte/easing';
+  import { scale } from 'svelte/transition';
+  import { backOut } from 'svelte/easing';
 
-  import { computePosition, shift, arrow, offset } from '@floating-ui/dom';
+  import { computePosition, offset } from '@floating-ui/dom';
 
   import EmojiPicker from '../components/EmojiPicker.svelte';
   import type { PopupOptions } from './types';

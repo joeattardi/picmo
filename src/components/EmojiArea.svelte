@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { EmojiMappings } from '../data';
   import type { SelectedCategoryStore, FocusState, NavigationStore } from '../types';
 
   import type { DataServiceReturnValue } from '../data-service';

@@ -2,13 +2,10 @@
   import { scale } from 'svelte/transition';
   import { backOut } from 'svelte/easing';
   import { createEventDispatcher, getContext, onDestroy } from 'svelte';
-  import { faMagnifyingGlass, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
-  import Icon from 'svelte-awesome';
 
   import { MagnifyingGlass, XCircle } from 'phosphor-svelte';
 
   import type { SelectedCategoryStore, NavigationStore } from '../types';
-  import type { SearchService } from '../search';
   import i18n from '../i18n';
   import type { Unsubscriber } from 'svelte/store';
 
@@ -19,7 +16,6 @@
 
   const selectedCategoryStore = getContext<SelectedCategoryStore>('selectedCategory');
   const navigationStore = getContext<NavigationStore>('navigation');
-  const searchService = getContext<() => SearchService>('searchService')();
 
   const unsubscribe: Unsubscriber[] = [];
 
