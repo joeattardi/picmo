@@ -28,6 +28,7 @@ export type EmojiRecord = {
 export type CustomEmoji = {
   emoji: string;
   label: string;
+  category: string;
   url: string;
   tags?: string[];
   data?: object;
@@ -48,9 +49,9 @@ export type CategoryKey =
   | 'search-results';
 
 export type Category = {
-  key: CategoryKey;
+  key: CategoryKey | string;
   message?: string;
   order: number;
 };
 
-export type EmojiMappings = Record<Partial<CategoryKey>, EmojiRecord[]>;
+export type EmojiMappings = Record<Partial<string>, EmojiRecord[]>;

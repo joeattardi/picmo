@@ -49,6 +49,8 @@
       handleSelect(event);
     }
   }
+
+  const dictionary: Record<string, string> = i18n.categories;
 </script>
 
 <div
@@ -61,7 +63,7 @@
   class="category"
   data-category-key={category.key}
 >
-  <h3>{i18n.categories[category.key] || category.message || category.key}</h3>
+  <h3>{dictionary[category.key] || category.message || category.key}</h3>
   {#if emojis.length}
     <Emojis {categoryCount} {emojis} categoryIndex={index} />
   {:else if emptyMessage}

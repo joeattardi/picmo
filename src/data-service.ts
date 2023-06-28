@@ -25,7 +25,7 @@ export type ErrorDataState = {
 
 type DataServiceOptions = Pick<
   PickerOptions,
-  'locale' | 'dataStore' | 'custom' | 'messages' | 'emojiData' | 'emojiVersion'
+  'customCategories' | 'locale' | 'dataStore' | 'custom' | 'messages' | 'emojiData' | 'emojiVersion'
 > &
   GetCategoriesOptions;
 
@@ -71,11 +71,18 @@ export function DataService(options: DataServiceOptions): DataServiceReturnValue
         options.messages,
         options.emojiData
       );
-      categories = await db.getCategories(options);
+      categories = [...(await db.getCategories(options)), ...options.customCategories];
+
       customEmojis = db.customEmojis;
 
       const allEmojis = await Promise.all(categories.map(category => db.getEmojis(category, emojiVersion)));
       categoryEmojis = createCategoryMappings(categories, allEmojis);
+
+      options.customCategories.forEach(category => {
+        categoryEmojis[category.key] = options.custom
+          .filter(custom => custom.category === category.key)
+          .map(customEmoji => customEmojis.find(record => record.id === `custom:${customEmoji.emoji}`));
+      });
 
       store.set({
         dataStore: db,

@@ -9,6 +9,7 @@ import {
   Coffee,
   GameController,
   LightbulbFilament,
+  MagnifyingGlass,
   MusicNotes,
   Flag,
   ClockCounterClockwise,
@@ -30,5 +31,5 @@ export const categoryIcons: Record<CategoryKey, SvelteComponent<IconProps>> = {
   // Additional categories for the picker
   recents: ClockCounterClockwise,
   custom: Star,
-  'search-results': faMagnifyingGlass
+  'search-results': MagnifyingGlass
 };

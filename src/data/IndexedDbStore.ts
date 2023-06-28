@@ -195,9 +195,9 @@ export class IndexedDbStore extends DataStore {
       categories.unshift({ key: 'recents', order: -1 });
     }
 
-    if (options.custom?.length) {
-      categories.push({ key: 'custom', order: 10 });
-    }
+    // if (options.custom?.length) {
+    //   categories.push({ key: 'custom', order: 10 });
+    // }
 
     if (options.categories) {
       const includeList = options.categories as CategoryKey[];

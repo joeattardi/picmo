@@ -1,7 +1,6 @@
 <script lang="ts">
   import type { Category } from '../data';
   import type { SelectedCategoryStore } from '../types';
-
   import { getContext, createEventDispatcher, onDestroy } from 'svelte';
   import { categoryIcons } from '../icons';
   import i18n from '../i18n';
@@ -37,7 +36,7 @@
     on:click={onClickCategory}
     title={i18n.categories[category.key] || category.message || category.key}
   >
-    <svelte:component this={categoryIcons[category.key]} size={24} weight="duotone" />
+    <svelte:component this={categoryIcons[category.key] || categoryIcons.custom} size={24} weight="duotone" />
   </button>
 </li>
 

@@ -1,11 +1,18 @@
 import type { ComponentType, SvelteComponentTyped } from 'svelte';
 import type { Emoji, Locale, MessagesDataset } from 'emojibase';
 import PlatformEmoji from './components/renderers/PlatformEmoji.svelte';
-import { type DataStoreFactory, type CategoryKey, type CustomEmoji, IndexedDbStoreFactory } from './data';
+import {
+  type Category,
+  type DataStoreFactory,
+  type CategoryKey,
+  type CustomEmoji,
+  IndexedDbStoreFactory
+} from './data';
 import { recentsProvider, type RecentsProvider } from './recents-provider';
 import type { Theme } from './types';
 
 export type PickerOptions = {
+  customCategories?: Category[];
   categories?: CategoryKey[];
   columns: number;
   custom?: CustomEmoji[];
@@ -39,6 +46,7 @@ const defaults: PickerOptions = {
   rows: 8,
   columns: 8,
   renderer: PlatformEmoji,
+  customCategories: [],
   // TODO: do these need to be moved to prevent side effects?
   recentsProvider: recentsProvider(35),
   dataStore: IndexedDbStoreFactory
