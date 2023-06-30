@@ -18,6 +18,7 @@ function initData(options: PickerOptions): Promise<DataStore> {
 let pickerIndex = 0;
 
 let emojiDataPromise;
+let __lastLocale__;
 
 function getPickerId() {
   return `picmo-${Date.now()}-${pickerIndex++}`;
@@ -41,8 +42,11 @@ export function createPicker(options: Partial<PickerOptions>): EmojiPicker {
   }));
 
   const events = new AppEvents();
-  if (!emojiDataPromise) {
+
+  const isLocaleChange = __lastLocale__ !== finalOptions.locale
+  if (!emojiDataPromise || isLocaleChange) {
     emojiDataPromise = initData(finalOptions);
+    __lastLocale__ = finalOptions.locale
   }
 
   const i18n = new Bundle(finalOptions.i18n);
