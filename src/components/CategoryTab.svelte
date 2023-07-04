@@ -36,7 +36,11 @@
     on:click={onClickCategory}
     title={i18n.categories[category.key] || category.message || category.key}
   >
-    <svelte:component this={categoryIcons[category.key] || categoryIcons.custom} size={24} weight="duotone" />
+    <svelte:component
+      this={category.icon || categoryIcons[category.key] || categoryIcons.custom}
+      size={24}
+      weight="duotone"
+    />
   </button>
 </li>
 

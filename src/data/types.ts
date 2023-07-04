@@ -52,6 +52,7 @@ export type Category = {
   key: CategoryKey | string;
   message?: string;
   order: number;
+  icon: any;
 };
 
 export type EmojiMappings = Record<Partial<string>, EmojiRecord[]>;

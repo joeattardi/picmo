@@ -1,15 +1,22 @@
 import { EmojiPicker, themes, type EmojiRecord } from './src';
+import { Gif, FilmStrip } from 'phosphor-svelte';
+
+
+const categoryIcon = document.createElement('div');
+categoryIcon.textContent = '😂';
 
 const customCategories = [
   {
     key: 'gifs',
     message: 'GIFs',
-    order: 11
+    order: 11,
+    icon: Gif
   },
   {
     key: 'cats',
     message: 'Kitties',
-    order: 12
+    order: 12,
+    icon: FilmStrip
   }
 ]
 
