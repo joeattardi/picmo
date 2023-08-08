@@ -17,6 +17,6 @@ export default {
     'search.clear': 'Zoekopdracht wissen',
     'search.error': 'Zoeken mislukt',
     'search.notFound': 'Geen emoji gevonden',
-    'search': 'Zoek emoji…'
+    'search': 'Zoek emoji...'
   };
   
