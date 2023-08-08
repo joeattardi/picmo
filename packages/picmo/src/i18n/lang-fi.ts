@@ -17,6 +17,6 @@ export default {
     'search.clear': 'Tyhjennä haku',
     'search.error': 'Emojien etsiminen epäonnistui',
     'search.notFound': 'Emojia ei löytynyt',
-    'search': 'Etsi emojia…'
+    'search': 'Etsi emojia...'
   };
   
