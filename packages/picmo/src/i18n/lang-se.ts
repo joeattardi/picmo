@@ -17,6 +17,6 @@ export default {
     'search.clear': 'Tom sökning',
     'search.error': 'Det gick inte att söka efter emojis',
     'search.notFound': 'Inga emojis hittades',
-    'search': 'Sök efter emojis…'
+    'search': 'Sök efter emojis...'
   };
   
