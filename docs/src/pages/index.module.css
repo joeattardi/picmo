@@ -3,6 +3,12 @@
  * and scoped locally.
  */
 
+.deprecationNotice {
+  background: #ffedd5;
+  padding: 1rem;
+
+}
+
  .heroTitle {
   display: flex;
   align-items: center;

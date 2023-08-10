@@ -17,6 +17,20 @@ function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
 
   return (
+    <>
+      <div className={styles.deprecationNotice}>
+        <h2>Deprecation Notice</h2>
+        <p>
+          As of <strong>September 1, 2023</strong>, PicMo is no longer being maintained. I just don't have the time to keep it updated anymore, and its usage seems to be
+          declining. You can still install the package but there will be no further updates.
+        </p>
+        <p>
+          If you're looking for an emoji picker, I highly recommend <a href="https://missiveapp.com/open/emoji-mart">Emoji Mart</a>.
+        </p>
+        <p>
+          Thanks for using PicMo/Emoji Button over the years!
+        </p>
+      </div>
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className={styles.heroGrid}>
         <div>
@@ -36,6 +50,7 @@ function HomepageHeader() {
         <EmojiGrid />
       </div>
     </header>
+    </>
   );
 }
 
