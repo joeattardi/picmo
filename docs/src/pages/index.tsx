@@ -21,7 +21,7 @@ function HomepageHeader() {
       <div className={styles.deprecationNotice}>
         <h2>Deprecation Notice</h2>
         <p>
-          As of <strong>September 1, 2023</strong>, PicMo is no longer being maintained. I just don't have the time to keep it updated anymore, and its usage seems to be
+          As of <strong>September 14, 2023</strong>, PicMo is no longer being maintained. I just don't have the time to keep it updated anymore, and its usage seems to be
           declining. You can still install the package but there will be no further updates.
         </p>
         <p>
