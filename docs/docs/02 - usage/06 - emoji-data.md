@@ -24,7 +24,7 @@ import messages from 'emojibase-data/<locale>/messages.json';
 
 const picker = createPicker({
   emojiData,
-  message
+  messages
 });
 ```
 
